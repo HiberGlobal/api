@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+import "public-api/base.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.tag";
+option java_outer_classname = "TagApi";
+
+/* Tag management api calls. You can already get tags for objects when you get their data, and even create new tags
+ * when updating them, so these calls are meant for easier tag management if you need it.
+ */
+package api.tag;
+
+/* A tag is nothing more than a name and color, that can be applied to many objects.
+ */
+message Tag {
+  message Label {
+    string name = 1;
+    string color = 2;
+  }
+
+  int64 id = 1;
+  Label label = 3;
+}
+
+message TagSelection {
+  repeated string search = 1;
+  repeated string names = 2;
+  Filter.Tags filter = 3;
+}
+
+message UpdateTagsForItem {
+  repeated int64 tag_ids_to_add = 1;
+  repeated int64 tag_ids_to_remove = 2;
+  repeated api.tag.Tag.Label new_tags_to_add = 3;
+  bool new_tags_visible_to_sub_accounts = 4;
+}
+
+message ListRequest {
+  message Response {
+    repeated Tag tags = 1;
+    ListRequest request = 2;
+  }
+
+  string account = 1;
+  TagSelection selection = 2;
+}
+
+message CreateRequest {
+  string account = 1;
+  Tag.Label create = 2;
+  bool visible_to_sub_accounts = 3;
+}
+
+message UpdateRequest {
+  string account = 1;
+  int64 id = 2;
+  Tag.Label update = 3;
+}
+
+message DeleteRequest {
+  message Response {
+  }
+
+  string account = 1;
+  int64 id = 2;
+}
+
+service TagService {
+  rpc List (ListRequest) returns (ListRequest.Response);
+  rpc Create (CreateRequest) returns (Tag);
+  rpc Update (UpdateRequest) returns (Tag);
+  rpc Delete (DeleteRequest) returns (DeleteRequest.Response);
+}

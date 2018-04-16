@@ -1,0 +1,149 @@
+syntax = "proto3";
+
+import "public-api/base.proto";
+import "public-api/tag.proto";
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.webhook";
+option java_outer_classname = "WebhookApi";
+
+package api.webhook;
+
+message Webhook {
+  int64 id = 1;
+  string account = 2;
+  string description = 3;
+  WebhookData data = 4;
+  WebhookFilters filters = 5;
+  repeated api.tag.Tag tags = 6;
+}
+
+message WebhookData {
+  enum ContentType {
+    DEFAULT = 0;
+    JSON = 1;
+    PROTO = 2;
+  }
+
+  string url = 1;
+  string secret = 2;
+  ContentType content_type = 3;
+  bool active = 4;
+}
+
+message WebhookFilters {
+  Filter.Events events = 1;
+  Filter.Modems modems = 2;
+  Filter.Tags tags = 3;
+}
+
+message WebhookSelection {
+  string description = 1;
+  string url = 2;
+  Filter.Webhooks webhooks = 3;
+  api.tag.TagSelection tags = 4;
+}
+
+message ListRequest {
+  message Response {
+    repeated Webhook webhooks = 1;
+    ListRequest request = 2;
+  }
+
+  string account = 1;
+  WebhookSelection selection = 2;
+}
+
+message CreateRequest {
+  string account = 1;
+  string description = 2;
+  WebhookData data = 3;
+  WebhookFilters filters = 4;
+  repeated int64 tags = 5;
+}
+
+message GetRequest {
+  int64 id = 1;
+  string account = 2;
+  api.tag.TagSelection tags = 3;
+}
+
+message EnableRequest {
+  int64 id = 1;
+  string account = 2;
+  api.tag.TagSelection tags = 3;
+}
+
+message DisableRequest {
+  int64 id = 1;
+  string account = 2;
+  api.tag.TagSelection tags = 3;
+}
+
+message UpdateFilterRequest {
+  message UpdateEvents {
+    bool updated = 1;
+    Filter.Events value = 2;
+  }
+  message UpdateModems {
+    bool updated = 1;
+    Filter.Modems value = 2;
+  }
+  message UpdateTags {
+    bool updated = 1;
+    Filter.Tags value = 2;
+  }
+
+  int64 id = 1;
+  string account = 2;
+  UpdateEvents event_filter = 3;
+  UpdateModems modem_filter = 4;
+  UpdateTags tag_filter = 5;
+  api.tag.TagSelection tags = 6;
+}
+
+message UpdateRequest {
+  message UpdateWebhook {
+    string url = 1;
+    UpdateClearableString secret = 2;
+    WebhookData.ContentType content_type = 3;
+    UpdateClearableString description = 4;
+  }
+
+  int64 id = 1;
+  string account = 2;
+  UpdateWebhook update = 3;
+  api.tag.TagSelection tags = 4;
+}
+
+message UpdateTagsRequest {
+  message Response {
+    repeated Webhook webhooks = 1;
+  }
+
+  string account = 1;
+  repeated int64 webhook_ids = 2;
+  api.tag.UpdateTagsForItem update = 3;
+  api.tag.TagSelection tags = 4;
+}
+
+message DeleteRequest {
+  message Response {
+  }
+
+  int64 id = 1;
+  string account = 2;
+}
+
+service WebhookService {
+  rpc List (ListRequest) returns (ListRequest.Response);
+  rpc Create (CreateRequest) returns (Webhook);
+  rpc Enable (EnableRequest) returns (Webhook);
+  rpc Disable (DisableRequest) returns (Webhook);
+  rpc UpdateFilter (UpdateFilterRequest) returns (Webhook);
+  rpc Update (UpdateRequest) returns (Webhook);
+  rpc UpdateTags (UpdateTagsRequest) returns (UpdateTagsRequest.Response);
+  rpc Get (GetRequest) returns (Webhook);
+  rpc Delete (DeleteRequest) returns (DeleteRequest.Response);
+}

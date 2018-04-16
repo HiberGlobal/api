@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+import "public-api/base.proto";
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.account.subscription";
+option java_outer_classname = "SubscriptionApi";
+
+package api.account.subscription;
+
+enum ServiceType {
+  _24h = 0;
+  _6h = 1;
+  _1h = 2;
+}

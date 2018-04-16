@@ -1,0 +1,234 @@
+syntax = "proto3";
+
+import "public-api/base.proto";
+import "public-api/modem.proto";
+import "public-api/tag.proto";
+import "public-api/user.proto";
+import "public-api/webhook.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.event";
+option java_outer_classname = "EventApi";
+
+/* Events are used in a number of ways in the api. This package specifies the available events and has calls to list
+ * and stream them
+ */
+package api.event;
+
+/* Generic Event object, used in streams where events are mixed. Protobuf provides helper methods to extract
+ * the contained object.
+ */
+message Event {
+  oneof event {
+    ModemEvent.ModemLocationUpdatedEvent modem_location_updated = 2;
+    ModemEvent.ModemStaleEvent modem_stale = 3;
+    ModemEvent.MessageEvent.ModemMessageReceivedEvent modem_message_received = 4;
+    ModemEvent.MessageEvent.ModemMessageDroppedEvent modem_message_dropped = 5;
+    ModemEvent.MessageEvent.ModemMessageDelayedEvent modem_message_delayed = 6;
+    ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent modem_message_cannot_be_parsed = 7;
+    UserEvent.UserAddedEvent user_added = 8;
+    UserEvent.UserRemovedEvent user_removed = 9;
+    UserEvent.UserAccessRequestEvent user_access_request = 10;
+    WebhookEvent.CreatedEvent webhook_created = 11;
+    WebhookEvent.UpdatedEvent webhook_updated = 12;
+    WebhookEvent.DeletedEvent webhook_deleted = 13;
+  }
+
+  message ModemEvent {
+    /* When a message comes in, the modem's location is updated automatically. This event is generated whenever the
+     * modem's lcoation is updated
+     */
+    message ModemLocationUpdatedEvent {
+      string account = 1;
+      string modem_number = 2;
+      Location location = 3;
+      Timestamp time = 4;
+      repeated api.tag.Tag tags = 5;
+      string title = 6;
+      string description = 7;
+    }
+
+    /* When a modem hasn't received any message for a configurable period, it is considered stale. This event is
+     * generated as soon as this condition is determined
+     */
+    message ModemStaleEvent {
+      string account = 1;
+      string modem_number = 2;
+      int32 guard_period = 3;
+      Timestamp time = 4;
+      Timestamp last_message = 5;
+      repeated api.tag.Tag tags = 6;
+      string title = 7;
+      string description = 8;
+    }
+
+    message MessageEvent {
+
+      /* This event is generated whenever a message comes in, after is has been decrypted. It contains the relevant data
+       * in the message object, including location and the user-defined encrypted payload
+       */
+      message ModemMessageReceivedEvent {
+        string account = 1;
+        string modem_number = 2;
+        api.modem.ModemMessage message = 3;
+        repeated api.tag.Tag tags = 4;
+        string title = 5;
+        string description = 6;
+        Timestamp time = 7;
+      }
+
+      /* Every message has a sequence marker. When we detect a jump in the sequence number, we can determine whether we
+       * missed a message (or even multiple messages). Typically, this is caused by interference between the modem and
+       * the satellite. Note that this event is only generated when a message comes in. If no messages come in for a
+       * certain period, the ModemStaleEvent is used.
+       */
+      message ModemMessageDroppedEvent {
+        string account = 1;
+        string modem_number = 2;
+        int32 dropped_messages = 3;
+        api.modem.ModemMessage message = 4;
+        repeated api.tag.Tag tags = 5;
+        Health modem_health = 6;
+        string title = 7;
+        string description = 8;
+        Timestamp time = 9;
+      }
+
+      /* Trigerred when the time between sending and receiving the message is above a certain threshold. This can
+       * indicate that there is a comminutcation issue between the modem and the server, i.e. a malfunction ground
+       * station, so that the satellite takes longer to send its data on.
+       */
+      message ModemMessageDelayedEvent {
+        string account = 1;
+        string modem_number = 2;
+        api.modem.ModemMessage message = 3;
+        int64 delay_seconds = 4;
+        repeated api.tag.Tag tags = 5;
+        Health modem_health = 6;
+        string title = 7;
+        string description = 8;
+        Timestamp time = 9;
+      }
+
+      /* Triggered when a message cannot be parsed. This can have multiple reasons, for example, an invalid
+       * message version.
+       */
+      message ModemMessageCannotBeParsedEvent {
+        string account = 1;
+        string modem_number = 2;
+        int64 modem_message_id = 3;
+        Timestamp time = 4;
+        string reason = 5;
+        repeated api.tag.Tag tags = 6;
+        string title = 7;
+        string description = 8;
+      }
+    }
+  }
+
+  message UserEvent {
+    message UserAddedEvent {
+      string account = 1;
+      int64 user = 2;
+      int64 created_by = 3;
+      string title = 4;
+      string description = 5;
+      Timestamp time = 6;
+    }
+
+    message UserRemovedEvent {
+      string account = 1;
+      int64 user = 2;
+      int64 created_by = 3;
+      string title = 4;
+      string description = 5;
+      Timestamp time = 6;
+    }
+
+    message UserAccessRequestEvent {
+      string account = 1;
+      int64 user = 2;
+      Timestamp time = 3;
+      string title = 4;
+      string description = 5;
+    }
+  }
+
+  message WebhookEvent {
+    message CreatedEvent {
+      string account = 1;
+      api.webhook.Webhook created = 2;
+      int64 created_by = 3;
+      repeated api.tag.Tag tags = 4;
+      string title = 5;
+      string description = 6;
+      Timestamp time = 7;
+    }
+
+    message UpdatedEvent {
+      string account = 1;
+      api.webhook.Webhook update = 2;
+      int64 created_by = 3;
+      repeated api.tag.Tag tags = 4;
+      string title = 5;
+      string description = 6;
+      Timestamp time = 7;
+    }
+
+    message DeletedEvent {
+      string account = 1;
+      api.webhook.Webhook deleted = 2;
+      int64 created_by = 3;
+      repeated api.tag.Tag tags = 4;
+      string title = 5;
+      string description = 6;
+      Timestamp time = 7;
+    }
+  }
+}
+
+/* Selection object for Event list and stream. Filter events on modem, webhook, time and error state, and
+ * paginate the list
+ */
+message EventSelection {
+  Filter.Events events = 1;
+  Filter.Modems modems = 2;
+  Filter.Webhooks webhooks = 3;
+  Filter.Tags tags = 4;
+  TimeRange time_range = 6;
+  bool errors_only = 7;
+}
+
+message ListRequest {
+  message Response {
+    repeated Event events = 1;
+    ListRequest request = 2;
+    Pagination.Result pagination = 3;
+  }
+
+  enum Sort {
+    TIME = 0;
+    TIME_INVERTED = 1;
+    MODEM_NUMBER_ASC = 2;
+    MODEM_NUMBER_DESC = 3;
+    MODEM_NUMBER_SPECIFIED = 4;
+  }
+
+  string account = 1;
+  EventSelection selection = 2;
+  Pagination pagination = 3;
+  Sort sort = 4;
+}
+
+/* Creates a stream for new events, matching the provided selection. Time range can be used to start the stream with
+ * initial past data.
+ */
+message StreamRequest {
+  string account = 1;
+  EventSelection selection = 2;
+}
+
+service EventService {
+  rpc List (ListRequest) returns (ListRequest.Response);
+  rpc Stream (StreamRequest) returns (stream Event);
+}

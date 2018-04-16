@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.user";
+option java_outer_classname = "CurrentUserApi";
+
+/* Calls related to the current user. Typically, a newly created account only has access to these calls, all
+ * other require an account to be linked.
+ */
+package api.user;
+
+/*
+ */
+message CurrentUser {
+  string id = 1;
+  string email = 2;
+  string name = 3;
+  repeated string accounts = 4;
+}
+
+message CurrentUserRequest {
+}
+
+message RequestAccessRequest {
+  message Response {
+  }
+
+  string account = 1;
+}
+
+message DeleteRequest {
+  message Response {
+  }
+}
+
+service CurrentUserService {
+  rpc CurrentUser (CurrentUserRequest) returns (api.user.CurrentUser);
+  rpc RequestAccess (RequestAccessRequest) returns (RequestAccessRequest.Response);
+  rpc DeleteCurrentUser (DeleteRequest) returns (DeleteRequest.Response);
+}

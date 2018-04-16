@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+import "public-api/base.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.token";
+option java_outer_classname = "TokenApi";
+
+package api.token;
+
+message Token {
+  int64 id = 1;
+  string name = 2;
+  int64 user_id = 3;
+  string account = 4;
+  repeated TokenPermission permissions = 5;
+  Timestamp expires_at = 6;
+}
+
+enum TokenPermission {
+  USER_READ = 0;
+  USER_ACTION = 1;
+  ACCOUNT_READ = 2;
+  ACCOUNT_ACTION = 3;
+}
+
+message TokenSelection {
+  Filter.Users users = 1;
+  string name = 3;
+  bool includeExpired = 4;
+}
+
+message ListRequest {
+  message Response {
+    repeated Token tokens = 1;
+    ListRequest request = 2;
+    Pagination.Result pagination = 3;
+  }
+
+  string account = 1;
+  TokenSelection selection = 2;
+  Pagination pagination = 3;
+}
+
+message CreateRequest {
+  message Response {
+    string token = 1;
+  }
+
+  string account = 1;
+  string name = 2;
+  repeated TokenPermission permissions = 3;
+  Timestamp expires_at = 4;
+}
+
+message DeleteRequest {
+  message Response {
+  }
+
+  string account = 1;
+  int64 token_id = 2;
+}
+
+service TokenService {
+  rpc List (ListRequest) returns (ListRequest.Response);
+  rpc Create (CreateRequest) returns (CreateRequest.Response);
+  rpc Delete (DeleteRequest) returns (DeleteRequest.Response);
+}

@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+import "public-api/base.proto";
+import "public-api/modem.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.testing";
+option java_outer_classname = "TestingApi";
+
+/* Method to test the system in different ways, meant for customer access. For example, you can use this to test
+ * whether everything works from message to webhook call, and further in your own system.
+ */
+package api.testing;
+
+/* Push any number of modem messages. These are marked as test messages, which means they will be treated
+ * differently in a few places (i.e. message sequence, to avoid errors on the next real messages).
+ * The message is handled like a real message, it's encrypted as if sent from a modem, then goes through
+ * the decryption process and all relevant events are triggered (including webhooks calls caused by the events).
+ */
+message PushModemMessagesRequest {
+  message Response {
+    map<string, int32> messages_sent = 1;
+    PushModemMessagesRequest request = 2;
+  }
+
+  message MessageToPush {
+    string modem_number = 1;
+    Timestamp time = 2;
+    Location location = 3;
+    bytes content = 4;
+  }
+
+  string account = 1;
+  repeated MessageToPush messages = 2;
+}
+
+service TestingService {
+  rpc PushModemMessages (PushModemMessagesRequest) returns (PushModemMessagesRequest.Response);
+}

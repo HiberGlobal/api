@@ -1,0 +1,167 @@
+syntax = "proto3";
+
+import "public-api/base.proto";
+import "public-api/tag.proto";
+import "public-api/subscription.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.modem";
+option java_outer_classname = "ModemApi";
+
+/* The core of the Hiber system, modems are the network nodes that send information and user data.
+ * This package contains calls to list and manage them, as well as list their messages.
+ */
+package api.modem;
+
+/* Modem data, including location and last message (if available).
+ * Location, last message and firmware version can be updated by messages, the rest is typically either set
+ * when the modem is registered into the system or when a subscription is authorized.
+ */
+message Modem {
+  /* An 8-character hexadecimal string */
+  string number = 1;
+  string account = 2;
+  string name = 3;
+  Location location = 4;
+  Timestamp last_message_received_at = 5;
+  ActiveSubscription active_subscription = 6;
+  TechnicalData technical = 7;
+  int32 guard_period = 8;
+  Health health = 9;
+  repeated api.tag.Tag tags = 10;
+
+  message TechnicalData {
+    int64 chip_id = 1;
+    string hardware_name = 2;
+    string firmware_version_name = 3;
+    int32 message_format_version = 4;
+    string payload_template = 5;
+    string hardware_production_batch = 6;
+  }
+
+  message ActiveSubscription {
+    string license_key = 2;
+    api.account.subscription.ServiceType type = 3;
+    Timestamp start_date = 4;
+    Timestamp end_date = 5;
+  }
+}
+
+/* Selection object for modems.
+ * Filter modems by modem id, (child)account, tags, activation status and time, service type and last message time.
+ */
+message ModemSelection {
+  Filter.Modems modems = 1;
+  api.tag.TagSelection tags = 2;
+  Filter.ChildAccounts child_accounts = 3;
+  bool only_active = 4;
+  TimeRange activated_in = 5;
+  repeated api.account.subscription.ServiceType with_service_type = 6;
+  TimeRange with_last_message_in = 7;
+  string freeTextSearch = 8;
+  repeated Health health = 9;
+}
+
+/* Decrypted modem message. Messages are received encrypted and decrypted asynchronously, which adds the location
+ * data and message body. (Your message body is, of course, still encrypted if you've encrypted it yourself)
+ */
+message ModemMessage {
+  string modem_number = 1;
+  uint32 version = 2;
+  Timestamp time = 3;
+  Location location = 4;
+  bytes body = 5;
+}
+
+/* Selection object for modem messages.
+ * Filter messages by modem id, (child)account, and time sent (note that this is not the time the message was received)
+ */
+message ModemMessageSelection {
+  Filter.Modems modems = 1;
+  Filter.ChildAccounts child_accounts = 2;
+  TimeRange time_range = 3;
+}
+
+message ListRequest {
+  message Response {
+    repeated Modem modems = 1;
+    ListRequest request = 2;
+    Pagination.Result pagination = 3;
+  }
+  enum Sort {
+    LAST_MESSAGE_RECEIVED = 0;
+    LAST_MESSAGE_RECEIVED_INVERTED = 1;
+    MODEM_NUMBER_ASC = 2;
+    MODEM_NUMBER_DESC = 3;
+  }
+
+  string account = 1;
+  ModemSelection selection = 2;
+  Pagination pagination = 3;
+  Sort sort_by = 4;
+}
+
+message GetRequest {
+  string account = 1;
+  string modem_number = 2;
+  api.tag.TagSelection tags = 3;
+}
+
+message MessagesRequest {
+  message Response {
+    repeated ModemMessage messages = 1;
+    MessagesRequest request = 2;
+    Pagination.Result pagination = 3;
+  }
+
+  string account = 1;
+  ModemMessageSelection selection = 2;
+  Pagination pagination = 3;
+}
+
+message MessageCountRequest {
+  message Response {
+    map<string, int32> message_count_per_day = 1;
+    MessageCountRequest request = 2;
+  }
+
+  string account = 1;
+  ModemMessageSelection selection = 2;
+}
+
+message RenameRequest {
+  string account = 1;
+  string modem_number = 2;
+  string name = 3;
+  api.tag.TagSelection tags = 4;
+}
+
+message UpdatePayloadTemplateRequest {
+  string account = 1;
+  string modem_number = 2;
+  string payload_template = 3;
+  api.tag.TagSelection tags = 4;
+}
+
+message UpdateTagsRequest {
+  message Response {
+    repeated Modem modems = 1;
+  }
+
+  string account = 1;
+  repeated string modem_numbers = 2;
+  api.tag.UpdateTagsForItem update = 3;
+  api.tag.TagSelection tags = 4;
+}
+
+service ModemService {
+  rpc List (ListRequest) returns (ListRequest.Response);
+  rpc Get (GetRequest) returns (Modem);
+  rpc Messages (MessagesRequest) returns (MessagesRequest.Response);
+  rpc MessageCount (MessageCountRequest) returns (MessageCountRequest.Response);
+
+  rpc Rename (RenameRequest) returns (Modem);
+  rpc UpdatePayloadTemplate (UpdatePayloadTemplateRequest) returns (Modem);
+
+  rpc UpdateTags (UpdateTagsRequest) returns (UpdateTagsRequest.Response);
+}
