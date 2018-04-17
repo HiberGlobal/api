@@ -4,8 +4,9 @@ import "google/protobuf/timestamp.proto";
 
 option java_multiple_files = true;
 option java_package = "global.hiber.api.grpc";
+option go_package = "hiber";
 
-package api;
+package hiber;
 
 /* Update object for an int that can be set to 0.
  * Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,
@@ -14,8 +15,8 @@ package api;
  * To use this to update, set a value and set updated to true
  */
 message UpdateZeroableInt {
-  bool updated = 1;
-  uint32 value = 2;
+    bool updated = 1;
+    uint32 value = 2;
 }
 
 /* Update object for a string that can be empty.
@@ -25,8 +26,8 @@ message UpdateZeroableInt {
  * To use this to update, set a value and set updated to true
  */
 message UpdateClearableString {
-  bool updated = 1;
-  string value = 2;
+    bool updated = 1;
+    string value = 2;
 }
 
 /* Update object for a boolean.
@@ -36,15 +37,15 @@ message UpdateClearableString {
  * To use this to update, set a value and set updated to true
  */
 message UpdateBoolean {
-  bool updated = 1;
-  bool value = 2;
+    bool updated = 1;
+    bool value = 2;
 }
 
 /* Period of time between two timestamps. Typically used for filtering.
  */
 message TimeRange {
-  Timestamp start = 1;
-  Timestamp end = 2;
+    Timestamp start = 1;
+    Timestamp end = 2;
 }
 
 /* Timestamp type for convenience.
@@ -56,48 +57,45 @@ message TimeRange {
  * timestamp field will be used, the textual field will be discarded.
  */
 message Timestamp {
-  google.protobuf.Timestamp timestamp = 1;
-  string textual = 4;
+    google.protobuf.Timestamp timestamp = 1;
+    string textual = 4;
 }
 
 message Location {
-  double latitude = 1;
-  double longitude = 2;
+    double latitude = 1;
+    double longitude = 2;
 }
 
 /* Area between two locations, normalized to bottom-left and top-right points.
  * Center point is added for convenience; it's simple the point directly between the two corner points.
  */
 message Area {
-  Location center = 1;
-  Location bottom_left = 2;
-  Location top_right = 4;
+    Location center = 1;
+    Location bottom_left = 2;
+    Location top_right = 4;
 }
 
 /* Pagination is normalized across the api. Provide a pagination object to get a specific page or offset,
  * or limit your data.
  *
  * Calls that have a pagination option automatically return a Pagination.Result, which contains
- * either the specified pagination options or the defaults, as well as total counts. It also contains a Pagination
- * object that can be used for the next page.
+ * either the specified pagination options or the defaults, as well as total counts. It also contains Pagination
+ * objects that can be used for the previous and next page.
  *
  * This effectively means that an api user would never need to create their own pagination object; as long as they
  * start at the first page and continue to the next, they can use the provided Pagination object.
  */
 message Pagination {
-  message Result {
+    message Result {
+        int32 size = 1;
+        int32 page = 2;
+        int32 total = 3;
+        int32 totalPages = 4;
+        Pagination previous = 6;
+        Pagination next = 7;
+    }
     int32 size = 1;
-    int32 total = 2;
-    int32 skip = 3;
-    int32 page = 4;
-    int32 totalPages = 5;
-    Pagination previous = 6;
-    Pagination next = 7;
-    int32 originalSize = 8;
-  }
-  int32 size = 1;
-  int32 skip = 2;
-  int32 page = 3;
+    int32 page = 2;
 }
 
 /* Enum of api-accessible events.
@@ -105,15 +103,15 @@ message Pagination {
  * api event stream and webhooks.
  */
 enum EventType {
-  DEFAULT = 0;
-  WEBHOOK_CREATED = 1;
-  WEBHOOK_UPDATED = 2;
-  WEBHOOK_DELETED = 3;
-  MODEM_LOCATION_UPDATED = 4;
-  MODEM_MESSAGE_RECEIVED = 5;
-  CREDENTIAL_UPDATED = 8;
-  CREDENTIAL_CREATED = 9;
-  CREDENTIAL_DELETED = 10;
+    DEFAULT = 0;
+    WEBHOOK_CREATED = 1;
+    WEBHOOK_UPDATED = 2;
+    WEBHOOK_DELETED = 3;
+    MODEM_LOCATION_UPDATED = 4;
+    MODEM_MESSAGE_RECEIVED = 5;
+    CREDENTIAL_UPDATED = 8;
+    CREDENTIAL_CREATED = 9;
+    CREDENTIAL_DELETED = 10;
 }
 
 /* Filters used in many api calls to filter the data sources, results, etc.
@@ -124,46 +122,46 @@ enum EventType {
  * When combined with include, exclude takes precedence when determining whether an item is filtered
  */
 message Filter {
-  /* Specify which accounts to get data from. By default, data is only retrieved for the current account, but
-   * using ChildAccounts we can specify to include a number of, or all, sub-accounts.
-   */
-  message ChildAccounts {
-    bool include_all = 1;
-    repeated string include = 2;
-    repeated string exclude = 3;
-  }
+    /* Specify which accounts to get data from. By default, data is only retrieved for the current account, but
+     * using ChildAccounts we can specify to include a number of, or all, sub-accounts.
+     */
+    message ChildAccounts {
+        bool include_all = 1;
+        repeated string include = 2;
+        repeated string exclude = 3;
+    }
 
-  message Events {
-    repeated EventType include = 1;
-    repeated EventType exclude = 2;
-  }
+    message Events {
+        repeated EventType include = 1;
+        repeated EventType exclude = 2;
+    }
 
-  message Modems {
-    repeated string include = 1;
-    repeated string exclude = 2;
-  }
+    message Modems {
+        repeated string include = 1;
+        repeated string exclude = 2;
+    }
 
-  message Tags {
-    repeated int64 include = 1;
-    repeated int64 exclude = 2;
-  }
+    message Tags {
+        repeated int64 include = 1;
+        repeated int64 exclude = 2;
+    }
 
-  message Webhooks {
-    repeated int64 include = 1;
-    repeated int64 exclude = 2;
-    bool only_active = 3;
-  }
+    message Webhooks {
+        repeated int64 include = 1;
+        repeated int64 exclude = 2;
+        bool only_active = 3;
+    }
 
-  message Users {
-    repeated int64 include = 1;
-    repeated int64 exclude = 2;
-  }
+    message Users {
+        repeated string include = 1;
+        repeated string exclude = 2;
+    }
 }
 
 /* Health is an indicator for issues. It is used for modems and webhooks to give a quick indication of issues.
  */
 enum Health {
-  OK = 0;
-  WARNING = 1;
-  ERROR = 2;
+    OK = 0;
+    WARNING = 1;
+    ERROR = 2;
 }

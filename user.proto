@@ -1,76 +1,76 @@
 syntax = "proto3";
 
-import "public-api/base.proto";
+import "base.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.user";
 option java_outer_classname = "UserApi";
+option go_package = "hiber";
 
-package api.user;
+package hiber.user;
+
+service UserService {
+    rpc List (ListRequest) returns (ListRequest.Response);
+    rpc ListAccessRequests (ListAccessRequestsRequest) returns (ListAccessRequestsRequest.Response);
+    rpc Approve (ApproveUserRequest) returns (ApproveUserRequest.Response);
+    rpc Remove (RemoveUserRequest) returns (RemoveUserRequest.Response);
+    rpc CreateUser (CreateUserRequest) returns (User);
+}
 
 message User {
-  string id = 1;
-  string email = 2;
-  string name = 3;
+    string id = 1;
+    string email = 2;
+    string name = 3;
 }
 
 message UserSelection {
-  string by_email = 1;
-  string by_name = 2;
-  bool includeAccessRequests = 3;
+    string by_email = 1;
+    string by_name = 2;
 }
 
 message ListRequest {
-  message Response {
-    repeated User users = 1;
-    ListRequest request = 2;
-    Pagination.Result pagination = 3;
-  }
+    message Response {
+        repeated User users = 1;
+        ListRequest request = 2;
+        Pagination.Result pagination = 3;
+    }
 
-  string account = 1;
-  UserSelection selection = 2;
-  Pagination pagination = 3;
+    string account = 1;
+    UserSelection selection = 2;
+    Pagination pagination = 3;
 }
 
 message ListAccessRequestsRequest {
-  message Response {
-    repeated User users = 1;
-    ListAccessRequestsRequest request = 2;
-    Pagination.Result pagination = 3;
-  }
+    message Response {
+        repeated User users = 1;
+        ListAccessRequestsRequest request = 2;
+        Pagination.Result pagination = 3;
+    }
 
-  string account = 1;
-  UserSelection selection = 2;
-  Pagination pagination = 3;
+    string account = 1;
+    UserSelection selection = 2;
+    Pagination pagination = 3;
 }
 
 message ApproveUserRequest {
-  message Response {
-  }
+    message Response {
+    }
 
-  string account = 1;
-  string user_id = 2;
+    string account = 1;
+    string user_id = 2;
 }
 
 message RemoveUserRequest {
-  message Response {
-  }
+    message Response {
+    }
 
-  string account = 1;
-  string user_id = 2;
+    string account = 1;
+    string user_id = 2;
 }
 
 message CreateUserRequest {
-  string account = 1;
-  string email = 2;
-  string name = 3;
-  string password = 4;
-}
-
-service UserService {
-  rpc List (ListRequest) returns (ListRequest.Response);
-  rpc ListAccessRequests (ListAccessRequestsRequest) returns (ListAccessRequestsRequest.Response);
-  rpc Approve (ApproveUserRequest) returns (ApproveUserRequest.Response);
-  rpc Remove (RemoveUserRequest) returns (RemoveUserRequest.Response);
-  rpc CreateUser (CreateUserRequest) returns (User);
+    string account = 1;
+    string email = 2;
+    string name = 3;
+    string password = 4;
 }

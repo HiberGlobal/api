@@ -1,36 +1,41 @@
 syntax = "proto3";
 
-import "public-api/base.proto";
+import "base.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.map";
 option java_outer_classname = "MapApi";
+option go_package = "hiber";
 
-/* Map of modems, in different map levels to enable data to be displayed effectively
+package hiber.map;
+
+/* Map of modems, in different map levels to enable data to be displayed efficiently
  */
-package api.map;
+service MapService {
+    rpc Map (MapRequest) returns (MapRequest.Response);
+}
 
 /* Selection object for map data. Filter modems on the map by id, (child)account.
  * Also, filter the map data by level and area restriction, to only display a small area at a detailed map level,
  * for example
  */
 message MapSelection {
-  message AreaRestriction {
-    Location bottom_left = 1;
-    Location top_right = 2;
-  }
+    message AreaRestriction {
+        Location bottom_left = 1;
+        Location top_right = 2;
+    }
 
-  Filter.Modems modems = 1;
-  Filter.ChildAccounts child_accounts = 2;
-  int32 level = 3;
-  AreaRestriction area = 4;
+    Filter.Modems modems = 1;
+    Filter.ChildAccounts child_accounts = 2;
+    int32 level = 3;
+    AreaRestriction area = 4;
 }
 
 /* The location of ground stations that receive the data sent from the satellite(s).
  * Currently, ground station is just a marker on the map.
  */
 message GroundStation {
-  Location location = 1;
+    Location location = 1;
 }
 
 /* Map block that specifies a modem count in a specific area, bounded by a latitude / longitude 'square' (not really a
@@ -40,23 +45,19 @@ message GroundStation {
  * squares of 20 by 20 degrees latitude/longitude.s
  */
 message MapBlock {
-  Area area = 1;
-  int32 modem_count = 2;
-  int32 error_count = 3;
-  float error_percentage = 4;
+    Area area = 1;
+    int32 modem_count = 2;
+    int32 error_count = 3;
+    float error_percentage = 4;
 }
 
 message MapRequest {
-  message Response {
-    repeated GroundStation ground_stations = 1;
-    repeated MapBlock map_blocks = 2;
-    MapRequest request = 4;
-  }
+    message Response {
+        repeated GroundStation ground_stations = 1;
+        repeated MapBlock map_blocks = 2;
+        MapRequest request = 4;
+    }
 
-  string account = 1;
-  MapSelection selection = 2;
-}
-
-service MapService {
-  rpc Map (MapRequest) returns (MapRequest.Response);
+    string account = 1;
+    MapSelection selection = 2;
 }

@@ -3,38 +3,48 @@ syntax = "proto3";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.user";
 option java_outer_classname = "CurrentUserApi";
+option go_package = "hiber";
+
+package hiber.user;
 
 /* Calls related to the current user. Typically, a newly created account only has access to these calls, all
  * other require an account to be linked.
  */
-package api.user;
-
-/*
- */
-message CurrentUser {
-  string id = 1;
-  string email = 2;
-  string name = 3;
-  repeated string accounts = 4;
+service CurrentUserService {
+    rpc CurrentUser (CurrentUserRequest) returns (hiber.user.CurrentUser);
+    rpc RequestAccess (RequestAccessRequest) returns (RequestAccessRequest.Response);
+    rpc DeleteCurrentUser (DeleteRequest) returns (DeleteRequest.Response);
 }
 
+/* Your personal data
+ */
+message CurrentUser {
+    string id = 1;
+    string email = 2;
+    string name = 3;
+    repeated string accounts = 4;
+}
+
+/* Get your personal data
+ */
 message CurrentUserRequest {
 }
 
+/* Request access to an account by name, if it exists.
+ * You request will be saved and the account owner notified.
+ * Account admins can approve or reject your request.
+ */
 message RequestAccessRequest {
-  message Response {
-  }
+    message Response {
+    }
 
-  string account = 1;
+    string account = 1;
 }
 
+/* Delete yourself.
+ * Removes all login information and personal data, except for you email address for auditing purposes.
+ */
 message DeleteRequest {
-  message Response {
-  }
-}
-
-service CurrentUserService {
-  rpc CurrentUser (CurrentUserRequest) returns (api.user.CurrentUser);
-  rpc RequestAccess (RequestAccessRequest) returns (RequestAccessRequest.Response);
-  rpc DeleteCurrentUser (DeleteRequest) returns (DeleteRequest.Response);
+    message Response {
+    }
 }
