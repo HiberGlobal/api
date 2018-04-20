@@ -81,7 +81,7 @@ message CurrentUserRequest {
 
 (Note that this is a reduced example and you should consult the actual proto file for the actual, up to date definition.)
 
-This defines a service that has one rpc call, which expects and empty request object and returns a CurrentUser object.
+This defines a service that has one rpc call, which expects an empty request object and returns a CurrentUser object.
 
 For API client purposes, you can mostly ignore the numbers and see this as a data class.
 Note the `repeated` keyword for the `accounts` field. This indicates an array of values. 
@@ -90,8 +90,9 @@ Note the `repeated` keyword for the `accounts` field. This indicates an array of
 
 For many of our list calls, which can list items like modems, users, etc., we use a selection object to 
 simplify the filtering of the data. 
-Selection object can be used in multiple places, where appropriate and extract away any duplication that would 
-otherwise cause.
+
+Since the same selection criteria can be used in different calls, selection objects are a simple way to 
+extract this duplication out of the definitions.
 
 For example:
 
@@ -150,7 +151,7 @@ The `WebhookSelection` message contains the filters that can be applied to webho
 Note that the `WebhookSelection` message contains a `TagSelection` as well. 
 This is another selection object, used to filter webhooks by tags.  
 
-The `Pagination` message is used for to paginate the result. 
+The `Pagination` message is used to paginate the result. 
 It's a simple page size and page number combination (where 0 is the first page). 
 The `Pagination.Result` message also contains `size` and `page`, but has corrected the `size` field to a 
 maximum value (or default value if it was 0).
@@ -204,10 +205,10 @@ Technically, you might be able to connect a normal GRPC client to the GRPC Web A
 
 ### API Tokens
 
-The Hiber API requires a token for all GRPC call, using a metadata field called `authorization` with value `bearer $YOUR_TOKEN_HERE`.
+The Hiber API requires a token for all GRPC calls, using a metadata field called `authorization` with value `bearer $YOUR_TOKEN_HERE`.
 
 To get a token for our API, go to the web application at [dev.hiber.global](https://dev.hiber.global) and log in.
 Once you are linked to an account (this process is defined in the api, but not implemented in the web interface yet)
 you can create a token (using another token) on the API.
 
-(Note: for pilot customers, a number of token can be generated in advance, so this process is not necessary.)
+(Note: for pilot customers, a number of tokens can be generated in advance, so this process is not necessary.)
