@@ -212,3 +212,17 @@ Once you are linked to an account (this process is defined in the api, but not i
 you can create a token (using another token) on the API.
 
 (Note: for pilot customers, a number of tokens can be generated in advance, so this process is not necessary.)
+
+## Examples
+
+We've provided a collection of minimal examples in different languages in 
+our [examples repository](https://github.com/HiberGlobal/examples).
+
+For initial development, to simplify client experimentation with our GRPC API, and as a server used by our examples, 
+we've created a simple mock server that implements our API. 
+It will return example data, and does not do any error handling aside from requiring that a token is present. 
+
+For simple usage, you can simply pull the docker image at `hiberglobal/mock-server` 
+(most of the examples do this automatically when you run them). 
+You can see the source code get some more information at [the mock-server folder in the examples repository](https://github.com/HiberGlobal/examples/blob/master/mock-server/).
+
