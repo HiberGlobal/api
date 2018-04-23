@@ -11,7 +11,7 @@ option go_package = "hiber";
 package hiber.account.subscription;
 
 enum ServiceType {
-    _24h = 0;
-    _6h = 1;
-    _1h = 2;
+    OncePerDay = 0;
+    OncePer6Hours = 1;
+    OncePerHour = 2;
 }
