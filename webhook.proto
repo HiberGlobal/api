@@ -12,15 +12,15 @@ option go_package = "hiber";
 package hiber.webhook;
 
 service WebhookService {
-    rpc List (ListRequest) returns (ListRequest.Response);
-    rpc Create (CreateRequest) returns (Webhook);
-    rpc Enable (EnableRequest) returns (Webhook);
-    rpc Disable (DisableRequest) returns (Webhook);
-    rpc UpdateFilter (UpdateFilterRequest) returns (Webhook);
-    rpc Update (UpdateRequest) returns (Webhook);
-    rpc UpdateTags (UpdateTagsRequest) returns (UpdateTagsRequest.Response);
-    rpc Get (GetRequest) returns (Webhook);
-    rpc Delete (DeleteRequest) returns (DeleteRequest.Response);
+    rpc List (ListWebhooksRequest) returns (ListWebhooksRequest.Response);
+    rpc Create (CreateWebhookRequest) returns (Webhook);
+    rpc Enable (EnableWebhookRequest) returns (Webhook);
+    rpc Disable (DisableWebhookRequest) returns (Webhook);
+    rpc UpdateFilter (UpdateWebhookFilterRequest) returns (Webhook);
+    rpc Update (UpdateWebhookRequest) returns (Webhook);
+    rpc UpdateTags (UpdateWebhookTagsRequest) returns (UpdateWebhookTagsRequest.Response);
+    rpc Get (GetWebhookRequest) returns (Webhook);
+    rpc Delete (DeleteWebhookRequest) returns (DeleteWebhookRequest.Response);
 }
 
 message Webhook {
@@ -58,10 +58,10 @@ message WebhookSelection {
     hiber.tag.TagSelection tags = 4;
 }
 
-message ListRequest {
+message ListWebhooksRequest {
     message Response {
         repeated Webhook webhooks = 1;
-        ListRequest request = 2;
+        ListWebhooksRequest request = 2;
         Pagination.Result pagination = 3;
     }
 
@@ -70,7 +70,7 @@ message ListRequest {
     Pagination pagination = 3;
 }
 
-message CreateRequest {
+message CreateWebhookRequest {
     string account = 1;
     string description = 2;
     Webhook.WebhookData data = 3;
@@ -78,25 +78,25 @@ message CreateRequest {
     repeated int64 tags = 5;
 }
 
-message GetRequest {
+message GetWebhookRequest {
     int64 id = 1;
     string account = 2;
     hiber.tag.TagSelection tags = 3;
 }
 
-message EnableRequest {
+message EnableWebhookRequest {
     int64 id = 1;
     string account = 2;
     hiber.tag.TagSelection tags = 3;
 }
 
-message DisableRequest {
+message DisableWebhookRequest {
     int64 id = 1;
     string account = 2;
     hiber.tag.TagSelection tags = 3;
 }
 
-message UpdateFilterRequest {
+message UpdateWebhookFilterRequest {
     message UpdateEvents {
         bool updated = 1;
         Filter.Events value = 2;
@@ -118,7 +118,7 @@ message UpdateFilterRequest {
     hiber.tag.TagSelection tags = 6;
 }
 
-message UpdateRequest {
+message UpdateWebhookRequest {
     message UpdateWebhook {
         string url = 1;
         UpdateClearableString secret = 2;
@@ -132,7 +132,7 @@ message UpdateRequest {
     hiber.tag.TagSelection tags = 4;
 }
 
-message UpdateTagsRequest {
+message UpdateWebhookTagsRequest {
     message Response {
         repeated Webhook webhooks = 1;
     }
@@ -143,7 +143,7 @@ message UpdateTagsRequest {
     hiber.tag.TagSelection tags = 4;
 }
 
-message DeleteRequest {
+message DeleteWebhookRequest {
     message Response {
     }
 

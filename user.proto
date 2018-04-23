@@ -10,7 +10,7 @@ option go_package = "hiber";
 package hiber.user;
 
 service UserService {
-    rpc List (ListRequest) returns (ListRequest.Response);
+    rpc List (ListUsersRequest) returns (ListUsersRequest.Response);
     rpc ListAccessRequests (ListAccessRequestsRequest) returns (ListAccessRequestsRequest.Response);
     rpc Approve (ApproveUserRequest) returns (ApproveUserRequest.Response);
     rpc Remove (RemoveUserRequest) returns (RemoveUserRequest.Response);
@@ -28,10 +28,10 @@ message UserSelection {
     string by_name = 2;
 }
 
-message ListRequest {
+message ListUsersRequest {
     message Response {
         repeated User users = 1;
-        ListRequest request = 2;
+        ListUsersRequest request = 2;
         Pagination.Result pagination = 3;
     }
 

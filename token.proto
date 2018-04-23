@@ -10,9 +10,9 @@ option go_package = "hiber";
 package hiber.token;
 
 service TokenService {
-    rpc List (ListRequest) returns (ListRequest.Response);
-    rpc Create (CreateRequest) returns (CreateRequest.Response);
-    rpc Delete (DeleteRequest) returns (DeleteRequest.Response);
+    rpc List (ListTokensRequest) returns (ListTokensRequest.Response);
+    rpc Create (CreateTokenRequest) returns (CreateTokenRequest.Response);
+    rpc Delete (DeleteTokenRequest) returns (DeleteTokenRequest.Response);
 }
 
 message Token {
@@ -37,10 +37,10 @@ message TokenSelection {
     bool includeExpired = 4;
 }
 
-message ListRequest {
+message ListTokensRequest {
     message Response {
         repeated Token tokens = 1;
-        ListRequest request = 2;
+        ListTokensRequest request = 2;
         Pagination.Result pagination = 3;
     }
 
@@ -49,7 +49,7 @@ message ListRequest {
     Pagination pagination = 3;
 }
 
-message CreateRequest {
+message CreateTokenRequest {
     message Response {
         string token = 1;
     }
@@ -60,7 +60,7 @@ message CreateRequest {
     Timestamp expires_at = 4;
 }
 
-message DeleteRequest {
+message DeleteTokenRequest {
     message Response {
     }
 

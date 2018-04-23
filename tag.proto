@@ -13,10 +13,10 @@ package hiber.tag;
  * when updating them, so these calls are meant for easier tag management if you need it.
  */
 service TagService {
-    rpc List (ListRequest) returns (ListRequest.Response);
-    rpc Create (CreateRequest) returns (Tag);
-    rpc Update (UpdateRequest) returns (Tag);
-    rpc Delete (DeleteRequest) returns (DeleteRequest.Response);
+    rpc List (ListTagsRequest) returns (ListTagsRequest.Response);
+    rpc Create (CreateTagRequest) returns (Tag);
+    rpc Update (UpdateTagRequest) returns (Tag);
+    rpc Delete (DeleteTagRequest) returns (DeleteTagRequest.Response);
 }
 
 /* A tag is nothing more than a name and color, that can be applied to many objects.
@@ -44,29 +44,29 @@ message UpdateTagsForItem {
     bool new_tags_visible_to_sub_accounts = 4;
 }
 
-message ListRequest {
+message ListTagsRequest {
     message Response {
         repeated Tag tags = 1;
-        ListRequest request = 2;
+        ListTagsRequest request = 2;
     }
 
     string account = 1;
     TagSelection selection = 2;
 }
 
-message CreateRequest {
+message CreateTagRequest {
     string account = 1;
     Tag.Label create = 2;
     bool visible_to_sub_accounts = 3;
 }
 
-message UpdateRequest {
+message UpdateTagRequest {
     string account = 1;
     int64 id = 2;
     Tag.Label update = 3;
 }
 
-message DeleteRequest {
+message DeleteTagRequest {
     message Response {
     }
 

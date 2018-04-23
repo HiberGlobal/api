@@ -15,15 +15,15 @@ package hiber.modem;
  * This service contains calls to list and manage them, as well as list their messages.
  */
 service ModemService {
-    rpc List (ListRequest) returns (ListRequest.Response);
-    rpc Get (GetRequest) returns (Modem);
-    rpc Messages (MessagesRequest) returns (MessagesRequest.Response);
+    rpc List (ListModemsRequest) returns (ListModemsRequest.Response);
+    rpc Get (GetModemRequest) returns (Modem);
+    rpc Messages (ListModemMessagesRequest) returns (ListModemMessagesRequest.Response);
     rpc MessageCount (MessageCountRequest) returns (MessageCountRequest.Response);
 
-    rpc Rename (RenameRequest) returns (Modem);
-    rpc UpdatePayloadTemplate (UpdatePayloadTemplateRequest) returns (Modem);
+    rpc Rename (RenameModemRequest) returns (Modem);
+    rpc UpdatePayloadTemplate (UpdateModemPayloadTemplateRequest) returns (Modem);
 
-    rpc UpdateTags (UpdateTagsRequest) returns (UpdateTagsRequest.Response);
+    rpc UpdateTags (UpdateModemTagsRequest) returns (UpdateModemTagsRequest.Response);
 }
 
 /* Modem data, including location and last message (if available).
@@ -95,10 +95,10 @@ message ModemMessageSelection {
     TimeRange time_range = 3;
 }
 
-message ListRequest {
+message ListModemsRequest {
     message Response {
         repeated Modem modems = 1;
-        ListRequest request = 2;
+        ListModemsRequest request = 2;
         Pagination.Result pagination = 3;
     }
     enum Sort {
@@ -114,16 +114,16 @@ message ListRequest {
     Sort sort_by = 4;
 }
 
-message GetRequest {
+message GetModemRequest {
     string account = 1;
     string modem_number = 2;
     hiber.tag.TagSelection tags = 3;
 }
 
-message MessagesRequest {
+message ListModemMessagesRequest {
     message Response {
         repeated ModemMessage messages = 1;
-        MessagesRequest request = 2;
+        ListModemMessagesRequest request = 2;
         Pagination.Result pagination = 3;
     }
 
@@ -142,21 +142,21 @@ message MessageCountRequest {
     ModemMessageSelection selection = 2;
 }
 
-message RenameRequest {
+message RenameModemRequest {
     string account = 1;
     string modem_number = 2;
     string name = 3;
     hiber.tag.TagSelection tags = 4;
 }
 
-message UpdatePayloadTemplateRequest {
+message UpdateModemPayloadTemplateRequest {
     string account = 1;
     string modem_number = 2;
     string payload_template = 3;
     hiber.tag.TagSelection tags = 4;
 }
 
-message UpdateTagsRequest {
+message UpdateModemTagsRequest {
     message Response {
         repeated Modem modems = 1;
     }

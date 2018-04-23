@@ -17,8 +17,8 @@ package hiber.event;
  * search, list and stream them for your own purposes
  */
 service EventService {
-    rpc List (ListRequest) returns (ListRequest.Response);
-    rpc Stream (StreamRequest) returns (stream Event);
+    rpc List (ListEventsRequest) returns (ListEventsRequest.Response);
+    rpc Stream (EventStreamRequest) returns (stream Event);
 }
 
 /* Generic Event object, used in streams where events are mixed. Protobuf provides helper methods to extract
@@ -200,10 +200,10 @@ message EventSelection {
     bool errors_only = 7;
 }
 
-message ListRequest {
+message ListEventsRequest {
     message Response {
         repeated Event events = 1;
-        ListRequest request = 2;
+        ListEventsRequest request = 2;
         Pagination.Result pagination = 3;
     }
 
@@ -224,7 +224,7 @@ message ListRequest {
 /* Creates a stream for new events, matching the provided selection. Time range can be used to start the stream with
  * initial past data.
  */
-message StreamRequest {
+message EventStreamRequest {
     string account = 1;
     EventSelection selection = 2;
 }

@@ -13,7 +13,7 @@ package hiber.user;
 service CurrentUserService {
     rpc CurrentUser (CurrentUserRequest) returns (hiber.user.CurrentUser);
     rpc RequestAccess (RequestAccessRequest) returns (RequestAccessRequest.Response);
-    rpc DeleteCurrentUser (DeleteRequest) returns (DeleteRequest.Response);
+    rpc DeleteCurrentUser (DeleteCurrentUserRequest) returns (DeleteCurrentUserRequest.Response);
 }
 
 /* Your personal data
@@ -44,7 +44,7 @@ message RequestAccessRequest {
 /* Delete yourself.
  * Removes all login information and personal data, except for you email address for auditing purposes.
  */
-message DeleteRequest {
+message DeleteCurrentUserRequest {
     message Response {
     }
 }
