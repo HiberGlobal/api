@@ -13,6 +13,7 @@ package hiber.webhook;
 
 service WebhookService {
     rpc List (ListWebhooksRequest) returns (ListWebhooksRequest.Response);
+    rpc History (WebhookHistoryRequest) returns (WebhookHistoryRequest.Response);
     rpc Create (CreateWebhookRequest) returns (Webhook);
     rpc Enable (EnableWebhookRequest) returns (Webhook);
     rpc Disable (DisableWebhookRequest) returns (Webhook);
@@ -30,6 +31,7 @@ message Webhook {
     WebhookData data = 4;
     WebhookFilters filters = 5;
     repeated hiber.tag.Tag tags = 6;
+    Health health = 7;
 
     enum ContentType {
         DEFAULT = 0;
@@ -56,6 +58,21 @@ message WebhookSelection {
     string url = 2;
     Filter.Webhooks webhooks = 3;
     hiber.tag.TagSelection tags = 4;
+    repeated Health health = 5;
+}
+
+message WebhookCall {
+    Timestamp time = 1;
+    string url = 2;
+    map<string, string> headers = 3;
+    bytes body = 4;
+    bool successful = 5;
+    string error = 6;
+}
+
+message WebhookHistorySelection {
+    bool onlyFailures = 2;
+    TimeRange time_range = 3;
 }
 
 message ListWebhooksRequest {
@@ -68,6 +85,19 @@ message ListWebhooksRequest {
     string account = 1;
     WebhookSelection selection = 2;
     Pagination pagination = 3;
+}
+
+message WebhookHistoryRequest {
+    message Response {
+        repeated WebhookCall calls = 1;
+        WebhookHistoryRequest request = 2;
+        Pagination.Result pagination = 3;
+    }
+
+    string account = 1;
+    int64 webhook_id = 2;
+    WebhookHistorySelection selection = 3;
+    Pagination pagination = 4;
 }
 
 message CreateWebhookRequest {
