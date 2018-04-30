@@ -38,6 +38,7 @@ message Event {
         WebhookEvent.CreatedEvent webhook_created = 11;
         WebhookEvent.UpdatedEvent webhook_updated = 12;
         WebhookEvent.DeletedEvent webhook_deleted = 13;
+        WebhookEvent.FailedEvent webhook_failed = 14;
     }
 
     message ModemEvent {
@@ -184,6 +185,16 @@ message Event {
             string title = 4;
             string description = 5;
             Timestamp time = 6;
+        }
+
+        message FailedEvent {
+            string account = 1;
+            string reason = 2;
+            hiber.webhook.Webhook failed = 3;
+            repeated hiber.tag.Tag tags = 4;
+            string title = 5;
+            string description = 6;
+            Timestamp time = 7;
         }
     }
 }

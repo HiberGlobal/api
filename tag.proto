@@ -41,7 +41,6 @@ message UpdateTagsForItem {
     repeated int64 tag_ids_to_add = 1;
     repeated int64 tag_ids_to_remove = 2;
     repeated hiber.tag.Tag.Label new_tags_to_add = 3;
-    bool new_tags_visible_to_sub_accounts = 4;
 }
 
 message ListTagsRequest {
@@ -57,7 +56,6 @@ message ListTagsRequest {
 message CreateTagRequest {
     string account = 1;
     Tag.Label create = 2;
-    bool visible_to_sub_accounts = 3;
 }
 
 message UpdateTagRequest {
