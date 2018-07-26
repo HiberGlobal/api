@@ -1,0 +1,152 @@
+syntax = "proto3";
+
+import "base.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.organization";
+option java_outer_classname = "OrganizationApi";
+option go_package = "hiber";
+
+package hiber.organization;
+
+/* Organization-related api calls. Currently limited to your own organization; we'll add more for creating and managing
+ * sub-organizations later.
+ */
+service OrganizationService {
+    rpc Create (CreateOrganizationRequest) returns (Organization);
+    rpc Get (GetOrganizationRequest) returns (Organization);
+    rpc Update (UpdateOrganizationRequest) returns (Organization);
+    rpc Delete (DeleteOrganizationRequest) returns (DeleteOrganizationRequest.Response);
+    rpc DeleteConfirmation (DeleteOrganizationConfirmationRequest) returns (DeleteOrganizationConfirmationRequest.Response);
+    rpc Tree (OrganizationTreeRequest) returns (OrganizationTreeRequest.Response);
+    rpc ListChildOrganizations (ListChildOrganizationsRequest) returns (ListChildOrganizationsRequest.Response);
+}
+
+/* Organization data. An Organization can have many linked users, but the organization is the owner
+ * of any modems and related data.
+ */
+message Organization {
+    message Address {
+        repeated string lines = 1;
+        string zip_code = 2;
+        string city = 3;
+        string state = 4;
+        string country = 5;
+    }
+
+    message Contact {
+        string name = 1;
+        string email = 2;
+        string phone = 3;
+    }
+
+    string organization = 1;
+    string display_name = 2;
+    string vat_number = 3;
+    Address address = 4;
+    string billing_name = 5;
+    Address billing_address = 6;
+    Contact contact = 7;
+    Timestamp contract_signature_date = 8;
+    Timestamp created_at = 9;
+    Timestamp updated_at = 10;
+}
+
+/* Selection object for child organizations.
+ * User for child organization list and tree.
+ */
+message OrganizationSelection {
+    Filter.Organizations organizations = 1;
+}
+
+/* Get your current organization's data
+ */
+message GetOrganizationRequest {
+    /* Pick the organization to get the details for. If unset, your default organization is used. */
+    string organization = 1;
+}
+
+/* Update organization data.
+ * All fields are effectively optional, though address, billing_address and contact are assumed to be complete objects,
+ * not partial updates.
+ * Note that the organization field specifies the organization, it is not used to update the current organization identifier.
+ */
+message UpdateOrganizationRequest {
+    string organization = 1;
+    string display_name = 2;
+    string vat_number = 3;
+    Organization.Address address = 4;
+    string billing_name = 5;
+    Organization.Address billing_address = 6;
+    Organization.Contact contact = 7;
+}
+
+/* Get your current organization's organization tree.
+ * The organization tree contains your current organization as the root of the tree, with all child organizations ordered below it.
+ */
+message OrganizationTreeRequest {
+    message Response {
+        OrganizationTreeRequest request = 1;
+        OrganizationTree tree = 2;
+    }
+
+    /* Pick the organization to use (/impersonate) for this call, overriding your default organization */
+    string organization = 1;
+    OrganizationSelection selection = 2;
+}
+
+message OrganizationTree {
+    Organization organization = 1;
+    repeated OrganizationTree children = 3;
+}
+
+/* List the child organizations for the given organization
+ */
+message ListChildOrganizationsRequest {
+    message Response {
+        repeated Organization child_organizations = 1;
+        ListChildOrganizationsRequest request = 2;
+        Pagination.Result pagination = 3;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    OrganizationSelection selection = 2;
+    Pagination pagination = 3;
+}
+
+message CreateOrganizationRequest {
+    /* Pick the organization to use as parent. If unset, your default organization is used. */
+    string parent_organization = 1;
+    /* Required */
+    string new_organization = 2;
+    string display_name = 3;
+    bool is_business = 4;
+    string vat_number = 5;
+    Organization.Address address = 6;
+    string billing_name = 7;
+    Organization.Address billing_address = 8;
+    /* Required */
+    Organization.Contact contact = 9;
+}
+
+message DeleteOrganizationRequest {
+    message Response {
+        string organization = 1;
+        string confirmation_code = 2;
+        OrganizationTree organizations_to_be_deleted = 3;
+    }
+
+    /* The organization to delete. If unset, your default organization is used */
+    string organization = 1;
+}
+
+message DeleteOrganizationConfirmationRequest {
+    message Response {
+    }
+
+    /* The organization to delete. If unset, your default organization is used */
+    string organization = 1;
+    /* The confirmation code for deletion */
+    string confirmation_code = 2;
+}

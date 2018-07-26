@@ -4,14 +4,14 @@ import "base.proto";
 import "google/protobuf/timestamp.proto";
 
 option java_multiple_files = false;
-option java_package = "global.hiber.api.grpc.account.subscription";
+option java_package = "global.hiber.api.grpc.organization.subscription";
 option java_outer_classname = "SubscriptionApi";
 option go_package = "hiber";
 
-package hiber.account.subscription;
+package hiber.organization.subscription;
 
 enum ServiceType {
-    OncePerDay = 0;
-    OncePer6Hours = 1;
-    OncePerHour = 2;
+    ONCE_PER_DAY = 0;
+    ONCE_PER_6_HOURS = 1;
+    ONCE_PER_HOUR = 2;
 }

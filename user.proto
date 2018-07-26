@@ -28,6 +28,13 @@ message UserSelection {
     string by_name = 2;
 }
 
+enum UserSort {
+    EMAIL_ASC = 0;
+    EMAIL_DESC = 1;
+    NAME_ASC = 2;
+    NAME_DESC = 3;
+}
+
 message ListUsersRequest {
     message Response {
         repeated User users = 1;
@@ -35,9 +42,11 @@ message ListUsersRequest {
         Pagination.Result pagination = 3;
     }
 
-    string account = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     UserSelection selection = 2;
     Pagination pagination = 3;
+    UserSort sort = 4;
 }
 
 message ListAccessRequestsRequest {
@@ -47,29 +56,34 @@ message ListAccessRequestsRequest {
         Pagination.Result pagination = 3;
     }
 
-    string account = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     UserSelection selection = 2;
     Pagination pagination = 3;
+    UserSort sort = 4;
 }
 
 message ApproveUserRequest {
     message Response {
     }
 
-    string account = 1;
-    string user_id = 2;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    repeated string user_id = 2;
 }
 
 message RemoveUserRequest {
     message Response {
     }
 
-    string account = 1;
-    string user_id = 2;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    repeated string user_id = 2;
 }
 
 message CreateUserRequest {
-    string account = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     string email = 2;
     string name = 3;
     string password = 4;

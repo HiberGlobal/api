@@ -1,0 +1,114 @@
+syntax = "proto3";
+
+import "base.proto";
+import "modem.proto";
+import "tag.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.modem";
+option java_outer_classname = "ModemClaimApi";
+option go_package = "hiber";
+
+package hiber.modem;
+
+/* Claim a modem that you have received, but was not marked as inbound for you.
+ * This process requires approval from the previous owner and, as such, will not be instantaneous.
+ */
+service ModemClaimService {
+    /* Add a claim for a number of modems */
+    rpc Claim (ClaimModemRequest) returns (ClaimModemRequest.Response);
+
+    /* List your claims on modems */
+    /* List your modems that have been claimed by another organization */
+    rpc ListClaims (ListModemClaimsRequest) returns (ListModemClaimsRequest.Response);
+
+    /* Accept a claim on a selection of your modems */
+    rpc AcceptClaims (AcceptModemClaimsRequest) returns (AcceptModemClaimsRequest.Response);
+
+    /* Reject a claim on a selection of your modems */
+    rpc RejectClaims (RejectModemClaimsRequest) returns (RejectModemClaimsRequest.Response);
+}
+
+message ModemClaim {
+    enum Status {
+        OPEN = 0;
+        ACCEPTED = 1;
+        REJECTED = 2;
+    }
+    enum RejectReason {
+        NOT_SET = 0;
+        UNKNOWN_RECIPIENT = 1;
+        INVALID_CLAIM = 2;
+        TRANSFERRED_INSTEAD = 3;
+        OTHER = 4;
+    }
+
+    string modem_number = 1;
+    Status status = 2;
+    RejectReason reject_reason = 3;
+    string reject_comment = 4;
+    Timestamp created_at = 5;
+    Timestamp closed_at = 6;
+    string claiming_organization = 7;
+    /* Only available for the owner of the modem */
+    repeated hiber.tag.Tag tags = 8;
+}
+
+message ModemClaimSelection {
+    Filter.Modems modems = 1;
+    repeated ModemClaim.Status statuses = 2;
+    TimeRange created_time_range = 3;
+    TimeRange closed_time_range = 4;
+}
+
+message ClaimModemRequest {
+    message ClaimModem {
+        string modem_number = 1;
+        string verifier = 2;
+    }
+    message Response {
+        ClaimModemRequest request = 1;
+        repeated ModemClaim claims = 2;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    repeated ClaimModem claims = 2;
+}
+
+message ListModemClaimsRequest {
+    message Response {
+        repeated ModemClaim claims = 1;
+        ListModemClaimsRequest request = 2;
+        Pagination.Result pagination = 3;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    ModemClaimSelection selection = 2;
+    Pagination pagination = 3;
+}
+
+message AcceptModemClaimsRequest {
+    message Response {
+        repeated ModemClaim claims = 1;
+        AcceptModemClaimsRequest request = 2;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    ModemClaimSelection selection = 2;
+}
+
+message RejectModemClaimsRequest {
+    message Response {
+        repeated ModemClaim claims = 1;
+        RejectModemClaimsRequest request = 2;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    ModemClaimSelection selection = 2;
+    ModemClaim.RejectReason reason = 3;
+    string reason_comment = 4;
+}

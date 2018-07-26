@@ -2,6 +2,8 @@ syntax = "proto3";
 
 import "base.proto";
 import "modem.proto";
+import "modem_transfer.proto";
+import "modem_claim.proto";
 import "tag.proto";
 import "user.proto";
 import "webhook.proto";
@@ -39,14 +41,22 @@ message Event {
         WebhookEvent.UpdatedEvent webhook_updated = 12;
         WebhookEvent.DeletedEvent webhook_deleted = 13;
         WebhookEvent.FailedEvent webhook_failed = 14;
+        ModemTransferEvent.ModemTransferStartedEvent modem_transfer_started = 15;
+        ModemTransferEvent.ModemTransferCancelledEvent modem_transfer_cancelled = 16;
+        ModemTransferEvent.ModemTransferReceivedEvent modem_transfer_received = 17;
+        ModemTransferEvent.ModemTransferNotReceivedEvent modem_transfer_not_received = 18;
+        ModemTransferEvent.ModemTransferReturnTransferStartedEvent modem_transfer_return_transfer_started = 19;
+        ModemEvent.ClaimEvent.ModemClaimedEvent modem_claimed_event = 20;
+        ModemEvent.ClaimEvent.ModemClaimAcceptedEvent modem_claim_accepted_event = 21;
+        ModemEvent.ClaimEvent.ModemClaimRejectedEvent modem_claim_rejected_event = 22;
     }
 
     message ModemEvent {
         /* When a message comes in, the modem's location is updated automatically. This event is generated whenever the
-         * modem's lcoation is updated
+         * modem's location is updated
          */
         message ModemLocationUpdatedEvent {
-            string account = 1;
+            string organization = 1;
             string modem_number = 2;
             Location location = 3;
             Timestamp time = 4;
@@ -59,9 +69,9 @@ message Event {
          * generated as soon as this condition is determined
          */
         message ModemStaleEvent {
-            string account = 1;
+            string organization = 1;
             string modem_number = 2;
-            int32 guard_period = 3;
+            int32 maximum_inactivity_period = 3;
             Timestamp time = 4;
             Timestamp last_message = 5;
             repeated hiber.tag.Tag tags = 6;
@@ -75,7 +85,7 @@ message Event {
              * in the message object, including location and the user-defined encrypted payload
              */
             message ModemMessageReceivedEvent {
-                string account = 1;
+                string organization = 1;
                 string modem_number = 2;
                 hiber.modem.ModemMessage message = 3;
                 repeated hiber.tag.Tag tags = 4;
@@ -90,7 +100,7 @@ message Event {
              * certain period, the ModemStaleEvent is used.
              */
             message ModemMessageDroppedEvent {
-                string account = 1;
+                string organization = 1;
                 string modem_number = 2;
                 int32 dropped_messages = 3;
                 hiber.modem.ModemMessage message = 4;
@@ -101,12 +111,12 @@ message Event {
                 Timestamp time = 9;
             }
 
-            /* Trigerred when the time between sending and receiving the message is above a certain threshold. This can
-             * indicate that there is a comminutcation issue between the modem and the server, i.e. a malfunction ground
+            /* Triggered when the time between sending and receiving the message is above a certain threshold. This can
+             * indicate that there is a communication issue between the modem and the server, i.e. a malfunction ground
              * station, so that the satellite takes longer to send its data on.
              */
             message ModemMessageDelayedEvent {
-                string account = 1;
+                string organization = 1;
                 string modem_number = 2;
                 hiber.modem.ModemMessage message = 3;
                 int64 delay_seconds = 4;
@@ -121,7 +131,7 @@ message Event {
              * message version.
              */
             message ModemMessageCannotBeParsedEvent {
-                string account = 1;
+                string organization = 1;
                 string modem_number = 2;
                 int64 modem_message_id = 3;
                 Timestamp time = 4;
@@ -131,11 +141,94 @@ message Event {
                 string description = 8;
             }
         }
+
+        message ClaimEvent {
+            message ModemClaimedEvent {
+                string organization = 1;
+                string modem_number = 2;
+                hiber.modem.ModemClaim claim = 3;
+                Timestamp time = 4;
+                string title = 5;
+                string description = 6;
+                repeated hiber.tag.Tag tags = 7;
+            }
+
+            message ModemClaimAcceptedEvent {
+                string organization = 1;
+                string modem_number = 2;
+                hiber.modem.ModemClaim claim = 3;
+                Timestamp time = 4;
+                string title = 5;
+                string description = 6;
+                repeated hiber.tag.Tag tags = 7;
+            }
+
+            message ModemClaimRejectedEvent {
+                string organization = 1;
+                string modem_number = 2;
+                hiber.modem.ModemClaim claim = 3;
+                Timestamp time = 4;
+                hiber.modem.ModemClaim.RejectReason reason = 5;
+                string comment = 6;
+                string title = 7;
+                string description = 8;
+                repeated hiber.tag.Tag tags = 9;
+            }
+        }
+    }
+
+    message ModemTransferEvent {
+        message ModemTransferStartedEvent {
+            hiber.modem.ModemTransfer transfer = 1;
+            string organization = 2;
+            Timestamp time = 3;
+            repeated hiber.tag.Tag tags = 4;
+            string title = 5;
+            string description = 6;
+        }
+
+        message ModemTransferCancelledEvent {
+            hiber.modem.ModemTransfer transfer = 1;
+            string organization = 2;
+            Timestamp time = 3;
+            repeated hiber.tag.Tag tags = 4;
+            string title = 5;
+            string description = 6;
+        }
+
+        message ModemTransferReceivedEvent {
+            hiber.modem.ModemTransfer transfer = 1;
+            string organization = 2;
+            Timestamp time = 3;
+            repeated hiber.tag.Tag tags = 4;
+            string title = 5;
+            string description = 6;
+        }
+
+        message ModemTransferNotReceivedEvent {
+            hiber.modem.ModemTransfer transfer = 1;
+            string organization = 2;
+            Timestamp time = 3;
+            repeated hiber.tag.Tag tags = 4;
+            string title = 5;
+            string description = 6;
+        }
+
+        message ModemTransferReturnTransferStartedEvent {
+            hiber.modem.ModemTransfer return_transfer = 1;
+            hiber.modem.ModemTransfer original_transfer = 2;
+            repeated hiber.modem.ModemTransferReturnLine return_lines = 3;
+            string organization = 4;
+            Timestamp time = 5;
+            repeated hiber.tag.Tag tags = 6;
+            string title = 7;
+            string description = 8;
+        }
     }
 
     message UserEvent {
         message UserAddedEvent {
-            string account = 1;
+            string organization = 1;
             string user = 2;
             string title = 3;
             string description = 4;
@@ -143,7 +236,7 @@ message Event {
         }
 
         message UserRemovedEvent {
-            string account = 1;
+            string organization = 1;
             string user = 2;
             string title = 3;
             string description = 4;
@@ -151,7 +244,7 @@ message Event {
         }
 
         message UserAccessRequestEvent {
-            string account = 1;
+            string organization = 1;
             string user = 2;
             Timestamp time = 3;
             string title = 4;
@@ -161,7 +254,7 @@ message Event {
 
     message WebhookEvent {
         message CreatedEvent {
-            string account = 1;
+            string organization = 1;
             hiber.webhook.Webhook created = 2;
             repeated hiber.tag.Tag tags = 3;
             string title = 4;
@@ -170,7 +263,7 @@ message Event {
         }
 
         message UpdatedEvent {
-            string account = 1;
+            string organization = 1;
             hiber.webhook.Webhook update = 2;
             repeated hiber.tag.Tag tags = 3;
             string title = 4;
@@ -179,7 +272,7 @@ message Event {
         }
 
         message DeletedEvent {
-            string account = 1;
+            string organization = 1;
             hiber.webhook.Webhook deleted = 2;
             repeated hiber.tag.Tag tags = 3;
             string title = 4;
@@ -188,7 +281,7 @@ message Event {
         }
 
         message FailedEvent {
-            string account = 1;
+            string organization = 1;
             string reason = 2;
             hiber.webhook.Webhook failed = 3;
             repeated hiber.tag.Tag tags = 4;
@@ -226,7 +319,8 @@ message ListEventsRequest {
         MODEM_NUMBER_SPECIFIED = 4;
     }
 
-    string account = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     EventSelection selection = 2;
     Pagination pagination = 3;
     Sort sort = 4;
@@ -236,6 +330,7 @@ message ListEventsRequest {
  * initial past data.
  */
 message EventStreamRequest {
-    string account = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     EventSelection selection = 2;
 }

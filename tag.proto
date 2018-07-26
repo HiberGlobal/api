@@ -19,12 +19,10 @@ service TagService {
     rpc Delete (DeleteTagRequest) returns (DeleteTagRequest.Response);
 }
 
-/* A tag is nothing more than a name and color, that can be applied to many objects.
- */
 message Tag {
     message Label {
         string name = 1;
-        string color = 2;
+        reserved 2;
     }
 
     int64 id = 1;
@@ -49,17 +47,20 @@ message ListTagsRequest {
         ListTagsRequest request = 2;
     }
 
-    string account = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     TagSelection selection = 2;
 }
 
 message CreateTagRequest {
-    string account = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     Tag.Label create = 2;
 }
 
 message UpdateTagRequest {
-    string account = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     int64 id = 2;
     Tag.Label update = 3;
 }
@@ -68,6 +69,7 @@ message DeleteTagRequest {
     message Response {
     }
 
-    string account = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     int64 id = 2;
 }
