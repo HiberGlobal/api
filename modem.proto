@@ -15,15 +15,18 @@ package hiber.modem;
  * This service contains calls to list and manage them, as well as list their messages.
  */
 service ModemService {
-    rpc List (ListModemsRequest) returns (ListModemsRequest.Response);
     rpc Get (GetModemRequest) returns (Modem);
+    rpc List (ListModemsRequest) returns (ListModemsRequest.Response);
     rpc Messages (ListModemMessagesRequest) returns (ListModemMessagesRequest.Response);
     rpc MessageCount (MessageCountRequest) returns (MessageCountRequest.Response);
 
     rpc Rename (RenameModemRequest) returns (Modem);
-    rpc UpdatePayloadTemplate (UpdateModemPayloadTemplateRequest) returns (Modem);
 
     rpc UpdateTags (UpdateModemTagsRequest) returns (UpdateModemTagsRequest.Response);
+
+    rpc UpdatePeripherals (UpdatePeripheralsRequest) returns (UpdatePeripheralsRequest.Response);
+
+    rpc LicenseKeys (LicenseKeysRequest) returns (LicenseKeysRequest.Response);
 }
 
 /* Modem data, including location and last message (if available).
@@ -33,46 +36,115 @@ service ModemService {
 message Modem {
     /* An 8-character hexadecimal string */
     string number = 1;
-    string account = 2;
+    string organization = 2;
+    /* An optional descriptor given to the modem */
     string name = 3;
     Location location = 4;
     Timestamp last_message_received_at = 5;
     ActiveSubscription active_subscription = 6;
     TechnicalData technical = 7;
-    int32 guard_period = 8;
+    /* Period in days, if modem inactivity exceeds this period, alerts will be triggered and health will go to error */
+    int32 maximum_inactivity_period = 8;
+    /* Value based on the number of error and warning events this modem has received in the past 30 days */
     Health health = 9;
     repeated hiber.tag.Tag tags = 10;
+    Peripherals peripherals = 11;
+    Status status = 12;
+    Transfer in_transfer = 13;
 
     message TechnicalData {
-        int64 chip_id = 1;
         string hardware_name = 2;
         string firmware_version_name = 3;
-        int32 message_format_version = 4;
-        string payload_template = 5;
         string hardware_production_batch = 6;
+        string manufacturer = 7;
+        reserved 1, 4, 5;
     }
 
     message ActiveSubscription {
-        string license_key = 2;
-        hiber.account.subscription.ServiceType type = 3;
+        hiber.organization.subscription.ServiceType type = 3;
         Timestamp start_date = 4;
         Timestamp end_date = 5;
+        reserved 1, 2;
+    }
+
+    message Transfer {
+        enum Status {
+            NONE = 0;
+            /* Modem has been shipped or transferred to you and is inbound.
+             * When you mark the transfer as received, the modems are added to your organization.
+             * If you encounter any issues, you can mark modems for return using the ModemTransferReturnService.
+             */
+            INBOUND = 1;
+            /* Modem has been shipped or transferred by you and is outbound.
+             * When the transfer is received, the modems are removed from your organization, though the recipient may
+             * still return them later.
+             */
+            OUTBOUND = 2;
+            /* You shipped this modem to another organization, but they are returning it.
+             * When you mark the transfer as received, the modems are added back to your organization.
+             */
+            RETURNING = 3;
+        }
+
+        Status status = 1;
+        string identifier = 2;
+    }
+
+    /* Peripherals attached to the modem, including antenna, whether it has a gps antenna and an
+     * open field for peripherals like battery, sensors, etc.
+     */
+    message Peripherals {
+        /* A Hiber antenna is required for the modem to function.
+         */
+        enum HiberAntenna {
+            DEFAULT = 0;
+            HIBER_PANDA = 1;
+            HIBER_GRIZZLY = 2;
+            HIBER_BLACK = 3;
+        }
+
+        HiberAntenna hiber_antenna = 1;
+        bool gps = 2;
+        map<string, string> peripherals = 3;
+    }
+
+    /* Modem statuses for its journey from manufacturer to you.
+     */
+    enum Status {
+        /* Modem is in your inventory, but not deployed or active
+         */
+        DEFAULT = 0;
+        /* Modem is active and sending messages. See health for more details on its health, based on the past messages
+         */
+        ACTIVE = 1;
+        DAMAGED = 2;
+        LOST = 3;
+        DEAD = 4;
+        DISABLED = 5;
     }
 }
 
 /* Selection object for modems.
- * Filter modems by modem id, (child)account, tags, activation status and time, service type and last message time.
+ * Filter modems by modem id, (child)organization, tags, activation status and time, service type and last message time.
  */
 message ModemSelection {
+    message Transfers {
+        repeated string transfers_identifiers = 1;
+        bool include_inbound_modems = 2;
+        bool include_outbound_modems = 3;
+    }
+
     Filter.Modems modems = 1;
-    hiber.tag.TagSelection tags = 2;
-    Filter.ChildAccounts child_accounts = 3;
+    hiber.tag.TagSelection filter_by_tags = 2;
+    Filter.ChildOrganizations child_organizations = 3;
     bool only_active = 4;
     TimeRange activated_in = 5;
-    repeated hiber.account.subscription.ServiceType with_service_type = 6;
+    repeated hiber.organization.subscription.ServiceType with_service_type = 6;
     TimeRange with_last_message_in = 7;
-    string freeTextSearch = 8;
+    string free_text_search = 8;
     repeated Health health = 9;
+    repeated Modem.Status status = 10;
+    Transfers transfers = 11;
 }
 
 /* Decrypted modem message. Messages are received encrypted and decrypted asynchronously, which adds the location
@@ -81,18 +153,26 @@ message ModemSelection {
 message ModemMessage {
     string modem_number = 1;
     uint32 version = 2;
-    Timestamp time = 3;
+    Timestamp sent_at = 3;
     Location location = 4;
     bytes body = 5;
+    Timestamp received_at = 6;
 }
 
 /* Selection object for modem messages.
- * Filter messages by modem id, (child)account, and time sent (note that this is not the time the message was received)
+ * Filter messages by modem id, (child)organization, and time sent (note that this is not the time the message was received)
  */
 message ModemMessageSelection {
     Filter.Modems modems = 1;
-    Filter.ChildAccounts child_accounts = 2;
+    Filter.ChildOrganizations child_organizations = 2;
     TimeRange time_range = 3;
+}
+
+message GetModemRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    string modem_number = 2;
+    reserved 3;
 }
 
 message ListModemsRequest {
@@ -106,18 +186,16 @@ message ListModemsRequest {
         LAST_MESSAGE_RECEIVED_INVERTED = 1;
         MODEM_NUMBER_ASC = 2;
         MODEM_NUMBER_DESC = 3;
+        STATUS_ASC = 4;
+        STATUS_DESC = 5;
     }
 
-    string account = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     ModemSelection selection = 2;
     Pagination pagination = 3;
     Sort sort_by = 4;
-}
-
-message GetModemRequest {
-    string account = 1;
-    string modem_number = 2;
-    hiber.tag.TagSelection tags = 3;
+    reserved 5;
 }
 
 message ListModemMessagesRequest {
@@ -127,42 +205,86 @@ message ListModemMessagesRequest {
         Pagination.Result pagination = 3;
     }
 
-    string account = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     ModemMessageSelection selection = 2;
     Pagination pagination = 3;
 }
 
 message MessageCountRequest {
     message Response {
-        map<string, int32> message_count_per_day = 1;
+        message MessageCount {
+            Date date = 1;
+            int32 count = 2;
+        }
+
+        repeated MessageCount message_count_per_day = 1;
         MessageCountRequest request = 2;
     }
 
-    string account = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     ModemMessageSelection selection = 2;
+    int32 time_zone_offset = 3;
 }
 
 message RenameModemRequest {
-    string account = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     string modem_number = 2;
     string name = 3;
-    hiber.tag.TagSelection tags = 4;
-}
-
-message UpdateModemPayloadTemplateRequest {
-    string account = 1;
-    string modem_number = 2;
-    string payload_template = 3;
-    hiber.tag.TagSelection tags = 4;
+    reserved 4;
 }
 
 message UpdateModemTagsRequest {
     message Response {
         repeated Modem modems = 1;
+        UpdateModemTagsRequest request = 2;
+        Pagination.Result pagination = 3;
     }
 
-    string account = 1;
-    repeated string modem_numbers = 2;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     hiber.tag.UpdateTagsForItem update = 3;
-    hiber.tag.TagSelection tags = 4;
+    ModemSelection selection = 5;
+    Pagination pagination = 6;
+}
+
+message UpdatePeripheralsRequest {
+    /* The result is paginated if affecting more than 100 modems. Use the list call to paginate further.
+     */
+    message Response {
+        UpdatePeripheralsRequest request = 1;
+        repeated Modem modems = 2;
+        Pagination.Result pagination = 3;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    ModemSelection selection = 2;
+    Modem.Peripherals.HiberAntenna hiber_antenna = 3;
+    UpdateBoolean gps = 4;
+    Location hardcoded_gps_location = 5;
+    map<string, string> add_peripherals = 6;
+    repeated string remove_peripherals = 7;
+    reserved 8;
+    Pagination pagination = 9;
+}
+
+message LicenseKeysRequest {
+    message Response {
+        message ModemLicenseKey {
+            string modem_number = 1;
+            string license_key = 2;
+        }
+
+        LicenseKeysRequest request = 1;
+        repeated ModemLicenseKey license_keys = 2;
+        Pagination.Result pagination = 3;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    ModemSelection selection = 2;
+    Pagination pagination = 3;
 }

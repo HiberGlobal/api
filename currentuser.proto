@@ -7,22 +7,44 @@ option go_package = "hiber";
 
 package hiber.user;
 
-/* Calls related to the current user. Typically, a newly created account only has access to these calls, all
- * other require an account to be linked.
+/* Calls related to the current user. Typically, a newly created organization only has access to these calls, all
+ * other require an organization to be linked.
  */
 service CurrentUserService {
     rpc CurrentUser (CurrentUserRequest) returns (hiber.user.CurrentUser);
     rpc RequestAccess (RequestAccessRequest) returns (RequestAccessRequest.Response);
+    rpc CancelAccessRequest (CancelAccessRequestRequest) returns (CancelAccessRequestRequest.Response);
     rpc DeleteCurrentUser (DeleteCurrentUserRequest) returns (DeleteCurrentUserRequest.Response);
+    rpc UpdateDefaultOrganization (UpdateDefaultOrganizationRequest) returns (UpdateDefaultOrganizationRequest.Response);
+    rpc UpdateSettings (UpdateSettingsRequest) returns (UpdateSettingsRequest.Response);
 }
 
 /* Your personal data
  */
 message CurrentUser {
+    /* Settings used by the UI */
+    message Settings {
+        enum Layout {
+            PORTRAIT = 0;
+            LANDSCAPE = 1;
+        }
+        enum MapStyle {
+            CLASSIC = 0;
+            SATELLITE = 1;
+            HIBER_VISION = 2;
+        }
+
+        Layout layout = 1;
+        MapStyle map_style = 2;
+    }
+
     string id = 1;
     string email = 2;
     string name = 3;
-    repeated string accounts = 4;
+    repeated string organizations = 4;
+    string default_organization = 5;
+    repeated string requested_organizations = 6;
+    Settings settings = 7;
 }
 
 /* Get your personal data
@@ -30,15 +52,24 @@ message CurrentUser {
 message CurrentUserRequest {
 }
 
-/* Request access to an account by name, if it exists.
- * You request will be saved and the account owner notified.
- * Account admins can approve or reject your request.
+/* Request access to an organization by name, if it exists.
+ * You request will be saved and the organization owner notified.
+ * Organization admins can approve or reject your request.
  */
 message RequestAccessRequest {
     message Response {
     }
 
-    string account = 1;
+    string organization = 1;
+}
+
+/* Cancel a previously made access request.
+ */
+message CancelAccessRequestRequest {
+    message Response {
+    }
+
+    string organization = 1;
 }
 
 /* Delete yourself.
@@ -47,4 +78,23 @@ message RequestAccessRequest {
 message DeleteCurrentUserRequest {
     message Response {
     }
+}
+
+/* Set the default organization to use when it is not specified in the call.
+ * Note: this can be a child organization of one of the owned organizations.
+ */
+message UpdateDefaultOrganizationRequest {
+    message Response {
+        string default_organization = 1;
+    }
+
+    string organization = 1;
+}
+
+message UpdateSettingsRequest {
+    message Response {
+        CurrentUser.Settings settings = 1;
+    }
+
+    CurrentUser.Settings updated_settings = 1;
 }

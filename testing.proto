@@ -23,7 +23,6 @@ service TestingService {
  */
 message PushModemMessagesRequest {
     message Response {
-        map<string, int32> messages_sent = 1;
         PushModemMessagesRequest request = 2;
     }
 
@@ -34,6 +33,7 @@ message PushModemMessagesRequest {
         bytes content = 4;
     }
 
-    string account = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     repeated MessageToPush messages = 2;
 }

@@ -27,7 +27,7 @@ message DashboardRequest {
         repeated hiber.map.GroundStation ground_stations = 1;
         // list of map blocks and their modem count, for density map
         repeated hiber.map.MapBlock map_blocks = 2;
-        map<string, int32> message_count_per_day = 3;
+        repeated hiber.modem.MessageCountRequest.Response.MessageCount message_count_per_day = 3;
         // counts of the number of modems with warning and errors
         int32 modem_warning_count = 4;
         int32 modem_error_count = 5;
@@ -36,12 +36,15 @@ message DashboardRequest {
         DashboardRequest request = 7;
     }
 
-    string account = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     /** for ground stations and map blocks */
     hiber.map.MapSelection selection = 2;
     /** for modem messages */
     hiber.modem.ModemMessageSelection message_count_selection = 3;
     /** for events, only used when any value is set */
     hiber.event.EventSelection event_selection = 4;
+    /** for message count, day grouping */
+    int32 time_zone_offset = 5;
 }
 

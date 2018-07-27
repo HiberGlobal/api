@@ -19,7 +19,7 @@ message Token {
     int64 id = 1;
     string name = 2;
     string user_id = 3;
-    string account = 4;
+    string organization = 4;
     repeated TokenPermission permissions = 5;
     Timestamp expires_at = 6;
 }
@@ -27,14 +27,14 @@ message Token {
 enum TokenPermission {
     USER_READ = 0;
     USER_ACTION = 1;
-    ACCOUNT_READ = 2;
-    ACCOUNT_ACTION = 3;
+    ORGANIZATION_READ = 2;
+    ORGANIZATION_ACTION = 3;
 }
 
 message TokenSelection {
     Filter.Users users = 1;
     string name = 3;
-    bool includeExpired = 4;
+    bool include_expired = 4;
 }
 
 message ListTokensRequest {
@@ -44,7 +44,8 @@ message ListTokensRequest {
         Pagination.Result pagination = 3;
     }
 
-    string account = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     TokenSelection selection = 2;
     Pagination pagination = 3;
 }
@@ -54,7 +55,8 @@ message CreateTokenRequest {
         string token = 1;
     }
 
-    string account = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     string name = 2;
     repeated TokenPermission permissions = 3;
     Timestamp expires_at = 4;
@@ -64,6 +66,7 @@ message DeleteTokenRequest {
     message Response {
     }
 
-    string account = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
     int64 token_id = 2;
 }

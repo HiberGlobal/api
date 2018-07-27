@@ -61,6 +61,23 @@ message Timestamp {
     string textual = 4;
 }
 
+/* Date type for convenience.
+ * Some clients are better at parsing year, month and day of month as separate fields, while others prefer a
+ * text-based format. To accomodate this, this Date type supports both.
+ * When used as API output, both the int fields and textual fields will be set. The textual field has the commonly
+ * used ISO 8601 local date format (i.e. "2018-01-01").
+ * When used an API input, either specify the int fields or the textual field. If both are specified, the textual
+ * field will be discarded.
+ */
+message Date {
+    uint32 year = 1;
+    uint32 month = 2;
+    uint32 day = 3;
+    string textual = 4;
+}
+
+/* Geographic latitude and longitude coordinates specified in decimal degrees.
+ */
 message Location {
     double latitude = 1;
     double longitude = 2;
@@ -90,7 +107,7 @@ message Pagination {
         int32 size = 1;
         int32 page = 2;
         int32 total = 3;
-        int32 totalPages = 4;
+        int32 total_pages = 4;
         Pagination previous = 6;
         Pagination next = 7;
     }
@@ -104,20 +121,36 @@ message Pagination {
  */
 enum EventType {
     DEFAULT = 0;
+
     WEBHOOK_CREATED = 1;
     WEBHOOK_UPDATED = 2;
     WEBHOOK_DELETED = 3;
+
     MODEM_LOCATION_UPDATED = 4;
     MODEM_MESSAGE_RECEIVED = 5;
+
     USER_ACCESS_REQUEST = 8;
     USER_ADDED = 9;
     USER_REMOVED = 10;
+
     WEBHOOK_FAILED = 11;
-    ACCOUNT_UPDATED = 12;
+
+    ORGANIZATION_UPDATED = 12;
+
     MODEM_MESSAGE_SEQUENCE_SKIP = 13;
     MODEM_MESSAGE_DELAYED = 14;
     MODEM_MESSAGE_CANNOT_BE_PARSED = 15;
     MODEM_STALE = 16;
+
+    MODEM_TRANSFER_STARTED = 17;
+    MODEM_TRANSFER_RECEIVED = 18;
+    MODEM_TRANSFER_CANCELLED = 19;
+    MODEM_TRANSFER_NOT_RECEIVED = 20;
+    MODEM_TRANSFER_RETURN_TRANSFER_STARTED = 21;
+
+    MODEM_CLAIM_CREATED = 22;
+    MODEM_CLAIM_ACCEPTED = 23;
+    MODEM_CLAIM_REFUSED = 24;
 }
 
 /* Filters used in many api calls to filter the data sources, results, etc.
@@ -128,13 +161,21 @@ enum EventType {
  * When combined with include, exclude takes precedence when determining whether an item is filtered
  */
 message Filter {
-    /* Specify which accounts to get data from. By default, data is only retrieved for the current account, but
-     * using ChildAccounts we can specify to include a number of, or all, sub-accounts.
+    /* Specify which organizations to get data from. By default, data is only retrieved for the current organization, but
+     * using ChildOrganizations we can specify to include a number of, or all, sub-organizations.
+     *
+     * Note: ChildOrganization differs from other filters in that it defaults to not allowing anything, where the
+     * other filters default to allowing everything
      */
-    message ChildAccounts {
+    message ChildOrganizations {
         bool include_all = 1;
         repeated string include = 2;
         repeated string exclude = 3;
+    }
+
+    message Organizations {
+        repeated string include = 1;
+        repeated string exclude = 2;
     }
 
     message Events {
