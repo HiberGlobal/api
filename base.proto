@@ -151,6 +151,9 @@ enum EventType {
     MODEM_CLAIM_CREATED = 22;
     MODEM_CLAIM_ACCEPTED = 23;
     MODEM_CLAIM_REFUSED = 24;
+
+    TOKEN_EXPIRY_WARNING = 25;
+    TOKEN_EXPIRED = 26;
 }
 
 /* Filters used in many api calls to filter the data sources, results, etc.

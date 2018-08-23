@@ -45,11 +45,15 @@ message ListTagsRequest {
     message Response {
         repeated Tag tags = 1;
         ListTagsRequest request = 2;
+        map<int64, int32> tag_modem_count = 3;
+        map<int64, int32> tag_webhook_count = 4;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     TagSelection selection = 2;
+    bool modem_count = 3;
+    bool webhook_count = 4;
 }
 
 message CreateTagRequest {

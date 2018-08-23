@@ -43,12 +43,12 @@ message Webhook {
         string url = 1;
         string secret = 2;
         ContentType content_type = 3;
-        bool active = 4;
+        bool disabled = 4;
     }
 
     message WebhookFilters {
-        Filter.Events events = 1;
-        Filter.Modems modems = 2;
+        Filter.Events event_types = 1;
+        Filter.Modems modem_numbers = 2;
         Filter.Tags tags = 3;
     }
 }
