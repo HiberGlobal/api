@@ -5,6 +5,7 @@ import "modem.proto";
 import "modem_transfer.proto";
 import "modem_claim.proto";
 import "tag.proto";
+import "token.proto";
 import "user.proto";
 import "webhook.proto";
 
@@ -49,6 +50,8 @@ message Event {
         ModemEvent.ClaimEvent.ModemClaimedEvent modem_claimed_event = 20;
         ModemEvent.ClaimEvent.ModemClaimAcceptedEvent modem_claim_accepted_event = 21;
         ModemEvent.ClaimEvent.ModemClaimRejectedEvent modem_claim_rejected_event = 22;
+        TokenEvent.TokenExpiryWarningEvent token_expiry_warning = 23;
+        TokenEvent.TokenExpiredEvent token_expired = 24;
     }
 
     message ModemEvent {
@@ -288,6 +291,24 @@ message Event {
             string title = 5;
             string description = 6;
             Timestamp time = 7;
+        }
+    }
+
+    message TokenEvent {
+        message TokenExpiryWarningEvent {
+            string organization = 1;
+            hiber.token.Token token = 2;
+            string title = 3;
+            string description = 4;
+            Timestamp time = 5;
+        }
+
+        message TokenExpiredEvent {
+            string organization = 1;
+            hiber.token.Token token = 2;
+            string title = 3;
+            string description = 4;
+            Timestamp time = 5;
         }
     }
 }

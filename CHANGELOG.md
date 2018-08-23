@@ -1,5 +1,34 @@
 # Changelog Hiber API
 
+### 0.8.6 (2018-08-23)
+
+#### Changes
+
+##### CurrentUserService
+
+- **[B]** Added default values for the Settings enums, to fix updating issues. Note that this has changed the indexing of the values, which means it is not a backwards compatible change. In both cases, the value that was previously at index 0 has been moved to the next available index at the end. Since no settings defaults to these values anyway, the only problem is sending an empty update request, which is no longer allowed.
+- Renamed `updated_settings` to `update_settings` to reflect the changes above. Fully backwards compatible, but updating your generated code to 0.8.6 will rename this field.
+
+##### EventService
+
+- Added events related to token expiration.
+
+##### Tagservice
+
+- Added option to List call to count the amount of modems or webhooks for each tag.
+
+##### WebhookService
+
+- **[B]** Renamed `active` field in WebhookData to `disabled`, so a webhook defaults to enabled on creation. If you want it to start disabled, you can do that by setting the field to true.
+- Changed the naming for a few fields in WebhookFilters to be clearer (`events` -> `event_types`, `modems` -> `modem_numbers`). The nnumbers have not changed, so this change is fully backwards compatible. Updating your generated code will use the new names, of course, which will require some renaming in clients upon updating to version 0.8.6 of the API.
+
+#### Backwards incompatible changes
+
+Backwards incompatible changes are marked with the **[B]** marker.
+
+- **[B]** Renamed `active` field in WebhookData to `disabled`. See WebhookService change for details
+- **[B]** Added default values for the Settings enums in CurrentUserService, which changed indexes for the values that were previously default values.
+
 ### 0.8 (2018-07-26)
 
 #### Changes

@@ -25,13 +25,15 @@ message CurrentUser {
     /* Settings used by the UI */
     message Settings {
         enum Layout {
-            PORTRAIT = 0;
+            DEFAULT_LAYOUT = 0;
             LANDSCAPE = 1;
+            PORTRAIT = 2;
         }
         enum MapStyle {
-            CLASSIC = 0;
+            DEFAULT_MAP_STYLE = 0;
             SATELLITE = 1;
             HIBER_VISION = 2;
+            CLASSIC = 3;
         }
 
         Layout layout = 1;
@@ -96,5 +98,5 @@ message UpdateSettingsRequest {
         CurrentUser.Settings settings = 1;
     }
 
-    CurrentUser.Settings updated_settings = 1;
+    CurrentUser.Settings update_settings = 1;
 }
