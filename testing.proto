@@ -14,6 +14,7 @@ package hiber.testing;
  */
 service TestingService {
     rpc PushModemMessages (PushModemMessagesRequest) returns (PushModemMessagesRequest.Response);
+    rpc PushModemMessagesFromDebugPort (PushModemMessagesFromDebugPortRequest) returns (PushModemMessagesFromDebugPortRequest.Response);
 }
 
 /* Push any number of modem messages. These are marked as test messages, which means they will be treated
@@ -36,4 +37,17 @@ message PushModemMessagesRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     repeated MessageToPush messages = 2;
+}
+
+/* Push a message using the data gotten from the modem debug port.
+ * This means the message is an ecrypted string, which the server can parse.
+ */
+message PushModemMessagesFromDebugPortRequest {
+    message Response {
+        PushModemMessagesFromDebugPortRequest request = 1;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    repeated string encoded_messages = 2;
 }

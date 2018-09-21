@@ -157,10 +157,27 @@ message UpdateWebhookFilterRequest {
 
 message UpdateWebhookRequest {
     message UpdateWebhook {
+        message UpdateEvents {
+            bool updated = 1;
+            Filter.Events value = 2;
+        }
+        message UpdateModems {
+            bool updated = 1;
+            Filter.Modems value = 2;
+        }
+        message UpdateTags {
+            bool updated = 1;
+            Filter.Tags value = 2;
+        }
+
         string url = 1;
         UpdateClearableString secret = 2;
         Webhook.ContentType content_type = 3;
         UpdateClearableString description = 4;
+        UpdateEvents event_filter = 5;
+        UpdateModems modem_filter = 6;
+        UpdateTags tag_filter = 7;
+        UpdateBoolean active = 8;
     }
 
     int64 id = 1;

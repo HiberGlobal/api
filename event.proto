@@ -28,6 +28,7 @@ service EventService {
  * the contained object.
  */
 message Event {
+    bool is_error = 1;
     oneof event {
         ModemEvent.ModemLocationUpdatedEvent modem_location_updated = 2;
         ModemEvent.ModemStaleEvent modem_stale = 3;
@@ -267,11 +268,12 @@ message Event {
 
         message UpdatedEvent {
             string organization = 1;
-            hiber.webhook.Webhook update = 2;
+            reserved 2;
             repeated hiber.tag.Tag tags = 3;
             string title = 4;
             string description = 5;
             Timestamp time = 6;
+            hiber.webhook.UpdateWebhookRequest.UpdateWebhook update = 7;
         }
 
         message DeletedEvent {
@@ -313,8 +315,18 @@ message Event {
     }
 }
 
+message BundledEvent {
+    EventType type = 1;
+    int32 amount = 2;
+    string title = 3;
+    string description = 4;
+    Timestamp last_event = 5;
+}
+
 /* Selection object for Event list and stream. Filter events on modem, webhook, time and error state, and
- * paginate the list
+ * paginate the list.
+ * Events are returned bundled by default. this means that, instead of the details, you get a list of bundles,
+ * one per event type, with the count.
  */
 message EventSelection {
     Filter.Events events = 1;
@@ -323,13 +335,32 @@ message EventSelection {
     Filter.Tags tags = 4;
     TimeRange time_range = 6;
     bool errors_only = 7;
+    /* When not set, no unbundled events are returned.
+     * When set, returns unbundled events per type, paginated per type.
+     */
+    bool unbundled_events = 8;
 }
 
+/* Lists all events matching the given criteria.
+ * The frequency of event can vary greatly per type, resulting in unclear pagination and some event types overshadowing
+ * others. For this reason, event are bundled by default, reducing them to a count per event type.
+ * If unbundled events for certain types are required, this can be toggled in the selection object.
+ * Pagination is only applied to unbundled events, and is applied per event type. This may result in a non-lineair
+ * timeline from page to page when selecting two types with a large difference in frequency, but makes sure you
+ * see the most recent events of each type on the first page.
+ */
 message ListEventsRequest {
     message Response {
-        repeated Event events = 1;
+        message EventTypeResponse {
+            EventType type = 1;
+            repeated Event unbundled_events = 2;
+            Pagination.Result pagination = 3;
+        }
+
         ListEventsRequest request = 2;
-        Pagination.Result pagination = 3;
+        repeated BundledEvent events = 4;
+        repeated EventTypeResponse unbundled_events = 5;
+        reserved 1, 3;
     }
 
     enum Sort {
@@ -343,12 +374,12 @@ message ListEventsRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     EventSelection selection = 2;
+    /* Pagination is applied per event type on unbundled events. It is not necessary for bundled events. */
     Pagination pagination = 3;
     Sort sort = 4;
 }
 
-/* Creates a stream for new events, matching the provided selection. Time range can be used to start the stream with
- * initial past data.
+/* Creates a stream for new events, matching the provided selection.
  */
 message EventStreamRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */

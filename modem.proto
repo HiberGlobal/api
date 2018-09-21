@@ -101,11 +101,13 @@ message Modem {
             HIBER_PANDA = 1;
             HIBER_GRIZZLY = 2;
             HIBER_BLACK = 3;
+            CUSTOM = 4;
         }
 
         HiberAntenna hiber_antenna = 1;
         bool gps = 2;
         map<string, string> peripherals = 3;
+        string custom_antenna = 4;
     }
 
     /* Modem statuses for its journey from manufacturer to you.
@@ -269,6 +271,7 @@ message UpdatePeripheralsRequest {
     repeated string remove_peripherals = 7;
     reserved 8;
     Pagination pagination = 9;
+    string custom_antenna = 10;
 }
 
 message LicenseKeysRequest {

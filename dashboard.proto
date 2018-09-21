@@ -31,9 +31,10 @@ message DashboardRequest {
         // counts of the number of modems with warning and errors
         int32 modem_warning_count = 4;
         int32 modem_error_count = 5;
-        // returns the latest 20 matching events, or an empty list if the event selection wasn't set
-        repeated hiber.event.Event events = 6;
+        reserved 6;
         DashboardRequest request = 7;
+        // returns event bundles matching the given selection, or an empty list if the event selection wasn't set
+        repeated hiber.event.BundledEvent events = 8;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
@@ -42,7 +43,7 @@ message DashboardRequest {
     hiber.map.MapSelection selection = 2;
     /** for modem messages */
     hiber.modem.ModemMessageSelection message_count_selection = 3;
-    /** for events, only used when any value is set */
+    /** for bundled events, only used when any value is set */
     hiber.event.EventSelection event_selection = 4;
     /** for message count, day grouping */
     int32 time_zone_offset = 5;

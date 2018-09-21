@@ -1,5 +1,43 @@
 # Changelog Hiber API
 
+### 0.10 (2018-09-21)
+
+#### Changes
+
+##### EventService
+
+- **[B]** We've introduced bundled events, which is the new default for event listing.
+  Webhooks and the events in the event stream are unaffected.
+- **[B]** An event bundle is a small object with event type, count, last event time and title and description.
+  If you've previously just displayed title and description, you can use the new title and description.
+- **[B]** The frequency of events can vary greatly per type, resulting in unclear pagination and some event types overshadowing
+others. For this reason, events are bundled by default, reducing them to a count per event type.
+If unbundled events for certain types are required, this can be toggled in the selection object.
+Pagination is only applied to unbundled events, and is applied per event type. This may result in a non-lineair
+timeline from page to page when selecting two types with a large difference in frequency, but makes sure you
+see the most recent events of each type on the first page.
+- **[B]** Removed the option to pre-load events for the event stream. Please use the list call for this instead.
+
+##### DashboardService
+
+- **[B]** Related to event bundling, the dashboard now returns bundled error events, instead of individual errors.
+
+##### ModemService
+
+- Added support for custom antennas.
+  To set a custom antenna, set the antenna type to custom and fill in the custom_antenna text field.
+
+##### TestingService
+
+- Added call to send a message from a modems debug port directly to the api.
+  The server will then parse it as if received from the modem.
+  On the production environment, it will be flagged as a test message,
+  which means some validation is disabled and consequences are ignored.
+
+##### WebhookService
+
+- Updated the UpdateWebhookRequest to be able to update relevant webhook data in one request.
+
 ### 0.8.6 (2018-08-23)
 
 #### Changes
