@@ -40,7 +40,7 @@ message PushModemMessagesRequest {
 }
 
 /* Push a message using the data gotten from the modem debug port.
- * This means the message is an ecrypted string, which the server can parse.
+ * This means the message is an encrypted string, which the server can parse.
  */
 message PushModemMessagesFromDebugPortRequest {
     message Response {

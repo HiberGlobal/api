@@ -339,13 +339,14 @@ message EventSelection {
      * When set, returns unbundled events per type, paginated per type.
      */
     bool unbundled_events = 8;
+    bool include_resolved_events = 9;
 }
 
 /* Lists all events matching the given criteria.
  * The frequency of event can vary greatly per type, resulting in unclear pagination and some event types overshadowing
  * others. For this reason, event are bundled by default, reducing them to a count per event type.
  * If unbundled events for certain types are required, this can be toggled in the selection object.
- * Pagination is only applied to unbundled events, and is applied per event type. This may result in a non-lineair
+ * Pagination is only applied to unbundled events, and is applied per event type. This may result in a non-linear
  * timeline from page to page when selecting two types with a large difference in frequency, but makes sure you
  * see the most recent events of each type on the first page.
  */

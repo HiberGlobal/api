@@ -1,5 +1,21 @@
 # Changelog Hiber API
 
+### 0.10.5 (2018-09-27)
+
+This is a small maintenance release with some minor bugfixes and a few features added to the API for convenience.
+
+#### Changes
+
+##### EventService
+
+- Added flag to display resolved events. Many event types are resolved automatically,
+  but might still be relevant for the history of a modem, for example.
+
+##### ModemTransferService
+
+- Added `MISSING` return reason for modems that were supposed to be in a package, but are missing.
+  This would not set the modem status to lost, since it's likely the modem was just not packaged.
+
 ### 0.10 (2018-09-21)
 
 #### Changes

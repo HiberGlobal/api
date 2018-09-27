@@ -99,6 +99,7 @@ message ModemTransferReturnLine {
         INVALID_CONFIGURATION = 2;
         DAMAGED = 3;
         DEAD = 4;
+        MISSING = 5;
     }
 
     string original_transfer = 1;
