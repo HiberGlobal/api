@@ -59,6 +59,8 @@ message ModemClaimSelection {
     repeated ModemClaim.Status statuses = 2;
     TimeRange created_time_range = 3;
     TimeRange closed_time_range = 4;
+    bool owned_only = 5;
+    bool claimed_only = 6;
 }
 
 message ClaimModemRequest {

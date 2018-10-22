@@ -1,5 +1,24 @@
 # Changelog Hiber API
 
+### 0.11 (2018-10-22)
+
+We've added a few convenience options for modem claims and transfers.
+
+#### Changes
+
+##### ModemClaimService
+
+- Added convenience options to ModemClaimSelection to easily filter incoming and outgoing claims.
+
+##### ModemTransferService
+
+- Added convenience options to ModemTransferSelection to easily filter incoming and outgoing transfers.
+- Added convenience option to mark a transfer as received automatically, as a shortcut
+  for impersonating the organization and marking it as received manually.
+- The `transfer_id` is no longer required to prepare modems for return.
+  The return message has been changed to allow multiple return lines.
+  For older clients, field 2 is still set with a single return line when `transfer_id` is given.
+
 ### 0.10.5 (2018-09-27)
 
 This is a small maintenance release with some minor bugfixes and a few features added to the API for convenience.

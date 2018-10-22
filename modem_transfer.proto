@@ -109,6 +109,7 @@ message ModemTransferReturnLine {
     string comment = 5;
     Timestamp created_at = 6;
     Timestamp returned_at = 7;
+    Timestamp return_deadline = 8;
 }
 
 message ModemTransferSelection {
@@ -122,6 +123,14 @@ message ModemTransferSelection {
     TimeRange not_received_in = 8;
     TimeRange cancelled_in = 9;
     repeated ModemTransfer.Type types = 10;
+    /* Convenience method to setting recipients = my organization.
+     * Will ignore any current value for recipients, since the only valid recipient is you.
+     */
+    bool inbound_only = 11;
+    /* Convenience method to setting senders = my organization.
+     * Will ignore any current value for senders, since the only valid sender is you.
+     */
+    bool outbound_only = 12;
 }
 
 message TransferModemsRequest {
@@ -146,6 +155,11 @@ message TransferModemsRequest {
 
     /* Optional tracking information, like package tracking codes */
     string tracking_information = 5;
+
+    /* Mark the transfer as received automatically.
+     * This only works if you're able to impersonate the recipient organization.
+     */
+    bool mark_received_automatically = 6;
 }
 
 message ListModemTransfersRequest {
@@ -197,13 +211,18 @@ message NotReceivedModemTransferRequest {
 message PrepareModemForReturnRequest {
     message Response {
         PrepareModemForReturnRequest request = 1;
-        ModemTransferReturnLine modem_return = 2;
+        reserved 2;
+        repeated ModemTransferReturnLine modem_return_lines = 3;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
 
-    /* The transfer id that you received the modems with, to be used to the return. */
+    /* The transfer id that you received the modems with, to be used to the return.
+     * If this is provided, only one return line is returned.
+     * If this is not provided, the given modem selection could match mutliple tansfers, so multiple
+     * return lines would be created.
+     */
     string transfer_id = 2;
 
     /* Selection of modems, received from the transfer above. */
