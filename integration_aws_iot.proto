@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+import "base.proto";
+import "certificate.proto";
+import "publisher.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.integration.awsiot";
+option java_outer_classname = "AWSIoTApi";
+option go_package = "hiber";
+
+package hiber.integration.awsiot;
+
+service AWSIoTService {
+    rpc Initialize (InitializeAWSIoTIntegrationRequest) returns (InitializeAWSIoTIntegrationRequest.Response);
+    rpc Configuration (AWSIoTIntegrationConfigurationRequest) returns (AWSIoTIntegrationConfigurationRequest.Response);
+    rpc Enable (EnableAWSIoTIntegrationRequest) returns (EnableAWSIoTIntegrationRequest.Response);
+    rpc Disable (DisableAWSIoTIntegrationRequest) returns (DisableAWSIoTIntegrationRequest.Response);
+    rpc UpdateConfiguration (UpdateAWSIoTIntegrationConfigurationRequest) returns (UpdateAWSIoTIntegrationConfigurationRequest.Response);
+}
+
+message AWSIoTConfiguration {
+    int64 publisher_id = 1;
+    string url = 2;
+    Filter.Modems modems = 3;
+    int64 certificate_id = 4;
+    string certificate_name = 5;
+    int64 ca_certificate_id = 6;
+    string ca_certificate_name = 7;
+    bool disabled = 8;
+}
+
+message InitializeAWSIoTIntegrationRequest {
+    message Response {
+        AWSIoTConfiguration aws_iot_configuration = 1;
+        InitializeAWSIoTIntegrationRequest request = 2;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    /* Your AWS IoT url, i.e. ${identifier}-ats.iot.${region}.amazonaws.com. */
+    string aws_iot_url = 2;
+    /* If you've previously uploaded your AWS IoT certificate, CA certificate and private key, use their id here. */
+    int64 existing_certificate_id = 3;
+    /* If you've not previously uploaded your AWS IoT certificate, upload it now using this message. */
+    certificate.UploadCertificateRequest upload_certificate = 4;
+    /* Limit the modems to activate AWS IoT integration for. */
+    Filter.Modems modems = 5;
+    /* Identifier that the MQTT client uses. Defaults to 'hiber'. */
+    string mqtt_client_identifier = 6;
+}
+
+message AWSIoTIntegrationConfigurationRequest {
+    message Response {
+        AWSIoTConfiguration aws_iot_configuration = 1;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+}
+
+message EnableAWSIoTIntegrationRequest {
+    message Response {
+        AWSIoTConfiguration aws_iot_configuration = 1;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+}
+
+message DisableAWSIoTIntegrationRequest {
+    message Response {
+        AWSIoTConfiguration aws_iot_configuration = 1;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+}
+
+message UpdateAWSIoTIntegrationConfigurationRequest {
+    message Response {
+        AWSIoTConfiguration aws_iot_configuration = 1;
+        UpdateAWSIoTIntegrationConfigurationRequest request = 2;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    string aws_iot_url = 2;
+    int64 certificate_id = 3;
+    publisher.UpdatePublisherRequest.UpdateModems modems = 4;
+    string mqtt_client_identifier = 5;
+}

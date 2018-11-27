@@ -35,9 +35,28 @@ message CurrentUser {
             HIBER_VISION = 2;
             CLASSIC = 3;
         }
+        enum TimeFormat {
+            DEFAULT_TIME_FORMAT = 0;
+            TWENTYFOUR_HOUR = 1;
+            TWELVE_HOUR = 2;
+        }
+        enum DateFormat {
+            DEFAULT_DATE_FORMAT = 0;
+            DD_MM_YYYY = 1;
+            MM_DD_YYYY = 2;
+            YYYY_MM_DD = 3;
+        }
+        enum ThousandsSeparatorsFormat {
+            DEFAULT_THOUSANDS_SEPARATORS_FORMAT = 0;
+            PERIOD = 1;
+            COMMA = 2;
+        }
 
         Layout layout = 1;
         MapStyle map_style = 2;
+        TimeFormat time_format = 3;
+        DateFormat date_format = 4;
+        ThousandsSeparatorsFormat thousands_separators_format = 5;
     }
 
     string id = 1;

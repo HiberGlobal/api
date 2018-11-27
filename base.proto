@@ -30,6 +30,15 @@ message UpdateClearableString {
     string value = 2;
 }
 
+/* Update object for an optional id.
+ *
+ * To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.
+ */
+message UpdateOptionalId {
+    bool updated = 1;
+    int64 value = 2;
+}
+
 /* Update object for a boolean.
  * Since false is the default value, we need to distinguish between an omitted value and setting the value to false,
  * in an update object.
@@ -92,6 +101,15 @@ message Area {
     Location top_right = 4;
 }
 
+/* Some clients may prefer direct binary data, while other prefer a hexadecimal string,
+ * both for input and output. To support both methods, this object is used to represent binary data.
+ * When you receive this from the api, both fields are set. When sending it to the api, only one field is required.
+ */
+message BytesOrHex {
+    bytes bytes = 1;
+    string hex = 2;
+}
+
 /* Pagination is normalized across the api. Provide a pagination object to get a specific page or offset,
  * or limit your data.
  *
@@ -117,14 +135,14 @@ message Pagination {
 
 /* Enum of api-accessible events.
  * The event types in this enum have a protobuf implementation, and can be used, for example, in the
- * api event stream and webhooks.
+ * api event stream and publishers.
  */
 enum EventType {
     DEFAULT = 0;
 
-    WEBHOOK_CREATED = 1;
-    WEBHOOK_UPDATED = 2;
-    WEBHOOK_DELETED = 3;
+    PUBLISHER_CREATED = 1;
+    PUBLISHER_UPDATED = 2;
+    PUBLISHER_DELETED = 3;
 
     MODEM_LOCATION_UPDATED = 4;
     MODEM_MESSAGE_RECEIVED = 5;
@@ -133,7 +151,7 @@ enum EventType {
     USER_ADDED = 9;
     USER_REMOVED = 10;
 
-    WEBHOOK_FAILED = 11;
+    PUBLISHER_FAILED = 11;
 
     ORGANIZATION_UPDATED = 12;
 
@@ -152,6 +170,7 @@ enum EventType {
     MODEM_CLAIM_ACCEPTED = 23;
     MODEM_CLAIM_REFUSED = 24;
 
+    TOKEN_CREATED = 31;
     TOKEN_EXPIRY_WARNING = 25;
     TOKEN_EXPIRED = 26;
 }
@@ -202,13 +221,19 @@ message Filter {
         bool only_active = 3;
     }
 
+    message Publishers {
+        repeated int64 include = 1;
+        repeated int64 exclude = 2;
+        bool only_active = 3;
+    }
+
     message Users {
         repeated string include = 1;
         repeated string exclude = 2;
     }
 }
 
-/* Health is an indicator for issues. It is used for modems and webhooks to give a quick indication of issues.
+/* Health is an indicator for issues. It is used for modems and publishers to give a quick indication of issues.
  */
 enum Health {
     OK = 0;

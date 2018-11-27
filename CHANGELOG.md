@@ -1,5 +1,82 @@
 # Changelog Hiber API
 
+### 0.12 (2018-11-27)
+
+This release introduces publishers and an integration with AWS IoT.
+Publishers are a larger scope than the previous webhooks that could be configured,
+and support both HTTP (webhook) and MQTT.
+The existing WebhookService is maintained for backwards compatibility.
+
+The AWS IoT integration is a special implementation of a MQTT publisher pre-configured to
+create things for each selected modem.
+
+#### Changes
+
+##### Common types
+
+- Added `UpdateOptionalId` type to update ids that can be unset.
+  This is used in the new publishers service.
+- Added the `BytesOrHex` type for more convenient interaction with the API using a different preferred binary formats.
+- Added Publisher filter.
+
+##### Event types
+
+- Renamed `WEBHOOK_*` to `PUBLISHER_*`. The indices are the same, and so is the behaviour,
+  so this change is fully backwards compatible.
+- Added `TOKEN_CREATED` event type.
+
+##### AWSIoTService
+
+- Added `AWSIoTService` to set up the AWS IoT Integration.
+  - This configures a publisher with the right configuration
+  - In AWS IoT, it will send updates to things with the modem number (without spaces) as thing name.
+  - Any thing created after the integration has been set up should still have the previously sent state.
+  - Since the integration is a publisher, it will be visible in the `PublisherService`.
+
+##### CertificateService
+
+- Added the `CertificateService` to manage client certificates that publishers might use.
+
+##### CurrentUserService
+
+- Added more configuration options for Mission Control.
+
+##### EventService
+
+- Added `TokenCreatedEvent`.
+- Added `OrganizationUpdatedEvent`. The EventType already existed, but it was missing from the API spec.
+- **[B]** Removed webhook events. Older clients may receive events that have no value in the `oneof`. This is unavoidable.
+- **[B]** Added publisher events. Older clients may receive events that have no value in the `oneof`. This is unavoidable.
+- **[B]** In `ModemMessageCannotBeParsedEvent`, the type for `modem_message_id` was changed to uint64.
+- Renamed the values `ListEventsRequest.Sort` to be more descriptive.
+
+##### ModemService
+
+- Added `message_id` to `ModemMessage`.
+
+##### PublisherService
+
+- Added the `PublisherService`, which allows users to set up HTTP and MQTT publishers.
+  This is similar to the `WebhookService` in many ways, but allows for different publisher types.
+
+##### WebhookService
+
+- This service is maintained for backwards compatibility.
+  It is not deprecated in any way.
+  Any webhook created through this service is also visible in the `PublisherService`.
+- Added the option to use a client certificate for webhook calls.
+
+#### Backwards incompatible changes
+
+Backwards incompatible changes are marked with the **[B]** marker.
+
+- **[B]** Removed webhook events. Older clients may receive events that have no value in the `oneof`.
+  This is unavoidable when removing a value from a `oneof`.
+- **[B]** Added publisher events. Older clients may receive events that have no value in the `oneof`.
+  This is unavoidable when adding a value from a `oneof`.
+- **[B]** In `ModemMessageCannotBeParsedEvent`, the type for `modem_message_id` was changed to uint64.
+  Depending on your client language, this may or may not be backwards compatible.
+
 ### 0.11 (2018-10-22)
 
 We've added a few convenience options for modem claims and transfers.

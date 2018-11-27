@@ -1,0 +1,257 @@
+syntax = "proto3";
+
+import "base.proto";
+import "tag.proto";
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.publisher";
+option java_outer_classname = "PublisherApi";
+option go_package = "hiber";
+
+package hiber.publisher;
+
+service PublisherService {
+    rpc List (ListPublishersRequest) returns (ListPublishersRequest.Response);
+    rpc Create (CreatePublisherRequest) returns (CreatePublisherRequest.Response);
+    rpc Enable (EnablePublisherRequest) returns (EnablePublisherRequest.Response);
+    rpc Disable (DisablePublisherRequest) returns (DisablePublisherRequest.Response);
+    rpc Update (UpdatePublisherRequest) returns (UpdatePublisherRequest.Response);
+    rpc UpdateTags (UpdatePublisherTagsRequest) returns (UpdatePublisherTagsRequest.Response);
+    rpc Delete (DeletePublisherRequest) returns (DeletePublisherRequest.Response);
+    rpc History (PublisherHistoryRequest) returns (PublisherHistoryRequest.Response);
+}
+
+message Publisher {
+    int64 id = 1;
+    string description = 2;
+    Data data = 3;
+    Filters filters = 4;
+    repeated hiber.tag.Tag tags = 5;
+    Health health = 6;
+    Type type = 7;
+
+    enum ContentType {
+        DEFAULT = 0;
+        JSON = 1;
+        PROTO = 2;
+    }
+
+    enum Type {
+        HTTP = 0;
+        MQTT = 1;
+    }
+
+    message Data {
+        string url = 1;
+        ContentType content_type = 2;
+        bool disabled = 3;
+        int64 certificate_id = 4;
+        string certificate_name = 5;
+        int64 ca_certificate_id = 6;
+        string ca_certificate_name = 7;
+        oneof config {
+            HTTPConfig http = 8;
+            MQTTConfig mqtt = 9;
+        }
+
+        /* Configuration for forwarding events to a MQTT topic. */
+        message MQTTConfig {
+            string topic = 1;
+            QoS qos = 2;
+            /* Optional username to authenticate with. */
+            string username = 3;
+            /* Optional password to authenticate with. Requires username to be set. */
+            string password = 4;
+            /* Identifier used by the MQTT client. Defaults to "hiber". */
+            string identifier = 5;
+
+            enum QoS {
+                DEFAULT = 0;
+                /* Qos level 0 */
+                AT_MOST_ONCE = 1;
+                /* Qos level 1 */
+                AT_LEAST_ONCE = 2;
+                /* Qos level 2 */
+                EXACTLY_ONCE = 3;
+            }
+        }
+
+        message HTTPConfig {
+            /* Used to generate the HMAC-SHA256 header on every publisher call, which you can use to verify the message. */
+            string secret = 1;
+        }
+    }
+
+    message Filters {
+        Filter.Events event_types = 1;
+        Filter.Modems modem_numbers = 2;
+        Filter.Tags tags = 3;
+    }
+}
+
+message PublisherSelection {
+    Filter.Publishers publishers = 1;
+    /* Partial text match on the description */
+    string description = 2;
+    string search_url = 3;
+    repeated Publisher.ContentType content_types = 4;
+    repeated int64 certificate_ids = 5;
+    string search_mqtt_topic = 6;
+    hiber.tag.TagSelection tags = 7;
+    repeated Health health = 8;
+    repeated Publisher.Type types = 9;
+}
+
+message PublisherCall {
+    Timestamp time = 1;
+    Publisher.Data publisher_data = 2;
+    bytes body = 3;
+    bool successful = 4;
+    string error = 5;
+}
+
+message PublisherHistorySelection {
+    bool only_failures = 2;
+    TimeRange time_range = 3;
+}
+
+message ListPublishersRequest {
+    message Response {
+        repeated Publisher publishers = 1;
+        ListPublishersRequest request = 2;
+        Pagination.Result pagination = 3;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    PublisherSelection selection = 2;
+    Pagination pagination = 3;
+}
+
+message PublisherHistoryRequest {
+    message Response {
+        repeated PublisherCall calls = 1;
+        PublisherHistoryRequest request = 2;
+        Pagination.Result pagination = 3;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    int64 publisher_id = 2;
+    PublisherHistorySelection selection = 3;
+    Pagination pagination = 4;
+}
+
+message CreatePublisherRequest {
+    message Response {
+        Publisher created = 1;
+        CreatePublisherRequest request = 2;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    string description = 2;
+    /* Full url, i.e.
+     * - https://example.com:5555/webhooks/1234 for a http publisher
+     * - [mqtt[s]://]example.com:8883 for a mqtt publisher
+     */
+    string url = 3;
+    Publisher.ContentType content_type = 4;
+    /* Optionally, a client certificate can be used for the publisher call.
+     * See the CertificateService for certificate management options.
+     */
+    int64 certificate_id = 5;
+    Publisher.Filters filters = 6;
+    repeated int64 tags = 7;
+    Publisher.Type type = 8;
+    /* The publisher should be configured as one of the available options, matching the type */
+    oneof config {
+        Publisher.Data.HTTPConfig http = 9;
+        Publisher.Data.MQTTConfig mqtt = 10;
+    }
+}
+
+message EnablePublisherRequest {
+    message Response {
+        repeated Publisher publishers = 1;
+        EnablePublisherRequest request = 2;
+        Pagination.Result pagination = 3;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    PublisherSelection selection = 2;
+}
+
+message DisablePublisherRequest {
+    message Response {
+        repeated Publisher publishers = 1;
+        DisablePublisherRequest request = 2;
+        Pagination.Result pagination = 3;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    PublisherSelection selection = 2;
+}
+
+message UpdatePublisherRequest {
+    message Response {
+        repeated Publisher updated = 1;
+        UpdatePublisherRequest request = 2;
+        Pagination.Result pagination = 3;
+    }
+
+    message UpdateEvents {
+        bool updated = 1;
+        Filter.Events value = 2;
+    }
+    message UpdateModems {
+        bool updated = 1;
+        Filter.Modems value = 2;
+    }
+    message UpdateTags {
+        bool updated = 1;
+        Filter.Tags value = 2;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    PublisherSelection selection = 2;
+    UpdateClearableString description = 3;
+    string url = 4;
+    Publisher.ContentType content_type = 5;
+    /* A value of 0 removes the certificate */
+    UpdateOptionalId certificate_id = 6;
+    UpdateEvents event_filter = 7;
+    UpdateModems modem_filter = 8;
+    UpdateTags tag_filter = 9;
+    UpdateBoolean active = 10;
+    oneof config {
+        Publisher.Data.HTTPConfig http = 11;
+        Publisher.Data.MQTTConfig mqtt = 12;
+    }
+}
+
+message UpdatePublisherTagsRequest {
+    message Response {
+        repeated Publisher publishers = 1;
+        UpdatePublisherTagsRequest request = 2;
+        Pagination.Result pagination = 3;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    PublisherSelection selection = 2;
+    hiber.tag.UpdateTagsForItem update = 3;
+}
+
+message DeletePublisherRequest {
+    message Response {
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    int64 id = 2;
+}
