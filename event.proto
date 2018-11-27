@@ -1,6 +1,8 @@
 syntax = "proto3";
 
 import "base.proto";
+import "organization.proto";
+import "publisher.proto";
 import "modem.proto";
 import "modem_transfer.proto";
 import "modem_claim.proto";
@@ -39,10 +41,6 @@ message Event {
         UserEvent.UserAddedEvent user_added = 8;
         UserEvent.UserRemovedEvent user_removed = 9;
         UserEvent.UserAccessRequestEvent user_access_request = 10;
-        WebhookEvent.CreatedEvent webhook_created = 11;
-        WebhookEvent.UpdatedEvent webhook_updated = 12;
-        WebhookEvent.DeletedEvent webhook_deleted = 13;
-        WebhookEvent.FailedEvent webhook_failed = 14;
         ModemTransferEvent.ModemTransferStartedEvent modem_transfer_started = 15;
         ModemTransferEvent.ModemTransferCancelledEvent modem_transfer_cancelled = 16;
         ModemTransferEvent.ModemTransferReceivedEvent modem_transfer_received = 17;
@@ -53,6 +51,13 @@ message Event {
         ModemEvent.ClaimEvent.ModemClaimRejectedEvent modem_claim_rejected_event = 22;
         TokenEvent.TokenExpiryWarningEvent token_expiry_warning = 23;
         TokenEvent.TokenExpiredEvent token_expired = 24;
+        TokenEvent.TokenCreatedEvent token_created = 30;
+        OrganizationEvent.OrganizationUpdatedEvent organization_updated = 25;
+        PublisherEvent.CreatedEvent publisher_created = 31;
+        PublisherEvent.UpdatedEvent publisher_updated = 32;
+        PublisherEvent.DeletedEvent publisher_deleted = 33;
+        PublisherEvent.FailedEvent publisher_failed = 34;
+        // reserved 11,12,13,14, 26, 27, 28, 29;
     }
 
     message ModemEvent {
@@ -137,7 +142,7 @@ message Event {
             message ModemMessageCannotBeParsedEvent {
                 string organization = 1;
                 string modem_number = 2;
-                int64 modem_message_id = 3;
+                uint64 modem_message_id = 3;
                 Timestamp time = 4;
                 string reason = 5;
                 repeated hiber.tag.Tag tags = 6;
@@ -256,11 +261,11 @@ message Event {
         }
     }
 
-    message WebhookEvent {
+    message PublisherEvent {
         message CreatedEvent {
             string organization = 1;
-            hiber.webhook.Webhook created = 2;
-            repeated hiber.tag.Tag tags = 3;
+            publisher.Publisher created = 2;
+            repeated tag.Tag tags = 3;
             string title = 4;
             string description = 5;
             Timestamp time = 6;
@@ -268,18 +273,22 @@ message Event {
 
         message UpdatedEvent {
             string organization = 1;
-            reserved 2;
-            repeated hiber.tag.Tag tags = 3;
-            string title = 4;
-            string description = 5;
-            Timestamp time = 6;
-            hiber.webhook.UpdateWebhookRequest.UpdateWebhook update = 7;
+            UpdateClearableString updated_description = 2;
+            publisher.Publisher.Data partial_update_data = 3;
+            publisher.UpdatePublisherRequest.UpdateEvents updated_event_filter = 4;
+            publisher.UpdatePublisherRequest.UpdateModems updated_modem_filter = 5;
+            publisher.UpdatePublisherRequest.UpdateTags updated_tag_filter = 6;
+            UpdateBoolean updated_active_state = 7;
+            repeated tag.Tag tags = 8;
+            string title = 9;
+            string description = 10;
+            Timestamp time = 11;
         }
 
         message DeletedEvent {
             string organization = 1;
-            hiber.webhook.Webhook deleted = 2;
-            repeated hiber.tag.Tag tags = 3;
+            publisher.Publisher deleted = 2;
+            repeated tag.Tag tags = 3;
             string title = 4;
             string description = 5;
             Timestamp time = 6;
@@ -288,8 +297,8 @@ message Event {
         message FailedEvent {
             string organization = 1;
             string reason = 2;
-            hiber.webhook.Webhook failed = 3;
-            repeated hiber.tag.Tag tags = 4;
+            publisher.Publisher failed = 3;
+            repeated tag.Tag tags = 4;
             string title = 5;
             string description = 6;
             Timestamp time = 7;
@@ -297,9 +306,17 @@ message Event {
     }
 
     message TokenEvent {
+        message TokenCreatedEvent {
+            string organization = 1;
+            token.Token token = 2;
+            string title = 3;
+            string description = 4;
+            Timestamp time = 5;
+        }
+
         message TokenExpiryWarningEvent {
             string organization = 1;
-            hiber.token.Token token = 2;
+            token.Token token = 2;
             string title = 3;
             string description = 4;
             Timestamp time = 5;
@@ -307,10 +324,26 @@ message Event {
 
         message TokenExpiredEvent {
             string organization = 1;
-            hiber.token.Token token = 2;
+            token.Token token = 2;
             string title = 3;
             string description = 4;
             Timestamp time = 5;
+        }
+    }
+
+    message OrganizationEvent {
+        message OrganizationUpdatedEvent {
+            string organization = 1;
+            string display_name_updated = 2;
+            string vat_number_updated = 3;
+            organization.Organization.Address address_updated = 4;
+            UpdateBoolean is_business_updated = 5;
+            string billng_name_updated = 6;
+            organization.Organization.Address billing_address_updated = 7;
+            organization.Organization.Contact contact_updated = 8;
+            string title = 9;
+            string description = 10;
+            Timestamp time = 11;
         }
     }
 }
@@ -331,7 +364,7 @@ message BundledEvent {
 message EventSelection {
     Filter.Events events = 1;
     Filter.Modems modems = 2;
-    Filter.Webhooks webhooks = 3;
+    Filter.Publishers publishers = 3;
     Filter.Tags tags = 4;
     TimeRange time_range = 6;
     bool errors_only = 7;
@@ -365,8 +398,8 @@ message ListEventsRequest {
     }
 
     enum Sort {
-        TIME = 0;
-        TIME_INVERTED = 1;
+        TIME_DESCENDING = 0;
+        TIME_ASCENDING = 1;
         MODEM_NUMBER_ASC = 2;
         MODEM_NUMBER_DESC = 3;
         MODEM_NUMBER_SPECIFIED = 4;

@@ -159,6 +159,7 @@ message ModemMessage {
     Location location = 4;
     bytes body = 5;
     Timestamp received_at = 6;
+    uint64 message_id = 7;
 }
 
 /* Selection object for modem messages.

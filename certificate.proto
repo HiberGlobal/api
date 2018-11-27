@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+import "base.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.certificate";
+option java_outer_classname = "CertificateApi";
+option go_package = "hiber";
+
+package hiber.certificate;
+
+service CertificateService {
+    rpc List (ListCertificatesRequest) returns (ListCertificatesRequest.Response);
+    rpc Rename (RenameCertificateRequest) returns (RenameCertificateRequest.Response);
+    rpc Upload (UploadCertificateRequest) returns (UploadCertificateRequest.Response);
+    rpc Delete (DeleteCertificateRequest) returns (DeleteCertificateRequest.Response);
+}
+
+message Certificate {
+    int64 id = 1;
+    string name = 2;
+    BytesOrHex certificate = 3;
+    bool has_private_key = 4;
+    string ca_certificate_name = 5;
+    int64 ca_certificate_id = 6;
+}
+
+message CertificateSelection {
+    repeated int64 certificate_ids = 1;
+    string search = 2;
+    repeated int64 ca_certificate_ids = 3;
+}
+
+message ListCertificatesRequest {
+    message Response {
+        repeated Certificate certificates = 1;
+        ListCertificatesRequest request = 2;
+        Pagination.Result pagination = 3;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    CertificateSelection selection = 2;
+    Pagination pagination = 3;
+}
+
+message UploadCertificateRequest {
+    message Response {
+        Certificate certificate = 1;
+        UploadCertificateRequest request = 2;
+    }
+
+    message UploadCertificate {
+        string name = 1;
+        BytesOrHex certificate = 2;
+        /* Private key is optional, and will not be retrievable from the API */
+        BytesOrHex private_key = 3;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    UploadCertificate upload_certificate = 2;
+    /* Optionally, either upload a CA certificate or provide the id of a previously uploaded CA certificate. */
+    UploadCertificate upload_ca_certificate = 3;
+    /* Optionally, either upload a CA certificate or provide the id of a previously uploaded CA certificate. */
+    int64 ca_certificate_id = 4;
+}
+
+message RenameCertificateRequest {
+    message Response {
+        repeated Certificate certificates = 1;
+        RenameCertificateRequest request = 2;
+        Pagination.Result pagination = 3;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    CertificateSelection selection = 2;
+    string new_name = 3;
+}
+
+message DeleteCertificateRequest {
+    message Response {
+        repeated int64 deleted_certificate_ids = 1;
+        DeleteCertificateRequest request = 2;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    CertificateSelection selection = 2;
+}

@@ -220,7 +220,7 @@ message PrepareModemForReturnRequest {
 
     /* The transfer id that you received the modems with, to be used to the return.
      * If this is provided, only one return line is returned.
-     * If this is not provided, the given modem selection could match mutliple tansfers, so multiple
+     * If this is not provided, the given modem selection could match multiple transfers, so multiple
      * return lines would be created.
      */
     string transfer_id = 2;
