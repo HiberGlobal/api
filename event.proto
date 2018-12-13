@@ -47,8 +47,6 @@ message Event {
         ModemTransferEvent.ModemTransferNotReceivedEvent modem_transfer_not_received = 18;
         ModemTransferEvent.ModemTransferReturnTransferStartedEvent modem_transfer_return_transfer_started = 19;
         ModemEvent.ClaimEvent.ModemClaimedEvent modem_claimed_event = 20;
-        ModemEvent.ClaimEvent.ModemClaimAcceptedEvent modem_claim_accepted_event = 21;
-        ModemEvent.ClaimEvent.ModemClaimRejectedEvent modem_claim_rejected_event = 22;
         TokenEvent.TokenExpiryWarningEvent token_expiry_warning = 23;
         TokenEvent.TokenExpiredEvent token_expired = 24;
         TokenEvent.TokenCreatedEvent token_created = 30;
@@ -57,7 +55,7 @@ message Event {
         PublisherEvent.UpdatedEvent publisher_updated = 32;
         PublisherEvent.DeletedEvent publisher_deleted = 33;
         PublisherEvent.FailedEvent publisher_failed = 34;
-        // reserved 11,12,13,14, 26, 27, 28, 29;
+        // reserved 11, 12, 13, 14, 21, 22, 26, 27, 28, 29;
     }
 
     message ModemEvent {
@@ -160,28 +158,6 @@ message Event {
                 string title = 5;
                 string description = 6;
                 repeated hiber.tag.Tag tags = 7;
-            }
-
-            message ModemClaimAcceptedEvent {
-                string organization = 1;
-                string modem_number = 2;
-                hiber.modem.ModemClaim claim = 3;
-                Timestamp time = 4;
-                string title = 5;
-                string description = 6;
-                repeated hiber.tag.Tag tags = 7;
-            }
-
-            message ModemClaimRejectedEvent {
-                string organization = 1;
-                string modem_number = 2;
-                hiber.modem.ModemClaim claim = 3;
-                Timestamp time = 4;
-                hiber.modem.ModemClaim.RejectReason reason = 5;
-                string comment = 6;
-                string title = 7;
-                string description = 8;
-                repeated hiber.tag.Tag tags = 9;
             }
         }
     }
@@ -346,6 +322,7 @@ message Event {
             Timestamp time = 11;
         }
     }
+
 }
 
 message BundledEvent {

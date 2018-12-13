@@ -86,5 +86,6 @@ message CreateUserRequest {
     string organization = 1;
     string email = 2;
     string name = 3;
+    /* If not given, a random password is generated, and the user needs to reset their password to be able to log in. */
     string password = 4;
 }

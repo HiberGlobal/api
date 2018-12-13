@@ -1,5 +1,62 @@
 # Changelog Hiber API
 
+### 0.13 (2018-12-04)
+
+This version makes a big backwards-incompatible change to modem claiming.
+We've determined that the double verification for claiming modems (both the verifier and the accept step)
+was unnecessary. We've simplified the flow of claims so that claims are now automatically accepted.
+
+#### Changes
+
+##### Event types
+
+- **[B]** Removed `MODEM_CLAIM_ACCEPTED` and `MODEM_CLAIM_REFUSED` from `EventType`.
+- Ordered the remaining event types to be more readable. Indexes have not changed, so this is backwards compatible.
+
+##### EventService
+
+- **[B]** Removed `ModemClaimAcceptedEvent` and `ModemClaimRejectedEvent`.
+
+##### ModemClaimService
+
+- Removed all fields related to acceptance and rejection from `ModemClaim`.
+  This change is actually backwards compatible, since the defaults for these fields will be used.
+  The removed fields are:
+  - `status`
+  - `reject_reason`
+  - `reject_comment`
+  - `closed_at`
+
+- Removed all fields related to acceptance and rejection from `ModemClaimSelection`.
+    This change is actually backwards compatible, since the defaults for these fields will be used.
+    The removed fields are:
+    - `statuses`
+    - `closed_time_range`
+    - `owned_only`
+    - `claimed_only`
+
+    Also, `created_time_range` was renamed to `time_range` (which is backwards compatible).
+
+- Removed or changed most of the calls in this service:
+  - `ClaimModemRequest` is unchanged, but the Response contains a `ModemClaim`, which was changed (see above).
+  - **[B]** `AcceptModemClaimsRequest` was removed, since claims are approved automatically.
+  - **[B]** `RejectModemClaimsRequest` was removed, since claims are approved automatically.
+  - `ListModemClaimsRequest` was altered to only list the modems that you owned, that were claimed by another organization.
+
+##### UserService
+
+- Made `password` optional in `CreateUserRequest`.
+
+#### Backwards incompatible changes
+
+Backwards incompatible changes are marked with the **[B]** marker.
+
+- **[B]** Everything related to modem claiming:
+  - Claiming modems is backwards compatible, but the resulting `ModemClaim` will have default values for the removed fields.
+  - Listing claims is backwards compatible, but the resulting `ModemClaim` will have default values for the removed fields.
+  - Accepting and Rejecting claims is no longer possible, and will produce an error on older clients.
+  - The default `ModemClaim.status` was `OPEN`, so claims will appear as `OPEN` on older clients, while they have actually already been accepted.
+
 ### 0.12 (2018-11-27)
 
 This release introduces publishers and an integration with AWS IoT.
