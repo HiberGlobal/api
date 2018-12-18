@@ -1,5 +1,21 @@
 # Changelog Hiber API
 
+### 0.14 (2018-12-18)
+
+This version contains a lot of performance improvements and bugfixes that have no effect on the API.
+The API only has one minor change.
+
+#### Changes
+
+##### ModemService
+
+- `ModemMessageSelection` no longer has the option to include child organizations.
+  This change is backwards compatible.
+
+#### Backwards incompatible changes
+
+Everything is backwards compatible.
+
 ### 0.13 (2018-12-04)
 
 This version makes a big backwards-incompatible change to modem claiming.

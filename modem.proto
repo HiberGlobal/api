@@ -167,8 +167,8 @@ message ModemMessage {
  */
 message ModemMessageSelection {
     Filter.Modems modems = 1;
-    Filter.ChildOrganizations child_organizations = 2;
     TimeRange time_range = 3;
+    reserved 2;
 }
 
 message GetModemRequest {
