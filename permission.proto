@@ -70,7 +70,7 @@ enum OrganizationPermission {
     /* Upload certificates, and update or delete uploaded certificates. */
     CERTIFICATES_MANAGE = 39;
 
-    reserved 37;
+    // reserved 37;
 }
 
 enum UserPermission {
