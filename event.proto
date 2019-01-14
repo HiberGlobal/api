@@ -314,7 +314,7 @@ message Event {
             string vat_number_updated = 3;
             organization.Organization.Address address_updated = 4;
             UpdateBoolean is_business_updated = 5;
-            string billng_name_updated = 6;
+            string billing_name_updated = 6;
             organization.Organization.Address billing_address_updated = 7;
             organization.Organization.Contact contact_updated = 8;
             string title = 9;
@@ -322,7 +322,6 @@ message Event {
             Timestamp time = 11;
         }
     }
-
 }
 
 message BundledEvent {

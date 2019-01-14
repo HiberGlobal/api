@@ -1,5 +1,99 @@
 # Changelog Hiber API
 
+### 0.15 (2019-01-14)
+
+This version introduces API Permissions.
+API permissions are the main way of handling scoped access for users and tokens.
+
+There are two types of permissions:
+  - User permissions (i.e. read, request access, delete)
+    - Automatically available when you log in through mission control.
+    - Configurable on any tokens you create.
+  - Organization permissions (i.e. send test messages, manage tokens, access modem license keys)
+    - Configurable for every user on your organization.
+    - Configurable on any tokens you create.
+
+Permissions are defined in [permission.proto](permission.proto)
+
+Permissions are meant to be discrete sets of tasks, though some may include other permissions 
+(i.e. MODEMS_UPDATE includes MODEMS). Creating a user without specifying organization permissions results in an empty set of permissions, which results in very limited functionality.
+
+Because all users and tokens effectively had all permissions, we've given every user and token to give them all permissions.
+
+Mission control currently sets all permissions when creating a user or token, and will be updated in the future.
+Similarly, roles (groups of permissions) will be introduced in the future to make permission management easier.
+
+#### Changes
+
+##### Common types
+
+- Added `Filter.OrganizationPermissions` which is used to select and return organization permissions.
+- Added `Filter.UserPermissions` which is used to select and return user permissions.
+
+##### Permissions
+
+- Added organization permissions
+  - `ORGANIZATION_CREATE`: Create a new child organization.
+  - `ORGANIZATION_UPDATE`: Update the organizations data, such as billing information, address, and contact.
+  - `ORGANIZATION_DELETE`: Delete child organizations. You cannot delete your own organization. To delete your organization, contact support.
+  - `MODEMS`: List modems, see their details and health
+  - `MODEMS_UPDATE`: Update modems, such as their peripherals, display name and tags. Includes `MODEMS` permission.
+  - `MODEMS_LICENSE_KEYS`: Show and regenerate license keys. Includes `MODEMS` permission.
+  - `MODEM_MESSAGES`: Read modem messages.
+  - `MODEM_MESSAGES_SEND_TEST_MESSAGES`: Send modem messages using the TestingService. Does not include `MODEMS` or `MESSAGES` permission.
+  - `MODEM_TRANSFERS`: See modem transfers, inbound and outbound modems. Includes `MODEMS` permission.
+  - `MODEM_TRANSFERS_SEND`: Transfer modems to another organization, cancel open transfers and send return transfers. Includes `MODEMS_TRANSFERS` permission.
+  - `MODEM_TRANSFERS_PROCESS`: Mark transfers as received, prepare modems for return. This does not include actually sending the return transfer. Includes `MODEMS_TRANSFERS` permission.
+  - `MODEM_CLAIM`: Claiming modems.
+  - `USERS`: List all users, see their names and email addresses.
+  - `USERS_MANAGE`: Approve or create new users, remove users from the organization. Includes `USERS` permission.
+  - `PUBLISHERS`: Manage publishers.
+  - `TOKENS`: Manage tokens.
+  - `CERTIFICATES`: Read and use uploaded certificates (i.e. for publishers).
+  - `CERTIFICATES_MANAGE`: Upload certificates, and update or delete uploaded certificates. Includes the `CERTIFICATES` permission.
+
+- Added user permissions
+  - `READ`: Read your name, email, linked organizations and mission-control settings.
+  - `UPDATE`: Update your personal information, mission-control settings and default organization. Includes `READ` permission.
+  - `REQUEST_ACCESS`: Request access to an organization and cancel open requests. Does not include `READ` permission.
+  - `DELETE`: Delete your user account permanently. Includes `READ` permission.
+
+##### ModemService
+
+- Added a `BytesOrHex` message body to support more clients.
+
+##### StatusService
+
+- Added `StatusService.Status`, which gives the status of the Hiber network and your organization.
+  - The Hiber network:
+    - Satellites: A status for the satellite network.
+    - Ground Stations: A status for the ground station network.
+    - Areas: Areas of the globe that have a non-OK status, i.e. regions where coverage is hindered by external forces.
+  - Your organization:
+    - Organization health: a value derived from the status of your modems, publishers, etc.
+    - Modem health: a single value derived from the status of all your modems.
+    - Publisher health: a single value derived from the status of all your publishers.
+      
+##### TokenService
+
+- Added `Token.user_permissions`, the user permissions the token was granted.
+- Added `Token.organization_permissions`, the organization permissions the token was granted.
+- Added `CreateTokenRequest.user_permissions` to set the user permissions for a new token.
+- Added `CreateTokenRequest.organization_permissions` to set the user permissions for a new token.
+- Added `UpdateTokenOrganizationPermissionsRequest` to update the organization permissions for a token.
+- Added `UpdateTokenUserPermissionsRequest` to update the user permissions for a token.
+
+##### UserService
+
+- Added `User.permissions`, the user's organization permissions for your organization.
+- Added `ApproveUserRequest.permissions` to set the permissions for a user when giving them access to your organization.
+- Added `CreateUserRequest.permissions` to set the organization permissions for a new user created for your organization.
+- Added `UserService.UpdateUserPermissions` to change a user's permissions for a given organization.
+
+#### Backwards incompatible changes
+
+Everything is backwards compatible.
+
 ### 0.14 (2018-12-18)
 
 This version contains a lot of performance improvements and bugfixes that have no effect on the API.

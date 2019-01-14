@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "base.proto";
+import "permission.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.user";
@@ -15,12 +16,14 @@ service UserService {
     rpc Approve (ApproveUserRequest) returns (ApproveUserRequest.Response);
     rpc Remove (RemoveUserRequest) returns (RemoveUserRequest.Response);
     rpc CreateUser (CreateUserRequest) returns (User);
+    rpc UpdateUserPermissions (UpdateUserPermissionsRequest) returns (UpdateUserPermissionsRequest.Response);
 }
 
 message User {
     string id = 1;
     string email = 2;
     string name = 3;
+    Filter.OrganizationPermissions permissions = 4;
 }
 
 message UserSelection {
@@ -70,6 +73,7 @@ message ApproveUserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     repeated string user_id = 2;
+    Filter.OrganizationPermissions permissions = 3;
 }
 
 message RemoveUserRequest {
@@ -86,6 +90,17 @@ message CreateUserRequest {
     string organization = 1;
     string email = 2;
     string name = 3;
-    /* If not given, a random password is generated, and the user needs to reset their password to be able to log in. */
     string password = 4;
+    Filter.OrganizationPermissions permissions = 5;
+}
+
+message UpdateUserPermissionsRequest {
+    message Response {
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    repeated string user_ids = 2;
+    /* The previous permissions are replaced! */
+    Filter.OrganizationPermissions new_permissions = 3;
 }

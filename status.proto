@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+import "base.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.status";
+option java_outer_classname = "StatusApi";
+option go_package = "hiber";
+
+package hiber.status;
+
+/* Service to get the status of the hiber network
+ */
+service StatusService {
+    rpc Status (StatusRequest) returns (StatusRequest.Response);
+}
+
+message NetworkStatus {
+    Health health = 1;
+    string message = 2;
+    Timestamp last_updated = 3;
+}
+
+message AreaStatus {
+    Area area = 1;
+    Health health = 2;
+    string message = 3;
+    Timestamp last_updated = 4;
+}
+
+message OrganizationStatus {
+    message ModemStatus {
+        string modem_number = 1;
+        Health health = 2;
+        repeated string messages = 3;
+    }
+
+    message PublisherStatus {
+        int64 publisher_id = 1;
+        Health health = 2;
+        repeated string messages = 3;
+    }
+
+    /* Organization health, based on the values below. */
+    Health health = 1;
+    /* Health for modems, based on the most severe state for all your modems. */
+    Health modems = 2;
+    /* Health for publishers, based on the most severe state for all your publishers. */
+    Health publishers = 3;
+    /* A detailed list of modems with a non-OK status. */
+    repeated ModemStatus relevant_modems = 4;
+    /* A detailed list of publishers with a non-OK status. */
+    repeated PublisherStatus relevant_publishers = 5;
+}
+
+message StatusRequest {
+    message Response {
+        StatusRequest request = 1;
+        /* Status of the satellite network. */
+        NetworkStatus satellites = 2;
+        /* Status of the ground station network. */
+        NetworkStatus ground_stations = 3;
+        /* Areas of the globe that have a non-OK status, i.e. regions where coverage is hindered by external forces. */
+        repeated AreaStatus global_areas = 4;
+        /* Status for your organization, i.e. whether you have modems that are having trouble, or failed publishers. */
+        OrganizationStatus organization = 5;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+
+    /* Whether to include a detailed list of modems with a non-OK status. */
+    bool include_modems = 2;
+
+    /* Whether to include a detailed list of publishers with a non-OK status. */
+    bool include_publishers = 3;
+}

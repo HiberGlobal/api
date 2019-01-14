@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "global.hiber.api.grpc";
+option go_package = "hiber";
+
+package hiber;
+
+/* Permissions limit what a user can do through the API.
+ * By default, everyone who has access to an organization, can access:
+ * - organization data
+ * - dashboard (including the map, and message count for the past days, and any events they have access to)
+ * - tags
+ * - deleting tags, but only if they are allowed to update the modems and webhooks the tag is assigned to
+ *
+ * Events are filtered by permission, i.e. if you cannot access the users, you would not see user-related events.
+ * Requesting user-related events explicitly if you cannot access the users will return an error.
+ */
+enum OrganizationPermission {
+    PERMISSION_DEFAULT = 0;
+
+    /* Create a new child organization. */
+    ORGANIZATION_CREATE = 1;
+    /* Update the organizations data, such as billing information, address, and contact. */
+    ORGANIZATION_UPDATE = 2;
+    /* Delete child organizations.
+     * You cannot delete your own organization. To delete your organization, contact support.
+     */
+    ORGANIZATION_DELETE = 3;
+
+    /* List modems, see their details and health */
+    MODEMS = 10;
+    /* Update modems, such as their peripherals, display name and tags. Includes MODEMS permission. */
+    MODEMS_UPDATE = 11;
+    /* Show and regenerate license keys. Includes MODEMS permission. */
+    MODEMS_LICENSE_KEYS = 12;
+
+    /* Read modem messages. */
+    MODEM_MESSAGES = 15;
+    /* Send modem messages using the TestingService. Does not include MODEMS or MESSAGES permission. */
+    MODEM_MESSAGES_SEND_TEST_MESSAGES = 16;
+
+    /* See modem transfers, inbound and outbound modems. Includes modems permission. */
+    MODEM_TRANSFERS = 20;
+    /* Transfer modems to another organization, cancel open transfers and send return transfers.
+     * Includes modems_transfers permission.
+     */
+    MODEM_TRANSFERS_SEND = 21;
+    /* Mark transfers as received, prepare modems for return. This does not include actually sending the return transfer.
+     * Includes modems_transfers permission.
+     */
+    MODEM_TRANSFERS_PROCESS = 22;
+
+    /* Claiming modems. */
+    MODEM_CLAIM = 25;
+
+    /* List all users, see their names and email addresses. */
+    USERS = 30;
+    /* Approve or create new users, remove users from the organization. Includes users permission. */
+    USERS_MANAGE = 31;
+
+    /* Manage publishers. */
+    PUBLISHERS = 35;
+    /* Manage tokens. */
+    TOKENS = 36;
+
+    /* Read and use uploaded certificates (i.e. for publishers). */
+    CERTIFICATES = 38;
+
+    /* Upload certificates, and update or delete uploaded certificates. */
+    CERTIFICATES_MANAGE = 39;
+
+    reserved 37;
+}
+
+enum UserPermission {
+    /* Read your name, email, linked organizations and mission-control settings. */
+    READ = 0;
+    /* Update your personal information, mission-control settings and default organization. Includes read permission. */
+    UPDATE = 1;
+    /* Request access to an organization and cancel open requests. Does not include read permission. */
+    REQUEST_ACCESS = 2;
+    /* Delete your user account permanently. Includes read permission. */
+    DELETE = 3;
+}

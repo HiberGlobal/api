@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
+import "permission.proto";
 
 option java_multiple_files = true;
 option java_package = "global.hiber.api.grpc";
@@ -228,6 +229,18 @@ message Filter {
     message Users {
         repeated string include = 1;
         repeated string exclude = 2;
+    }
+
+    message OrganizationPermissions {
+        bool include_all = 1;
+        repeated OrganizationPermission include = 2;
+        repeated OrganizationPermission exclude = 3;
+    }
+
+    message UserPermissions {
+        bool include_all = 1;
+        repeated UserPermission include = 2;
+        repeated UserPermission exclude = 3;
     }
 }
 
