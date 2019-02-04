@@ -172,6 +172,7 @@ message CreatePublisherRequest {
     }
 }
 
+/* Enable a disabled publisher or re-enable a publisher that's failed and is in cooldown. */
 message EnablePublisherRequest {
     message Response {
         repeated Publisher publishers = 1;

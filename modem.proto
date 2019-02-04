@@ -132,13 +132,12 @@ message Modem {
 message ModemSelection {
     message Transfers {
         repeated string transfers_identifiers = 1;
-        bool include_inbound_modems = 2;
-        bool include_outbound_modems = 3;
+        reserved 2,3;
     }
 
     Filter.Modems modems = 1;
     hiber.tag.TagSelection filter_by_tags = 2;
-    Filter.ChildOrganizations child_organizations = 3;
+    reserved 3;
     bool only_active = 4;
     TimeRange activated_in = 5;
     repeated hiber.organization.subscription.ServiceType with_service_type = 6;
@@ -177,6 +176,7 @@ message GetModemRequest {
     string organization = 1;
     string modem_number = 2;
     reserved 3;
+    Filter.ChildOrganizations child_organizations = 4;
 }
 
 message ListModemsRequest {
@@ -200,6 +200,9 @@ message ListModemsRequest {
     Pagination pagination = 3;
     Sort sort_by = 4;
     reserved 5;
+    bool include_inbound_modems = 6;
+    bool include_outbound_modems = 7;
+    Filter.ChildOrganizations child_organizations = 8;
 }
 
 message ListModemMessagesRequest {

@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "base.proto";
+
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.user";
 option java_outer_classname = "CurrentUserApi";
@@ -17,6 +19,7 @@ service CurrentUserService {
     rpc DeleteCurrentUser (DeleteCurrentUserRequest) returns (DeleteCurrentUserRequest.Response);
     rpc UpdateDefaultOrganization (UpdateDefaultOrganizationRequest) returns (UpdateDefaultOrganizationRequest.Response);
     rpc UpdateSettings (UpdateSettingsRequest) returns (UpdateSettingsRequest.Response);
+    rpc AccessibleOrganizations (AccessibleOrganizationsRequest) returns (AccessibleOrganizationsRequest.Response);
 }
 
 /* Your personal data
@@ -62,10 +65,30 @@ message CurrentUser {
     string id = 1;
     string email = 2;
     string name = 3;
+
+    /* The organizations that this user has access to. */
     repeated string organizations = 4;
+
+    /* The default organization for this user. */
     string default_organization = 5;
+
+    /* Open access requests. */
     repeated string requested_organizations = 6;
+
+    /* Mission control settings. */
     Settings settings = 7;
+
+    /* The current organization for this user.
+     * If this is a user, this equals the default_organization.
+     * If this is a token, it's the token's organization.
+     */
+    string current_organization = 8;
+
+    /* Permissions for the current organization. */
+    Filter.OrganizationPermissions current_organization_permissions = 9;
+
+    /* Permissions for the user. If this is a token, the user permissions may be limited. */
+    Filter.UserPermissions user_permissions = 10;
 }
 
 /* Get your personal data
@@ -118,4 +141,10 @@ message UpdateSettingsRequest {
     }
 
     CurrentUser.Settings update_settings = 1;
+}
+
+message AccessibleOrganizationsRequest {
+    message Response {
+        repeated string organizations = 1;
+    }
 }

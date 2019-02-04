@@ -1,5 +1,55 @@
 # Changelog Hiber API
 
+### 0.16 (2019-02-01)
+
+This is mostly an intermediate release, preparing for future features.
+We've added more information to the `CurrentUser`, some map improvements and some ease of use improvements.
+
+#### Changes
+
+##### CurrentUserService
+
+- Add `AccessibleOrganizationsRequest` to list accessible organizations, to make impersonation easier.
+- Add `current_organization`, `current_organization_permissions` and `user_permissions` to `CurrentUser`.
+
+##### MapService
+
+- Added more map levels:
+  - 0: blocks of 15 degrees (latitude), by 20 degrees (longitude)
+  - 1: blocks of 10 degrees (latitude), by 15 degrees (longitude)
+  - 2: blocks of 7.5 degrees (latitude), by 10 degrees (longitude)
+  - 3: blocks of 5 degrees (latitude), by 7.5 degrees (longitude)
+  - 4: blocks of 3 degrees (latitude), by 5 degrees (longitude)
+
+  (The map levels are currently only used for the modem density map in Mission Control.)
+
+- Add `ShapeRestriction` to filter map areas on a shape.
+  Currently, the API determines the overlapping blocks (for the specified level) to use.
+  This will change when we introduce a more flexible modem filtering by location.
+
+- `GroundStation` can now have a name. We've also added our second ground station.
+- **[B]** Removed `child_organizations` from `MapSelection`,
+  since `MapSelection` is used in other places, while `child_organizations` was only applicable in `MapRequest`.
+  - Added `child_organizations` to `MapRequest`.
+
+##### ModemService
+
+- **[B]** Removed `child_organizations` from `ModemSelection`,
+  since `ModemSelection` is used in many places, while `child_organizations` was only applicable in a few places.
+- **[B]** Similarly, removed `include_inbound_modems` and `include_outbound_modems` from `ModemSelection`,
+  since this really only applies to `ListModemsRequest`.
+- Added `child_organizations` to `ListModemsRequest` and `GetModemRequest`.
+- Added `include_inbound_modems` and `include_outbound_modems` to `ListModemsRequest`.
+
+##### PublisherService
+
+- `EnablePublisherRequest` can now re-enable a publisher that is in cooldown after a failed call.
+
+#### Backwards incompatible changes
+
+- **[B]** Requests with a `ModemSelection` or `MapSelection` that included `child_organizations` need to be updated.
+  They will not break, they will just ignore the `child_organizations` in the selection objects.
+
 ### 0.15 (2019-01-14)
 
 This version introduces API Permissions.

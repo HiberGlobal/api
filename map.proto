@@ -25,10 +25,15 @@ message MapSelection {
         Location top_right = 2;
     }
 
+    message ShapeRestriction {
+        repeated Location path = 1;
+    }
+
     Filter.Modems modems = 1;
-    Filter.ChildOrganizations child_organizations = 2;
+    reserved 2;
     int32 level = 3;
     AreaRestriction area = 4;
+    ShapeRestriction shape = 5;
 }
 
 /* The location of ground stations that receive the data sent from the satellite(s).
@@ -36,6 +41,7 @@ message MapSelection {
  */
 message GroundStation {
     Location location = 1;
+    string name = 2;
 }
 
 /* Map block that specifies a modem count in a specific area, bounded by a latitude / longitude 'square' (not really a
@@ -61,4 +67,6 @@ message MapRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     MapSelection selection = 2;
+    /* Include modems that belong to organizations created by your current organization. */
+    Filter.ChildOrganizations child_organizations = 3;
 }
