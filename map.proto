@@ -13,6 +13,7 @@ package hiber.map;
  */
 service MapService {
     rpc Map (MapRequest) returns (MapRequest.Response);
+    rpc Satellites (SatellitesRequest) returns (SatellitesRequest.Response);
 }
 
 /* Selection object for map data. Filter modems on the map by id, (child)organization.
@@ -44,6 +45,17 @@ message GroundStation {
     string name = 2;
 }
 
+message Satellite {
+    message Position {
+        Timestamp time = 1;
+        Location location = 2;
+    }
+
+    int32 id = 1;
+    string name = 2;
+    repeated Position positions = 3;
+}
+
 /* Map block that specifies a modem count in a specific area, bounded by a latitude / longitude 'square' (not really a
  * square, since the earth is not flat).
  * Also contains an error count and percentage, which signifies any problems in the area.
@@ -62,6 +74,7 @@ message MapRequest {
         repeated GroundStation ground_stations = 1;
         repeated MapBlock map_blocks = 2;
         MapRequest request = 4;
+        repeated Satellite satellites = 5;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
@@ -69,4 +82,10 @@ message MapRequest {
     MapSelection selection = 2;
     /* Include modems that belong to organizations created by your current organization. */
     Filter.ChildOrganizations child_organizations = 3;
+}
+
+message SatellitesRequest {
+    message Response {
+        repeated Satellite satellites = 1;
+    }
 }

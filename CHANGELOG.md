@@ -7,6 +7,27 @@ We've added more information to the `CurrentUser`, some map improvements and som
 
 #### Changes
 
+##### DashboardService
+
+- Add `satellites` to `DashboardRequest.Response`, which is a list of `Satellite` objects. 
+
+##### MapService
+
+- Add `Satellite` object, which describes a satellite and it's path for the next minutes.
+- Add `Satellites` request to `MapService`, which returns a list of `Satellite` objects.
+- Add `satellites` to `MapRequest.Response`, which is a list of `Satellite` objects.
+
+#### Backwards incompatible changes
+
+Everything is backwards compatible.
+
+### 0.16 (2019-02-01)
+
+This is mostly an intermediate release, preparing for future features.
+We've added more information to the `CurrentUser`, some map improvements and some ease of use improvements.
+
+#### Changes
+
 ##### CurrentUserService
 
 - Add `AccessibleOrganizationsRequest` to list accessible organizations, to make impersonation easier.

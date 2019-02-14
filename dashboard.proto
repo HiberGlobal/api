@@ -35,6 +35,7 @@ message DashboardRequest {
         DashboardRequest request = 7;
         // returns event bundles matching the given selection, or an empty list if the event selection wasn't set
         repeated hiber.event.BundledEvent events = 8;
+        repeated hiber.map.Satellite satellites = 9;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
