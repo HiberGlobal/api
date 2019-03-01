@@ -1,6 +1,50 @@
 # Changelog Hiber API
 
-### 0.16 (2019-02-01)
+### 0.17 (2019-02-01)
+
+This update is a collection of quality of life improvements to our systems. 
+- The Mission Control settings have been replaced with more flexible JSon-based settings.
+- A single sign-on service is introduced to consolidate authentication on 
+  [hiber.cloud](https://hiber.cloud),
+  [dev.hiber.global](https://dev.hiber.global) and
+  [support.hiber.global](https://support.hiber.global).
+- Users without organization can now create an organization (with a token provided by customer support, for now)
+  instead of only being able to request access to an organization.
+
+#### Changes
+
+##### CurrentUserService
+
+- **[B]** Removed `CurrentUser.Settings` and `CurrentUser.settings`, which were only used by Mission Control.
+- **[B]** Removed `UpdateSettingsRequest`, which updated `CurrentUser.settings`.
+- Added `mission_control_settings`, a JSon string with the Mission Control settings.
+  This allows greater storage flexibility without requiring changes in the API for everything
+  Mission Control needs to store.
+- Added `UpdateMissionControlSettingsRequest` to update the mission control settings JSon.
+
+##### OrganizationService
+
+- Added `organization_creation_token` to `CreateOrganizationRequest`. 
+  Using a token provided by Hiber customer support, a user without an organization can create their first organization.
+  This will be implemented in Mission Control in the near future.
+
+##### StatusService
+
+- Added the `server` field to `StatusRequest.Response` for information on anything affecting the server status
+  (assuming the server is running and responding to the API).
+
+##### SSOService
+
+- Added the `SingleSignOnService` to support single sign-on for other application, using your Hiber login.
+- Using this, [support.hiber.global](https://support.hiber.global) will gain Mission Control sign-on in the near future,
+  consolidating the different logins used to access our platform.
+
+#### Backwards incompatible changes
+
+- **[B]** Removed `CurrentUser.Settings` and `CurrentUser.settings`, which were only used by Mission Control.
+- **[B]** Removed `UpdateSettingsRequest`, which updated `CurrentUser.settings`.
+
+### 0.16.1 (2019-02-01)
 
 This is mostly an intermediate release, preparing for future features.
 We've added more information to the `CurrentUser`, some map improvements and some ease of use improvements.

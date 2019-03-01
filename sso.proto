@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "base.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.sso";
+option java_outer_classname = "SSOApi";
+option go_package = "hiber";
+
+package hiber.sso;
+
+/* Single sign on support service. */
+service SingleSignOnService {
+
+    /* Zendesk SSO using custom JWT */
+    rpc Zendesk (ZendeskTokenRequest) returns (ZendeskTokenRequest.Response);
+}
+
+message ZendeskTokenRequest {
+    message Response {
+        string token = 1;
+    }
+}

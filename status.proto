@@ -64,6 +64,8 @@ message StatusRequest {
         repeated AreaStatus global_areas = 4;
         /* Status for your organization, i.e. whether you have modems that are having trouble, or failed publishers. */
         OrganizationStatus organization = 5;
+        /* Status for the server. Generally only used when the server is in read-only mode for maintenance. */
+        NetworkStatus server = 6;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */

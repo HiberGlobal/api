@@ -116,18 +116,37 @@ message ListChildOrganizationsRequest {
 }
 
 message CreateOrganizationRequest {
-    /* Pick the organization to use as parent. If unset, your default organization is used. */
+    /* Pick the organization to use as parent. If unset, your default organization is used.
+     * If you have no organization, an organization_creation_token is required.
+     */
     string parent_organization = 1;
-    /* Required */
+
+    /* The name for the new organization. Lowercase, letters, numbers, dashes and underscores only. Required. */
     string new_organization = 2;
+
+    /* The name to display for your organization (i.e. capitalized, with spaces, etc.). Default to the name above. */
     string display_name = 3;
+
+    /* Whether this organization is created for a business. */
     bool is_business = 4;
+
+    /* Whether this organization is created for a business, provide a VAT number. */
     string vat_number = 5;
+
+    /* Postal address for your organization. */
     Organization.Address address = 6;
+
+    /* Billing information for your organization. Optional, but required if you want active modems. */
     string billing_name = 7;
+
+    /* Billing address for your organization. Optional, but required if you want active modems. */
     Organization.Address billing_address = 8;
-    /* Required */
+
+    /* Contact information for your organization. Required. */
     Organization.Contact contact = 9;
+
+    /* A token that allows you to create an organization without having an organization. */
+    string organization_creation_token = 10;
 }
 
 message DeleteOrganizationRequest {

@@ -18,50 +18,13 @@ service CurrentUserService {
     rpc CancelAccessRequest (CancelAccessRequestRequest) returns (CancelAccessRequestRequest.Response);
     rpc DeleteCurrentUser (DeleteCurrentUserRequest) returns (DeleteCurrentUserRequest.Response);
     rpc UpdateDefaultOrganization (UpdateDefaultOrganizationRequest) returns (UpdateDefaultOrganizationRequest.Response);
-    rpc UpdateSettings (UpdateSettingsRequest) returns (UpdateSettingsRequest.Response);
+    rpc UpdateMissionControlSettings (UpdateMissionControlSettingsRequest) returns (UpdateMissionControlSettingsRequest.Response);
     rpc AccessibleOrganizations (AccessibleOrganizationsRequest) returns (AccessibleOrganizationsRequest.Response);
 }
 
 /* Your personal data
  */
 message CurrentUser {
-    /* Settings used by the UI */
-    message Settings {
-        enum Layout {
-            DEFAULT_LAYOUT = 0;
-            LANDSCAPE = 1;
-            PORTRAIT = 2;
-        }
-        enum MapStyle {
-            DEFAULT_MAP_STYLE = 0;
-            SATELLITE = 1;
-            HIBER_VISION = 2;
-            CLASSIC = 3;
-        }
-        enum TimeFormat {
-            DEFAULT_TIME_FORMAT = 0;
-            TWENTYFOUR_HOUR = 1;
-            TWELVE_HOUR = 2;
-        }
-        enum DateFormat {
-            DEFAULT_DATE_FORMAT = 0;
-            DD_MM_YYYY = 1;
-            MM_DD_YYYY = 2;
-            YYYY_MM_DD = 3;
-        }
-        enum ThousandsSeparatorsFormat {
-            DEFAULT_THOUSANDS_SEPARATORS_FORMAT = 0;
-            PERIOD = 1;
-            COMMA = 2;
-        }
-
-        Layout layout = 1;
-        MapStyle map_style = 2;
-        TimeFormat time_format = 3;
-        DateFormat date_format = 4;
-        ThousandsSeparatorsFormat thousands_separators_format = 5;
-    }
-
     string id = 1;
     string email = 2;
     string name = 3;
@@ -75,8 +38,7 @@ message CurrentUser {
     /* Open access requests. */
     repeated string requested_organizations = 6;
 
-    /* Mission control settings. */
-    Settings settings = 7;
+    reserved 7;
 
     /* The current organization for this user.
      * If this is a user, this equals the default_organization.
@@ -89,6 +51,8 @@ message CurrentUser {
 
     /* Permissions for the user. If this is a token, the user permissions may be limited. */
     Filter.UserPermissions user_permissions = 10;
+
+    string mission_control_settings = 11;
 }
 
 /* Get your personal data
@@ -135,14 +99,16 @@ message UpdateDefaultOrganizationRequest {
     string organization = 1;
 }
 
-message UpdateSettingsRequest {
+/* Update mission control settings, which are in a json format. */
+message UpdateMissionControlSettingsRequest {
     message Response {
-        CurrentUser.Settings settings = 1;
+        string mission_control_settings = 1;
     }
 
-    CurrentUser.Settings update_settings = 1;
+    string update = 1;
 }
 
+/* List all organizations that can be impersonated. */
 message AccessibleOrganizationsRequest {
     message Response {
         repeated string organizations = 1;
