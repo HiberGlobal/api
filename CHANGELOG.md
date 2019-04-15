@@ -1,5 +1,56 @@
 # Changelog Hiber API
 
+### 0.19 (2019-04-15)
+
+Release 0.19 introduces the new `TileMap`, which will replace the map in Mission Control.
+
+Additionally, A lot of smaller functionality was added, improved and/or clarified.
+
+#### Changes
+
+##### DashboardService
+
+- **[D]** We've deprecated the map functionality in the dashboard service.
+  The identical `Map` call in the `MapService` has also been deprecated in favour of the new `TileMap` in `MapService`.
+- Added string `time_zone` support for messages per day grouping, as an alternative to the numeric `time_zone_offset`.
+
+##### EventService
+
+- Added `ModemActivatedEvent` when a modem receives its first real message.
+- Added `TokenDeletedEvent` when a token is deleted.
+
+##### MapService
+
+- Added `TileMap`, which is a map based on Google Maps' 256x256 tile system.
+- **[D]** The `Map` call has been deprecated in favour of the new `TileMap`.
+  The old map has been re-implemented in the new tile-based map for backwards compatibility,
+  and may group slightly different per level. The old map calls may be removed in a future version, though.
+
+##### ModemService
+
+- Added `LocationSelection` to `ListModemsRequest`
+- Added string `time_zone` support for messages per day grouping, as an alternative to the numeric `time_zone_offset`.
+
+##### OrganizationService
+
+- **[B]** `DeleteOrganizationRequest` has been changed slightly to make the limitations more explicit.
+  Your own organization cannot be deleted; you can only delete child organizations.
+- `DeleteOrganizationRequest.Response` now lists the affected modems.
+- Added `ValidateCreationToken` to validate an organization creation token.
+
+##### UserService
+
+- Added `CreateUsersRequest` to create multiple users in a single request.
+- Added `send_password_reset_mail` and `send_password_reset_mail` to `CreateUserRequest` (and `CreateUsersRequest`)
+  to indicate whether the newly created user should receive those emails.
+- Added `ResetUserPasswordRequest` to reset a users's password.
+
+#### Backwards incompatible changes
+
+- **[B]** `DeleteOrganizationRequest` has been changed slightly to make the limitations more explicit.
+  Your own organization cannot be deleted; you can only delete child organizations.
+
+
 ### 0.17 (2019-02-01)
 
 This update is a collection of quality of life improvements to our systems. 
@@ -43,6 +94,7 @@ This update is a collection of quality of life improvements to our systems.
 
 - **[B]** Removed `CurrentUser.Settings` and `CurrentUser.settings`, which were only used by Mission Control.
 - **[B]** Removed `UpdateSettingsRequest`, which updated `CurrentUser.settings`.
+
 
 ### 0.16.1 (2019-02-01)
 
@@ -114,6 +166,7 @@ We've added more information to the `CurrentUser`, some map improvements and som
 
 - **[B]** Requests with a `ModemSelection` or `MapSelection` that included `child_organizations` need to be updated.
   They will not break, they will just ignore the `child_organizations` in the selection objects.
+
 
 ### 0.15 (2019-01-14)
 
@@ -209,6 +262,7 @@ Similarly, roles (groups of permissions) will be introduced in the future to mak
 
 Everything is backwards compatible.
 
+
 ### 0.14 (2018-12-18)
 
 This version contains a lot of performance improvements and bugfixes that have no effect on the API.
@@ -224,6 +278,7 @@ The API only has one minor change.
 #### Backwards incompatible changes
 
 Everything is backwards compatible.
+
 
 ### 0.13 (2018-12-04)
 
@@ -281,6 +336,7 @@ Backwards incompatible changes are marked with the **[B]** marker.
   - Listing claims is backwards compatible, but the resulting `ModemClaim` will have default values for the removed fields.
   - Accepting and Rejecting claims is no longer possible, and will produce an error on older clients.
   - The default `ModemClaim.status` was `OPEN`, so claims will appear as `OPEN` on older clients, while they have actually already been accepted.
+
 
 ### 0.12 (2018-11-27)
 
@@ -359,6 +415,7 @@ Backwards incompatible changes are marked with the **[B]** marker.
 - **[B]** In `ModemMessageCannotBeParsedEvent`, the type for `modem_message_id` was changed to uint64.
   Depending on your client language, this may or may not be backwards compatible.
 
+
 ### 0.11 (2018-10-22)
 
 We've added a few convenience options for modem claims and transfers.
@@ -393,6 +450,7 @@ This is a small maintenance release with some minor bugfixes and a few features 
 
 - Added `MISSING` return reason for modems that were supposed to be in a package, but are missing.
   This would not set the modem status to lost, since it's likely the modem was just not packaged.
+
 
 ### 0.10 (2018-09-21)
 
@@ -431,6 +489,7 @@ see the most recent events of each type on the first page.
 ##### WebhookService
 
 - Updated the UpdateWebhookRequest to be able to update relevant webhook data in one request.
+
 
 ### 0.8.6 (2018-08-23)
 

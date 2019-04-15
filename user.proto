@@ -16,6 +16,8 @@ service UserService {
     rpc Approve (ApproveUserRequest) returns (ApproveUserRequest.Response);
     rpc Remove (RemoveUserRequest) returns (RemoveUserRequest.Response);
     rpc CreateUser (CreateUserRequest) returns (User);
+    rpc CreateUsers (CreateUsersRequest) returns (CreateUsersRequest.Response);
+    rpc ResetPassword (ResetUserPasswordRequest) returns (ResetUserPasswordRequest.Response);
     rpc UpdateUserPermissions (UpdateUserPermissionsRequest) returns (UpdateUserPermissionsRequest.Response);
 }
 
@@ -90,8 +92,39 @@ message CreateUserRequest {
     string organization = 1;
     string email = 2;
     string name = 3;
+    /* Optional. If no password is given, the account can only be accessed using a password reset. */
     string password = 4;
     Filter.OrganizationPermissions permissions = 5;
+    /* Send an automated email prompting the user to verify their email address. */
+    bool send_verification_mail = 6;
+    /* Send an automated email prompting the user to set a password. Recommended when password is not set. */
+    bool send_password_reset_mail = 7;
+}
+
+message CreateUsersRequest {
+    message Response {
+        repeated User users = 1;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    /* Users to create. Allows for individual impersonation and mail settings. */
+    repeated CreateUserRequest users = 2;
+    /* Set the permissions for all users. Can be replaced for specific settings in the CreateUserRequest. */
+    Filter.OrganizationPermissions permissions = 3;
+    /* Send an automated email prompting the users to verify their email addresses. If true, applies to all users. */
+    bool send_verification_mail = 4;
+    /* Send an automated email prompting the users to set their password. If true, applies to all users. */
+    bool send_password_reset_mail = 5;
+}
+
+message ResetUserPasswordRequest {
+    message Response {
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    string user_id = 2;
 }
 
 message UpdateUserPermissionsRequest {

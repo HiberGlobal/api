@@ -203,6 +203,7 @@ message ListModemsRequest {
     bool include_inbound_modems = 6;
     bool include_outbound_modems = 7;
     Filter.ChildOrganizations child_organizations = 8;
+    LocationSelection location_selection = 9;
 }
 
 message ListModemMessagesRequest {
@@ -232,7 +233,10 @@ message MessageCountRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     ModemMessageSelection selection = 2;
-    int32 time_zone_offset = 3;
+    /** Numeric timezone offset for day grouping. Optional. */
+    int32 time_zone_offset = 5;
+    /** Timezone string for day grouping. Optional. */
+    string time_zone = 6;
 }
 
 message RenameModemRequest {

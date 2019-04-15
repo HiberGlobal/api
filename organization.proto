@@ -20,6 +20,7 @@ service OrganizationService {
     rpc DeleteConfirmation (DeleteOrganizationConfirmationRequest) returns (DeleteOrganizationConfirmationRequest.Response);
     rpc Tree (OrganizationTreeRequest) returns (OrganizationTreeRequest.Response);
     rpc ListChildOrganizations (ListChildOrganizationsRequest) returns (ListChildOrganizationsRequest.Response);
+    rpc ValidateCreationToken (ValidateOrganizationCreationTokenRequest) returns (ValidateOrganizationCreationTokenRequest.Response);
 }
 
 /* Organization data. An Organization can have many linked users, but the organization is the owner
@@ -151,21 +152,38 @@ message CreateOrganizationRequest {
 
 message DeleteOrganizationRequest {
     message Response {
-        string organization = 1;
-        string confirmation_code = 2;
+        string organization_to_delete = 1;
+        /* Token to use with DeleteOrganizationConfirmationRequest. */
+        string deletion_token = 2;
+        /* The organizations that will be deleted. */
         OrganizationTree organizations_to_be_deleted = 3;
+        /* The modems that will be moved to the parent organization. */
+        repeated string modems = 4;
     }
 
-    /* The organization to delete. If unset, your default organization is used */
-    string organization = 1;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string parent_organization = 1;
+    /* The organization to delete. Required. */
+    string organization_to_delete = 2;
 }
 
 message DeleteOrganizationConfirmationRequest {
     message Response {
     }
 
-    /* The organization to delete. If unset, your default organization is used */
-    string organization = 1;
-    /* The confirmation code for deletion */
-    string confirmation_code = 2;
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string parent_organization = 1;
+    /* The organization to delete. Required. */
+    string organization_to_delete = 3;
+    /* The deletion_token for deletion */
+    string deletion_token = 2;
+}
+
+message ValidateOrganizationCreationTokenRequest {
+    message Response {
+        bool valid = 1;
+    }
+
+    /* A token that allows you to create an organization without having an organization. */
+    string organization_creation_token = 1;
 }

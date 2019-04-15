@@ -33,6 +33,7 @@ message Event {
     bool is_error = 1;
     oneof event {
         ModemEvent.ModemLocationUpdatedEvent modem_location_updated = 2;
+        ModemEvent.ModemActivatedEvent modem_activated = 36;
         ModemEvent.ModemStaleEvent modem_stale = 3;
         ModemEvent.MessageEvent.ModemMessageReceivedEvent modem_message_received = 4;
         ModemEvent.MessageEvent.ModemMessageDroppedEvent modem_message_dropped = 5;
@@ -50,6 +51,7 @@ message Event {
         TokenEvent.TokenExpiryWarningEvent token_expiry_warning = 23;
         TokenEvent.TokenExpiredEvent token_expired = 24;
         TokenEvent.TokenCreatedEvent token_created = 30;
+        TokenEvent.TokenDeletedEvent token_deleted = 35;
         OrganizationEvent.OrganizationUpdatedEvent organization_updated = 25;
         PublisherEvent.CreatedEvent publisher_created = 31;
         PublisherEvent.UpdatedEvent publisher_updated = 32;
@@ -84,6 +86,21 @@ message Event {
             repeated hiber.tag.Tag tags = 6;
             string title = 7;
             string description = 8;
+        }
+
+        /* When the first _real_ message for a modem comes in, the modem is considered to be activated.
+         * A _real_ message is:
+         * - a message received through a modem, on an environment that has real modems (hiber.cloud)
+         * - any test message, on an environment that only has simulated modems (dev.hiber.global)
+         */
+        message ModemActivatedEvent {
+            string organization = 1;
+            string modem_number = 2;
+            uint64 message_id = 3;
+            Timestamp time = 4;
+            repeated hiber.tag.Tag tags = 7;
+            string title = 8;
+            string description = 9;
         }
 
         message MessageEvent {
@@ -299,6 +316,14 @@ message Event {
         }
 
         message TokenExpiredEvent {
+            string organization = 1;
+            token.Token token = 2;
+            string title = 3;
+            string description = 4;
+            Timestamp time = 5;
+        }
+
+        message TokenDeletedEvent {
             string organization = 1;
             token.Token token = 2;
             string title = 3;
