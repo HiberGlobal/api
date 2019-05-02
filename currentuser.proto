@@ -9,8 +9,8 @@ option go_package = "hiber";
 
 package hiber.user;
 
-/* Calls related to the current user. Typically, a newly created organization only has access to these calls, all
- * other require an organization to be linked.
+/* Calls related to the current user. Typically, a newly created user only has access to these calls, all
+ * others require an organization to be linked.
  */
 service CurrentUserService {
     rpc CurrentUser (CurrentUserRequest) returns (hiber.user.CurrentUser);

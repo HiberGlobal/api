@@ -160,6 +160,13 @@ message TransferModemsRequest {
      * This only works if you're able to impersonate the recipient organization.
      */
     bool mark_received_automatically = 6;
+
+    /* When this value is not set to true, transferring gateways or modems with an external device id is not allowed.
+     * Gateways and external devices are connected to the current organization.
+     * Moving either a gateway or connected external device to another organization without moving the other can
+     * cause a number of issues.
+     */
+    bool allow_gateways_and_external_devices = 7;
 }
 
 message ListModemTransfersRequest {

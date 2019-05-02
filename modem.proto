@@ -39,18 +39,35 @@ message Modem {
     string organization = 2;
     /* An optional descriptor given to the modem */
     string name = 3;
+
     Location location = 4;
+
+    /* Time the server has received the last message. Note: this is not equal to the time the message was sent. */
     Timestamp last_message_received_at = 5;
-    ActiveSubscription active_subscription = 6;
-    TechnicalData technical = 7;
+
     /* Period in days, if modem inactivity exceeds this period, alerts will be triggered and health will go to error */
     int32 maximum_inactivity_period = 8;
+
     /* Value based on the number of error and warning events this modem has received in the past 30 days */
     Health health = 9;
-    repeated hiber.tag.Tag tags = 10;
-    Peripherals peripherals = 11;
     Status status = 12;
+
+    // additional information
+    ActiveSubscription active_subscription = 6;
+    TechnicalData technical = 7;
+    Peripherals peripherals = 11;
     Transfer in_transfer = 13;
+
+    repeated hiber.tag.Tag tags = 10;
+
+    /* Whether the modem is a gateway, it has been configured as a gateway and has connected devices. */
+    bool is_gateway = 20;
+    /* Whether the modem is connected to a modem configured as a gateway. */
+    bool is_device_connected_to_gateway = 21;
+    /* The modem number that this modem is connected to, if any. */
+    string connected_to_gateway = 22;
+    /* External device ids, if any. */
+    repeated int64 external_device_ids = 23;
 
     message TechnicalData {
         string hardware_name = 2;
@@ -110,14 +127,11 @@ message Modem {
         string custom_antenna = 4;
     }
 
-    /* Modem statuses for its journey from manufacturer to you.
-     */
+    /* Modem statuses for its lifecycle. */
     enum Status {
-        /* Modem is in your inventory, but not deployed or active
-         */
+        /* Modem is in your inventory, but not deployed or active. */
         DEFAULT = 0;
-        /* Modem is active and sending messages. See health for more details on its health, based on the past messages
-         */
+        /* Modem is active and sending messages. See health for more details on its health, based on the past messages. */
         ACTIVE = 1;
         DAMAGED = 2;
         LOST = 3;
@@ -132,20 +146,29 @@ message Modem {
 message ModemSelection {
     message Transfers {
         repeated string transfers_identifiers = 1;
-        reserved 2,3;
+        reserved 2, 3;
     }
 
     Filter.Modems modems = 1;
-    hiber.tag.TagSelection filter_by_tags = 2;
-    reserved 3;
+    string free_text_search = 8;
+
     bool only_active = 4;
     TimeRange activated_in = 5;
-    repeated hiber.organization.subscription.ServiceType with_service_type = 6;
     TimeRange with_last_message_in = 7;
-    string free_text_search = 8;
+    repeated hiber.organization.subscription.ServiceType with_service_type = 6;
+
     repeated Health health = 9;
     repeated Modem.Status status = 10;
     Transfers transfers = 11;
+
+    bool only_gateways = 12;
+    bool only_has_external_device_ids = 13;
+    Filter.Modems connected_to_gateways = 14;
+    repeated int64 external_device_ids = 15;
+
+    hiber.tag.TagSelection filter_by_tags = 2;
+
+    reserved 3;
 }
 
 /* Decrypted modem message. Messages are received encrypted and decrypted asynchronously, which adds the location

@@ -1,5 +1,43 @@
 # Changelog Hiber API
 
+### 0.20 (2019-05-02)
+
+This release introduces some minor support fields for the gateway solution we're devloping.
+It also includes a few convenience fixes.
+
+#### Changes
+
+##### MapService
+- Added `density` to `TileMapRequest` to determine how modems are grouped on the map:
+  - Default: uses the standard 8x8 configuration, which ensures there are no more than 8 modems/groups per tile,
+    both horizontally and vertically.
+  - Dense: allows 4 times as many modems/groups in a tile. Any icons used may overlap significantly.
+  - Sparse: limits the amount of icons to only 4 horizontally and vertically, which means groups will be bigger
+    but any outliers will probably not be visible separately.
+
+##### ModemService
+
+- Added a few gateway-related fields
+- Re-ordered and grouped the available field, since they were getting cluttered.
+  Related fields are now together, hopefully making them clearer.
+
+  This does not affect the order in messages, which is defined by the numeric value assigned to the fields,
+  and, as such, is fully backwards compatible.
+
+##### ModemTransferService
+
+- Added a *warning and ignore* boolean to `TransferModemsRequest`.
+
+  When this value is not set to true, transferring gateways, or modems with an external device id is not allowed.
+
+  Gateways and external devices are connected to the current organization.
+  Moving either a gateway or connected external device to another organization without moving the other can
+  cause a number of issues, so they should be moved together.
+
+#### Backwards incompatible changes
+
+Everything is backwards compatible.
+
 ### 0.19 (2019-04-15)
 
 Release 0.19 introduces the new `TileMap`, which will replace the map in Mission Control.

@@ -78,6 +78,15 @@ message TileMapRequest {
         repeated Satellite satellites = 5;
     }
 
+    enum Density {
+        /* Fills a tile with 8x8 icons. */
+        DEFAULT = 0;
+        /* Fills a tile with 16x16 icons. */
+        DENSE = 1;
+        /* Fills a tile with 4x4 icons. */
+        SPARSE = 2;
+    }
+
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     LocationSelection selection = 2;
@@ -85,6 +94,7 @@ message TileMapRequest {
     modem.ModemSelection modem_selection = 4;
     bool include_satellites = 5;
     bool include_ground_stations = 6;
+    Density density = 7;
 }
 
 message SatellitesRequest {
@@ -92,8 +102,6 @@ message SatellitesRequest {
         repeated Satellite satellites = 1;
     }
 }
-
-
 
 //// ----- The messages below are deprecated and will be removed in a future version ---- ////
 
