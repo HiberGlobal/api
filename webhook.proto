@@ -41,7 +41,11 @@ message Webhook {
 
     message WebhookData {
         string url = 1;
-        /* Used to generate the HMAC-SHA256 header on every webhook call, which you can use to verify the message. */
+        /* Used to generate the HMAC-SHA256 header on every webhook call, which you can use to verify the message.
+         * The HMAC-SHA256 header is calculated with the message body and this secret.
+         * There are many examples of how to do this in different languages, for example:
+         * https://github.com/danharper/hmac-examples
+         */
         string secret = 2;
         ContentType content_type = 3;
         bool disabled = 4;
