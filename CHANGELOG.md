@@ -1,6 +1,29 @@
 # Changelog Hiber API
 
-### 0.20 (2019-05-02)
+### 0.22 (2019-05-10)
+
+This version introduces the `SatelliteService`, a new service dedicated to
+providing an easy way to display our satellites, along with some bug fixes.
+
+#### Changes
+
+##### SatelliteService
+
+- Added the new `SatelliteService`, which provides information about our satellites.
+  - `List` list the current satellites, their names and TLEs.
+  - `Path` lists the path (in lat/lon pairs) the satellite takes over the surface of the earth.
+    - The `MapService` contained a similar call called `Satellites`, which has been deprecated.
+
+##### MapService
+
+- Deprecated the `Satellites` call and it's objects (`Satellite` and `SatellitesRequest`)
+  in favor of the new `SatelliteService`.
+
+#### Backwards incompatible changes
+
+Everything is backwards compatible.
+
+### 0.21 (2019-05-02)
 
 This release introduces some minor support fields for the gateway solution we're devloping.
 It also includes a few convenience fixes.

@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+import "base.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.satellite";
+option java_outer_classname = "SatelliteApi";
+option go_package = "hiber";
+
+package hiber.satellite;
+
+service SatelliteService {
+    rpc List (ListSatellitesRequest) returns (ListSatellitesRequest.Response);
+    rpc Path (ListSatellitesPathRequest) returns (ListSatellitesPathRequest.Response);
+}
+
+message SatelliteInformation {
+    int32 id = 1;
+    string name = 2;
+    Timestamp launched_at = 3;
+    repeated string tle = 4;
+}
+
+message SatellitePath {
+    message Position {
+        Timestamp time = 1;
+        Location location = 2;
+    }
+
+    int32 satellite_id = 1;
+    string name = 2;
+    repeated Position positions = 3;
+}
+
+message SatelliteSelection {
+    repeated int32 ids = 1;
+    string search = 2;
+}
+
+message ListSatellitesRequest {
+    message Response {
+        repeated SatelliteInformation satellites = 1;
+        ListSatellitesRequest request = 2;
+    }
+
+    SatelliteSelection selection = 1;
+}
+
+message ListSatellitesPathRequest {
+    message Response {
+        repeated SatellitePath satellite_path = 1;
+        ListSatellitesPathRequest request = 2;
+    }
+
+    SatelliteSelection selection = 1;
+}

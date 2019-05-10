@@ -14,7 +14,13 @@ package hiber.map;
  */
 service MapService {
     rpc TileMap (TileMapRequest) returns (TileMapRequest.Response);
-    rpc Satellites (SatellitesRequest) returns (SatellitesRequest.Response);
+
+    /* This call has been deprecated in favour of the Path (ListSatellitesPathRequest) call in SatelliteService.
+     * It will be removed in a future version.
+     */
+    rpc Satellites (SatellitesRequest) returns (SatellitesRequest.Response) {
+        option deprecated = true;
+    };
 
     /* This is the old map request. It has been deprecated and will be removed in a future version. */
     rpc Map (MapRequest) returns (MapRequest.Response) {
@@ -28,17 +34,6 @@ service MapService {
 message GroundStation {
     Location location = 1;
     string name = 2;
-}
-
-message Satellite {
-    message Position {
-        Timestamp time = 1;
-        Location location = 2;
-    }
-
-    int32 id = 1;
-    string name = 2;
-    repeated Position positions = 3;
 }
 
 message TileCoordinate {
@@ -97,13 +92,35 @@ message TileMapRequest {
     Density density = 7;
 }
 
+
+//// ----- The messages below are deprecated and will be removed in a future version ---- ////
+
+/* This call has been deprecated in favour of the Path (ListSatellitesPathRequest) call in SatelliteService.
+ * It will be removed in a future version.
+ */
+message Satellite {
+    option deprecated = true;
+
+    message Position {
+        Timestamp time = 1;
+        Location location = 2;
+    }
+
+    int32 id = 1;
+    string name = 2;
+    repeated Position positions = 3;
+}
+
+/* This call has been deprecated in favour of the Path (ListSatellitesPathRequest) call in SatelliteService.
+ * It will be removed in a future version.
+ */
 message SatellitesRequest {
+    option deprecated = true;
+
     message Response {
         repeated Satellite satellites = 1;
     }
 }
-
-//// ----- The messages below are deprecated and will be removed in a future version ---- ////
 
 /* Selection object for map data. Filter modems on the map by id, (child)organization.
  * Also, filter the map data by level and area restriction, to only display a small area at a detailed map level.
