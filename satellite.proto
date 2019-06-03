@@ -12,6 +12,7 @@ package hiber.satellite;
 service SatelliteService {
     rpc List (ListSatellitesRequest) returns (ListSatellitesRequest.Response);
     rpc Path (ListSatellitesPathRequest) returns (ListSatellitesPathRequest.Response);
+    rpc Passes (ListSatellitesPassesRequest) returns (ListSatellitesPassesRequest.Response);
 }
 
 message SatelliteInformation {
@@ -30,6 +31,26 @@ message SatellitePath {
     int32 satellite_id = 1;
     string name = 2;
     repeated Position positions = 3;
+}
+
+message SatellitePasses {
+    message Pass {
+        TimeRange time = 1;
+        Timestamp closest_approach = 2;
+        float max_elevation = 3;
+        int32 aos_azimuth = 4;
+        int32 los_azimuth = 5;
+    }
+
+    int32 satellite_id = 1;
+    /* The location the passes were calculated for.
+     * If this pass was calculated for a modem, this is the modem's location.
+     */
+    Location location = 2;
+    /* The modem the passes was calculated for, if any was specified. */
+    string modem_number = 3;
+
+    repeated Pass passes = 4;
 }
 
 message SatelliteSelection {
@@ -53,4 +74,26 @@ message ListSatellitesPathRequest {
     }
 
     SatelliteSelection selection = 1;
+}
+
+message ListSatellitesPassesRequest {
+    message Response {
+        repeated SatellitePasses passes = 1;
+        ListSatellitesPassesRequest request = 2;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+
+    /* The satellites to calculate passes for. */
+    SatelliteSelection selection = 2;
+
+    /* The time to calculate the satellite passes in. */
+    TimeRange time_range = 3;
+
+    /* A list of locations to calculate passes for. One or both of locations or modem numbers must be specified. */
+    repeated Location locations = 4;
+
+    /* A list of modems to calculate passes for. One or both of locations or modem numbers must be specified. */
+    repeated string modem_numbers = 5;
 }

@@ -29,6 +29,7 @@ message User {
 }
 
 message UserSelection {
+    repeated string user_ids = 3;
     string by_email = 1;
     string by_name = 2;
 }

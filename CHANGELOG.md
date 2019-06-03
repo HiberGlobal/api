@@ -1,5 +1,25 @@
 # Changelog Hiber API
 
+### 0.23 (2019-06-03)
+
+This version introduces the ability to predict satellite passes for your modems, and the ability to look up users by id.
+
+#### Changes
+
+##### SatelliteService
+
+- Added `Passes` method, which calculates the satellites passes for given locations.
+  - In `ListSatellitesPassesRequest`, you can specify a time range, and a list of location and/or modems.
+
+##### UserService
+
+- Added `user_ids` to `UserSelection`, to find users by id.
+  - You can only find users if you would be able to see them in your organization(s).
+
+#### Backwards incompatible changes
+
+Everything is backwards compatible.
+
 ### 0.22 (2019-05-10)
 
 This version introduces the `SatelliteService`, a new service dedicated to
