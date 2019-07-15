@@ -40,6 +40,9 @@ enum OrganizationPermission {
     /* Send modem messages using the TestingService. Does not include MODEMS or MESSAGES permission. */
     MODEM_MESSAGES_SEND_TEST_MESSAGES = 16;
 
+    /* Send modem messages using real message sources (i.e. gateway). Does not include MODEMS or MESSAGES permission. */
+    MODEM_MESSAGES_SEND_REAL_MESSAGES = 41;
+
     /* See modem transfers, inbound and outbound modems. Includes modems permission. */
     MODEM_TRANSFERS = 20;
     /* Transfer modems to another organization, cancel open transfers and send return transfers.
@@ -70,7 +73,7 @@ enum OrganizationPermission {
     /* Upload certificates, and update or delete uploaded certificates. */
     CERTIFICATES_MANAGE = 39;
 
-    // reserved 37;
+    // reserved 37, 40;
 }
 
 enum UserPermission {

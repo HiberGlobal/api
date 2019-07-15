@@ -11,7 +11,12 @@ option go_package = "hiber";
 
 package hiber.publisher;
 
+/* The publisher service is deprecated. It will be replaced with specific APIs, like the WebhookService
+ * a specific MQTT publisher API, and more publisher implementations.
+ */
 service PublisherService {
+    option deprecated = true;
+
     rpc List (ListPublishersRequest) returns (ListPublishersRequest.Response);
     rpc Create (CreatePublisherRequest) returns (CreatePublisherRequest.Response);
     rpc Enable (EnablePublisherRequest) returns (EnablePublisherRequest.Response);
@@ -30,6 +35,7 @@ message Publisher {
     repeated hiber.tag.Tag tags = 5;
     Health health = 6;
     Type type = 7;
+    Timestamp in_cooldown_until = 8;
 
     enum ContentType {
         DEFAULT = 0;
@@ -121,6 +127,8 @@ message PublisherHistorySelection {
 }
 
 message ListPublishersRequest {
+    option deprecated = true;
+
     message Response {
         repeated Publisher publishers = 1;
         ListPublishersRequest request = 2;
@@ -134,6 +142,8 @@ message ListPublishersRequest {
 }
 
 message PublisherHistoryRequest {
+    option deprecated = true;
+
     message Response {
         repeated PublisherCall calls = 1;
         PublisherHistoryRequest request = 2;
@@ -148,6 +158,8 @@ message PublisherHistoryRequest {
 }
 
 message CreatePublisherRequest {
+    option deprecated = true;
+
     message Response {
         Publisher created = 1;
         CreatePublisherRequest request = 2;
@@ -178,6 +190,8 @@ message CreatePublisherRequest {
 
 /* Enable a disabled publisher or re-enable a publisher that's failed and is in cooldown. */
 message EnablePublisherRequest {
+    option deprecated = true;
+
     message Response {
         repeated Publisher publishers = 1;
         EnablePublisherRequest request = 2;
@@ -190,6 +204,8 @@ message EnablePublisherRequest {
 }
 
 message DisablePublisherRequest {
+    option deprecated = true;
+
     message Response {
         repeated Publisher publishers = 1;
         DisablePublisherRequest request = 2;
@@ -202,6 +218,8 @@ message DisablePublisherRequest {
 }
 
 message UpdatePublisherRequest {
+    option deprecated = true;
+
     message Response {
         repeated Publisher updated = 1;
         UpdatePublisherRequest request = 2;
@@ -240,6 +258,8 @@ message UpdatePublisherRequest {
 }
 
 message UpdatePublisherTagsRequest {
+    option deprecated = true;
+
     message Response {
         repeated Publisher publishers = 1;
         UpdatePublisherTagsRequest request = 2;
@@ -253,6 +273,8 @@ message UpdatePublisherTagsRequest {
 }
 
 message DeletePublisherRequest {
+    option deprecated = true;
+
     message Response {
     }
 

@@ -1,5 +1,61 @@
 # Changelog Hiber API
 
+### 0.26 (2019-07-15)
+
+This version
+
+#### Changes
+
+##### CurrentUserService
+
+- Added `AcceptTermsAndConditions` to accept the terms and conditions.
+  This will be an added step in the UI in the future.
+- Added `accepted_tac` to `CurrentUser` to show whether a user has accepted the terms and conditions.
+
+##### EventService
+
+- Added `Event.OrganizationEvent.OrganizationCreatedEvent` when an organization is created
+  as a child of your organization.
+- Added `Event.OrganizationEvent.OrganizationDeletedEvent` when an organization is deleted
+  as a child of your organization.
+
+##### ModemService
+
+- Added `last_message_id` to `Modem`, with the id of the last received `ModemMessage` for this modem.
+- Added `last_message_sent_at` to `Modem`, with the *sent* time of the last received `ModemMessage` for this modem.
+- Added `last_message_payload` to `Modem`, with the payload of the last received `ModemMessage` for this modem.
+- Added `ModemMessage.is_test` if the message was sent using the `TestingService`.
+
+##### OrganizationPermission
+
+- Added `MODEM_MESSAGES_SEND_REAL_MESSAGES`, for sending real messages from real modems over the internet.
+  The main use for this, at the moment, is for gateways with an internet connection,
+  providing a second method to send messages: directly to API over an internet connection.
+  
+  The API endpoint for this is not in the public API, though a similar endpoint may be added in the future.
+
+##### PublisherService
+
+- Deprecated the `PublisherService`. It will be replaced with specific APIs, like the WebhookService,
+  a specific MQTT publisher API, and more publisher implementations.
+
+  The `PublisherService` was not actually in use in the UI, nor has is been used by any other API clients,
+  so its removal is considered to be without consequences.
+
+- Added `in_cooldown_until` to `Publisher`
+
+##### WebhookService
+
+- Added `in_cooldown_until` to `Webhook`, which denotes the cooldown, if any.
+  
+- The cooldown times have also been updated to be more lenient, using the following semi-exponential scale:
+  
+  `1m, 2m, 5m, 10m, 15m, 30m, 1h, 3h, 6h, 12h, 24h`
+
+#### Backwards incompatible changes
+
+Everything is backwards compatible.
+
 ### 0.23 (2019-06-03)
 
 This version introduces the ability to predict satellite passes for your modems, and the ability to look up users by id.

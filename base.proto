@@ -155,7 +155,9 @@ message Pagination {
 enum EventType {
     DEFAULT = 0;
 
+    ORGANIZATION_CREATED = 34;
     ORGANIZATION_UPDATED = 12;
+    ORGANIZATION_DELETED = 35;
 
     MODEM_LOCATION_UPDATED = 4;
     MODEM_ACTIVATED = 33;
@@ -187,7 +189,7 @@ enum EventType {
     TOKEN_EXPIRED = 26;
     TOKEN_DELETED = 32;
 
-    // reserved 6, 7, 23, 24;
+    // reserved 6, 7, 23, 24, 27, 28, 29, 30;
 }
 
 /* Filters used in many api calls to filter the data sources, results, etc.

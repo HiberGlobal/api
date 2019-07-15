@@ -42,8 +42,16 @@ message Modem {
 
     Location location = 4;
 
-    /* Time the server has received the last message. Note: this is not equal to the time the message was sent. */
+    uint64 last_message_id = 16;
+
+    /* Time the server has received the last message. */
     Timestamp last_message_received_at = 5;
+
+    /* Time the modem has sent the last message. */
+    Timestamp last_message_sent_at = 14;
+
+    /* Time the modem has sent the last message. */
+    BytesOrHex last_message_payload = 15;
 
     /* Period in days, if modem inactivity exceeds this period, alerts will be triggered and health will go to error */
     int32 maximum_inactivity_period = 8;
@@ -183,6 +191,7 @@ message ModemMessage {
     Timestamp received_at = 6;
     uint64 message_id = 7;
     BytesOrHex body_bytes = 8;
+    bool is_test = 9;
 }
 
 /* Selection object for modem messages.

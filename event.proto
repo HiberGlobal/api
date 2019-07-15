@@ -52,7 +52,9 @@ message Event {
         TokenEvent.TokenExpiredEvent token_expired = 24;
         TokenEvent.TokenCreatedEvent token_created = 30;
         TokenEvent.TokenDeletedEvent token_deleted = 35;
+        OrganizationEvent.OrganizationCreatedEvent organization_created = 37;
         OrganizationEvent.OrganizationUpdatedEvent organization_updated = 25;
+        OrganizationEvent.OrganizationDeletedEvent organization_deleted = 38;
         PublisherEvent.CreatedEvent publisher_created = 31;
         PublisherEvent.UpdatedEvent publisher_updated = 32;
         PublisherEvent.DeletedEvent publisher_deleted = 33;
@@ -333,6 +335,14 @@ message Event {
     }
 
     message OrganizationEvent {
+        message OrganizationCreatedEvent {
+            string parent_organization = 1;
+            organization.Organization created = 2;
+            string title = 9;
+            string description = 10;
+            Timestamp time = 11;
+        }
+
         message OrganizationUpdatedEvent {
             string organization = 1;
             string display_name_updated = 2;
@@ -345,6 +355,14 @@ message Event {
             string title = 9;
             string description = 10;
             Timestamp time = 11;
+        }
+
+        message OrganizationDeletedEvent {
+            string parent_organization = 1;
+            string deleted_organization = 2;
+            string title = 3;
+            string description = 4;
+            Timestamp time = 5;
         }
     }
 }

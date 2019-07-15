@@ -19,6 +19,7 @@ service CurrentUserService {
     rpc DeleteCurrentUser (DeleteCurrentUserRequest) returns (DeleteCurrentUserRequest.Response);
     rpc UpdateDefaultOrganization (UpdateDefaultOrganizationRequest) returns (UpdateDefaultOrganizationRequest.Response);
     rpc UpdateMissionControlSettings (UpdateMissionControlSettingsRequest) returns (UpdateMissionControlSettingsRequest.Response);
+    rpc AcceptTermsAndConditions (AcceptTermsAndConditionsRequest) returns (AcceptTermsAndConditionsRequest.Response);
     rpc AccessibleOrganizations (AccessibleOrganizationsRequest) returns (AccessibleOrganizationsRequest.Response);
 }
 
@@ -53,6 +54,9 @@ message CurrentUser {
     Filter.UserPermissions user_permissions = 10;
 
     string mission_control_settings = 11;
+
+    /* Whether the user accepted the terms and conditions. */
+    bool accepted_tac = 12;
 }
 
 /* Get your personal data
@@ -106,6 +110,13 @@ message UpdateMissionControlSettingsRequest {
     }
 
     string update = 1;
+}
+
+message AcceptTermsAndConditionsRequest {
+    message Response {
+    }
+
+    bool accept_tac = 1;
 }
 
 /* List all organizations that can be impersonated. */
