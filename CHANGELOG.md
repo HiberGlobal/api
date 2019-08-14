@@ -1,8 +1,25 @@
 # Changelog Hiber API
 
+### 0.27 (2019-08-14)
+
+#### Changes
+
+##### ModemService
+
+- **[B]** Changed the type of `Modem.external_device_ids` to a list of hex string, instead of `int64`s.
+- **[B]** Changed the type of `ModemSelection.external_device_ids` to a list of hex string, instead of `int64`s.
+
+##### SSOService
+
+- removed unused import
+
+#### Backwards incompatible changes
+
+- **[B]** Changed the type of `Modem.external_device_ids` and `ModemSelection.external_device_ids`.
+
 ### 0.26 (2019-07-15)
 
-This version
+This version introduces a selection of smaller fixes and features.
 
 #### Changes
 

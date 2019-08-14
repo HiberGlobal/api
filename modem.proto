@@ -75,7 +75,7 @@ message Modem {
     /* The modem number that this modem is connected to, if any. */
     string connected_to_gateway = 22;
     /* External device ids, if any. */
-    repeated int64 external_device_ids = 23;
+    repeated string external_device_ids = 23;
 
     message TechnicalData {
         string hardware_name = 2;
@@ -172,7 +172,7 @@ message ModemSelection {
     bool only_gateways = 12;
     bool only_has_external_device_ids = 13;
     Filter.Modems connected_to_gateways = 14;
-    repeated int64 external_device_ids = 15;
+    repeated string external_device_ids = 15;
 
     hiber.tag.TagSelection filter_by_tags = 2;
 
