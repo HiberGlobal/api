@@ -84,12 +84,27 @@ message TileMapRequest {
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
+
+    /* Visible part of the map. */
     LocationSelection selection = 2;
+
+    /* Google Maps zoom level */
     int32 level = 3;
+
+    /* Selection to filter the modems on the map. */
     modem.ModemSelection modem_selection = 4;
+
+    /* Whether to fill the "satellites" field in the Response. */
     bool include_satellites = 5;
+
+    /* Whether to fill the "ground_stations" field in the Response. */
     bool include_ground_stations = 6;
+
+    /* The icon density on the map. */
     Density density = 7;
+
+    /* Whether to include any modems from child organizations. */
+    Filter.ChildOrganizations child_organizations = 8;
 }
 
 

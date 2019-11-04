@@ -1,11 +1,13 @@
 syntax = "proto3";
 
 import "base.proto";
-import "organization.proto";
-import "publisher.proto";
+import "integration_aws_iot.proto";
+import "integration_mqtt.proto";
 import "modem.proto";
 import "modem_transfer.proto";
 import "modem_claim.proto";
+import "organization.proto";
+import "publisher.proto";
 import "tag.proto";
 import "token.proto";
 import "user.proto";
@@ -32,6 +34,7 @@ service EventService {
 message Event {
     bool is_error = 1;
     oneof event {
+        ModemEvent.ModemUpdatedEvent modem_updated = 39;
         ModemEvent.ModemLocationUpdatedEvent modem_location_updated = 2;
         ModemEvent.ModemActivatedEvent modem_activated = 36;
         ModemEvent.ModemStaleEvent modem_stale = 3;
@@ -58,11 +61,29 @@ message Event {
         PublisherEvent.CreatedEvent publisher_created = 31;
         PublisherEvent.UpdatedEvent publisher_updated = 32;
         PublisherEvent.DeletedEvent publisher_deleted = 33;
+        PublisherEvent.AutoDisabledEvent publisher_auto_disabled = 40;
         PublisherEvent.FailedEvent publisher_failed = 34;
         // reserved 11, 12, 13, 14, 21, 22, 26, 27, 28, 29;
     }
 
     message ModemEvent {
+        message ModemUpdatedEvent {
+            string organization = 1;
+            string modem_number = 2;
+
+            UpdateClearableString display_name = 10;
+            modem.Modem.Peripherals.HiberAntenna antenna = 11;
+            UpdateClearableString custom_antenna = 12;
+            UpdateBoolean gps = 13;
+            Location location = 14;
+            map<string, string> peripherals = 15;
+
+            Timestamp time = 4;
+            repeated hiber.tag.Tag tags = 5;
+            string title = 6;
+            string description = 7;
+        }
+
         /* When a message comes in, the modem's location is updated automatically. This event is generated whenever the
          * modem's location is updated
          */
@@ -267,12 +288,49 @@ message Event {
         }
 
         message UpdatedEvent {
+            message WebhookUpdate {
+                string url = 1;
+                UpdateClearableString secret = 2;
+                webhook.Webhook.ContentType content_type = 3;
+                UpdateOptionalId certificate_id = 9;
+            }
+
+            message MQTTUpdate {
+                string url = 1;
+                integration.mqtt.MQTTPublisher.ContentType content_type = 2;
+                string topic = 3;
+                integration.mqtt.MQTTPublisher.Data.QoS qos = 4;
+                UpdateClearableString identifier = 5;
+                UpdateClearableString username = 6;
+                UpdateClearableString password = 7;
+                UpdateOptionalId certificate_id = 8;
+            }
+
+            message AWSIoTUpdate {
+                string aws_iot_url = 2;
+                UpdateOptionalId certificate_id = 3;
+                string mqtt_client_identifier = 5;
+            }
+
+            message EmailUpdate {
+            }
+
             string organization = 1;
             UpdateClearableString updated_description = 2;
-            publisher.Publisher.Data partial_update_data = 3;
-            publisher.UpdatePublisherRequest.UpdateEvents updated_event_filter = 4;
-            publisher.UpdatePublisherRequest.UpdateModems updated_modem_filter = 5;
-            publisher.UpdatePublisherRequest.UpdateTags updated_tag_filter = 6;
+
+            /* Deprecated in favor of the new updated_data field */
+            publisher.Publisher.Data partial_update_data = 3 [deprecated = true];
+
+            oneof updated_data {
+                WebhookUpdate webhook = 15;
+                MQTTUpdate mqtt = 16;
+                AWSIoTUpdate aws_iot = 17;
+                EmailUpdate email = 18;
+            }
+
+            Filter.Events.Update updated_event_filter = 4;
+            Filter.Modems.Update updated_modem_filter = 5;
+            Filter.Tags.Update updated_tag_filter = 6;
             UpdateBoolean updated_active_state = 7;
             repeated tag.Tag tags = 8;
             string title = 9;
@@ -283,6 +341,15 @@ message Event {
         message DeletedEvent {
             string organization = 1;
             publisher.Publisher deleted = 2;
+            repeated tag.Tag tags = 3;
+            string title = 4;
+            string description = 5;
+            Timestamp time = 6;
+        }
+
+        message AutoDisabledEvent {
+            string organization = 1;
+            int64 id = 2;
             repeated tag.Tag tags = 3;
             string title = 4;
             string description = 5;
@@ -365,6 +432,7 @@ message Event {
             Timestamp time = 5;
         }
     }
+
 }
 
 message BundledEvent {

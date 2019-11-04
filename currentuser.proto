@@ -57,6 +57,8 @@ message CurrentUser {
 
     /* Whether the user accepted the terms and conditions. */
     bool accepted_tac = 12;
+
+    string user_hash = 13;
 }
 
 /* Get your personal data
@@ -123,5 +125,9 @@ message AcceptTermsAndConditionsRequest {
 message AccessibleOrganizationsRequest {
     message Response {
         repeated string organizations = 1;
+        Pagination.Result pagination = 2;
     }
+
+    string search = 1;
+    Pagination pagination = 2;
 }

@@ -59,6 +59,9 @@ message Webhook {
         ContentType content_type = 3;
         bool disabled = 4;
         int64 certificate_id = 5;
+        string certificate_name = 6;
+        int64 ca_certificate_id = 7;
+        string ca_certificate_name = 8;
     }
 
     message WebhookFilters {
@@ -154,14 +157,20 @@ message DisableWebhookRequest {
 
 message UpdateWebhookFilterRequest {
     message UpdateEvents {
+        option deprecated = true;
+
         bool updated = 1;
         Filter.Events value = 2;
     }
     message UpdateModems {
+        option deprecated = true;
+
         bool updated = 1;
         Filter.Modems value = 2;
     }
     message UpdateTags {
+        option deprecated = true;
+
         bool updated = 1;
         Filter.Tags value = 2;
     }
@@ -169,23 +178,32 @@ message UpdateWebhookFilterRequest {
     int64 id = 1;
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 2;
-    UpdateEvents event_filter = 3;
-    UpdateModems modem_filter = 4;
-    UpdateTags tag_filter = 5;
+    UpdateEvents deprecated_event_filter = 3 [deprecated = true];
+    UpdateModems deprecated_modem_filter = 4 [deprecated = true];
+    UpdateTags deprecated_tag_filter = 5 [deprecated = true];
     reserved 6;
+    Filter.Events.Update event_filter = 7;
+    Filter.Modems.Update modem_filter = 8;
+    Filter.Tags.Update tag_filter = 9;
 }
 
 message UpdateWebhookRequest {
     message UpdateWebhook {
         message UpdateEvents {
+            option deprecated = true;
+
             bool updated = 1;
             Filter.Events value = 2;
         }
         message UpdateModems {
+            option deprecated = true;
+
             bool updated = 1;
             Filter.Modems value = 2;
         }
         message UpdateTags {
+            option deprecated = true;
+
             bool updated = 1;
             Filter.Tags value = 2;
         }
@@ -194,9 +212,15 @@ message UpdateWebhookRequest {
         UpdateClearableString secret = 2;
         Webhook.ContentType content_type = 3;
         UpdateClearableString description = 4;
-        UpdateEvents event_filter = 5;
-        UpdateModems modem_filter = 6;
-        UpdateTags tag_filter = 7;
+
+        UpdateEvents deprecated_event_filter = 5 [deprecated = true];
+        UpdateModems deprecated_modem_filter = 6 [deprecated = true];
+        UpdateTags deprecated_tag_filter = 7 [deprecated = true];
+
+        Filter.Events.Update event_filter = 10;
+        Filter.Modems.Update modem_filter = 11;
+        Filter.Tags.Update tag_filter = 12;
+
         UpdateBoolean active = 8;
         /* A value of 0 removes the certificate */
         UpdateOptionalId certificate_id = 9;

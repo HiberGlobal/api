@@ -2,7 +2,6 @@ syntax = "proto3";
 
 import "base.proto";
 import "certificate.proto";
-import "publisher.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.integration.awsiot";
@@ -28,6 +27,7 @@ message AWSIoTConfiguration {
     int64 ca_certificate_id = 6;
     string ca_certificate_name = 7;
     bool disabled = 8;
+    string mqtt_client_identifier = 9;
 }
 
 message InitializeAWSIoTIntegrationRequest {
@@ -87,6 +87,8 @@ message UpdateAWSIoTIntegrationConfigurationRequest {
     string organization = 1;
     string aws_iot_url = 2;
     int64 certificate_id = 3;
-    publisher.UpdatePublisherRequest.UpdateModems modems = 4;
+    Filter.Modems.Update modems = 6;
     string mqtt_client_identifier = 5;
+
+    reserved 4;
 }

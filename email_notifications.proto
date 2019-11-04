@@ -1,0 +1,139 @@
+syntax = "proto3";
+
+import "base.proto";
+import "tag.proto";
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.email";
+option java_outer_classname = "EmailNotificationsApi";
+option go_package = "hiber";
+
+package hiber.email;
+
+service EmailNotificationPreferencesService {
+    rpc List (ListEmailNotificationPreferencesRequest) returns (ListEmailNotificationPreferencesRequest.Response);
+    rpc View (ViewEmailNotificationPreferencesRequest) returns (EmailNotificationPreferences);
+    rpc Update (UpdateEmailNotificationPreferencesRequest) returns (EmailNotificationPreferences);
+    rpc Delete (RemoveAllEmailNotificationPreferencesRequest) returns (RemoveAllEmailNotificationPreferencesRequest.Response);
+    rpc History (EmailNotificationHistoryRequest) returns (EmailNotificationHistoryRequest.Response);
+}
+
+message EmailNotificationPreferences {
+    message CustomRecipient {
+        string email = 1;
+        string name = 2;
+    }
+
+    string organization = 1;
+
+    /* Events to receive by email. */
+    Filter.Events enabled_notifications = 2;
+
+    /* Filter events by modems. */
+    Filter.Modems filter_modems = 3;
+
+    /* Filter events by tags. */
+    Filter.Tags filter_tags = 4;
+
+    oneof recipient {
+        /* User who created this publisher. Only set if no custom email address is given. */
+        string user_id = 5;
+        /* Custom email address. For publishers that send to an email address other than this users' email address. */
+        CustomRecipient custom = 6;
+    }
+
+    /* Whether email is active for this user/address. */
+    bool active = 7;
+}
+
+/* List the custom recipients and their preferences. Optionally, personal email preferences can be included. */
+message ListEmailNotificationPreferencesRequest {
+    message Response {
+        repeated EmailNotificationPreferences email_preferences = 1;
+        ListEmailNotificationPreferencesRequest request = 2;
+        Pagination.Result pagination = 3;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+
+    /* Search for a (partial) custom email address. */
+    string search_email = 2;
+
+    /* By default, this request only returns the email preferences for custom emails,
+     * but you can choose to view user-specific preferences as well.
+     */
+    bool include_personal_email_preferences = 3;
+
+    Pagination pagination = 4;
+}
+
+message ViewEmailNotificationPreferencesRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+
+    /* View the configuration for any email publisher with a custom email address.
+     * Optional, should only be used if you want to get the email preferences for a custom recipient.
+     * When not set, your personal email preferences are returned.
+     */
+    string email = 2;
+}
+
+message UpdateEmailNotificationPreferencesRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+
+    /* Custom email address.
+     * Only set this if you want to send notification to an email address not associated with your user.
+     */
+    EmailNotificationPreferences.CustomRecipient custom = 2;
+
+    /* Events to receive by email. An empty value enables email for all events. */
+    Filter.Events.Update enabled_notifications = 3;
+
+    /* Filter events by modems. An empty value enables email for every modem's events. */
+    Filter.Modems.Update filter_modems = 4;
+
+    /* Filter events by tags. An empty value enables email for all tags. */
+    Filter.Tags.Update filter_tags = 5;
+}
+
+message RemoveAllEmailNotificationPreferencesRequest {
+    message Response {}
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+
+    /* Custom email address preferences to disable. */
+    EmailNotificationPreferences.CustomRecipient custom = 2;
+}
+
+message EmailHistorySelection {
+    TimeRange time_range = 1;
+    bool only_failures = 2;
+}
+
+message EmailNotificationHistoryRequest {
+    message Response {
+        message Email {
+            Timestamp time = 1;
+            string title = 2;
+            bool successful = 4;
+            string error = 5;
+        }
+
+        repeated Email emails = 1;
+        EmailNotificationHistoryRequest request = 2;
+        Pagination.Result pagination = 3;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+
+    /* Custom email address preferences to get the history for. If not set, your email is used. */
+    EmailNotificationPreferences.CustomRecipient custom = 2;
+
+    EmailHistorySelection selection = 3;
+    Pagination pagination = 4;
+}

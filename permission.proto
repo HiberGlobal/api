@@ -34,6 +34,8 @@ enum OrganizationPermission {
     MODEMS_UPDATE = 11;
     /* Show and regenerate license keys. Includes MODEMS permission. */
     MODEMS_LICENSE_KEYS = 12;
+    /* Show and update secure notes. Includes MODEMS permission. */
+    MODEMS_SECURE_NOTES = 42;
 
     /* Read modem messages. */
     MODEM_MESSAGES = 15;
@@ -73,7 +75,7 @@ enum OrganizationPermission {
     /* Upload certificates, and update or delete uploaded certificates. */
     CERTIFICATES_MANAGE = 39;
 
-    // reserved 37, 40;
+    // reserved 40, 37;
 }
 
 enum UserPermission {

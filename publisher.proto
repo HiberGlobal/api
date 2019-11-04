@@ -2,6 +2,11 @@ syntax = "proto3";
 
 import "base.proto";
 import "tag.proto";
+import "webhook.proto";
+import "email_notifications.proto";
+import "integration_mqtt.proto";
+import "integration_slack.proto";
+import "integration_aws_iot.proto";
 import "google/protobuf/timestamp.proto";
 
 option java_multiple_files = false;
@@ -11,33 +16,48 @@ option go_package = "hiber";
 
 package hiber.publisher;
 
-/* The publisher service is deprecated. It will be replaced with specific APIs, like the WebhookService
- * a specific MQTT publisher API, and more publisher implementations.
+/* Generic publisher. A Publisher is a generic parent of the
+ * - webhook publisher
+ * - MQTT publisher
+ * - AWS IoT publisher
+ * - email publisher
+ *
+ * As such, it has common data and can have a configuration for one of those types.
+ *
+ * Used to have it's own API encompassing everything, but this has been split up to its individual parts in
+ * - WebhookService
+ * - MQTTService
+ * - AWSIoTService
+ * - EmailNotificationPreferencesService
+ *
+ * Now, this types is only used in the relevant events.
  */
-service PublisherService {
-    option deprecated = true;
-
-    rpc List (ListPublishersRequest) returns (ListPublishersRequest.Response);
-    rpc Create (CreatePublisherRequest) returns (CreatePublisherRequest.Response);
-    rpc Enable (EnablePublisherRequest) returns (EnablePublisherRequest.Response);
-    rpc Disable (DisablePublisherRequest) returns (DisablePublisherRequest.Response);
-    rpc Update (UpdatePublisherRequest) returns (UpdatePublisherRequest.Response);
-    rpc UpdateTags (UpdatePublisherTagsRequest) returns (UpdatePublisherTagsRequest.Response);
-    rpc Delete (DeletePublisherRequest) returns (DeletePublisherRequest.Response);
-    rpc History (PublisherHistoryRequest) returns (PublisherHistoryRequest.Response);
-}
-
 message Publisher {
     int64 id = 1;
     string description = 2;
-    Data data = 3;
+
+    /* This field remains for backwards compatibility, but it should not be used. */
+    Data deprecated_data = 3 [deprecated = true];
     Filters filters = 4;
     repeated hiber.tag.Tag tags = 5;
     Health health = 6;
     Type type = 7;
     Timestamp in_cooldown_until = 8;
+    bool disabled = 9;
 
+    /* The configuration for its type. */
+    oneof data {
+        webhook.Webhook.WebhookData http = 10;
+        integration.mqtt.MQTTPublisher.Data mqtt = 11;
+        integration.awsiot.AWSIoTConfiguration aws_iot = 12;
+        email.EmailNotificationPreferences email = 13;
+        integration.slack.SlackPublisher.Data slack = 14;
+    }
+
+    /* This type remains for backwards compatibility, but it should not be used. */
     enum ContentType {
+        option deprecated = true;
+
         DEFAULT = 0;
         JSON = 1;
         PROTO = 2;
@@ -46,9 +66,15 @@ message Publisher {
     enum Type {
         HTTP = 0;
         MQTT = 1;
+        AWS_IOT = 2;
+        EMAIL = 3;
+        SLACK = 4;
     }
 
+    /* This type remains for backwards compatibility, but it should not be used. */
     message Data {
+        option deprecated = true;
+
         string url = 1;
         ContentType content_type = 2;
         bool disabled = 3;
@@ -61,8 +87,10 @@ message Publisher {
             MQTTConfig mqtt = 9;
         }
 
-        /* Configuration for forwarding events to a MQTT topic. */
+        /* This field remains for backwards compatibility, but it should not be used. */
         message MQTTConfig {
+            option deprecated = true;
+
             string topic = 1;
             QoS qos = 2;
             /* Optional username to authenticate with. */
@@ -83,7 +111,10 @@ message Publisher {
             }
         }
 
+        /* This field remains for backwards compatibility, but it should not be used. */
         message HTTPConfig {
+            option deprecated = true;
+
             /* Used to generate the HMAC-SHA256 header on every publisher call, which you can use to verify the message.
              * The HMAC-SHA256 header is calculated with the message body and this secret.
              * There are many examples of how to do this in different languages, for example:
@@ -100,185 +131,13 @@ message Publisher {
     }
 }
 
-message PublisherSelection {
-    Filter.Publishers publishers = 1;
-    /* Partial text match on the description */
-    string description = 2;
-    string search_url = 3;
-    repeated Publisher.ContentType content_types = 4;
-    repeated int64 certificate_ids = 5;
-    string search_mqtt_topic = 6;
-    hiber.tag.TagSelection tags = 7;
-    repeated Health health = 8;
-    repeated Publisher.Type types = 9;
-}
-
-message PublisherCall {
-    Timestamp time = 1;
-    Publisher.Data publisher_data = 2;
-    bytes body = 3;
-    bool successful = 4;
-    string error = 5;
-}
-
-message PublisherHistorySelection {
-    bool only_failures = 2;
-    TimeRange time_range = 3;
-}
-
-message ListPublishersRequest {
-    option deprecated = true;
-
-    message Response {
-        repeated Publisher publishers = 1;
-        ListPublishersRequest request = 2;
-        Pagination.Result pagination = 3;
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    PublisherSelection selection = 2;
-    Pagination pagination = 3;
-}
-
-message PublisherHistoryRequest {
-    option deprecated = true;
-
-    message Response {
-        repeated PublisherCall calls = 1;
-        PublisherHistoryRequest request = 2;
-        Pagination.Result pagination = 3;
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    int64 publisher_id = 2;
-    PublisherHistorySelection selection = 3;
-    Pagination pagination = 4;
-}
-
-message CreatePublisherRequest {
-    option deprecated = true;
-
-    message Response {
-        Publisher created = 1;
-        CreatePublisherRequest request = 2;
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    string description = 2;
-    /* Full url, i.e.
-     * - https://example.com:5555/webhooks/1234 for a http publisher
-     * - [mqtt[s]://]example.com:8883 for a mqtt publisher
-     */
-    string url = 3;
-    Publisher.ContentType content_type = 4;
-    /* Optionally, a client certificate can be used for the publisher call.
-     * See the CertificateService for certificate management options.
-     */
-    int64 certificate_id = 5;
-    Publisher.Filters filters = 6;
-    repeated int64 tags = 7;
-    Publisher.Type type = 8;
-    /* The publisher should be configured as one of the available options, matching the type */
-    oneof config {
-        Publisher.Data.HTTPConfig http = 9;
-        Publisher.Data.MQTTConfig mqtt = 10;
-    }
-}
-
-/* Enable a disabled publisher or re-enable a publisher that's failed and is in cooldown. */
-message EnablePublisherRequest {
-    option deprecated = true;
-
-    message Response {
-        repeated Publisher publishers = 1;
-        EnablePublisherRequest request = 2;
-        Pagination.Result pagination = 3;
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    PublisherSelection selection = 2;
-}
-
-message DisablePublisherRequest {
-    option deprecated = true;
-
-    message Response {
-        repeated Publisher publishers = 1;
-        DisablePublisherRequest request = 2;
-        Pagination.Result pagination = 3;
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    PublisherSelection selection = 2;
-}
-
 message UpdatePublisherRequest {
     option deprecated = true;
 
-    message Response {
-        repeated Publisher updated = 1;
-        UpdatePublisherRequest request = 2;
-        Pagination.Result pagination = 3;
-    }
-
-    message UpdateEvents {
-        bool updated = 1;
-        Filter.Events value = 2;
-    }
     message UpdateModems {
+        option deprecated = true;
+
         bool updated = 1;
         Filter.Modems value = 2;
     }
-    message UpdateTags {
-        bool updated = 1;
-        Filter.Tags value = 2;
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    PublisherSelection selection = 2;
-    UpdateClearableString description = 3;
-    string url = 4;
-    Publisher.ContentType content_type = 5;
-    /* A value of 0 removes the certificate */
-    UpdateOptionalId certificate_id = 6;
-    UpdateEvents event_filter = 7;
-    UpdateModems modem_filter = 8;
-    UpdateTags tag_filter = 9;
-    UpdateBoolean active = 10;
-    oneof config {
-        Publisher.Data.HTTPConfig http = 11;
-        Publisher.Data.MQTTConfig mqtt = 12;
-    }
-}
-
-message UpdatePublisherTagsRequest {
-    option deprecated = true;
-
-    message Response {
-        repeated Publisher publishers = 1;
-        UpdatePublisherTagsRequest request = 2;
-        Pagination.Result pagination = 3;
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    PublisherSelection selection = 2;
-    hiber.tag.UpdateTagsForItem update = 3;
-}
-
-message DeletePublisherRequest {
-    option deprecated = true;
-
-    message Response {
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    int64 id = 2;
 }

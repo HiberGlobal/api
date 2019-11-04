@@ -58,6 +58,7 @@ message Organization {
  */
 message OrganizationSelection {
     Filter.Organizations organizations = 1;
+    string search = 2;
 }
 
 /* Get your current organization's data
@@ -114,6 +115,7 @@ message ListChildOrganizationsRequest {
     string organization = 1;
     OrganizationSelection selection = 2;
     Pagination pagination = 3;
+    bool include_details = 4;
 }
 
 message CreateOrganizationRequest {

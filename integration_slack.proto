@@ -1,0 +1,178 @@
+syntax = "proto3";
+
+import "base.proto";
+import "tag.proto";
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.integration.slack";
+option java_outer_classname = "SlackIntegrationApi";
+option go_package = "hiber";
+
+package hiber.integration.slack;
+
+service SlackIntegrationService {
+    rpc List (ListSlackPublishersRequest) returns (ListSlackPublishersRequest.Response);
+    rpc Create (CreateSlackPublisherRequest) returns (SlackPublisher);
+    rpc Update (UpdateSlackPublisherRequest) returns (SlackPublisher);
+    rpc UpdateTags (UpdateSlackPublisherTagsRequest) returns (UpdateSlackPublisherTagsRequest.Response);
+    rpc Enable (EnableSlackPublisherRequest) returns (EnableSlackPublisherRequest.Response);
+    rpc Disable (DisableSlackPublisherRequest) returns (DisableSlackPublisherRequest.Response);
+    rpc Delete (DeleteSlackPublisherRequest) returns (DeleteSlackPublisherRequest.Response);
+    rpc History (SlackPublisherHistoryRequest) returns (SlackPublisherHistoryRequest.Response);
+}
+
+message SlackPublisher {
+    int64 id = 1;
+    string description = 2;
+    Data data = 3;
+    Filter.Events filter_event_types = 4;
+    Filter.Modems filter_modem_numbers = 5;
+    Filter.Tags filter_tags = 6;
+    Health health = 7;
+    repeated hiber.tag.Tag tags = 8;
+
+    message Data {
+        /* The slack webhook URL. See https://api.slack.com/messaging/webhooks for information on Slack webhooks. */
+        string url = 1;
+
+        /* The channel the webhook is configured to send to. This is used purely for display purposes,
+         * since Slack webhooks are bound to a single channel.
+         */
+        string channel = 2;
+
+        bool disabled = 3;
+    }
+}
+
+message SlackMessage {
+    Timestamp time = 1;
+    SlackPublisher.Data publisher_data = 2;
+    BytesOrHex message = 3;
+    bool successful = 4;
+    string error = 5;
+}
+
+message SlackPublisherSelection {
+    /* Filter by id. */
+    Filter.Publishers publishers = 1;
+
+    /* Partial text match on the description. */
+    string description = 2;
+
+    /* Partial text match on the url. */
+    string search_url = 3;
+
+    /* Partial text match on the channel. */
+    string search_channel = 4;
+
+    hiber.tag.TagSelection tags = 5;
+    repeated Health health = 6;
+}
+
+message ListSlackPublishersRequest {
+    message Response {
+        repeated SlackPublisher publishers = 1;
+        ListSlackPublishersRequest request = 2;
+        Pagination.Result pagination = 3;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    SlackPublisherSelection selection = 2;
+    Pagination pagination = 3;
+}
+
+message SlackPublisherHistorySelection {
+    TimeRange time_range = 1;
+    bool only_failures = 2;
+}
+
+message SlackPublisherHistoryRequest {
+    message Response {
+        repeated SlackMessage items = 1;
+        SlackPublisherHistoryRequest request = 2;
+        Pagination.Result pagination = 3;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    int64 id = 2;
+    SlackPublisherHistorySelection selection = 3;
+    Pagination pagination = 4;
+}
+
+message CreateSlackPublisherRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    string description = 2;
+
+    Filter.Events filter_event_types = 3;
+    Filter.Modems filter_modem_numbers = 4;
+    Filter.Tags filter_tags = 5;
+
+    string url = 6;
+    string channel = 7;
+    bool disabled = 8;
+
+    repeated int64 tags = 10;
+}
+
+/* Enable a disabled publisher or re-enable a publisher that's failed and is in cooldown. */
+message EnableSlackPublisherRequest {
+    message Response {
+        repeated SlackPublisher publishers = 1;
+        EnableSlackPublisherRequest request = 2;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    SlackPublisherSelection selection = 2;
+}
+
+message DisableSlackPublisherRequest {
+    message Response {
+        repeated SlackPublisher publishers = 1;
+        DisableSlackPublisherRequest request = 2;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    SlackPublisherSelection selection = 2;
+}
+
+message UpdateSlackPublisherRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    int64 id = 2;
+
+    Filter.Events.Update filter_event_types = 3;
+    Filter.Modems.Update filter_modem_numbers = 4;
+    Filter.Tags.Update filter_tags = 5;
+
+    UpdateClearableString description = 10;
+
+    string url = 11;
+    UpdateClearableString channel = 12;
+
+    UpdateBoolean active = 15;
+}
+
+message UpdateSlackPublisherTagsRequest {
+    message Response {
+        repeated SlackPublisher slack_publishers = 1;
+    }
+
+    string organization = 1;
+    SlackPublisherSelection selection = 2;
+    hiber.tag.UpdateTagsForItem update = 3;
+}
+
+message DeleteSlackPublisherRequest {
+    message Response {
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    int64 id = 2;
+}
