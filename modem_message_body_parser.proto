@@ -1,0 +1,253 @@
+syntax = "proto3";
+
+import "base.proto";
+import "modem.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.modem.message.bodyparser";
+option java_outer_classname = "ModemMessageBodyParserApi";
+option go_package = "hiber";
+
+package hiber.modem.message.bodyparser;
+
+service ModemMessageBodyParserService {
+    rpc List (ListModemMessageBodyParsersRequest) returns (ListModemMessageBodyParsersRequest.Response);
+    rpc Upload (UploadModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
+    rpc UpdateUploaded (UpdateUploadedModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
+    rpc CreateSimple (CreateSimpleModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
+    rpc UpdateSimple (UpdateSimpleModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
+    rpc Rename (RenameModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
+    rpc Delete (DeleteModemMessageBodyParserRequest) returns (DeleteModemMessageBodyParserRequest.Response);
+
+    rpc ListAssignedParsers (ListAssignedParsersRequest) returns (ListAssignedParsersRequest.Response);
+    rpc AssignToModems (AssignModemMessageBodyParserToModemsRequest) returns (AssignModemMessageBodyParserToModemsRequest.Response);
+    rpc RemoveFromModems (RemoveModemMessageBodyParserFromModemsRequest) returns (RemoveModemMessageBodyParserFromModemsRequest.Response);
+}
+
+/** Modem message body parser. This defines a parsing strategy for the body of a message.
+  * A parser can be defined in two ways: using a .ksy (Kaitai struct) file or using the simple parser.
+  */
+message ModemMessageBodyParser {
+    int32 id = 1;
+    string name = 2;
+    string content_ksy = 3;
+    SimpleModemMessageBodyParser simple_parser = 4;
+}
+
+/** Simple modem message body parser TODO(WEB-3014) documentation */
+message SimpleModemMessageBodyParser {
+    message Field {
+        /** Field name. This is a reduced to a value containing only lowercase letters, numbers and underscores. */
+        string name = 1;
+
+        /** A short, single line description of the field. */
+        string documentation = 2;
+
+        oneof type {
+            Integer integer = 3;
+            Float float = 4;
+            Bytes bytes = 5;
+            String string = 6;
+
+            /** Specify an expected magic sequence (some bytes that are always the same). */
+            bytes magic = 7;
+
+            /** Specify a custom type name. */
+            string custom_type = 8;
+        }
+
+        message Integer {
+            /** Specifies the size of this integer in bytes. */
+            int32 size_bytes = 3;
+
+            /** Specifies whether this integer is signed or unsigned. */
+            bool signed = 4;
+
+            /** Specifies endian encoding for this field. This can be omitted if default endianness specified. */
+            Endian endian = 5;
+        }
+
+        message Float {
+            /** Specifies the size of this floating point number in bytes. */
+            int32 size_bytes = 3;
+
+            /** Specifies endian encoding for this field. This can be omitted if default endianness specified. */
+            Endian endian = 5;
+        }
+
+        message Bytes {
+            DelimitedSize size = 3;
+        }
+
+        message String {
+            DelimitedSize size = 3;
+
+            /** Specifies encoding for the string. This can be omitted if default encoding specified. */
+            string encoding = 4;
+        }
+    }
+
+    /** Delimited size definition, used for Bytes and Text. */
+    message DelimitedSize {
+        oneof size {
+            /** Specifies the number of bytes in this field. */
+            int32 size_bytes = 1;
+
+            /** Specifies that this field parses all bytes until the end of the stream. */
+            bool end_of_stream = 2;
+
+            /** Specifies the number of bytes in this field using the value of an Integer field.
+              * This integer field must be parsed before this field is parsed.
+              */
+            string field_name = 3;
+        }
+
+        /** Specify a terminator that marks the point the field terminates, optionally,
+          * and we should continue to the next field. This is typically a single byte (i.e. 0x00).
+          * This can be combined with a size to limit the amounts of bytes that are parsed.
+          */
+        bytes terminator = 4;
+    }
+
+    enum Endian {
+        DEFAULT = 0;
+        LITTLE_ENDIAN = 1;
+        BIG_ENDIAN = 2;
+    }
+
+    /** Parser name.
+      * When this structure is used as a custom type inside a parser, this name is a reduced to
+      * a value containing only lowercase letters, numbers and underscores, like field names.
+      */
+    string name = 1;
+
+    /** A short, single line description of the field. */
+    string documentation = 2;
+
+    /** The fields in this object. */
+    repeated Field fields = 3;
+
+    /** Sets a default endianness for this parser's fields and any fields in custom types. */
+    Endian default_endian = 4;
+
+    /** Sets a default string encoding for this parser's fields and any fields in custom types. */
+    string default_text_encoding = 5;
+
+    /** A list of custom types used for custom types fields.
+      * Each is effectively a simple parser, and can have its own custom types again, which can only be used within
+      * that parser structure.
+      * The parser name is used for custom type fields.
+      */
+    repeated SimpleModemMessageBodyParser custom_types = 6;
+}
+
+message ModemMessageBodyParserSelection {
+    repeated int32 ids = 1;
+    string search = 2;
+
+    /** Only return simple parsers, created using SimpleModemMessageBodyParser. */
+    bool only_simple = 3;
+
+    /** Only return parsers created from an uploaded ksy file. */
+    bool only_ksy_file = 4;
+}
+
+message ListModemMessageBodyParsersRequest {
+    message Response {
+        repeated ModemMessageBodyParser parsers = 1;
+        Pagination.Result pagination = 2;
+        ListModemMessageBodyParsersRequest request = 3;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    ModemMessageBodyParserSelection selection = 2;
+    Pagination pagination = 3;
+}
+
+message UploadModemMessageBodyParserRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    string name = 2;
+    string content_ksy = 3;
+}
+
+message UpdateUploadedModemMessageBodyParserRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    int32 id = 2;
+    string content_ksy = 3;
+}
+
+message CreateSimpleModemMessageBodyParserRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    SimpleModemMessageBodyParser parser = 2;
+}
+
+message UpdateSimpleModemMessageBodyParserRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    int32 id = 2;
+    SimpleModemMessageBodyParser parser = 3;
+}
+
+message RenameModemMessageBodyParserRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    int32 id = 2;
+    string name = 3;
+}
+
+message DeleteModemMessageBodyParserRequest {
+    message Response {
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    ModemMessageBodyParserSelection selection = 2;
+}
+
+message ListAssignedParsersRequest {
+    message Response {
+        message AssignedParsers {
+            string modem_number = 1;
+            repeated ModemMessageBodyParser parsers = 2;
+        }
+
+        repeated AssignedParsers assigned_parsers = 1;
+        ListAssignedParsersRequest request = 2;
+        Pagination.Result pagination = 3;
+    }
+
+    string organization = 1;
+    ModemMessageBodyParserSelection selection = 2;
+    modem.ModemSelection modem_selection = 3;
+    Pagination pagination = 4;
+}
+
+message AssignModemMessageBodyParserToModemsRequest {
+    message Response {
+        repeated ListAssignedParsersRequest.Response.AssignedParsers assigned_parsers = 3;
+        AssignModemMessageBodyParserToModemsRequest request = 2;
+        reserved 1;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    ModemMessageBodyParserSelection selection = 2;
+    modem.ModemSelection modem_selection = 3;
+}
+
+message RemoveModemMessageBodyParserFromModemsRequest {
+    message Response {
+        repeated ListAssignedParsersRequest.Response.AssignedParsers assigned_parsers = 3;
+        RemoveModemMessageBodyParserFromModemsRequest request = 2;
+        reserved 1;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    ModemMessageBodyParserSelection selection = 2;
+    modem.ModemSelection modem_selection = 3;
+}

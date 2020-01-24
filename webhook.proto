@@ -84,7 +84,8 @@ message WebhookCall {
     Timestamp time = 1;
     string url = 2;
     map<string, string> headers = 3;
-    bytes body = 4;
+    bytes body_proto = 4;
+    string body_json = 7;
     bool successful = 5;
     string error = 6;
 }

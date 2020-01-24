@@ -1,5 +1,91 @@
 # Changelog Hiber API
 
+### 0.39 (2020-01-24)
+
+This release introduces a number of smaller fixes, plus a few big new features:
+
+- User Invite system:
+
+  This system allows you to invite a user to your organization.
+  The user receives an email and can see a list of invites in mission control, and accept them (implemented in the `CurrentUserService`).
+
+- Modem message body parsing system:
+
+  There is now a sytem in place to parse the body of your messages using a binary specification. This can be done in two ways:
+
+  - This system allows you to upload [Kaitai struct file](https://kaitai.io/) to parse the body of your modem messages.
+  - You can also specify a simple parser using the simple parser calls in the `ModemMessageBodyParserService`.
+
+  Soon, you can build a simple parser in Mission Control as well.
+
+  The resulting parsed modem message is added to your message, so you can easily see the parsed version of a message.
+  In the message, lok for the `body_parsed_successfully` and `body_parsed` fields.
+  The parsed body is represented as a `map<string, string>` in protobuf, and integrated into the json in,
+  for example, the `ModemMessageReceivedEvent`.
+
+- User validation system
+
+  This system allows you to set rules to validate new users added to your organization.
+  For now, it's limited to a regular expression applied to the email address.
+  This is enough for most use cases, like limiting the organization to users with an `@your-domain.com` email address.
+
+#### Changes
+
+- Added a new permission `MODEMS_MESSAGE_BODY_PARSERS` to `OrganizationPermission`, for the new message body parsing system.
+
+##### CertificateService
+
+- Added `include_certificate_content_in_response` to any calls returning a certificate.
+  Set this to true to include the certificate in the response.
+- **[B]** any calls that return a certificate object no longer return the certificate content by default.
+  Use the `include_certificate_content_in_response` to include it.
+
+##### CurrentUserService
+
+- Added `ListOrganizationInvites` and `AcceptOrganizationInvite` for the new invite system.
+  You will see this soon in Mission Control.
+- Added `member_only` and `default_only` in `AccessibleOrganizationsRequest` to filter the returned organizations.
+- **[B]** Added the `AccessibleOrganization` message in the `AccessibleOrganizationsRequest.Response`,
+  replacing the original `organizations` field, and adds a lot more information.
+
+##### EventService
+
+- Added `UserEvent.UserInvitedEvent` related to the new invite system.
+- Added `notes` and `secure_notes_updated` to `ModemUpdateEvent`.
+- Added `sent_at` to `ModemActivatedEvent`.
+- Added `modem_external_device_id` to `ModemMessageReceivedEvent`, to easily map the modem message to an external device.
+
+##### ModemService
+
+- Added `body_parsed_successfully` and `body_parsed` to `ModemMessage` for the new message body parsing system.
+
+##### ModemMessageBodyParserService
+
+- Added the `ModemMessageBodyParserService`, which is the main interface for the new message body parser system.
+
+##### TokenService
+
+- Added `override_allow_no_permissions` to a few calls to allow creation of tokens without any organization permissions.
+
+##### UserService
+
+- Added `override_allow_no_permissions` to a few calls to allow users without any organization permissions.
+- Added `Invite` and `ListInvitations` for the new invite system.
+- Added `GetUserValidation`, `UpdateUserValidation` and `TestUserValidation` for the new user validation system.
+- Added `Activity` to see user activity per date.
+
+##### WebhookService
+
+- In `WebhookCall`, the `body` field was renamed to `body_proto` and `body_json` was added for convenience.
+
+#### Backwards incompatible changes
+
+- **[B]** any calls that return a certificate object no longer return the certificate content by default.
+  Use the `include_certificate_content_in_response` to include it.
+- **[B]** Added the `AccessibleOrganization` message in the `AccessibleOrganizationsRequest.Response`,
+  replacing the original `organizations` field, and adds a lot more information.
+
+
 ### 0.33 (2019-11-07)
 
 This release contains a lot of API functionality:
@@ -158,7 +244,7 @@ This version introduces a selection of smaller fixes and features.
 - Added `MODEM_MESSAGES_SEND_REAL_MESSAGES`, for sending real messages from real modems over the internet.
   The main use for this, at the moment, is for gateways with an internet connection,
   providing a second method to send messages: directly to API over an internet connection.
-  
+
   The API endpoint for this is not in the public API, though a similar endpoint may be added in the future.
 
 ##### PublisherService
@@ -174,9 +260,9 @@ This version introduces a selection of smaller fixes and features.
 ##### WebhookService
 
 - Added `in_cooldown_until` to `Webhook`, which denotes the cooldown, if any.
-  
+
 - The cooldown times have also been updated to be more lenient, using the following semi-exponential scale:
-  
+
   `1m, 2m, 5m, 10m, 15m, 30m, 1h, 3h, 6h, 12h, 24h`
 
 #### Backwards incompatible changes
@@ -317,9 +403,9 @@ Additionally, A lot of smaller functionality was added, improved and/or clarifie
 
 ### 0.17 (2019-02-01)
 
-This update is a collection of quality of life improvements to our systems. 
+This update is a collection of quality of life improvements to our systems.
 - The Mission Control settings have been replaced with more flexible JSon-based settings.
-- A single sign-on service is introduced to consolidate authentication on 
+- A single sign-on service is introduced to consolidate authentication on
   [hiber.cloud](https://hiber.cloud),
   [dev.hiber.global](https://dev.hiber.global) and
   [support.hiber.global](https://support.hiber.global).
@@ -339,7 +425,7 @@ This update is a collection of quality of life improvements to our systems.
 
 ##### OrganizationService
 
-- Added `organization_creation_token` to `CreateOrganizationRequest`. 
+- Added `organization_creation_token` to `CreateOrganizationRequest`.
   Using a token provided by Hiber customer support, a user without an organization can create their first organization.
   This will be implemented in Mission Control in the near future.
 
@@ -369,7 +455,7 @@ We've added more information to the `CurrentUser`, some map improvements and som
 
 ##### DashboardService
 
-- Add `satellites` to `DashboardRequest.Response`, which is a list of `Satellite` objects. 
+- Add `satellites` to `DashboardRequest.Response`, which is a list of `Satellite` objects.
 
 ##### MapService
 
@@ -447,7 +533,7 @@ There are two types of permissions:
 
 Permissions are defined in [permission.proto](permission.proto)
 
-Permissions are meant to be discrete sets of tasks, though some may include other permissions 
+Permissions are meant to be discrete sets of tasks, though some may include other permissions
 (i.e. MODEMS_UPDATE includes MODEMS). Creating a user without specifying organization permissions results in an empty set of permissions, which results in very limited functionality.
 
 Because all users and tokens effectively had all permissions, we've given every user and token to give them all permissions.
@@ -505,7 +591,7 @@ Similarly, roles (groups of permissions) will be introduced in the future to mak
     - Organization health: a value derived from the status of your modems, publishers, etc.
     - Modem health: a single value derived from the status of all your modems.
     - Publisher health: a single value derived from the status of all your publishers.
-      
+
 ##### TokenService
 
 - Added `Token.user_permissions`, the user permissions the token was granted.
@@ -821,11 +907,11 @@ Backwards incompatible changes are marked with the **[B]** marker.
     - `license_key` from `Modem.ActiveSubscription`: this was moved to separate request in `ModemService`.
 
 - Renamed `guard_period` to `maximum_inactivity_period` after customer feedback.
-- Added `peripherals` on `Modem` with peripheral information, and the `UpdatePeripherals` rpc on `ModemService` to update this data. 
+- Added `peripherals` on `Modem` with peripheral information, and the `UpdatePeripherals` rpc on `ModemService` to update this data.
 - Added `status` on `Modem` with statuses such as `active` or `dead`.
-  Added filtering on status to `ModemSelection` as well. 
-- Added `transfer` on `Modem` with transfer information if the modem is in a transfer. 
-  Added filtering by transfer on `ModemSelection` as well. 
+  Added filtering on status to `ModemSelection` as well.
+- Added `transfer` on `Modem` with transfer information if the modem is in a transfer.
+  Added filtering by transfer on `ModemSelection` as well.
   See `ModemTransferService` for more information on transfers.
 - Added `LicenseKeys` rpc on `ModemService` to get the license key for modems.
 - Renamed `time` to `sent_at` and added `received_at` on ModemMessage.

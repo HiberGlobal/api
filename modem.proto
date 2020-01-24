@@ -52,8 +52,8 @@ message Modem {
     /* Time the modem has sent the last message. */
     Timestamp last_message_sent_at = 14;
 
-    /* Time the modem has sent the last message. */
-    BytesOrHex last_message_payload = 15;
+    /* The body of the last message. */
+    BytesOrHex last_message_body = 15;
 
     /* Period in days, if modem inactivity exceeds this period, alerts will be triggered and health will go to error */
     int32 maximum_inactivity_period = 8;
@@ -202,17 +202,53 @@ message ModemMessage {
         SIMULATION = 3;
     }
 
-    string modem_number = 1;
-    Timestamp sent_at = 3;
-    Location location = 4;
-    bytes body = 5;
-    Timestamp received_at = 6;
+    /* Parsed message body.
+     * If any parsers are configured for the modem, they are applied to the message.
+     * The result is stored either as a json object or an error string.
+     */
+    message ParsedBody {
+        int32 parser_id = 1;
+        string parser_name = 2;
+
+        /* Result of parsing the body with this parser. */
+        map<string, string> result = 3;
+
+        /* Error while parsing the message body. */
+        string error = 4;
+    }
+
+    /* Unique message identifier. */
     uint64 message_id = 7;
+
+    /* Modem number of the modem that sent the message. */
+    string modem_number = 1;
+
+    /* Time the message was sent from the modem. */
+    Timestamp sent_at = 3;
+
+    /* Time the message was received on the server. */
+    Timestamp received_at = 6;
+
+    /* Modem location when the message was sent. */
+    Location location = 4;
+
+    /* Message body. */
+    bytes body = 5;
+
+    /* Message body convenience object. */
     BytesOrHex body_bytes = 8;
-    bool is_test = 9;
+
+    /* A list of applied body parsers and their results. */
+    repeated ParsedBody body_parsed = 11;
+
+    /* Convenience flag marking whether the body was parsed successfully by at least one parser. */
+    bool body_parsed_successfully = 12;
 
     /* Message source(s) for this message (i.e. it was received through the satellite or directly to the server). */
     repeated Source sources = 10;
+
+    /* True if the the TEST source is in the sources. */
+    bool is_test = 9;
 
     reserved 2;
 }

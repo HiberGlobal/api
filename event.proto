@@ -44,6 +44,7 @@ message Event {
         ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent modem_message_cannot_be_parsed = 7;
         UserEvent.UserAddedEvent user_added = 8;
         UserEvent.UserRemovedEvent user_removed = 9;
+        UserEvent.UserInvitedEvent user_invited = 41;
         UserEvent.UserAccessRequestEvent user_access_request = 10;
         ModemTransferEvent.ModemTransferStartedEvent modem_transfer_started = 15;
         ModemTransferEvent.ModemTransferCancelledEvent modem_transfer_cancelled = 16;
@@ -77,6 +78,8 @@ message Event {
             UpdateBoolean gps = 13;
             Location location = 14;
             map<string, string> peripherals = 15;
+            UpdateClearableString notes = 16;
+            bool secure_notes_updated = 17;
 
             Timestamp time = 4;
             repeated hiber.tag.Tag tags = 5;
@@ -121,6 +124,7 @@ message Event {
             string modem_number = 2;
             uint64 message_id = 3;
             Timestamp time = 4;
+            Timestamp sent_at = 10;
             repeated hiber.tag.Tag tags = 7;
             string title = 8;
             string description = 9;
@@ -128,14 +132,18 @@ message Event {
 
         message MessageEvent {
 
-            /* This event is generated whenever a message comes in, after is has been decrypted. It contains the relevant data
-             * in the message object, including location and the user-defined encrypted payload
+            /* This event is generated whenever a message comes in, after is has been decrypted.
+             * It contains the relevant data in the message object, including location and the
+             * user-defined body.
+             * If any body parser(s) are configured for the modem, the modem message object also contains
+             * a ParsedBody for each of them.
              */
             message ModemMessageReceivedEvent {
                 string organization = 1;
                 string modem_number = 2;
                 hiber.modem.ModemMessage message = 3;
                 repeated hiber.tag.Tag tags = 4;
+                string modem_external_device_id = 8;
                 string title = 5;
                 string description = 6;
                 Timestamp time = 7;
@@ -263,6 +271,14 @@ message Event {
         message UserRemovedEvent {
             string organization = 1;
             string user = 2;
+            string title = 3;
+            string description = 4;
+            Timestamp time = 5;
+        }
+
+        message UserInvitedEvent {
+            string organization = 1;
+            string email = 2;
             string title = 3;
             string description = 4;
             Timestamp time = 5;
@@ -432,7 +448,6 @@ message Event {
             Timestamp time = 5;
         }
     }
-
 }
 
 message BundledEvent {

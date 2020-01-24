@@ -183,6 +183,7 @@ enum EventType {
     PUBLISHER_FAILED = 11;
 
     USER_ACCESS_REQUEST = 8;
+    USER_INVITED = 38;
     USER_ADDED = 9;
     USER_REMOVED = 10;
 

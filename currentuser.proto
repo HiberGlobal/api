@@ -14,17 +14,21 @@ package hiber.user;
  */
 service CurrentUserService {
     rpc CurrentUser (CurrentUserRequest) returns (hiber.user.CurrentUser);
+    rpc DeleteCurrentUser (DeleteCurrentUserRequest) returns (DeleteCurrentUserRequest.Response);
+
     rpc RequestAccess (RequestAccessRequest) returns (RequestAccessRequest.Response);
     rpc CancelAccessRequest (CancelAccessRequestRequest) returns (CancelAccessRequestRequest.Response);
-    rpc DeleteCurrentUser (DeleteCurrentUserRequest) returns (DeleteCurrentUserRequest.Response);
+    rpc ListOrganizationInvites (ListOrganizationInvitesRequest) returns (ListOrganizationInvitesRequest.Response);
+    rpc AcceptOrganizationInvite (AcceptOrganizationInviteRequest) returns (AcceptOrganizationInviteRequest.Response);
+
+    rpc AccessibleOrganizations (AccessibleOrganizationsRequest) returns (AccessibleOrganizationsRequest.Response);
     rpc UpdateDefaultOrganization (UpdateDefaultOrganizationRequest) returns (UpdateDefaultOrganizationRequest.Response);
+
     rpc UpdateMissionControlSettings (UpdateMissionControlSettingsRequest) returns (UpdateMissionControlSettingsRequest.Response);
     rpc AcceptTermsAndConditions (AcceptTermsAndConditionsRequest) returns (AcceptTermsAndConditionsRequest.Response);
-    rpc AccessibleOrganizations (AccessibleOrganizationsRequest) returns (AccessibleOrganizationsRequest.Response);
 }
 
-/* Your personal data
- */
+/* Your personal data. */
 message CurrentUser {
     string id = 1;
     string email = 2;
@@ -61,8 +65,7 @@ message CurrentUser {
     string user_hash = 13;
 }
 
-/* Get your personal data
- */
+/* Get your personal data. */
 message CurrentUserRequest {
 }
 
@@ -77,13 +80,38 @@ message RequestAccessRequest {
     string organization = 1;
 }
 
-/* Cancel a previously made access request.
- */
+/* Cancel a previously made access request. */
 message CancelAccessRequestRequest {
     message Response {
     }
 
     string organization = 1;
+}
+
+/* List all invitations from organizations. */
+message ListOrganizationInvitesRequest {
+    message Invite {
+        string organization = 1;
+        string display_name = 2;
+        Timestamp invited_at = 3;
+    }
+
+    message Response {
+        repeated Invite organizations = 1;
+    }
+
+    string search = 1;
+}
+
+/* Accept an invitation to an organization. */
+message AcceptOrganizationInviteRequest {
+    message Response {
+    }
+
+    string organization = 1;
+
+    /* Set to true to mark the organization as your default organization. */
+    bool default_organization = 2;
 }
 
 /* Delete yourself.
@@ -114,6 +142,7 @@ message UpdateMissionControlSettingsRequest {
     string update = 1;
 }
 
+/* Accept the Hiber terms and conditions. */
 message AcceptTermsAndConditionsRequest {
     message Response {
     }
@@ -123,11 +152,37 @@ message AcceptTermsAndConditionsRequest {
 
 /* List all organizations that can be impersonated. */
 message AccessibleOrganizationsRequest {
-    message Response {
-        repeated string organizations = 1;
-        Pagination.Result pagination = 2;
+    message AccessibleOrganization {
+        /* Organization identifier, i.e. "my-organization" */
+        string organization = 1;
+
+        /* Organization name, i.e. "My Organization" */
+        string display_name = 2;
+
+        /* If true, you are a member of this organization (= you are directly linked to this organization) */
+        bool member = 3;
+
+        /* If true, this is the organization that you use by default. */
+        bool default_organization = 4;
     }
 
+    message Response {
+        /* Details for the organizations that you can access. */
+        repeated AccessibleOrganization organizations = 3;
+
+        Pagination.Result pagination = 2;
+
+        reserved 1;
+    }
+
+    /* Search accessible organizations by name. */
     string search = 1;
+
+    /* Only list organizations of which you are a member (exclude organizations that you can only impersonate). */
+    bool member_only = 3;
+
+    /* Only list your default organization. */
+    bool default_only = 4;
+
     Pagination pagination = 2;
 }

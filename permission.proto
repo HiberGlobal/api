@@ -34,6 +34,8 @@ enum OrganizationPermission {
     MODEMS_UPDATE = 11;
     /* Show and regenerate license keys. Includes MODEMS permission. */
     MODEMS_LICENSE_KEYS = 12;
+    /* Manage and assign message body parsers. Includes MODEMS permission. */
+    MODEMS_MESSAGE_BODY_PARSERS = 43;
     /* Show and update secure notes. Includes MODEMS permission. */
     MODEMS_SECURE_NOTES = 42;
 

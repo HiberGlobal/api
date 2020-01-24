@@ -42,6 +42,9 @@ message ListCertificatesRequest {
     string organization = 1;
     CertificateSelection selection = 2;
     Pagination pagination = 3;
+
+    /* Include the actual certificate content in the response. */
+    bool include_certificate_content_in_response = 4;
 }
 
 message UploadCertificateRequest {
@@ -64,6 +67,9 @@ message UploadCertificateRequest {
     UploadCertificate upload_ca_certificate = 3;
     /* Optionally, either upload a CA certificate or provide the id of a previously uploaded CA certificate. */
     int64 ca_certificate_id = 4;
+
+    /* Include the actual certificate content in the response. */
+    bool include_certificate_content_in_response = 5;
 }
 
 message RenameCertificateRequest {
@@ -77,6 +83,9 @@ message RenameCertificateRequest {
     string organization = 1;
     CertificateSelection selection = 2;
     string new_name = 3;
+
+    /* Include the actual certificate content in the response. */
+    bool include_certificate_content_in_response = 4;
 }
 
 message DeleteCertificateRequest {
