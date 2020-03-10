@@ -1,5 +1,47 @@
 # Changelog Hiber API
 
+### 0.43 (2020-03-10)
+
+This release contains a few minor api tweaks and one semi-breaking change.
+
+#### Changes
+
+##### ModemService
+
+- **[B]** Changed `ModemMessage.ParsedBody.result` to a `google.protobuf.Struct`,
+  which is the accurate representation of variable json data in protobuf.
+  This change is mostly backwards compatible:
+  - For any API client, the previous result field will be empty until their generated api code is updated.
+  - For any json client (i.e. webhooks), the output will not change, except that the json will be improved.
+
+##### ModemMessageBodyParserService
+
+- Added a `Test` command to test a payload parser on a given byte sequence, or an existing message id.
+
+##### UserService
+
+- Added `search` to `UserSelection`, which searches on all available text fields.
+- Added `remove_all_tokens` to `RemoveUserRequest`, to delete all tokens created by that user when
+  removing the user from your organization.
+
+##### SlackIntegrationService
+
+- Added `search` in `SlackPublisherSelection` to search on all available text fields.
+
+##### WebhookService
+
+- Added `search` to `WebhookSelection`, which searches on all available text fields.
+- Added `UpdateWebhooks` command to update multiple webhooks in one request.
+
+#### Backwards incompatible changes
+
+- **[B]** Changed `ModemMessage.ParsedBody.result` to a `google.protobuf.Struct`,
+  which is the accurate representation of variable json data in protobuf.
+  This change is mostly backwards compatible:
+  - For any API client, the previous result field will be empty until their generated api code is updated.
+  - For any json client (i.e. webhooks), the output will not change, except that the json will be improved.
+
+
 ### 0.39 (2020-01-24)
 
 This release introduces a number of smaller fixes, plus a few big new features:

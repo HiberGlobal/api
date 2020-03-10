@@ -19,6 +19,7 @@ service WebhookService {
     rpc Disable (DisableWebhookRequest) returns (Webhook);
     rpc UpdateFilter (UpdateWebhookFilterRequest) returns (Webhook);
     rpc Update (UpdateWebhookRequest) returns (Webhook);
+    rpc UpdateWebhooks (UpdateWebhooksRequest) returns (UpdateWebhooksRequest.Response);
     rpc UpdateTags (UpdateWebhookTagsRequest) returns (UpdateWebhookTagsRequest.Response);
     rpc Get (GetWebhookRequest) returns (Webhook);
     rpc Delete (DeleteWebhookRequest) returns (DeleteWebhookRequest.Response);
@@ -78,6 +79,9 @@ message WebhookSelection {
     hiber.tag.TagSelection tags = 4;
     repeated Health health = 5;
     repeated int64 certificate_ids = 6;
+
+    /* Search in the all available text, like description and url. */
+    string search = 7;
 }
 
 message WebhookCall {
@@ -232,6 +236,22 @@ message UpdateWebhookRequest {
     string organization = 2;
     UpdateWebhook update = 3;
     reserved 4;
+}
+
+message UpdateWebhooksRequest {
+    message Update {
+        int64 id = 1;
+        UpdateWebhookRequest.UpdateWebhook update = 2;
+    }
+
+    message Response {
+        repeated Webhook webhooks = 1;
+        UpdateWebhooksRequest request = 2;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    repeated Update webhook_updates = 2;
 }
 
 message UpdateWebhookTagsRequest {

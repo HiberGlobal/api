@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+import "google/protobuf/struct.proto";
 import "base.proto";
 import "modem.proto";
 
@@ -18,6 +19,8 @@ service ModemMessageBodyParserService {
     rpc UpdateSimple (UpdateSimpleModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
     rpc Rename (RenameModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
     rpc Delete (DeleteModemMessageBodyParserRequest) returns (DeleteModemMessageBodyParserRequest.Response);
+
+    rpc Test (TestModemMessageBodyParserRequest) returns (TestModemMessageBodyParserRequest.Response);
 
     rpc ListAssignedParsers (ListAssignedParsersRequest) returns (ListAssignedParsersRequest.Response);
     rpc AssignToModems (AssignModemMessageBodyParserToModemsRequest) returns (AssignModemMessageBodyParserToModemsRequest.Response);
@@ -206,6 +209,26 @@ message DeleteModemMessageBodyParserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     ModemMessageBodyParserSelection selection = 2;
+}
+
+message TestModemMessageBodyParserRequest {
+    message Response {
+        google.protobuf.Struct parsed = 1;
+        string error = 2;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+
+    oneof parser {
+        string content_ksy = 2;
+        SimpleModemMessageBodyParser simple_parser = 3;
+    }
+
+    oneof data {
+        BytesOrHex parse_bytes = 4;
+        int64 modem_message_id = 5;
+    }
 }
 
 message ListAssignedParsersRequest {

@@ -43,6 +43,7 @@ message UserSelection {
     repeated string user_ids = 3;
     string by_email = 1;
     string by_name = 2;
+    string search = 4;
 }
 
 enum UserSort {
@@ -104,6 +105,9 @@ message RemoveUserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     repeated string user_ids = 2;
+
+    /* Remove all tokens created by this user. If this is not set, only the tokens with user permissions are removed. */
+    bool remove_all_tokens = 3;
 }
 
 /* List all invited users (email addresses). */

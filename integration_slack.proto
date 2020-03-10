@@ -68,6 +68,9 @@ message SlackPublisherSelection {
 
     hiber.tag.TagSelection tags = 5;
     repeated Health health = 6;
+
+    /* Search in the all available text, like description and url. */
+    string search =7;
 }
 
 message ListSlackPublishersRequest {

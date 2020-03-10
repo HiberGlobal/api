@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+import "google/protobuf/struct.proto";
 import "base.proto";
 import "tag.proto";
 import "subscription.proto";
@@ -209,9 +210,10 @@ message ModemMessage {
     message ParsedBody {
         int32 parser_id = 1;
         string parser_name = 2;
+        reserved 3;
 
         /* Result of parsing the body with this parser. */
-        map<string, string> result = 3;
+        google.protobuf.Struct result = 5;
 
         /* Error while parsing the message body. */
         string error = 4;
