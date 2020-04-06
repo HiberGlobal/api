@@ -28,6 +28,26 @@ message AWSIoTConfiguration {
     string ca_certificate_name = 7;
     bool disabled = 8;
     string mqtt_client_identifier = 9;
+    Health health = 10;
+    HealthConfig health_config = 11;
+
+    /* Health configuration for the AWS IoT integration. Defines how the health is calculated. */
+    message HealthConfig {
+        /* Period to consider when determining health from error events.
+         * All unresolved error events are included, regardless of age, since they have not been resolved.
+         * When a period is set (default not set), all error events in that period are included, even if they were
+         * resolved.
+         */
+        Duration health_error_period = 1;
+
+        /* Period to consider when determining health from warning events. Warning events cannot be resolved. */
+        Duration health_warning_period = 2;
+
+        /* Allowed percentage of failures.
+         * If the failure percentage is higher, within the warning period, the health is switched to WARNING.
+         */
+        int32 health_warning_failure_percentage = 3;
+    }
 }
 
 message InitializeAWSIoTIntegrationRequest {
@@ -89,6 +109,23 @@ message UpdateAWSIoTIntegrationConfigurationRequest {
     int64 certificate_id = 3;
     Filter.Modems.Update modems = 6;
     string mqtt_client_identifier = 5;
+
+    /* Period to consider when determining health from error events.
+     * All unresolved error events are included, regardless of age, since they have not been resolved.
+     * When a period is set (default not set), all error events in that period are included, even if they were
+     * resolved.
+     */
+    UpdateOptionalDuration health_error_period = 13;
+
+    /* Period to consider when determining health from warning events. Warning events cannot be resolved.
+     * Set this to 0 to disable warnings based on failure percentage.
+     */
+    Duration health_warning_period = 14;
+
+    /* Allowed percentage of failures.
+     * If the failure percentage is higher, within the warning period, the health is switched to WARNING.
+     */
+    UpdateZeroableInt health_warning_failure_percentage = 15;
 
     reserved 4;
 }

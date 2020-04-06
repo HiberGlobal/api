@@ -80,7 +80,8 @@ message Event {
             map<string, string> peripherals = 15;
             UpdateClearableString notes = 16;
             bool secure_notes_updated = 17;
-
+            UpdateOptionalDuration health_error_period = 18;
+            Duration health_warning_period = 19;
             Timestamp time = 4;
             repeated hiber.tag.Tag tags = 5;
             string title = 6;
@@ -347,7 +348,11 @@ message Event {
             Filter.Events.Update updated_event_filter = 4;
             Filter.Modems.Update updated_modem_filter = 5;
             Filter.Tags.Update updated_tag_filter = 6;
+
             UpdateBoolean updated_active_state = 7;
+            UpdateOptionalDuration health_error_period = 20;
+            Duration health_warning_period = 21;
+
             repeated tag.Tag tags = 8;
             string title = 9;
             string description = 10;

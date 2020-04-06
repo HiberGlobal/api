@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 import "permission.proto";
 
@@ -38,6 +39,16 @@ message UpdateClearableString {
 message UpdateOptionalId {
     bool updated = 1;
     int64 value = 2;
+}
+
+/* Update object for an optional Duration.
+ *
+ * To use this to update, set a value and set updated to true.
+ * To clear the duration, set updated to true, but set no value.
+ */
+message UpdateOptionalDuration {
+    bool updated = 1;
+    Duration value = 2;
 }
 
 /* Update object for a boolean.
@@ -86,10 +97,18 @@ message Date {
     string textual = 4;
 }
 
+message Duration {
+    google.protobuf.Duration duration = 1;
+    string textual = 2;
+}
+
+
 /* Geographic latitude and longitude coordinates specified in decimal degrees.
  */
 message Location {
+    /* Decimal degrees north. */
     double latitude = 1;
+    /* Decimal degrees east. */
     double longitude = 2;
 }
 
@@ -164,7 +183,7 @@ enum EventType {
     MODEM_ACTIVATED = 33;
     MODEM_STALE = 16;
     MODEM_MESSAGE_RECEIVED = 5;
-    MODEM_MESSAGE_SEQUENCE_SKIP = 13;
+    MODEM_MESSAGE_DROPPED = 13;
     MODEM_MESSAGE_DELAYED = 14;
     MODEM_MESSAGE_CANNOT_BE_PARSED = 15;
 

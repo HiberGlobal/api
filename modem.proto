@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/struct.proto";
+
 import "base.proto";
 import "tag.proto";
 import "subscription.proto";
@@ -26,7 +27,7 @@ service ModemService {
     rpc UpdateTags (UpdateModemTagsRequest) returns (UpdateModemTagsRequest.Response);
     rpc UpdateNotes (UpdateModemNotesRequest) returns (UpdateModemNotesRequest.Response);
     rpc UpdateSecureNotes (UpdateModemSecureNotesRequest) returns (UpdateModemSecureNotesRequest.Response);
-
+    rpc UpdateModemHealthConfig (UpdateModemHealthConfig.Request) returns (UpdateModemHealthConfig.Response);
     rpc UpdatePeripherals (UpdatePeripheralsRequest) returns (UpdatePeripheralsRequest.Response);
 
     rpc LicenseKeys (LicenseKeysRequest) returns (LicenseKeysRequest.Response);
@@ -61,6 +62,7 @@ message Modem {
 
     /* Value based on the number of error and warning events this modem has received in the past 30 days */
     Health health = 9;
+    HealthConfig health_config = 24;
     Status status = 12;
 
     // additional information
@@ -142,6 +144,19 @@ message Modem {
         bool gps = 2;
         map<string, string> peripherals = 3;
         string custom_antenna = 4;
+    }
+
+    /* Health configuration for the modem. Defines how the health is calculated. */
+    message HealthConfig {
+        /* Period to consider when determining health from error events.
+         * All unresolved error events are included, regardless of age, since they have not been resolved.
+         * When a period is set (default not set), all error events in that period are included, even if they were
+         * resolved.
+         */
+        Duration health_error_period = 1;
+
+        /* Period to consider when determining health from warning events. Warning events cannot be resolved. */
+        Duration health_warning_period = 2;
     }
 
     /* Modem statuses for its lifecycle. */
@@ -251,6 +266,12 @@ message ModemMessage {
 
     /* True if the the TEST source is in the sources. */
     bool is_test = 9;
+
+    /* Whether this message contains other messages. */
+    bool is_gateway_message = 13;
+
+    /* The gateway message this message was sent in. */
+    uint64 via_gateway_message = 14;
 
     reserved 2;
 }
@@ -407,6 +428,27 @@ message UpdatePeripheralsRequest {
     reserved 8;
     Pagination pagination = 9;
     string custom_antenna = 10;
+}
+
+message UpdateModemHealthConfig {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        ModemSelection selection = 2;
+
+        /* Period to consider when determining health from error events.
+         * All unresolved error events are included, regardless of age, since they have not been resolved.
+         * When a period is set (default not set), all error events in that period are included, even if they were
+         * resolved.
+         */
+        UpdateOptionalDuration health_error_period = 3;
+
+        /* Period to consider when determining health from warning events. Warning events cannot be resolved. */
+        Duration health_warning_period = 4;
+    }
+
+    message Response {
+    }
 }
 
 message LicenseKeysRequest {

@@ -30,6 +30,7 @@ message MQTTPublisher {
     Filter.Modems filter_modem_numbers = 5;
     Filter.Tags filter_tags = 6;
     Health health = 7;
+    HealthConfig health_config = 9;
     repeated hiber.tag.Tag tags = 8;
 
     enum ContentType {
@@ -75,6 +76,24 @@ message MQTTPublisher {
             /* Qos level 2 */
             EXACTLY_ONCE = 3;
         }
+    }
+
+    /* Health configuration for the mqtt integration. Defines how the health is calculated. */
+    message HealthConfig {
+        /* Period to consider when determining health from error events.
+         * All unresolved error events are included, regardless of age, since they have not been resolved.
+         * When a period is set (default not set), all error events in that period are included, even if they were
+         * resolved.
+         */
+        Duration health_error_period = 1;
+
+        /* Period to consider when determining health from warning events. Warning events cannot be resolved. */
+        Duration health_warning_period = 2;
+
+        /* Allowed percentage of failures.
+         * If the failure percentage is higher, within the warning period, the health is switched to WARNING.
+         */
+        int32 health_warning_failure_percentage = 3;
     }
 }
 
@@ -230,6 +249,23 @@ message UpdateMQTTPublisherRequest {
 
     /* Disable the MQTT publisher, so it needs to be enabled again before it is active. */
     UpdateBoolean active = 19;
+
+    /* Period to consider when determining health from error events.
+     * All unresolved error events are included, regardless of age, since they have not been resolved.
+     * When a period is set (default not set), all error events in that period are included, even if they were
+     * resolved.
+     */
+    UpdateOptionalDuration health_error_period = 20;
+
+    /* Period to consider when determining health from warning events. Warning events cannot be resolved.
+     * Set this to 0 to disable warnings based on failure percentage.
+     */
+    Duration health_warning_period = 21;
+
+    /* Allowed percentage of call failures.
+     * If the failure percentage is higher, within the warning period, the health is switched to WARNING.
+     */
+    UpdateZeroableInt health_warning_failure_percentage = 22;
 }
 
 message UpdateMQTTPublisherTagsRequest {

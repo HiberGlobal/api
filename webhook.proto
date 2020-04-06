@@ -33,6 +33,7 @@ message Webhook {
     WebhookFilters filters = 5;
     repeated hiber.tag.Tag tags = 6;
     Health health = 7;
+    HealthConfig health_config = 9;
 
     /* When the webhook call fails, it enters cooldown, so as not to overload a failing server
      * or spend unnecessary time on an incorrectly configured webhook.
@@ -69,6 +70,24 @@ message Webhook {
         Filter.Events event_types = 1;
         Filter.Modems modem_numbers = 2;
         Filter.Tags tags = 3;
+    }
+
+    /* Health configuration for the webhook. Defines how the health is calculated. */
+    message HealthConfig {
+        /* Period to consider when determining health from error events.
+         * All unresolved error events are included, regardless of age, since they have not been resolved.
+         * When a period is set (default not set), all error events in that period are included, even if they were
+         * resolved.
+         */
+        Duration health_error_period = 1;
+
+        /* Period to consider when determining health from warning events. Warning events cannot be resolved. */
+        Duration health_warning_period = 2;
+
+        /* Allowed percentage of failures.
+         * If the failure percentage is higher, within the warning period, the health is switched to WARNING.
+         */
+        int32 health_warning_failure_percentage = 3;
     }
 }
 
@@ -227,8 +246,26 @@ message UpdateWebhookRequest {
         Filter.Tags.Update tag_filter = 12;
 
         UpdateBoolean active = 8;
+
         /* A value of 0 removes the certificate */
         UpdateOptionalId certificate_id = 9;
+
+        /* Period to consider when determining health from error events.
+         * All unresolved error events are included, regardless of age, since they have not been resolved.
+         * When a period is set (default not set), all error events in that period are included, even if they were
+         * resolved.
+         */
+        UpdateOptionalDuration health_error_period = 13;
+
+        /* Period to consider when determining health from warning events. Warning events cannot be resolved.
+         * Set this to 0 to disable warnings based on failure percentage.
+         */
+        Duration health_warning_period = 14;
+
+        /* Allowed percentage of call failures.
+         * If the failure percentage is higher, within the warning period, the health is switched to WARNING.
+         */
+        UpdateZeroableInt health_warning_failure_percentage = 15;
     }
 
     int64 id = 1;

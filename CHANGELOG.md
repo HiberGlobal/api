@@ -1,5 +1,90 @@
 # Changelog Hiber API
 
+### 0.45 (2020-04-02)
+
+##### Modem health changes
+
+The modem health calculation has changed in a number of ways.
+
+First, events that contribute to the modem health are now split on whether they are resolvable or not.
+- Events that cannot be resolved will no longer put the modem in ERROR health, but are limited to influencing the
+  WARNING health. An example of such events is `MODEM_MESSAGE_DELAYED`.
+- Events that can be resolved now determine the error health, which means that as soon as they are resolved
+  the modem becomes healthy again (either OK or WARNING depending on the other events).
+  An example of such events is `MODEM_STALE`.
+
+Additionally, you can now configure the period used to determine health per modem.
+This can be done in the following way:
+- `health_warning_period`: the period to consider when determining health from warning events.
+- `health_error_period`: the *optional* period to consider when determining health from error events.
+  All unresolved error events are included, regardless of age, since they have not been resolved.
+  When a period is set (default not set), all error events in that period are included, even if they were
+  resolved.
+
+##### Publisher health changes
+
+The health calculation for publisher like webhook, MQTT or AWSIoT integrations has changed in a number of ways.
+
+Publishers are different from modems in that they only have resolvable events.
+For example, a `PUBLISHER_FAILED` event is resolved by the next successful call.
+
+You can now configure the period used to determine health per publisher.
+This can be done in the following way:
+- `health_warning_period`: the period to consider when determining health from percentage of failed calls.
+- `health_error_period`: the *optional* period to consider when determining health from error events.
+  All unresolved error events are included, regardless of age, since they have not been resolved.
+  When a period is set (default not set), all error events in that period are included, even if they were
+  resolved.
+
+#### Changes
+
+##### Common types in `base.proto`
+
+- Added `Duration`, which is a duration specified either by `google.protobuf.Duration` or a textual field.
+  - Supported textual formats range from the ISO-8601 duration format (`PnDTnHnMn.nS`), to
+    formats like `1 day`, `3d4h5m` or even `3 hours -10 minutes`.
+  - Added the related `UpdateOptionalDuration` to update the duration when it can be unset.
+
+- Renamed `EventType.MODEM_MESSAGE_SEQUENCE_SKIP` to `EventType.MODEM_MESSAGE_DROPPED`
+  - This change is backwards compatible with older versions, since it only changes the name of the field.
+    When building with the latest API version, you will need to update your usages.
+
+##### Events
+
+- Added `health_error_period` and `health_warning_period` to `ModemUpdatedEvent` and `PublisherEvent.UpdatedEvent`.
+
+##### AWSIoTService
+
+- Added `health` and `health_config` to `AWSIoTConfiguration`.
+- Added `health_error_period`, `health_warning_period` and
+  `health_warning_failure_percentage` to `UpdateAWSIoTIntegrationConfiguration`.
+
+##### ModemService
+
+- Added `health_config` to `Modem`.
+- Added `UpdateModemHealthConfig` call to update the modem health configuration.
+- Added `is_gateway_message` and `via_gateway_message` to `ModemMessage`:
+  - `is_gateway_message` indicates that this message was received through a gateway, i.e. Hiberband Via
+  - `via_gateway_message` gives the message id of the gateway message it was received through.
+
+##### MQTTService
+
+- Added `health_config` to `MQTTPublisher`.
+- Added `health_error_period`, `health_warning_period` and
+  `health_warning_failure_percentage` to `UpdateMQTTPublisherRequest`.
+
+##### SlackIntegrationService
+
+- Added `health_config` to `SlackPublisher`.
+- Added `health_error_period`, `health_warning_period` and
+  `health_warning_failure_percentage` to `UpdateSlackPublisherRequest`.
+
+##### WebhookService
+
+- Added `health_config` to `Webhook`.
+- Added `health_error_period`, `health_warning_period` and
+  `health_warning_failure_percentage` to `UpdateWebhookRequest`.
+
 ### 0.43 (2020-03-10)
 
 This release contains a few minor api tweaks and one semi-breaking change.
