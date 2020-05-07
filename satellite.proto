@@ -1,13 +1,13 @@
 syntax = "proto3";
 
+package hiber.satellite;
+
 import "base.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.satellite";
 option java_outer_classname = "SatelliteApi";
 option go_package = "hiber";
-
-package hiber.satellite;
 
 service SatelliteService {
     rpc List (ListSatellitesRequest) returns (ListSatellitesRequest.Response);

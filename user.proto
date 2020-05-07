@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package hiber.user;
+
 import "base.proto";
 import "permission.proto";
 
@@ -7,8 +9,6 @@ option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.user";
 option java_outer_classname = "UserApi";
 option go_package = "hiber";
-
-package hiber.user;
 
 service UserService {
     rpc List (ListUsersRequest) returns (ListUsersRequest.Response);

@@ -1,15 +1,15 @@
 syntax = "proto3";
 
+package hiber.integration.mqtt;
+
 import "base.proto";
-import "tag.proto";
 import "google/protobuf/timestamp.proto";
+import "tag.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.integration.mqtt";
 option java_outer_classname = "MQTTIntegrationApi";
 option go_package = "hiber";
-
-package hiber.integration.mqtt;
 
 service MQTTService {
     rpc List (ListMQTTPublishersRequest) returns (ListMQTTPublishersRequest.Response);
@@ -80,12 +80,7 @@ message MQTTPublisher {
 
     /* Health configuration for the mqtt integration. Defines how the health is calculated. */
     message HealthConfig {
-        /* Period to consider when determining health from error events.
-         * All unresolved error events are included, regardless of age, since they have not been resolved.
-         * When a period is set (default not set), all error events in that period are included, even if they were
-         * resolved.
-         */
-        Duration health_error_period = 1;
+        reserved 1;
 
         /* Period to consider when determining health from warning events. Warning events cannot be resolved. */
         Duration health_warning_period = 2;
@@ -125,6 +120,35 @@ message MQTTPublisherSelection {
 }
 
 message ListMQTTPublishersRequest {
+    enum Sort {
+        /* Sort by id. */
+        DEFAULT = 0;
+
+        /* Sort by id, high to low. */
+        ID_DESC = 1;
+
+        /* Sort by description. */
+        DESCRIPTION = 2;
+
+        /* Sort by description, z to a. */
+        DESCRIPTION_DESC = 3;
+
+        /* Sort by url. */
+        URL = 4;
+
+        /* Sort by url, z to a. */
+        URL_DESC = 5;
+
+        /* Sort by topic. */
+        TOPIC = 6;
+
+        /* Sort by topic, z to a. */
+        TOPIC_DESC = 7;
+
+        /* Sort unhealthy webhooks before health webhooks. */
+        HEALTH = 8;
+    }
+
     message Response {
         repeated MQTTPublisher publishers = 1;
         ListMQTTPublishersRequest request = 2;
@@ -135,6 +159,7 @@ message ListMQTTPublishersRequest {
     string organization = 1;
     MQTTPublisherSelection selection = 2;
     Pagination pagination = 3;
+    repeated Sort sort = 4;
 }
 
 message MQTTPublisherHistorySelection {
@@ -250,12 +275,7 @@ message UpdateMQTTPublisherRequest {
     /* Disable the MQTT publisher, so it needs to be enabled again before it is active. */
     UpdateBoolean active = 19;
 
-    /* Period to consider when determining health from error events.
-     * All unresolved error events are included, regardless of age, since they have not been resolved.
-     * When a period is set (default not set), all error events in that period are included, even if they were
-     * resolved.
-     */
-    UpdateOptionalDuration health_error_period = 20;
+    reserved 20;
 
     /* Period to consider when determining health from warning events. Warning events cannot be resolved.
      * Set this to 0 to disable warnings based on failure percentage.

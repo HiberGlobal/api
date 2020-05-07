@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package hiber.token;
+
 import "base.proto";
 import "permission.proto";
 
@@ -7,8 +9,6 @@ option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.token";
 option java_outer_classname = "TokenApi";
 option go_package = "hiber";
-
-package hiber.token;
 
 service TokenService {
     rpc List (ListTokensRequest) returns (ListTokensRequest.Response);

@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package hiber.modem;
+
 import "base.proto";
 import "modem.proto";
 import "tag.proto";
@@ -8,8 +10,6 @@ option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.modem";
 option java_outer_classname = "ModemClaimApi";
 option go_package = "hiber";
-
-package hiber.modem;
 
 /* Claim a modem that you have in your possession, but was not marked as inbound for you.
  * This is only possible for a modem that has not been activated.

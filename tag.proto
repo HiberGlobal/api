@@ -1,13 +1,13 @@
 syntax = "proto3";
 
+package hiber.tag;
+
 import "base.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.tag";
 option java_outer_classname = "TagApi";
 option go_package = "hiber";
-
-package hiber.tag;
 
 /* Tag management api calls. You can already get tags for objects when you get their data, and even create new tags
  * when updating them, so these calls are meant for easier tag management if you need it.

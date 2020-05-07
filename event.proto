@@ -1,11 +1,13 @@
 syntax = "proto3";
 
+package hiber.event;
+
 import "base.proto";
 import "integration_aws_iot.proto";
 import "integration_mqtt.proto";
 import "modem.proto";
-import "modem_transfer.proto";
 import "modem_claim.proto";
+import "modem_transfer.proto";
 import "organization.proto";
 import "publisher.proto";
 import "tag.proto";
@@ -17,8 +19,6 @@ option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.event";
 option java_outer_classname = "EventApi";
 option go_package = "hiber";
-
-package hiber.event;
 
 /* Events are used in a number of ways in the api. With this service you can
  * search, list and stream them for your own purposes
@@ -80,7 +80,7 @@ message Event {
             map<string, string> peripherals = 15;
             UpdateClearableString notes = 16;
             bool secure_notes_updated = 17;
-            UpdateOptionalDuration health_error_period = 18;
+            reserved 18;
             Duration health_warning_period = 19;
             Timestamp time = 4;
             repeated hiber.tag.Tag tags = 5;
@@ -350,7 +350,7 @@ message Event {
             Filter.Tags.Update updated_tag_filter = 6;
 
             UpdateBoolean updated_active_state = 7;
-            UpdateOptionalDuration health_error_period = 20;
+            reserved 20;
             Duration health_warning_period = 21;
 
             repeated tag.Tag tags = 8;

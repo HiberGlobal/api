@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package hiber;
+
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 import "permission.proto";
@@ -8,7 +10,6 @@ option java_multiple_files = true;
 option java_package = "global.hiber.api.grpc";
 option go_package = "hiber";
 
-package hiber;
 
 /* Update object for an int that can be set to 0.
  * Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,
@@ -251,7 +252,11 @@ message Filter {
     }
 
     message Modems {
+        /* Include all modems with these modem numbers (HEX) */
         repeated string include = 1;
+        /* Exclude all modems with these modem numbers (HEX).
+         * Exclude takes precedence over include.
+         */
         repeated string exclude = 2;
 
         /* Update object to update a Filter.Modems field. */

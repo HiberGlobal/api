@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package hiber.integration.awsiot;
+
 import "base.proto";
 import "certificate.proto";
 
@@ -7,8 +9,6 @@ option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.integration.awsiot";
 option java_outer_classname = "AWSIoTApi";
 option go_package = "hiber";
-
-package hiber.integration.awsiot;
 
 service AWSIoTService {
     rpc Initialize (InitializeAWSIoTIntegrationRequest) returns (InitializeAWSIoTIntegrationRequest.Response);
@@ -33,12 +33,7 @@ message AWSIoTConfiguration {
 
     /* Health configuration for the AWS IoT integration. Defines how the health is calculated. */
     message HealthConfig {
-        /* Period to consider when determining health from error events.
-         * All unresolved error events are included, regardless of age, since they have not been resolved.
-         * When a period is set (default not set), all error events in that period are included, even if they were
-         * resolved.
-         */
-        Duration health_error_period = 1;
+        reserved 1;
 
         /* Period to consider when determining health from warning events. Warning events cannot be resolved. */
         Duration health_warning_period = 2;
@@ -110,12 +105,7 @@ message UpdateAWSIoTIntegrationConfigurationRequest {
     Filter.Modems.Update modems = 6;
     string mqtt_client_identifier = 5;
 
-    /* Period to consider when determining health from error events.
-     * All unresolved error events are included, regardless of age, since they have not been resolved.
-     * When a period is set (default not set), all error events in that period are included, even if they were
-     * resolved.
-     */
-    UpdateOptionalDuration health_error_period = 13;
+    reserved 13;
 
     /* Period to consider when determining health from warning events. Warning events cannot be resolved.
      * Set this to 0 to disable warnings based on failure percentage.

@@ -1,15 +1,15 @@
 syntax = "proto3";
 
-import "google/protobuf/struct.proto";
+package hiber.modem.message.bodyparser;
+
 import "base.proto";
+import "google/protobuf/struct.proto";
 import "modem.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.modem.message.bodyparser";
 option java_outer_classname = "ModemMessageBodyParserApi";
 option go_package = "hiber";
-
-package hiber.modem.message.bodyparser;
 
 service ModemMessageBodyParserService {
     rpc List (ListModemMessageBodyParsersRequest) returns (ListModemMessageBodyParsersRequest.Response);
@@ -18,9 +18,11 @@ service ModemMessageBodyParserService {
     rpc CreateSimple (CreateSimpleModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
     rpc UpdateSimple (UpdateSimpleModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
     rpc Rename (RenameModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
+    rpc UpdateChildOrganizationAvailability (UpdateChildOrganizationAvailabilityRequest) returns (ModemMessageBodyParser);
     rpc Delete (DeleteModemMessageBodyParserRequest) returns (DeleteModemMessageBodyParserRequest.Response);
 
     rpc Test (TestModemMessageBodyParserRequest) returns (TestModemMessageBodyParserRequest.Response);
+    rpc Retry (RetryModemMessageBodyParsing.Request) returns (RetryModemMessageBodyParsing.Response);
 
     rpc ListAssignedParsers (ListAssignedParsersRequest) returns (ListAssignedParsersRequest.Response);
     rpc AssignToModems (AssignModemMessageBodyParserToModemsRequest) returns (AssignModemMessageBodyParserToModemsRequest.Response);
@@ -31,13 +33,44 @@ service ModemMessageBodyParserService {
   * A parser can be defined in two ways: using a .ksy (Kaitai struct) file or using the simple parser.
   */
 message ModemMessageBodyParser {
-    int32 id = 1;
+    /* A modem message body parser is provided when it has a Provided identifier.
+     * A parent organization may provide parser to your organization based on your use case and agreements.
+     */
+    message Provided {
+        int64 parser_id = 1;
+        string provider = 2;
+    }
+
+    /* A modem message body parser with this object is available to child organizations.
+     * This means the child organization sees a Provided identifier for this parser, and can use it,
+     * but not update or delete it.
+     * Parsers available to child organizations get a globally unique id, different from your own id for the parser.
+     */
+    message AvailableToChildOrganizations {
+        Filter.ChildOrganizations child_organizations = 1;
+        int64 parser_id_for_child_organizations = 2;
+    }
+
+    /* Either the id of a parser you created, or the Provided block for a parser that was provided to you. */
+    oneof identifier {
+        /* The id of a parser you created by uploading a .ksy file or creating a simple parser specification. */
+        int32 id = 1;
+
+        /* The id of a parser provided to you by a parent organization. */
+        Provided provided_parser_id = 5;
+    }
+
     string name = 2;
     string content_ksy = 3;
+
+    /* The simple parser this .ksy was generated from, if it was generated from a simple parser. */
     SimpleModemMessageBodyParser simple_parser = 4;
+
+    /** If set, this parser is available to your child organizations, as a Provided parser. */
+    AvailableToChildOrganizations available_to_child_organizations = 6;
 }
 
-/** Simple modem message body parser TODO(WEB-3014) documentation */
+/** Simple modem message body parser. This can be used a convenient way to create a .ksy parser. */
 message SimpleModemMessageBodyParser {
     message Field {
         /** Field name. This is a reduced to a value containing only lowercase letters, numbers and underscores. */
@@ -145,14 +178,32 @@ message SimpleModemMessageBodyParser {
 }
 
 message ModemMessageBodyParserSelection {
+    message SelectIdentifier {
+        oneof identifier {
+            int32 id = 1;
+            int64 provided_parser_id = 2;
+        }
+    }
+
+    /** Filter parsers by your own parser ids. */
     repeated int32 ids = 1;
+
+    /** Filter parsers by a combination of your own parser ids and provided parser ids. */
+    repeated SelectIdentifier identifiers = 7;
+
     string search = 2;
 
     /** Only return simple parsers, created using SimpleModemMessageBodyParser. */
     bool only_simple = 3;
 
-    /** Only return parsers created from an uploaded ksy file. */
+    /** Only return parsers created from an uploaded .ksy file. */
     bool only_ksy_file = 4;
+
+    /** Exclude parsers that were provided (those that you did not create yourself). */
+    bool exclude_provided_parsers = 5;
+
+    /** Only return parsers that were provided by the given parent organization. */
+    repeated string providers = 6;
 }
 
 message ListModemMessageBodyParsersRequest {
@@ -168,6 +219,12 @@ message ListModemMessageBodyParsersRequest {
     Pagination pagination = 3;
 }
 
+/* Upload a new body parser from a .ksy file.
+ * A .ksy file is a file defined using the Kaitai Struct specification.
+ * For more information on Kaitai Struct, see http://kaitai.io/, where you can find examples and a web ide.
+ * For more information on how .ksy files are use, see
+ * https://github.com/HiberGlobal/api/blob/master/modem_message_body_parser.proto for the API documentation.
+ */
 message UploadModemMessageBodyParserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
@@ -175,6 +232,12 @@ message UploadModemMessageBodyParserRequest {
     string content_ksy = 3;
 }
 
+/* Upload a new body parser from a .ksy file, replacing the previous file.
+ * A .ksy file is a file defined using the Kaitai Struct specification.
+ * For more information on Kaitai Struct, see http://kaitai.io/, where you can find examples and a web ide.
+ * For more information on how .ksy files are use, see
+ * https://github.com/HiberGlobal/api/blob/master/modem_message_body_parser.proto for the API documentation.
+ */
 message UpdateUploadedModemMessageBodyParserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
@@ -182,12 +245,14 @@ message UpdateUploadedModemMessageBodyParserRequest {
     string content_ksy = 3;
 }
 
+/* Create a simple modem message parser, which generates a .ksy specification. */
 message CreateSimpleModemMessageBodyParserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     SimpleModemMessageBodyParser parser = 2;
 }
 
+/* Update a simple modem message parser, updating the generated .ksy specification. */
 message UpdateSimpleModemMessageBodyParserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
@@ -202,6 +267,13 @@ message RenameModemMessageBodyParserRequest {
     string name = 3;
 }
 
+message UpdateChildOrganizationAvailabilityRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    int32 id = 2;
+    Filter.ChildOrganizations available_to_child_organizations = 3;
+}
+
 message DeleteModemMessageBodyParserRequest {
     message Response {
     }
@@ -213,8 +285,10 @@ message DeleteModemMessageBodyParserRequest {
 
 message TestModemMessageBodyParserRequest {
     message Response {
-        google.protobuf.Struct parsed = 1;
-        string error = 2;
+        oneof result {
+            google.protobuf.Struct parsed = 1;
+            string error = 2;
+        }
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
@@ -223,11 +297,25 @@ message TestModemMessageBodyParserRequest {
     oneof parser {
         string content_ksy = 2;
         SimpleModemMessageBodyParser simple_parser = 3;
+        ModemMessageBodyParserSelection.SelectIdentifier identifier = 6;
     }
 
     oneof data {
         BytesOrHex parse_bytes = 4;
-        int64 modem_message_id = 5;
+        uint64 modem_message_id = 5;
+    }
+}
+
+message RetryModemMessageBodyParsing {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        repeated uint64 modem_message_ids = 2;
+        ModemMessageBodyParserSelection parser_selection = 3;
+    }
+
+    message Response {
+        repeated ModemMessage.ParsedBody parsed_messages = 1;
     }
 }
 

@@ -1,20 +1,20 @@
 syntax = "proto3";
 
+package hiber.publisher;
+
 import "base.proto";
-import "tag.proto";
-import "webhook.proto";
 import "email_notifications.proto";
+import "google/protobuf/timestamp.proto";
+import "integration_aws_iot.proto";
 import "integration_mqtt.proto";
 import "integration_slack.proto";
-import "integration_aws_iot.proto";
-import "google/protobuf/timestamp.proto";
+import "tag.proto";
+import "webhook.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.publisher";
 option java_outer_classname = "PublisherApi";
 option go_package = "hiber";
-
-package hiber.publisher;
 
 /* Generic publisher. A Publisher is a generic parent of the
  * - webhook publisher

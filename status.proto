@@ -1,13 +1,13 @@
 syntax = "proto3";
 
+package hiber.status;
+
 import "base.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.status";
 option java_outer_classname = "StatusApi";
 option go_package = "hiber";
-
-package hiber.status;
 
 /* Service to get the status of the hiber network
  */

@@ -1,16 +1,16 @@
 syntax = "proto3";
 
+package hiber.modem;
+
 import "base.proto";
-import "organization.proto";
 import "modem.proto";
+import "organization.proto";
 import "tag.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.modem";
 option java_outer_classname = "ModemTransferApi";
 option go_package = "hiber";
-
-package hiber.modem;
 
 /* Tracking services for transferring modems between parties.
  * Modems can be transferred between organizations for any number of reason, ranging from actually shipping to a different
@@ -134,6 +134,42 @@ message ModemTransferSelection {
 }
 
 message TransferModemsRequest {
+    /* What to do with external devices on transferring a gateway.
+     * This mode is evaluated twice: once when the transfer is created and once when the transfer is finalised.
+     * When creating, a double check is done on whether or not your transfer contains gateways or external devices.
+     * When finalising, the actual state of currently connected external devices is determined.
+     * Note: Any *new* external devices that start transmitting after starting the transfer will be processed as well.
+     */
+    enum GatewayTransferMode {
+        /* Signifies that no selection has been made.
+         * This is not allowed for gateways, the client must explicitly choose what happens to external devices.
+         */
+        NOTHING_SELECTED = 0;
+
+        /* When transferring a gateway, *orphan* all external devices.
+         * The devices are re-created in the recipient organization when they transmit through the gateway.
+         *
+         * The old modem is unchanged, but can no longer receive new messages, unless it is connected to
+         * another gateway in the sender organization.
+         * Old messages from the modem remain in the sender organization under its old modem number.
+         */
+        ORPHAN_EXTERNAL_DEVICES = 1;
+
+        /* When transferring a gateway, mark all external devices as *DEAD*.
+         * The devices are re-created in the recipient organization when they transmit through the gateway.
+         *
+         * Old messages from this device remain in the sender organization under its old modem, which is marked DEAD.
+         * DEAD modems are be automatically hidden, but can still be accessed.
+         */
+        DELETE_EXTERNAL_DEVICES = 2;
+
+        /* When transferring a gateway, *transfer* all external devices together with the gateway.
+         * This moves all existing external devices with the gateway, while they keep their modem number and messages.
+         * Old messages from this device will be available to the new owner.
+         */
+        TRANSFER_EXTERNAL_DEVICES = 3;
+    }
+
     message Response {
         TransferModemsRequest request = 1;
         ModemTransfer transfer = 2;
@@ -161,12 +197,26 @@ message TransferModemsRequest {
      */
     bool mark_received_automatically = 6;
 
-    /* When this value is not set to true, transferring gateways or modems with an external device id is not allowed.
-     * Gateways and external devices are connected to the current organization.
-     * Moving either a gateway or connected external device to another organization without moving the other can
-     * cause a number of issues.
+    /* How to handle transfers that include gateways and/or external devices.
+     * Since `allow_gateways_and_external_devices` is deprecated, opt for using `gateway_transfer_mode`.
      */
-    bool allow_gateways_and_external_devices = 7;
+    oneof gateway_and_external_devices {
+        /* When this value is not set to true, transferring gateways or modems with an external device id is not allowed.
+         * Gateways and external devices are connected to the current organization.
+         * Moving either a gateway or connected external device to another organization without moving the other can
+         * cause a number of issues.
+         *
+         * Deprecated since 0.46.
+         * To allow gateways to be transferred without their external devices must now be done using `gateway_transfer_mode`
+         */
+        bool allow_gateways_and_external_devices = 7 [deprecated=true];
+
+        /* Set the mode with which this gateway is transferred.
+         * It explicitly sets what needs to happen to external devices.
+         * This setting is mutually exclusive with the (now deprecated) setting `allow_gateways_and_external_devices`.
+         */
+        GatewayTransferMode gateway_transfer_mode = 8;
+    }
 }
 
 message ListModemTransfersRequest {

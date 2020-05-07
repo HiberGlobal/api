@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package hiber.organization.subscription;
+
 import "base.proto";
 import "google/protobuf/timestamp.proto";
 
@@ -7,8 +9,6 @@ option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.organization.subscription";
 option java_outer_classname = "SubscriptionApi";
 option go_package = "hiber";
-
-package hiber.organization.subscription;
 
 enum ServiceType {
     ONCE_PER_DAY = 0;

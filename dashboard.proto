@@ -1,15 +1,15 @@
 syntax = "proto3";
 
+package hiber.dashboard;
+
+import "event.proto";
 import "map.proto";
 import "modem.proto";
-import "event.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.dashboard";
 option java_outer_classname = "DashboardApi";
 option go_package = "hiber";
-
-package hiber.dashboard;
 
 /* Dashboard calls related to the Hiber Mission Control Dashboard
  */

@@ -1,17 +1,17 @@
 syntax = "proto3";
 
+package hiber.modem;
+
 import "google/protobuf/struct.proto";
 
 import "base.proto";
-import "tag.proto";
 import "subscription.proto";
+import "tag.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.modem";
 option java_outer_classname = "ModemApi";
 option go_package = "hiber";
-
-package hiber.modem;
 
 /* The core of the Hiber system, modems are the network nodes that send information and user data.
  * This service contains calls to list and manage them, as well as list their messages.
@@ -79,14 +79,22 @@ message Modem {
 
     repeated hiber.tag.Tag tags = 10;
 
-    /* Whether the modem is a gateway, it has been configured as a gateway and has connected devices. */
-    bool is_gateway = 20;
-    /* Whether the modem is connected to a modem configured as a gateway. */
-    bool is_device_connected_to_gateway = 21;
+    /* [DEPRECATED] Whether the modem is a gateway, it has been configured as a gateway and has connected devices.
+     * Use `type` in stead.
+     */
+    bool is_gateway = 20 [deprecated = true];
+    /* [DEPRECATED] Whether the modem is connected to a modem configured as a gateway.
+     * Use `type` in stead.
+     */
+    bool is_device_connected_to_gateway = 21 [deprecated = true];
     /* The modem number that this modem is connected to, if any. */
     string connected_to_gateway = 22;
     /* External device ids, if any. */
     repeated string external_device_ids = 23;
+    /* The type of modem.
+     * Used mainly to differentiate in the UI or to sort on.
+     */
+    Modem.Type type = 25;
 
     message TechnicalData {
         string hardware_name = 2;
@@ -148,12 +156,7 @@ message Modem {
 
     /* Health configuration for the modem. Defines how the health is calculated. */
     message HealthConfig {
-        /* Period to consider when determining health from error events.
-         * All unresolved error events are included, regardless of age, since they have not been resolved.
-         * When a period is set (default not set), all error events in that period are included, even if they were
-         * resolved.
-         */
-        Duration health_error_period = 1;
+        reserved 1;
 
         /* Period to consider when determining health from warning events. Warning events cannot be resolved. */
         Duration health_warning_period = 2;
@@ -163,12 +166,31 @@ message Modem {
     enum Status {
         /* Modem is in your inventory, but not deployed or active. */
         DEFAULT = 0;
-        /* Modem is active and sending messages. See health for more details on its health, based on the past messages. */
+        /* Modem is active and sending messages.
+         * See health for more details on its health, based on the past messages.
+         */
         ACTIVE = 1;
         DAMAGED = 2;
         LOST = 3;
         DEAD = 4;
         DISABLED = 5;
+    }
+
+    /* The effective type of this modem.
+     * Type can depend on the hardware itself as well as network topology.
+     */
+    enum Type {
+        /* A device of which the specific type is not known */
+        OTHER = 0;
+        /* A devices that directly connects to the satellite */
+        DIRECT = 1;
+        /* A device that can receive messages from sensors in the field and relay them (directly) to the satellite.
+         * Typically a LoRaWAN hub.
+         * Note that gateways also send messages themselves (e.g. a daily heartbeat).
+         */
+        GATEWAY = 2;
+        /* A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. */
+        CONNECTED_DEVICE = 3;
     }
 }
 
@@ -190,11 +212,27 @@ message ModemSelection {
     repeated hiber.organization.subscription.ServiceType with_service_type = 6;
 
     repeated Health health = 9;
+
+    /** Filter modems by status(es). Defaults to health statuses, excluding dead, lost or damaged modems. */
     repeated Modem.Status status = 10;
     Transfers transfers = 11;
 
-    bool only_gateways = 12;
-    bool only_has_external_device_ids = 13;
+    /* Only include modems that have a type listed in types.
+     * In other words, when providing multiple types, this is an "OR" relationship.
+     */
+    repeated Modem.Type types = 16;
+
+    /* [DEPRECATED] Only list devices that are a gateway.
+     * Replaced by `types`.
+     * If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`.
+     */
+    bool only_gateways = 12 [deprecated = true];
+    /* [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors.
+     * Replaced by `types`.
+     * If you only want to have connected devices in the result,
+     * create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`.
+     */
+    bool only_has_external_device_ids = 13 [deprecated = true];
     Filter.Modems connected_to_gateways = 14;
     repeated string external_device_ids = 15;
 
@@ -280,8 +318,25 @@ message ModemMessage {
  * Filter messages by modem id, (child)organization, and time sent (note that this is not the time the message was received)
  */
 message ModemMessageSelection {
+    message ModemMessageSourceFilter {
+        repeated ModemMessage.Source include = 1;
+        repeated ModemMessage.Source exclude = 2;
+    }
+
+    /* Define the modems to return messages from, i.e. include = [AAAA AAAA, BBBB BBBB] */
     Filter.Modems modems = 1;
+
+    /* Filter message by time range. This field is required, to limit the amount of messages. */
     TimeRange time_range = 3;
+
+    /* Filter messages by the given source filter.
+     * For example, to exclude test and simulated messages, use exclude = [TEST, SIMULATED]
+     * or to only return Hiberband messages, use include = [HIBERBAND].
+     * Note that if a message has sources [HIBERBAND, DIRECT_TO_API], including [HIBERBAND] will include the message,
+     * and excluding [HIBERBAND] will filter out the message, even though it also has DIRECT_TO_API.
+     */
+    ModemMessageSourceFilter filter_by_sources = 4;
+
     reserved 2;
 }
 
@@ -298,21 +353,34 @@ message ListModemsRequest {
         repeated Modem modems = 1;
         ListModemsRequest request = 2;
         Pagination.Result pagination = 3;
+        repeated Sort sorted_by = 4;
     }
+    /* Sorting options for the results. */
     enum Sort {
         LAST_MESSAGE_RECEIVED = 0;
         LAST_MESSAGE_RECEIVED_INVERTED = 1;
+
+        /* Sort numerically on the number of the modem. */
         MODEM_NUMBER_ASC = 2;
         MODEM_NUMBER_DESC = 3;
+
         STATUS_ASC = 4;
         STATUS_DESC = 5;
+
+        /* Sort ASCIIbetically on the name of the modem. De default name of the modem is its HEX number */
+        MODEM_NAME_ASC = 6;
+        MODEM_NAME_DESC = 7;
+
+        /* Sort ASCIIbetically on the name of the organization that owns the modem */
+        ORGANIZATION_ASC = 8;
+        ORGANIZATION_DESC = 9;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     ModemSelection selection = 2;
     Pagination pagination = 3;
-    Sort sort_by = 4;
+    repeated Sort sort_by = 4 [packed = false];
     reserved 5;
     bool include_inbound_modems = 6;
     bool include_outbound_modems = 7;
@@ -436,12 +504,7 @@ message UpdateModemHealthConfig {
         string organization = 1;
         ModemSelection selection = 2;
 
-        /* Period to consider when determining health from error events.
-         * All unresolved error events are included, regardless of age, since they have not been resolved.
-         * When a period is set (default not set), all error events in that period are included, even if they were
-         * resolved.
-         */
-        UpdateOptionalDuration health_error_period = 3;
+        reserved 3;
 
         /* Period to consider when determining health from warning events. Warning events cannot be resolved. */
         Duration health_warning_period = 4;

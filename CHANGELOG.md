@@ -1,5 +1,70 @@
 # Changelog Hiber API
 
+### 0.47 (2020-05-07)
+
+#### Changes
+
+##### AWSIoTService
+
+- We've opted to remove the option to configure `health_error_period`,
+  since it was unclear and had an unintended performance impact.
+  - **[B]** Removed `AWSIoTConfiguration.HealthConfig.health_error_period`
+  - **[B]** Removed `UpdateAWSIoTIntegrationConfigurationRequest.health_error_period`
+
+##### ModemService
+
+- We've opted to remove the option to configure `health_error_period`,
+  since it was unclear and had an unintended performance impact.
+  - **[B]** Removed `Modem.HealthConfig.health_error_period`
+  - **[B]** Removed `UpdateModemHealthConfig.Request.health_error_period`
+- Changed `ListModemsRequest.sort_by` to accept multiple values to sort on, and added more sort options.
+- Added `ModemMessageSelection.filter_by_sources` to filter modem message by source
+  (i.e. whether it is a real message, received through satellite or direct connection, etc.)
+
+##### ModemTransferService
+
+- Added `TransferModemsRequest.gateway_transfer_mode` to define what happens with connected devices when transferring
+  a gateway, either including all connected devices, orphaning them or deleting them.
+  See the documentation in `modem_transfer.proto` for more information.
+- Deprecated `TransferModemsRequest.allow_gateways_and_external_devices` in favor of
+  `TransferModemsRequest.gateway_transfer_mode`.
+
+##### ModemMessageBodyParserService
+
+- Modem message parsers can now be shared with child organizations.
+  - Added `ModemMessageBodyParserService.UpdateChildOrganizationAvailability` with
+    `UpdateChildOrganizationAvailabilityRequest` to make parsers available to child organizations.
+  - Added `ModemMessageBodyParser.provided_parser_id`, the identifier for parsers provided by a parent organization.
+  - Added `ModemMessageBodyParser.available_to_child_organizations`, to show the availability to child organizations.
+  - Added `ModemMessageParserSelection.identifiers` to filter on both owned and provided parsers.
+  - Added `ModemMessageParserSelection.exclude_provided_parsers` to exclude any provided parsers.
+  - Added `ModemMessageParserSelection.providers` to filter provided parser by provider organization.
+- Added `ModemMessageBodyParserService.Retry` to retry parsing messages and save the result.
+
+##### MQTTService
+
+- We've opted to remove the option to configure `health_error_period`,
+  since it was unclear and had an unintended performance impact.
+  - **[B]** Removed `MQTTPublisher.HealthConfig.health_error_period`
+  - **[B]** Removed `UpdateMQTTPublisherRequest.health_error_period`
+- Added `ListMQTTPublishersRequest.sort` to sort the results.
+
+##### SlackService
+
+- We've opted to remove the option to configure `health_error_period`,
+  since it was unclear and had an unintended performance impact.
+  - **[B]** Removed `SlackPublisher.HealthConfig.health_error_period`
+  - **[B]** Removed `UpdateSlackPublisherRequest.health_error_period`
+- Added `ListSlackPublishersRequest.sort` to sort the results.
+
+##### WebhookService
+
+- We've opted to remove the option to configure `health_error_period`,
+  since it was unclear and had an unintended performance impact.
+  - **[B]** Removed `Webhook.HealthConfig.health_error_period`
+  - **[B]** Removed `UpdateWebhookRequest.UpdateWebhook.health_error_period`
+- Added `ListWebhooksRequest.sort` to sort the results.
+
 ### 0.45 (2020-04-02)
 
 ##### Modem health changes

@@ -1,15 +1,15 @@
 syntax = "proto3";
 
+package hiber.email;
+
 import "base.proto";
-import "tag.proto";
 import "google/protobuf/timestamp.proto";
+import "tag.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.email";
 option java_outer_classname = "EmailNotificationsApi";
 option go_package = "hiber";
-
-package hiber.email;
 
 service EmailNotificationPreferencesService {
     rpc List (ListEmailNotificationPreferencesRequest) returns (ListEmailNotificationPreferencesRequest.Response);

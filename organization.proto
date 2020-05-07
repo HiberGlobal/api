@@ -1,13 +1,13 @@
 syntax = "proto3";
 
+package hiber.organization;
+
 import "base.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.organization";
 option java_outer_classname = "OrganizationApi";
 option go_package = "hiber";
-
-package hiber.organization;
 
 /* Organization-related api calls. Currently limited to your own organization; we'll add more for creating and managing
  * sub-organizations later.
