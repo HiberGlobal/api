@@ -84,12 +84,13 @@ message Timestamp {
 }
 
 /* Date type for convenience.
- * Some clients are better at parsing year, month and day of month as separate fields, while others prefer a
- * text-based format. To accommodate this, this Date type supports both.
- * When used as API output, both the int fields and textual fields will be set. The textual field has the commonly
- * used ISO 8601 local date format (i.e. "2018-01-01").
- * When used an API input, either specify the int fields or the textual field. If both are specified, the textual
- * field will be discarded.
+ * Some clients are better at parsing year, month and day of month as separate fields,
+ * while others prefer a text-based format.
+ * To accommodate this, this Date type supports both.
+ * When used as API output, both the int fields and textual fields will be set.
+ * The textual field has the commonly used ISO 8601 local date format (i.e. "2018-01-01").
+ * When used an API input, either specify the int fields or the textual field.
+ * If both are specified, the textual field will be discarded.
  */
 message Date {
     uint32 year = 1;
@@ -163,6 +164,13 @@ message Pagination {
         int32 total_pages = 4;
         Pagination previous = 6;
         Pagination next = 7;
+
+        /**
+         * Indicates that the total is an approximation, and not an exact value.
+         * This can be set for data that changes often, or is generally only fetched in an infinite scrolling manner.
+         * For example, unbundled events are likely to return an approximated total, but not guaranteed to do so.
+         */
+        bool approximated_total = 8;
     }
     int32 size = 1;
     int32 page = 2;
@@ -178,6 +186,7 @@ enum EventType {
     ORGANIZATION_CREATED = 34;
     ORGANIZATION_UPDATED = 12;
     ORGANIZATION_DELETED = 35;
+    ORGANIZATION_EVENT_CONFIGURATION_UPDATED = 43;
 
     MODEM_UPDATED = 36;
     MODEM_LOCATION_UPDATED = 4;
@@ -187,6 +196,7 @@ enum EventType {
     MODEM_MESSAGE_DROPPED = 13;
     MODEM_MESSAGE_DELAYED = 14;
     MODEM_MESSAGE_CANNOT_BE_PARSED = 15;
+    MODEM_MESSAGE_SUMMARY = 42;
 
     MODEM_TRANSFER_STARTED = 17;
     MODEM_TRANSFER_RECEIVED = 18;

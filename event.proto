@@ -26,6 +26,9 @@ option go_package = "hiber";
 service EventService {
     rpc List (ListEventsRequest) returns (ListEventsRequest.Response);
     rpc Stream (EventStreamRequest) returns (stream Event);
+
+    rpc GetEventConfiguration (EventConfiguration.Request) returns (EventConfiguration);
+    rpc UpdateEventConfiguration (EventConfiguration) returns (EventConfiguration);
 }
 
 /* Generic Event object, used in streams where events are mixed. Protobuf provides helper methods to extract
@@ -59,6 +62,8 @@ message Event {
         OrganizationEvent.OrganizationCreatedEvent organization_created = 37;
         OrganizationEvent.OrganizationUpdatedEvent organization_updated = 25;
         OrganizationEvent.OrganizationDeletedEvent organization_deleted = 38;
+        OrganizationEvent.ModemMessageSummaryEvent modem_message_summary = 42;
+        OrganizationEvent.EventConfigurationUpdated organization_event_configuration_updated = 43;
         PublisherEvent.CreatedEvent publisher_created = 31;
         PublisherEvent.UpdatedEvent publisher_updated = 32;
         PublisherEvent.DeletedEvent publisher_deleted = 33;
@@ -452,6 +457,40 @@ message Event {
             string description = 4;
             Timestamp time = 5;
         }
+
+        message EventConfigurationUpdated {
+            message ModemMessageSummaryUpdate {
+                UpdateBoolean enabled = 1;
+                Duration period = 2;
+                Timestamp align_to_time = 3;
+            }
+
+            string organization = 1;
+            ModemMessageSummaryUpdate modem_message_summary_update = 2;
+            string title = 3;
+            string description = 4;
+            Timestamp time = 5;
+        }
+
+        /**
+         * Message summary event that is sent when it has been configured for the organization.
+         * The period is configurable, using the EventConfiguration.
+         * This event is disabled by default.
+         */
+        message ModemMessageSummaryEvent {
+            message MessageCount {
+                string modem = 1;
+                modem.ModemMessage.Source source = 2;
+                int32 amount = 3;
+            }
+
+            string organization = 1;
+            repeated MessageCount message_count = 2;
+            string title = 5;
+            string description = 6;
+            Timestamp time = 7;
+            TimeRange time_range = 8;
+        }
     }
 }
 
@@ -526,4 +565,40 @@ message EventStreamRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     EventSelection selection = 2;
+}
+
+/**
+ * Configuration for configurable events.
+ * Some events are disable by default, or can be configured in different ways. Their configuration is available here.
+ */
+message EventConfiguration {
+    /**
+     * When enabled, this sends a ModemMessageSummaryEvent periodically.
+     * For example, you can configure the message summary to be a daily message, aligned to midnight in your time zone.
+     */
+    message ModemMessageSummaryConfiguration {
+        /** The message summary event is disabled by default. */
+        bool enabled = 1;
+
+        /** The period to send the message summary event for. The event can be sent every hour, day, etc. */
+        Duration period = 2;
+
+        /**
+         * Align the period to given time.
+         * For example, an hourly period sends can be aligned to 0:00 to send every whole hour.
+         * A weekly period can be aligned to send at a specific time on Monday by aligning to a timestamp on a Monday.
+         *
+         * If a textual time zone is configured in this timestamp, it is used as well and should shift with changes
+         * like daylight saving time automatically.
+         */
+        Timestamp align_to_time = 3;
+    }
+
+    string organization = 1;
+    ModemMessageSummaryConfiguration modem_message_summary_configuration = 2;
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+    }
 }

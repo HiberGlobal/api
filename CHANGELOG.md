@@ -1,6 +1,48 @@
 # Changelog Hiber API
 
+### 0.48 (2020-05-14)
+
+This release introduces the concept of an organization event configuration.
+It is only used for `Event.OrganizationEvent.ModemMessageSummaryEvent` at the moment,
+but more events may be configurable this way in the future.
+
+Another change this release makes is in approximating total count for pagination for a few calls.
+The `Pagination.Result.approximated_total` field indicates that its total is an approximation.
+This will generally be set for data that changes often, or is generally only fetched in a scrolling manner.
+
+Currently, approximation has been enabled for:
+- listing modem messages
+- listing webhook history
+- listing MQTT integration history
+- listing Slack integration history
+- listing email history
+- listing unbundled events
+
+#### Changes
+
+##### Common types in `base.proto`
+
+- Added extra documentation on to `Date` specifying the accepted format for the `textual` field.
+- Added `Pagination.Result.approximated_total`, which indicates that the total is an approximation,
+  and not an exact value.
+- Added `ORGANIZATION_EVENT_CONFIGURATION_UPDATED` to `EventType`. See the `EventService` changes for more information.
+- Added `MODEM_MESSAGE_SUMMARY` to `EventType`. See the `EventService` changes for more information.
+
+##### EventService
+
+- Added `Event.OrganizationEvent.ModemMessageSummaryEvent`, which is an event that can be produced at a
+  configured period, and gives a summary of messages over that period.
+- Added `EventConfiguration`, which is an organization configuration that allows you to customize some
+  events for an organization. It is currently only used for the new `Event.OrganizationEvent.ModemMessageSummaryEvent`.
+  - Added `GetEventConfiguration` to get the current `EventConfiguration` for the organization.
+  - Added `UpdateEventConfiguration` to update the `EventConfiguration` for the organization.
+  - Added `Event.OrganizationEvent.EventConfigurationUpdated` which is produced whenever
+    the `EventConfiguration` is updated.
+
 ### 0.47 (2020-05-07)
+
+This release clears up most of the confusion around the new health options for modems and publishers, and
+improves performance.
 
 #### Changes
 
