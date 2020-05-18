@@ -1,5 +1,27 @@
 # Changelog Hiber API
 
+### 0.49 (2020-05-18)
+
+This release contains a few minor additions to the API.
+
+#### Changes
+
+##### CurrentUserService
+
+- Added `contact` to `AccessibleOrganizationsRequest.AccessibleOrganization`.
+
+##### ModemService
+
+- Added `UpdateModemStatusRequest` and `ModemService.UpdateStatus` to update the status of a modem.
+  Modems with the `DEAD` status are hidden from the modem list by default.
+
+#### Bugfixes
+
+- An auto-disabled publisher that was manually re-enabled would no longer be eligible for auto-disable.
+  This has now been updated to suspend auto-disable for a week.
+  If after a week, the publisher is still failing, it will be auto-disabled again.
+- Fixed a few instances where transactions were not used, while they should have been.
+
 ### 0.48 (2020-05-14)
 
 This release introduces the concept of an organization event configuration.

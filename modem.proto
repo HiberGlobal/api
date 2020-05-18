@@ -27,6 +27,7 @@ service ModemService {
     rpc UpdateTags (UpdateModemTagsRequest) returns (UpdateModemTagsRequest.Response);
     rpc UpdateNotes (UpdateModemNotesRequest) returns (UpdateModemNotesRequest.Response);
     rpc UpdateSecureNotes (UpdateModemSecureNotesRequest) returns (UpdateModemSecureNotesRequest.Response);
+    rpc UpdateStatus (UpdateModemStatusRequest) returns (UpdateModemStatusRequest.Response);
     rpc UpdateModemHealthConfig (UpdateModemHealthConfig.Request) returns (UpdateModemHealthConfig.Response);
     rpc UpdatePeripherals (UpdatePeripheralsRequest) returns (UpdatePeripheralsRequest.Response);
 
@@ -474,6 +475,18 @@ message UpdateModemSecureNotesRequest {
     string organization = 1;
     string modem_number = 2;
     string secure_notes = 3;
+}
+
+message UpdateModemStatusRequest {
+    message Response {
+        Modem modem = 1;
+        UpdateModemStatusRequest request = 2;
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+    string modem_number = 2;
+    Modem.Status update_status = 3;
 }
 
 message UpdatePeripheralsRequest {

@@ -3,6 +3,7 @@ syntax = "proto3";
 package hiber.user;
 
 import "base.proto";
+import "organization.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.user";
@@ -158,6 +159,9 @@ message AccessibleOrganizationsRequest {
 
         /* Organization name, i.e. "My Organization" */
         string display_name = 2;
+
+        /* The contact person for this organization */
+        organization.Organization.Contact contact = 5;
 
         /* If true, you are a member of this organization (= you are directly linked to this organization) */
         bool member = 3;
