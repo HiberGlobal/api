@@ -81,21 +81,52 @@ message Modem {
     repeated hiber.tag.Tag tags = 10;
 
     /* [DEPRECATED] Whether the modem is a gateway, it has been configured as a gateway and has connected devices.
-     * Use `type` in stead.
+     * Use `type` instead.
      */
     bool is_gateway = 20 [deprecated = true];
+
     /* [DEPRECATED] Whether the modem is connected to a modem configured as a gateway.
-     * Use `type` in stead.
+     * Use `type` instead.
      */
     bool is_device_connected_to_gateway = 21 [deprecated = true];
-    /* The modem number that this modem is connected to, if any. */
-    string connected_to_gateway = 22;
-    /* External device ids, if any. */
-    repeated string external_device_ids = 23;
+
+    /* [DEPRECATED] The modem number that this modem is connected to, if any.
+     * Use `connected_device_info.connected_to_gateway` instead.
+     */
+    string connected_to_gateway = 22 [deprecated = true];
+
+    /* [DEPRECATED] External device ids, if any.
+     * Use `connected_device_info.external_device_ids` instead.
+     */
+    repeated string external_device_ids = 23 [deprecated = true];
+
     /* The type of modem.
      * Used mainly to differentiate in the UI or to sort on.
      */
     Modem.Type type = 25;
+
+    /** Additional information when this modem is a gateway. */
+    GatewayInfo gateway_info = 26;
+
+    /** Additional information when this modem is a connected device. */
+    ConnectedDeviceInfo connected_device_info = 27;
+
+    /** Additional information when this modem is a gateway. */
+    message GatewayInfo {
+        int32 number_of_connected_devices = 1;
+    }
+
+    /** Additional information when this modem is a connected device. */
+    message ConnectedDeviceInfo {
+        /* The gateways that this modem is connected to.
+         * This field reflects the gateway that processed the last message for this modem.
+         * If the modem is connected to multiple gateways, the last used gateway is tracked here.
+         */
+        string connected_to_gateway = 1;
+
+        /* External device ids for this modem. */
+        repeated string external_device_ids = 2;
+    }
 
     message TechnicalData {
         string hardware_name = 2;

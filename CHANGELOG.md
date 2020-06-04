@@ -1,5 +1,15 @@
 # Changelog Hiber API
 
+### 0.49.1 (2020-06-04)
+
+#### Changes
+
+##### ModemService
+
+- Added `gateway_info` to `Modem`, with gateway-specific information, iff the modem is a gateway.
+- Added `connected_device_info` to `Modem`, with specific information, iff the modem is a connected device.
+  This replaces the `connected_to_gateway` and `external_device_ids` fields on `Modem`, which are now deprecated.
+
 ### 0.49 (2020-05-18)
 
 This release contains a few minor additions to the API.
