@@ -61,8 +61,7 @@ message CreateTokenRequest {
     Filter.UserPermissions user_permissions = 5;
     Filter.OrganizationPermissions organization_permissions = 6;
 
-    /* The server returns an error when you don't specify organization permissions. Set this to true to allow it. */
-    bool override_allow_no_permissions = 7;
+    reserved 7;
 }
 
 message DeleteTokenRequest {
@@ -85,8 +84,7 @@ message UpdateTokenOrganizationPermissionsRequest {
     /* The previous permissions are replaced! */
     Filter.OrganizationPermissions new_organization_permissions = 3;
 
-    /* The server returns an error when you don't specify organization permissions. Set this to true to allow it. */
-    bool override_allow_no_permissions = 4;
+    reserved 4;
 }
 
 message UpdateTokenUserPermissionsRequest {

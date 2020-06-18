@@ -1,5 +1,23 @@
 # Changelog Hiber API
 
+### 0.50 (2020-06-18)
+
+#### Changes
+
+##### ModemService
+
+- Fixed a bug when listing child organizations that could cause incomplete data.
+
+##### TokenService
+
+- Removed `override_allow_no_permissions` from `CreateTokenRequest` and `UpdateTokenOrganizationPermissionsRequest`.
+  The API would check whether a token was created with or updated to an empty set of organization permissions.
+  This was confusing to users, and since permissions can easily be updated, we opted to remove it.
+
+##### EmailNotificationPreferencesService
+
+- Fixed a bug where a user without the `PUBLISHERS` permission would not be able to update their email preferences.
+
 ### 0.49.1 (2020-06-04)
 
 #### Changes
