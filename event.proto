@@ -2,11 +2,15 @@ syntax = "proto3";
 
 package hiber.event;
 
+import "google/protobuf/struct.proto";
+
 import "base.proto";
 import "integration_aws_iot.proto";
 import "integration_mqtt.proto";
 import "modem.proto";
 import "modem_claim.proto";
+import "modem_message_body_parser.proto";
+import "modem_message_body_parser_automatic_assignment.proto";
 import "modem_transfer.proto";
 import "organization.proto";
 import "publisher.proto";
@@ -42,13 +46,24 @@ message Event {
         ModemEvent.ModemActivatedEvent modem_activated = 36;
         ModemEvent.ModemStaleEvent modem_stale = 3;
         ModemEvent.MessageEvent.ModemMessageReceivedEvent modem_message_received = 4;
+        ModemEvent.MessageEvent.ModemMessageBodyReceivedEvent modem_message_body_received = 44;
+        ModemEvent.MessageEvent.ModemMessageBodyParsedEvent modem_message_body_parsed = 45;
         ModemEvent.MessageEvent.ModemMessageDroppedEvent modem_message_dropped = 5;
         ModemEvent.MessageEvent.ModemMessageDelayedEvent modem_message_delayed = 6;
         ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent modem_message_cannot_be_parsed = 7;
+        ModemEvent.MessageBodyParserEvent.CreatedEvent modem_message_body_parser_created = 46;
+        ModemEvent.MessageBodyParserEvent.UpdatedEvent modem_message_body_parser_updated = 47;
+        ModemEvent.MessageBodyParserEvent.DeletedEvent modem_message_body_parser_deleted = 48;
+        ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.CreatedEvent modem_message_body_parser_automatic_assignment_created = 49;
+        ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.UpdatedEvent modem_message_body_parser_automatic_assignment_updated = 50;
+        ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.DeletedEvent modem_message_body_parser_automatic_assignment_deleted = 51;
+        ModemEvent.MessageBodyParserEvent.AssignedEvent modem_message_body_parser_assigned = 52;
+        ModemEvent.MessageBodyParserEvent.UnassignedEvent modem_message_body_parser_unassigned = 53;
         UserEvent.UserAddedEvent user_added = 8;
         UserEvent.UserRemovedEvent user_removed = 9;
         UserEvent.UserInvitedEvent user_invited = 41;
         UserEvent.UserAccessRequestEvent user_access_request = 10;
+        UserEvent.UserValidationUpdatedEvent user_validation_updated = 54;
         ModemTransferEvent.ModemTransferStartedEvent modem_transfer_started = 15;
         ModemTransferEvent.ModemTransferCancelledEvent modem_transfer_cancelled = 16;
         ModemTransferEvent.ModemTransferReceivedEvent modem_transfer_received = 17;
@@ -88,7 +103,7 @@ message Event {
             reserved 18;
             Duration health_warning_period = 19;
             Timestamp time = 4;
-            repeated hiber.tag.Tag tags = 5;
+            repeated tag.Tag tags = 5;
             string title = 6;
             string description = 7;
         }
@@ -101,7 +116,7 @@ message Event {
             string modem_number = 2;
             Location location = 3;
             Timestamp time = 4;
-            repeated hiber.tag.Tag tags = 5;
+            repeated tag.Tag tags = 5;
             string title = 6;
             string description = 7;
         }
@@ -115,7 +130,7 @@ message Event {
             int32 maximum_inactivity_period = 3;
             Timestamp time = 4;
             Timestamp last_message = 5;
-            repeated hiber.tag.Tag tags = 6;
+            repeated tag.Tag tags = 6;
             string title = 7;
             string description = 8;
         }
@@ -131,41 +146,116 @@ message Event {
             uint64 message_id = 3;
             Timestamp time = 4;
             Timestamp sent_at = 10;
-            repeated hiber.tag.Tag tags = 7;
+            repeated tag.Tag tags = 7;
             string title = 8;
             string description = 9;
         }
 
         message MessageEvent {
 
-            /* This event is generated whenever a message comes in, after is has been decrypted.
+            /* This event is generated whenever a message comes in, after is has been decrypted
+             * and parsed (if any body parsers are configured for the modem).
+             *
              * It contains the relevant data in the message object, including location and the
              * user-defined body.
+             *
              * If any body parser(s) are configured for the modem, the modem message object also contains
              * a ParsedBody for each of them.
              */
             message ModemMessageReceivedEvent {
                 string organization = 1;
                 string modem_number = 2;
-                hiber.modem.ModemMessage message = 3;
-                repeated hiber.tag.Tag tags = 4;
                 string modem_external_device_id = 8;
+
+                /* The received message, including parsed body. */
+                modem.ModemMessage message = 3;
+
+                /* The modem's tags. */
+                repeated tag.Tag tags = 4;
+
                 string title = 5;
                 string description = 6;
                 Timestamp time = 7;
             }
 
-            /* Every message has a sequence marker. When we detect a jump in the sequence number, we can determine whether we
-             * missed a message (or even multiple messages). Typically, this is caused by interference between the modem and
-             * the satellite. Note that this event is only generated when a message comes in. If no messages come in for a
-             * certain period, the ModemStaleEvent is used.
+            /* This lightweight event is generated whenever a message comes in, after is has been decrypted. */
+            message ModemMessageBodyReceivedEvent {
+                string organization = 1;
+                string modem_number = 2;
+                string modem_external_device_id = 3;
+
+                /* Id of the message that was parsed. */
+                uint64 message_id = 4;
+
+                /* Time the message was sent from the modem. */
+                Timestamp sent_at = 5;
+
+                /* Message body convenience object. */
+                BytesOrHex body = 6;
+
+                /* The modem's tags. */
+                repeated tag.Tag tags = 7;
+
+                string title = 8;
+                string description = 9;
+                Timestamp time = 10;
+            }
+
+            /* This event is generated whenever a message is parsed successfully by an assigned body parser.
+             * If multiple body parsers are assigned to a modem, multiple ModemMessageParsedEvent events will
+             * be produced by an incoming message.
+             * For the total result of all assigned parsers, see the ModemMessageReceivedEvent, which is produced
+             * after all body parsers have been applied.
+             */
+            message ModemMessageBodyParsedEvent {
+                string organization = 1;
+                string modem_number = 2;
+                string modem_external_device_id = 3;
+
+                /* Id of the message that was parsed. */
+                uint64 message_id = 4;
+
+                /* Time the message was sent from the modem. */
+                Timestamp sent_at = 5;
+
+                /* The identifier of the parser that parsed the body. */
+                string parser_identifier = 6;
+
+                /* The name of the parser that parsed the body. */
+                string parser_name = 7;
+
+                /* The resulting json from parsing the message body. */
+                google.protobuf.Struct parsed_message = 8;
+
+                /* The modem's tags. */
+                repeated tag.Tag tags = 9;
+
+                string title = 10;
+                string description = 11;
+                Timestamp time = 12;
+            }
+
+            /* Every message has a sequence marker. When we detect a jump in the sequence number,
+             * we can determine whether we missed a message (or even multiple messages).
+             * Typically, this is caused by interference between the modem and the satellite.
+             * Note that this event is only generated when a message comes in.
+             * If no messages come in for a certain period, the ModemStaleEvent is used.
              */
             message ModemMessageDroppedEvent {
                 string organization = 1;
                 string modem_number = 2;
+
+                /* The amount of dropped messages between the previous message and this message. */
                 int32 dropped_messages = 3;
-                hiber.modem.ModemMessage message = 4;
-                repeated hiber.tag.Tag tags = 5;
+
+                /* The message that produced this event.
+                 * Note that this is a reduced version of the message, and may omit parsed body.
+                 */
+                modem.ModemMessage message = 4;
+
+                /* The modem's tags at the time this message was received. */
+                repeated tag.Tag tags = 5;
+
                 Health modem_health = 6;
                 string title = 7;
                 string description = 8;
@@ -179,9 +269,18 @@ message Event {
             message ModemMessageDelayedEvent {
                 string organization = 1;
                 string modem_number = 2;
-                hiber.modem.ModemMessage message = 3;
+
+                /* The message that produced this event.
+                 * Note that this is a reduced version of the message, and may omit parsed body.
+                 */
+                modem.ModemMessage message = 3;
+
+                /* The amount of seconds the message was delayed, if it is more than 1 day. */
                 int64 delay_seconds = 4;
-                repeated hiber.tag.Tag tags = 5;
+
+                /* The modem's tags at the time this message was received. */
+                repeated tag.Tag tags = 5;
+
                 Health modem_health = 6;
                 string title = 7;
                 string description = 8;
@@ -197,9 +296,99 @@ message Event {
                 uint64 modem_message_id = 3;
                 Timestamp time = 4;
                 string reason = 5;
-                repeated hiber.tag.Tag tags = 6;
+                repeated tag.Tag tags = 6;
                 string title = 7;
                 string description = 8;
+            }
+        }
+
+        /* Events related to ModemMessageBodyParsers. */
+        message MessageBodyParserEvent {
+            message CreatedEvent {
+                string organization = 1;
+                modem.message.bodyparser.ModemMessageBodyParser created = 2;
+                string title = 3;
+                string description = 4;
+                Timestamp time = 5;
+            }
+
+            message UpdatedEvent {
+                string organization = 1;
+                UpdateClearableString updated_name = 2;
+                UpdateClearableString updated_content_ksy = 3;
+                modem.message.bodyparser.SimpleModemMessageBodyParser updated_simple_parser = 4;
+                Filter.ChildOrganizations.Update updated_available_to_child_organizations = 5;
+                string title = 6;
+                string description = 7;
+                Timestamp time = 8;
+            }
+
+            message DeletedEvent {
+                string organization = 1;
+                string deleted = 2;
+                string title = 3;
+                string description = 4;
+                Timestamp time = 5;
+            }
+
+            message AssignedEvent {
+                string organization = 1;
+                repeated string parsers = 2;
+                repeated string modems = 3;
+                repeated tag.Tag tags = 4;
+                string title = 5;
+                string description = 6;
+                Timestamp time = 7;
+            }
+
+            message UnassignedEvent {
+                string organization = 1;
+                repeated string parsers = 2;
+                repeated string modems = 3;
+                repeated tag.Tag tags = 4;
+                string title = 5;
+                string description = 6;
+                Timestamp time = 7;
+            }
+
+            message AutomaticAssignmentEvent {
+                message CreatedEvent {
+                    string organization = 1;
+                    modem.message.bodyparser.ModemMessageBodyParserAutomaticAssignmentRule created = 2;
+                    string title = 3;
+                    string description = 4;
+                    Timestamp time = 5;
+                }
+
+                message UpdatedEvent {
+                    message Update {
+                        UpdateClearableString description = 1;
+                        repeated string parsers_added = 2;
+                        repeated string parsers_removed = 3;
+                        Filter.Modems.Update modems = 4;
+                        Filter.Tags.Update tags = 5;
+                        repeated string manufacturers_added = 6;
+                        repeated string manufacturers_removed = 7;
+                        map<string, string> peripherals_added = 8;
+                        repeated string peripherals_removed = 9;
+                        Filter.ChildOrganizations.Update apply_to_child_organizations = 10;
+                        UpdateBoolean active = 11;
+                    }
+
+                    string organization = 1;
+                    Update updated = 2;
+                    string title = 3;
+                    string description = 4;
+                    Timestamp time = 5;
+                }
+
+                message DeletedEvent {
+                    string organization = 1;
+                    string deleted = 2;
+                    string title = 3;
+                    string description = 4;
+                    Timestamp time = 5;
+                }
             }
         }
 
@@ -207,59 +396,59 @@ message Event {
             message ModemClaimedEvent {
                 string organization = 1;
                 string modem_number = 2;
-                hiber.modem.ModemClaim claim = 3;
+                modem.ModemClaim claim = 3;
                 Timestamp time = 4;
                 string title = 5;
                 string description = 6;
-                repeated hiber.tag.Tag tags = 7;
+                repeated tag.Tag tags = 7;
             }
         }
     }
 
     message ModemTransferEvent {
         message ModemTransferStartedEvent {
-            hiber.modem.ModemTransfer transfer = 1;
+            modem.ModemTransfer transfer = 1;
             string organization = 2;
             Timestamp time = 3;
-            repeated hiber.tag.Tag tags = 4;
+            repeated tag.Tag tags = 4;
             string title = 5;
             string description = 6;
         }
 
         message ModemTransferCancelledEvent {
-            hiber.modem.ModemTransfer transfer = 1;
+            modem.ModemTransfer transfer = 1;
             string organization = 2;
             Timestamp time = 3;
-            repeated hiber.tag.Tag tags = 4;
+            repeated tag.Tag tags = 4;
             string title = 5;
             string description = 6;
         }
 
         message ModemTransferReceivedEvent {
-            hiber.modem.ModemTransfer transfer = 1;
+            modem.ModemTransfer transfer = 1;
             string organization = 2;
             Timestamp time = 3;
-            repeated hiber.tag.Tag tags = 4;
+            repeated tag.Tag tags = 4;
             string title = 5;
             string description = 6;
         }
 
         message ModemTransferNotReceivedEvent {
-            hiber.modem.ModemTransfer transfer = 1;
+            modem.ModemTransfer transfer = 1;
             string organization = 2;
             Timestamp time = 3;
-            repeated hiber.tag.Tag tags = 4;
+            repeated tag.Tag tags = 4;
             string title = 5;
             string description = 6;
         }
 
         message ModemTransferReturnTransferStartedEvent {
-            hiber.modem.ModemTransfer return_transfer = 1;
-            hiber.modem.ModemTransfer original_transfer = 2;
-            repeated hiber.modem.ModemTransferReturnLine return_lines = 3;
+            modem.ModemTransfer return_transfer = 1;
+            modem.ModemTransfer original_transfer = 2;
+            repeated modem.ModemTransferReturnLine return_lines = 3;
             string organization = 4;
             Timestamp time = 5;
-            repeated hiber.tag.Tag tags = 6;
+            repeated tag.Tag tags = 6;
             string title = 7;
             string description = 8;
         }
@@ -296,6 +485,14 @@ message Event {
             Timestamp time = 3;
             string title = 4;
             string description = 5;
+        }
+
+        message UserValidationUpdatedEvent {
+            string organization = 1;
+            string email_validation_regex = 2;
+            string title = 3;
+            string description = 4;
+            Timestamp time = 5;
         }
     }
 
@@ -472,8 +669,7 @@ message Event {
             Timestamp time = 5;
         }
 
-        /**
-         * Message summary event that is sent when it has been configured for the organization.
+        /* Message summary event that is sent when it has been configured for the organization.
          * The period is configurable, using the EventConfiguration.
          * This event is disabled by default.
          */
@@ -567,24 +763,21 @@ message EventStreamRequest {
     EventSelection selection = 2;
 }
 
-/**
- * Configuration for configurable events.
+/* Configuration for configurable events.
  * Some events are disable by default, or can be configured in different ways. Their configuration is available here.
  */
 message EventConfiguration {
-    /**
-     * When enabled, this sends a ModemMessageSummaryEvent periodically.
+    /* When enabled, this sends a ModemMessageSummaryEvent periodically.
      * For example, you can configure the message summary to be a daily message, aligned to midnight in your time zone.
      */
     message ModemMessageSummaryConfiguration {
-        /** The message summary event is disabled by default. */
+        /* The message summary event is disabled by default. */
         bool enabled = 1;
 
-        /** The period to send the message summary event for. The event can be sent every hour, day, etc. */
+        /* The period to send the message summary event for. The event can be sent every hour, day, etc. */
         Duration period = 2;
 
-        /**
-         * Align the period to given time.
+        /* Align the period to given time.
          * For example, an hourly period sends can be aligned to 0:00 to send every whole hour.
          * A weekly period can be aligned to send at a specific time on Monday by aligning to a timestamp on a Monday.
          *

@@ -105,18 +105,18 @@ message Modem {
      */
     Modem.Type type = 25;
 
-    /** Additional information when this modem is a gateway. */
+    /* Additional information when this modem is a gateway. */
     GatewayInfo gateway_info = 26;
 
-    /** Additional information when this modem is a connected device. */
+    /* Additional information when this modem is a connected device. */
     ConnectedDeviceInfo connected_device_info = 27;
 
-    /** Additional information when this modem is a gateway. */
+    /* Additional information when this modem is a gateway. */
     message GatewayInfo {
         int32 number_of_connected_devices = 1;
     }
 
-    /** Additional information when this modem is a connected device. */
+    /* Additional information when this modem is a connected device. */
     message ConnectedDeviceInfo {
         /* The gateways that this modem is connected to.
          * This field reflects the gateway that processed the last message for this modem.
@@ -245,7 +245,7 @@ message ModemSelection {
 
     repeated Health health = 9;
 
-    /** Filter modems by status(es). Defaults to health statuses, excluding dead, lost or damaged modems. */
+    /* Filter modems by status(es). Defaults to health statuses, excluding dead, lost or damaged modems. */
     repeated Modem.Status status = 10;
     Transfers transfers = 11;
 
@@ -293,15 +293,26 @@ message ModemMessage {
      * The result is stored either as a json object or an error string.
      */
     message ParsedBody {
-        int32 parser_id = 1;
+        /* Id of the parser that was used, if the parser and modem are owned by the same organization.
+         * [DEPRECATED] Deprecated in favour of the identifier, which is globally unique.
+         */
+        int32 parser_id = 1 [deprecated = true];
+
+        /* Globally unique identifier of the parser that was used. */
+        string parser_identifier = 6;
+
+        /* Name of the parser that was used. */
         string parser_name = 2;
+
+        oneof parsed {
+            /* Error while parsing the message body. */
+            string error = 4;
+
+            /* Result of parsing the body with this parser. */
+            google.protobuf.Struct result = 5;
+        }
+
         reserved 3;
-
-        /* Result of parsing the body with this parser. */
-        google.protobuf.Struct result = 5;
-
-        /* Error while parsing the message body. */
-        string error = 4;
     }
 
     /* Unique message identifier. */
@@ -447,9 +458,9 @@ message MessageCountRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     ModemMessageSelection selection = 2;
-    /** Numeric timezone offset for day grouping. Optional. */
+    /* Numeric timezone offset for day grouping. Optional. */
     int32 time_zone_offset = 5;
-    /** Timezone string for day grouping. Optional. */
+    /* Timezone string for day grouping. Optional. */
     string time_zone = 6;
 }
 
@@ -516,7 +527,14 @@ message UpdateModemStatusRequest {
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
-    string modem_number = 2;
+
+    /* Either pick a single modem to update. DEPRECATED, since ModemSelection is more flexible. */
+    string modem_number = 2 [deprecated = true];
+
+    /* Or a modem selection. */
+    ModemSelection modem_selection = 4;
+
+    /* The new status for the modem(s). */
     Modem.Status update_status = 3;
 }
 

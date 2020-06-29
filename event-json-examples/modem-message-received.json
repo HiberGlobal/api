@@ -1,0 +1,49 @@
+{
+  "modemMessageReceived": {
+    "organization": "your-organization",
+    "modemNumber": "AAAA AAAA",
+    "message": {
+      "modemNumber": "AAAA AAAA",
+      "sentAt": {
+        "timestamp": "2020-06-01T05:15:25.355Z",
+        "textual": "2020-06-01T05:15:25.355Z"
+      },
+      "location": {
+        "latitude": 20.222,
+        "longitude": 30.33299
+      },
+      "body": "ZXhhbXBsZQ==",
+      "receivedAt": {
+        "timestamp": "2020-06-01T09:19:29.299Z",
+        "textual": "2020-06-01T09:19:29.299Z"
+      },
+      "messageId": "123123",
+      "bodyBytes": {
+        "bytes": "ZXhhbXBsZQ==",
+        "hex": "6578616D706C65"
+      },
+      "bodyParsed": [{
+        "parserId": 123,
+        "parserName": "text",
+        "result": {
+          "text": "example"
+        },
+        "parserIdentifier": "hiber:20-AABBCC"
+      }],
+      "bodyParsedSuccessfully": true
+    },
+    "tags": [{
+      "id": "1",
+      "label": {
+        "name": "example-tag"
+      }
+    }],
+    "title": "New test message from modem AAAA AAAA was received. It was sent at 2020-06-01 05:15:25Z.",
+    "description": "A new test message from modem AAAA AAAA was received and decrypted at 2020-06-01 09:19:29.299Z:\nThe message was sent at 2020-04-14 04:22:00Z with location (20.222,30.33299).\nIt contained the following body (hex): \n 6578616D706C65\n\nIts body was parsed by:\n - text: {\"text\":\"example\"}\n",
+    "time": {
+      "timestamp": "2020-06-01T09:19:29.299Z",
+      "textual": "2020-06-01T09:19:29.299Z"
+    },
+    "modemExternalDeviceId": "AABBCCDDEEFFGGHH"
+  }
+}

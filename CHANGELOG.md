@@ -1,5 +1,128 @@
 # Changelog Hiber API
 
+### 0.51 (2020-06-29)
+
+This release introduces automatic assignment rules for modem message body parsers.
+These rules can be used to assign body parsers to modems across organizations, based on criteria like
+tags, manufacturers and peripherals.
+
+#### Changes
+
+##### DashboardService
+
+- Fixed a few comments.
+
+##### EventService
+
+- Added two new modem message events:
+  - `ModemMessageBodyReceivedEvent` is a simplified version of the `ModemMessageReceivedEvent` that
+    doesn't have a `Message` object. Instead, it only has `message_id`, `sent_at` and `body`.
+    This is useful for the cases where you need a lighter format and are not using body parsing.
+  - `ModemMessageBodyParsedEvent` is an event that is produced for each message, for each body parser.
+    If you assign 3 body parsers to modem, they all try to parse the message. Every success produces this event.
+    This is useful for the cases where you're only interested in the parsed body.
+  - For each of these events, an `EventType` has been added to `base.proto`
+  - For all three message events, an example json has been added under `event-json-examples`.
+    In the future, more examples for other event types will be placed there.
+
+- Added new body parser events:
+  - `MessageBodyParserEvent.CreatedEvent` is produced when a new body parser is created.
+  - `MessageBodyParserEvent.UpdatedEvent` is produced when a body parser is updated.
+  - `MessageBodyParserEvent.DeletedEvent` is produced when a body parser is deleted.
+  - `MessageBodyParserEvent.AssignedEvent` is produced when a body parser is directly assigned to a modem.
+  - `MessageBodyParserEvent.UnassignedEvent` is produced when a body parser is removed from to a modem.
+  - `MessageBodyParserEvent.AutomaticAssignmentEvent.CreatedEvent` is produced when a new automatic assignment rule
+    for body parsers is created.
+  - `MessageBodyParserEvent.AutomaticAssignmentEvent.UpdatedEvent` is produced when an automatic assignment rules for
+    for body parsers is updated.
+  - `MessageBodyParserEvent.AutomaticAssignmentEvent.DeletedEvent` is produced when an automatic assignment rules for
+    for body parsers is deleted.
+  - For each of these events, an `EventType` has been added to `base.proto`
+
+- Added a new event `UserValidationUpdatedEvent` when user validation has been updated.
+
+- Fixed a few imports and comments.
+
+##### ModemService
+
+- `ModemMessage.ParsedBody` was updated to reflect the changes to body parsers:
+  - Added `parser_identifier` to `ParsedBody`. This field contains a globally unique identifier
+    for the body parser used to parse the message body.
+  - The `parser_id` is now deprecated in favour of the `identifier`.
+  - Wrapped `result` and `error` in a `oneof`, since only one can be present.
+
+- Added `UpdateModemStatusRequest.modem_selection` to update the status for multiple modems at the same time.
+  - Deprecated the single modem field `UpdateModemStatusRequest.modem_number`, since the selection covers that case.
+
+- Fixed a few imports and comments.
+
+##### ModemMessageBodyParserService
+
+- Deprecated the assignment-related calls in favour of the new `ModemMessageBodyParserAssignmentService`:
+  - Deprecated `ListAssignedParsers` and `ListAssignedParsersRequest`
+  - Deprecated `AssignToModems` and `AssignModemMessageBodyParserToModemsRequest`
+  - Deprecated `RemoveFromModems` and `RemoveModemMessageBodyParserFromModemsRequest`
+
+- Updated `ModemMessageBodyParser` to match the new global body parser usage better:
+  - Added `identifier` to `ModemMessageBodyParser`, a globally unique identifier for the body parser.
+  - Added `organization` to `ModemMessageBodyParser`, to show who owns the body parsers.
+  - Deprecated `id` in `ModemMessageBodyParser` in favour of the `identifier`.
+  - **[B]** Dropped `ModemMessageBodyParser.AvailableToChildOrganizations.parser_id_for_child_organizations`
+    in favour of the new `identifier`.
+
+- Updated `ModemMessageBodyParserSelection` to match the changes to `ModemMessageBodyParser`:
+  - **[B]** Removed `SelectIdentifier` and its related field.
+  - Added `identifiers` to search on identifiers.
+  - Deprecated `ids` in `ModemMessageBodyParser` in favour of `identifiers`.
+  - Renamed `exclude_provided_parsers` to `only_owned_parsers`.
+  - Renamed `providers` to `owner_organizations`.
+
+- Added `ListModemMessageBodyParsersRequest.exclude_content` to not fill the content of the returned body parsers
+  (either the `content_ksy` or `simple_parser` fields).
+
+- Updated `UploadModemMessageBodyParserRequest`, `UpdateSimpleModemMessageBodyParserRequest`,
+  `RenameModemMessageBodyParserRequest` and `UpdateChildOrganizationAvailabilityRequest` to match the changes
+  to `ModemMessageBodyParser`:
+  - Added `identifier` and deprecated `id`.
+
+- Updated `TestModemMessageBodyParserRequest` to match the changes to `ModemMessageBodyParser`:
+  - **[B]** Removed the `SelectIdentifier`-based field.
+  - Added `identifier`.
+
+##### ModemMessageBodyParserAutomaticAssignmentService
+
+- Added `ModemMessageBodyParserAutomaticAssignmentService` to manage automatic assignment rules for body parsers.
+
+  These rules can be used to automatically assign body parsers to modem that match specific criteria.
+  For example, all modems with tag "parse-this" and a peripheral "sensor": "water-sensor-brand-x" can be
+  assigned a parser for the data format for that peripheral.
+
+  Criteria can be used and combined in a multitude of ways, but here are a few notable uses:
+   - assign a parser to tag, so assigning it to modems is as easy as adding a tag to that modem
+   - assign a parser to peripheral, so each modem with that peripheral gets that parser by default
+   - blacklisting a parser from a tag, so you can set that tag to exclude a modem from being assigned that parser
+   - blacklisting a parser from a set of modems, so you can exclude a set of modem from being assigned that parser
+   - add a parser to devices you manufacture, and apply this to child organizations, so that all of your
+     customers' modems are automatically assigned that parser
+
+##### ModemMessageBodyParserAssignmentService
+
+- Added `ModemMessageBodyParserAssignmentService` to assign body parsers directly to modems and
+  list assignments based on direct assignments to modems and the result of applying automatic assignment rules.
+
+##### TokenService
+
+- Added the `created` `Token` to `CreateTokenRequest`, so the output is more that just the token string.
+
+#### Backwards incompatible changes
+
+- **[B]** Removed `SelectIdentifier` and its related field from `ModemMessageBodyParserSelection`.
+  Use the new `identifier` field instead.
+- **[B]** Dropped `parser_id_for_child_organizations` from `ModemMessageBodyParser.AvailableToChildOrganizations`.
+  Use the new `identifier` field instead.
+- **[B]** Removed the `SelectIdentifier`-based field from `TestModemMessageBodyParserRequest`.
+  Use the new `identifiers` field instead.
+
 ### 0.50 (2020-06-18)
 
 #### Changes
@@ -258,7 +381,7 @@ This release contains a few minor api tweaks and one semi-breaking change.
 
 ##### ModemMessageBodyParserService
 
-- Added a `Test` command to test a payload parser on a given byte sequence, or an existing message id.
+- Added a `Test` command to test a body parser on a given byte sequence, or an existing message id.
 
 ##### UserService
 

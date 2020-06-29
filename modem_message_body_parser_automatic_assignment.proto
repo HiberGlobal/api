@@ -1,0 +1,274 @@
+syntax = "proto3";
+
+package hiber.modem.message.bodyparser;
+
+import "base.proto";
+import "modem.proto";
+import "modem_message_body_parser.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.modem.message.bodyparser";
+option java_outer_classname = "ModemMessageBodyParserAutomaticAssignmentApi";
+option go_package = "hiber";
+
+service ModemMessageBodyParserAutomaticAssignmentService {
+    rpc List (ListBodyParserAutomaticAssignmentRules.Request) returns (ListBodyParserAutomaticAssignmentRules.Response);
+    rpc Create (CreateBodyParserAutomaticAssignmentRule.Request) returns (CreateBodyParserAutomaticAssignmentRule.Response);
+    rpc UpdateParsers (UpdateBodyParserAutomaticAssignmentParsers.Request) returns (UpdateBodyParserAutomaticAssignmentParsers.Response);
+    rpc UpdateDescription (UpdateBodyParserAutomaticAssignmentDescription.Request) returns (UpdateBodyParserAutomaticAssignmentDescription.Response);
+    rpc UpdateChildAvailability (UpdateBodyParserAutomaticAssignmentChildAvailability.Request) returns (UpdateBodyParserAutomaticAssignmentChildAvailability.Response);
+
+    rpc Enable (EnableBodyParserAutomaticAssignmentRule.Request) returns (EnableBodyParserAutomaticAssignmentRule.Response);
+    rpc Disable (DisableBodyParserAutomaticAssignmentRule.Request) returns (DisableBodyParserAutomaticAssignmentRule.Response);
+
+    rpc Delete (DeleteBodyParserAutomaticAssignmentRule.Request) returns (DeleteBodyParserAutomaticAssignmentRule.Response);
+}
+
+/* A rule to assign a ModemMessageBodyParser to any number of modems automatically, based on varying criteria.
+ *
+ * For example, all modems with tag "parse-this" and a peripheral "sensor": "water-sensor-brand-x" can be
+ * assigned a parser for the data format for that peripheral.
+ *
+ * Criteria can be used and combined in a multitude of ways, but here are a few notable uses:
+ * - assign a parser to tag, so assigning it to modems is as easy as adding a tag to that modem
+ * - assign a parser to peripheral, so each modem with that peripheral gets that parser by default
+ * - blacklisting a parser from a tag, so you can set that tag to exclude a modem from being assigned that parser
+ * - blacklisting a parser from a set of modems, so you can exclude a set of modem from being assigned that parser
+ * - add a parser to devices you manufacture, and apply this to child organizations, so that all of your
+ *   customers' modems are automatically assigned that parser
+ */
+message ModemMessageBodyParserAutomaticAssignmentRule {
+    /* A rule for automatic assignment of a body parser to modems.
+     * Each field in the this rule must match a modem for this rule to be applied.
+     * This means that the exclusion rules for modem and tag can be used to create a complex selection,
+     * like all modems with a tag, except for a specific list of modems.
+     * Or every modem with the given peripherals, except when you assign a tag to them (i.e. a "do-not-parse" tag).
+     *
+     * This also means you can make a rule that only excludes modems or tags. A rule that only excludes is considered
+     * a global exclude, and will override other rules assigning the excluded modem anyway.
+     * For example, a rule that excludes the tag "do-not-parse" for all parsers, will override any assignment by a rule
+     * if the modem has that tag.
+     */
+    message AssignmentRule {
+        /* An alternative way to assign to modem directly, this field can be used to assign a parser to a set of modems.
+         *
+         * A rule that only excludes is considered  a global exclude, and will override other rules assigning
+         * the excluded modem anyway.
+         * For example, a rule that excludes a modem for a set of parsers, will ensure the modem will never be assigned
+         * those parser automatically.
+         */
+        Filter.Modems modems = 1;
+
+        /* Assign parser to all modems that have the given tags.
+         *
+         * A rule that only excludes is considered  a global exclude, and will override other rules assigning
+         * the excluded modem anyway.
+         * For example, a rule that excludes the tag "do-not-parse" for all parsers, will override any assignment
+         * by a rule if the modem has that tag.
+         */
+        Filter.Tags tags = 2;
+
+        /* Assign the parser to modems that have one of the given manufacturers. */
+        repeated string manufacturer = 3;
+
+        /* Assign the parser to modems that have one of the given peripherals. */
+        map<string, string> peripherals = 4;
+    }
+
+    /* The identifier for this rule.
+     * The identifier consists of the name of the organization that created it and its id in that organization.
+     * For example my-organization:4 (the fourth assignment rule created by that organization).
+     */
+    string identifier = 1;
+
+    /* The organization that created and owns this rule. */
+    string owner_organization = 2;
+
+    /* A description for this rule. Use this to make clear why this rule is set up. */
+    string description = 3;
+
+    /* The parser that should be assigned when a modem matches this rule. */
+    repeated string parsers = 4;
+
+    /* The rules to use to select modems. */
+    AssignmentRule rule = 5;
+
+    /* Whether the rule is active. Rules can be disabled, or uploaded in a disabled state to test them. */
+    bool active = 6;
+
+    /* Apply this rule to modems belonging to the given child organizations as well.
+     * The selected parsers must be available to those child organizations.
+     * This does not work with tags, since they are organization-specific.
+     */
+    Filter.ChildOrganizations apply_to_child_organizations = 7;
+}
+
+message ModemMessageBodyParserAutomaticAssignmentRuleSelection {
+    /* Return assignment rules with the given identifiers. */
+    repeated string assignment_rule_identifiers = 1;
+
+    /* Return assignment rules with the given owner(s). */
+    Filter.ChildOrganizations owner_organizations = 2;
+
+    /* Search assignment rules. */
+    string search = 3;
+
+    /* Return assignment rules that assign one of the selected parsers. */
+    ModemMessageBodyParserSelection assigns_parsers = 4;
+
+    /* Return assignment rules that apply to the selected modems. */
+    ModemSelection applies_to_modems = 5;
+
+    /* Include inactive rules. */
+    bool include_inactive = 6;
+
+    /* Only return inactive rules. */
+    bool only_inactive = 7;
+}
+
+/* List automatic assignment rules. */
+message ListBodyParserAutomaticAssignmentRules {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        ModemMessageBodyParserAutomaticAssignmentRuleSelection selection = 2;
+        Pagination pagination = 3;
+    }
+
+    message Response {
+        repeated ModemMessageBodyParserAutomaticAssignmentRule assignment_rules = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}
+
+/* Create a new automatic assignment rule. */
+message CreateBodyParserAutomaticAssignmentRule {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* The parser to assign with this rule. */
+        repeated string parsers = 2;
+
+        /* A description for this rule. */
+        string description = 3;
+
+        /* The automatic assignment rule to apply. */
+        ModemMessageBodyParserAutomaticAssignmentRule.AssignmentRule rule = 4;
+
+        /* By default, the rule only applies to your organization.
+         * Use this filter to apply the rule to (some of) your child organizations as well.
+         */
+        Filter.ChildOrganizations apply_to_child_organizations = 5;
+
+        /* Whether the rules should be created in a disabled state. */
+        bool disabled = 6;
+    }
+
+    message Response {
+        ModemMessageBodyParserAutomaticAssignmentRule created = 1;
+        Request request = 2;
+    }
+}
+
+/* Update the parsers assigned by an automatic assignment rule. */
+message UpdateBodyParserAutomaticAssignmentParsers {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* The rule to update. */
+        string assignment_rule_identifier = 2;
+
+        /* Add the given parsers to the rule. */
+        repeated string add_parsers = 3;
+
+        /* Remove the given parsers from the rule. */
+        repeated string remove_parsers = 4;
+    }
+
+    message Response {
+        ModemMessageBodyParserAutomaticAssignmentRule updated = 1;
+    }
+}
+
+/* Update the description of an automatic assignment rule. */
+message UpdateBodyParserAutomaticAssignmentDescription {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* The rule to update. */
+        string assignment_rule_identifier = 2;
+
+        /* The updated description. */
+        string description = 3;
+    }
+
+    message Response {
+        ModemMessageBodyParserAutomaticAssignmentRule updated = 1;
+    }
+}
+
+/* Update the child availability of an automatic assignment rule (child organizations that this rule applies to). */
+message UpdateBodyParserAutomaticAssignmentChildAvailability {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* The rule to update. */
+        string assignment_rule_identifier = 2;
+
+        /* The new set of child organizations that this rule applies to. */
+        Filter.ChildOrganizations update_apply_to_child_organizations = 6;
+    }
+
+    message Response {
+        ModemMessageBodyParserAutomaticAssignmentRule updated = 1;
+    }
+}
+
+/* Enable the given automatic assignment rule. */
+message EnableBodyParserAutomaticAssignmentRule {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* The rule to enable. */
+        string assignment_rule_identifier = 2;
+    }
+
+    message Response {
+        ModemMessageBodyParserAutomaticAssignmentRule enabled = 1;
+    }
+}
+
+/* Disable the given automatic assignment rule. */
+message DisableBodyParserAutomaticAssignmentRule {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* The rule to disable. */
+        string assignment_rule_identifier = 2;
+    }
+
+    message Response {
+        ModemMessageBodyParserAutomaticAssignmentRule disabled = 1;
+    }
+}
+
+/* Delete the given automatic assignment rule. */
+message DeleteBodyParserAutomaticAssignmentRule {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* The rule to delete. */
+        string assignment_rule_identifier = 2;
+    }
+
+    message Response {
+    }
+}

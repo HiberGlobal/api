@@ -165,8 +165,7 @@ message Pagination {
         Pagination previous = 6;
         Pagination next = 7;
 
-        /**
-         * Indicates that the total is an approximation, and not an exact value.
+        /* Indicates that the total is an approximation, and not an exact value.
          * This can be set for data that changes often, or is generally only fetched in an infinite scrolling manner.
          * For example, unbundled events are likely to return an approximated total, but not guaranteed to do so.
          */
@@ -193,10 +192,21 @@ enum EventType {
     MODEM_ACTIVATED = 33;
     MODEM_STALE = 16;
     MODEM_MESSAGE_RECEIVED = 5;
+    MODEM_MESSAGE_PARSED = 39;
+    MODEM_MESSAGE_BODY_RECEIVED = 45;
     MODEM_MESSAGE_DROPPED = 13;
     MODEM_MESSAGE_DELAYED = 14;
     MODEM_MESSAGE_CANNOT_BE_PARSED = 15;
     MODEM_MESSAGE_SUMMARY = 42;
+
+    MODEM_MESSAGE_BODY_PARSER_CREATED = 46;
+    MODEM_MESSAGE_BODY_PARSER_UPDATED = 47;
+    MODEM_MESSAGE_BODY_PARSER_DELETED = 48;
+    MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_CREATED = 49;
+    MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_UPDATED = 50;
+    MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_DELETED = 51;
+    MODEM_MESSAGE_BODY_PARSER_ASSIGNED = 52;
+    MODEM_MESSAGE_BODY_PARSER_UNASSIGNED = 53;
 
     MODEM_TRANSFER_STARTED = 17;
     MODEM_TRANSFER_RECEIVED = 18;
@@ -216,6 +226,8 @@ enum EventType {
     USER_INVITED = 38;
     USER_ADDED = 9;
     USER_REMOVED = 10;
+
+    USER_VALIDATION_UPDATED = 54;
 
     TOKEN_CREATED = 31;
     TOKEN_EXPIRY_WARNING = 25;
@@ -243,6 +255,12 @@ message Filter {
         bool include_all = 1;
         repeated string include = 2;
         repeated string exclude = 3;
+
+        /* Update object to update a Filter.ChildOrganizations field. */
+        message Update {
+            bool updated = 1;
+            Filter.ChildOrganizations value = 2;
+        }
     }
 
     message Organizations {

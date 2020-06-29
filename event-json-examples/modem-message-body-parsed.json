@@ -1,0 +1,29 @@
+{
+  "modemMessageBodyParsed": {
+    "organization": "your-organization",
+    "modemNumber": "AAAA AAAA",
+    "modemExternalDeviceId": "AABBCCDDEEFFGGHH",
+    "messageId": "123123",
+    "sentAt": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z"
+    },
+    "parserIdentifier": "hiber:20-AABBCC",
+    "parserName": "text",
+    "parsedMessage": {
+      "text": "example"
+    },
+    "tags": [{
+      "id": "1",
+      "label": {
+        "name": "example-tag"
+      }
+    }],
+    "title": "A message from modem AAAA AAAA was parsed by body parser hiber:20-AABBCC.",
+    "description": "Message 123123 from modem AAAA AAAA was parsed by body parser hiber:20-AABBCC:\n\n{\"text\":\"example\"}\n",
+    "time": {
+      "timestamp": "2020-06-01T09:19:29.299Z",
+      "textual": "2020-06-01T09:19:29.299Z"
+    }
+  }
+}

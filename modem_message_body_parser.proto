@@ -24,59 +24,74 @@ service ModemMessageBodyParserService {
     rpc Test (TestModemMessageBodyParserRequest) returns (TestModemMessageBodyParserRequest.Response);
     rpc Retry (RetryModemMessageBodyParsing.Request) returns (RetryModemMessageBodyParsing.Response);
 
-    rpc ListAssignedParsers (ListAssignedParsersRequest) returns (ListAssignedParsersRequest.Response);
-    rpc AssignToModems (AssignModemMessageBodyParserToModemsRequest) returns (AssignModemMessageBodyParserToModemsRequest.Response);
-    rpc RemoveFromModems (RemoveModemMessageBodyParserFromModemsRequest) returns (RemoveModemMessageBodyParserFromModemsRequest.Response);
+    /* [DEPRECATED] Use ModemMessageBodyParserAssignmentService instead. */
+    rpc ListAssignedParsers (ListAssignedParsersRequest) returns (ListAssignedParsersRequest.Response) {
+        option deprecated = true;
+    };
+    /* [DEPRECATED] Use ModemMessageBodyParserAssignmentService instead. */
+    rpc AssignToModems (AssignModemMessageBodyParserToModemsRequest) returns (AssignModemMessageBodyParserToModemsRequest.Response) {
+        option deprecated = true;
+    };
+    /* [DEPRECATED] Use ModemMessageBodyParserAssignmentService instead. */
+    rpc RemoveFromModems (RemoveModemMessageBodyParserFromModemsRequest) returns (RemoveModemMessageBodyParserFromModemsRequest.Response) {
+        option deprecated = true;
+    };
 }
 
-/** Modem message body parser. This defines a parsing strategy for the body of a message.
-  * A parser can be defined in two ways: using a .ksy (Kaitai struct) file or using the simple parser.
-  */
+/* Modem message body parser. This defines a parsing strategy for the body of a message.
+ * A parser can be defined in two ways: using a .ksy (Kaitai struct https://kaitai.io/) file or using the simple parser.
+ */
 message ModemMessageBodyParser {
-    /* A modem message body parser is provided when it has a Provided identifier.
-     * A parent organization may provide parser to your organization based on your use case and agreements.
-     */
-    message Provided {
-        int64 parser_id = 1;
-        string provider = 2;
-    }
-
     /* A modem message body parser with this object is available to child organizations.
-     * This means the child organization sees a Provided identifier for this parser, and can use it,
-     * but not update or delete it.
-     * Parsers available to child organizations get a globally unique id, different from your own id for the parser.
+     * This means the child organization can use it, but not update or delete it.
      */
     message AvailableToChildOrganizations {
         Filter.ChildOrganizations child_organizations = 1;
-        int64 parser_id_for_child_organizations = 2;
     }
 
-    /* Either the id of a parser you created, or the Provided block for a parser that was provided to you. */
-    oneof identifier {
-        /* The id of a parser you created by uploading a .ksy file or creating a simple parser specification. */
-        int32 id = 1;
+    /* The id for this parser within your organization. If you do not own this parser, this field will ot be set.
+     * [DEPRECATED] Deprecated in favour of the identifier, which is globally unique.
+     */
+    int32 id = 1 [deprecated = true];
 
-        /* The id of a parser provided to you by a parent organization. */
-        Provided provided_parser_id = 5;
-    }
+    /* The globally unique identifier for this parser.
+     * The identifier consists of the name of the organization that created it and its id in that organization.
+     * For example my-organization:4 (the fourth parser created by that organization).
+     */
+    string identifier = 7;
 
+    /* The organization that created the parser. */
+    string organization = 8;
+
+    /* The name for this parser. */
     string name = 2;
+
+    /* The content of this parsers script.
+     * If simple_parser is set, this content is generated from that definition.
+     * This field may be omitted on demand to save data in the list call.
+     *
+     * See Kaitai struct (https://kaitai.io/) for more information about the ksy format.
+     */
     string content_ksy = 3;
 
-    /* The simple parser this .ksy was generated from, if it was generated from a simple parser. */
+    /* The simple parser this .ksy was generated from, if it was generated from a simple parser.
+     * This field may be omitted on demand to save data in the list call.
+     */
     SimpleModemMessageBodyParser simple_parser = 4;
 
-    /** If set, this parser is available to your child organizations, as a Provided parser. */
+    /* If set, this parser is available to your child organizations, as a Provided parser. */
     AvailableToChildOrganizations available_to_child_organizations = 6;
+
+    reserved 5;
 }
 
-/** Simple modem message body parser. This can be used a convenient way to create a .ksy parser. */
+/* Simple modem message body parser. This can be used a convenient way to create a .ksy parser. */
 message SimpleModemMessageBodyParser {
     message Field {
-        /** Field name. This is a reduced to a value containing only lowercase letters, numbers and underscores. */
+        /* Field name. This is a reduced to a value containing only lowercase letters, numbers and underscores. */
         string name = 1;
 
-        /** A short, single line description of the field. */
+        /* A short, single line description of the field. */
         string documentation = 2;
 
         oneof type {
@@ -85,29 +100,29 @@ message SimpleModemMessageBodyParser {
             Bytes bytes = 5;
             String string = 6;
 
-            /** Specify an expected magic sequence (some bytes that are always the same). */
+            /* Specify an expected magic sequence (some bytes that are always the same). */
             bytes magic = 7;
 
-            /** Specify a custom type name. */
+            /* Specify a custom type name. */
             string custom_type = 8;
         }
 
         message Integer {
-            /** Specifies the size of this integer in bytes. */
+            /* Specifies the size of this integer in bytes. */
             int32 size_bytes = 3;
 
-            /** Specifies whether this integer is signed or unsigned. */
+            /* Specifies whether this integer is signed or unsigned. */
             bool signed = 4;
 
-            /** Specifies endian encoding for this field. This can be omitted if default endianness specified. */
+            /* Specifies endian encoding for this field. This can be omitted if default endianness specified. */
             Endian endian = 5;
         }
 
         message Float {
-            /** Specifies the size of this floating point number in bytes. */
+            /* Specifies the size of this floating point number in bytes. */
             int32 size_bytes = 3;
 
-            /** Specifies endian encoding for this field. This can be omitted if default endianness specified. */
+            /* Specifies endian encoding for this field. This can be omitted if default endianness specified. */
             Endian endian = 5;
         }
 
@@ -118,30 +133,30 @@ message SimpleModemMessageBodyParser {
         message String {
             DelimitedSize size = 3;
 
-            /** Specifies encoding for the string. This can be omitted if default encoding specified. */
+            /* Specifies encoding for the string. This can be omitted if default encoding specified. */
             string encoding = 4;
         }
     }
 
-    /** Delimited size definition, used for Bytes and Text. */
+    /* Delimited size definition, used for Bytes and Text. */
     message DelimitedSize {
         oneof size {
-            /** Specifies the number of bytes in this field. */
+            /* Specifies the number of bytes in this field. */
             int32 size_bytes = 1;
 
-            /** Specifies that this field parses all bytes until the end of the stream. */
+            /* Specifies that this field parses all bytes until the end of the stream. */
             bool end_of_stream = 2;
 
-            /** Specifies the number of bytes in this field using the value of an Integer field.
+            /* Specifies the number of bytes in this field using the value of an Integer field.
               * This integer field must be parsed before this field is parsed.
               */
             string field_name = 3;
         }
 
-        /** Specify a terminator that marks the point the field terminates, optionally,
-          * and we should continue to the next field. This is typically a single byte (i.e. 0x00).
-          * This can be combined with a size to limit the amounts of bytes that are parsed.
-          */
+        /* Specify a terminator that marks the point the field terminates, optionally,
+         * and we should continue to the next field. This is typically a single byte (i.e. 0x00).
+         * This can be combined with a size to limit the amounts of bytes that are parsed.
+         */
         bytes terminator = 4;
     }
 
@@ -151,59 +166,55 @@ message SimpleModemMessageBodyParser {
         BIG_ENDIAN = 2;
     }
 
-    /** Parser name.
-      * When this structure is used as a custom type inside a parser, this name is a reduced to
-      * a value containing only lowercase letters, numbers and underscores, like field names.
-      */
+    /* Parser name.
+     * When this structure is used as a custom type inside a parser, this name is a reduced to
+     * a value containing only lowercase letters, numbers and underscores, like field names.
+     */
     string name = 1;
 
-    /** A short, single line description of the field. */
+    /* A short, single line description of the field. */
     string documentation = 2;
 
-    /** The fields in this object. */
+    /* The fields in this object. */
     repeated Field fields = 3;
 
-    /** Sets a default endianness for this parser's fields and any fields in custom types. */
+    /* Sets a default endianness for this parser's fields and any fields in custom types. */
     Endian default_endian = 4;
 
-    /** Sets a default string encoding for this parser's fields and any fields in custom types. */
+    /* Sets a default string encoding for this parser's fields and any fields in custom types. */
     string default_text_encoding = 5;
 
-    /** A list of custom types used for custom types fields.
-      * Each is effectively a simple parser, and can have its own custom types again, which can only be used within
-      * that parser structure.
-      * The parser name is used for custom type fields.
-      */
+    /* A list of custom types used for custom types fields.
+     * Each is effectively a simple parser, and can have its own custom types again, which can only be used within
+     * that parser structure.
+     * The parser name is used for custom type fields.
+     */
     repeated SimpleModemMessageBodyParser custom_types = 6;
 }
 
 message ModemMessageBodyParserSelection {
-    message SelectIdentifier {
-        oneof identifier {
-            int32 id = 1;
-            int64 provided_parser_id = 2;
-        }
-    }
-
     /** Filter parsers by your own parser ids. */
-    repeated int32 ids = 1;
+    repeated int32 ids = 1 [deprecated = true];
 
-    /** Filter parsers by a combination of your own parser ids and provided parser ids. */
-    repeated SelectIdentifier identifiers = 7;
+    /* Filter parsers by their identifiers. */
+    repeated string identifiers = 8;
 
+    /* Find parsers by searching for this text in the name, content_ksy or simple parser definition. */
     string search = 2;
 
-    /** Only return simple parsers, created using SimpleModemMessageBodyParser. */
+    /* Only return simple parsers, created using SimpleModemMessageBodyParser. */
     bool only_simple = 3;
 
-    /** Only return parsers created from an uploaded .ksy file. */
+    /* Only return parsers created from an uploaded .ksy file. */
     bool only_ksy_file = 4;
 
-    /** Exclude parsers that were provided (those that you did not create yourself). */
-    bool exclude_provided_parsers = 5;
+    /* Exclude parsers that are not owned by your organization (those that you did not create yourself). */
+    bool only_owned_parsers = 5;
 
-    /** Only return parsers that were provided by the given parent organization. */
-    repeated string providers = 6;
+    /* Only return parsers that were created by the given parent organizations. */
+    repeated string owner_organizations = 6;
+
+    reserved 7;
 }
 
 message ListModemMessageBodyParsersRequest {
@@ -217,6 +228,9 @@ message ListModemMessageBodyParsersRequest {
     string organization = 1;
     ModemMessageBodyParserSelection selection = 2;
     Pagination pagination = 3;
+
+    /* Whether to omit the content in the resulting ModemMessageBodyParsers. */
+    bool exclude_content = 4;
 }
 
 /* Upload a new body parser from a .ksy file.
@@ -228,7 +242,11 @@ message ListModemMessageBodyParsersRequest {
 message UploadModemMessageBodyParserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
+
+    /* A descriptive name for this parser. */
     string name = 2;
+
+    /* The ksy definition for this parser. */
     string content_ksy = 3;
 }
 
@@ -241,7 +259,19 @@ message UploadModemMessageBodyParserRequest {
 message UpdateUploadedModemMessageBodyParserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
-    int32 id = 2;
+
+    /* The identifier of the parser that should be updated.
+     * [DEPRECATED] Deprecated in favour of the identifier, which is globally unique.
+     */
+    int32 id = 2 [deprecated = true];
+
+    /* The identifier of the parser that should be updated.
+     * The identifier consists of the name of the organization that created it and its id in that organization.
+     * For example my-organization:4 (the fourth parser created by that organization).
+     */
+    string identifier = 4;
+
+    /* The new ksy definition for this parser. */
     string content_ksy = 3;
 }
 
@@ -256,21 +286,60 @@ message CreateSimpleModemMessageBodyParserRequest {
 message UpdateSimpleModemMessageBodyParserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
-    int32 id = 2;
+
+    /* The identifier of the parser that should be updated.
+     * [DEPRECATED] Deprecated in favour of the identifier, which is globally unique.
+     */
+    int32 id = 2 [deprecated = true];
+
+    /* The identifier of the parser that should be updated.
+     * The identifier consists of the name of the organization that created it and its id in that organization.
+     * For example my-organization:4 (the fourth parser created by that organization).
+     */
+    string identifier = 4;
+
     SimpleModemMessageBodyParser parser = 3;
 }
 
 message RenameModemMessageBodyParserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
-    int32 id = 2;
+
+    /* The identifier of the parser that should be updated.
+     * [DEPRECATED] Deprecated in favour of the identifier, which is globally unique.
+     */
+    int32 id = 2 [deprecated = true];
+
+    /* The identifier of the parser that should be updated.
+     * The identifier consists of the name of the organization that created it and its id in that organization.
+     * For example my-organization:4 (the fourth parser created by that organization).
+     */
+    string identifier = 4;
+
+    /* The new name for this parser. */
     string name = 3;
 }
 
+/* Update the child availability for a parser.
+ * Parsers can be made available to child organizations, which means that they can be viewed in,
+ * and assigned to modems in, child organizations.
+ */
 message UpdateChildOrganizationAvailabilityRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
-    int32 id = 2;
+
+    /* The identifier of the parser that should be updated.
+     * [DEPRECATED] Deprecated in favour of the identifier, which is globally unique.
+     */
+    int32 id = 2 [deprecated = true];
+
+    /* The identifier of the parser that should be updated.
+     * The identifier consists of the name of the organization that created it and its id in that organization.
+     * For example my-organization:4 (the fourth parser created by that organization).
+     */
+    string identifier = 4;
+
+    /* The new child organization availability filter for this parser. */
     Filter.ChildOrganizations available_to_child_organizations = 3;
 }
 
@@ -280,9 +349,19 @@ message DeleteModemMessageBodyParserRequest {
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
+
+    /* A selection of parsers to be deleted. */
     ModemMessageBodyParserSelection selection = 2;
 }
 
+/* Test a parsers with a message.
+ * This method provides a bunch of options and can be used in multiple ways:
+ * - Test a real message or an uploaded message body.
+ * - Test using an existing parser, an ksy definition or a simple parser definition.
+ *
+ * This can be used to test a parser with a modem's past messages, before assigning it,
+ * or while developing a parser to validate it with an expected body.
+ */
 message TestModemMessageBodyParserRequest {
     message Response {
         oneof result {
@@ -294,23 +373,45 @@ message TestModemMessageBodyParserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
 
+    /* Either an existing parser, an uploaded ksy definition or a simple parser definition to test. */
     oneof parser {
+        /* The identifier of the parser you want to test.
+         * The identifier consists of the name of the organization that created it and its id in that organization.
+         * For example my-organization:4 (the fourth parser created by that organization).
+         */
+        string identifier = 7;
+
+        /* A ksy definition you want to test. */
         string content_ksy = 2;
+
+        /* A simple parser definition you want to test. */
         SimpleModemMessageBodyParser simple_parser = 3;
-        ModemMessageBodyParserSelection.SelectIdentifier identifier = 6;
     }
 
+    /* Either a real message or a given message body. */
     oneof data {
+        /* A byte array (message body) to parse. */
         BytesOrHex parse_bytes = 4;
+
+        /* The id of an existing message, testing the parser on its body. */
         uint64 modem_message_id = 5;
     }
+
+    reserved 6;
 }
 
+/* Retry a message, parsing it with all the currently assigned parsers that are in the given selection.
+ * If the message was previously parsed by any of those parsers, the previous result is replaced.
+ */
 message RetryModemMessageBodyParsing {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
+
+        /* The messages to parse. */
         repeated uint64 modem_message_ids = 2;
+
+        /* A selection of parsers to apply, if they are assigned. */
         ModemMessageBodyParserSelection parser_selection = 3;
     }
 
@@ -319,46 +420,63 @@ message RetryModemMessageBodyParsing {
     }
 }
 
+/* [DEPRECATED] Use ModemMessageBodyParserAssignmentService instead. */
 message ListAssignedParsersRequest {
+    option deprecated = true;
+
     message Response {
+        option deprecated = true;
+
         message AssignedParsers {
-            string modem_number = 1;
-            repeated ModemMessageBodyParser parsers = 2;
+            option deprecated = true;
+
+            string modem_number = 1 [deprecated = true];
+            repeated ModemMessageBodyParser parsers = 2 [deprecated = true];
         }
 
-        repeated AssignedParsers assigned_parsers = 1;
-        ListAssignedParsersRequest request = 2;
-        Pagination.Result pagination = 3;
+        repeated AssignedParsers assigned_parsers = 1 [deprecated = true];
+        ListAssignedParsersRequest request = 2 [deprecated = true];
+        Pagination.Result pagination = 3 [deprecated = true];
     }
 
-    string organization = 1;
-    ModemMessageBodyParserSelection selection = 2;
-    modem.ModemSelection modem_selection = 3;
-    Pagination pagination = 4;
+    string organization = 1 [deprecated = true];
+    ModemMessageBodyParserSelection selection = 2 [deprecated = true];
+    modem.ModemSelection modem_selection = 3 [deprecated = true];
+    Pagination pagination = 4 [deprecated = true];
 }
 
+/* [DEPRECATED] Use ModemMessageBodyParserAssignmentService instead. */
 message AssignModemMessageBodyParserToModemsRequest {
+    option deprecated = true;
+
     message Response {
-        repeated ListAssignedParsersRequest.Response.AssignedParsers assigned_parsers = 3;
-        AssignModemMessageBodyParserToModemsRequest request = 2;
+        option deprecated = true;
+
+        repeated ListAssignedParsersRequest.Response.AssignedParsers assigned_parsers = 3 [deprecated = true];
+        AssignModemMessageBodyParserToModemsRequest request = 2 [deprecated = true];
         reserved 1;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    ModemMessageBodyParserSelection selection = 2;
-    modem.ModemSelection modem_selection = 3;
+    string organization = 1 [deprecated = true];
+    ModemMessageBodyParserSelection selection = 2 [deprecated = true];
+    modem.ModemSelection modem_selection = 3 [deprecated = true];
 }
 
+/* [DEPRECATED] Use ModemMessageBodyParserAssignmentService instead. */
 message RemoveModemMessageBodyParserFromModemsRequest {
+    option deprecated = true;
+
     message Response {
-        repeated ListAssignedParsersRequest.Response.AssignedParsers assigned_parsers = 3;
-        RemoveModemMessageBodyParserFromModemsRequest request = 2;
+        option deprecated = true;
+
+        repeated ListAssignedParsersRequest.Response.AssignedParsers assigned_parsers = 3 [deprecated = true];
+        RemoveModemMessageBodyParserFromModemsRequest request = 2 [deprecated = true];
         reserved 1;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    ModemMessageBodyParserSelection selection = 2;
-    modem.ModemSelection modem_selection = 3;
+    string organization = 1 [deprecated = true];
+    ModemMessageBodyParserSelection selection = 2 [deprecated = true];
+    modem.ModemSelection modem_selection = 3 [deprecated = true];
 }

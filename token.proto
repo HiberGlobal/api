@@ -51,6 +51,7 @@ message ListTokensRequest {
 message CreateTokenRequest {
     message Response {
         string token = 1;
+        Token created = 2;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
