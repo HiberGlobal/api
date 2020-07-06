@@ -28,6 +28,7 @@ service WebhookService {
 message Webhook {
     int64 id = 1;
     string organization = 2;
+    string created_by = 10;
     string description = 3;
     WebhookData data = 4;
     WebhookFilters filters = 5;

@@ -25,6 +25,10 @@ service SlackIntegrationService {
 message SlackPublisher {
     int64 id = 1;
     string description = 2;
+
+    /* The uid of the user that created this publisher */
+    string created_by = 10;
+
     Data data = 3;
     Filter.Events filter_event_types = 4;
     Filter.Modems filter_modem_numbers = 5;

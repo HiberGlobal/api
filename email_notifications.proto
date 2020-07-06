@@ -25,6 +25,7 @@ message EmailNotificationPreferences {
         string name = 2;
     }
 
+    /* The organization that owns this publisher */
     string organization = 1;
 
     /* Events to receive by email. */

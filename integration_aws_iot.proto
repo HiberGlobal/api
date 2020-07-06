@@ -20,6 +20,10 @@ service AWSIoTService {
 
 message AWSIoTConfiguration {
     int64 publisher_id = 1;
+
+    /* The uid of the user that created this publisher. */
+    string created_by = 12;
+
     string url = 2;
     Filter.Modems modems = 3;
     int64 certificate_id = 4;

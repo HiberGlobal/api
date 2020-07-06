@@ -45,6 +45,9 @@ message Publisher {
     Timestamp in_cooldown_until = 8;
     bool disabled = 9;
 
+    /* Firebase uid of the user that created this publisher */
+    string created_by = 15;
+
     /* The configuration for its type. */
     oneof data {
         webhook.Webhook.WebhookData http = 10;
