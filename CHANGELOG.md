@@ -1,5 +1,30 @@
 # Changelog Hiber API
 
+### 0.52.3 (2020-07-13)
+
+This release contains a collection of performance fixes.
+
+- Performance optimizations in the message processing pipeline.
+  - Much of the pipeline is now asynchronous, instead of processing in the context of the API request.
+    This means API requests will finish faster, and bucketing can be applied to message processing.
+    Backpressure is still available through the processes, so if the message processing would get overloaded,
+    requests will get delayed eventually.
+  - Where before, the request would not finish until the message event was produced, this is no longer connected.
+    Keep this in mind when expecting an event before the end of the request.
+    There may be a delay of up to 30 seconds between the request and the event, depending on system load, timing
+    and request size.
+
+#### Changes
+
+##### UserService
+
+- Bugfix: `UserSelection.search` now also matches user ids.
+
+#### Bugfixes
+
+- `UserSelection.search` also matches user ids.
+- `Pagination.Result` next and previous are now unset instead of assigned an empty object when not available.
+
 ### 0.52 (2020-07-06)
 
 This release contains a few minor additions and some bugfixes.
