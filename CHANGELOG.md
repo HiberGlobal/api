@@ -1,5 +1,39 @@
 # Changelog Hiber API
 
+### 0.53 (2020-07-27)
+
+#### Changes
+
+##### DashboardService
+
+- Performance fixes for message counts.
+
+##### EventService
+
+- Added `OrganizationCreatedEvent.avatar` with the avatar for the created organization.
+- Limited `ModemMessageDroppedEvent` to messages using Hiberband.
+
+##### OrganizationService
+
+- Added `Organization.avatar` and `CreateOrganizationRequest.avatar`.
+- Added `GetOrganizationAvatar` request to fetch avatars for organizations.
+
+##### ModemService
+
+- Added `ListModemsRequest.include_missing_group_parents` which when set adds missing group parents
+  to the `ListModemsRequest.Response.group_parents`.
+- Added `Grouped` and `ListModemsGrouped` to list modems in a grouped structure.
+  Currently, the only grouped structure is the gateway and its connected devices.
+- Performance fixes for
+  - message counts;
+  - listing messages when filtering on source.
+
+##### ModemTransferService
+
+- Added `TransferModemsRequest.Response.mark_received_automatically_failed` to indicate whether the
+  transfer was successfully marked received when requested, so we don't have to rollback the transfer.
+  If this field is false, the transfer needs to be marked as received manually in the receiver organization.
+
 ### 0.52.3 (2020-07-13)
 
 This release contains a collection of performance fixes.

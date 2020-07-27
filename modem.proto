@@ -19,6 +19,7 @@ option go_package = "hiber";
 service ModemService {
     rpc Get (GetModemRequest) returns (Modem);
     rpc List (ListModemsRequest) returns (ListModemsRequest.Response);
+    rpc Grouped (ListModemsGrouped.Request) returns (ListModemsGrouped.Response);
     rpc Messages (ListModemMessagesRequest) returns (ListModemMessagesRequest.Response);
     rpc MessageCount (MessageCountRequest) returns (MessageCountRequest.Response);
 
@@ -397,7 +398,14 @@ message ListModemsRequest {
         ListModemsRequest request = 2;
         Pagination.Result pagination = 3;
         repeated Sort sorted_by = 4;
+
+        /* This will be populated with missing group parents (i.e. gateways) for the the modems on this page.
+         * Any group parent that is on the current page is not included in this list to avoid duplicate data.
+         * Only set when include_missing_group_parents is true in the request.
+         */
+        repeated Modem group_parents = 5;
     }
+
     /* Sorting options for the results. */
     enum Sort {
         LAST_MESSAGE_RECEIVED = 0;
@@ -410,25 +418,103 @@ message ListModemsRequest {
         STATUS_ASC = 4;
         STATUS_DESC = 5;
 
-        /* Sort ASCIIbetically on the name of the modem. De default name of the modem is its HEX number */
+        /* Sort alphabetically on the name of the modem. De default name of the modem is its HEX number */
         MODEM_NAME_ASC = 6;
         MODEM_NAME_DESC = 7;
 
-        /* Sort ASCIIbetically on the name of the organization that owns the modem */
+        /* Sort alphabetically on the name of the organization that owns the modem */
         ORGANIZATION_ASC = 8;
         ORGANIZATION_DESC = 9;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
+
+    /* Select which modems to return. */
     ModemSelection selection = 2;
+
+    /* Paginate through results. */
     Pagination pagination = 3;
+
+    /* Sort the modem with the given sort options. */
     repeated Sort sort_by = 4 [packed = false];
-    reserved 5;
+
+    /* Whether to include inbound modems in the results.
+     * Inbound modems are modems that are in a transfer that has been sent *to* your organization, but that has not
+     * been marked as received yet.
+     */
     bool include_inbound_modems = 6;
+
+    /* Whether to include outbound modems in the results.
+     * Inbound modems are modems that are in a transfer that has been sent *from* your organization, but that has not
+     * been marked as received yet.
+     */
     bool include_outbound_modems = 7;
+
+    /* Include modems from the selected child organizations. */
     Filter.ChildOrganizations child_organizations = 8;
+
+    /* Filter modems by location. */
     LocationSelection location_selection = 9;
+
+    /* Set this to true to populate the group_parents field in the response.
+     * This will be populated with missing group parents (i.e. gateways) for the the modems on this page.
+     * Any group parent that is on the current page is not included in this list to avoid duplicate data.
+     */
+    bool include_missing_group_parents = 10;
+
+    reserved 5;
+}
+
+/* Lists all modems the given criteria, grouped by gateway.
+ * Pagination is applied to modems in a group, not to the groups themselves.
+ */
+message ListModemsGrouped {
+    message Request {
+        /* The modems you want to display in the groups.
+         * This is a ListModemsRequest that is used to fetch the modems for each group, with the added limitation
+         * that the modems must be in the group.
+         *
+         * The usage of ListModemsRequest and ListModemsRequest.Response in the Response.Group was intentionally
+         * chosen to simplify pagination withing a group, since the response contains the request
+         * (which will be updated with the group it is in) and pagination to select the next page using the
+         * list method.
+         */
+        ListModemsRequest group_content = 1;
+
+        /* Select the parents for the groups to display.
+         *
+         * Anything selected here that cannot have any connected modems (i.e. a direct modem) wil be omitted
+         * unless allow_any_group_parent is set to true.
+         * Only gateways will have connected devices, so unless allow_any_group_parent is true,
+         * type is replaced with GATEWAY. This may change in the future if more grouping options are introduced.
+         */
+        ListModemsRequest groups = 2;
+
+        /* Set to true to allow group request to return modems that can never be the parent of a group.
+         * - If this flag is false, the modems for the groups are automatically filtered on being a parent of a group.
+         *   Note that the group may still be empty, i.e. when a gateway has no connected devices.
+         * - If this flag is true, the group parents can include modems which cannot be a parent and for which
+         *   the group can only be empty.
+         */
+        bool allow_any_group_parent = 3;
+    }
+
+    message Response {
+        /* The groups, based on a parent (typically a gateway unless allow_any_group_parent was set).
+         * This is a ListModemsRequest.Response, with the selection updated with its parent and includes
+         * the group parent in the group_parents field.
+         *
+         * The usage of ListModemsRequest and ListModemsRequest.Response in the Response.Group was intentionally
+         * chosen to simplify pagination withing a group, since the response contains the request
+         * (which will be updated with the group it is in) and pagination to select the next page using the
+         * list method.
+         */
+        repeated ListModemsRequest.Response groups = 1;
+        Request request = 2;
+        Pagination.Result pagination = 3;
+        repeated ListModemsRequest.Sort sorted_by = 4;
+    }
 }
 
 message ListModemMessagesRequest {

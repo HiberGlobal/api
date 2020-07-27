@@ -173,6 +173,15 @@ message TransferModemsRequest {
     message Response {
         TransferModemsRequest request = 1;
         ModemTransfer transfer = 2;
+
+        /* When marking a transfer to be received automatically,
+         * the calling entity must be able to impersonate the receiving entity.
+         * If this (or any other part of the marking the transfer as received) fails,
+         * this boolean will be set to true.
+         * It is the clients responsibility to check this boolean and inform the client.
+         * Note that the transfer itself is created and can still be accepted manually.
+         */
+        bool mark_received_automatically_failed = 3;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */

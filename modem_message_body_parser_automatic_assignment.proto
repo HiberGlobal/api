@@ -11,6 +11,7 @@ option java_package = "global.hiber.api.grpc.modem.message.bodyparser";
 option java_outer_classname = "ModemMessageBodyParserAutomaticAssignmentApi";
 option go_package = "hiber";
 
+// protolint:disable MAX_LINE_LENGTH
 service ModemMessageBodyParserAutomaticAssignmentService {
     rpc List (ListBodyParserAutomaticAssignmentRules.Request) returns (ListBodyParserAutomaticAssignmentRules.Response);
     rpc Create (CreateBodyParserAutomaticAssignmentRule.Request) returns (CreateBodyParserAutomaticAssignmentRule.Response);
@@ -23,6 +24,7 @@ service ModemMessageBodyParserAutomaticAssignmentService {
 
     rpc Delete (DeleteBodyParserAutomaticAssignmentRule.Request) returns (DeleteBodyParserAutomaticAssignmentRule.Response);
 }
+// protolint:enable MAX_LINE_LENGTH
 
 /* A rule to assign a ModemMessageBodyParser to any number of modems automatically, based on varying criteria.
  *

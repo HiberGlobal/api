@@ -21,6 +21,7 @@ service OrganizationService {
     rpc Tree (OrganizationTreeRequest) returns (OrganizationTreeRequest.Response);
     rpc ListChildOrganizations (ListChildOrganizationsRequest) returns (ListChildOrganizationsRequest.Response);
     rpc ValidateCreationToken (ValidateOrganizationCreationTokenRequest) returns (ValidateOrganizationCreationTokenRequest.Response);
+    rpc GetAvatar (GetOrganizationAvatar.Request) returns (GetOrganizationAvatar.Response);
 }
 
 /* Organization data. An Organization can have many linked users, but the organization is the owner
@@ -41,13 +42,18 @@ message Organization {
         string phone = 3;
     }
 
+    /* The slug for this organization, used to identify organizations */
     string organization = 1;
+    /* The name of the organization to display to the end-user */
     string display_name = 2;
-    string vat_number = 3;
+
     Address address = 4;
+    Contact contact = 7;
+
+    string vat_number = 3;
     string billing_name = 5;
     Address billing_address = 6;
-    Contact contact = 7;
+
     Timestamp contract_signature_date = 8;
     Timestamp created_at = 9;
     Timestamp updated_at = 10;
@@ -81,6 +87,7 @@ message UpdateOrganizationRequest {
     string billing_name = 5;
     Organization.Address billing_address = 6;
     Organization.Contact contact = 7;
+    Avatar avatar = 8;
 }
 
 /* Get your current organization's organization tree.
@@ -124,11 +131,16 @@ message CreateOrganizationRequest {
      */
     string parent_organization = 1;
 
-    /* The name for the new organization. Lowercase, letters, numbers, dashes and underscores only. Required. */
+    /* The name for the new organization. Lowercase, letters, numbers, dashes and underscores only. Required.
+     * Used as an identifier for the organization.
+     */
     string new_organization = 2;
 
     /* The name to display for your organization (i.e. capitalized, with spaces, etc.). Default to the name above. */
     string display_name = 3;
+
+    /* The avatar image representing this organisation. Usually the logo. */
+    Avatar avatar = 11;
 
     /* Whether this organization is created for a business. */
     bool is_business = 4;
@@ -188,4 +200,15 @@ message ValidateOrganizationCreationTokenRequest {
 
     /* A token that allows you to create an organization without having an organization. */
     string organization_creation_token = 1;
+}
+
+message GetOrganizationAvatar {
+    message Request {
+        /* The slug for this organization, used to identify organizations */
+        repeated string organizations = 1;
+    }
+    message Response {
+        /* Avatars, indexed by organization slug */
+        map<string, Avatar> avatars = 1;
+    }
 }

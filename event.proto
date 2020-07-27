@@ -630,6 +630,7 @@ message Event {
             organization.Organization created = 2;
             string title = 9;
             string description = 10;
+            Avatar avatar = 12;
             Timestamp time = 11;
         }
 
