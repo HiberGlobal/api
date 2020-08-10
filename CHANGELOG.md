@@ -1,5 +1,33 @@
 # Changelog Hiber API
 
+### 0.54.2 (2020-08-10)
+
+This is a minor release with a few more performance improvements and some bug fixes.
+
+#### Changes
+
+##### ModemService
+
+- Dead, damaged and lost modems are now filtered out by default.
+
+##### ModemTransferService
+
+- Fixed a bug that would cause some transfer to be stuck in transit, returning an error when trying to receive them.
+
+### 0.54 (2020-08-06)
+
+This release contains a lot of performance improvements.
+
+You may see some calls return a time out error if they would take a long time before.
+This allows us to conserve resources and trace which calls need to be optimized.
+
+#### Changes
+
+##### EventService
+
+- Some event bundles now have an approximated count, to avoid them timing out.
+  In the next few releases, we will optimize this to provide accurate counts whenever possible within the timeout.
+
 ### 0.53 (2020-07-27)
 
 #### Changes

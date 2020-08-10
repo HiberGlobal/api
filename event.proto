@@ -697,6 +697,11 @@ message BundledEvent {
     string title = 3;
     string description = 4;
     Timestamp last_event = 5;
+
+    /* Indicates that the amount is an approximation, and not an exact value.
+     * Some events will be approximated to avoid a large number of events affecting the request time.
+     */
+    bool approximated_amount = 6;
 }
 
 /* Selection object for Event list and stream. Filter events on modem, webhook, time and error state, and
