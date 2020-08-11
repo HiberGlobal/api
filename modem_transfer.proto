@@ -170,6 +170,15 @@ message TransferModemsRequest {
         TRANSFER_EXTERNAL_DEVICES = 3;
     }
 
+    /** What to do with the messages, events and other related data. */
+    enum DataTransferMode {
+        /** Include all related data in the transfer. */
+        INCLUDE = 0;
+
+        /** Exclude messages and all events. The data will be deleted. */
+        EXCLUDE_ALL = 1;
+    }
+
     message Response {
         TransferModemsRequest request = 1;
         ModemTransfer transfer = 2;
@@ -218,7 +227,7 @@ message TransferModemsRequest {
          * Deprecated since 0.46.
          * To allow gateways to be transferred without their external devices must now be done using `gateway_transfer_mode`
          */
-        bool allow_gateways_and_external_devices = 7 [deprecated=true];
+        bool allow_gateways_and_external_devices = 7 [deprecated = true];
 
         /* Set the mode with which this gateway is transferred.
          * It explicitly sets what needs to happen to external devices.
@@ -226,6 +235,9 @@ message TransferModemsRequest {
          */
         GatewayTransferMode gateway_transfer_mode = 8;
     }
+
+    /** What to do with the modem's data, like messages and events. */
+    DataTransferMode data_transfer_mode = 9;
 }
 
 message ListModemTransfersRequest {

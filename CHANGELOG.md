@@ -1,5 +1,17 @@
 # Changelog Hiber API
 
+### 0.55 (2020-08-11)
+
+This release introduces the option to transfer modems without their data.
+
+#### Changes
+
+##### ModemTransferService
+
+- Added type `TransferModemsRequest.DataTransferMode` and field `TransferModemsRequest.date_transfer_modem`
+  to indicate what should happen with modem data like messages and events when it is transferred.
+  The current options are to include or exclude everything, but more granular options will be added later.
+
 ### 0.54.2 (2020-08-10)
 
 This is a minor release with a few more performance improvements and some bug fixes.
