@@ -92,6 +92,9 @@ message Event {
             string organization = 1;
             string modem_number = 2;
 
+            /* External device id for this modem (e.g. a MAC address). */
+            string modem_external_device_id = 20;
+
             UpdateClearableString display_name = 10;
             modem.Modem.Peripherals.HiberAntenna antenna = 11;
             UpdateClearableString custom_antenna = 12;
@@ -114,8 +117,19 @@ message Event {
         message ModemLocationUpdatedEvent {
             string organization = 1;
             string modem_number = 2;
+
+            /* External device id for this modem (e.g. a MAC address). */
+            string modem_external_device_id = 8;
+
+            /* The updated location for this modem. */
             Location location = 3;
+
+            /* The device time of the first message with the new location. */
+            Timestamp updated_at = 9;
+
+            /* The time this event was generated on the server, after the message was received. */
             Timestamp time = 4;
+
             repeated tag.Tag tags = 5;
             string title = 6;
             string description = 7;
@@ -127,9 +141,19 @@ message Event {
         message ModemStaleEvent {
             string organization = 1;
             string modem_number = 2;
+
+            /* External device id for this modem (e.g. a MAC address). */
+            string modem_external_device_id = 9;
+
+            /* The number of days this modem is allowed to be inactive before triggering this event. */
             int32 maximum_inactivity_period = 3;
+
+            /* The time this modems inactivity exceeded the maximum_inactivity_period. */
             Timestamp time = 4;
+
+            /* The last time this modem sent a message. */
             Timestamp last_message = 5;
+
             repeated tag.Tag tags = 6;
             string title = 7;
             string description = 8;
@@ -143,9 +167,19 @@ message Event {
         message ModemActivatedEvent {
             string organization = 1;
             string modem_number = 2;
+
+            /* External device id for this modem (e.g. a MAC address). */
+            string modem_external_device_id = 11;
+
+            /* The id of the mesasge that activated this modem. */
             uint64 message_id = 3;
+
+            /* The time this modem was activated in the system. */
             Timestamp time = 4;
+
+            /* The time this modem sent the message that activated it. */
             Timestamp sent_at = 10;
+
             repeated tag.Tag tags = 7;
             string title = 8;
             string description = 9;
@@ -165,6 +199,8 @@ message Event {
             message ModemMessageReceivedEvent {
                 string organization = 1;
                 string modem_number = 2;
+
+                /* External device id for this modem (e.g. a MAC address). */
                 string modem_external_device_id = 8;
 
                 /* The received message, including parsed body. */
@@ -182,6 +218,8 @@ message Event {
             message ModemMessageBodyReceivedEvent {
                 string organization = 1;
                 string modem_number = 2;
+
+                /* External device id for this modem (e.g. a MAC address). */
                 string modem_external_device_id = 3;
 
                 /* Id of the message that was parsed. */
@@ -210,6 +248,8 @@ message Event {
             message ModemMessageBodyParsedEvent {
                 string organization = 1;
                 string modem_number = 2;
+
+                /* External device id for this modem (e.g. a MAC address). */
                 string modem_external_device_id = 3;
 
                 /* Id of the message that was parsed. */
@@ -245,6 +285,9 @@ message Event {
                 string organization = 1;
                 string modem_number = 2;
 
+                /* External device id for this modem (e.g. a MAC address). */
+                string modem_external_device_id = 10;
+
                 /* The amount of dropped messages between the previous message and this message. */
                 int32 dropped_messages = 3;
 
@@ -263,12 +306,15 @@ message Event {
             }
 
             /* Triggered when the time between sending and receiving the message is above a certain threshold. This can
-             * indicate that there is a communication issue between the modem and the server, i.e. a malfunction ground
+             * indicate that there is a communication issue between the modem and the server, e.g. a malfunction ground
              * station, so that the satellite takes longer to send its data on.
              */
             message ModemMessageDelayedEvent {
                 string organization = 1;
                 string modem_number = 2;
+
+                /* External device id for this modem (e.g. a MAC address). */
+                string modem_external_device_id = 10;
 
                 /* The message that produced this event.
                  * Note that this is a reduced version of the message, and may omit parsed body.
@@ -293,8 +339,24 @@ message Event {
             message ModemMessageCannotBeParsedEvent {
                 string organization = 1;
                 string modem_number = 2;
+
+                /* External device id for this modem (e.g. a MAC address). */
+                string modem_external_device_id = 9;
+
+                /* The message that cannot be parsed.
+                 * This message may or may not be available in the system, depending one the reason it could not
+                 * be parsed.
+                 */
                 uint64 modem_message_id = 3;
+
+                /* The moment this event was triggered. */
                 Timestamp time = 4;
+
+                /* The reason this message could not be parsed.
+                 * This could be, for example:
+                 * - invalid message envelope, but with enough information to determine the modem
+                 * - all body parsers failed to parse the body of the message
+                 */
                 string reason = 5;
                 repeated tag.Tag tags = 6;
                 string title = 7;
@@ -396,6 +458,10 @@ message Event {
             message ModemClaimedEvent {
                 string organization = 1;
                 string modem_number = 2;
+
+                /* External device id for this modem (e.g. a MAC address). */
+                string modem_external_device_id = 8;
+
                 modem.ModemClaim claim = 3;
                 Timestamp time = 4;
                 string title = 5;
@@ -766,7 +832,17 @@ message ListEventsRequest {
 message EventStreamRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
+
+    /* The selection for the events. */
     EventSelection selection = 2;
+
+    /* Include events from child organizations, if requested.
+     * This is only available for streaming, listing events can only be listed per organization.
+     *
+     * Keep in mind that filtering events using the selection is limited.
+     * Filtering on tags or publishers, for example, can only apply to the parent organization.
+     */
+    Filter.ChildOrganizations child_organizations = 3;
 }
 
 /* Configuration for configurable events.

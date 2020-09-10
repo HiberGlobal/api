@@ -1,5 +1,33 @@
 # Changelog Hiber API
 
+### 0.57 (2020-09-10)
+
+This release introduces a number of new event fields and the option to stream events from child organizations.
+
+#### Changes
+
+##### EventService
+
+- Added `modem_external_device_id` to all modem events:
+  - `ModemUpdatedEvent`
+  - `ModemLocationUpdatedEvent`
+  - `ModemStaleEvent`
+  - `ModemActivatedEvent`
+  - `ModemMessageDelayedEvent`
+  - `ModemMessageCannotBeParsedEvent`
+  - `ModemClaimedEvent`
+
+  The field was already present on some modem events, so this was mostly a change for consistency.
+
+- Added `updated_at` to `ModemLocationUpdatedEvent` with the time the modem sent the message with the new location.
+
+  The event time it the time the location was updated on the server, which was misleading,
+  given the possible delay between the modem sending the message and the server processing it.
+
+- Added `child_organizations` to `EventStreamRequest`, to allow a client to stream events from its child organizations.
+  Some limitations apply, for example related to filtering on tags or publishers, which only works for
+  the current (parent) organization.
+
 ### 0.55 (2020-08-11)
 
 This release introduces the option to transfer modems without their data.
