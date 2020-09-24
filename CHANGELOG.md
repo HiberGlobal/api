@@ -1,5 +1,22 @@
 # Changelog Hiber API
 
+### 0.58 (2020-09-24)
+
+This release is mostly a bug fix and performance release.
+
+#### Changes
+
+##### EventService
+
+- Fixed the event bundled counts. They were changed to an approximation in 0.54, which needed some nuance.
+  Now, event bundles are only approximated when there are large numbers of events.
+
+#### Bugfixes
+
+- Set up for improved stale detection on modems. In a next release, this will be used for better stale detection.
+- Fix a bug where organization avatars could not be retrieved.
+- Add more (performance) monitoring and data caching.
+
 ### 0.57 (2020-09-10)
 
 This release introduces a number of new event fields and the option to stream events from child organizations.
