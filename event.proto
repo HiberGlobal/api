@@ -41,6 +41,7 @@ service EventService {
 message Event {
     bool is_error = 1;
     oneof event {
+        ModemEvent.ModemCreatedEvent modem_created = 55;
         ModemEvent.ModemUpdatedEvent modem_updated = 39;
         ModemEvent.ModemLocationUpdatedEvent modem_location_updated = 2;
         ModemEvent.ModemActivatedEvent modem_activated = 36;
@@ -88,6 +89,19 @@ message Event {
     }
 
     message ModemEvent {
+        message ModemCreatedEvent {
+            string organization = 1;
+            string modem_number = 2;
+
+            /* External device id for this modem (e.g. a MAC address). */
+            string modem_external_device_id = 20;
+
+            Timestamp time = 4;
+            repeated tag.Tag tags = 5;
+            string title = 6;
+            string description = 7;
+        }
+
         message ModemUpdatedEvent {
             string organization = 1;
             string modem_number = 2;
@@ -867,6 +881,10 @@ message EventConfiguration {
          * like daylight saving time automatically.
          */
         Timestamp align_to_time = 3;
+
+        /* Send an event, even if the summary does not contain any information
+         */
+        bool include_empty_summaries = 4;
     }
 
     string organization = 1;

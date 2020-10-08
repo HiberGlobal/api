@@ -1,5 +1,31 @@
 # Changelog Hiber API
 
+### 0.59 (2020-10-08)
+
+This release introduces a new event type, adds a few quality of life improvements and
+a selection of bugfixes and improvements.
+
+#### Changes
+
+##### EventService
+
+- Added `Event.ModemEvent.ModemCreatedEvent`, which is generated when a new modem is created automatically.
+  This happens, for example, when a new device is connected to a gateway.
+- Added `EventConfoguration.include_empty_summaries` to enable the sending of a message summary when it has no data.
+  This can be useful to alert for inactivity in a configured period, but its value depends on the configuration,
+  so it is disabled by default.
+
+##### StatusService
+
+- Added `PublisherStatus.publisher_type` to distinguish between the different types of publishers.
+
+#### Bugfixes and improvements
+
+- Fixed Avatar upload for organizations, which would fail under certain conditions.
+- Improved modem stale detection. It will be improved iteratively in the coming months.
+- Improved the message deduplication.
+- Improved system monitoring and testing.
+
 ### 0.58 (2020-09-24)
 
 This release is mostly a bug fix and performance release.

@@ -3,6 +3,7 @@ syntax = "proto3";
 package hiber.status;
 
 import "base.proto";
+import "publisher.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.status";
@@ -38,6 +39,7 @@ message OrganizationStatus {
     message PublisherStatus {
         int64 publisher_id = 1;
         Health health = 2;
+        hiber.publisher.Publisher.Type publisher_type = 4;
         repeated string messages = 3;
     }
 
