@@ -1,0 +1,49 @@
+{
+  "modemUpdated": {
+    "organization": "your-organization",
+    "modemNumber": "AAAA AAAA",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z"
+    },
+    "tags": [
+      {
+        "id": "1",
+        "label": {
+          "name": "example-tag"
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "name": "example-tag-2"
+        }
+      }
+    ],
+    "title": "Modem AAAA AAAA was updated.",
+    "description": "Modem AAAA AAAA was updated:\n - Display name: AAAA AAAA \u003d\u003e custom-name\n - Notes: my-notes \u003d\u003e my-updated-notes\n - peripheral-type-1: peripheral-name-1 \u003d\u003e peripheral-name-1\n - peripheral-type-2: peripheral-name-2 \u003d\u003e peripheral-name-2\n - peripheral-type-3 peripheral-name-3",
+    "displayName": {
+      "updated": true,
+      "value": "custom-name"
+    },
+    "customAntenna": {
+    },
+    "gps": {
+      "value": true
+    },
+    "location": {
+    },
+    "peripherals": {
+      "peripheral-type-1": "peripheral-name-1",
+      "peripheral-type-2": "peripheral-name-2",
+      "peripheral-type-3": "peripheral-name-3"
+    },
+    "notes": {
+      "updated": true,
+      "value": "my-updated-notes"
+    },
+    "healthWarningPeriod": {
+    },
+    "modemExternalDeviceId": "AABBCCDDEEFFGGHH"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "publisherDeleted": {
+    "organization": "your-organization",
+    "deleted": {
+      "id": "10001",
+      "description": "example",
+      "deprecatedData": {
+        "url": "https://example.com/my-webhook",
+        "contentType": "JSON",
+        "certificateId": "1",
+        "http": {
+          "secret": "my-secret"
+        }
+      },
+      "filters": {
+        "eventTypes": {
+          "include": [
+            "MODEM_MESSAGE_RECEIVED"
+          ]
+        },
+        "modemNumbers": {
+          "include": [
+            "AAAA AAAA"
+          ]
+        },
+        "tags": {
+        }
+      },
+      "tags": [
+        {
+          "id": "1",
+          "label": {
+            "name": "example-tag"
+          }
+        },
+        {
+          "id": "2",
+          "label": {
+            "name": "example-tag-2"
+          }
+        }
+      ],
+      "inCooldownUntil": {
+      },
+      "http": {
+        "url": "https://example.com/my-webhook",
+        "secret": "my-secret",
+        "contentType": "JSON",
+        "certificateId": "1"
+      },
+      "createdBy": "example-identifier"
+    },
+    "tags": [
+      {
+        "id": "1",
+        "label": {
+          "name": "example-tag"
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "name": "example-tag-2"
+        }
+      }
+    ],
+    "title": "Webhook at https://example.com/my-webhook with id 10001 has been deleted.",
+    "description": "Webhook 10001 has been deleted.\nIt\u0027s description was: example",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z"
+    }
+  }
+}

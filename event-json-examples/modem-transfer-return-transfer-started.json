@@ -1,0 +1,114 @@
+{
+  "isError": true,
+  "modemTransferReturnTransferStarted": {
+    "returnTransfer": {
+      "identifier": "example-identifier-2",
+      "modemNumbers": [
+        "AAAA AAAA"
+      ],
+      "type": "RETURN",
+      "senderOrganization": "your-organization",
+      "recipientOrganization": "your-organization-2",
+      "returnFor": [
+        "example-identifier"
+      ],
+      "trackingInformation": "your tracking info",
+      "createdAt": {
+        "timestamp": "2020-06-03T05:15:25.355Z",
+        "textual": "2020-06-03T05:15:25.355Z"
+      },
+      "tags": [
+        {
+          "id": "1",
+          "label": {
+            "name": "example-tag"
+          }
+        },
+        {
+          "id": "2",
+          "label": {
+            "name": "example-tag-2"
+          }
+        }
+      ]
+    },
+    "originalTransfer": {
+      "identifier": "example-identifier",
+      "modemNumbers": [
+        "AAAA AAAA"
+      ],
+      "senderOrganization": "your-organization",
+      "recipientOrganization": "your-organization-2",
+      "returnTransfers": [
+        "example-identifier-2"
+      ],
+      "trackingInformation": "your tracking info",
+      "createdAt": {
+        "timestamp": "2020-06-01T05:15:25.355Z",
+        "textual": "2020-06-01T05:15:25.355Z"
+      },
+      "receivedAt": {
+        "timestamp": "2020-06-01T06:15:25.355Z",
+        "textual": "2020-06-01T06:15:25.355Z"
+      },
+      "returnDeadline": {
+        "timestamp": "2020-07-01T05:15:25.355Z",
+        "textual": "2020-07-01T05:15:25.355Z"
+      },
+      "tags": [
+        {
+          "id": "1",
+          "label": {
+            "name": "example-tag"
+          }
+        },
+        {
+          "id": "2",
+          "label": {
+            "name": "example-tag-2"
+          }
+        }
+      ]
+    },
+    "returnLines": [
+      {
+        "originalTransfer": "example-identifier",
+        "returnTransfer": "example-identifier-2",
+        "modemNumbers": [
+          "AAAA AAAA"
+        ],
+        "reason": "DAMAGED",
+        "comment": "some additional comment",
+        "createdAt": {
+          "timestamp": "2020-06-03T05:15:25.355Z",
+          "textual": "2020-06-03T05:15:25.355Z"
+        },
+        "returnedAt": {
+          "timestamp": "2020-06-03T05:15:25.355Z",
+          "textual": "2020-06-03T05:15:25.355Z"
+        }
+      }
+    ],
+    "organization": "your-organization",
+    "time": {
+      "timestamp": "2020-06-03T05:15:25.355Z",
+      "textual": "2020-06-03T05:15:25.355Z"
+    },
+    "tags": [
+      {
+        "id": "1",
+        "label": {
+          "name": "example-tag"
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "name": "example-tag-2"
+        }
+      }
+    ],
+    "title": "1 of the 1 modems you sent to your-organization-2 are being returned!",
+    "description": "1 of the 1 modems that were transferred from your-organization to your-organization-2 are being returned.\nThe following modems are in this return transfer example-identifier-2:\n - Damaged: AAAA AAAA"
+  }
+}

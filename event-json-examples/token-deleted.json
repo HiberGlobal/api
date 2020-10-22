@@ -1,0 +1,30 @@
+{
+  "tokenDeleted": {
+    "organization": "your-organization",
+    "token": {
+      "id": "1",
+      "name": "your-token",
+      "userId": "user-identifier",
+      "organization": "your-organization",
+      "expiresAt": {
+        "timestamp": "2020-06-04T05:15:25.355Z",
+        "textual": "2020-06-04T05:15:25.355Z"
+      },
+      "userPermissions": [
+        "READ"
+      ],
+      "organizationPermissions": [
+        "ORGANIZATION_UPDATE",
+        "MODEMS",
+        "USERS",
+        "USERS_MANAGE"
+      ]
+    },
+    "title": "Token your-token (id 1) was deleted.",
+    "description": "Token your-token (id 1) was deleted.",
+    "time": {
+      "timestamp": "2020-06-01T08:15:25.355Z",
+      "textual": "2020-06-01T08:15:25.355Z"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 {
-  "modemMessageReceived": {
+  "isError": true,
+  "modemMessageDelayed": {
     "organization": "your-organization",
     "modemNumber": "AAAA AAAA",
     "message": {
@@ -22,21 +23,11 @@
         "bytes": "ZXhhbXBsZQ==",
         "hex": "6578616D706C65"
       },
-      "bodyParsed": [
-        {
-          "parserId": 2,
-          "parserName": "my-parser",
-          "result": {
-            "text": "example"
-          },
-          "parserIdentifier": "example-identifier"
-        }
-      ],
-      "bodyParsedSuccessfully": true,
       "sources": [
         "HIBERBAND"
       ]
     },
+    "delaySeconds": "3600",
     "tags": [
       {
         "id": "1",
@@ -51,8 +42,8 @@
         }
       }
     ],
-    "title": "New message from modem AAAA AAAA was received and processed. It was sent at 2020-06-01 05:15:25.355Z.",
-    "description": "A new Hiberband message from modem AAAA AAAA was received and decrypted at 2020-06-01 06:15:25.355Z:\nThe message was sent at 2020-06-01 05:15:25.355Z with location (20.222,30.33299).\nIt contained the following body (hex): \n 6578616D706C65\n\nIts body was parsed by:\n - my-parser: {\"text\": \"example\"}\n",
+    "title": "The last message from modem AAAA AAAA was delayed by 3600 seconds.",
+    "description": "The last message from modem AAAA AAAA arrived with a delay of 3600 seconds.",
     "time": {
       "timestamp": "2020-06-01T06:15:25.355Z",
       "textual": "2020-06-01T06:15:25.355Z"

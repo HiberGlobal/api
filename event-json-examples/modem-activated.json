@@ -1,0 +1,32 @@
+{
+  "modemActivated": {
+    "organization": "your-organization",
+    "modemNumber": "AAAA AAAA",
+    "messageId": "10001",
+    "time": {
+      "timestamp": "2020-06-01T06:15:25.355Z",
+      "textual": "2020-06-01T06:15:25.355Z"
+    },
+    "tags": [
+      {
+        "id": "1",
+        "label": {
+          "name": "example-tag"
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "name": "example-tag-2"
+        }
+      }
+    ],
+    "title": "Modem AAAA AAAA has been activated at 2020-06-01 05:15:25.355Z.",
+    "description": "Modem AAAA AAAA was activated when it sent its first real message (10001),which was sent at 2020-06-01 05:15:25.355Z and received at 2020-06-01 06:15:25.355Z.",
+    "sentAt": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z"
+    },
+    "modemExternalDeviceId": "AABBCCDDEEFFGGHH"
+  }
+}

@@ -1,5 +1,41 @@
 # Changelog Hiber API
 
+### 0.60 (2020-10-22)
+
+This release contains a lot of preparatory work for future features:
+- Gateway and connected devices spanning over child organizations.
+- Advanced simulation of messages for modems.
+- Performance optimizations to scale up supported message volume.
+
+#### Changes
+
+##### ModemService
+
+- Prepare for allowing structures where a gateway is in a parent organization of the connected devices,
+  allowing for more complex reseller structures.
+- For testing environment, improved modem message simulation, which includes:
+  - Configurable simulation per organization (which will be added to the API after a testing phase)
+  - Simulating gateways and connected devices
+  - Simulating delayed messages
+  - Simulating modem inactivity
+
+##### EventService
+
+- Renamed event type `MODEM_MESSAGE_PARSED` to `MODEM_MESSAGE_BODY_PARSED` for clarity in `base.proto`.
+- Added example json files for each event to the `event-json-example` directory.
+- In `BundledEvent`, the difference between an absolute count and an approximated count was made more clear:
+  - The `amount` field has been deprecated (and renamed to `deprecated_amount`).
+  - The `last_event` field has been deprecated (and renamed to `deprecated_last_event`).
+  - The `approximated_amount` field has been deprecated (and renamed to `deprecated_approximated_amount`).
+  - To replace the fields above, we've added the `exact_amount` and `approximated_amount`, which contain
+    an `amount` field.
+  - Only `ExactAmount` has a `last_event` field, since this value is not available when approximating.
+    The `deprecated_approximated_amount` is set to the request time when approximating.
+
+#### Bugfixes and improvements
+
+- Fix publishers stats, which included deleted publishers.
+
 ### 0.59 (2020-10-08)
 
 This release introduces a new event type, adds a few quality of life improvements and

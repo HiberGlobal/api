@@ -1,0 +1,33 @@
+{
+  "isError": true,
+  "modemStale": {
+    "organization": "your-organization",
+    "modemNumber": "AAAA AAAA",
+    "maximumInactivityPeriod": 2,
+    "time": {
+      "timestamp": "2020-06-05T05:15:25.355Z",
+      "textual": "2020-06-05T05:15:25.355Z"
+    },
+    "lastMessage": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z"
+    },
+    "tags": [
+      {
+        "id": "1",
+        "label": {
+          "name": "example-tag"
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "name": "example-tag-2"
+        }
+      }
+    ],
+    "title": "Modem AAAA AAAA has been silent for more than 4 days!",
+    "description": "No messages were received from modem AAAA AAAA for 4 days.\nIt exceeded the maximum inactivity period of (2 days) at 2020-06-03 05:15:25.355Z.\n",
+    "modemExternalDeviceId": "AABBCCDDEEFFGGHH"
+  }
+}

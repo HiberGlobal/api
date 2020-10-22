@@ -1,0 +1,32 @@
+{
+  "organizationUpdated": {
+    "organization": "your-organization",
+    "displayNameUpdated": "new-Your Organization",
+    "vatNumberUpdated": "new-vat-number",
+    "addressUpdated": {
+      "lines": [
+        "address line 1",
+        "address line 2"
+      ],
+      "zipCode": "new-postal-code",
+      "city": "your-city",
+      "state": "your-state",
+      "country": "NL"
+    },
+    "isBusinessUpdated": {
+    },
+    "billingAddressUpdated": {
+    },
+    "contactUpdated": {
+      "name": "your-name",
+      "email": "new-email",
+      "phone": "your-phone"
+    },
+    "title": "Organization data was updated.",
+    "description": "your-organization was updated:\n - Display name: Your Organization \u003d\u003e new-Your Organization\n - Vat number: your-vat-number \u003d\u003e new-vat-number\n - Address was updated\n - Contact: your-name \u003d\u003e your-name",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z"
+    }
+  }
+}

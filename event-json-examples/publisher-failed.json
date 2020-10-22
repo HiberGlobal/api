@@ -1,0 +1,76 @@
+{
+  "isError": true,
+  "publisherFailed": {
+    "organization": "your-organization",
+    "reason": "the request timed out",
+    "failed": {
+      "id": "10001",
+      "description": "example",
+      "deprecatedData": {
+        "url": "https://example.com/my-webhook",
+        "contentType": "JSON",
+        "certificateId": "1",
+        "http": {
+          "secret": "my-secret"
+        }
+      },
+      "filters": {
+        "eventTypes": {
+          "include": [
+            "MODEM_MESSAGE_RECEIVED"
+          ]
+        },
+        "modemNumbers": {
+          "include": [
+            "AAAA AAAA"
+          ]
+        },
+        "tags": {
+        }
+      },
+      "tags": [
+        {
+          "id": "1",
+          "label": {
+            "name": "example-tag"
+          }
+        },
+        {
+          "id": "2",
+          "label": {
+            "name": "example-tag-2"
+          }
+        }
+      ],
+      "inCooldownUntil": {
+      },
+      "http": {
+        "url": "https://example.com/my-webhook",
+        "secret": "my-secret",
+        "contentType": "JSON",
+        "certificateId": "1"
+      },
+      "createdBy": "example-identifier"
+    },
+    "tags": [
+      {
+        "id": "1",
+        "label": {
+          "name": "example-tag"
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "name": "example-tag-2"
+        }
+      }
+    ],
+    "title": "Webhook 10001 in your-organization has failed.",
+    "description": "Webhook 10001 (example) in organization your-organization has failed wth the following error:\nthe request timed out",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z"
+    }
+  }
+}

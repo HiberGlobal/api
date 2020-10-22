@@ -1,0 +1,21 @@
+{
+  "modemClaimedEvent": {
+    "organization": "your-organization",
+    "modemNumber": "AAAA AAAA",
+    "claim": {
+      "modemNumber": "AAAA AAAA",
+      "createdAt": {
+        "timestamp": "2020-06-01T05:15:25.355Z",
+        "textual": "2020-06-01T05:15:25.355Z"
+      },
+      "claimingOrganization": "your-organization-2"
+    },
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z"
+    },
+    "title": "Your modem with number -1431655766 was claimed by your-organization-2.",
+    "description": "Your modem with number AAAA AAAA was claimed by your-organization-2.",
+    "modemExternalDeviceId": "AABBCCDDEEFFGGHH"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "publisherUpdated": {
+    "organization": "your-organization",
+    "updatedDescription": {
+      "updated": true,
+      "value": "updated"
+    },
+    "partialUpdateData": {
+      "url": "https://example.com/updated-webhook"
+    },
+    "updatedEventFilter": {
+      "value": {
+      }
+    },
+    "updatedModemFilter": {
+      "value": {
+      }
+    },
+    "updatedTagFilter": {
+      "value": {
+      }
+    },
+    "updatedActiveState": {
+    },
+    "tags": [
+      {
+        "id": "1",
+        "label": {
+          "name": "example-tag"
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "name": "example-tag-2"
+        }
+      }
+    ],
+    "title": "Webhook with id 1 has been updated.",
+    "description": "Webhook was updated.\nCheck the publishers list for details on Webhook 1.",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z"
+    },
+    "webhook": {
+      "url": "https://example.com/updated-webhook"
+    },
+    "healthWarningPeriod": {
+    }
+  }
+}

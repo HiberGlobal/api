@@ -1,0 +1,61 @@
+{
+  "isError": true,
+  "modemTransferNotReceived": {
+    "transfer": {
+      "identifier": "example-identifier",
+      "modemNumbers": [
+        "AAAA AAAA"
+      ],
+      "senderOrganization": "your-organization",
+      "recipientOrganization": "your-organization-2",
+      "trackingInformation": "your tracking info",
+      "createdAt": {
+        "timestamp": "2020-06-01T05:15:25.355Z",
+        "textual": "2020-06-01T05:15:25.355Z"
+      },
+      "notReceivedAt": {
+        "timestamp": "2020-06-01T06:15:25.355Z",
+        "textual": "2020-06-01T06:15:25.355Z"
+      },
+      "returnDeadline": {
+        "timestamp": "2020-07-01T05:15:25.355Z",
+        "textual": "2020-07-01T05:15:25.355Z"
+      },
+      "tags": [
+        {
+          "id": "1",
+          "label": {
+            "name": "example-tag"
+          }
+        },
+        {
+          "id": "2",
+          "label": {
+            "name": "example-tag-2"
+          }
+        }
+      ]
+    },
+    "organization": "your-organization",
+    "time": {
+      "timestamp": "2020-06-01T06:15:25.355Z",
+      "textual": "2020-06-01T06:15:25.355Z"
+    },
+    "tags": [
+      {
+        "id": "1",
+        "label": {
+          "name": "example-tag"
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "name": "example-tag-2"
+        }
+      }
+    ],
+    "title": "Your transfer of 1 modems to your-organization-2 has not been received.",
+    "description": "A transfer of 1 modems from your-organization to your-organization-2 has been marked as not received.\nThe following modems are in this transfer:\n - AAAA AAAA"
+  }
+}

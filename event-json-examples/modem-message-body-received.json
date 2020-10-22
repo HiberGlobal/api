@@ -3,7 +3,7 @@
     "organization": "your-organization",
     "modemNumber": "AAAA AAAA",
     "modemExternalDeviceId": "AABBCCDDEEFFGGHH",
-    "messageId": "123123",
+    "messageId": "10001",
     "sentAt": {
       "timestamp": "2020-06-01T05:15:25.355Z",
       "textual": "2020-06-01T05:15:25.355Z"
@@ -12,17 +12,25 @@
       "bytes": "ZXhhbXBsZQ==",
       "hex": "6578616D706C65"
     },
-    "tags": [{
-      "id": "1",
-      "label": {
-        "name": "example-tag"
+    "tags": [
+      {
+        "id": "1",
+        "label": {
+          "name": "example-tag"
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "name": "example-tag-2"
+        }
       }
-    }],
-    "title": "New message from modem AAAA AAAA was received. It was sent at 2020-06-01T05:15:25.355Z.",
-    "description": "A new message from modem AAAA AAAA was sent at 2020-06-01T05:15:25.355Z\n:\nIt contained the following body (hex):\n6578616D706C65\n",
+    ],
+    "title": "New message from modem AAAA AAAA was received. It was sent at 2020-06-01 05:15:25.355Z.",
+    "description": "A new message from modem AAAA AAAA was sent at 2020-06-01 05:15:25.355Z:\nIt contained the following body (hex): \n 6578616D706C65\n",
     "time": {
-      "timestamp": "2020-06-01T09:19:29.299Z",
-      "textual": "2020-06-01T09:19:29.299Z"
+      "timestamp": "2020-06-01T06:15:25.355Z",
+      "textual": "2020-06-01T06:15:25.355Z"
     }
   }
 }

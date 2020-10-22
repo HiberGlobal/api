@@ -1,0 +1,41 @@
+{
+  "organizationCreated": {
+    "parentOrganization": "your-organization",
+    "created": {
+      "organization": "your-organization-2",
+      "displayName": "Your Organization 2",
+      "vatNumber": "your-vat-number",
+      "address": {
+        "lines": ["address line 1", "address line 2"],
+        "zipCode": "your-postal-code",
+        "city": "your-city",
+        "state": "your-state",
+        "country": "NL"
+      },
+      "billingAddress": {
+        "lines": ["address line 1", "address line 2"],
+        "zipCode": "your-postal-code",
+        "city": "your-city",
+        "state": "your-state",
+        "country": "NL"
+      },
+      "contact": {
+        "name": "your-name",
+        "email": "your-email@your-domain.com",
+        "phone": "your-phone"
+      },
+      "contractSignatureDate": {
+      },
+      "createdAt": {
+        "timestamp": "2020-06-01T05:15:25.355Z",
+        "textual": "2020-06-01T05:15:25.355Z"
+      }
+    },
+    "title": "Organization your-organization-2 was created.",
+    "description": "Organization your-organization-2 was created under your-organization.",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z"
+    }
+  }
+}

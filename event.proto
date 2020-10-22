@@ -771,17 +771,47 @@ message Event {
     }
 }
 
+/** A bundle/set of events, all of the same event-type.
+ */
 message BundledEvent {
     EventType type = 1;
-    int32 amount = 2;
     string title = 3;
     string description = 4;
-    Timestamp last_event = 5;
+
+    /* Indicates that the amount is an exact count, and not an approximated value. */
+    message ExactAmount {
+        int32 amount = 1;
+        Timestamp last_event = 2;
+    }
 
     /* Indicates that the amount is an approximation, and not an exact value.
      * Some events will be approximated to avoid a large number of events affecting the request time.
+     * Because of the nature of approximation, we don't have a "last" event, so no timestamp is available.
      */
-    bool approximated_amount = 6;
+    message ApproximatedAmount {
+        int32 amount = 1;
+    }
+
+    oneof amount {
+        ExactAmount exact_amount = 7;
+        ApproximatedAmount approximated_amount = 8;
+    }
+
+    /* Deprecated in favour of using the amount field that is either an ExactAmount or ApproximatedAmount */
+    int32 deprecated_amount = 2 [deprecated = true];
+
+    /* Deprecated in favour of using the amount field that is either an ExactAmount or ApproximatedAmount.
+     * since `last_event` is not available when using approximation (we don't know the actual last event),
+     * this field is only present when getting an ExactAmount.
+     */
+    Timestamp deprecated_last_event = 5 [deprecated = true];
+
+    /* Indicates that the amount is an approximation, and not an exact value.
+     * Some events will be approximated to avoid a large number of events affecting the request time.
+     *
+     * Deprecated in  favour of using the oneof_amount field that is either an ExactAmount or ApproximatedAmount
+     */
+    bool deprecated_approximated_amount = 6 [deprecated = true];
 }
 
 /* Selection object for Event list and stream. Filter events on modem, webhook, time and error state, and
