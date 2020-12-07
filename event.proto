@@ -4,10 +4,12 @@ package hiber.event;
 
 import "google/protobuf/struct.proto";
 
+import "assignment.proto";
 import "base.proto";
 import "integration_aws_iot.proto";
 import "integration_mqtt.proto";
 import "modem.proto";
+import "modem_alarm.proto";
 import "modem_claim.proto";
 import "modem_message_body_parser.proto";
 import "modem_message_body_parser_automatic_assignment.proto";
@@ -46,47 +48,66 @@ message Event {
         ModemEvent.ModemLocationUpdatedEvent modem_location_updated = 2;
         ModemEvent.ModemActivatedEvent modem_activated = 36;
         ModemEvent.ModemStaleEvent modem_stale = 3;
+
         ModemEvent.MessageEvent.ModemMessageReceivedEvent modem_message_received = 4;
         ModemEvent.MessageEvent.ModemMessageBodyReceivedEvent modem_message_body_received = 44;
         ModemEvent.MessageEvent.ModemMessageBodyParsedEvent modem_message_body_parsed = 45;
         ModemEvent.MessageEvent.ModemMessageDroppedEvent modem_message_dropped = 5;
         ModemEvent.MessageEvent.ModemMessageDelayedEvent modem_message_delayed = 6;
         ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent modem_message_cannot_be_parsed = 7;
+
         ModemEvent.MessageBodyParserEvent.CreatedEvent modem_message_body_parser_created = 46;
         ModemEvent.MessageBodyParserEvent.UpdatedEvent modem_message_body_parser_updated = 47;
         ModemEvent.MessageBodyParserEvent.DeletedEvent modem_message_body_parser_deleted = 48;
-        ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.CreatedEvent modem_message_body_parser_automatic_assignment_created = 49;
-        ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.UpdatedEvent modem_message_body_parser_automatic_assignment_updated = 50;
-        ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.DeletedEvent modem_message_body_parser_automatic_assignment_deleted = 51;
-        ModemEvent.MessageBodyParserEvent.AssignedEvent modem_message_body_parser_assigned = 52;
-        ModemEvent.MessageBodyParserEvent.UnassignedEvent modem_message_body_parser_unassigned = 53;
+        ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.CreatedEvent modem_message_body_parser_automatic_assignment_created = 49 [deprecated = true];
+        ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.UpdatedEvent modem_message_body_parser_automatic_assignment_updated = 50 [deprecated = true];
+        ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.DeletedEvent modem_message_body_parser_automatic_assignment_deleted = 51 [deprecated = true];
+        ModemEvent.MessageBodyParserEvent.AssignedEvent modem_message_body_parser_assigned = 52 [deprecated = true];
+        ModemEvent.MessageBodyParserEvent.UnassignedEvent modem_message_body_parser_unassigned = 53 [deprecated = true];
+
+        ModemEvent.AlarmEvent.ModemAlarmEvent modem_alarm = 56;
+        ModemEvent.AlarmEvent.CreatedEvent modem_alarm_created = 57;
+        ModemEvent.AlarmEvent.UpdatedEvent modem_alarm_updated = 58;
+        ModemEvent.AlarmEvent.DeletedEvent modem_alarm_deleted = 59;
+
+        AssignmentEvent.AutomaticModemAssignmentCreatedEvent automatic_modem_assignment_created = 60;
+        AssignmentEvent.AutomaticModemAssignmentUpdatedEvent automatic_modem_assignment_updated = 61;
+        AssignmentEvent.AutomaticModemAssignmentDeletedEvent automatic_modem_assignment_deleted = 62;
+        AssignmentEvent.DirectAssignmentAddedEvent direct_assignment_added = 63;
+        AssignmentEvent.DirectAssignmentRemovedEvent direct_assignment_removed = 64;
+
         UserEvent.UserAddedEvent user_added = 8;
         UserEvent.UserRemovedEvent user_removed = 9;
         UserEvent.UserInvitedEvent user_invited = 41;
         UserEvent.UserAccessRequestEvent user_access_request = 10;
         UserEvent.UserValidationUpdatedEvent user_validation_updated = 54;
+
         ModemTransferEvent.ModemTransferStartedEvent modem_transfer_started = 15;
         ModemTransferEvent.ModemTransferCancelledEvent modem_transfer_cancelled = 16;
         ModemTransferEvent.ModemTransferReceivedEvent modem_transfer_received = 17;
         ModemTransferEvent.ModemTransferNotReceivedEvent modem_transfer_not_received = 18;
         ModemTransferEvent.ModemTransferReturnTransferStartedEvent modem_transfer_return_transfer_started = 19;
         ModemEvent.ClaimEvent.ModemClaimedEvent modem_claimed_event = 20;
+
         TokenEvent.TokenExpiryWarningEvent token_expiry_warning = 23;
         TokenEvent.TokenExpiredEvent token_expired = 24;
         TokenEvent.TokenCreatedEvent token_created = 30;
         TokenEvent.TokenDeletedEvent token_deleted = 35;
+
         OrganizationEvent.OrganizationCreatedEvent organization_created = 37;
         OrganizationEvent.OrganizationUpdatedEvent organization_updated = 25;
         OrganizationEvent.OrganizationDeletedEvent organization_deleted = 38;
         OrganizationEvent.ModemMessageSummaryEvent modem_message_summary = 42;
         OrganizationEvent.EventConfigurationUpdated organization_event_configuration_updated = 43;
+
         PublisherEvent.CreatedEvent publisher_created = 31;
         PublisherEvent.UpdatedEvent publisher_updated = 32;
         PublisherEvent.DeletedEvent publisher_deleted = 33;
         PublisherEvent.AutoDisabledEvent publisher_auto_disabled = 40;
         PublisherEvent.FailedEvent publisher_failed = 34;
-        // reserved 11, 12, 13, 14, 21, 22, 26, 27, 28, 29;
+
     }
+    reserved 11 to 14, 21, 22, 26 to 29;
 
     message ModemEvent {
         message ModemCreatedEvent {
@@ -468,6 +489,63 @@ message Event {
             }
         }
 
+        message AlarmEvent {
+            message ModemAlarmEvent {
+                string organization = 1;
+                string modem_number = 2;
+                string modem_external_device_id = 3;
+
+                /* The id of the modem that triggered the alarm, if any. */
+                uint64 modem_message_id = 4;
+
+                /* The identifier of the alarm. */
+                string alarm_identifier = 5;
+
+                /* The description of the alarm. */
+                string alarm_description = 6;
+
+                /* The filled in error message(s) for the failing checks in the alarm. */
+                map<string, string> error_messages = 7;
+
+                repeated hiber.tag.Tag tags = 8;
+                string title = 9;
+                string description = 10;
+                Timestamp time = 11;
+            }
+
+            message CreatedEvent {
+                string organization = 1;
+                modem.alarm.ModemAlarm created = 2;
+                string title = 3;
+                string description = 4;
+                Timestamp time = 5;
+            }
+
+            message UpdatedEvent {
+                message Update {
+                    UpdateClearableString description = 1;
+                    string trigger_condition = 2;
+                    Filter.ChildOrganizations.Update available_to_child_organizations = 3;
+                    google.protobuf.Struct checks = 4;
+                }
+
+                string organization = 1;
+                Update updated = 2;
+                string alarm_identifier = 3;
+                string title = 4;
+                string description = 5;
+                Timestamp time = 6;
+            }
+
+            message DeletedEvent {
+                string organization = 1;
+                string deleted = 2;
+                string title = 3;
+                string description = 4;
+                Timestamp time = 5;
+            }
+        }
+
         message ClaimEvent {
             message ModemClaimedEvent {
                 string organization = 1;
@@ -531,6 +609,67 @@ message Event {
             repeated tag.Tag tags = 6;
             string title = 7;
             string description = 8;
+        }
+    }
+
+    message AssignmentEvent {
+        message DirectAssignmentAddedEvent {
+            string organization = 1;
+            assign.DirectAssignment created = 2;
+            repeated tag.Tag tags = 4;
+            string title = 5;
+            string description = 6;
+            Timestamp time = 7;
+        }
+
+        message DirectAssignmentRemovedEvent {
+            string organization = 1;
+            assign.DirectAssignment removed = 2;
+            repeated tag.Tag tags = 4;
+            string title = 5;
+            string description = 6;
+            Timestamp time = 7;
+        }
+
+        message AutomaticModemAssignmentCreatedEvent {
+            string organization = 1;
+            assign.AutomaticModemAssignment created = 2;
+            string title = 3;
+            string description = 4;
+            Timestamp time = 5;
+        }
+
+        message AutomaticModemAssignmentUpdatedEvent {
+            message Update {
+                UpdateClearableString description = 1;
+                map<string, google.protobuf.Struct> alarms_added = 2;
+                repeated string alarms_removed = 3;
+                repeated string parsers_added = 12;
+                repeated string parsers_removed = 13;
+                Filter.Modems.Update modems = 4;
+                Filter.Tags.Update tags = 5;
+                repeated string manufacturers_added = 6;
+                repeated string manufacturers_removed = 7;
+                map<string, string> peripherals_added = 8;
+                repeated string peripherals_removed = 9;
+                Filter.ChildOrganizations.Update apply_to_child_organizations = 10;
+                UpdateBoolean active = 11;
+            }
+
+            string organization = 1;
+            string identifier = 2;
+            Update updated = 3;
+            string title = 4;
+            string description = 5;
+            Timestamp time = 6;
+        }
+
+        message AutomaticModemAssignmentDeletedEvent {
+            string organization = 1;
+            string deleted = 2;
+            string title = 3;
+            string description = 4;
+            Timestamp time = 5;
         }
     }
 

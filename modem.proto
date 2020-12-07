@@ -355,6 +355,9 @@ message ModemMessage {
     /* The gateway message this message was sent in. */
     uint64 via_gateway_message = 14;
 
+    /* Message metadata, defined by the modem or gateway. */
+    google.protobuf.Struct metadata = 15;
+
     reserved 2;
 }
 

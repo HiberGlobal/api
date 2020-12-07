@@ -2,7 +2,7 @@
   "modemMessageBodyReceived": {
     "organization": "your-organization",
     "modemNumber": "AAAA AAAA",
-    "modemExternalDeviceId": "AABBCCDDEEFFGGHH",
+    "modemExternalDeviceId": "00 11 22 33 AA BB CC DD",
     "messageId": "10001",
     "sentAt": {
       "timestamp": "2020-06-01T05:15:25.355Z",

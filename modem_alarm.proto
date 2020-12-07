@@ -1,0 +1,463 @@
+syntax = "proto3";
+
+package hiber.modem.alarm;
+
+import "google/protobuf/struct.proto";
+
+import "base.proto";
+import "modem.proto";
+import "modem_message_body_parser.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.modem.alarm";
+option java_outer_classname = "ModemAlarmApi";
+option go_package = "hiber";
+
+service ModemAlarmService {
+    /* List available modem alarms (including inherited from your parent organizations). */
+    rpc List (ListModemAlarms.Request) returns (ListModemAlarms.Response);
+
+    /* Create a new modem alarm with any number of checks. */
+    rpc Create (CreateModemAlarm.Request) returns (CreateModemAlarm.Response);
+
+    /* Update a modem alarm and its checks, if you are the owner. */
+    rpc Update (UpdateModemAlarm.Request) returns (UpdateModemAlarm.Response);
+
+    /* Delete a modem alarm, if you are the owner. */
+    rpc Delete (DeleteModemAlarm.Request) returns (DeleteModemAlarm.Response);
+
+    /* Add a check to a modem alarm, if you are the owner. */
+    rpc AddCheck (UpdateModemAlarmAddCheck.Request) returns (UpdateModemAlarmAddCheck.Response);
+
+    /* Update a check in a modem alarm, if you are the owner. */
+    rpc UpdateCheck (UpdateModemAlarmUpdateCheck.Request) returns (UpdateModemAlarmUpdateCheck.Response);
+
+    /* Remove a check from a modem alarm, if you are the owner. */
+    rpc RemoveCheck (UpdateModemAlarmRemoveCheck.Request) returns (UpdateModemAlarmRemoveCheck.Response);
+
+    /* Test a set of parameters on a modem alarm, to see the result when they are applied during assignment. */
+    rpc TestParameters (TestModemAlarmTestParameters.Request) returns (TestModemAlarmTestParameters.Response);
+
+    /* Make a modem alarm (un)available to (a selection of) child organizations. */
+    rpc UpdateAvailability (UpdateModemAlarmAvailability.Request) returns (UpdateModemAlarmAvailability.Response);
+
+    /* Assign a modem alarm to a modem. */
+    rpc Assign (AssignModemAlarms.Request) returns (AssignModemAlarms.Response);
+
+    /* Unassign a modem alarm from a modem. */
+    rpc Unassign (UnassignModemAlarms.Request) returns (UnassignModemAlarms.Response);
+}
+
+/* Alarm for a modem, monitoring message data, location or activity. */
+message ModemAlarm {
+    /* The identifier for this alarm.
+     * This identifier is globally unique, since the alarm can be shared to child organizations.
+     */
+    string identifier = 1;
+    string description = 2;
+
+    /* Availability to child organizations.
+     * This alarm can be shared to child organizations, so it can be assigned to their modems, either directly or
+     * automatically over all selected child organizations.
+     * Only the owner organization is able to edit the alarm.
+     */
+    Filter.ChildOrganizations available_to_child_organizations = 3;
+
+    /* Condition determining when an alarm is triggered if it has multiple checks. */
+    enum TriggerCondition {
+        /* Defaults to the current value when updating, or to ANY_CHECK_FAILED when creating. */
+        DEFAULT = 0;
+
+        /* Trigger the alarm when any of the checks fail.
+         * This is useful when providing a single device health alarm, that checks, for example, battery,
+         * operating temperature, etc. and should trigger when any of those are outside the expected range.
+         */
+        ANY_CHECK_FAILED = 1;
+
+        /* Trigger the alarm only when all checks fail.
+         * This is useful when creating a combined alarm, where several data points factor into the decisions to
+         * trigger the alarm, for example, combining a check on the current value with a delta check on the
+         * historical values, to trigger only if the value is high for a longer period.
+         */
+        ALL_CHECKS_FAILED = 2;
+    }
+
+    /* Condition determining when an alarm is triggered if it has multiple checks. */
+    TriggerCondition trigger_condition = 4;
+
+    /* The checks in this alarm,  */
+    repeated Check checks = 5;
+
+    /* Parameters for this alarm.
+     * This field displays all the parameters that can be set for the alarm on assignment, with their current value.
+     *
+     * Parameters are based on the check fields, and are used in the check error message template.
+     * For the alarm parameters, check parameters are prefixed with the check identifier.
+     *
+     * For example: An alarm with check A (field "healthy" equals 1) and check B (field "state" oneof ["OK", "ACTIVE"])
+     * would have the following parameters:
+     * {
+     *   "A": {
+     *     "expected": 1,
+     *     "field.path": "healthy",
+     *     "field.equals.expected": 1
+     *   },
+     *   "B": {
+     *     "expected": ["OK", "ACTIVE"],
+     *     "field.path": "state",
+     *     "field.oneof.expected": ["OK", "ACTIVE"]
+     *   }
+     * }
+     */
+    google.protobuf.Struct alarm_parameters = 6;
+
+    message Check {
+        /* Identifier for this check, unique within the alarm.
+         * This is used to update or remove the check, and to determine the destination for any parameters.
+         */
+        string identifier = 1;
+
+        /* The health level that this check would cause for a modem, when it fails.
+         * This can be changed on assignment, to fit the needs of the organization.
+         * Defaults to the most severe health level (ERROR when health levels are not customized).
+         */
+        string health_level = 2;
+
+        /* The error message for this check, with parameters that will be filled in based on the check.
+         * The parameters are included as {parameter}, which gets replaced with the value.
+         *
+         * The supported parameters are different per check, but the parameters below are always supported:
+         * - modem: the modem number.
+         * - message: the id of the message, if any.
+         * - expected: a shortcut for the expected value(s), depencing on the check:
+         *   - equals check: expected value
+         *   - oneof check: expected values as [a, b, c]
+         *   - threshold check: expected range as minimum..maximum
+         *   - location check: expected area as [(bottom left), (top right)], and shape as [(point), (point), ..., (point)]
+         * - actual: the invalid actual value(s) for this check.
+         *
+         * The checks below define other available parameters.
+         *
+         * For example (using some parameters for specific checks):
+         * - "Your device {modem} has left its designated area! It is now at {actual}."
+         * - "Your device battery is at {actual}%, which is below the recommended minimum of {field.threshold.minimum}%."
+         * - "Your device battery is draining faster than expected: {actual}% over the past {field.delta.period}."
+         * - "Your device temperature has exceeded {value.threshold.maximum} degrees: {actual}."
+         * - "Your device reported an unhealthy state {actual}. Healthy states are: {expected}."
+         * - "Your device reported an unhealthy state {actual}. Healthy states are: {field.oneof.expected}."
+         * - "Your device reported an unhealthy state {actual}. Please set it back to {expected}."
+         * - "Your device reported an unhealthy state {actual}. Please set it back to {field.equals.expected}."
+         * - "Unexpected value {actual} for field {field.path}!"
+         */
+        string error_message_template = 3;
+
+        oneof check {
+            LocationCheck location = 4;
+            FieldCheck field = 5;
+        }
+
+        /* Check that the device location is within a given area.
+         *
+         * Has the following parameters:
+         * - location.expected: replace the expected area or shape
+         * - location.area: replace the expected area
+         * - location.shape: replace the expected shape
+         */
+        message LocationCheck {
+            /* The location the device must be in. */
+            oneof expected {
+                Area area = 1;
+                Shape shape = 2;
+            }
+        }
+
+        /* A check that evaluates each new message, and checks selected field(s) in the parsed body.
+         *
+         * Has the following parameters (matches the fields):
+         * - field.path: replace the path for this field
+         * - field.ignoreFieldNotFound: replace the value for ignore_field_not_found
+         *
+         * For the equals check:
+         * - field.equals.expected: iff this is an equals check, replace the expected value
+         *
+         * For the oneof check:
+         * - field.oneof.expected: iff this is a oneof check, replace the expected values
+         *
+         * For the threshold check:
+         * - field.threshold.expected: iff this is a threshold check, replace the expected range
+         * - field.threshold.minimum: iff this is a threshold check, replace the expected minimum
+         * - field.threshold.maximum: iff this is a threshold check, replace the expected maximum
+         *
+         * For the delta check:
+         * - field.delta.period:
+         * - field.delta.threshold.expected: iff this is a delta check, replace the expected range
+         * - field.delta.threshold.minimum: iff this is a delta check, replace the expected minimum
+         * - field.delta.threshold.maximum: iff this is a delta check, replace the expected maximum
+         */
+        message FieldCheck {
+            /* Select the field(s) that this check is applied to, using a json path.
+             * When multiple fields are selected, the checks are applied to all of them individually.
+             *
+             * See the Json Path documentation at https://goessner.net/articles/JsonPath/ for details on json path.
+             *
+             * Simple examples selecting a field:
+             * - $.my_field: a field in the root of the parsed object
+             * - $.my_obj.my_field: a field in a deeper structure
+             * - $.my_array[x].my_field: the field my_field of the element at index x is selected
+             *
+             * Complex use cases are also possible, but they require a bit more understanding of json path logic:
+             * - $.my_array.length(): the length of my_array is selected. Combine with an equals or threshold check,
+                                      to require that an array has a certain length.
+             * - $.my_array[?(@.name == 'D')]: the array of all objects in my_array where name equals 'D' is selected.
+             * - $.my_array[?(@.name == 'D')]..my_field: the array of my_field values from all objects in
+                                                         my_array where name equals 'D' is selected.
+             * - $.my_array..my_field: the array of my_field values (for all objects in my_array) is selected
+             * - $.my_array[*].my_field: the array of my_field values (for all objects in my_array) is selected
+             *
+             * Note that this for the examples above, if they return an array, the entire array is used as the value
+             * in the comparison for equals and oneof.
+             */
+            string path = 1;
+
+            /* Whether to ignore this check if the field is not found.
+             * This can be useful if your path selects multiple values in an array, like my_array[*].value,
+             * and not all entries have the field, or when fields are omitted if they have a default value.
+             */
+            bool ignore_field_not_found = 2;
+
+            oneof check {
+                EqualsCheck equals = 3;
+                OneOfCheck oneof = 4;
+                ThresholdCheck threshold = 5;
+                DeltaCheck delta = 6;
+            }
+
+            /* Check that the field is equal to the given value. */
+            message EqualsCheck {
+                google.protobuf.Value expected = 1;
+            }
+
+            /* Check that the field is in a set of expected values. */
+            message OneOfCheck {
+                /* The list of allowed values, one of which should match the field value. */
+                repeated google.protobuf.Value expected = 1;
+            }
+
+            /* Check that the field is within a given numeric range. */
+            message ThresholdCheck {
+                /* The range the value must be in. */
+                DoubleRange expected = 1;
+
+                /* The minimum expected value, available separately for convenience and check parameters. */
+                double minimum = 2;
+
+                /* The maximum expected value, available separately for convenience and check parameters. */
+                double maximum = 3;
+            }
+
+            /* A check that evaluates the differences in values over time, for the selected field(s) in the parsed body.
+             */
+            message DeltaCheck {
+                /* The period to evaluate when determining the value difference. */
+                Duration period = 1;
+
+                /* Check that the delta is within a given numeric range. */
+                ThresholdCheck threshold = 2;
+            }
+        }
+    }
+}
+
+message ModemAlarmSelection {
+    repeated string identifiers = 1;
+
+    /* Search for the given string in identifier, description, fields and values. */
+    string search = 2;
+
+    /* Only return alarms that were created by the given organizations. */
+    repeated string owner_organizations = 3;
+
+    bool only_owned_alarms = 4;
+}
+
+message ListModemAlarms {
+    message Request {
+        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        ModemAlarmSelection selection = 2;
+        Pagination pagination = 3;
+    }
+    message Response {
+        repeated ModemAlarm modem_alarms = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}
+
+message CreateModemAlarm {
+    message Request {
+        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* A short description of what the alarm should do. */
+        string description = 2;
+
+        /* Condition determining when an alarm is triggered if it has multiple checks. */
+        ModemAlarm.TriggerCondition trigger_condition = 3;
+
+        /* The checks to add to this alarm.
+         * This is a shortcut for creating an alarm and then adding checks to it, and as such results in two events:
+         * - the created event for the alarm
+         * - an update event on the alarm, adding the checks
+         */
+        repeated ModemAlarm.Check checks = 4;
+    }
+    message Response {
+        ModemAlarm created = 1;
+    }
+}
+
+message UpdateModemAlarm {
+    message Request {
+        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        string identifier = 2;
+        UpdateClearableString update_description = 3;
+        ModemAlarm.TriggerCondition update_trigger_condition = 4;
+    }
+    message Response {
+        ModemAlarm updated = 1;
+    }
+}
+
+/* Add a check to the alarm, iff you are the owner or can impersonate the owner organization. */
+message UpdateModemAlarmAddCheck {
+    message Request {
+        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        string alarm_identifier = 2;
+
+        /* The check to add to the Modem Alarm. Identifier must be unique within the alarm. */
+        ModemAlarm.Check check = 3;
+    }
+    message Response {
+        ModemAlarm updated = 1;
+    }
+}
+
+message UpdateModemAlarmUpdateCheck {
+    message Request {
+        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        string alarm_identifier = 2;
+        string check_identifier = 3;
+        ModemAlarm.Check update_check = 4;
+
+        /* Use parameters to update the check, as it would be when they were added when the alarm was assigned. */
+        map<string, google.protobuf.Value> update_using_parameters = 5;
+
+        /* If set, the update is not actually saved, but only applied and returned.
+         * This is a convenience to easily test parameters for a check similar to TestModemAlarmTestParameters.
+         */
+        bool test_parameters_only = 6;
+    }
+    message Response {
+        ModemAlarm updated = 1;
+    }
+}
+
+message UpdateModemAlarmRemoveCheck {
+    message Request {
+        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        string alarm_identifier = 2;
+        string check_identifier = 3;
+    }
+    message Response {
+        ModemAlarm updated = 1;
+    }
+}
+
+message DeleteModemAlarm {
+    message Request {
+        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        string identifier = 2;
+    }
+    message Response {
+    }
+}
+
+message TestModemAlarmTestParameters {
+    message Request {
+        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        string alarm_identifier = 2;
+        google.protobuf.Struct parameters = 3;
+    }
+    message Response {
+        ModemAlarm result = 1;
+    }
+}
+
+message UpdateModemAlarmAvailability {
+    message Request {
+        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        string alarm_identifier = 2;
+
+        /* The new set of child organizations that this rule applies to.
+         * Replaces the original value!
+         */
+        Filter.ChildOrganizations replace_apply_to_child_organizations = 3;
+    }
+    message Response {
+        ModemAlarm updated = 1;
+    }
+}
+
+/* Directly assigned modem message parser to a modem. */
+message AssignedModemAlarm {
+    string alarm_identifier = 1;
+    string modem_number = 2;
+}
+
+/* Add direct assignments.
+ * If an overlapping assignment using a rule exists, it is shadowed by the direct assignment.
+ *
+ * Simplified version of assign.AssignDirectly.
+ */
+message AssignModemAlarms {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        ModemAlarmSelection alarms = 2;
+        modem.ModemSelection modems = 3;
+
+        /* The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). */
+        map<string, google.protobuf.Struct> parameters = 4;
+    }
+    message Response {
+        repeated AssignedModemAlarm created = 1;
+        Request request = 2;
+    }
+}
+
+/* Remove a direct assignment.
+ * If an overlapping assignment using a rule exists, it is not affected, except that it is longer shadowed.
+ *
+ * Simplified version of assign.UnassignDirectly.
+ */
+message UnassignModemAlarms {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        ModemAlarmSelection alarms = 2;
+        modem.ModemSelection modems = 3;
+    }
+    message Response {
+        repeated AssignedModemAlarm removed_direct_assignments = 1;
+        Request request = 2;
+    }
+}

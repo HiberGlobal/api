@@ -12,14 +12,21 @@ option java_package = "global.hiber.api.grpc.modem.message.bodyparser";
 option java_outer_classname = "ModemMessageBodyParserAssignmentApi";
 option go_package = "hiber";
 
+/* Deprecated: use the assignment service instead. */
 service ModemMessageBodyParserAssignmentService {
+    option deprecated = true;
+
     rpc List (ListAssignedModemMessageBodyParsers.Request) returns (ListAssignedModemMessageBodyParsers.Response);
     rpc Assign (AssignModemMessageBodyParsersToModems.Request) returns (AssignModemMessageBodyParsersToModems.Response);
     rpc Unassign (UnassignModemMessageBodyParsersFromModems.Request) returns (UnassignModemMessageBodyParsersFromModems.Response);
 }
 
-/* The body parsers that are assigned to a modem, either directly or automatically. */
+/* The body parsers that are assigned to a modem, either directly or automatically.
+ * Deprecated: use the assignment service instead.
+ */
 message ModemMessageBodyParsersAssignment {
+    option deprecated = true;
+
     /* The modem number that has parsers assigned. */
     string modem_number = 1;
 
@@ -32,40 +39,31 @@ message ModemMessageBodyParsersAssignment {
 
 /* Selection for assigned parsers, to dynamically filter the assignments by body parsers,
  * modems it applies to, rules that are used, the way it was assigned to the modem, etc.
+ * Deprecated: use the assignment service instead.
  */
 message ModemMessageBodyParsersAssignmentSelection {
+    option deprecated = true;
+
     /* Only return parsers that match the given selection. */
     ModemMessageBodyParserSelection parsers = 1;
 
     /* Only return parsers that have been assigned to the given modems. */
     modem.ModemSelection modems = 2;
 
-    /* Only return parsers that have been assigned to the modem by one of these rules.
-     * This can also be used to include certain inactive rules, to test what they apply to,
-     * either in combination with active rules, or only that specific rule.
-     * To do so, either set include_inactive or only_inactive in ModemMessageBodyParserAutomaticAssignmentRuleSelection.
-     */
-    ModemMessageBodyParserAutomaticAssignmentRuleSelection rules = 3;
-
-    /* Only return parsers that have been directly assigned to the modem. */
-    bool only_directly_assigned = 4;
-
-    /* Only return parsers that have been assigned to the modem by a rule. */
-    bool only_automatically_assigned = 5;
-
     /* If childOrganizations is configured to include child organizations, modems from child organizations
      * can also be in the results, if the other conditions match.
      */
     Filter.ChildOrganizations child_organizations = 6;
 
-    /* Use onlyChildOrganizations to *only* see which selected modems have the selected parsers assigned
-     * in the selected child_organizations, excluding any modems in your organization.
-     */
-    bool only_child_organizations = 7;
+    reserved 3 to 5, 7;
 }
 
-/* List modems with assigned parsers, based on the selections and flags in the request. */
+/* List modems with assigned parsers, based on the selections and flags in the request.
+ * Deprecated: use the assignment service instead.
+ */
 message ListAssignedModemMessageBodyParsers {
+    option deprecated = true;
+
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
@@ -83,8 +81,12 @@ message ListAssignedModemMessageBodyParsers {
     }
 }
 
-/* Assign parser(s) to modem(s) directly. */
+/* Assign parser(s) to modem(s) directly.
+ * Deprecated: use the assignment service instead.
+ */
 message AssignModemMessageBodyParsersToModems {
+    option deprecated = true;
+
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
@@ -102,8 +104,12 @@ message AssignModemMessageBodyParsersToModems {
     }
 }
 
-/* Unassign directly assigned parser(s) from modem(s). */
+/* Unassign directly assigned parser(s) from modem(s).
+ * Deprecated: use the assignment service instead.
+ */
 message UnassignModemMessageBodyParsersFromModems {
+    option deprecated = true;
+
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;

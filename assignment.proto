@@ -1,0 +1,475 @@
+syntax = "proto3";
+
+package hiber.assign;
+
+import "google/protobuf/struct.proto";
+
+import "base.proto";
+import "modem.proto";
+import "modem_alarm.proto";
+import "modem_message_body_parser.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.assign";
+option java_outer_classname = "AssignmentApi";
+option go_package = "hiber";
+
+service AssignmentService {
+    /* List all assignments to a modem, either directly or through an automatic modem assignment. */
+    rpc ModemAssignments (ListModemAssignments.Request) returns (ListModemAssignments.Response);
+}
+
+service DirectAssignmentService {
+    /* List direct assignments. */
+    rpc List (ListDirectAssignments.Request) returns (ListDirectAssignments.Response);
+
+    /* Add a new direct assignment, possibly overriding an automatic assignment and adding configuration. */
+    rpc Assign (AssignDirectly.Request) returns (AssignDirectly.Response);
+
+    /* Remove a direct assignment. */
+    rpc Unassign (UnassignDirectly.Request) returns (UnassignDirectly.Response);
+}
+
+service AutomaticModemAssignmentService {
+    /* List all the available automatic modem assignments (including inherited from your parent organizations). */
+    rpc List (ListAutomaticModemAssignments.Request) returns (ListAutomaticModemAssignments.Response);
+
+    /* Create a new automatic modem assignment. */
+    rpc Create (CreateAutomaticModemAssignment.Request) returns (CreateAutomaticModemAssignment.Response);
+
+    /* Update an existing automatic modem assignment, altering which modems it affect and what it assigns. */
+    rpc Update (UpdateAutomaticModemAssignment.Request) returns (UpdateAutomaticModemAssignment.Response);
+
+    /* Enable an automatic modem assignment. */
+    rpc Enable (EnableAutomaticModemAssignment.Request) returns (EnableAutomaticModemAssignment.Response);
+
+    /* Disable an automatic modem assignment. */
+    rpc Disable (DisableAutomaticModemAssignment.Request) returns (DisableAutomaticModemAssignment.Response);
+
+    /* Delete an automatic modem assignment. */
+    rpc Delete (DeleteAutomaticModemAssignment.Request) returns (DeleteAutomaticModemAssignment.Response);
+
+    /* Apply this automatic modem assignment to (a selection of) child organizations. */
+    rpc UpdateAvailability (UpdateAutomaticModemAssignmentAvailability.Request) returns (UpdateAutomaticModemAssignmentAvailability.Response);
+}
+
+/* Supported assignment types.
+ * - assign a message body parser to a modem
+ * - assign a modem alarm to a modem
+ * - assign a modem alarm to a message body parser
+ *   (because it requires a specific field, or to assign them to a modem together)
+ *
+ * Assignment is transitive: when an alarm is assigned to a parser, and one of them is assigned to a modem,
+ *   the other is considered assigned to that modem.
+ *   The one exception is modem to modem assignment, which is not possible; an alarm assigned to 2 modems would not
+ *   imply assignment between the modems.
+ */
+enum AssignmentType {
+    DEFAULT = 0;
+
+    /* Assignment that assigns a message body parser to a modem. */
+    ASSIGNS_MESSAGE_BODY_PARSER_TO_MODEM = 1;
+
+    /* Assignment that assigns a modem alarm to a modem. */
+    ASSIGNS_ALARM_TO_MODEM = 2;
+
+    /* Assignments that assigns a message body parser to a modem alarm, or vice versa. */
+    ASSIGNS_ALARM_TO_MESSAGE_BODY_PARSER = 3;
+}
+
+message ModemAlarmAssignment {
+    string identifier = 1;
+    string description = 2;
+    google.protobuf.Struct parameters = 3;
+    string owner_organization = 4;
+}
+
+message ModemMessageBodyParserAssignment {
+    string identifier = 1;
+    string name = 2;
+    string owner_organization = 3;
+}
+
+message AssignmentSelection {
+    message AssignmentTypes {
+        repeated AssignmentType include = 1;
+        repeated AssignmentType exclude = 2;
+    }
+
+    /* Select the modems to return the assignments for. */
+    modem.ModemSelection modems = 1;
+
+    /* Select the alarms to return the assignments for. */
+    modem.alarm.ModemAlarmSelection modem_alarms = 2;
+
+    /* Select the message body parsers to return the assignments for. */
+    modem.message.bodyparser.ModemMessageBodyParserSelection modem_message_body_parsers = 3;
+
+    /* Select by type of assignment. */
+    AssignmentTypes types = 4;
+}
+
+message ListModemAssignments {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        AssignmentSelection selection = 2;
+        Pagination pagination = 3;
+
+        /* Whether to include the full alarms and parsers that are assigned, instead of just assignment. */
+        bool include_alarm_details = 4;
+
+        /* Whether to include the full alarms and parsers that are assigned, instead of just assignment. */
+        bool include_message_body_parser_details = 5;
+
+        /* Whether to include, for example, the message body parser ksy content in the result.
+         * Excluded by default to save data.
+         */
+        bool include_message_body_parser_content = 6;
+
+        /* Whether to include modems from child organizations in this list (and which organizations). */
+        Filter.ChildOrganizations include_modems_in_child_organizations = 7;
+    }
+
+    message Response {
+        /* Things that are assigned to a modem, either through a direct assignment or an automatic assignment. */
+        message ModemAssignment {
+            string organization = 1;
+            string modem_number = 2;
+
+            /* The automatic assignments that were applied to assign the entities below to this modem. */
+            repeated string automatic_assignments_applied = 3;
+
+            /* The identifiers of the message body parsers that are assigned to this modem. */
+            repeated ModemMessageBodyParserAssignment message_body_parsers = 4;
+
+            /* The identifiers and parameters of the alarms that are assigned to this modem. */
+            repeated ModemAlarmAssignment alarms = 5;
+
+            /* The details of the parsers assigned to this modem. */
+            repeated modem.message.bodyparser.ModemMessageBodyParser message_body_parser_details = 6;
+
+            /* The alarms that are assigned to this modem, if you have permission to view them. */
+            repeated modem.alarm.ModemAlarm alarm_details = 7;
+        }
+
+        repeated ModemAssignment assignments = 1;
+        Request request = 2;
+        Pagination.Result pagination = 3;
+    }
+}
+
+/* Assign things directly (rather than using automatic assignment). */
+message DirectAssignment {
+    /* The type of assignment. This is a helper enum to indicate which fields are set:
+     * ASSIGNS_MESSAGE_BODY_PARSER_TO_MODEM: Guarantees assigns_parser and to_modem are present.
+     * ASSIGNS_ALARM_TO_MODEM: Guarantees assigns_alarm and to_modem are present.
+     * ASSIGNS_MESSAGE_BODY_PARSER_TO_ALARM: either:
+     * - assign_parser and to_alarm are set, or
+     * - assign_alarm and to_parser are set.
+     */
+    AssignmentType type = 1;
+
+    oneof assign {
+        ModemMessageBodyParserAssignment assign_parser = 3;
+        ModemAlarmAssignment assign_alarm = 5;
+    }
+
+    oneof to {
+        string to_modem = 2;
+        ModemMessageBodyParserAssignment to_parser = 4;
+    }
+}
+
+message ListDirectAssignments {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        AssignmentSelection selection = 2;
+        Pagination pagination = 3;
+    }
+
+    message Response {
+        /* The direct assignments as identifiers in the selection. */
+        repeated DirectAssignment direct_assignments = 1;
+        Request request = 2;
+        Pagination.Result pagination = 3;
+    }
+}
+
+/* Add direct assignments.
+ * If an overlapping assignment using an automatic modem assignment exists, it is shadowed by the direct assignment.
+ */
+message AssignDirectly {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        oneof assign {
+            modem.message.bodyparser.ModemMessageBodyParserSelection assign_parsers = 2;
+            modem.alarm.ModemAlarmSelection assign_alarms = 4;
+        }
+
+        oneof to {
+            modem.message.bodyparser.ModemMessageBodyParserSelection to_parsers = 3;
+            modem.ModemSelection to_modems = 5;
+        }
+
+        /* The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). */
+        map<string, google.protobuf.Struct> alarm_parameters = 6;
+    }
+    message Response {
+        repeated DirectAssignment created = 1;
+        Request request = 2;
+    }
+}
+
+/* Remove a direct assignment.
+ * If an overlapping automatic assignment exists, it is not affected, except that it is longer overridden.
+ */
+message UnassignDirectly {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        oneof unassign {
+            modem.message.bodyparser.ModemMessageBodyParserSelection unassign_parsers = 2;
+            modem.alarm.ModemAlarmSelection unassign_alarms = 4;
+        }
+
+        oneof from {
+            modem.message.bodyparser.ModemMessageBodyParserSelection from_parsers = 3;
+            modem.ModemSelection from_modems = 5;
+        }
+    }
+    message Response {
+        repeated DirectAssignment removed_direct_assignments = 1;
+        Request request = 2;
+    }
+}
+
+/* An automatic modem assignment to assign things to any number of modems automatically, based on varying criteria.
+ *
+ * Criteria can be used and combined in a multitude of ways, but here are a few notable uses:
+ * - assign a parser or alarm to tag, so assigning it to modems is as easy as adding a tag to that modem
+ * - assign a parser or alarm to peripheral, so each modem with that peripheral gets that parser by default
+ * - blacklisting a parser from a tag, so you can set that tag to exclude a modem from being assigned that parser
+ * - blacklisting a parser from a set of modems, so you can exclude a set of modem from being assigned that parser
+ * - add a health check alarm to devices you manufacture, and apply this to child organizations, so that all of your
+ *   customers' modems are automatically assigned that modem alarm
+ */
+message AutomaticModemAssignment {
+    string identifier = 1;
+    string owner_organization = 2;
+    string description = 3;
+
+    /* The rules to use to select modems. */
+    ApplyToModems apply_to_modems = 4;
+
+    /* The message body parsers that should be assigned when a modem matches the rules. */
+    repeated string assign_parsers = 5;
+
+    /* The modem alarms that should be assigned when a modem matches the rules, with their overriding parameters. */
+    map<string, google.protobuf.Struct> assign_alarms = 6;
+
+    /* Apply this automatic assignment to modems belonging to the given child organizations as well.
+     * The selected parsers must be available to those child organizations.
+     * This does not work with tags, since they are organization-specific.
+     */
+    Filter.ChildOrganizations apply_to_child_organizations = 7;
+
+    /* A rule for automatic assignment to modems.
+     * Each field in the this rule must match a modem for this rule to be applied.
+     * This means that the exclusion rules for modem and tag can be used to create a complex selection,
+     * like all modems with a tag, except for a specific list of modems.
+     * Or every modem with the given peripherals, except when you assign a tag to them (i.e. a "do-not-parse" tag).
+     *
+     * This also means you can make a rule that only excludes modems or tags. A rule that only excludes is considered
+     * a global exclude, and will override other rules assigning the excluded modem.
+     * For example, a rule that only excludes the tag "do-not-parse" for all parsers, will override any assignment
+     * _by a rule_ if the modem has that tag.
+     */
+    message ApplyToModems {
+        /* An alternative way to assign to modem directly, this field can be used to assign to a set of modems.
+         *
+         * A rule that only excludes is considered a global exclude, and will override other rules assigning
+         * the excluded modem anyway.
+         *
+         * For example, a rule that only excludes a modem for a set of parsers, will ensure nothing in the rule will
+         * be assigned the modem automatically.
+         */
+        Filter.Modems modems = 1;
+
+        /* Assign to all modems that have the given tags.
+         *
+         * A rule that only excludes is considered an exclude, and will override other rules assigning
+         * to modems with the excluded tags.
+         *
+         * For example, a rule that excludes the tag "do-not-parse", will ensure nothing in the rule will be assigned
+         * modems with the excluded tags automatically.
+         */
+        Filter.Tags tags = 2;
+
+        /* Assign to modems that have one of the given manufacturers. */
+        repeated string manufacturer = 3;
+
+        /* Assign to modems that have one of the given peripherals. */
+        map<string, string> peripherals = 4;
+
+        /* Whether the rule is active. Rules can be disabled, or uploaded in a disabled state to test them. */
+        bool active = 5;
+    }
+}
+
+message AutomaticModemAssignmentSelection {
+    /* Return automatic modem assignments with the given identifiers. */
+    repeated string identifiers = 1;
+
+    /* Search automatic modem assignments. */
+    string search = 2;
+
+    /* Return automatic modem assignments that apply to the selected modems. */
+    modem.ModemSelection applies_to_modems = 3;
+
+    /* Include inactive automatic modem assignments. */
+    bool include_inactive = 4;
+
+    /* Only return inactive automatic modem assignments. */
+    bool only_inactive = 5;
+
+    /* Select by type of assignment. */
+    AssignmentSelection.AssignmentTypes types = 6;
+
+    /* Return automatic modem assignments that assign one of the selected message body parsers. */
+    modem.message.bodyparser.ModemMessageBodyParserSelection assigns_parsers = 7;
+
+    /* Return automatic modem assignments that assign one of the selected modem alarms. */
+    modem.alarm.ModemAlarmSelection assigns_alarms = 8;
+}
+
+message ListAutomaticModemAssignments {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        AutomaticModemAssignmentSelection selection = 2;
+        Pagination pagination = 3;
+    }
+    message Response {
+        repeated AutomaticModemAssignment automatic_modem_assignments = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}
+
+message CreateAutomaticModemAssignment {
+    message Request {
+        /* The owner for the new automatic modem assignment. */
+        string organization = 1;
+
+        /* A description for this automatic modem assignment. */
+        string description = 2;
+
+        /* The modems to assign things to. */
+        AutomaticModemAssignment.ApplyToModems apply_to_modems = 3;
+
+        /* The message body parsers that should be assigned when a modem matches this automatic modem assignment. */
+        modem.message.bodyparser.ModemMessageBodyParserSelection assign_parsers = 4;
+
+        /* The modem alarms that should be assigned when a modem matches this automatic modem assignment. */
+        modem.alarm.ModemAlarmSelection assign_alarms = 5;
+
+        /* The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). */
+        map<string, google.protobuf.Struct> alarm_parameters = 6;
+    }
+    message Response {
+        AutomaticModemAssignment created = 1;
+        Request request = 2;
+    }
+}
+
+message UpdateAutomaticModemAssignment {
+    message Request {
+        /* Update the criteria for selecting modems to assign to automatically. */
+        message UpdateModems {
+            Filter.Modems.Update replace_modem_filter = 1;
+            Filter.Tags.Update replace_tag_filter = 2;
+            repeated string add_manufacturers = 3;
+            repeated string remove_manufacturers = 4;
+            map<string, string> add_peripherals = 5;
+            repeated string remove_peripherals = 6;
+            UpdateBoolean active = 7;
+        }
+
+        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        string identifier = 2;
+        UpdateClearableString description = 3;
+
+        /* Update the criteria for selecting modems to assign to automatically. */
+        UpdateModems update_modems = 4;
+
+        modem.message.bodyparser.ModemMessageBodyParserSelection add_parsers = 5;
+        repeated string remove_parsers = 6;
+
+        modem.alarm.ModemAlarmSelection add_alarms = 7;
+        repeated string remove_alarms = 8;
+
+        /* The alarm parameters, by alarm identifier, for the added alarms. */
+        map<string, google.protobuf.Struct> alarm_parameters = 9;
+    }
+    message Response {
+        AutomaticModemAssignment updated = 1;
+        Request request = 2;
+    }
+}
+
+message EnableAutomaticModemAssignment {
+    message Request {
+        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        string identifier = 2;
+    }
+    message Response {
+        AutomaticModemAssignment updated = 1;
+        Request request = 2;
+    }
+}
+
+message DisableAutomaticModemAssignment {
+    message Request {
+        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        string identifier = 2;
+    }
+    message Response {
+        AutomaticModemAssignment updated = 1;
+        Request request = 2;
+    }
+}
+
+message DeleteAutomaticModemAssignment {
+    message Request {
+        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        string identifier = 2;
+    }
+    message Response {
+    }
+}
+
+message UpdateAutomaticModemAssignmentAvailability {
+    message Request {
+        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        string identifier = 2;
+
+        /* The new set of child organizations that this automatic modem assignment applies to.
+         * Replaces the original value!
+         */
+        Filter.ChildOrganizations replace_apply_to_child_organizations = 3;
+    }
+    message Response {
+        AutomaticModemAssignment updated = 1;
+        Request request = 2;
+    }
+}

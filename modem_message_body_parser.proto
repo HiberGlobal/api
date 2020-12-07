@@ -12,30 +12,43 @@ option java_outer_classname = "ModemMessageBodyParserApi";
 option go_package = "hiber";
 
 service ModemMessageBodyParserService {
+    /* List available message body parsers (including inherited from your parent organizations). */
     rpc List (ListModemMessageBodyParsersRequest) returns (ListModemMessageBodyParsersRequest.Response);
+
+    /* Upload a .ksy file as a message body parser. */
     rpc Upload (UploadModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
+
+    /* Re-upload a .ksy file to update a message body parser, if you are the owner. */
     rpc UpdateUploaded (UpdateUploadedModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
+
+    /* Create a simple message body parser using API elements. */
     rpc CreateSimple (CreateSimpleModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
+
+    /* Update a simple message body parser created using API elements, if you are the owner. */
     rpc UpdateSimple (UpdateSimpleModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
+
+    /* Rename a message body parser, if you are the owner. */
     rpc Rename (RenameModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
+
+    /* Make a message body parser (un)available to (a selection of) child organizations. */
     rpc UpdateChildOrganizationAvailability (UpdateChildOrganizationAvailabilityRequest) returns (ModemMessageBodyParser);
+
+    /* Delete a message body parser, if you are the owner. */
     rpc Delete (DeleteModemMessageBodyParserRequest) returns (DeleteModemMessageBodyParserRequest.Response);
 
+    /* Test a message body parser with an existing message or provided binary message body.
+     * This can also be used without an existing parser by uploading a .ksy file or specifying a simple parser.
+     */
     rpc Test (TestModemMessageBodyParserRequest) returns (TestModemMessageBodyParserRequest.Response);
+
+    /* Retry parsing messages with a message body parser (for example after updating the parser). */
     rpc Retry (RetryModemMessageBodyParsing.Request) returns (RetryModemMessageBodyParsing.Response);
 
-    /* [DEPRECATED] Use ModemMessageBodyParserAssignmentService instead. */
-    rpc ListAssignedParsers (ListAssignedParsersRequest) returns (ListAssignedParsersRequest.Response) {
-        option deprecated = true;
-    };
-    /* [DEPRECATED] Use ModemMessageBodyParserAssignmentService instead. */
-    rpc AssignToModems (AssignModemMessageBodyParserToModemsRequest) returns (AssignModemMessageBodyParserToModemsRequest.Response) {
-        option deprecated = true;
-    };
-    /* [DEPRECATED] Use ModemMessageBodyParserAssignmentService instead. */
-    rpc RemoveFromModems (RemoveModemMessageBodyParserFromModemsRequest) returns (RemoveModemMessageBodyParserFromModemsRequest.Response) {
-        option deprecated = true;
-    };
+    /* Assign a parser to a modem. */
+    rpc Assign (AssignModemMessageBodyParsers.Request) returns (AssignModemMessageBodyParsers.Response);
+
+    /* Unassign a parser from a modem. */
+    rpc Unassign (UnassignModemMessageBodyParsers.Request) returns (UnassignModemMessageBodyParsers.Response);
 }
 
 /* Modem message body parser. This defines a parsing strategy for the body of a message.
@@ -49,15 +62,7 @@ message ModemMessageBodyParser {
         Filter.ChildOrganizations child_organizations = 1;
     }
 
-    /* The id for this parser within your organization. If you do not own this parser, this field will ot be set.
-     * [DEPRECATED] Deprecated in favour of the identifier, which is globally unique.
-     */
-    int32 id = 1 [deprecated = true];
-
-    /* The globally unique identifier for this parser.
-     * The identifier consists of the name of the organization that created it and its id in that organization.
-     * For example my-organization:4 (the fourth parser created by that organization).
-     */
+    /* The globally (across organizations) unique identifier for this parser. */
     string identifier = 7;
 
     /* The organization that created the parser. */
@@ -82,7 +87,7 @@ message ModemMessageBodyParser {
     /* If set, this parser is available to your child organizations, as a Provided parser. */
     AvailableToChildOrganizations available_to_child_organizations = 6;
 
-    reserved 5;
+    reserved 1, 5;
 }
 
 /* Simple modem message body parser. This can be used a convenient way to create a .ksy parser. */
@@ -193,9 +198,6 @@ message SimpleModemMessageBodyParser {
 }
 
 message ModemMessageBodyParserSelection {
-    /** Filter parsers by your own parser ids. */
-    repeated int32 ids = 1 [deprecated = true];
-
     /* Filter parsers by their identifiers. */
     repeated string identifiers = 8;
 
@@ -214,7 +216,7 @@ message ModemMessageBodyParserSelection {
     /* Only return parsers that were created by the given parent organizations. */
     repeated string owner_organizations = 6;
 
-    reserved 7;
+    reserved 1, 7;
 }
 
 message ListModemMessageBodyParsersRequest {
@@ -260,19 +262,13 @@ message UpdateUploadedModemMessageBodyParserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
 
-    /* The identifier of the parser that should be updated.
-     * [DEPRECATED] Deprecated in favour of the identifier, which is globally unique.
-     */
-    int32 id = 2 [deprecated = true];
-
-    /* The identifier of the parser that should be updated.
-     * The identifier consists of the name of the organization that created it and its id in that organization.
-     * For example my-organization:4 (the fourth parser created by that organization).
-     */
+    /* The identifier of the parser that should be updated. */
     string identifier = 4;
 
     /* The new ksy definition for this parser. */
     string content_ksy = 3;
+
+    reserved 2;
 }
 
 /* Create a simple modem message parser, which generates a .ksy specification. */
@@ -287,37 +283,25 @@ message UpdateSimpleModemMessageBodyParserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
 
-    /* The identifier of the parser that should be updated.
-     * [DEPRECATED] Deprecated in favour of the identifier, which is globally unique.
-     */
-    int32 id = 2 [deprecated = true];
-
-    /* The identifier of the parser that should be updated.
-     * The identifier consists of the name of the organization that created it and its id in that organization.
-     * For example my-organization:4 (the fourth parser created by that organization).
-     */
+    /* The identifier of the parser that should be updated. */
     string identifier = 4;
 
     SimpleModemMessageBodyParser parser = 3;
+
+    reserved 2;
 }
 
 message RenameModemMessageBodyParserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
 
-    /* The identifier of the parser that should be updated.
-     * [DEPRECATED] Deprecated in favour of the identifier, which is globally unique.
-     */
-    int32 id = 2 [deprecated = true];
-
-    /* The identifier of the parser that should be updated.
-     * The identifier consists of the name of the organization that created it and its id in that organization.
-     * For example my-organization:4 (the fourth parser created by that organization).
-     */
+    /* The identifier of the parser that should be updated. */
     string identifier = 4;
 
     /* The new name for this parser. */
     string name = 3;
+
+    reserved 2;
 }
 
 /* Update the child availability for a parser.
@@ -328,19 +312,13 @@ message UpdateChildOrganizationAvailabilityRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
 
-    /* The identifier of the parser that should be updated.
-     * [DEPRECATED] Deprecated in favour of the identifier, which is globally unique.
-     */
-    int32 id = 2 [deprecated = true];
-
-    /* The identifier of the parser that should be updated.
-     * The identifier consists of the name of the organization that created it and its id in that organization.
-     * For example my-organization:4 (the fourth parser created by that organization).
-     */
+    /* The identifier of the parser that should be updated. */
     string identifier = 4;
 
     /* The new child organization availability filter for this parser. */
     Filter.ChildOrganizations available_to_child_organizations = 3;
+
+    reserved 2;
 }
 
 message DeleteModemMessageBodyParserRequest {
@@ -375,10 +353,7 @@ message TestModemMessageBodyParserRequest {
 
     /* Either an existing parser, an uploaded ksy definition or a simple parser definition to test. */
     oneof parser {
-        /* The identifier of the parser you want to test.
-         * The identifier consists of the name of the organization that created it and its id in that organization.
-         * For example my-organization:4 (the fourth parser created by that organization).
-         */
+        /* The identifier of the parser you want to test. */
         string identifier = 7;
 
         /* A ksy definition you want to test. */
@@ -420,63 +395,44 @@ message RetryModemMessageBodyParsing {
     }
 }
 
-/* [DEPRECATED] Use ModemMessageBodyParserAssignmentService instead. */
-message ListAssignedParsersRequest {
-    option deprecated = true;
-
-    message Response {
-        option deprecated = true;
-
-        message AssignedParsers {
-            option deprecated = true;
-
-            string modem_number = 1 [deprecated = true];
-            repeated ModemMessageBodyParser parsers = 2 [deprecated = true];
-        }
-
-        repeated AssignedParsers assigned_parsers = 1 [deprecated = true];
-        ListAssignedParsersRequest request = 2 [deprecated = true];
-        Pagination.Result pagination = 3 [deprecated = true];
-    }
-
-    string organization = 1 [deprecated = true];
-    ModemMessageBodyParserSelection selection = 2 [deprecated = true];
-    modem.ModemSelection modem_selection = 3 [deprecated = true];
-    Pagination pagination = 4 [deprecated = true];
+/* Directly assigned modem message parser to a modem. */
+message AssignedModemMessageBodyParser {
+    string parser_identifier = 1;
+    string modem_number = 2;
 }
 
-/* [DEPRECATED] Use ModemMessageBodyParserAssignmentService instead. */
-message AssignModemMessageBodyParserToModemsRequest {
-    option deprecated = true;
-
-    message Response {
-        option deprecated = true;
-
-        repeated ListAssignedParsersRequest.Response.AssignedParsers assigned_parsers = 3 [deprecated = true];
-        AssignModemMessageBodyParserToModemsRequest request = 2 [deprecated = true];
-        reserved 1;
+/* Add direct assignments.
+ * If an overlapping assignment using a rule exists, it is shadowed by the direct assignment.
+ *
+ * Simplified version of assign.AssignDirectly.
+ */
+message AssignModemMessageBodyParsers {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        ModemMessageBodyParserSelection assign_parsers = 2;
+        modem.ModemSelection to_modems = 3;
     }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1 [deprecated = true];
-    ModemMessageBodyParserSelection selection = 2 [deprecated = true];
-    modem.ModemSelection modem_selection = 3 [deprecated = true];
+    message Response {
+        repeated AssignedModemMessageBodyParser created = 1;
+        Request request = 2;
+    }
 }
 
-/* [DEPRECATED] Use ModemMessageBodyParserAssignmentService instead. */
-message RemoveModemMessageBodyParserFromModemsRequest {
-    option deprecated = true;
-
-    message Response {
-        option deprecated = true;
-
-        repeated ListAssignedParsersRequest.Response.AssignedParsers assigned_parsers = 3 [deprecated = true];
-        RemoveModemMessageBodyParserFromModemsRequest request = 2 [deprecated = true];
-        reserved 1;
+/* Remove a direct assignment.
+ * If an overlapping assignment using a rule exists, it is not affected, except that it is longer shadowed.
+ *
+ * Simplified version of assign.UnassignDirectly.
+ */
+message UnassignModemMessageBodyParsers {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        ModemMessageBodyParserSelection unassign_parsers = 2;
+        modem.ModemSelection from_modems = 3;
     }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1 [deprecated = true];
-    ModemMessageBodyParserSelection selection = 2 [deprecated = true];
-    modem.ModemSelection modem_selection = 3 [deprecated = true];
+    message Response {
+        repeated AssignedModemMessageBodyParser removed_direct_assignments = 1;
+        Request request = 2;
+    }
 }

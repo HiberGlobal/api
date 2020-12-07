@@ -1,0 +1,43 @@
+{
+  "directAssignmentAdded": {
+    "organization": "your-organization",
+    "created": {
+      "type": "ASSIGNS_ALARM_TO_MODEM",
+      "toModem": "AAAA AAAA",
+      "assignAlarm": {
+        "identifier": "example-identifier",
+        "description": "example",
+        "parameters": {
+          "example-equals-check": {
+            "field.path": ".my-custom-field",
+            "field.expected": 99.95
+          },
+          "example-threshold-check": {
+            "field.threshold.minimum": 30.0
+          }
+        },
+        "ownerOrganization": "your-organization"
+      }
+    },
+    "tags": [
+      {
+        "id": "1",
+        "label": {
+          "name": "example-tag"
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "name": "example-tag-2"
+        }
+      }
+    ],
+    "title": "example-identifier was assigned to AAAA AAAA.",
+    "description": "example-identifier was assigned to AAAA AAAA.\n\nAny new message from modem AAAA AAAA will now be validated using example-identifier.\n",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z"
+    }
+  }
+}

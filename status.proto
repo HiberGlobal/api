@@ -14,6 +14,9 @@ option go_package = "hiber";
  */
 service StatusService {
     rpc Status (StatusRequest) returns (StatusRequest.Response);
+
+    rpc UnhealthyModems (UnhealthyModems.Request) returns (UnhealthyModems.Response);
+    rpc UnhealthyPublishers (UnhealthyPublishers.Request) returns (UnhealthyPublishers.Response);
 }
 
 message NetworkStatus {
@@ -45,27 +48,46 @@ message OrganizationStatus {
 
     /* Organization health, based on the values below. */
     Health health = 1;
+
     /* Health for modems, based on the most severe state for all your modems. */
     Health modems = 2;
+
     /* Health for publishers, based on the most severe state for all your publishers. */
     Health publishers = 3;
-    /* A detailed list of modems with a non-OK status. */
-    repeated ModemStatus relevant_modems = 4;
-    /* A detailed list of publishers with a non-OK status. */
-    repeated PublisherStatus relevant_publishers = 5;
+
+    /* A detailed list of modems with a non-OK status.
+     * Deprecated: is filled with the paginated response from relevant_modems_response.
+     */
+    repeated ModemStatus relevant_modems = 4 [deprecated = true];
+
+    /* Pagination result for any the relevant modems. */
+    UnhealthyModems.Response relevant_modems_response = 6;
+
+    /* A detailed list of publishers with a non-OK status.
+     * Deprecated: is filled with the paginated response from relevant_publishers_response.
+     */
+    repeated PublisherStatus relevant_publishers = 5 [deprecated = true];
+
+    /* Pagination result for any the relevant publishers. */
+    UnhealthyPublishers.Response relevant_publishers_response = 7;
 }
 
 message StatusRequest {
     message Response {
         StatusRequest request = 1;
+
         /* Status of the satellite network. */
         NetworkStatus satellites = 2;
+
         /* Status of the ground station network. */
         NetworkStatus ground_stations = 3;
+
         /* Areas of the globe that have a non-OK status, i.e. regions where coverage is hindered by external forces. */
         repeated AreaStatus global_areas = 4;
+
         /* Status for your organization, i.e. whether you have modems that are having trouble, or failed publishers. */
         OrganizationStatus organization = 5;
+
         /* Status for the server. Generally only used when the server is in read-only mode for maintenance. */
         NetworkStatus server = 6;
     }
@@ -76,6 +98,50 @@ message StatusRequest {
     /* Whether to include a detailed list of modems with a non-OK status. */
     bool include_modems = 2;
 
+    /* Whether to include a detailed list of modems with a non-OK status, with the given request.
+     * Note that organization should match this request's organization or be omitted.
+     *
+     * Only used when include_modems is true.
+     */
+    UnhealthyModems.Request include_modems_request = 4;
+
     /* Whether to include a detailed list of publishers with a non-OK status. */
     bool include_publishers = 3;
+
+    /* Whether to include a detailed list of publishers with a non-OK status, with the given request.
+     * Note that organization should match this request's organization or be omitted.
+     *
+     * Only used when include_publishers is true.
+     */
+    UnhealthyPublishers.Request include_publishers_request = 5;
+}
+
+message UnhealthyModems {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        Pagination pagination = 2;
+    }
+
+    message Response {
+        /* A detailed list of modems with a non-OK status. */
+        repeated OrganizationStatus.ModemStatus unhealthy_modems = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}
+
+message UnhealthyPublishers {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        Pagination pagination = 2;
+    }
+
+    message Response {
+        /* A detailed list of publishers with a non-OK status. */
+        repeated OrganizationStatus.PublisherStatus unhealthy_publishers = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
 }

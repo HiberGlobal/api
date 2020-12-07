@@ -28,6 +28,6 @@
     ],
     "title": "Modem AAAA AAAA has been silent for more than 4 days!",
     "description": "No messages were received from modem AAAA AAAA for 4 days.\nIt exceeded the maximum inactivity period of (2 days) at 2020-06-03 05:15:25.355Z.\n",
-    "modemExternalDeviceId": "AABBCCDDEEFFGGHH"
+    "modemExternalDeviceId": "00 11 22 33 AA BB CC DD"
   }
 }

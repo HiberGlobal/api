@@ -10,7 +10,6 @@ option java_multiple_files = true;
 option java_package = "global.hiber.api.grpc";
 option go_package = "hiber";
 
-
 /* Update object for an int that can be set to 0.
  * Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,
  * in an update object.
@@ -63,11 +62,16 @@ message UpdateBoolean {
     bool value = 2;
 }
 
-/* Period of time between two timestamps. Typically used for filtering.
- */
+/* Period of time between two timestamps. Typically used for filtering. */
 message TimeRange {
     Timestamp start = 1;
     Timestamp end = 2;
+}
+
+/* Decimal range. */
+message DoubleRange {
+    double start = 1;
+    double end = 2;
 }
 
 /* Timestamp type for convenience.
@@ -104,8 +108,8 @@ message Duration {
     string textual = 2;
 }
 
-
 /* Geographic latitude and longitude coordinates specified in decimal degrees.
+ * For more information, see the WGS-84 coordinate system, which is used for most GPS systems.
  */
 message Location {
     /* Decimal degrees north. */
@@ -114,7 +118,7 @@ message Location {
     double longitude = 2;
 }
 
-/* Area between two locations, normalized to bottom-left and top-right points.
+/* Rectangular area between two locations, normalized to bottom-left and top-right points.
  * Center point is added for convenience; it's simple the point directly between the two corner points.
  * When sending an Area to the api, the center location is ignored.
  */
@@ -124,6 +128,11 @@ message Area {
     Location top_right = 4;
 }
 
+/* Polygon shape defined by a list of locations, which draw a shape on the map.
+ * The last point is connected to the first to close the shape.
+ * For example, the outline of a city would be defined using a Shape,
+ * while a rectangular region is easier to define using Area.
+ */
 message Shape {
     repeated Location path = 1;
 }
@@ -133,7 +142,10 @@ message Shape {
  * for example
  */
 message LocationSelection {
+    /* Rectangular areas, each defined by two locations, normalized to bottom-left and top-right points. */
     repeated Area areas = 1;
+
+    /* Polygon shapes, each defined by a list of locations, which draw a shape on the map. */
     repeated Shape shapes = 2;
 }
 
@@ -192,6 +204,7 @@ enum EventType {
     MODEM_LOCATION_UPDATED = 4;
     MODEM_ACTIVATED = 33;
     MODEM_STALE = 16;
+
     MODEM_MESSAGE_RECEIVED = 5;
     MODEM_MESSAGE_BODY_PARSED = 39;
     MODEM_MESSAGE_BODY_RECEIVED = 45;
@@ -203,11 +216,22 @@ enum EventType {
     MODEM_MESSAGE_BODY_PARSER_CREATED = 46;
     MODEM_MESSAGE_BODY_PARSER_UPDATED = 47;
     MODEM_MESSAGE_BODY_PARSER_DELETED = 48;
-    MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_CREATED = 49;
-    MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_UPDATED = 50;
-    MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_DELETED = 51;
-    MODEM_MESSAGE_BODY_PARSER_ASSIGNED = 52;
-    MODEM_MESSAGE_BODY_PARSER_UNASSIGNED = 53;
+    MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_CREATED = 49 [deprecated = true];
+    MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_UPDATED = 50 [deprecated = true];
+    MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_DELETED = 51 [deprecated = true];
+    MODEM_MESSAGE_BODY_PARSER_ASSIGNED = 52 [deprecated = true];
+    MODEM_MESSAGE_BODY_PARSER_UNASSIGNED = 53 [deprecated = true];
+
+    MODEM_ALARM = 56;
+    MODEM_ALARM_CREATED = 57;
+    MODEM_ALARM_UPDATED = 58;
+    MODEM_ALARM_DELETED = 59;
+
+    DIRECT_ASSIGNMENT_ADDED = 63;
+    DIRECT_ASSIGNMENT_REMOVED = 64;
+    AUTOMATIC_MODEM_ASSIGNMENT_CREATED = 60;
+    AUTOMATIC_MODEM_ASSIGNMENT_UPDATED = 61;
+    AUTOMATIC_MODEM_ASSIGNMENT_DELETED = 62;
 
     MODEM_TRANSFER_STARTED = 17;
     MODEM_TRANSFER_RECEIVED = 18;
@@ -336,7 +360,7 @@ message Filter {
     }
 }
 
-/* Health is an indicator for issues. It is used for modems and publishers to give a quick indication of issues.
+/* Health is an indicator for issues. It is used for publishers to give a quick indication of issues.
  */
 enum Health {
     OK = 0;

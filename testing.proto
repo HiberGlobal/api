@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package hiber.testing;
 
+import "google/protobuf/struct.proto";
+
 import "base.proto";
 
 option java_multiple_files = false;
@@ -32,6 +34,9 @@ message PushModemMessagesRequest {
         Timestamp time = 2;
         Location location = 3;
         bytes content = 4;
+
+        /* Metadata for this message. For example: LoRaWAN values like fPort. */
+        google.protobuf.Struct metadata = 5;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */

@@ -1,5 +1,192 @@
 # Changelog Hiber API
 
+### 0.62 (2020-12-07)
+
+This release introduces `ModemAlarm`s and new services to manage assignments.
+
+A `ModemAlarm` is a collection of checks that validate a modem's messages, for example by location or by
+a field in the parsed message body. Multiple types of checks are available.
+
+With the introduction of `ModemAlarm`, we've also changed how assignment works.
+Previously, only `ModemMessageBodyParser`s were assigned, which was implemented with specific assignment services
+for `ModemMessageBodyParser`s. With this release, those services have been deprecated in favor of the new assignment
+services:
+
+- `DirectAssignmentService`: to directly link
+  - a `ModemMessageBodyParser` to a `Modem`
+  - a `ModemAlarm` to a `Modem`, with assignment parameters for the alarm
+  - a `ModemAlarm` to a `ModemMessageBodyParser`, to assign them both to a modem by assigning one of them to the modem.
+
+- `AutomaticModemAssignmentService`: to set up rules to assign `ModemMessageBodyParser`s and `ModemAlarm`s to a `Modem`
+  with certain properties (like tags, manufacturers, peripherals etc).
+
+- `AssignmentService`: to list everything assigned to modem(s) by both the `DirectAssignmentService`
+  and `AutomaticModemAssignmentService`.
+
+In addition to the changes above, this release adds more flexibility to messages by adding `metadata` to messages,
+allowing users to effectively add any custom data.
+
+#### Changes
+
+- Added `DoubleRange`, a range between two decimal values (inclusive).
+
+- Added `ModemAlarm`-related `EventType`s:
+  - `MODEM_ALARM` when a modem alarm is triggered on a message.
+  - `MODEM_ALARM_CREATED` when a modem alarm is created.
+  - `MODEM_ALARM_UPDATED` when a modem alarm is updated.
+  - `MODEM_ALARM_DELETED` when a modem alarm is deleted.
+
+  See `ModemAlarmService` for more details.
+
+- Added assignment-related `EventType`s:
+  - `DIRECT_ASSIGNMENT_ADDED` when a direct assignment is added.
+  - `DIRECT_ASSIGNMENT_REMOVED` when a direct assignment is removed.
+  - `AUTOAMTIC_ASSIGNMENT_CREATED` when an automatic modem assignment is created.
+  - `AUTOAMTIC_ASSIGNMENT_UPDATED` when an automatic modem assignment is updated.
+  - `AUTOAMTIC_ASSIGNMENT_DELETED` when an automatic modem assignment is deleted.
+
+  See the `DirectAssignmentService` and `AutomaticModemAssignmentService` for more details.
+
+- Deprecated `EventType`s:
+  - `MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_CREATED` is being replaced with `AUTOAMTIC_ASSIGNMENT_CREATED`.
+  - `MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_UPDATED` is being replaced with `AUTOAMTIC_ASSIGNMENT_UPDATED`.
+  - `MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_DELETED` is being replaced with `AUTOAMTIC_ASSIGNMENT_DELETED`.
+  - `MODEM_MESSAGE_BODY_PARSER_ASSIGNED` is being replaced with `DIRECT_ASSIGNMENT_ADDED`.
+  - `MODEM_MESSAGE_BODY_PARSER_UNASSIGNED` is being replaced with `DIRECT_ASSIGNMENT_REMOVED`.
+
+- Added `OrganizationPermission`s:
+  - `MODEM_ALARMS` to manage the new modem alarms.
+  - `ASSIGNMENTS` to manage assignments though the new assignment service.
+
+##### AssignmentService
+
+- Introduced the new `AssignmentService`, in combination with the `DirectAssignmentService` and
+  `AutomaticModemAssignmentService`, which are used to assign `ModemAlarm`s and `ModemMessageBodyParser`s
+  to each other and to `Modem`s.
+- Added `AssignmentService.ModemAssignments` (`ListModemAssignments`) to list everything assigned to modem(s).
+
+##### AutomaticModemAssignmentService
+
+- Introduced the new `AutomaticModemAssignmentService`, which can be used to automatically assign `ModemAlarm`s
+  and `ModemMessageBodyParser`s to `Modem`s with certain properties (like tags, manufacturers, peripherals etc).
+- Added `AutomaticModemAssignmentService.List` (`ListAutomaticModemAssignments`) to list all the
+  available automatic modem assignments (including inherited from your parent organizations).
+- Added `AutomaticModemAssignmentService.Create` (`CreateAutomaticModemAssignment`) to create a new automatic
+  modem assignment.
+- Added `AutomaticModemAssignmentService.Update` (`UpdateAutomaticModemAssignment`) to update an existing
+  automatic modem assignment, altering which modems it affect and what it assigns.
+- Added `AutomaticModemAssignmentService.Enable` (`EnableAutomaticModemAssignment`) to enable an
+  automatic modem assignment.
+- Added `AutomaticModemAssignmentService.Disable` (`DisableAutomaticModemAssignment`) to disable an
+  automatic modem assignment.
+- Added `AutomaticModemAssignmentService.Delete` (`DeleteAutomaticModemAssignment`) to delete an
+  automatic modem assignment.
+- Added `AutomaticModemAssignmentService.UpdateAvailability` (`UpdateAutomaticModemAssignmentAvailability`) to make
+  an automatic modem assignment available to (a selection of) child organizations.
+
+##### DirectAssignmentService
+
+- Introduced the new `DirectAssignmentService` and which is used to assign `ModemAlarm`s and `ModemMessageBodyParser`s
+  to each other and to `Modem`s.
+- Added `DirectAssignmentService.List` (`ListDirectAssignments`) to list direct assignments.
+- Added `DirectAssignmentService.Assign` (`AssignDirectly`) to add a new direct assignment,
+  possibly overriding an automatic assignment and adding configuration.
+- Added `DirectAssignmentService.Unassign` (`UnassignDirectly`) to remove a direct assignment.
+
+##### EventService
+
+- Added `ModemAlarm`-related `Event`s:
+  - `ModemEvent.AlarmEvent.ModemAlarmEvent` when a modem alarm is triggered on a message.
+  - `ModemEvent.AlarmEvent.CreatedEvent` when a modem alarm is created.
+  - `ModemEvent.AlarmEvent.UpdatedEvent` when a modem alarm is updated.
+  - `ModemEvent.AlarmEvent.DeletedEvent` when a modem alarm is deleted.
+
+  See `ModemAlarmService` for more details.
+
+- Added assignment-related `Event`s:
+  - Added `AssignmentEvent.AutomaticModemAssignmentCreatedEvent` when a direct assignment is added.
+  - Added `AssignmentEvent.AutomaticModemAssignmentUpdatedEvent` when a direct assignment is removed.
+  - Added `AssignmentEvent.AutomaticModemAssignmentDeletedEvent` when an automatic modem assignment is created.
+  - Added `AssignmentEvent.DirectAssignmentAddedEvent` when an automatic modem assignment is updated.
+  - Added `AssignmentEvent.DirectAssignmentRemovedEvent` when an automatic modem assignment is deleted.
+
+  See the `DirectAssignmentService` and `AutomaticModemAssignmentService` for more details.
+
+- Deprecated `EventType`s:
+  - `ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.CreatedEvent` is being replaced with `AssignmentEvent.AutomaticModemAssignmentCreatedEvent`.
+  - `ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.UpdatedEvent` is being replaced with `AssignmentEvent.AutomaticModemAssignmentUpdatedEvent`.
+  - `ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.DeletedEvent` is being replaced with `AssignmentEvent.AutomaticModemAssignmentDeletedEvent`.
+  - `ModemEvent.MessageBodyParserEvent.AssignedEvent` is being replaced with `AssignmentEvent.DirectAssignmentAddedEvent`.
+  - `ModemEvent.MessageBodyParserEvent.UnassignedEvent` is being replaced with `AssignmentEvent.DirectAssignmentRemovedEvent`.
+
+##### ModemService
+
+- Added `ModemMessage.metadata`, which can be filled with metadata that is sent with messages.
+
+##### ModemAlarmService
+
+- Introducing `ModemAlarm`s, which are customizable alarms triggered by a selection of checks.
+  Alarms can be set on a modem, and validate that modem's messages, for example by location or by
+  a field in the parsed message body.
+- Added `ModemAlarmService.List` (`ListModemAlarms`) to list available modem alarms
+  (including inherited from your parent organizations).
+- Added `ModemAlarmService.Create` (`CreateModemAlarm`) to create a new modem alarm with any number of checks.
+- Added `ModemAlarmService.Update` (`UpdateModemAlarm`) to update a modem alarm and its checks, if you are the owner.
+- Added `ModemAlarmService.Delete` (`DeleteModemAlarm`) to delete a modem alarm, if you are the owner.
+- Added `ModemAlarmService.AddCheck` (`UpdateModemAlarmAddCheck`) to add a check to a modem alarm, if you are the owner.
+- Added `ModemAlarmService.UpdateCheck` (`UpdateModemAlarmUpdateCheck`) to update a check in a modem alarm,
+  if you are the owner.
+- Added `ModemAlarmService.RemoveCheck` (`UpdateModemAlarmRemoveCheck`) to remove a check from a modem alarm,
+  if you are the owner.
+- Added `ModemAlarmService.TestParameters` (`TestModemAlarmTestParameters`) to test a set of parameters on a
+  modem alarm, to see the result when they are applied during assignment.
+- Added `ModemAlarmService.UpdateAvailability` (`UpdateModemAlarmAvailability`) to make a modem alarm (un)available to
+  (a selection of) child organizations.
+- Added `ModemAlarmService.Assign` (`AssignModemAlarms`) to assign a modem alarm to a modem.
+- Added `ModemAlarmService.Unassign` (`UnassignModemAlarms`) to unassign a modem alarm from a modem.
+
+##### ModemMessageBodyParserService
+
+- **[B]** Removed `ModemMessageBodyParserService.ListAssignedParsers`, which was deprecated since 0.51.
+- **[B]** Removed `ModemMessageBodyParserService.AssignToModems`, which was deprecated since 0.51.
+- **[B]** Removed `ModemMessageBodyParserService.RemoveFromModems`, which was deprecated since 0.51.
+- **[B]** Removed `ModemMessageBodyParser.id`, which was deprecated since 0.51.
+- **[B]** Removed `ModemMessageBodyParserSelection.ids`, which was deprecated since 0.51.
+- **[B]** Removed `UpdateUploadedModemMessageBodyParserRequest.id`, which was deprecated since 0.51.
+- **[B]** Removed `UpdateSimpleModemMessageBodyParserRequest.id`, which was deprecated since 0.51.
+- **[B]** Removed `RenameModemMessageBodyParserRequest.id`, which was deprecated since 0.51.
+- **[B]** Removed `UpdateChildOrganizationAvailabilityRequest.id`, which was deprecated since 0.51.
+- Added `ModemMessageBodyParserService.assign` as a shortcut for `DirectAssignmentService.Assign`.
+- Added `ModemMessageBodyParserService.unassign` as a shortcut for `DirectAssignmentService.Unassign`.
+
+##### ModemMessageBodyParserAssignmentService
+
+- Deprecated the entire service in favour of the assignment services.
+- **[B]** Removed a number of options from `ModemMessageBodyParserAssignmentSelection`, that are no longer available.
+
+##### ModemMessageBodyParserAutomaticAssignmentService
+
+- Deprecated the entire service in favour of the assignment services.
+- **[B]** Removed `CreateBodyParserAutomaticAssignment.apply_to_child_organizations`: child organization availability
+  can now only be set after creation, to avoid accidentally polluting child organizations.
+
+##### TestingService
+
+- Added `PushModemMessagesRequest.metadata`, which adds metadata to the message.
+  The metadata is available in `ModemMessage.metadata`.
+
+### 0.61 (2020-12-03)
+
+#### Changes
+
+##### StatusService
+
+- Added `UnhealthyModems` to paginate through unhealthy modems.
+- Added `UnhealthyPublishers` to paginate through unhealthy publishers.
+- Changed `OrganizationStatus` to paginate its modems and publishers:
+  - Deprecated `relevant_modems` in favour of `relevant_modems_response`, which is paginated.
+  - Deprecated `relevant_publishers` in favour of `relevant_publishers_response`, which is paginated.
+
 ### 0.60 (2020-10-22)
 
 This release contains a lot of preparatory work for future features:

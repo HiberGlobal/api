@@ -21,7 +21,7 @@
       }
     ],
     "title": "Modem AAAA AAAA was automatically created.",
-    "description": "Modem AAAA AAAA was automatically created for device id AABBCCDDEEFFGGHH.",
-    "modemExternalDeviceId": "AABBCCDDEEFFGGHH"
+    "description": "Modem AAAA AAAA was automatically created for device 00 11 22 33 AA BB CC DD.",
+    "modemExternalDeviceId": "00 11 22 33 AA BB CC DD"
   }
 }

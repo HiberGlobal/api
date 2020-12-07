@@ -12,7 +12,10 @@ option java_outer_classname = "ModemMessageBodyParserAutomaticAssignmentApi";
 option go_package = "hiber";
 
 // protolint:disable MAX_LINE_LENGTH
+/* Deprecated: use the assignment service instead. */
 service ModemMessageBodyParserAutomaticAssignmentService {
+    option deprecated = true;
+
     rpc List (ListBodyParserAutomaticAssignmentRules.Request) returns (ListBodyParserAutomaticAssignmentRules.Response);
     rpc Create (CreateBodyParserAutomaticAssignmentRule.Request) returns (CreateBodyParserAutomaticAssignmentRule.Response);
     rpc UpdateParsers (UpdateBodyParserAutomaticAssignmentParsers.Request) returns (UpdateBodyParserAutomaticAssignmentParsers.Response);
@@ -38,8 +41,12 @@ service ModemMessageBodyParserAutomaticAssignmentService {
  * - blacklisting a parser from a set of modems, so you can exclude a set of modem from being assigned that parser
  * - add a parser to devices you manufacture, and apply this to child organizations, so that all of your
  *   customers' modems are automatically assigned that parser
+ *
+ * Deprecated: use the assignment service instead.
  */
 message ModemMessageBodyParserAutomaticAssignmentRule {
+    option deprecated = true;
+
     /* A rule for automatic assignment of a body parser to modems.
      * Each field in the this rule must match a modem for this rule to be applied.
      * This means that the exclusion rules for modem and tag can be used to create a complex selection,
@@ -105,12 +112,14 @@ message ModemMessageBodyParserAutomaticAssignmentRule {
     Filter.ChildOrganizations apply_to_child_organizations = 7;
 }
 
+/* Deprecated: use the assignment service instead. */
 message ModemMessageBodyParserAutomaticAssignmentRuleSelection {
+    option deprecated = true;
+
     /* Return assignment rules with the given identifiers. */
     repeated string assignment_rule_identifiers = 1;
 
-    /* Return assignment rules with the given owner(s). */
-    Filter.ChildOrganizations owner_organizations = 2;
+    reserved 2;
 
     /* Search assignment rules. */
     string search = 3;
@@ -128,8 +137,12 @@ message ModemMessageBodyParserAutomaticAssignmentRuleSelection {
     bool only_inactive = 7;
 }
 
-/* List automatic assignment rules. */
+/* List automatic assignment rules.
+ * Deprecated: use the assignment service instead.
+ */
 message ListBodyParserAutomaticAssignmentRules {
+    option deprecated = true;
+
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
@@ -144,8 +157,12 @@ message ListBodyParserAutomaticAssignmentRules {
     }
 }
 
-/* Create a new automatic assignment rule. */
+/* Create a new automatic assignment rule.
+ * Deprecated: use the assignment service instead.
+ */
 message CreateBodyParserAutomaticAssignmentRule {
+    option deprecated = true;
+
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
@@ -159,10 +176,7 @@ message CreateBodyParserAutomaticAssignmentRule {
         /* The automatic assignment rule to apply. */
         ModemMessageBodyParserAutomaticAssignmentRule.AssignmentRule rule = 4;
 
-        /* By default, the rule only applies to your organization.
-         * Use this filter to apply the rule to (some of) your child organizations as well.
-         */
-        Filter.ChildOrganizations apply_to_child_organizations = 5;
+        reserved 5;
 
         /* Whether the rules should be created in a disabled state. */
         bool disabled = 6;
@@ -174,8 +188,12 @@ message CreateBodyParserAutomaticAssignmentRule {
     }
 }
 
-/* Update the parsers assigned by an automatic assignment rule. */
+/* Update the parsers assigned by an automatic assignment rule.
+ * Deprecated: use the assignment service instead.
+ */
 message UpdateBodyParserAutomaticAssignmentParsers {
+    option deprecated = true;
+
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
@@ -195,8 +213,12 @@ message UpdateBodyParserAutomaticAssignmentParsers {
     }
 }
 
-/* Update the description of an automatic assignment rule. */
+/* Update the description of an automatic assignment rule.
+ * Deprecated: use the assignment service instead.
+ */
 message UpdateBodyParserAutomaticAssignmentDescription {
+    option deprecated = true;
+
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
@@ -213,8 +235,12 @@ message UpdateBodyParserAutomaticAssignmentDescription {
     }
 }
 
-/* Update the child availability of an automatic assignment rule (child organizations that this rule applies to). */
+/* Update the child availability of an automatic assignment rule (child organizations that this rule applies to).
+ * Deprecated: use the assignment service instead.
+ */
 message UpdateBodyParserAutomaticAssignmentChildAvailability {
+    option deprecated = true;
+
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
@@ -231,8 +257,12 @@ message UpdateBodyParserAutomaticAssignmentChildAvailability {
     }
 }
 
-/* Enable the given automatic assignment rule. */
+/* Enable the given automatic assignment rule.
+ * Deprecated: use the assignment service instead.
+ */
 message EnableBodyParserAutomaticAssignmentRule {
+    option deprecated = true;
+
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
@@ -246,8 +276,12 @@ message EnableBodyParserAutomaticAssignmentRule {
     }
 }
 
-/* Disable the given automatic assignment rule. */
+/* Disable the given automatic assignment rule.
+ * Deprecated: use the assignment service instead.
+ */
 message DisableBodyParserAutomaticAssignmentRule {
+    option deprecated = true;
+
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
@@ -261,8 +295,12 @@ message DisableBodyParserAutomaticAssignmentRule {
     }
 }
 
-/* Delete the given automatic assignment rule. */
+/* Delete the given automatic assignment rule.
+ * Deprecated: use the assignment service instead.
+ */
 message DeleteBodyParserAutomaticAssignmentRule {
+    option deprecated = true;
+
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;

@@ -1,0 +1,33 @@
+{
+  "modemAlarm": {
+    "organization": "your-organization",
+    "modemNumber": "AAAA AAAA",
+    "modemExternalDeviceId": "00 11 22 33 AA BB CC DD",
+    "modemMessageId": "10002",
+    "alarmIdentifier": "example-identifier",
+    "alarmDescription": "example",
+    "errorMessages": {
+      "example-check-id": "Expected battery to be within 20..100%, but it is now at 15%!"
+    },
+    "tags": [
+      {
+        "id": "1",
+        "label": {
+          "name": "example-tag"
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "name": "example-tag-2"
+        }
+      }
+    ],
+    "title": "Modem AAAA AAAA: Expected battery to be within 20..100%, but it is now at 15%! (via example-identifier)",
+    "description": "Modem AAAA AAAA has the following alarms (via example-identifier):\n\n{Expected battery to be within 20..100%, but it is now at 15%! (by check example-check-id)}\n",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z"
+    }
+  }
+}

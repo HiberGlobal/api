@@ -1,0 +1,12 @@
+{
+  "modemAlarmDeleted": {
+    "organization": "your-organization",
+    "deleted": "example-identifier",
+    "title": "Modem alarm example-identifier was deleted.",
+    "description": "Modem alarm example-identifier was deleted.",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z"
+    }
+  }
+}

@@ -38,12 +38,13 @@ enum OrganizationPermission {
     MODEMS_MESSAGE_BODY_PARSERS = 43;
     /* Show and update secure notes. Includes MODEMS permission. */
     MODEMS_SECURE_NOTES = 42;
+    /** Manage and assign message alerts. Includes MODEMS permission. */
+    MODEMS_ALARMS = 44;
 
     /* Read modem messages. */
     MODEM_MESSAGES = 15;
     /* Send modem messages using the TestingService. Does not include MODEMS or MESSAGES permission. */
     MODEM_MESSAGES_SEND_TEST_MESSAGES = 16;
-
     /* Send modem messages using real message sources (i.e. gateway). Does not include MODEMS or MESSAGES permission. */
     MODEM_MESSAGES_SEND_REAL_MESSAGES = 41;
 
@@ -76,6 +77,9 @@ enum OrganizationPermission {
 
     /* Upload certificates, and update or delete uploaded certificates. */
     CERTIFICATES_MANAGE = 39;
+
+    /* Manage assignments using the assignment services and individual calls on, for example, ModemService. */
+    ASSIGNMENTS = 45;
 
     // reserved 40, 37;
 }
