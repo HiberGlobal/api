@@ -26,13 +26,6 @@
       "updated": true,
       "value": "custom-name"
     },
-    "customAntenna": {
-    },
-    "gps": {
-      "value": true
-    },
-    "location": {
-    },
     "peripherals": {
       "peripheral-type-1": "peripheral-name-1",
       "peripheral-type-2": "peripheral-name-2",
@@ -41,8 +34,6 @@
     "notes": {
       "updated": true,
       "value": "my-updated-notes"
-    },
-    "healthWarningPeriod": {
     },
     "modemExternalDeviceId": "00 11 22 33 AA BB CC DD"
   }

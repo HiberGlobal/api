@@ -81,6 +81,9 @@ enum OrganizationPermission {
     /* Manage assignments using the assignment services and individual calls on, for example, ModemService. */
     ASSIGNMENTS = 45;
 
+    /* Manage simulations, like modem message simulation. */
+    SIMULATION_MANAGE = 46;
+
     // reserved 40, 37;
 }
 

@@ -1011,6 +1011,8 @@ message ListEventsRequest {
 }
 
 /* Creates a stream for new events, matching the provided selection.
+ *
+ * Note: streams are limited to one per user due to GRPC limitations.
  */
 message EventStreamRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */

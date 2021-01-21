@@ -156,6 +156,11 @@ message LocationSelection {
 message BytesOrHex {
     bytes bytes = 1;
     string hex = 2;
+
+    message Update {
+        bool updated = 1;
+        BytesOrHex value = 2;
+    }
 }
 
 /* Pagination is normalized across the api. Provide a pagination object to get a specific page or offset,

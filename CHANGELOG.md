@@ -1,5 +1,51 @@
 # Changelog Hiber API
 
+### 0.64 (2021-01-21)
+
+This release add support for our next satellite, HIBER-4!
+
+It also introduces organization-scoped simulations, with the first implementations:
+- modem message simulation: simulate messages on modems
+- modem inactivity simulation: randomly disable message simulation on modems to generate inactivity events
+- delayed message simulation: give a percentage of simulated messages a random delay (between sent and received time)
+  to generate delayed message events.
+
+#### Changes
+
+- Added `BytesOrHex.Update` to update a binary field.
+
+##### EventService
+
+- Limited event streams to *one* per user due to GRPC limitations.
+
+##### TestingService / SimulationService
+
+- Added the `SimulationService` (in `testing.proto`) to support simulating data for testing.
+  - Added `SimulationService.Get` with `Simulation.GetRequest` to return the status of the simulations for the
+    organization. This includes organization-wide simulation settings and statistics for modem message simulations.
+  - Added `SimulationService.Update` with `Simulation.UpdateRequest` to update organization-wide simulation settings.
+  - Simulation can be enabled and disabled on an organization with a single toggle: `Simulation.enabled`.
+  - With `Simulation.modem_inactivity` modems that are simulating messages can be randomly disabled for a random period
+    to generate inactivity events.
+  - With `Simulation.delayed_messages` modems that are simulating messages can simulate a percentage of messages
+    with a random delay (between sent and received time) to generate delayed message events.
+  - With `Simulation.modem_message_simulation_defaults` default can be set for the message simulation, like the default
+    message interval `simulation_interval` and the number of messages per interval `messages_per_interval`.
+
+- Added `Simulation.ModemMessageSimulation` to simulate modem messages.
+  This supports both direct messages and message via a gateway. The method used depends on the modem configuration.
+  - The number of messages can be configured using the `simulation_interval` and `messages_per_interval`.
+  - Custom message bodies with optional random values are configurable using the `message_body` as the body and
+    the `message_body_variable_byte_indices` to indicate which bytes can be randomized.
+  - If needed, the simulation can be disabled for a period by setting `next_simulation_run_after` to a point in
+    the future.
+  - Added `SimulationService.ListModemMessageSimulations` with `Simulation.ModemMessageSimulation.List.Request` to
+    list all modems with an active message simulation.
+  - Added `SimulationService.UpdateModemMessageSimulations` with `Simulation.ModemMessageSimulation.Update.Request` to
+    enable or update the message simulation for a selection of modems.
+  - Added `SimulationService.DisableModemMessageSimulations` with `Simulation.ModemMessageSimulation.Delete.Request` to
+    list all modems with an active message simulation.
+
 ### 0.62 (2020-12-07)
 
 This release introduces `ModemAlarm`s and new services to manage assignments.
