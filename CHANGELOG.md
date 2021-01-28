@@ -1,5 +1,16 @@
 # Changelog Hiber API
 
+### 0.66 (2021-01-28)
+
+Removed some deprecated code.
+
+#### Changes
+
+##### DashboardService
+
+- **[B]** removed deprecated field `selection` from `DashboardRequest`.
+- **[B]** removed deprecated fields `satellites`, `ground_stations` and `map_blocks` from `DashboardRequest.Response`.
+
 ### 0.64 (2021-01-21)
 
 This release add support for our next satellite, HIBER-4!

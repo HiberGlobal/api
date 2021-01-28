@@ -23,26 +23,23 @@ service DashboardService {
  */
 message DashboardRequest {
     message Response {
-        /* List of ground stations and their location. */
-        repeated hiber.map.GroundStation ground_stations = 1 [deprecated=true];
-        /* List of map blocks and their modem count, for density map. */
-        repeated hiber.map.MapBlock map_blocks = 2 [deprecated=true];
         repeated hiber.modem.MessageCountRequest.Response.MessageCount message_count_per_day = 3;
-        /* Counts of the number of modems with warning and errors. */
+
+        /* Counts of the number of modems with warnings. */
         int32 modem_warning_count = 4;
+
+        /* Counts of the number of modems with errors. */
         int32 modem_error_count = 5;
-        reserved 6;
+
         DashboardRequest request = 7;
         /* Returns event bundles matching the given selection, or an empty list if the event selection wasn't set. */
         repeated hiber.event.BundledEvent events = 8;
-        repeated hiber.map.Satellite satellites = 9 [deprecated=true];
+
+        reserved 1, 2, 6, 9;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
-
-    /* Selection for ground stations and map blocks. */
-    hiber.map.MapSelection selection = 2 [deprecated=true];
 
     /* Selection for modem messages. */
     hiber.modem.ModemMessageSelection message_count_selection = 3;
@@ -55,5 +52,7 @@ message DashboardRequest {
 
     /* Timezone string for message count, day grouping. Optional. */
     string time_zone = 6;
+
+    reserved 2;
 }
 
