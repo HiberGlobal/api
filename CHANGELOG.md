@@ -1,5 +1,41 @@
 # Changelog Hiber API
 
+### 0.67 (2021-02-04)
+
+This release introduces the concepts of health levels.
+Over the next few releases, health levels will replace the static health we have now (for example for modems).
+
+Health levels can be customized to as many as you need for your operations, for example:
+- INTERVENTION
+- DEFECT
+- BATTERY
+- HIGH
+- LOW
+
+The health level caused / produced by events and alarms can be customized in the next few releases.
+
+#### Changes
+
+- Added a new permission `HEALTH_MANAGE` to manage health levels.
+
+##### HealthService
+
+- Introduced the `HealthService` to manage custom health levels. See the proto file for more details.
+
+##### ModemService
+
+- Deprecated the static health on modem and added the new health levels.
+  By default, the health levels are identical to the static health levels: OK, WARNING, ERROR.
+
+  - Deprecated `Modem.health`.
+    It will be implemented in terms of health levels in the future, as long as your health levels are identical
+    to the static health.
+
+  - Added `Modem.health_level` to show the modem's health as a `HealthLevel`.
+
+  - Renamed `Modem.HealthConfig.health_warning_period` to `health_unresolvable_period`,
+    since health is now customizable.
+
 ### 0.66 (2021-01-28)
 
 Removed some deprecated code.

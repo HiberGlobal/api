@@ -5,6 +5,7 @@ package hiber.modem;
 import "google/protobuf/struct.proto";
 
 import "base.proto";
+import "health.proto";
 import "subscription.proto";
 import "tag.proto";
 
@@ -62,9 +63,17 @@ message Modem {
     /* Period in days, if modem inactivity exceeds this period, alerts will be triggered and health will go to error */
     int32 maximum_inactivity_period = 8;
 
-    /* Value based on the number of error and warning events this modem has received in the past 30 days */
-    Health health = 9;
+    /* Deprecated health based on the number of error and warning events this modem has received in the past 30 days
+     * Uses the OK, WARNING, ERROR format.
+     */
+    Health health = 9 [deprecated = true];
+
+    /* Health level based on the modem alarm and some always-present alarms. */
+    health.HealthLevel health_level = 28;
+
+    /* Health configuration for unresolvable built-in modem alarms, like delayed or skipped messages. */
     HealthConfig health_config = 24;
+
     Status status = 12;
 
     // additional information
@@ -187,12 +196,15 @@ message Modem {
         string custom_antenna = 4;
     }
 
-    /* Health configuration for the modem. Defines how the health is calculated. */
+    /* Health configuration for the modem. Defines how the health is calculated for certain built-in alarms. */
     message HealthConfig {
         reserved 1;
 
+        /* The health level that unresolvable alarms, like delayed or skipped messages, set the modem to. */
+        string health_level = 3;
+
         /* Period to consider when determining health from warning events. Warning events cannot be resolved. */
-        Duration health_warning_period = 2;
+        Duration health_unresolvable_period = 2;
     }
 
     /* Modem statuses for its lifecycle. */
@@ -244,7 +256,11 @@ message ModemSelection {
     TimeRange with_last_message_in = 7;
     repeated hiber.organization.subscription.ServiceType with_service_type = 6;
 
-    repeated Health health = 9;
+    /* Deprecated health that uses the OK, WARNING, ERROR format. */
+    repeated Health health = 9 [deprecated = true];
+
+    /* Filter modems by health level. */
+    repeated health.HealthLevel health_level = 17;
 
     /* Filter modems by status(es). Defaults to health statuses, excluding dead, lost or damaged modems. */
     repeated Modem.Status status = 10;

@@ -1,0 +1,161 @@
+syntax = "proto3";
+
+package hiber.health;
+
+import "base.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.health";
+option java_outer_classname = "HealthManagementApi";
+option go_package = "hiber";
+
+service HealthService {
+    /* List the health levels. */
+    rpc List (ListHealthLevels.Request) returns (ListHealthLevels.Response);
+
+    /* Reorder the health levels, changing the order of severity. */
+    rpc Reorder (ReorderHealthLevels.Request) returns (ReorderHealthLevels.Response);
+
+    /* Add a new health level at the end of the list (highest severity). */
+    rpc Add (AddHealthLevel.Request) returns (AddHealthLevel.Response);
+
+    /* Update or rename a health level. */
+    rpc Update (UpdateHealthLevel.Request) returns (UpdateHealthLevel.Response);
+
+    /* Remove a health level. Any events with that level are redirected to the catch-all level. */
+    rpc Remove (RemoveHealthLevel.Request) returns (RemoveHealthLevel.Response);
+}
+
+/* A health level in an organization.
+ * Health can be customized depending on your need.
+ *
+ * The default health levels are:
+ * - OK (green): no problems detected
+ * - WARNING (orange): unresolvable problems detected, for example delayed or skipped messages
+ * - ERROR (red): significant problems detected (that typically can be resolved),
+ *   for example inactivity or invalid messages (resolved on a successful message)
+ *
+ * Health levels can be customized to as many as you need for your operations, for example:
+ * - INTERVENTION
+ * - DEFECT
+ * - BATTERY
+ * - HIGH
+ * - LOW
+ *
+ * Health levels are ordered by severity (low to high), and only the most severe level will be returned when
+ * retrieving a modem.
+ *
+ * Health can be assigned using modems alarms, which specify the health level they will cause on a modem (and for how
+ * long, if it does not resolve automatically).
+ *
+ * Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems),
+ * which can happen when a device manufacturer has provided alarms to your device (e.g. a low battery alarm).
+ * By default, any unknown health levels map to the level that is marked catch-all.
+ */
+message HealthLevel {
+    /* The name of this health level.
+     * Levels are identified by their name.
+     * The API does support renaming, where the rename is propagated to all the relevant parts of the system.
+     */
+    string level = 1;
+
+    /* A string that represents a valid CSS3 colour.
+     * Simple examples are: green, red, orange, grey, #FF00FF for fuchsia, etc.
+     * Keep in mind that CSS3 allows for more ways to define colors.
+     * (See https://www.w3.org/TR/2003/WD-css3-color-20030214/)
+     * All the following definitions mean "red":
+     *  - rgb(255, 0, 0)
+     *  - rgb(100%, 0, 0)
+     *  - rgba(100%, 0%, 0%, 100%)
+     *  - hsl(0, 100%, 50%)
+     *  - hsla(0, 100%, 50%, 1)
+     *
+     * The client is responsible for rendering the correct color from the CSS3 color-space.
+     */
+    string color = 2;
+
+    /* Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems),
+     * which can happen when a device manufacturer has provided alarms for your device (e.g. a low battery alarm).
+     * By default, unknown health levels map to the level of the highest severity,
+     * unless another level is marked as catch-all.
+     */
+    bool catch_all = 3;
+}
+
+message ListHealthLevels {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+    }
+    message Response {
+        repeated HealthLevel health_levels = 1;
+    }
+}
+
+/* Re-order the health levels for your organization. */
+message ReorderHealthLevels {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* The health levels for the organization, ordered by severity (low to high).
+         * This list must include _all_ health levels, or the call will fail.
+         * The implication is, that if someone adds, removes or renames a level just before this call is sent,
+         * then this call will fail to protect against strange results.
+         */
+        repeated string levels = 2;
+    }
+    message Response {
+        repeated HealthLevel reordered_health_levels = 1;
+    }
+}
+
+message AddHealthLevel {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* Add the given level to the organizations health levels.
+         * The new health level will be added with the highest severity (at the bottom of the health levels list).
+         */
+        HealthLevel new_health_level = 2;
+    }
+    message Response {
+        repeated HealthLevel health_levels = 1;
+    }
+}
+
+message UpdateHealthLevel {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        string level = 2;
+
+        /* Optionally, rename this health level.
+         * NOTE! Don't use this to change the semantics of a health level.
+         * All historic events that have this health-level will change with it.
+         * (Unless you are very sure you want to change history, that is)
+         */
+        string rename = 3;
+
+        /* Optionally, set or update the color for this health level. */
+        UpdateClearableString update_color = 4;
+
+        /* Optionally, set or unset the catch all flag. */
+        UpdateBoolean update_catch_all = 5;
+    }
+    message Response {
+        repeated HealthLevel health_levels = 1;
+    }
+}
+
+message RemoveHealthLevel {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        string level = 2;
+    }
+    message Response {
+        repeated HealthLevel health_levels = 1;
+    }
+}

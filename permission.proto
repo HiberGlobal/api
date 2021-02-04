@@ -84,7 +84,10 @@ enum OrganizationPermission {
     /* Manage simulations, like modem message simulation. */
     SIMULATION_MANAGE = 46;
 
-    // reserved 40, 37;
+    /* Manage custom health levels. */
+    HEALTH_MANAGE = 47;
+
+    reserved 40, 37;
 }
 
 enum UserPermission {

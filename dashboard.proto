@@ -3,7 +3,6 @@ syntax = "proto3";
 package hiber.dashboard;
 
 import "event.proto";
-import "map.proto";
 import "modem.proto";
 
 option java_multiple_files = false;
