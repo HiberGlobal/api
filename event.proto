@@ -181,7 +181,10 @@ message Event {
             string modem_external_device_id = 9;
 
             /* The number of days this modem is allowed to be inactive before triggering this event. */
-            int32 maximum_inactivity_period = 3;
+            int32 maximum_inactivity_period = 3 [deprecated = true];
+
+            /* The period this modem is allowed to be inactive before triggering this event. */
+            Duration maximum_inactivity = 10;
 
             /* The time this modems inactivity exceeded the maximum_inactivity_period. */
             Timestamp time = 4;

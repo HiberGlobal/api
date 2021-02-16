@@ -61,7 +61,10 @@ message Modem {
     BytesOrHex last_message_body = 15;
 
     /* Period in days, if modem inactivity exceeds this period, alerts will be triggered and health will go to error */
-    int32 maximum_inactivity_period = 8;
+    int32 maximum_inactivity_period = 8 [deprecated = true];
+
+    /* If modem inactivity exceeds this period, alerts will be triggered and health will go to error */
+    Duration maximum_inactivity = 29;
 
     /* Deprecated health based on the number of error and warning events this modem has received in the past 30 days
      * Uses the OK, WARNING, ERROR format.

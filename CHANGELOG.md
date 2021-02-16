@@ -1,5 +1,31 @@
 # Changelog Hiber API
 
+### 0.68 (2021-02-15)
+
+#### Changes
+
+##### EventService
+
+- Added `ModemStaleEvent.maximum_inactivity` to allow maximum inactivity period of any length.
+  - Deprecated `ModemStaleEvent.maximum_inactivity_period`, which allows maximum inactivity period in days only.
+  - Updated `modem-stale.json` to reflect this added field.
+
+##### HealthService
+
+- Added `HealthSelection` to filter health levels.
+- Added `ListHealthLevels.Response.request` to return the request, in case the selection was corrected.
+
+##### ModemService
+
+- Added `Modem.maximum_inactivity` to allow maximum inactivity period of any length.
+  - Deprecated `Modem.maximum_inactivity_period`, which allows maximum inactivity period in days only.
+
+##### ModemAlarmService
+
+- Added a comment related to the processing of health levels from parent organizations.
+- Fixes a bug where health level was not saved on modem alarms.
+  (Note that health is not yet processed to the alarm event or modem health, this will be added soon.)
+
 ### 0.67 (2021-02-04)
 
 This release introduces the concepts of health levels.

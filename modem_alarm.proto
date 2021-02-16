@@ -119,7 +119,12 @@ message ModemAlarm {
 
         /* The health level that this check would cause for a modem, when it fails.
          * This can be changed on assignment, to fit the needs of the organization.
-         * Defaults to the most severe health level (ERROR when health levels are not customized).
+         * If not configured, health is unaffected.
+         *
+         * Note, when an alarm is inherited the health levels may not match yours. If the health level matches one of
+         * your health levels, that level is used. Otherwise, the catch-all health level is used.
+         * See the health definition for more information on the catch all health level (typically the most severe).
+         * Note that the health level displayed here is the result of the steps above.
          */
         string health_level = 2;
 

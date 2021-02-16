@@ -82,13 +82,23 @@ message HealthLevel {
     bool catch_all = 3;
 }
 
+message HealthLevelSelection {
+    /* Search for the given string in the levels and colors. */
+    string search = 1;
+
+    /* Filter by exact levels. */
+    repeated string levels = 2;
+}
+
 message ListHealthLevels {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
+        HealthLevelSelection selection = 2;
     }
     message Response {
         repeated HealthLevel health_levels = 1;
+        Request request = 2;
     }
 }
 
