@@ -159,6 +159,7 @@ message ModemAlarm {
         oneof check {
             LocationCheck location = 4;
             FieldCheck field = 5;
+            InactivityCheck inactivity = 6;
         }
 
         /* Check that the device location is within a given area.
@@ -174,6 +175,16 @@ message ModemAlarm {
                 Area area = 1;
                 Shape shape = 2;
             }
+        }
+
+        /* Check whether the device exceeds inactivity limits.
+         *
+         * Has the following parameters:
+         * - inactivity.maximum: the maximum allowed inactivity
+         */
+        message InactivityCheck {
+            /* The maximum value for the modem's inactivity (time since last message was received on the server). */
+            Duration maximum = 29;
         }
 
         /* A check that evaluates each new message, and checks selected field(s) in the parsed body.
@@ -198,6 +209,13 @@ message ModemAlarm {
          * - field.delta.threshold.expected: iff this is a delta check, replace the expected range
          * - field.delta.threshold.minimum: iff this is a delta check, replace the expected minimum
          * - field.delta.threshold.maximum: iff this is a delta check, replace the expected maximum
+         *
+         * All of the parameters above can be used in the error message template.
+         *
+         * The delta check also adds a few additional error message variables:
+         * - {field.delta.previous}: the previous value for the field
+         * - {field.delta.difference} (also {actual}): the difference between previous and current value for the field
+         * - {field.delta.current}: the current value for the field
          */
         message FieldCheck {
             /* Select the field(s) that this check is applied to, using a json path.
@@ -268,6 +286,17 @@ message ModemAlarm {
 
                 /* Check that the delta is within a given numeric range. */
                 ThresholdCheck threshold = 2;
+
+                /* Whether the field data should be encrypted in cache storage.
+                 * Delta checks use a cache for field from messages that are affected by a delta check.
+                 * Encrypting the individual field values is (relatively) computationally expensive and may lead to
+                 * a slightly delayed alarm event. In the future, some delta features may only
+                 * be available to unencrypted values due to performance issues.
+                 */
+                bool encrypted = 3;
+
+                /* Whether to ignore this check if the previous value is not found (i.e. there is no history). */
+                bool ignore_previous_value_not_found = 4;
             }
         }
     }

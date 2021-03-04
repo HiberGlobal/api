@@ -60,6 +60,9 @@ message Modem {
     /* The body of the last message. */
     BytesOrHex last_message_body = 15;
 
+    /* The amount of time since the last message from this modem was received on the server. */
+    Duration inactivity = 30;
+
     /* Period in days, if modem inactivity exceeds this period, alerts will be triggered and health will go to error */
     int32 maximum_inactivity_period = 8 [deprecated = true];
 

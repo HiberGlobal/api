@@ -6,6 +6,7 @@ import "google/protobuf/struct.proto";
 
 import "assignment.proto";
 import "base.proto";
+import "health.proto";
 import "integration_aws_iot.proto";
 import "integration_mqtt.proto";
 import "modem.proto";
@@ -509,6 +510,9 @@ message Event {
 
                 /* The filled in error message(s) for the failing checks in the alarm. */
                 map<string, string> error_messages = 7;
+
+                /* The highest health level caused by the failing checks in this alarm. */
+                health.HealthLevel health_level = 12;
 
                 repeated hiber.tag.Tag tags = 8;
                 string title = 9;

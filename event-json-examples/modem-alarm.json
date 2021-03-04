@@ -9,6 +9,10 @@
     "errorMessages": {
       "example-check-id": "Expected battery to be within 20..100%, but it is now at 15%!"
     },
+    "healthLevel": {
+      "level": "WARNING",
+      "color": "yellow"
+    },
     "tags": [
       {
         "id": "1",

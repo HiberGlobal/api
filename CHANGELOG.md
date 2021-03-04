@@ -1,5 +1,48 @@
 # Changelog Hiber API
 
+### 0.69 (2021-03-04)
+
+This release build on the new health levels by implementing them for alarm events, and replacing the deprecated health
+implementation with the new health levels in a backwards-compatible way.
+Additionally, this release introduces some new options to alarm checks, including a new check type for modem inactivity.
+
+#### Changes
+
+##### ModemService
+
+- Replaced the deprecated health implementation with the new health levels. The default health levels are identical
+  to the deprecated levels, so unless you change the health levels for your organization, this change is fully backwards
+  compatible.
+- Added `Modem.inactivity` with the time since the last message.
+- Fixed a bug where stale detection would not be triggered.
+
+##### ModemAlarmService
+
+- Added a new check type: Inactivity.
+  This check triggers when a modem is inactive for the configured period.
+  This is similar to `Modem.maximum_inactivity`, but uses the alarms to add more flexibility, like the option to add
+  multiple checks for multiple levels of inactivity and configuring the resulting health for each of those.
+- Added a few options to the delta check:
+  - `encrypted`: whether the individual field data should be encrypted (all messages are already encrypted).
+    Encrypting the individual field values is (relatively) computationally expensive and may lead to
+    a slightly delayed alarm event. In the future, some delta features may only
+    be available to unencrypted values due to performance issues.
+  - `ignore_previous_value_not_found`: Whether to ignore this check if the previous value is not found
+    (i.e. there is no history).
+- Added `ModemAlarmEvent.health_level` so the configured health is actually reflected in the event.
+
+##### StatusService
+
+- Deprecated `ModemStatus.health`. The status call will be update with health levels in a later release.
+
+### 0.68.3 (2021-03-02)
+
+#### Changes
+
+##### ModemService
+
+- Fixed a bug where message events were not sent in order.
+
 ### 0.68 (2021-02-15)
 
 #### Changes

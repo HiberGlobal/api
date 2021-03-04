@@ -35,7 +35,7 @@ message AreaStatus {
 message OrganizationStatus {
     message ModemStatus {
         string modem_number = 1;
-        Health health = 2;
+        Health health = 2 [deprecated = true];
         repeated string messages = 3;
     }
 
