@@ -4,7 +4,15 @@
     "created": {
       "identifier": "example-identifier",
       "description": "example",
-      "triggerCondition": "ANY_CHECK_FAILED"
+      "triggerCondition": "ANY_CHECK_FAILED",
+      "defaultHealthLevel": "ERROR",
+      "healthLevelAfterResolved": {
+        "healthLevel": "WARNING",
+        "period": {
+          "duration": "3600s",
+          "textual": "1h"
+        }
+      }
     },
     "title": "Modem alarm example-identifier was created.",
     "description": "Modem alarm example-identifier was created: example.",

@@ -85,6 +85,30 @@ message ModemAlarm {
     /* Condition determining when an alarm is triggered if it has multiple checks. */
     TriggerCondition trigger_condition = 4;
 
+    /* The default health level for checks in this alarm, if they have no health_level configured.
+     * Health for an alarm event is determined by taking the most severe health level from the health_levels configured
+     * on the failing checks, using this default for any checks that do not have a health_level configured.
+     *
+     * This can be changed on assignment with the default_health_level parameter, to fit the needs of the organization.
+     *
+     * Note, when an alarm is inherited the health levels may not match yours. If the health level matches one of
+     * your health levels, that level is used. Otherwise, the catch-all health level is used.
+     * See the health definition for more information on the catch all health level (typically the most severe).
+     * Note that the health level displayed here is the result of the steps above.
+     */
+    string default_health_level = 7;
+
+    /**
+     * Allow the alarm to cause a health level for the modem even after a new message has come in.
+     *
+     * Typically, an alarm event only affects the modem health while it is from the last message from that modem.
+     * By configuring this, you can specify the modem health should be affected for a longer period.
+     *
+     * For example, when using an inactivity check, this would could be used to configure modem health ERROR while
+     * inactive, lowering to INVESTIGATE for a day after a new message comes in.
+     */
+    HealthLevelAfterResolved health_level_after_resolved = 8;
+
     /* The checks in this alarm,  */
     repeated Check checks = 5;
 
@@ -134,7 +158,7 @@ message ModemAlarm {
          * The supported parameters are different per check, but the parameters below are always supported:
          * - modem: the modem number.
          * - message: the id of the message, if any.
-         * - expected: a shortcut for the expected value(s), depencing on the check:
+         * - expected: a shortcut for the expected value(s), depending on the check:
          *   - equals check: expected value
          *   - oneof check: expected values as [a, b, c]
          *   - threshold check: expected range as minimum..maximum
@@ -300,6 +324,23 @@ message ModemAlarm {
             }
         }
     }
+
+    /**
+     * Allow the alarm to cause a health level for the modem even after a new message has come in.
+     *
+     * Typically, an alarm event only affects the modem health while it is from the last message from that modem.
+     * By configuring this, you can specify the modem health should be affected for a longer period.
+     *
+     * For example, when using an inactivity check, this would could be used to configure modem health ERROR while
+     * inactive, lowering to INVESTIGATE for a day after a new message comes in.
+     */
+    message HealthLevelAfterResolved {
+        /* The health level that this check would cause for a modem, when the original failure is resolved. */
+        string health_level = 1;
+
+        /* The amount of time that this health level would be active. */
+        Duration period = 2;
+    }
 }
 
 message ModemAlarmSelection {
@@ -346,6 +387,14 @@ message CreateModemAlarm {
          * - an update event on the alarm, adding the checks
          */
         repeated ModemAlarm.Check checks = 4;
+
+        /* The default health level for this alarm. See ModemAlarm.default_health_level for more information. */
+        string default_health_level = 5;
+
+        /* The health level this alarm should cause after it is resolved.
+         * See ModemAlarm.health_level_after_resolved for more information.
+         */
+        ModemAlarm.HealthLevelAfterResolved health_level_after_resolved = 6;
     }
     message Response {
         ModemAlarm created = 1;
@@ -359,6 +408,9 @@ message UpdateModemAlarm {
         string identifier = 2;
         UpdateClearableString update_description = 3;
         ModemAlarm.TriggerCondition update_trigger_condition = 4;
+        UpdateClearableString update_default_health_level = 5;
+        ModemAlarm.HealthLevelAfterResolved update_health_level_after_resolved = 6;
+        bool remove_health_level_after_resolved = 7;
     }
     message Response {
         ModemAlarm updated = 1;

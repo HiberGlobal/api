@@ -1,5 +1,5 @@
 {
-  "isError": true,
+  "isWarning": true,
   "modemTransferReturnTransferStarted": {
     "returnTransfer": {
       "identifier": "example-identifier-2",

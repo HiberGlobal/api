@@ -1,5 +1,5 @@
 {
-  "isError": true,
+  "isWarning": true,
   "modemMessageDelayed": {
     "organization": "your-organization",
     "modemNumber": "AAAA AAAA",

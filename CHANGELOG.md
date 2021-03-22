@@ -1,8 +1,36 @@
 # Changelog Hiber API
 
+
+### 0.71 (2021-03-16)
+
+The main focus for this release is tweaking the concepts previously introduced around alarms and health.
+It also introduces the notion of _features_ for organisations.
+_Features_ can be en- or disabled on a per-organisation basis
+and have an effect on the set of features that organisations can use.
+
+#### Changes
+
+##### Organisation features
+
+This change introduces 2 new feature (sets)
+
+- HIBER: (All) the features as currently available under Mission Control
+- HILO: Allows access to a separate dashboard that represents the
+  [HiberHilo](https://hiber.global/solutions/well-integrity/) product.
+
+#### Health
+
+- Modem selection (now) possible by custom health level names
+- Health can now have multiple (named) colours associated with it.
+
+#### Alarm
+
+- A modem alarm now has a default health, which overrides the standard of "most severe".
+- Allow the alarm to cause a health level for the modem even after a new message has come in.
+
 ### 0.69 (2021-03-04)
 
-This release build on the new health levels by implementing them for alarm events, and replacing the deprecated health
+This release builds on the new health levels by implementing them for alarm events, and replacing the deprecated health
 implementation with the new health levels in a backwards-compatible way.
 Additionally, this release introduces some new options to alarm checks, including a new check type for modem inactivity.
 

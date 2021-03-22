@@ -42,6 +42,16 @@ message Organization {
         string phone = 3;
     }
 
+    enum Feature {
+        UNKNOWN = 0;
+
+        /* The default Hiber set of features including Mission Control and the API */
+        HIBER = 1;
+
+        /* A limited set of features corresponding to the HiberHilo product. */
+        HILO = 2;
+    }
+
     /* The slug for this organization, used to identify organizations */
     string organization = 1;
     /* The name of the organization to display to the end-user */
@@ -57,6 +67,8 @@ message Organization {
     Timestamp contract_signature_date = 8;
     Timestamp created_at = 9;
     Timestamp updated_at = 10;
+
+    repeated Feature features = 11;
 }
 
 /* Selection object for child organizations.
@@ -75,7 +87,7 @@ message GetOrganizationRequest {
 }
 
 /* Update organization data.
- * All fields are effectively optional, though address, billing_address and contact are assumed to be complete objects,
+ * All fields are effectively optional, though address, billing_address, contact and features are assumed to be complete objects,
  * not partial updates.
  * Note that the organization field specifies the organization, it is not used to update the current organization identifier.
  */

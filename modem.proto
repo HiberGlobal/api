@@ -266,7 +266,7 @@ message ModemSelection {
     repeated Health health = 9 [deprecated = true];
 
     /* Filter modems by health level. */
-    repeated health.HealthLevel health_level = 17;
+    repeated string health_levels = 18;
 
     /* Filter modems by status(es). Defaults to health statuses, excluding dead, lost or damaged modems. */
     repeated Modem.Status status = 10;
@@ -293,7 +293,7 @@ message ModemSelection {
 
     hiber.tag.TagSelection filter_by_tags = 2;
 
-    reserved 3;
+    reserved 3, 17;
 }
 
 /* Decrypted modem message. Messages are received encrypted and decrypted asynchronously, which adds the location

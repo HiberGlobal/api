@@ -1,5 +1,5 @@
 {
-  "isError": true,
+  "isWarning": true,
   "modemMessageDropped": {
     "organization": "your-organization",
     "modemNumber": "AAAA AAAA",

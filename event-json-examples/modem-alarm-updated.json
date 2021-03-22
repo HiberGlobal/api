@@ -7,7 +7,18 @@
         "updated": true,
         "value": "updated-example"
       },
-      "triggerCondition": "ALL"
+      "triggerCondition": "ALL",
+      "updateDefaultHealthLevel": {
+        "updated": true,
+        "value": "WARNING"
+      },
+      "updateHealthLevelAfterResolved": {
+        "healthLevel": "INSPECT",
+        "period": {
+          "duration": "172800s",
+          "textual": "2d"
+        }
+      }
     },
     "title": "Modem alarm example-identifier was updated.",
     "description": "Modem alarm example-identifier was updated:\n - Description: example \u003d\u003e updated-example\n - Antenna: any \u003d\u003e all\n",

@@ -43,6 +43,7 @@ service EventService {
  */
 message Event {
     bool is_error = 1;
+    bool is_warning = 100;
     oneof event {
         ModemEvent.ModemCreatedEvent modem_created = 55;
         ModemEvent.ModemUpdatedEvent modem_updated = 39;
@@ -534,6 +535,8 @@ message Event {
                     string trigger_condition = 2;
                     Filter.ChildOrganizations.Update available_to_child_organizations = 3;
                     google.protobuf.Struct checks = 4;
+                    UpdateClearableString update_default_health_level = 5;
+                    modem.alarm.ModemAlarm.HealthLevelAfterResolved update_health_level_after_resolved = 6;
                 }
 
                 string organization = 1;
@@ -872,6 +875,8 @@ message Event {
             string title = 9;
             string description = 10;
             Timestamp time = 11;
+            repeated organization.Organization.Feature features_added = 12;
+            repeated organization.Organization.Feature features_removed = 13;
         }
 
         message OrganizationDeletedEvent {
@@ -972,6 +977,7 @@ message EventSelection {
     Filter.Tags tags = 4;
     TimeRange time_range = 6;
     bool errors_only = 7;
+    bool warnings_only = 10;
     /* When not set, no unbundled events are returned.
      * When set, returns unbundled events per type, paginated per type.
      */

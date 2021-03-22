@@ -1,5 +1,5 @@
 {
-  "isError": true,
+  "isWarning": true,
   "tokenExpiryWarning": {
     "organization": "your-organization",
     "token": {

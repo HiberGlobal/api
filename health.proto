@@ -71,8 +71,30 @@ message HealthLevel {
      *  - hsla(0, 100%, 50%, 1)
      *
      * The client is responsible for rendering the correct color from the CSS3 color-space.
+     *
+     * DEPRECATED Use the color "text" from color_data;
      */
-    string color = 2;
+    string color = 2 [deprecated = true];
+
+    /* Named colors. Represented by a map where the key is the name of the color
+     * and the value is a string that represents a valid CSS3 colour.
+     * Simple examples are: green, red, orange, grey, #FF00FF for fuchsia, etc.
+     * Keep in mind that CSS3 allows for more ways to define colors.
+     * (See https://www.w3.org/TR/2003/WD-css3-color-20030214/)
+     * All the following definitions mean "red":
+     *  - rgb(255, 0, 0)
+     *  - rgb(100%, 0, 0)
+     *  - rgba(100%, 0%, 0%, 100%)
+     *  - hsl(0, 100%, 50%)
+     *  - hsla(0, 100%, 50%, 1)
+     *
+     * The client is responsible for rendering the correct color from the CSS3 color-space.
+     *
+     * The client is responsible for setting the colors and their names.
+     * There is no verification on missing named colors,
+     * so the client must set sensible defaults when colors are missing.
+     */
+    map<string, string> color_data = 4;
 
     /* Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems),
      * which can happen when a device manufacturer has provided alarms for your device (e.g. a low battery alarm).
@@ -148,8 +170,20 @@ message UpdateHealthLevel {
          */
         string rename = 3;
 
-        /* Optionally, set or update the color for this health level. */
-        UpdateClearableString update_color = 4;
+        /* Optionally, set or update the color for this health level.
+         * DEPRECATED, use add_colors with name "text".
+         * Vice versa, this field will also update the "text" color in the color_data field of HealthLevel.
+         */
+        UpdateClearableString update_color = 4 [deprecated = true];
+
+        /* Remove colors by name. Will remove the named color from the color_data field in HealthLevel. */
+        repeated string remove_colors = 7;
+        /* Add colors by name. Will add the named color from the color_data field in HealthLevel.
+         * For backwards compatibility reasons, if add_colors contains a color named "text", it will also update
+         * the field color in HealthLevel
+         */
+        map<string, string> add_colors = 6;
+
 
         /* Optionally, set or unset the catch all flag. */
         UpdateBoolean update_catch_all = 5;

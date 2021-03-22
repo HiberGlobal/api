@@ -29,7 +29,10 @@
       "createdAt": {
         "timestamp": "2020-06-01T05:15:25.355Z",
         "textual": "2020-06-01T05:15:25.355Z"
-      }
+      },
+      "features": [
+        "HIBER"
+      ]
     },
     "title": "Organization your-organization-2 was created.",
     "description": "Organization your-organization-2 was created under your-organization.",
