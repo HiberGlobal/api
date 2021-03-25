@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.72 (2021-03-25)
+
+### Changes
+
+- Bugfix in modem listing where in a specific edge-case modems would be un-listable after transfer.
+- TLE update status does not affect server health any-more (causing restarts when outdated)
 
 ### 0.71 (2021-03-16)
 
