@@ -184,6 +184,7 @@ message ModemAlarm {
             LocationCheck location = 4;
             FieldCheck field = 5;
             InactivityCheck inactivity = 6;
+            DelayCheck delay = 7;
         }
 
         /* Check that the device location is within a given area.
@@ -209,6 +210,18 @@ message ModemAlarm {
         message InactivityCheck {
             /* The maximum value for the modem's inactivity (time since last message was received on the server). */
             Duration maximum = 29;
+        }
+
+        /* Check whether the message was delayed more than a configured limit.
+         * The delay is the time between the message was sent (ModemMessage.sent_at) and the time it was
+         * received on the server (ModemMessage.received_at).
+         *
+         * Has the following parameters:
+         * - delay.maximum: the maximum allowed delay
+         */
+        message DelayCheck {
+            /* The maximum value for the message delay (duration between sent and received time). */
+            Duration maximum = 1;
         }
 
         /* A check that evaluates each new message, and checks selected field(s) in the parsed body.

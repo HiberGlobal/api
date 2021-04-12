@@ -34,6 +34,8 @@ service ModemService {
     rpc UpdatePeripherals (UpdatePeripheralsRequest) returns (UpdatePeripheralsRequest.Response);
 
     rpc LicenseKeys (LicenseKeysRequest) returns (LicenseKeysRequest.Response);
+
+    rpc HealthCount (ModemHealthCount.Request) returns (ModemHealthCount.Response);
 }
 
 /* Modem data, including location and last message (if available).
@@ -703,4 +705,55 @@ message LicenseKeysRequest {
     string organization = 1;
     ModemSelection selection = 2;
     Pagination pagination = 3;
+}
+
+message ModemHealthCount {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* Selection of modems to count. If default, all modems are counted. */
+        ModemSelection modem_selection = 2;
+
+        /* Whether to return specific counts for tags, selected using the tag_count_selection. */
+        bool include_tag_count = 3;
+
+        /* Selection of tags to return specific counts for. If default, count is calculated for all tags. */
+        tag.TagSelection tag_count_selection = 4;
+    }
+
+    message HealthCount {
+        /* Health level based on the modem alarm and some always-present alarms. */
+        health.HealthLevel health_level = 1;
+
+        /* The number of modems matching the modem selection with this health level */
+        uint32 count = 2;
+
+        /* Deprecated health based on the number of error and warning events this modem has received in the past 30 days
+         * Uses the OK, WARNING, ERROR format.
+         */
+        Health health = 3 [deprecated = true];
+    }
+
+    message HealthCountPerTag {
+        /* The tag this count is for. */
+        hiber.tag.Tag tag = 1;
+
+        /* Health level based on the modem alarm and some always-present alarms. */
+        health.HealthLevel health_level = 2;
+
+        /* The number of modems matching the modem selection with this tag and health level */
+        uint32 count = 3;
+
+        /* Deprecated health based on the number of error and warning events this modem has received in the past 30 days
+         * Uses the OK, WARNING, ERROR format.
+         */
+        Health health = 4 [deprecated = true];
+    }
+
+    message Response {
+        repeated HealthCount health_totals = 1;
+        repeated HealthCountPerTag health_per_tag = 2;
+        Request request = 3;
+    }
 }

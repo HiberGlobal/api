@@ -10,7 +10,7 @@
       "triggerCondition": "ALL",
       "updateDefaultHealthLevel": {
         "updated": true,
-        "value": "WARNING"
+        "value": "Warning"
       },
       "updateHealthLevelAfterResolved": {
         "healthLevel": "INSPECT",

@@ -1,8 +1,22 @@
 # Changelog Hiber API
 
+### 0.73 (2021-04-12)
+
+#### Changes
+
+##### ModemService
+
+- Added `ModemHealthCount` to efficiently count how many of your modems per health level.
+  Optionally, the counts can also be done per tag, specified by a TagSelection.
+
+##### ModemAlarmService
+
+- Added `DelayCheck` to trigger the alarm when message delay
+  (the difference between sentAt and receivedAt) exceeds a given threshold.
+
 ### 0.72 (2021-03-25)
 
-### Changes
+#### Changes
 
 - Bugfix in modem listing where in a specific edge-case modems would be un-listable after transfer.
 - TLE update status does not affect server health any-more (causing restarts when outdated)

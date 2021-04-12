@@ -5,9 +5,9 @@
       "identifier": "example-identifier",
       "description": "example",
       "triggerCondition": "ANY_CHECK_FAILED",
-      "defaultHealthLevel": "ERROR",
+      "defaultHealthLevel": "Error",
       "healthLevelAfterResolved": {
-        "healthLevel": "WARNING",
+        "healthLevel": "Warning",
         "period": {
           "duration": "3600s",
           "textual": "1h"
