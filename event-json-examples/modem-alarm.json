@@ -29,7 +29,7 @@
         }
       }
     ],
-    "title": "Modem AAAA AAAA: Expected battery to be within 20..100%, but it is now at 15%! (via example-identifier)",
+    "title": "Expected battery to be within 20..100%, but it is now at 15%!",
     "description": "Modem AAAA AAAA has the following alarms (via example-identifier):\n\n{Expected battery to be within 20..100%, but it is now at 15%! (by check example-check-id)}\n",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",

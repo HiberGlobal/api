@@ -1,5 +1,25 @@
 # Changelog Hiber API
 
+### 0.74 (2021-04-15)
+
+#### Changes
+
+##### NamedLocationService
+
+- Added `NamedLocationService` to save locations with a name. These location can then be used in other
+  places, like alarms.
+  A named locations can be either a `Location`, `Area` or `Shape`.
+  - Added permission `LOCATIONS_MANAGE` to `OrganizationPermission` to manage named locations.
+
+##### ModemAlarmService
+
+- Added `named` to `LocationCheck` to use a named location for the check.
+
+##### EventService
+
+- `ModemAlarmEvent` title is now just the error message, without any additional data.
+  The description contains the additional data, as before.
+
 ### 0.73 (2021-04-12)
 
 #### Changes

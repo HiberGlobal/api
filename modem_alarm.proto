@@ -199,6 +199,9 @@ message ModemAlarm {
             oneof expected {
                 Area area = 1;
                 Shape shape = 2;
+
+                /* Specify the name of a name location (NamedLocation) that the device must be in. */
+                string named = 3;
             }
         }
 

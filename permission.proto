@@ -87,6 +87,9 @@ enum OrganizationPermission {
     /* Manage custom health levels. */
     HEALTH_MANAGE = 47;
 
+    /* Manage saved locations using the OrganizationLocationService. */
+    LOCATIONS_MANAGE = 48;
+
     reserved 40, 37;
 }
 
