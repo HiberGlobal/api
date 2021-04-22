@@ -735,25 +735,17 @@ message ModemHealthCount {
         Health health = 3 [deprecated = true];
     }
 
-    message HealthCountPerTag {
+    message HealthCountGroupedPerTag {
         /* The tag this count is for. */
         hiber.tag.Tag tag = 1;
-
-        /* Health level based on the modem alarm and some always-present alarms. */
-        health.HealthLevel health_level = 2;
-
-        /* The number of modems matching the modem selection with this tag and health level */
-        uint32 count = 3;
-
-        /* Deprecated health based on the number of error and warning events this modem has received in the past 30 days
-         * Uses the OK, WARNING, ERROR format.
-         */
-        Health health = 4 [deprecated = true];
+        repeated HealthCount health_counts = 2;
     }
 
     message Response {
         repeated HealthCount health_totals = 1;
-        repeated HealthCountPerTag health_per_tag = 2;
+        repeated HealthCountGroupedPerTag health_grouped_per_tag = 4;
         Request request = 3;
+
+        reserved 2;
     }
 }

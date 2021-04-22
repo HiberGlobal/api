@@ -1,5 +1,17 @@
 # Changelog Hiber API
 
+### 0.74.4 (2021-04-22)
+
+Small convenience hotfix for the `ModemHealthCount`.
+
+##### ModemService
+
+- **[B]** Changed `ModemHealthCount.Response` to group tag health counts instead of having them all in a big list.
+
+#### Backwards incompatible changes
+
+- **[B]** Changed `ModemHealthCount.Response` to group tag health counts instead of having them all in a big list.
+
 ### 0.74 (2021-04-15)
 
 #### Changes
