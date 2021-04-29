@@ -177,6 +177,11 @@ message ModemAlarm {
          * - "Your device reported an unhealthy state {actual}. Please set it back to {expected}."
          * - "Your device reported an unhealthy state {actual}. Please set it back to {field.equals.expected}."
          * - "Unexpected value {actual} for field {field.path}!"
+         *
+         * Numeric values can be formatted with an extra postfix on the parameters
+         * - Round numeric values by adding ":.2f" (for 2 decimals). For example: "{actual:.3f}" (rounds to 3 decimals)
+         * - Always sign numeric values (when rounded) by prefixing the format with a plus. For example: `{actual:+.3f}`
+         * - This is applied to numeric fields and fields that can be numeric, like `{actual}` and `{expected}`.
          */
         string error_message_template = 3;
 
@@ -212,7 +217,8 @@ message ModemAlarm {
          */
         message InactivityCheck {
             /* The maximum value for the modem's inactivity (time since last message was received on the server). */
-            Duration maximum = 29;
+            Duration maximum = 1;
+            Duration deprecated_maximum = 29 [deprecated = true];
         }
 
         /* Check whether the message was delayed more than a configured limit.

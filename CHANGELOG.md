@@ -1,5 +1,17 @@
 # Changelog Hiber API
 
+### 0.75 (2021-04-29)
+
+This release adds a few more options to modem alarms.
+
+##### ModemAlarmService
+
+- Fixed the index for `InactivityCheck.maximum`.
+- Added formatting option to error message templates:
+  - Added the option to round numeric values: `{actual:.3f}`
+  - Added the option to always sign numeric values (when rounded): `{actual:+.3f}`
+  - This is applied to numeric fields and fields that can be numeric, like `{actual}` and `{expected}`.
+
 ### 0.74.4 (2021-04-22)
 
 Small convenience hotfix for the `ModemHealthCount`.
