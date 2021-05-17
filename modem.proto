@@ -23,6 +23,7 @@ service ModemService {
     rpc Grouped (ListModemsGrouped.Request) returns (ListModemsGrouped.Response);
     rpc Messages (ListModemMessagesRequest) returns (ListModemMessagesRequest.Response);
     rpc MessageCount (MessageCountRequest) returns (MessageCountRequest.Response);
+    rpc AvailableMessageFields (AvailableModemMessageFields.Request) returns (AvailableModemMessageFields.Response);
 
     rpc Rename (RenameModemRequest) returns (Modem);
 
@@ -270,7 +271,9 @@ message ModemSelection {
     /* Filter modems by health level. */
     repeated string health_levels = 18;
 
-    /* Filter modems by status(es). Defaults to health statuses, excluding dead, lost or damaged modems. */
+    /* Filter modems by status(es).
+     * Defaults to nominal statuses, excluding disabled, dead, lost or damaged modems.
+     */
     repeated Modem.Status status = 10;
     Transfers transfers = 11;
 
@@ -382,6 +385,14 @@ message ModemMessage {
     /* Message metadata, defined by the modem or gateway. */
     google.protobuf.Struct metadata = 15;
 
+    /* Flattened results of all successful body parsers.
+     *
+     * This is a convenience to access the fields from body_parsed, but if any fields are present in
+     * multiple body_parsed results, it is not defined which field will be used in this Struct.
+     * This may change in the future.
+     */
+    google.protobuf.Struct body_fields = 16;
+
     reserved 2;
 }
 
@@ -409,6 +420,23 @@ message ModemMessageSelection {
     ModemMessageSourceFilter filter_by_sources = 4;
 
     reserved 2;
+}
+
+/* Selects the fields included in a ModemMessage.
+ * Use this to get, for example, only the message sentAt and body.
+ */
+message ModemMessageFieldSelection {
+    /* Fields in the ModemMessage structure to include in the response.
+     * Nested fields are not supported.
+     */
+    repeated string fields = 1;
+
+    /* Data fields in the body_fields Struct to include in the response.
+     *
+     * Nested fields are supported, using a json path expression.
+     * See the Json Path documentation at https://goessner.net/articles/JsonPath/ for details on json path.
+     */
+    repeated string message_body_fields = 2;
 }
 
 message GetModemRequest {
@@ -555,6 +583,36 @@ message ListModemMessagesRequest {
     string organization = 1;
     ModemMessageSelection selection = 2;
     Pagination pagination = 3;
+
+    /* Limit the fields for the returned messages, to conserve data or simplify an operation.
+     * If this is set on the request, any field not in this field selection is not filled.
+     */
+    ModemMessageFieldSelection fields = 4;
+}
+
+message AvailableModemMessageFields {
+    /* The modem the field specification is for. */
+    string modem = 1;
+
+    /* The available fields to be filtered.
+     *
+     * The message body fields are only set when the fields are marked explicitly using the data fields option
+     * on any assigned modem message body parsers.
+     */
+    ModemMessageFieldSelection fields = 2;
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        ModemSelection modems = 2;
+        Pagination pagination = 3;
+    }
+
+    message Response {
+        repeated AvailableModemMessageFields modem_message_fields = 1;
+        Request request = 2;
+        Pagination.Result pagination = 3;
+    }
 }
 
 message MessageCountRequest {

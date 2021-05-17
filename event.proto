@@ -6,6 +6,7 @@ import "google/protobuf/struct.proto";
 
 import "assignment.proto";
 import "base.proto";
+import "export.proto";
 import "health.proto";
 import "integration_aws_iot.proto";
 import "integration_mqtt.proto";
@@ -108,6 +109,9 @@ message Event {
         PublisherEvent.AutoDisabledEvent publisher_auto_disabled = 40;
         PublisherEvent.FailedEvent publisher_failed = 34;
 
+        ExportEvent.ExportCreatedEvent export_created = 65;
+        ExportEvent.ExportReadyEvent export_ready = 66;
+        ExportEvent.ExportFailedEvent export_failed = 67;
     }
     reserved 11 to 14, 21, 22, 26 to 29;
 
@@ -918,6 +922,32 @@ message Event {
             string description = 6;
             Timestamp time = 7;
             TimeRange time_range = 8;
+        }
+    }
+
+    message ExportEvent {
+        message ExportCreatedEvent {
+            string organization = 1;
+            export.Export export = 2;
+            string title = 3;
+            string description = 4;
+            Timestamp time = 5;
+        }
+
+        message ExportReadyEvent {
+            string organization = 1;
+            export.Export export = 2;
+            string title = 3;
+            string description = 4;
+            Timestamp time = 5;
+        }
+
+        message ExportFailedEvent {
+            string organization = 1;
+            export.Export export = 2;
+            string title = 3;
+            string description = 4;
+            Timestamp time = 5;
         }
     }
 }

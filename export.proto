@@ -1,0 +1,214 @@
+syntax = "proto3";
+
+package hiber.export;
+
+import "base.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.export";
+option java_outer_classname = "ExportApi";
+option go_package = "hiber";
+
+service ExportService {
+    rpc List (ListExports.Request) returns (ListExports.Response);
+    rpc Create (CreateExport.Request) returns (CreateExport.Response);
+    rpc Extend (ExtendExportDownloadExpiry.Request) returns (ExtendExportDownloadExpiry.Response);
+    rpc Delete (DeleteExport.Request) returns (DeleteExport.Response);
+}
+
+/* An export created by this organization. */
+message Export {
+    enum Status {
+        /* Files can be downloaded now */
+        READY = 0;
+
+        /* Export has expired and is no longer available. */
+        EXPIRED = 1;
+
+        /* Data is still being processed to create the export. */
+        PROCESSING = 2;
+
+        /* The export failed. See the error message for more details. */
+        FAILED = 3;
+    }
+
+    /* Identifier for this export. */
+    string identifier = 1;
+
+    /* The name given for this export. */
+    string name = 2;
+
+    /* Status of this export. Whether it's available, expired or still processing. */
+    Status status = 3;
+
+    /* When the status is READY, the downloadable file(s) in the export.
+     * The file may be a single url, or may be split into multiple parts, each with a unique url.
+     */
+    repeated File urls = 4;
+
+    /* When the export expires. Only set when the status is READY or EXPIRED. */
+    Timestamp expires_at = 5;
+
+    /* The format for the export. */
+    Format format = 6;
+
+    /* Specific configuration for the export. */
+    Configuration configuration = 7;
+
+    /* When the status is FAILED, this error message contains details on the reason of the failure. */
+    string error = 8;
+
+    /* Downloadable file. */
+    message File {
+        string name = 1;
+        string url = 2;
+    }
+
+    /* The format for the export. */
+    message Format {
+        enum Type {
+            DEFAULT = 0;
+            JSON = 1;
+            CSV = 2;
+        }
+
+        Type type = 1;
+        oneof configuration {
+            Json json = 2;
+            Csv csv = 3;
+        }
+
+        /* Json format for export. */
+        message Json {
+            /* Custom fields mapping, if a reduced json is desired. */
+            map<string, string> custom_fields = 1;
+
+            /* Whether the json should be formatted or as compact as possible. */
+            bool compact = 2;
+        }
+
+        /* CSV (comma separated values) format for export. */
+        message Csv {
+            message Column {
+                /* Column name. */
+                string name = 1;
+
+                /* Column mapping from the nested structure to a value. */
+                string json_path = 2;
+            }
+
+            /* The columns in the CSV, with their mapping.
+             * Columns in CSV are a flat structure, while the data is generally nested, so a mapping is required
+             * to flatten it to simple columns.
+             */
+            repeated Column columns = 1;
+
+            /* The separator character to use in the CSV. */
+            string separator = 2;
+
+            /* The quote character to use in the CSV. */
+            string quote = 3;
+
+            /* The escape character to use in the CSV. */
+            string escape = 4;
+
+            /* The newlines to use in the CSV. */
+            string newline = 5;
+        }
+    }
+
+    /* The configuration for the export, which determines what data is exported. */
+    message Configuration {
+        /* The time urls will be available after the moment the export has the READY status. */
+        Duration expires_in = 1;
+
+        oneof type {
+            ModemMessages modem_message = 2;
+        }
+
+        /* Export modem messages for a set of modems. */
+        message ModemMessages {
+            repeated string modems = 1;
+            TimeRange time_range = 2;
+        }
+    }
+}
+
+message ExportSelection {
+    /* Select by identifiers */
+    repeated string identifiers = 1;
+
+    /* Search through identifiers and urls */
+    string search = 2;
+
+    /* Whether to include expired exports. */
+    bool include_expired = 3;
+}
+
+message ListExports {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        ExportSelection selection = 2;
+        Pagination pagination = 3;
+    }
+
+    message Response {
+        repeated Export exports = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}
+
+message CreateExport {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        string name = 2;
+
+        /* The format for the export. */
+        Export.Format format = 3;
+
+        /* Specific configuration for the export. */
+        Export.Configuration configuration = 4;
+
+        /* Subscribe to email updates to get an email with links when the export is ready. */
+        bool email_subscribe = 5;
+    }
+
+    message Response {
+        Export created = 1;
+        Request request = 2;
+    }
+}
+
+message ExtendExportDownloadExpiry {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* Export identifier */
+        string identifier = 2;
+
+        /* The time to extend the expiry with. */
+        Duration extend_by = 3;
+
+        /* Extend the expiry for a specific file. If empty, all files are extended. */
+        repeated string file = 4;
+    }
+
+    message Response {
+        Export export = 1;
+    }
+}
+
+message DeleteExport {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        string identifier = 2;
+    }
+
+    message Response {
+    }
+}

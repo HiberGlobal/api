@@ -1,0 +1,70 @@
+{
+  "exportReady": {
+    "organization": "your-organization",
+    "export": {
+      "identifier": "example-identifier",
+      "name": "example",
+      "status": "EXPIRED",
+      "urls": [
+        {
+          "name": "export",
+          "url": "https://example.com/export/3cr28rtrtcb23t12noex12etc1.json"
+        }
+      ],
+      "expiresAt": {
+        "timestamp": "2020-06-01T05:15:25.355Z",
+        "textual": "2020-06-01T05:15:25.355Z"
+      },
+      "format": {
+        "type": "CSV",
+        "csv": {
+          "columns": [
+            {
+              "name": "modem",
+              "jsonPath": "$.modemNumber"
+            },
+            {
+              "name": "time",
+              "jsonPath": "$.sentAt.textual"
+            },
+            {
+              "name": "hex",
+              "jsonPath": "$.bodyBytes.hex"
+            }
+          ],
+          "separator": ",",
+          "quote": "\"",
+          "escape": "\"",
+          "newline": "\n"
+        }
+      },
+      "configuration": {
+        "expiresIn": {
+          "duration": "864000s",
+          "textual": "10d"
+        },
+        "modemMessage": {
+          "modems": [
+            "AAAA AAAA"
+          ],
+          "timeRange": {
+            "start": {
+              "timestamp": "2020-05-02T05:15:25.355Z",
+              "textual": "2020-05-02T05:15:25.355Z"
+            },
+            "end": {
+              "timestamp": "2020-06-01T05:15:25.355Z",
+              "textual": "2020-06-01T05:15:25.355Z"
+            }
+          }
+        }
+      }
+    },
+    "title": "Export of messages for modems [AAAA AAAA] is ready.",
+    "description": "The export example-identifier of messages for modems AAAA AAAA between 2020-05-02T05:15:25.355Z and 2020-06-01T05:15:25.355Z is ready to download:\n\n - export: https://example.com/export/3cr28rtrtcb23t12noex12etc1.json",
+    "time": {
+      "timestamp": "2020-05-22T05:15:25.355Z",
+      "textual": "2020-05-22T05:15:25.355Z"
+    }
+  }
+}

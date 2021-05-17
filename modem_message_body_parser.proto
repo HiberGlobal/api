@@ -84,6 +84,11 @@ message ModemMessageBodyParser {
      */
     SimpleModemMessageBodyParser simple_parser = 4;
 
+    /* Fields in the parsed result that contain data.
+     * This can be useful to track which fields could be plotted, etc.
+     */
+    repeated string data_fields = 9;
+
     /* If set, this parser is available to your child organizations, as a Provided parser. */
     AvailableToChildOrganizations available_to_child_organizations = 6;
 
@@ -201,7 +206,7 @@ message ModemMessageBodyParserSelection {
     /* Filter parsers by their identifiers. */
     repeated string identifiers = 8;
 
-    /* Find parsers by searching for this text in the name, content_ksy or simple parser definition. */
+    /* Find parsers by searching for this text in the name, content_ksy, data fields or simple parser definition. */
     string search = 2;
 
     /* Only return simple parsers, created using SimpleModemMessageBodyParser. */
@@ -215,6 +220,11 @@ message ModemMessageBodyParserSelection {
 
     /* Only return parsers that were created by the given parent organizations. */
     repeated string owner_organizations = 6;
+
+    /* Only return parsers that have one of the given data fields
+     * This only works when the fields are marked explicitly using the data fields option.
+     */
+    repeated string has_data_fields = 9;
 
     reserved 1, 7;
 }
@@ -250,6 +260,11 @@ message UploadModemMessageBodyParserRequest {
 
     /* The ksy definition for this parser. */
     string content_ksy = 3;
+
+    /* Fields in the parsed result that contain data.
+     * This can be useful to track which fields could be plotted, etc.
+     */
+    repeated string data_fields = 4;
 }
 
 /* Upload a new body parser from a .ksy file, replacing the previous file.
@@ -267,6 +282,12 @@ message UpdateUploadedModemMessageBodyParserRequest {
 
     /* The new ksy definition for this parser. */
     string content_ksy = 3;
+
+    /* Add fields to the data fields list. */
+    repeated string add_data_fields = 5;
+
+    /* Remove fields from the data fields list. */
+    repeated string remove_data_fields = 6;
 
     reserved 2;
 }

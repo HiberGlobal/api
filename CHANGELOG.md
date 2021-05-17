@@ -1,5 +1,60 @@
 # Changelog Hiber API
 
+### 0.77 (2021-05-17)
+
+This release contains:
+- marking data fields for message body parsers (for processing, charting, etc)
+- easy access to parsed message body in messages, using a merged Struct
+- exporting message to JSON or CSV
+
+##### EventService
+
+- Added `ExportCreatedEvent`, `ExportReadyEvent` and `ExportFailedEvent` for the new export functionality.
+  - Added `export_created`, `export_ready` and `export_failed` to `Event`.
+
+##### ExportService
+
+- Introduced the ExportService, to list and manage exports.
+  - Exports are asynchronous and only available for a limited time when ready,
+    which is reflected by the `Export.Status` (with `PROCESSING`, `READY`, `EXPIRED`).
+  - Added `Export.Format.Json` for exporting in a JSON format.
+  - Added `Export.Format.Csv` for exporting in a CSV format.
+  - Added `Export.Configuration.ModemMessages` to export modem messages.
+    This is currently the only available export configuration.
+
+##### ModemService
+
+- Added `ModemMessage.body_fields`, which is a flattened Struct of all `ModemMessage.body_parsed[*].result`.
+  This is a convenience to access the fields from body_parsed, but if any fields are present in
+  multiple body_parsed results, it is not defined which field will be used in this Struct.
+  This may change in the future.
+- Added `ModemMessageFieldsSelection` to select fields in a `ModemMessage`, both proto fields and message body fields.
+  - Added `AvailableMessageFields` to list available fields for messages from a modem.
+    This is generally useful to list data fields added by message body parsers
+    (and powered by `ModemMessageBodyParser.data_fields`).
+    The available fields are returned as a `ModemMessageFieldsSelection`.
+  - Added `ListModemMessagesRequest.fields` (a `ModemMessageFieldsSelection`) to limit the fields for the
+    returned messages, to conserve data or simplify an operation.
+    This applies to both protobuf fields and message body fields.
+
+##### ModemMessageBodyParserService
+
+- Added `data_fields` to `ModemMessageBodyParser`, which are fields that are marked to contain data
+  (versus status fields or counters), that can be graphed, for example.
+  - Added `has_data_fields` to `ModemMessageBodyParserSelection` to select parsers that have specified data fields.
+  - Added `data_fields` to `UploadModemMessageBodyParserRequest` to set the data fields for a newly uploaded parser.
+  - Added `add_data_fields` and `remove_data_fields` to `UpdateUploadedModemMessageBodyParserRequest` to update the
+    data fields for an uploaded parser.
+
+##### Permissions
+
+- Added `EXPORT` permissions to allow a user to create exports and see download links.
+
+### 0.76 (2021-05-04)
+
+- Added tags to modem update event
+- Resolving alarms can now affect health for a given period of time after resolving.
+
 ### 0.75 (2021-04-29)
 
 This release adds a few more options to modem alarms.

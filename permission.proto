@@ -90,6 +90,9 @@ enum OrganizationPermission {
     /* Manage saved locations using the OrganizationLocationService. */
     LOCATIONS_MANAGE = 48;
 
+    /* Create, access and download exports. */
+    EXPORT = 49;
+
     reserved 40, 37;
 }
 

@@ -264,6 +264,10 @@ enum EventType {
     TOKEN_EXPIRED = 26;
     TOKEN_DELETED = 32;
 
+    EXPORT_CREATED = 65;
+    EXPORT_READY = 66;
+    EXPORT_FAILED = 67;
+
     // reserved 6, 7, 23, 24, 27, 28, 29, 30;
 }
 
