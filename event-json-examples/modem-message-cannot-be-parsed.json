@@ -9,6 +9,15 @@
       "textual": "2020-06-01T05:15:25.355Z"
     },
     "reason": "Parsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.\n\n",
+    "healthLevel": {
+      "level": "Error",
+      "color": "red",
+      "colorData": {
+        "fill": "red",
+        "text": "red"
+      },
+      "catchAll": true
+    },
     "tags": [
       {
         "id": "1",

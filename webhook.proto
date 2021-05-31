@@ -33,6 +33,7 @@ message Webhook {
     WebhookData data = 4;
     WebhookFilters filters = 5;
     repeated hiber.tag.Tag tags = 6;
+
     Health health = 7;
     HealthConfig health_config = 9;
 
@@ -71,6 +72,9 @@ message Webhook {
         Filter.Events event_types = 1;
         Filter.Modems modem_numbers = 2;
         Filter.Tags tags = 3;
+
+        /* Filter events by health level caused. */
+        repeated string health_levels = 4;
     }
 
     /* Health configuration for the webhook. Defines how the health is calculated. */
@@ -171,6 +175,10 @@ message CreateWebhookRequest {
     string description = 2;
     Webhook.WebhookData data = 3;
     Webhook.WebhookFilters filters = 4;
+
+    /* Filter events by health level caused. */
+    repeated string health_levels = 7;
+
     repeated int64 tags = 5;
     /* Optionally, a client certificate can be used for the webhook call.
      * See the CertificateService for certificate management options.
@@ -229,6 +237,12 @@ message UpdateWebhookFilterRequest {
     Filter.Events.Update event_filter = 7;
     Filter.Modems.Update modem_filter = 8;
     Filter.Tags.Update tag_filter = 9;
+
+    /* Add health levels to the health levels filter. */
+    repeated string add_health_levels_to_filter = 10;
+
+    /* Remove health levels from the health levels filter. */
+    repeated string remove_health_levels_from_filter = 11;
 }
 
 message UpdateWebhookRequest {
@@ -264,6 +278,12 @@ message UpdateWebhookRequest {
         Filter.Events.Update event_filter = 10;
         Filter.Modems.Update modem_filter = 11;
         Filter.Tags.Update tag_filter = 12;
+
+        /* Add health levels to the health levels filter. */
+        repeated string add_health_levels = 16;
+
+        /* Remove health levels from the health levels filter. */
+        repeated string remove_health_levels = 17;
 
         UpdateBoolean active = 8;
 

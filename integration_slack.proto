@@ -33,6 +33,10 @@ message SlackPublisher {
     Filter.Events filter_event_types = 4;
     Filter.Modems filter_modem_numbers = 5;
     Filter.Tags filter_tags = 6;
+
+    /* Filter events by health level caused. */
+    repeated string filter_health_levels = 11;
+
     Health health = 7;
     HealthConfig health_config = 9;
     repeated hiber.tag.Tag tags = 8;
@@ -162,6 +166,9 @@ message CreateSlackPublisherRequest {
     Filter.Modems filter_modem_numbers = 4;
     Filter.Tags filter_tags = 5;
 
+    /* Filter events by health level caused. */
+    repeated string filter_health_levels = 11;
+
     string url = 6;
     string channel = 7;
     bool disabled = 8;
@@ -200,6 +207,12 @@ message UpdateSlackPublisherRequest {
     Filter.Events.Update filter_event_types = 3;
     Filter.Modems.Update filter_modem_numbers = 4;
     Filter.Tags.Update filter_tags = 5;
+
+    /* Add health levels to the health levels filter. */
+    repeated string add_health_levels_to_filter = 6;
+
+    /* Remove health levels from the health levels filter. */
+    repeated string remove_health_levels_from_filter = 7;
 
     UpdateClearableString description = 10;
 

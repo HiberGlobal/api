@@ -1,5 +1,54 @@
 # Changelog Hiber API
 
+### 0.78 (2021-05-21)
+
+This release adds health levels to events, so they can be shown and filtered on.
+
+#### Changes
+
+##### EventService
+
+- Added `health_level` to `Event` and specific events, to reflect the `HealthLevel` the event causes.
+  This allows us to use the new customizable health levels for events, and filtering events.
+  - Added `health_level` to:
+    - `ModemStaleEvent`
+    - `ModemMessageDroppedEvent`
+    - `ModemMessageDelayedEvent`
+    - `ModemMessageCannotBeParsedEvent`
+    - `ModemAlarmEvent`
+    - `ModemTransferNotReceivedEvent`
+    - `ModemTransferReturnTransferStartedEvent`
+    - `PublisherEvent.AutoDisabledEvent`
+    - `PublisherEvent.FailedEvent`
+    - `TokenExpiryWarningEvent`
+    - `EventSelection`
+- **[B]** Deprecated `is_error` and `is_warning` on `Event`, and `errors_only` and `warnings_only` on `EventSelection`
+  to be replaced with the `Event.health_level` and `EventSelection.health_levels` respectively.
+
+##### EmailNotificationPreferences
+
+- Added `EmailNotificationPreferences.filter_health_levels` to filter events on health level when sending them by email.
+- Added `UpdateEmailNotificationPreferencesRequest.add_health_levels_to_filter` to add health levels to the filter.
+- Added `UpdateEmailNotificationPreferencesRequest.remove_health_levels_from_filter` to remove health levels from
+  the filter.
+
+##### SlackIntegrationService
+
+- Added `SlackPublisher.filter_health_levels` to filter events on health level when sending them to slack.
+- Added `CreateSlackPublisherRequest.filter_health_levels` to filter events on health level when sending them to slack.
+- Added `UpdateSlackPublisherRequest.add_health_levels_to_filter` to add health levels to the filter.
+- Added `UpdateSlackPublisherRequest.remove_health_levels_from_filter` to remove health levels from
+  the filter.
+
+##### WebhookService
+
+- Added `Webhook.filter_health_levels` to filter events on health level when sending them to a webhook.
+- Added `CreateWebhookRequest.filter_health_levels` to filter events on health level when sending them to a webhook.
+- Added `UpdateWebhookRequest.add_health_levels_to_filter` and
+  `UpdateWebhookFilterRequest.add_health_levels_to_filter` to add health levels to the filter.
+- Added `UpdateWebhookRequest.remove_health_levels_from_filter` and
+  `UpdateWebhookFilterRequest.remove_health_levels_from_filter` to remove health levels from  the filter.
+
 ### 0.77 (2021-05-17)
 
 This release contains:

@@ -94,6 +94,14 @@
       "timestamp": "2020-06-03T05:15:25.355Z",
       "textual": "2020-06-03T05:15:25.355Z"
     },
+    "healthLevel": {
+      "level": "Warning",
+      "color": "orange",
+      "colorData": {
+        "fill": "orange",
+        "text": "orange"
+      }
+    },
     "tags": [
       {
         "id": "1",

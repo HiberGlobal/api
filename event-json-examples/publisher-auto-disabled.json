@@ -22,6 +22,15 @@
     "time": {
       "timestamp": "2020-06-01T06:15:25.355Z",
       "textual": "2020-06-01T06:15:25.355Z"
+    },
+    "healthLevel": {
+      "level": "Error",
+      "color": "red",
+      "colorData": {
+        "fill": "red",
+        "text": "red"
+      },
+      "catchAll": true
     }
   }
 }

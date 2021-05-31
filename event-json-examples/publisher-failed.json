@@ -52,6 +52,14 @@
       },
       "createdBy": "example-identifier"
     },
+    "healthLevel": {
+      "level": "Warning",
+      "color": "orange",
+      "colorData": {
+        "fill": "orange",
+        "text": "orange"
+      }
+    },
     "tags": [
       {
         "id": "1",

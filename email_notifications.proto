@@ -37,6 +37,9 @@ message EmailNotificationPreferences {
     /* Filter events by tags. */
     Filter.Tags filter_tags = 4;
 
+    /* Filter events by health level caused. */
+    repeated string filter_health_levels = 8;
+
     oneof recipient {
         /* User who created this publisher. Only set if no custom email address is given. */
         string user_id = 5;
@@ -98,6 +101,12 @@ message UpdateEmailNotificationPreferencesRequest {
 
     /* Filter events by tags. An empty value enables email for all tags. */
     Filter.Tags.Update filter_tags = 5;
+
+    /* Add health levels to the health levels filter. */
+    repeated string add_health_levels_to_filter = 6;
+
+    /* Remove health levels from the health levels filter. */
+    repeated string remove_health_levels_from_filter = 7;
 }
 
 message RemoveAllEmailNotificationPreferencesRequest {

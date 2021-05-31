@@ -24,8 +24,16 @@
     "title": "Token your-token (id 1) will expire in 14 days.",
     "description": "Token your-token (id 1) will expire in 14 days.",
     "time": {
-      "timestamp": "2020-06-03T05:15:25.355Z",
-      "textual": "2020-06-03T05:15:25.355Z"
+      "timestamp": "2020-05-21T05:15:25.355Z",
+      "textual": "2020-05-21T05:15:25.355Z"
+    },
+    "healthLevel": {
+      "level": "Warning",
+      "color": "orange",
+      "colorData": {
+        "fill": "orange",
+        "text": "orange"
+      }
     }
   }
 }

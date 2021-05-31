@@ -43,8 +43,24 @@ service EventService {
  * the contained object.
  */
 message Event {
-    bool is_error = 1;
-    bool is_warning = 100;
+    /* Whether this event causes the 'Error' health level.
+     * If your organization does not use the default health levels, this field will be omitted.
+     * Use health_level instead.
+     */
+    bool is_error = 1 [deprecated = true];
+
+    /* Whether this event causes the 'Warning' health level.
+     * If your organization does not use the default health levels, this field will be omitted.
+     * Use health_level instead.
+     */
+    bool is_warning = 100 [deprecated = true];
+
+    /* The health level caused by this event.
+     * This health generally applies to either a modem, a token or a publisher,
+     * and is also applied to the organization health.
+     */
+    health.HealthLevel health_level = 101;
+
     oneof event {
         ModemEvent.ModemCreatedEvent modem_created = 55;
         ModemEvent.ModemUpdatedEvent modem_updated = 39;
@@ -201,6 +217,9 @@ message Event {
             repeated tag.Tag tags = 6;
             string title = 7;
             string description = 8;
+
+            /* The health level caused for the modem (and organization) by this event. */
+            health.HealthLevel health_level = 11;
         }
 
         /* When the first _real_ message for a modem comes in, the modem is considered to be activated.
@@ -347,6 +366,9 @@ message Event {
                 string title = 7;
                 string description = 8;
                 Timestamp time = 9;
+
+                /* The health level caused for the modem (and organization) by this event. */
+                health.HealthLevel health_level = 11;
             }
 
             /* Triggered when the time between sending and receiving the message is above a certain threshold. This can
@@ -375,6 +397,9 @@ message Event {
                 string title = 7;
                 string description = 8;
                 Timestamp time = 9;
+
+                /* The health level caused for the modem (and organization) by this event. */
+                health.HealthLevel health_level = 11;
             }
 
             /* Triggered when a message cannot be parsed. This can have multiple reasons, for example, an invalid
@@ -405,6 +430,9 @@ message Event {
                 repeated tag.Tag tags = 6;
                 string title = 7;
                 string description = 8;
+
+                /* The health level caused for the modem (and organization) by this event. */
+                health.HealthLevel health_level = 10;
             }
         }
 
@@ -516,7 +544,9 @@ message Event {
                 /* The filled in error message(s) for the failing checks in the alarm. */
                 map<string, string> error_messages = 7;
 
-                /* The highest health level caused by the failing checks in this alarm. */
+                /* The highest health level caused by the failing checks in this alarm,
+                 * for the modem (and organization).
+                 */
                 health.HealthLevel health_level = 12;
 
                 repeated hiber.tag.Tag tags = 8;
@@ -612,6 +642,9 @@ message Event {
             repeated tag.Tag tags = 4;
             string title = 5;
             string description = 6;
+
+            /* The health level caused for the modem (and organization) by this event. */
+            health.HealthLevel health_level = 7;
         }
 
         message ModemTransferReturnTransferStartedEvent {
@@ -623,6 +656,9 @@ message Event {
             repeated tag.Tag tags = 6;
             string title = 7;
             string description = 8;
+
+            /* The health level caused for the modem (and organization) by this event. */
+            health.HealthLevel health_level = 9;
         }
     }
 
@@ -810,6 +846,9 @@ message Event {
             string title = 4;
             string description = 5;
             Timestamp time = 6;
+
+            /* The health level caused for the publisher (and organization) by this event. */
+            health.HealthLevel health_level = 7;
         }
 
         message FailedEvent {
@@ -820,6 +859,9 @@ message Event {
             string title = 5;
             string description = 6;
             Timestamp time = 7;
+
+            /* The health level caused for the publisher (and organization) by this event. */
+            health.HealthLevel health_level = 8;
         }
     }
 
@@ -838,6 +880,9 @@ message Event {
             string title = 3;
             string description = 4;
             Timestamp time = 5;
+
+            /* The health level caused for the organization by this event. */
+            health.HealthLevel health_level = 6;
         }
 
         message TokenExpiredEvent {
@@ -1006,8 +1051,20 @@ message EventSelection {
     Filter.Publishers publishers = 3;
     Filter.Tags tags = 4;
     TimeRange time_range = 6;
-    bool errors_only = 7;
-    bool warnings_only = 10;
+
+    /* Return events that cause the default Error health.
+     * Deprecated: use health_levels instead for better accuracy if you've customized health levels or event health.
+     */
+    bool errors_only = 7 [deprecated = true];
+
+    /* Return events that cause the default Warning health.
+     * Deprecated: use health_levels instead for better accuracy if you've customized health levels or event health.
+     */
+    bool warnings_only = 10 [deprecated = true];
+
+    /* Filter events by actual configured health level. */
+    repeated string health_levels = 11;
+
     /* When not set, no unbundled events are returned.
      * When set, returns unbundled events per type, paginated per type.
      */
