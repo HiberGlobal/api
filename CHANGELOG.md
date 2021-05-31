@@ -1,6 +1,6 @@
 # Changelog Hiber API
 
-### 0.78 (2021-05-21)
+### 0.78 (2021-05-31)
 
 This release adds health levels to events, so they can be shown and filtered on.
 
