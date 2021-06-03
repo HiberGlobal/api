@@ -606,12 +606,21 @@ message AvailableModemMessageFields {
         string organization = 1;
         ModemSelection modems = 2;
         Pagination pagination = 3;
+
+        /* Whether to also calculate the total fields for all selected modems,
+         * and return them as a single ModemMessageFieldSelection in the response.
+         * This can be useful to display table columns, for example.
+         */
+        bool include_total = 4;
     }
 
     message Response {
         repeated AvailableModemMessageFields modem_message_fields = 1;
         Request request = 2;
         Pagination.Result pagination = 3;
+
+        /* A merged result of all fields, for all modems. This can be useful to display table columns, for example. */
+        ModemMessageFieldSelection total = 4;
     }
 }
 

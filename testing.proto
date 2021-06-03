@@ -154,6 +154,9 @@ message Simulation {
         /* The indices of bytes in the message body that should be randomized (to have variable values). */
         repeated uint32 message_body_variable_byte_indices = 5;
 
+        /* Randomize modem location within the given area. */
+        Area random_location_in_area = 7;
+
         /* Timestamp after which the next simulation run will be triggered (not guaranteed to be exactly at this time).
          * If further in the future, message simulation for this modem is inactive until this time.
          * This may be set to a time in the future manually, or by the ModemInactivitySimulation.
@@ -213,7 +216,7 @@ message Simulation {
                 /* Modems to create or update the message simulation for. */
                 modem.ModemSelection modems = 2;
 
-                /* The number of simulated messages per day for these modems.
+                /* The number of simulated messages per simulation interval for these modems.
                  * This value is either the custom amount per day for these modems or the default value
                  */
                 uint32 messages_per_interval = 3;
@@ -229,6 +232,9 @@ message Simulation {
 
                 /* Remove indices of bytes in the message body that should be randomized (to have variable values). */
                 repeated uint32 message_body_remove_variable_byte_indices = 7;
+
+                /* Randomize modem location within the given area. */
+                Area random_location_in_area = 11;
 
                 /* Disable the message simulation until the given date (UTC). */
                 Timestamp set_inactive_until = 8;

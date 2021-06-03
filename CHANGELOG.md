@@ -1,5 +1,49 @@
 # Changelog Hiber API
 
+### 0.79 (2021-06-03)
+
+This release contains a selection of bugfixes and API Ux improvements.
+
+#### Changes
+
+- Added a new identifier generator to clean up the different types of identifiers a bit.
+  - Identifiers - even without their prefix - are unique system-wide
+  - New identifiers are generated using the new logic for the following types:
+    - modem transfers
+    - modem alarms
+    - modem message body parsers
+    - automatic assignments
+
+##### ModemAlarmService
+
+- Removed limitation where the `minimum` or `maximum` for threshold and delta check could not be `0.0`.
+
+##### ModemService
+
+- The pagination for messages should now be more accurate, and only estimate total counts if you have a lot of messages.
+- Added `AvailableModemMessageFields.Request.include_total` and `AvailableModemMessageFields.Response.total`
+  to calculate the total fields for all selected modems. This can be useful to display table columns, for example.
+
+##### OrganizationService
+
+- Added new Organization Feature flag: `GENERAL_PURPOSE_TRACKING`
+
+##### SimulationService
+
+- Added `random_location_in_area` to `Simulation.ModemMessageSimulation.Update.Request` to allow the simulation
+  to generate a new location for the modem on every message, but contain it within a given area.
+
+##### TokenService
+
+- Added more options to `UpdateTokenOrganizationPermissionsRequest`
+  - Renamed `new_organization_permissions` to `replace_organization_permissions`, to be more explicit.
+  - Added `add_organization_permissions` to instead just add permission to the token.
+  - Added `remove_organization_permissions` to remove permissions from the token.
+- Added more options to `UpdateTokenUserPermissionsRequest`
+  - Renamed `new_user_permissions` to `replace_user_permissions`, to be more explicit.
+  - Added `add_user_permissions` to instead just add permission to the token.
+  - Added `remove_user_permissions` to remove permissions from the token.
+
 ### 0.78 (2021-05-31)
 
 This release adds health levels to events, so they can be shown and filtered on.

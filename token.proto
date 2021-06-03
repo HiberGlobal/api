@@ -82,8 +82,16 @@ message UpdateTokenOrganizationPermissionsRequest {
     string organization = 1;
     repeated int64 token_ids = 2;
 
-    /* The previous permissions are replaced! */
-    Filter.OrganizationPermissions new_organization_permissions = 3;
+    /* Completely replace the organization permission for the selected token(s) with this set. */
+    Filter.OrganizationPermissions replace_organization_permissions = 3;
+
+    /* Add organization permissions to the token. */
+    repeated OrganizationPermission add_organization_permissions = 5;
+
+    /* Remove organization permissions from the token.
+     * Ensures the permissions is no longer on the token (even if you also add it using add_organization_permissions).
+     */
+    repeated OrganizationPermission remove_organization_permissions = 6;
 
     reserved 4;
 }
@@ -95,6 +103,13 @@ message UpdateTokenUserPermissionsRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     repeated int64 token_ids = 2;
-    /* The previous permissions are replaced! */
-    Filter.UserPermissions new_user_permissions = 4;
+
+    /* Completely replace the user permission for the selected token(s) with this set. */
+    Filter.UserPermissions replace_user_permissions = 4;
+
+    /* Add user permissions to the token. */
+    repeated UserPermission add_user_permissions = 5;
+
+    /* Remove user permissions from the token. */
+    repeated UserPermission remove_user_permissions = 6;
 }
