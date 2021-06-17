@@ -19,6 +19,7 @@ option go_package = "hiber";
  */
 service ModemService {
     rpc Get (GetModemRequest) returns (Modem);
+    rpc Create (CreateModem.Request) returns (CreateModem.Response);
     rpc List (ListModemsRequest) returns (ListModemsRequest.Response);
     rpc Grouped (ListModemsGrouped.Request) returns (ListModemsGrouped.Response);
     rpc Messages (ListModemMessagesRequest) returns (ListModemMessagesRequest.Response);
@@ -280,7 +281,10 @@ message ModemSelection {
     /* Only include modems that have a type listed in types.
      * In other words, when providing multiple types, this is an "OR" relationship.
      */
-    repeated Modem.Type types = 16;
+    repeated Modem.Type include_types = 16;
+
+    /* Exclude modems that have a type listed in types. */
+    repeated Modem.Type exclude_types = 19;
 
     /* [DEPRECATED] Only list devices that are a gateway.
      * Replaced by `types`.
@@ -405,8 +409,13 @@ message ModemMessageSelection {
         repeated ModemMessage.Source exclude = 2;
     }
 
-    /* Define the modems to return messages from, i.e. include = [AAAA AAAA, BBBB BBBB] */
-    Filter.Modems modems = 1;
+    /* Define the modems to return messages for, i.e. include = [AAAA AAAA, BBBB BBBB].
+     * Deprecated in favor of using the ModemSelection.
+     */
+    Filter.Modems modems = 1 [deprecated = true];
+
+    /* Select the modems to return messages for. */
+    ModemSelection modem_selection = 5;
 
     /* Filter message by time range. This field is required, to limit the amount of messages. */
     TimeRange time_range = 3;
@@ -644,6 +653,76 @@ message MessageCountRequest {
     string time_zone = 6;
 }
 
+/* Create modems for your organization.
+ * This call is not available to all organizations, and is typically used to create modems for testing or
+ * when you want to connect a device to the API using just the API calls in the TestingService.
+ */
+message CreateModem {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* The amount of modems to create. */
+        uint32 amount = 2;
+
+        /* The name(s) to give the new modem(s).
+         * Must not contain more values than the amount of modems to create.
+         */
+        repeated string names = 3;
+
+        /* The external device identifiers for the new modems.
+         * Must not contain more values than the amount of modems to create.
+         * The order of this list matches the order of the name, values in the same index are applied to the same modem.
+         */
+        repeated string external_device_identifiers = 4;
+
+        /* The status for the new modems. */
+        Modem.Status status = 5;
+
+        /* The technical data, such as manufacturer and hardware information for the new modems. */
+        Modem.TechnicalData technical = 6;
+
+        /* The peripherals for the new modems. */
+        map<string, string> peripherals = 7;
+
+        /* Notes for all new modems. */
+        string notes = 8;
+
+        /* The location for the new modems, either set or randomly within an area. */
+        oneof initial_location {
+            Location location = 9;
+            Area random_location_in_area = 10;
+        }
+
+        /* The tags to set to the new modems, either existing or created by this call. */
+        hiber.tag.UpdateTagsForItem tags = 11;
+
+        /* Whether to return the full Modem in addition to the modem number and verification code. */
+        bool include_modems_in_response = 12;
+
+        /* Whether to return the verification code for the modem. */
+        bool include_verification_code = 13;
+    }
+
+    message Response {
+        message CreatedModem {
+            /* The modem number that was created. */
+            string modem_number = 1;
+
+            /* The verification code for this modem number, used to, for example, claim modems.
+             * Only available when include_verification_code was set to true.
+             */
+            string verification_code = 2;
+
+            /* Only available when include_modems_in_response was set to true. */
+            Modem modem = 3;
+        }
+
+        repeated CreatedModem modems = 1;
+        Request request = 2;
+    }
+}
+
 message RenameModemRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
@@ -701,8 +780,10 @@ message UpdateModemSecureNotesRequest {
 
 message UpdateModemStatusRequest {
     message Response {
-        Modem modem = 1;
+        Modem modem = 1 [deprecated = true];
+        repeated Modem modems = 3;
         UpdateModemStatusRequest request = 2;
+        Pagination.Result pagination = 4;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
@@ -716,6 +797,9 @@ message UpdateModemStatusRequest {
 
     /* The new status for the modem(s). */
     Modem.Status update_status = 3;
+
+    /* Pagination for the modems in the Response. */
+    Pagination pagination = 5;
 }
 
 message UpdatePeripheralsRequest {

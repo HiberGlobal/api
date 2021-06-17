@@ -52,7 +52,7 @@ message Organization {
         HILO = 2;
 
         /* A set of additional features to allow advanced tracking on the map. */
-        GENERAL_PURPOSE_TRACKING = 3;
+        EASYPULSE = 3;
     }
 
     /* The slug for this organization, used to identify organizations */

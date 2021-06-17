@@ -1,5 +1,28 @@
 # Changelog Hiber API
 
+### 0.80 (2021-06-17)
+
+This release introduces the option to create your own modems (with some limitations)
+and convenience improvements.
+
+#### Changes
+
+- Added a `OrganizationPermission.MODEMS_CREATE` to create modems.
+
+##### OrganizationService
+
+- Renamed `Organization.Feature.GENERAL_PURPOSE_TRACKING` to `Organization.Feature.EASYPULSE`.
+
+##### ModemService
+
+- Added `CreateModem` to create modems for your organization.
+  - This call is not available to all organizations, and is typically used to create modems for testing or
+    when you want to connect a device to the API using just the API calls in the TestingService.
+- Fixed a bug where `UpdateModemStatus` only returned a single modem, even though all selected modems were affected.
+- Added `include_types` and `exclude_types` to `ModemSelection`, replacing the simple `types` list of included types.
+- Added `ModemMessageSelection.modem_selection` to allow selecting messages from multiple modems
+  without having to list the individual modems (i.e. by tag).
+
 ### 0.79 (2021-06-03)
 
 This release contains a selection of bugfixes and API Ux improvements.

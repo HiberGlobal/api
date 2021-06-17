@@ -30,6 +30,8 @@ enum OrganizationPermission {
 
     /* List modems, see their details and health */
     MODEMS = 10;
+    /* Create new modems. Includes MODEMS permission. */
+    MODEMS_CREATE = 50;
     /* Update modems, such as their peripherals, display name and tags. Includes MODEMS permission. */
     MODEMS_UPDATE = 11;
     /* Show and regenerate license keys. Includes MODEMS permission. */
