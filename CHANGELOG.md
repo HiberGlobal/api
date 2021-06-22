@@ -1,5 +1,18 @@
 # Changelog Hiber API
 
+### 0.80.2 (2021-06-22)
+
+This release contains a few bug fixes.
+
+#### Changes
+
+- Fixed a bug where an Area or Shape was not allowed to contain a location of (0.0, 0.0).
+
+##### TagService
+
+- Fixed a bug where deleting a tag could affect the assignment of other tags.
+- Fixed a bug where deleting a tag did not produce a ModemUpdatedEvent for the affected modems.
+
 ### 0.80 (2021-06-17)
 
 This release introduces the option to create your own modems (with some limitations)
