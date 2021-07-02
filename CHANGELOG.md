@@ -1,5 +1,17 @@
 # Changelog Hiber API
 
+### 0.80.3 (2021-07-02)
+
+This release contains a few more bug fixes.
+
+#### Changes
+
+##### ModemService
+
+- Fixed a bug where fix device count for gateway was not taking organization into account,
+  counting orphaned devices in other organizations.
+- Fixed device message order, which was broken in 0.80.
+
 ### 0.80.2 (2021-06-22)
 
 This release contains a few bug fixes.
