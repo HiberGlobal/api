@@ -96,6 +96,29 @@ message HealthLevel {
      */
     map<string, string> color_data = 4;
 
+    /**
+     * A numeric representation of the severity of this health level.
+     * Higher numbers denote a more severe health.
+     * Note that severity numbers are specific per organization and can change in time.
+     * For example, some organization might have:
+     * - Ok, severity 1
+     * - Warning, severity 2
+     * - Error, severity 3
+     *
+     * That organization could then add a new health level in between Ok and Warning,
+     * meaning the severity of Warning and Error will change:
+     * - Ok, severity 1
+     * - ItsComplicated, severity 2
+     * - Warning, severity 3
+     * - Error, severity 4
+     *
+     * Long story short:
+     * - don't cache these levels
+     * - don't compare levels between organizations
+     * - only compare these levels when you get them in the same call
+     */
+    int64 severity = 5;
+
     /* Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems),
      * which can happen when a device manufacturer has provided alarms for your device (e.g. a low battery alarm).
      * By default, unknown health levels map to the level of the highest severity,

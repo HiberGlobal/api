@@ -13,7 +13,8 @@
     "healthLevel": {
       "level": "Warning",
       "color": "Yellow",
-      "colorData": { "fill":  "DarkYellow", "text": "Yellow" }
+      "colorData": { "fill":  "DarkYellow", "text": "Yellow" },
+      "severity": "2"
     },
     "tags": [
       {

@@ -16,7 +16,8 @@
         "fill": "red",
         "text": "red"
       },
-      "catchAll": true
+      "catchAll": true,
+      "severity": "3"
     },
     "tags": [
       {

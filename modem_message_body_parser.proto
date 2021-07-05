@@ -62,6 +62,23 @@ message ModemMessageBodyParser {
         Filter.ChildOrganizations child_organizations = 1;
     }
 
+    /* Fields in the parsed result that match common things that can be processed by the system,
+     * like a location or battery percentage. */
+    message MetadataFields {
+        message LocationFields {
+            string latitude = 1;
+            string longitude = 2;
+        }
+
+        /* Other metadata fields, which will be added to the metadata json for easy processing. */
+        repeated string metadata_fields = 1;
+
+        /* Specify a pair of fields in the message body that contain location data,
+         * which will update the modem location and the map.
+         */
+        LocationFields location_fields = 2;
+    }
+
     /* The globally (across organizations) unique identifier for this parser. */
     string identifier = 7;
 
@@ -88,6 +105,9 @@ message ModemMessageBodyParser {
      * This can be useful to track which fields could be plotted, etc.
      */
     repeated string data_fields = 9;
+
+    /* Fields in the parsed result that contain metadata, and special things like a location. */
+    MetadataFields metadata_fields = 10;
 
     /* If set, this parser is available to your child organizations, as a Provided parser. */
     AvailableToChildOrganizations available_to_child_organizations = 6;
@@ -265,6 +285,9 @@ message UploadModemMessageBodyParserRequest {
      * This can be useful to track which fields could be plotted, etc.
      */
     repeated string data_fields = 4;
+
+    /* Fields in the parsed result that match special things that can be processed by the system, like a location. */
+    ModemMessageBodyParser.MetadataFields metadata_fields = 10;
 }
 
 /* Upload a new body parser from a .ksy file, replacing the previous file.
@@ -274,6 +297,17 @@ message UploadModemMessageBodyParserRequest {
  * https://github.com/HiberGlobal/api/blob/master/modem_message_body_parser.proto for the API documentation.
  */
 message UpdateUploadedModemMessageBodyParserRequest {
+    message MetadataFields {
+        /* Add metadata fields to the metadata fields list. */
+        repeated string add_metadata_fields = 1;
+
+        /* Remove metadata fields from the metadata fields list. */
+        repeated string remove_metadata_fields = 2;
+
+        /* Update the location fields. */
+        ModemMessageBodyParser.MetadataFields.LocationFields update_location_fields = 3;
+    }
+
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
 
@@ -288,6 +322,9 @@ message UpdateUploadedModemMessageBodyParserRequest {
 
     /* Remove fields from the data fields list. */
     repeated string remove_data_fields = 6;
+
+    /* Fields in the parsed result that match special things that can be processed by the system, like a location. */
+    MetadataFields metadata_fields = 10;
 
     reserved 2;
 }

@@ -100,7 +100,8 @@
       "colorData": {
         "fill": "orange",
         "text": "orange"
-      }
+      },
+      "severity": "2"
     },
     "tags": [
       {

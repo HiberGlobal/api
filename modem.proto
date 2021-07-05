@@ -257,6 +257,55 @@ message ModemSelection {
         repeated string transfers_identifiers = 1;
         reserved 2, 3;
     }
+    /* Filter to (de)select modems based on their peripherals. */
+    message Peripherals {
+        message OneOfValues {
+            repeated string value = 1;
+        }
+
+        /* Filter to only include modems with all of the given set of peripherals.
+         * Peripherals are stored as a name-value pair (e.g. bluetooth, 4.0 / bluetooth, BLE).
+         * To select for multiple versions of a peripheral,
+         * add the name of the peripheral as a map-key and add a repeated list of versions as the map-value.
+         *
+         * For example:
+         * - include { 'bluetooth' -> [ ] }
+         *     returns all modems that have any version of bluetooth,
+         * - include { 'bluetooth' -> [ '4.0', '5.0' ] }
+         *     will only return modems that have bluetooth version 4.0 _or_ 5.0,
+         * - include { 'bluetooth' -> [ '' ] }
+         *     would only select bluetooth peripherals that don't have any version set,
+         * - include { 'bluetooth' -> [ ], 'LoRaWAN' -> [ ] }
+         *     will only select modems that have both bluetooth (any version) _and_ LoRaWAN (any version),
+         * - include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ ] }
+         *     will return an empty list since exclude will take precedence, and
+         * - include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ '3.0' ] }
+         *     returns modems that have bluetooth, but not version 3.0.
+         */
+        map<string, OneOfValues> include_and = 1;
+
+        /* Filter to exclude modems with any of the given set of peripherals.
+         * Peripherals are stored as a name-value pair (e.g. bluetooth, 4.0 / bluetooth, BLE).
+         * To select for multiple versions of a peripheral,
+         * add the name of the peripheral as a map-key and add a repeated list of versions as the map-value.
+         *
+         * For example:
+         * - exclude { 'bluetooth' -> [ ] }
+         *     returns only modems that do not have any version of bluetooth,
+         * - exclude { 'bluetooth' -> [ '4.0', '5.0' ] }
+         *     returns modems that might have bluetooth as long as it's not versions 4.0 or 5.0,
+         * - exclude { 'bluetooth' -> [ '' ] }
+         *     returns modems that might have bluetooth as long as it's version is set to a specific value,
+         * - exclude { 'bluetooth' -> [ ], 'LoRaWAN' -> [ ] }
+         *     returns modems that don't have bluetooth and/or LoRaWAN.
+         * - include { 'bluetooth' -> [ ] }, exclude { bluetooth' -> [ ] }
+         *     will return an empty list, since exclusion takes precedence, and
+         * - include { 'bluetooth' -> [ ] }, exclude { bluetooth' -> [ '3.0' ] }
+         *     returns only modems that have bluetooth, but not version 3.0
+         */
+        map<string, OneOfValues> exclude = 2;
+    }
+
 
     Filter.Modems modems = 1;
     string free_text_search = 8;
@@ -301,6 +350,13 @@ message ModemSelection {
     repeated string external_device_ids = 15;
 
     hiber.tag.TagSelection filter_by_tags = 2;
+
+    /* Filter modem result on specific peripherals. */
+    oneof peripheral_selection {
+        Peripherals peripherals = 20;
+        /* When set to true, only modems that do not have any peripheral will be included in the result. */
+        bool only_without_peripheral = 21;
+    }
 
     reserved 3, 17;
 }

@@ -3,6 +3,7 @@ syntax = "proto3";
 package hiber.map;
 
 import "base.proto";
+import "health.proto";
 import "modem.proto";
 
 option java_multiple_files = false;
@@ -14,18 +15,6 @@ option go_package = "hiber";
  */
 service MapService {
     rpc TileMap (TileMapRequest) returns (TileMapRequest.Response);
-
-    /* This call has been deprecated in favour of the Path (ListSatellitesPathRequest) call in SatelliteService.
-     * It will be removed in a future version.
-     */
-    rpc Satellites (SatellitesRequest) returns (SatellitesRequest.Response) {
-        option deprecated = true;
-    };
-
-    /* This is the old map request. It has been deprecated and will be removed in a future version. */
-    rpc Map (MapRequest) returns (MapRequest.Response) {
-        option deprecated = true;
-    };
 }
 
 /* The location of ground stations that receive the data sent from the satellite(s).
@@ -45,11 +34,16 @@ message MapTileItem {
     message Modem {
         string number = 1;
         Location location = 2;
+        health.HealthLevel health_level = 3;
     }
     message Group {
         int32 count = 1;
+
         /* Area that the group covers. Modems are somewhere in this area. More details can be requested from the modem list or by zooming in, */
         Area area = 2;
+
+        /* The most severe health for the modems in this group. */
+        health.HealthLevel most_severe_health_level = 3;
     }
 
     /* Google maps tile coordinates, counted from the top left of the map. */
@@ -103,19 +97,16 @@ message TileMapRequest {
     /* The icon density on the map. */
     Density density = 7;
 
-    /* Whether to include any modems from child organizations. */
-    Filter.ChildOrganizations child_organizations = 8;
+    oneof expanded {
+        /* Whether to include any modems from child organizations. */
+        Filter.ChildOrganizations child_organizations = 8;
+
+        /* Whether to include the health for groups. */
+        bool include_health = 9;
+    }
 }
 
-
-//// ----- The messages below are deprecated and will be removed in a future version ---- ////
-
-/* This call has been deprecated in favour of the Path (ListSatellitesPathRequest) call in SatelliteService.
- * It will be removed in a future version.
- */
 message Satellite {
-    option deprecated = true;
-
     message Position {
         Timestamp time = 1;
         Location location = 2;
@@ -124,71 +115,4 @@ message Satellite {
     int32 id = 1;
     string name = 2;
     repeated Position positions = 3;
-}
-
-/* This call has been deprecated in favour of the Path (ListSatellitesPathRequest) call in SatelliteService.
- * It will be removed in a future version.
- */
-message SatellitesRequest {
-    option deprecated = true;
-
-    message Response {
-        repeated Satellite satellites = 1;
-    }
-}
-
-/* Selection object for map data. Filter modems on the map by id, (child)organization.
- * Also, filter the map data by level and area restriction, to only display a small area at a detailed map level.
- *
- * This message has been deprecated in favour of the LocationSelection, to separate the location filtering from level
- * and data filtering.
- */
-message MapSelection {
-    option deprecated = true;
-
-    message AreaRestriction {
-        Location bottom_left = 1;
-        Location top_right = 2;
-    }
-
-    message ShapeRestriction {
-        repeated Location path = 1;
-    }
-
-    Filter.Modems modems = 1;
-    reserved 2;
-    int32 level = 3;
-    AreaRestriction area = 4;
-    ShapeRestriction shape = 5;
-}
-
-/* Map block that specifies a modem count in a specific area, bounded by a latitude / longitude 'square' (not really a
- * square, since the earth is not flat).
- *
- * This message has been deprecated in favour of the MapTileItem.
- */
-message MapBlock {
-    option deprecated = true;
-
-    Area area = 1;
-    int32 modem_count = 2;
-    int32 error_count = 3;
-    float error_percentage = 4;
-}
-
-/* This message has been deprecated in favour of the TileMapRequest, which is significantly faster. */
-message MapRequest {
-    option deprecated = true;
-
-    message Response {
-        repeated GroundStation ground_stations = 1;
-        repeated MapBlock map_blocks = 2;
-        MapRequest request = 4;
-        repeated Satellite satellites = 5;
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    MapSelection selection = 2;
-    reserved 3;
 }
