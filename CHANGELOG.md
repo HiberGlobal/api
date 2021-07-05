@@ -1,5 +1,40 @@
 # Changelog Hiber API
 
+### 0.81 (2021-07-05)
+
+This release contains a collection of minor features:
+- Adding health to the map
+- Allowing modems to be filtered on peripherals
+- Extracting metadata (and location) from a parsed message body
+
+#### Changes
+
+##### HealthService
+
+- Added `HealthLevel.severity` to allow sorting of health levels when needed.
+
+##### MapService
+
+- Added `TileMapRequest.include_health` to include the health for each map tile (that contains modems).
+  - Added `MapTileItem.Modem.health_level` for tiles with a single modem.
+  - Added `MapTileItem.Group.most_severe_health_level`, the most severe health level for the modems in this group.
+  - Not compatible with including child organizations, since those health levels may differ.
+- Removed deprecated calls `Satellites` and `Map`, leaving only the `TileMap` call.
+  - Removed `SatellitesRequest`, `MapRequest`, `MapBlock` and `MapSelection`, which were only used
+    in the deprecated calls.
+
+##### ModemService
+
+- Added `ModemSelection.peripherals` to filter modems by peripherals.
+- Added `ModemSelection.only_without_peripherals` to filter modems that have no peripherals.
+
+##### ModemMessageBodyParserService
+
+- Added `metadata_fields` to `ModemMessageBodyParser`,
+  `UploadModemMessageBodyParserRequest` and `UpdateUploadedModemMessageBodyParserRequest`.
+  Metadata fields are extracted from the parsed message body to the message metadata.
+  - Added specific metadata fields for extracting location from the message body to the modem.
+
 ### 0.80.3 (2021-07-02)
 
 This release contains a few more bug fixes.
