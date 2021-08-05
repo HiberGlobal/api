@@ -1,0 +1,267 @@
+/* Easypulse specific view and services.
+ *
+ * This file contains specific views and services for the easypulse feature set.
+ * This feature set is only available to organizations with the easypulse feature enabled.
+ *
+ * For Easypulse, we've introduced the concept of an Asset, which is a modem with some assumptions about the type of
+ * data it sends. Additionally, aggregations can be requested of Asset history when requesting Assets, allowing for a
+ * somewhat customized Asset model.
+ */
+syntax = "proto3";
+
+package hiber.easypulse;
+
+import "base.proto";
+import "health.proto";
+import "tag.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.easypulse";
+option java_outer_classname = "EasypulseApi";
+option go_package = "hiber";
+
+/* Service to list and manage Assets. */
+service EasypulseService {
+    rpc Assets (Easypulse.ListAssets.Request) returns (Easypulse.ListAssets.Response);
+    rpc History (Easypulse.History.Request) returns (Easypulse.History.Response);
+}
+
+message Easypulse {
+
+    /* Asset in your organization.
+     * An asset is a view of a modem, with assumptions about message data fields handled in the API.
+     *
+     * In addition, an Asset can be enriched with aggregations of the data fields when requested (for example,
+     * fuel level average over the past month, or total run time in the past week).
+     */
+    message Asset {
+        /* The organization the asset is in. */
+        string organization = 1;
+
+        /* The modem number for the Asset. */
+        string number = 2;
+
+        /* The custom name for the Asset, defaults to modem number. */
+        string name = 3;
+
+        /* Optional external identifier the Asset may have. */
+        string external_identifier = 4;
+
+        /* A key value map of peripherals for the Assets. */
+        map<string, string> peripherals = 5;
+
+        /* Add additional notes to an asset. */
+        string notes = 6;
+
+        /* Add additional notes to an asset that only people with the permission can access. */
+        string secure_notes = 7;
+
+        /* Health level based on the modem alarm and some always-present alarms. */
+        health.HealthLevel health_level = 8;
+
+        /* Tags (or groups, when used in Mission Control) this asset is in. */
+        repeated hiber.tag.Tag tags = 9;
+
+        /* When this asset was last updated. */
+        LastUpdate last_update = 10;
+
+        /* The most recent fuel level, as a percentage. */
+        float fuel_level = 11;
+
+        /* The most recent tire pressure in bar. */
+        float tire_pressure = 12;
+
+        /* The most recent battery level, as a percentage. */
+        float battery_level = 13;
+
+        /* The most recent temperature in degrees Celsius. */
+        float temperature = 14;
+
+        /* The most recently reported location. */
+        Location location = 15;
+
+        /* Any aggregations added when this asset was requested. */
+        map<string, History.Response> aggregations = 16;
+
+        /* Information about the last update we received from this asset. */
+        message LastUpdate {
+            uint64 id = 1;
+
+            /* Time the server has received the last update. */
+            Timestamp received_at = 2;
+
+            /* Time the asset sent the last update. */
+            Timestamp sent_at = 3;
+
+            /* The body of the last update. */
+            BytesOrHex body = 4;
+        }
+    }
+
+    /* An AssetSelection is used to select which Assets should be affected:
+     * - When listing Assets, it is used to determine which Assets are returned
+     * - When updating Assets, it is used to determine which Assets are updated
+     */
+    message AssetSelection {
+        /* Search for assets by name, modem number, tag or notes. */
+        string search = 1;
+
+        /* Select assets by modem number. */
+        Filter.Modems assets = 2;
+
+        /* Select assets by health level. */
+        repeated string health_levels = 3;
+
+        /* Select assets by tag. */
+        hiber.tag.TagSelection filter_by_tags = 4;
+    }
+
+    /* List the Easypulse Assets in your organization.
+     * Optionally, aggregated historical data can be added to the returned Assets, with a given name.
+     *
+     * Fails when your organizations does not have the Easypulse feature.
+     */
+    message ListAssets {
+
+        /* Request to list Assets in your organization. */
+        message Request {
+            /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+            string organization = 1;
+
+            /* Select the Assets to return. */
+            AssetSelection selection = 2;
+
+            /* Paginate over the returned Assets. */
+            Pagination pagination = 3;
+
+            /* Any aggregations to return with the assets, specified as a name and a History.Request. */
+            map<string, History.Request> aggregations = 4;
+
+            /* Sort the returned assets using the given option. By default, Assets are sorted by name. */
+            Sort sort = 5;
+
+            enum Sort {
+                NAME = 0;
+                NAME_DESC = 1;
+                LAST_UPDATED = 2;
+                INACTIVITY = 3;
+                NUMBER_ASC = 4;
+                NUMBER_DESC = 5;
+                LOWEST_FUEL_LEVEL = 6;
+                HIGHEST_FUEL_LEVEL = 7;
+                LOWEST_TIRE_PRESSURE = 8;
+                HIGHEST_TIRE_PRESSURE = 9;
+                LOWEST_BATTERY_LEVEL = 10;
+                HIGHEST_BATTERY_LEVEL = 11;
+                LOWEST_TEMPERATURE = 12;
+                HIGHEST_TEMPERATURE = 13;
+            }
+        }
+
+        /* Response with a list of Assets */
+        message Response {
+            /* The selected Assets. */
+            repeated Asset assets = 1;
+
+            /* The applied pagination, including total results, page information, etc. */
+            Pagination.Result pagination = 2;
+
+            /* The request that was received, corrected and used to produce this result. */
+            Request request = 3;
+        }
+    }
+
+    /* List the history for a single field, and optionally apply an aggregation and/or grouping to it. */
+    message History {
+
+        /* Request to get the history of a field, for the selected Assets in the organization. */
+        message Request {
+            /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+            string organization = 1;
+
+            /* Select the asset(s) to get the history for. */
+            AssetSelection selection = 2;
+
+            /* Paginate the returned values.
+             * This may not be relevant, depending on the aggregation (which may result in a single value) and the
+             * time range.
+             */
+            Pagination pagination = 13;
+
+            /* The time to view the history for. */
+            TimeRange time_range = 3;
+
+            /* How to aggregate the data. */
+            Aggregation aggregation = 4;
+
+            /* Options to group the data, reducing data points to a set of groups.
+             * If no grouping is set, the aggregation typically returns a single value.
+             */
+            oneof group {
+                /* Split up the data in time block of the given size. */
+                Duration split_by_duration = 5;
+
+                /* Limit the results to the given amount of data points, applying the function to each chunk. */
+                uint32 reduce_to_max_size = 6;
+            }
+
+            oneof field {
+                bool fuel_level = 7; // Get the history for the fuel level. Only one field can be chosen.
+                bool tire_pressure = 8; // Get the history for the tire pressure. Only one field can be chosen.
+                bool battery_level = 9; // Get the history for the battery level. Only one field can be chosen.
+                bool temperature = 10; // Get the history for the temperature. Only one field can be chosen.
+                bool run_time = 11; // Get the history for the run time. Only one field can be chosen.
+                bool idle_time = 12; // Get the history for the idle time. Only one field can be chosen.
+            }
+
+            /* Options to aggregate the history data points (in a group). */
+            enum Aggregation {
+                /* Do not aggregate the history data points, just list all of them. */
+                NONE = 0;
+
+                /* Average value of all history data points (in a group). */
+                AVERAGE = 1;
+
+                /* Sum all history data points (in a group). */
+                SUM = 2;
+            }
+        }
+
+        /* Response with the (aggregated) history of a field, for the selected Assets in the organization. */
+        message Response {
+            /* The processed historical data points.
+             * For example, when applying the SUM aggregation to all data points, this list would only contains a
+             * single value, the sum of values.
+             */
+            repeated Value values = 1;
+
+            /* The pagination result, containing information about amounts and pages. */
+            Pagination.Result pagination = 2;
+
+            /* The request that was received, corrected and used to produce this result. */
+            Request request = 3;
+
+            /* Processed historical data point. If this is a group, it will have a time range to denote the group. */
+            message Value {
+                oneof time {
+                    /* When not grouping, time of the individual point.
+                     * When grouping, the time at the end of the group (when the value was true).
+                     */
+                    Timestamp timestamp = 1;
+
+                    /* When grouping, the start and end time for the group. */
+                    TimeRange time_range = 2;
+                }
+
+                oneof value {
+                    float fuel_level = 3; // The fuel level, as a percentage.
+                    float tire_pressure = 4; // The tire pressure in bar.
+                    float battery_level = 5; // The battery level, as a percentage.
+                    float temperature = 6; // The temperature in degrees Celsius.
+                    Duration run_time = 7; // The time the Asset was running.
+                    Duration idle_time = 8; // The time the Asset was idle.
+                }
+            }
+        }
+    }
+}

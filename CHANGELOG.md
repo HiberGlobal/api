@@ -1,5 +1,54 @@
 # Changelog Hiber API
 
+### 0.82 (2021-08-05)
+
+#### Changes
+
+- Removed a few unnecessary imports.
+
+##### EasypulseService
+
+- Introduced the `EasypulseService` for Easypulse-specific implementations.
+  - This API requires the `Organization.Feature.EASYPULSE` feature flag.
+  - This is mostly a convenience view on the normal modems and messages.
+  - `Easypulse.History` allows you to fetch individual message fields and apply aggregations to them, for example
+    - the average pressure per day
+    - the sum of run time per week
+    - This feature will be made available for all organizations soon in the `ModemService`.
+
+##### EventService
+
+- Corrected the text for ModemCreatedEvent, which is now produced any time modems are created, whether it is manually
+  or automatically.
+
+##### HealthService
+
+- Cleaned up the documentation for `HealthLevel`.
+
+##### ModemMessageBodyParserService
+
+- Added `ModemMessageBodyParser.DataField` to define more properties for data fields in a parser.
+  This is mostly used internally, to power the new Easypulse service.
+  - Updated `ModemMessageBodyParser`, `UploadModemMessageBodyParserRequest` and
+    `UpdateUploadedModemMessageBodyParserRequest`:
+    - Deprecated and renamed the repeated string `data_fields` to `data_fields_deprecated`.
+    - Added `data_fields` as the repeated `DataField`s.
+  - Introduced `UnitOfMeasurement` in `base.proto` to support defining the type for parser data fields.
+
+##### ModemDownlinkMessageService
+
+- Introduced the experimental `ModemDownlinkMessageService` to store and fetch messages that should be sent to
+  your devices.
+  For now, this is just a CRUD service to prepare and fetch messages, but expect more features in the future.
+
+##### OrganizationPermissions
+
+- Added `OrganizationPermission.MODEM_DOWNLINK_MESSAGES` for using the new ModemDownlinkMessageService.
+
+#### Generated Documentation
+
+- In this release, we're experimenting with some automatically generated documentation in the `docs` folder.
+
 ### 0.81 (2021-07-05)
 
 This release contains a collection of minor features:

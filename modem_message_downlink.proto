@@ -1,0 +1,159 @@
+syntax = "proto3";
+
+package hiber.modem.downlink;
+
+import "google/protobuf/struct.proto";
+
+import "base.proto";
+import "modem.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.modem.downlink";
+option java_outer_classname = "ModemDownlinkMessageApi";
+option go_package = "hiber";
+
+service ModemDownlinkMessageService {
+    rpc List (ListDownlinkMessages.Request) returns (ListDownlinkMessages.Response);
+    rpc Create (CreateDownlinkMessages.Request) returns (CreateDownlinkMessages.Response);
+    rpc UpdateStatus (UpdateDownlinkMessagesStatus.Request) returns (UpdateDownlinkMessagesStatus.Response);
+}
+
+/* A message to send to a device.
+ * This is typically used to update device configuration or trigger certain message types.
+ */
+message ModemDownlinkMessage {
+    enum Status {
+        /* Message was created but not sent to the device. */
+        CREATED = 0;
+
+        /* Message was sent to the device, but not acknowledged. */
+        SENT = 1;
+
+        /* Message was sent to the device, and acknowledged. */
+        ACKNOWLEDGED = 2;
+    }
+
+    /* Identifier for this downlink message.
+     * Unique within the organization.
+     * Can be set manually or, if omitted on creation, automatically generated.
+     */
+    string identifier = 1;
+
+    /* The modem number of the device this message should be sent to. */
+    string modem_number = 2;
+
+    /* The binary body of the message. */
+    BytesOrHex body = 3;
+
+    /* Any metadata for the message, like fPort for LoRaWAN. */
+    google.protobuf.Struct metadata = 4;
+
+    /* The status of this message. */
+    Status status = 5;
+
+    /* When this downlink message was created. */
+    Timestamp created_at = 6;
+
+    /* When this downlink message was sent to the device. */
+    Timestamp sent_at = 7;
+
+    /* When this downlink message was acknowledged by the device. */
+    Timestamp acknowledged_at = 8;
+
+    /* Whether acknowledgement is required, determining when this messages is considered completed. */
+    bool acknowledgement_required = 9;
+}
+
+/* Selection object to select ModemDownlinkMessages. */
+message ModemDownlinkMessageSelection {
+    /* Search downlink messages by identifier, modem number, modem tags or metadata */
+    string search = 1;
+
+    /* Select downlink messages by identifier(s). */
+    repeated string identifiers = 2;
+
+    /* Select modems to list downlink messages for. */
+    modem.ModemSelection modems = 3;
+
+    /* Select downlink messages that have one of the given statuses. */
+    repeated ModemDownlinkMessage.Status include_status = 4;
+
+    /* Select downlink messages that have none of the given statuses. */
+    repeated ModemDownlinkMessage.Status exclude_status = 5;
+
+    /* Select downlink messages that were created or updated withing the time range. */
+    TimeRange time_range = 6;
+
+    /* Whether to include downlink messages that have already been sent and acknowledged (if required). */
+    bool include_completed = 7;
+}
+
+message CreateDownlinkMessages {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* Downlink messages to send.
+         * All ModemDownlinkMessage fields are optional except for modem_number and content.
+         */
+        repeated ModemDownlinkMessage messages = 2;
+    }
+    message Response {
+        /* The created messages. */
+        repeated ModemDownlinkMessage messages = 1;
+    }
+}
+
+message ListDownlinkMessages {
+    enum Sort {
+        /* Sort by last change, last changed first. */
+        DEFAULT = 0;
+
+        /* Sort by created time, oldest first. */
+        CREATED_OLDEST_FIRST = 1;
+        /* Sort by created time, newest first. */
+        CREATED_NEWEST_FIRST = 2;
+
+        /* Sort numerically on the number of the modem. */
+        MODEM_NUMBER = 3;
+        /* Sort numerically on the number of the modem, inverted. */
+        MODEM_NUMBER_INVERTED = 4;
+    }
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        ModemDownlinkMessageSelection selection = 2;
+        Pagination pagination = 3;
+        Sort sort = 4;
+    }
+    message Response {
+        repeated ModemDownlinkMessage messages = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}
+
+message UpdateDownlinkMessagesStatus {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* The downlink messages to update. */
+        ModemDownlinkMessageSelection selection = 2;
+
+        /* The new status for the selected messages. */
+        ModemDownlinkMessage.Status update_status = 3;
+
+        /* Pagination for the downlink messages listed in the response.
+         * (All selected messages are updated, regardless of pagination).
+         */
+        Pagination pagination = 4;
+    }
+    message Response {
+        /* The updated messages. */
+        repeated ModemDownlinkMessage messages = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}

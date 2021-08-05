@@ -1,3 +1,5 @@
+/* Permissions limit what a user can do through the API.
+ */
 syntax = "proto3";
 
 package hiber;
@@ -6,7 +8,7 @@ option java_multiple_files = true;
 option java_package = "global.hiber.api.grpc";
 option go_package = "hiber";
 
-/* Permissions limit what a user can do through the API.
+/* OrganizationPermissions limit what a user can do in an Organization.
  * By default, everyone who has access to an organization, can access:
  * - organization data
  * - dashboard (including the map, and message count for the past days, and any events they have access to)
@@ -49,6 +51,8 @@ enum OrganizationPermission {
     MODEM_MESSAGES_SEND_TEST_MESSAGES = 16;
     /* Send modem messages using real message sources (i.e. gateway). Does not include MODEMS or MESSAGES permission. */
     MODEM_MESSAGES_SEND_REAL_MESSAGES = 41;
+    /* Send modem downlink messages. */
+    MODEM_DOWNLINK_MESSAGES = 51;
 
     /* See modem transfers, inbound and outbound modems. Includes modems permission. */
     MODEM_TRANSFERS = 20;
@@ -98,6 +102,10 @@ enum OrganizationPermission {
     reserved 40, 37;
 }
 
+/* UserPermissions are generally used to limit what a token can do to its user.
+ * By default, a user has all UserPermissions, which apply only to himself.
+ * When creating a token, however, the token typically does not need permission to affect the user at all.
+ */
 enum UserPermission {
     /* Read your name, email, linked organizations and mission-control settings. */
     READ = 0;

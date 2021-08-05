@@ -62,6 +62,43 @@ message ModemMessageBodyParser {
         Filter.ChildOrganizations child_organizations = 1;
     }
 
+    /* Fields in the parsed result that contain data.
+     * Data fields are cached for efficient retrieval and allow all kinds of processing.
+     */
+    message DataField {
+        enum Type {
+            OTHER = 0;
+
+            /* This field contains numeric values, with an optional unit of measurement defined below. */
+            NUMERIC = 1;
+
+            /* This field contains text to be displayed. */
+            TEXT = 2;
+
+            /* This field switches between several predefined values. Typically used for status fields. */
+            ENUM = 3;
+        }
+
+        /* The name of the field (if in the root structure) or a JsonPath to the field. */
+        string name = 1;
+
+        /* An optional display name for the field. */
+        string display_name = 2;
+
+        /* Whether this field should be stored encrypted or not.
+         * If it is, some processing options may be unavailable or slower.
+         * For example, determining the time between ENUM state transitions requires encryption to be disabled for
+         * that field.
+         */
+        bool encrypted = 3;
+
+        /* If numeric, the unit of the value. */
+        UnitOfMeasurement unit_of_measurement = 4;
+
+        /* The type of field. */
+        Type type = 5;
+    }
+
     /* Fields in the parsed result that match common things that can be processed by the system,
      * like a location or battery percentage. */
     message MetadataFields {
@@ -102,9 +139,10 @@ message ModemMessageBodyParser {
     SimpleModemMessageBodyParser simple_parser = 4;
 
     /* Fields in the parsed result that contain data.
-     * This can be useful to track which fields could be plotted, etc.
+     * Data fields are cached for efficient retrieval and allow all kinds of processing.
      */
-    repeated string data_fields = 9;
+    repeated DataField data_fields = 11;
+    repeated string data_fields_deprecated = 9 [deprecated = true];
 
     /* Fields in the parsed result that contain metadata, and special things like a location. */
     MetadataFields metadata_fields = 10;
@@ -284,7 +322,8 @@ message UploadModemMessageBodyParserRequest {
     /* Fields in the parsed result that contain data.
      * This can be useful to track which fields could be plotted, etc.
      */
-    repeated string data_fields = 4;
+    repeated ModemMessageBodyParser.DataField data_fields = 5;
+    repeated string data_fields_deprecated = 4 [deprecated = true];
 
     /* Fields in the parsed result that match special things that can be processed by the system, like a location. */
     ModemMessageBodyParser.MetadataFields metadata_fields = 10;
@@ -318,7 +357,8 @@ message UpdateUploadedModemMessageBodyParserRequest {
     string content_ksy = 3;
 
     /* Add fields to the data fields list. */
-    repeated string add_data_fields = 5;
+    repeated ModemMessageBodyParser.DataField add_data_fields = 7;
+    repeated string add_data_fields_deprecated = 5 [deprecated = true];
 
     /* Remove fields from the data fields list. */
     repeated string remove_data_fields = 6;

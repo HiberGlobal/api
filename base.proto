@@ -424,3 +424,24 @@ message Avatar {
         NamedFile image = 2;
     }
 }
+
+/* Unit of measurement for a numeric value. */
+enum UnitOfMeasurement {
+    UNIT_UNKNOWN = 0;
+    DURATION_SECONDS = 1;
+    DURATION_MINUTES = 2;
+    DURATION_HOURS = 3;
+    DURATION_DAYS = 4;
+    TEMPERATURE_KELVIN = 5;
+    TEMPERATURE_DEGREES_CELSIUS = 6;
+    TEMPERATURE_DEGREES_FAHRENHEIT = 7;
+    DISTANCE_METER = 8;
+    DISTANCE_MILLIMETER = 9;
+    DISTANCE_CENTIMETER = 10;
+    DISTANCE_KILOMETER = 11;
+    PRESSURE_BAR = 12;
+    PRESSURE_BAR_GROUND = 13;
+    PRESSURE_PSI = 14;
+    VOLTAGE_MILLIVOLT = 15;
+    PERCENT = 16;
+}
