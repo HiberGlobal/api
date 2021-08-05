@@ -649,10 +649,7 @@ message ListModemMessagesRequest {
     ModemMessageSelection selection = 2;
     Pagination pagination = 3;
 
-    /* Limit the fields for the returned messages, to conserve data or simplify an operation.
-     * If this is set on the request, any field not in this field selection is not filled.
-     */
-    ModemMessageFieldSelection fields = 4;
+    reserved 4;
 }
 
 message AvailableModemMessageFields {

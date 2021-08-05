@@ -1,10 +1,17 @@
 # Changelog Hiber API
 
-### 0.82 (2021-08-05)
+### 0.83 (2021-08-05)
+
+This release introduces the Easypulse service and some supporting changes.
 
 #### Changes
 
 - Removed a few unnecessary imports.
+
+##### ModemService
+
+- **[B]** Removed `ListModemMessagesRequest.field`.
+  The functionality will be replaced with a call like `Easypulse.History` in the future.
 
 ##### EasypulseService
 
@@ -48,6 +55,11 @@
 #### Generated Documentation
 
 - In this release, we're experimenting with some automatically generated documentation in the `docs` folder.
+
+#### Backwards incompatible changes
+
+- **[B]** Removed `ListModemMessagesRequest.field`.
+  The functionality will be replaced with a call like `Easypulse.History` in the future.
 
 ### 0.81 (2021-07-05)
 
