@@ -82,7 +82,7 @@ message TileMapRequest {
     /* Visible part of the map. */
     LocationSelection selection = 2;
 
-    /* Google Maps zoom level */
+    /* Google Maps zoom level, from 0 to 21, where is a view of the whole world and 21 is zoomed in as possible. */
     int32 level = 3;
 
     /* Selection to filter the modems on the map. */

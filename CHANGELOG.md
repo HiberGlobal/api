@@ -1,5 +1,27 @@
 # Changelog Hiber API
 
+### 0.83.6 (2021-08-10)
+
+This minor release adds sorting on health for modems.
+
+#### Changes
+
+##### EasypulseService
+
+- Added sorting on health to `Easypulse.ListAssets.Request.Sort`:
+  - `HEALTH`: sort by health severity, ascending (Ok, Warning, Error when using default health levels).
+  - `HEALTH_DESC`: sort by health severity, descending (Error, Warning, Ok when using default health levels).
+
+##### MapService
+
+- Expanded comment on `TileMapRequest.level` to include which levels are available and what they are based on.
+
+##### ModemService
+
+- Added sorting on health to `ListModemsRequest.Sort`:
+  - `HEALTH`: sort by health severity, ascending (Ok, Warning, Error when using default health levels).
+  - `HEALTH_DESC`: sort by health severity, descending (Error, Warning, Ok when using default health levels).
+
 ### 0.83 (2021-08-05)
 
 This release introduces the Easypulse service and some supporting changes.

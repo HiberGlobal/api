@@ -545,6 +545,11 @@ message ListModemsRequest {
         /* Sort alphabetically on the name of the organization that owns the modem */
         ORGANIZATION_ASC = 8;
         ORGANIZATION_DESC = 9;
+
+        /* Health sorted from least to most severe (i.e. OK, WARNING, ERROR). */
+        HEALTH = 10;
+        /* Health sorted from most to least severe (i.e. ERROR, WARNING, OK). */
+        HEALTH_DESC = 11;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
