@@ -33,6 +33,12 @@ service ModemMessageBodyParserService {
     /* Make a message body parser (un)available to (a selection of) child organizations. */
     rpc UpdateChildOrganizationAvailability (UpdateChildOrganizationAvailabilityRequest) returns (ModemMessageBodyParser);
 
+    /* Make a message body parser available to a child organization. */
+    rpc MakeAvailableToChildOrganization (MakeModemMessageBodyParserAvailableToChildOrganizationRequest) returns (ModemMessageBodyParser);
+
+    /* Make a message body parser unavailable to a child organization. */
+    rpc MakeUnavailableToChildOrganization (MakeModemMessageBodyParserUnavailableToChildOrganizationRequest) returns (ModemMessageBodyParser);
+
     /* Delete a message body parser, if you are the owner. */
     rpc Delete (DeleteModemMessageBodyParserRequest) returns (DeleteModemMessageBodyParserRequest.Response);
 
@@ -417,6 +423,36 @@ message UpdateChildOrganizationAvailabilityRequest {
     Filter.ChildOrganizations available_to_child_organizations = 3;
 
     reserved 2;
+}
+
+message MakeModemMessageBodyParserAvailableToChildOrganizationRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+
+    /* The identifier of the parser that should be updated. */
+    string identifier = 2;
+
+    /* The child organization(s) that the parser should be available to.
+     * This will
+     * - when the organization is on the exclude list, remove it
+     * - when the includeAll flag is false, add it to the include list (if not already present)
+     */
+    repeated string available_to = 3;
+}
+
+message MakeModemMessageBodyParserUnavailableToChildOrganizationRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+
+    /* The identifier of the parser that should be updated. */
+    string identifier = 2;
+
+    /* The child organization(s) that the parser should be unavailable to.
+     * This will
+     * - when the organization is on the include list, remove it
+     * - when the includeAll flag is true, add it to the exclude list (if not already present)
+     */
+    repeated string unavailable_to = 3;
 }
 
 message DeleteModemMessageBodyParserRequest {

@@ -553,6 +553,15 @@ message Event {
                 string title = 9;
                 string description = 10;
                 Timestamp time = 11;
+
+                /* When this alarm event was resolved. */
+                Timestamp resolved_at = 13;
+
+                /* Optional health that this alarm event causes after it has been resolved. */
+                health.HealthLevel health_level_after_resolved = 14;
+
+                /* How long the optional health that this alarm event causes after it has been resolved lasts. */
+                Timestamp health_level_after_resolved_until = 15;
             }
 
             message CreatedEvent {

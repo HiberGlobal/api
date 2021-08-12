@@ -116,6 +116,9 @@ message Location {
     double latitude = 1;
     /* Decimal degrees east. */
     double longitude = 2;
+
+    /* Text representation. Can be used as an alternative input in a request, filled in by the API in responses. */
+    string textual = 5;
 }
 
 /* Rectangular area between two locations, normalized to bottom-left and top-right points.
@@ -126,6 +129,9 @@ message Area {
     Location center = 1;
     Location bottom_left = 2;
     Location top_right = 4;
+
+    /* Text representation. Can be used as an alternative input in a request, filled in by the API in responses. */
+    string textual = 5;
 }
 
 /* Polygon shape defined by a list of locations, which draw a shape on the map.
@@ -135,6 +141,9 @@ message Area {
  */
 message Shape {
     repeated Location path = 1;
+
+    /* Text representation. Can be used as an alternative input in a request, filled in by the API in responses. */
+    string textual = 5;
 }
 
 /* Selection object for map data. Filter modems on the map by id, (child)organization.

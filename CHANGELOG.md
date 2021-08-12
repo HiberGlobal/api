@@ -1,5 +1,55 @@
 # Changelog Hiber API
 
+### 0.84 (2021-08-12)
+
+This release contains a few UX improvements, making the API esier to use.
+
+#### Changes
+
+##### EventService
+
+- Added `ModemEvent.AlarmEvent.ModemAlarmEvent.resolved_at` to mark when the alarm was resolved.
+  - Added `health_level_after_resolved` and `health_level_after_resolved_until` to denote any health after it
+    was resolved. See the alarm documentatin for more information.
+
+##### MapService
+
+- Added textual format to all map elements:
+  - Added `Location.textual`, which represents a point on the map as an array `[latitude, longitude]`.
+    For example: `[10.0, 15.0]`.
+  - Added `Area.textual`, which represents a square on the map as an array `[bottomLeft, topRight]`,
+    where `bottomLeft` and `topRight` are textual representations of locations.
+    For example: `[[10.0, 15.0], [20.0, 25.0]]`.
+  - Added `Shape.textual`, which represents a shape on the map as an array of points `[p1, p2, p3, ...]`,
+    where the points are textual representations of locations.
+    For example: `[[10.0, 15.0], [15.0, 15.0], [10.0, 10.0]]` is a triangle.
+
+##### ModemService
+
+- Added `ModemMessage.modem_name` for convenience.
+- Added `ModemMessage.modem_identifier` for convenience.
+- Added `ModemMessage.tags` for convenience.
+
+##### ModemAlarmService
+
+- Added two new check types: `minimum` and `maximum`. These are simplified versions of the threshold that do
+  not need a range, just a single value.
+  - Added `ModemAlarm.Check.FieldCheck.MinimumCheck`
+  - Added `ModemAlarm.Check.FieldCheck.MaximumCheck`
+- Added better child organization availability management:
+  - (Before, the child availability could only be replaced.)
+  - Added `MakeModemAlarmAvailableToChildOrganizationRequest` to add a child organization to the availability.
+  - Added `MakeModemAlarmUnavailableToChildOrganizationRequest` to remove a child organization from the availability.
+
+##### ModemMessageBodyParserService
+
+- Added better child organization availability management:
+  - (Before, the child availability could only be replaced.)
+  - Added `MakeModemMessageBodyParserAvailableToChildOrganizationRequest`
+    to add a child organization to the availability.
+  - Added `MakeModemMessageBodyParserUnavailableToChildOrganizationRequest`
+    to remove a child organization from the availability.
+
 ### 0.83.6 (2021-08-10)
 
 This minor release adds sorting on health for modems.

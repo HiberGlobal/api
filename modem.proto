@@ -409,6 +409,12 @@ message ModemMessage {
     /* Modem number of the modem that sent the message. */
     string modem_number = 1;
 
+    /* The name of the modem that sent the message. */
+    string modem_name = 17;
+
+    /* The device identifier for the modem that sent the message (e.g. a MAC address). */
+    string modem_identifier = 18;
+
     /* Time the message was sent from the modem. */
     Timestamp sent_at = 3;
 
@@ -452,6 +458,9 @@ message ModemMessage {
      * This may change in the future.
      */
     google.protobuf.Struct body_fields = 16;
+
+    /* The tags of the modem that sent the message. */
+    repeated tag.Tag tags = 19;
 
     reserved 2;
 }

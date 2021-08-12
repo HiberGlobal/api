@@ -40,6 +40,12 @@ service ModemAlarmService {
     /* Make a modem alarm (un)available to (a selection of) child organizations. */
     rpc UpdateAvailability (UpdateModemAlarmAvailability.Request) returns (UpdateModemAlarmAvailability.Response);
 
+    /* Make a modem alarm available to a child organization. */
+    rpc MakeAvailableToChildOrganization (MakeModemAlarmAvailableToChildOrganizationRequest) returns (ModemAlarm);
+
+    /* Make a modem alarm unavailable to a child organization. */
+    rpc MakeUnavailableToChildOrganization (MakeModemAlarmUnavailableToChildOrganizationRequest) returns (ModemAlarm);
+
     /* Assign a modem alarm to a modem. */
     rpc Assign (AssignModemAlarms.Request) returns (AssignModemAlarms.Response);
 
@@ -296,6 +302,8 @@ message ModemAlarm {
             oneof check {
                 EqualsCheck equals = 3;
                 OneOfCheck oneof = 4;
+                MinimumCheck minimum = 7;
+                MaximumCheck maximum = 8;
                 ThresholdCheck threshold = 5;
                 DeltaCheck delta = 6;
             }
@@ -309,6 +317,18 @@ message ModemAlarm {
             message OneOfCheck {
                 /* The list of allowed values, one of which should match the field value. */
                 repeated google.protobuf.Value expected = 1;
+            }
+
+            /* Check that the field is higher than the given value. */
+            message MinimumCheck {
+                /* The minimum numeric value the field should have. */
+                double minimum = 1;
+            }
+
+            /* Check that the field is lower than the given value. */
+            message MaximumCheck {
+                /* The maximum numeric value the field should have. */
+                double maximum = 3;
             }
 
             /* Check that the field is within a given numeric range. */
@@ -524,7 +544,37 @@ message UpdateModemAlarmAvailability {
     }
 }
 
-/* Directly assigned modem message parser to a modem. */
+message MakeModemAlarmAvailableToChildOrganizationRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+
+    /* The identifier of the alarm that should be updated. */
+    string identifier = 2;
+
+    /* The child organization(s) that the alarm should be available to.
+     * This will
+     * - when the organization is on the exclude list, remove it
+     * - when the includeAll flag is false, add it to the include list (if not already present)
+     */
+    repeated string available_to = 3;
+}
+
+message MakeModemAlarmUnavailableToChildOrganizationRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+
+    /* The identifier of the alarm that should be updated. */
+    string identifier = 2;
+
+    /* The child organization(s) that the alarm should be unavailable to.
+     * This will
+     * - when the organization is on the include list, remove it
+     * - when the includeAll flag is true, add it to the exclude list (if not already present)
+     */
+    repeated string unavailable_to = 3;
+}
+
+/* Directly assigned modem alarm to a modem. */
 message AssignedModemAlarm {
     string alarm_identifier = 1;
     string modem_number = 2;
