@@ -1,5 +1,41 @@
 # Changelog Hiber API
 
+### 0.85 (2021-08-23)
+
+This release improves the generated API documentation and fixes a few bugs.
+
+#### Changes
+
+- Improved API documentation and generated documentation files
+  - Disabled html file generation for now, since it was prone to breaking.
+  - Improved markdown file generation significantly
+
+##### EventService
+
+- `ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent` will no longer resolve after a new successful message,
+  since it indicates an invalid configuration.
+  - Added `ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent.resolved` to indicate resolved state.
+  - Added `ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent.resolve_identifier` to resolve the event manually.
+  - Added `EventService.Resolve` and `ResolveEvent` to resolve a `ModemMessageCannotBeParsedEvent` manually
+    using the provided `resolve_identifier`.
+- Fixed the include_resolved filter for some events types for which is was not working properly.
+
+##### MapService
+
+- Added more Density options to the map:
+  - `VERY_SPARSE`: for 2x2 icons in a tile
+  - `SINGLE`: a single icon in a tile
+
+##### ModemAlarmService
+
+- Added the option to update checks to `UpdateModemAlarm`: `add_checks`, `update_checks` and `delete_checks`.
+- Fixed an issue where alarms would not resolve correctly when a mix of correct and incorrect messages arrived
+  at the same time.
+
+##### ModemMessageBodyParserService
+
+- Moved validation on `data_fields` and `metadata_fields` from save to execution, for now.
+
 ### 0.84 (2021-08-12)
 
 This release contains a few UX improvements, making the API esier to use.

@@ -22,7 +22,14 @@ option go_package = "hiber";
 
 /* Service to list and manage Assets. */
 service EasypulseService {
+    /* List the Easypulse Assets in your organization.
+     * Optionally, aggregated historical data can be added to the returned Assets, with a given name.
+     *
+     * Fails when your organizations does not have the Easypulse feature.
+     */
     rpc Assets (Easypulse.ListAssets.Request) returns (Easypulse.ListAssets.Response);
+
+    /* List the history for a single field, and optionally apply an aggregation and/or grouping to it. */
     rpc History (Easypulse.History.Request) returns (Easypulse.History.Response);
 }
 

@@ -1,3 +1,8 @@
+/* Modem and message management.
+ *
+ * Modems are anything capable of sending messages to the system. They have a unique modem number,
+ * used to identify them.
+ */
 syntax = "proto3";
 
 package hiber.modem;
@@ -18,25 +23,52 @@ option go_package = "hiber";
  * This service contains calls to list and manage them, as well as list their messages.
  */
 service ModemService {
+    /* Get a single modem. */
     rpc Get (GetModemRequest) returns (Modem);
+
+    /* Create new modem(s). This is only available if your organization can create modems. */
     rpc Create (CreateModem.Request) returns (CreateModem.Response);
+
+    /* List the modems in your organization, and, optionally, its child organizations. */
     rpc List (ListModemsRequest) returns (ListModemsRequest.Response);
+
+    /* List the modems in your organization, and, optionally, its child organizations, grouped by dependency.
+     * For example, a modem that sends it messages through a gateway (like Hilo) would be grouped under that gateway.
+     */
     rpc Grouped (ListModemsGrouped.Request) returns (ListModemsGrouped.Response);
+
+    /* List messages for the selected modems. */
     rpc Messages (ListModemMessagesRequest) returns (ListModemMessagesRequest.Response);
+
+    /* Count messages for the selected modems. */
     rpc MessageCount (MessageCountRequest) returns (MessageCountRequest.Response);
+
     rpc AvailableMessageFields (AvailableModemMessageFields.Request) returns (AvailableModemMessageFields.Response);
 
+    /* Change the name of a modem to the given value. */
     rpc Rename (RenameModemRequest) returns (Modem);
 
+    /* Add, remove and create new tags for the selected modems. */
     rpc UpdateTags (UpdateModemTagsRequest) returns (UpdateModemTagsRequest.Response);
+
+    /* Change the notes for the selected modems to the given value. */
     rpc UpdateNotes (UpdateModemNotesRequest) returns (UpdateModemNotesRequest.Response);
+
+    /* Change the secure notes for the selected modems to the given value, if you have permission. */
     rpc UpdateSecureNotes (UpdateModemSecureNotesRequest) returns (UpdateModemSecureNotesRequest.Response);
+
+    /* Change the status of the selected modems to the given value. */
     rpc UpdateStatus (UpdateModemStatusRequest) returns (UpdateModemStatusRequest.Response);
+
+    /* Update the health configuration for the selected modems. */
     rpc UpdateModemHealthConfig (UpdateModemHealthConfig.Request) returns (UpdateModemHealthConfig.Response);
+
+    /* Add and remove peripherals for the selected modems. */
     rpc UpdatePeripherals (UpdatePeripheralsRequest) returns (UpdatePeripheralsRequest.Response);
 
     rpc LicenseKeys (LicenseKeysRequest) returns (LicenseKeysRequest.Response);
 
+    /* Count the modems in your organization by health. */
     rpc HealthCount (ModemHealthCount.Request) returns (ModemHealthCount.Response);
 }
 

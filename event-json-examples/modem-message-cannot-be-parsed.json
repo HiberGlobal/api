@@ -19,6 +19,7 @@
       "catchAll": true,
       "severity": "3"
     },
+    "resolveIdentifier": "",
     "tags": [
       {
         "id": "1",

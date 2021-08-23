@@ -1,51 +1,32 @@
-# easypulse.proto
+# named_location.proto
 
-Easypulse specific view and services.
 
-This file contains specific views and services for the easypulse feature set.
-This feature set is only available to organizations with the easypulse feature enabled.
 
-For Easypulse, we've introduced the concept of an Asset, which is a modem with some assumptions about the type of
-data it sends. Additionally, aggregations can be requested of Asset history when requesting Assets, allowing for a
-somewhat customized Asset model.
-
-#### This file was generated from [easypulse.proto](https://github.com/HiberGlobal/api/blob/master/easypulse.proto).
+#### This file was generated from [named_location.proto](https://github.com/HiberGlobal/api/blob/master/named_location.proto).
 
 ## Table of Contents
 
 - Services
-  - [EasypulseService](#easypulseservice)
+  - [NamedLocationService](#namedlocationservice)
 
 - Messages
-  - [Easypulse](#easypulse)
-  - [Easypulse.Asset](#easypulseasset)
-  - [Easypulse.Asset.AggregationsEntry](#easypulseassetaggregationsentry)
-  - [Easypulse.Asset.LastUpdate](#easypulseassetlastupdate)
-  - [Easypulse.Asset.PeripheralsEntry](#easypulseassetperipheralsentry)
-  - [Easypulse.AssetSelection](#easypulseassetselection)
-  - [Easypulse.History](#easypulsehistory)
-  - [Easypulse.History.Request](#easypulsehistoryrequest)
-  - [Easypulse.History.Response](#easypulsehistoryresponse)
-  - [Easypulse.History.Response.Value](#easypulsehistoryresponsevalue)
-  - [Easypulse.ListAssets](#easypulselistassets)
-  - [Easypulse.ListAssets.Request](#easypulselistassetsrequest)
-  - [Easypulse.ListAssets.Request.AggregationsEntry](#easypulselistassetsrequestaggregationsentry)
-  - [Easypulse.ListAssets.Response](#easypulselistassetsresponse)
+  - [CreateNamedLocations](#createnamedlocations)
+  - [CreateNamedLocations.Request](#createnamedlocationsrequest)
+  - [CreateNamedLocations.Response](#createnamedlocationsresponse)
+  - [DeleteNamedLocation](#deletenamedlocation)
+  - [DeleteNamedLocation.Request](#deletenamedlocationrequest)
+  - [DeleteNamedLocation.Response](#deletenamedlocationresponse)
+  - [ListNamedLocations](#listnamedlocations)
+  - [ListNamedLocations.Request](#listnamedlocationsrequest)
+  - [ListNamedLocations.Response](#listnamedlocationsresponse)
+  - [LocationOverlapSelection](#locationoverlapselection)
+  - [NamedLocation](#namedlocation)
+  - [NamedLocationSelection](#namedlocationselection)
+  - [UpdateNamedLocation](#updatenamedlocation)
+  - [UpdateNamedLocation.Request](#updatenamedlocationrequest)
+  - [UpdateNamedLocation.Response](#updatenamedlocationresponse)
 
 - Enums
-  - [Easypulse.History.Request.Aggregation](#easypulsehistoryrequestaggregation)
-  - [Easypulse.ListAssets.Request.Sort](#easypulselistassetsrequestsort)
-
-- Referenced messages from [health.proto](#referenced-messages-from-healthproto)
-  - [hiber.health.HealthLevel](#hiberhealthhealthlevel)
-  - [hiber.health.HealthLevelSelection](#hiberhealthhealthlevelselection)
-
-
-- Referenced messages from [tag.proto](#referenced-messages-from-tagproto)
-  - [hiber.tag.Tag](#hibertagtag)
-  - [hiber.tag.Tag.Label](#hibertagtaglabel)
-  - [hiber.tag.TagSelection](#hibertagtagselection)
-
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -91,350 +72,174 @@ somewhat customized Asset model.
 - [Scalar Value Types](#scalar-value-types)
 
 
-## EasypulseService
-Service to list and manage Assets.
+## NamedLocationService
+Manage saved locations for your organization.
+This allows you to save locations to be displayed on the map or used in alarms.
+Note that when a saved location is used in an alarm, it may be exposed to child organization when the alarm
+is available to child organizations.
 
-### Assets
-> **rpc** Assets([Easypulse.ListAssets.Request](#easypulselistassetsrequest))
-    [Easypulse.ListAssets.Response](#easypulselistassetsresponse)
+### List
+> **rpc** List([ListNamedLocations.Request](#listnamedlocationsrequest))
+    [ListNamedLocations.Response](#listnamedlocationsresponse)
 
-List the Easypulse Assets in your organization.
-Optionally, aggregated historical data can be added to the returned Assets, with a given name.
 
-Fails when your organizations does not have the Easypulse feature.
 
-### History
-> **rpc** History([Easypulse.History.Request](#easypulsehistoryrequest))
-    [Easypulse.History.Response](#easypulsehistoryresponse)
+### Create
+> **rpc** Create([CreateNamedLocations.Request](#createnamedlocationsrequest))
+    [CreateNamedLocations.Response](#createnamedlocationsresponse)
 
-List the history for a single field, and optionally apply an aggregation and/or grouping to it.
+
+
+### Update
+> **rpc** Update([UpdateNamedLocation.Request](#updatenamedlocationrequest))
+    [UpdateNamedLocation.Response](#updatenamedlocationresponse)
+
+
+
+### Delete
+> **rpc** Delete([DeleteNamedLocation.Request](#deletenamedlocationrequest))
+    [DeleteNamedLocation.Response](#deletenamedlocationresponse)
+
+
 
 
 ## Messages
 
-### Easypulse
+### CreateNamedLocations
 
 
 
 
-### Easypulse.Asset
-
-Asset in your organization.
-An asset is a view of a modem, with assumptions about message data fields handled in the API.
-
-In addition, an Asset can be enriched with aggregations of the data fields when requested (for example,
-fuel level average over the past month, or total run time in the past week).
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | The organization the asset is in. |
-| number | [ string](#string) | The modem number for the Asset. |
-| name | [ string](#string) | The custom name for the Asset, defaults to modem number. |
-| external_identifier | [ string](#string) | Optional external identifier the Asset may have. |
-| peripherals | [map Easypulse.Asset.PeripheralsEntry](#easypulseassetperipheralsentry) | A key value map of peripherals for the Assets. |
-| notes | [ string](#string) | Add additional notes to an asset. |
-| secure_notes | [ string](#string) | Add additional notes to an asset that only people with the permission can access. |
-| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | Tags (or groups, when used in Mission Control) this asset is in. |
-| last_update | [ Easypulse.Asset.LastUpdate](#easypulseassetlastupdate) | When this asset was last updated. |
-| fuel_level | [ float](#float) | The most recent fuel level, as a percentage. |
-| tire_pressure | [ float](#float) | The most recent tire pressure in bar. |
-| battery_level | [ float](#float) | The most recent battery level, as a percentage. |
-| temperature | [ float](#float) | The most recent temperature in degrees Celsius. |
-| location | [ hiber.Location](#hiberlocation) | The most recently reported location. |
-| aggregations | [map Easypulse.Asset.AggregationsEntry](#easypulseassetaggregationsentry) | Any aggregations added when this asset was requested. |
-
-### Easypulse.Asset.AggregationsEntry
+### CreateNamedLocations.Request
 
 
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ Easypulse.History.Response](#easypulsehistoryresponse) | none |
-
-### Easypulse.Asset.LastUpdate
-
-Information about the last update we received from this asset.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| id | [ uint64](#uint64) | none |
-| received_at | [ hiber.Timestamp](#hibertimestamp) | Time the server has received the last update. |
-| sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the asset sent the last update. |
-| body | [ hiber.BytesOrHex](#hiberbytesorhex) | The body of the last update. |
-
-### Easypulse.Asset.PeripheralsEntry
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ string](#string) | none |
-
-### Easypulse.AssetSelection
-
-An AssetSelection is used to select which Assets should be affected:
-- When listing Assets, it is used to determine which Assets are returned
-- When updating Assets, it is used to determine which Assets are updated
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| search | [ string](#string) | Search for assets by name, modem number, tag or notes. |
-| assets | [ hiber.Filter.Modems](#hiberfiltermodems) | Select assets by modem number. |
-| health_levels | [repeated string](#string) | Select assets by health level. |
-| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) | Select assets by tag. |
-
-### Easypulse.History
-
-List the history for a single field, and optionally apply an aggregation and/or grouping to it.
-
-
-### Easypulse.History.Request
-
-Request to get the history of a field, for the selected Assets in the organization.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ Easypulse.AssetSelection](#easypulseassetselection) | Select the asset(s) to get the history for. |
-| pagination | [ hiber.Pagination](#hiberpagination) | Paginate the returned values. This may not be relevant, depending on the aggregation (which may result in a single value) and the time range. |
-| time_range | [ hiber.TimeRange](#hibertimerange) | The time to view the history for. |
-| aggregation | [ Easypulse.History.Request.Aggregation](#easypulsehistoryrequestaggregation) | How to aggregate the data. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **group**.split_by_duration | [ hiber.Duration](#hiberduration) | Split up the data in time block of the given size. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **group**.reduce_to_max_size | [ uint32](#uint32) | Limit the results to the given amount of data points, applying the function to each chunk. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.fuel_level | [ bool](#bool) | Get the history for the fuel level. Only one field can be chosen. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.tire_pressure | [ bool](#bool) | Get the history for the tire pressure. Only one field can be chosen. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.battery_level | [ bool](#bool) | Get the history for the battery level. Only one field can be chosen. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.temperature | [ bool](#bool) | Get the history for the temperature. Only one field can be chosen. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.run_time | [ bool](#bool) | Get the history for the run time. Only one field can be chosen. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.idle_time | [ bool](#bool) | Get the history for the idle time. Only one field can be chosen. |
+| create | [repeated NamedLocation](#namedlocation) | The locations to save. If the name for any of the given locations already exists, the request fails. |
 
-### Easypulse.History.Response
+### CreateNamedLocations.Response
 
-Response with the (aggregated) history of a field, for the selected Assets in the organization.
+
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| values | [repeated Easypulse.History.Response.Value](#easypulsehistoryresponsevalue) | The processed historical data points. For example, when applying the SUM aggregation to all data points, this list would only contains a single value, the sum of values. |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | The pagination result, containing information about amounts and pages. |
-| request | [ Easypulse.History.Request](#easypulsehistoryrequest) | The request that was received, corrected and used to produce this result. |
+| added | [repeated NamedLocation](#namedlocation) | none |
 
-### Easypulse.History.Response.Value
-
-Processed historical data point. If this is a group, it will have a time range to denote the group.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.timestamp | [ hiber.Timestamp](#hibertimestamp) | When not grouping, time of the individual point. When grouping, the time at the end of the group (when the value was true). |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.time_range | [ hiber.TimeRange](#hibertimerange) | When grouping, the start and end time for the group. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.fuel_level | [ float](#float) | The fuel level, as a percentage. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.tire_pressure | [ float](#float) | The tire pressure in bar. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.battery_level | [ float](#float) | The battery level, as a percentage. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.temperature | [ float](#float) | The temperature in degrees Celsius. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.run_time | [ hiber.Duration](#hiberduration) | The time the Asset was running. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.idle_time | [ hiber.Duration](#hiberduration) | The time the Asset was idle. |
-
-### Easypulse.ListAssets
-
-List the Easypulse Assets in your organization.
-Optionally, aggregated historical data can be added to the returned Assets, with a given name.
-
-Fails when your organizations does not have the Easypulse feature.
+### DeleteNamedLocation
 
 
-### Easypulse.ListAssets.Request
 
-Request to list Assets in your organization.
+
+### DeleteNamedLocation.Request
+
+
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ Easypulse.AssetSelection](#easypulseassetselection) | Select the Assets to return. |
-| pagination | [ hiber.Pagination](#hiberpagination) | Paginate over the returned Assets. |
-| aggregations | [map Easypulse.ListAssets.Request.AggregationsEntry](#easypulselistassetsrequestaggregationsentry) | Any aggregations to return with the assets, specified as a name and a History.Request. |
-| sort | [ Easypulse.ListAssets.Request.Sort](#easypulselistassetsrequestsort) | Sort the returned assets using the given option. By default, Assets are sorted by name. |
+| name | [ string](#string) | The name of the saved location to delete. |
 
-### Easypulse.ListAssets.Request.AggregationsEntry
+### DeleteNamedLocation.Response
+
+
+
+
+### ListNamedLocations
+
+
+
+
+### ListNamedLocations.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ Easypulse.History.Request](#easypulsehistoryrequest) | none |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| selection | [ NamedLocationSelection](#namedlocationselection) | none |
+| pagination | [ hiber.Pagination](#hiberpagination) | none |
 
-### Easypulse.ListAssets.Response
-
-Response with a list of Assets
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| assets | [repeated Easypulse.Asset](#easypulseasset) | The selected Assets. |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | The applied pagination, including total results, page information, etc. |
-| request | [ Easypulse.ListAssets.Request](#easypulselistassetsrequest) | The request that was received, corrected and used to produce this result. |
-
-
-## Enums
-### Easypulse.History.Request.Aggregation
-Options to aggregate the history data points (in a group).
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| NONE | Do not aggregate the history data points, just list all of them. | 0 |
-| AVERAGE | Average value of all history data points (in a group). | 1 |
-| SUM | Sum all history data points (in a group). | 2 |
-
-### Easypulse.ListAssets.Request.Sort
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| NAME | none | 0 |
-| NAME_DESC | none | 1 |
-| LAST_UPDATED | none | 2 |
-| INACTIVITY | none | 3 |
-| NUMBER_ASC | none | 4 |
-| NUMBER_DESC | none | 5 |
-| LOWEST_FUEL_LEVEL | none | 6 |
-| HIGHEST_FUEL_LEVEL | none | 7 |
-| LOWEST_TIRE_PRESSURE | none | 8 |
-| HIGHEST_TIRE_PRESSURE | none | 9 |
-| LOWEST_BATTERY_LEVEL | none | 10 |
-| HIGHEST_BATTERY_LEVEL | none | 11 |
-| LOWEST_TEMPERATURE | none | 12 |
-| HIGHEST_TEMPERATURE | none | 13 |
-| HEALTH | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 14 |
-| HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 15 |
-
-
-
-## Referenced messages from health.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
-
-#### This section was generated from [health.proto](https://github.com/HiberGlobal/api/blob/master/health.proto).
-
-
-### hiber.health.HealthLevel
-
-A health level in an organization.
-Health can be customized depending on your need.
-
-The default health levels are:
-- OK (green): no problems detected
-- WARNING (orange): unresolvable problems detected, for example delayed or skipped messages
-- ERROR (red): significant problems detected (that typically can be resolved),
-  for example inactivity or invalid messages (resolved on a successful message)
-
-Health levels can be customized to as many as you need for your operations, for example:
-- INTERVENTION
-- DEFECT
-- BATTERY
-- HIGH
-- LOW
-
-Health levels are ordered by severity (low to high), and only the most severe level will be returned when
-retrieving a modem.
-
-Health can be assigned using modems alarms, which specify the health level they will cause on a modem (and for how
-long, if it does not resolve automatically).
-
-Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems),
-which can happen when a device manufacturer has provided alarms to your device (e.g. a low battery alarm).
-By default, any unknown health levels map to the level that is marked catch-all.
-
-Health level have a set of named colors, represented by a map where the key is the name of the color
-and the value is a string that represents a valid CSS3 color.
-Simple examples are: green, red, orange, grey, #FF00FF for fuchsia, etc (Keep in mind that CSS3 allows for many
-ways to define colors, see https://www.w3.org/TR/2003/WD-css3-color-20030214/).
-
-All the following definitions also mean "red":
- - rgb(255, 0, 0)
- - rgb(100%, 0, 0)
- - rgba(100%, 0%, 0%, 100%)
- - hsl(0, 100%, 50%)
- - hsla(0, 100%, 50%, 1)
-
-The client is responsible for rendering the correct color from the CSS3 color-space and for setting the colors and
-their names. There is no verification on missing named colors, so the client must set sensible defaults when colors
-are missing.
-
-To assist with sorting, health levels have a numeric severity equal to their index in the sorted list of health
-levels (starting at 1). This means higher numbers denote a more severe health.
-Since these values are noting more than a list index, they should not be cached, compared to another organization or
-compared to values retrieved from the API at another time.
-
-For example, an organization using the default health would have:
-- Ok: severity 1
-- Warning: severity 2
-- Error: severity 3
-
-That organization could then add a new health level in between Ok and Warning, meaning the severity of Warning and
-Error will change:
-- Ok, severity 1
-- ItsComplicated, severity 2
-- Warning, severity 3
-- Error, severity 4
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| level | [ string](#string) | The name of this health level. Levels are identified by their name. The API does support renaming, where the rename is propagated to all the relevant parts of the system. |
-| color | [ string](#string) | Default color for the health level, as a string that represents a valid CSS3 color. DEPRECATED: Maps to the color named "text" in color_data. |
-| color_data | [map hiber.health.HealthLevel.ColorDataEntry](#hiberhealthhealthlevelcolordataentry) | Map of named colors, where key is the name and the value is a valid CSS3 color definition. |
-| severity | [ int64](#int64) | A numeric value equal to the index of this health level in the sorted list of health levels (starting at 1). This means higher numbers denote a more severe health. |
-| catch_all | [ bool](#bool) | Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems), which can happen when a device manufacturer has provided alarms for your device (e.g. a low battery alarm). By default, unknown health levels map to the level of the highest severity, unless another level is marked as catch-all. |
-
-### hiber.health.HealthLevelSelection
+### ListNamedLocations.Response
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| search | [ string](#string) | Search for the given string in the levels and colors. |
-| levels | [repeated string](#string) | Filter by exact levels. |
+| named_locations | [repeated NamedLocation](#namedlocation) | none |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| request | [ ListNamedLocations.Request](#listnamedlocationsrequest) | none |
 
+### LocationOverlapSelection
 
-### Enums
+Selection for overlapping with (saved) locations.
 
-
-## Referenced messages from tag.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
-
-#### This section was generated from [tag.proto](https://github.com/HiberGlobal/api/blob/master/tag.proto).
-
-
-### hiber.tag.Tag
-
-
+For example:
+- Select everything that overlaps with saved location "my-area":
+    { overlaps = { saved = "my-area" } }
+- Select everything that overlaps with a custom shape:
+    { overlaps = { shape = { path = ... } } }
+- Select everything that overlaps with the intersection of a saved location and a custom area:
+    { overlaps_all = [{ saved = "my-saved-location" }, { area = ... }] }
+- Recursive selection using a combination of any and all by adding deeper selections:
+    { overlaps_any = [{ overlap_all = { ... } }, { saved = { .. } }] }
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| id | [ int64](#int64) | none |
-| label | [ hiber.tag.Tag.Label](#hibertagtaglabel) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **element**.location | [ hiber.Location](#hiberlocation) | Matches anything that contains this location. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **element**.area | [ hiber.Area](#hiberarea) | Matching anything that overlaps with this shape. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **element**.shape | [ hiber.Shape](#hibershape) | Matching anything that overlaps with this area. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **element**.name | [ string](#string) | Matches anything that overlaps with this named location. |
+| overlaps_all | [repeated LocationOverlapSelection](#locationoverlapselection) | Must overlap with all items. If used in combination with element or overlaps_any, they must all match. |
+| overlaps_any | [repeated LocationOverlapSelection](#locationoverlapselection) | Must overlap with at least one of the items. If used in combination with element or overlaps_all, they must all match. |
 
-### hiber.tag.Tag.Label
+### NamedLocation
 
-
+A saved location within an organization.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | name | [ string](#string) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **definition**.location | [ hiber.Location](#hiberlocation) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **definition**.area | [ hiber.Area](#hiberarea) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **definition**.shape | [ hiber.Shape](#hibershape) | none |
 
-### hiber.tag.TagSelection
+### NamedLocationSelection
+
+Look up saved locations by name, or by overlap with a given selection.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| search | [ string](#string) | Free text search in the saved location names. |
+| names | [repeated string](#string) | Select the saved locations with the given names. |
+| overlaps | [ LocationOverlapSelection](#locationoverlapselection) | Select all saved locations that overlap with the given LocationOverlapSelection. |
+
+### UpdateNamedLocation
+
+
+
+
+### UpdateNamedLocation.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| search | [repeated string](#string) | none |
-| names | [repeated string](#string) | none |
-| filter | [ hiber.Filter.Tags](#hiberfiltertags) | none |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| name | [ string](#string) | The name of the saved location to update. |
+| updated | [ NamedLocation](#namedlocation) | The new saved location. If the name is different, the saved location is renamed. |
+
+### UpdateNamedLocation.Response
 
 
-### Enums
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| updated | [ NamedLocation](#namedlocation) | none |
+
+
+## Enums
 
 
 ## Referenced messages from base.proto

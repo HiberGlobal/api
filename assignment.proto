@@ -400,7 +400,7 @@ message UpdateAutomaticModemAssignment {
             UpdateBoolean active = 7;
         }
 
-        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
         string identifier = 2;
         UpdateClearableString description = 3;
@@ -425,7 +425,7 @@ message UpdateAutomaticModemAssignment {
 
 message EnableAutomaticModemAssignment {
     message Request {
-        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
         string identifier = 2;
     }
@@ -437,7 +437,7 @@ message EnableAutomaticModemAssignment {
 
 message DisableAutomaticModemAssignment {
     message Request {
-        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
         string identifier = 2;
     }
@@ -449,7 +449,7 @@ message DisableAutomaticModemAssignment {
 
 message DeleteAutomaticModemAssignment {
     message Request {
-        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
         string identifier = 2;
     }
@@ -459,7 +459,7 @@ message DeleteAutomaticModemAssignment {
 
 message UpdateAutomaticModemAssignmentAvailability {
     message Request {
-        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
         string identifier = 2;
 

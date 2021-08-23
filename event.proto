@@ -34,6 +34,7 @@ option go_package = "hiber";
 service EventService {
     rpc List (ListEventsRequest) returns (ListEventsRequest.Response);
     rpc Stream (EventStreamRequest) returns (stream Event);
+    rpc Resolve (ResolveEvent.Request) returns (ResolveEvent.Response);
 
     rpc GetEventConfiguration (EventConfiguration.Request) returns (EventConfiguration);
     rpc UpdateEventConfiguration (EventConfiguration) returns (EventConfiguration);
@@ -433,6 +434,14 @@ message Event {
 
                 /* The health level caused for the modem (and organization) by this event. */
                 health.HealthLevel health_level = 10;
+
+                oneof resolved_status {
+                    /* Whether this event was resolved. */
+                    bool resolved = 11;
+
+                    /* The identifier to use when resolving this event. Only present when not resolved */
+                    string resolve_identifier = 12;
+                }
             }
         }
 
@@ -1006,8 +1015,7 @@ message Event {
     }
 }
 
-/** A bundle/set of events, all of the same event-type.
- */
+/* A bundle/set of events, all of the same event-type. */
 message BundledEvent {
     EventType type = 1;
     string title = 3;
@@ -1137,6 +1145,20 @@ message EventStreamRequest {
      * Filtering on tags or publishers, for example, can only apply to the parent organization.
      */
     Filter.ChildOrganizations child_organizations = 3;
+}
+
+/* Resolve a resolvable event using its resolve_identifier. */
+message ResolveEvent {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* The resolve identifier of the event you wish to resolve. */
+        string resolve_identifier = 2;
+    }
+    message Response {
+        Event event = 1;
+    }
 }
 
 /* Configuration for configurable events.

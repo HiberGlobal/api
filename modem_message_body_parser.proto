@@ -1,3 +1,15 @@
+/* Modem message body parsers management.
+ *
+ * Modem message body parsers (short: parsers) are small scripts defined using the Kaitai Struct specification
+ * to parse binary data.
+ * Parsers are assigned to modems to parse the body of their messages dynamically.
+ *
+ * Parsers can be written manually as a .ksy file and uploaded through the API, or the simplified API implementation
+ * can be used to create a parser.
+ *
+ * For more information on Kaitai Struct, see [http://kaitai.io/](http://kaitai.io/),
+ * where you can find documentation, examples and a web IDE.
+ */
 syntax = "proto3";
 
 package hiber.modem.message.bodyparser;
@@ -133,9 +145,7 @@ message ModemMessageBodyParser {
 
     /* The content of this parsers script.
      * If simple_parser is set, this content is generated from that definition.
-     * This field may be omitted on demand to save data in the list call.
-     *
-     * See Kaitai struct (https://kaitai.io/) for more information about the ksy format.
+     * This field may be omitted by the list call to save data.
      */
     string content_ksy = 3;
 
@@ -266,6 +276,7 @@ message SimpleModemMessageBodyParser {
     repeated SimpleModemMessageBodyParser custom_types = 6;
 }
 
+/* Selection object for parsers. Used to select which parser to list, assign, etc. */
 message ModemMessageBodyParserSelection {
     /* Filter parsers by their identifiers. */
     repeated string identifiers = 8;
@@ -293,6 +304,11 @@ message ModemMessageBodyParserSelection {
     reserved 1, 7;
 }
 
+/* List the parser your organizations has access to. This may include inherited parsers.
+ *
+ * If include_content is not set, this call may omit parser specifications, like the ksy, since those are
+ * typically larger multi-line strings.
+ */
 message ListModemMessageBodyParsersRequest {
     message Response {
         repeated ModemMessageBodyParser parsers = 1;
@@ -309,12 +325,7 @@ message ListModemMessageBodyParsersRequest {
     bool exclude_content = 4;
 }
 
-/* Upload a new body parser from a .ksy file.
- * A .ksy file is a file defined using the Kaitai Struct specification.
- * For more information on Kaitai Struct, see http://kaitai.io/, where you can find examples and a web ide.
- * For more information on how .ksy files are use, see
- * https://github.com/HiberGlobal/api/blob/master/modem_message_body_parser.proto for the API documentation.
- */
+/* Upload a new body parser from a .ksy file. */
 message UploadModemMessageBodyParserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
@@ -335,12 +346,7 @@ message UploadModemMessageBodyParserRequest {
     ModemMessageBodyParser.MetadataFields metadata_fields = 10;
 }
 
-/* Upload a new body parser from a .ksy file, replacing the previous file.
- * A .ksy file is a file defined using the Kaitai Struct specification.
- * For more information on Kaitai Struct, see http://kaitai.io/, where you can find examples and a web ide.
- * For more information on how .ksy files are use, see
- * https://github.com/HiberGlobal/api/blob/master/modem_message_body_parser.proto for the API documentation.
- */
+/* Upload an updated body parser from a .ksy file, replacing the previous file. */
 message UpdateUploadedModemMessageBodyParserRequest {
     message MetadataFields {
         /* Add metadata fields to the metadata fields list. */
@@ -425,6 +431,12 @@ message UpdateChildOrganizationAvailabilityRequest {
     reserved 2;
 }
 
+/* Make this parser available to a specific child organizations.
+ *
+ * This will
+ * - when the organization is on the exclude list, remove it
+ * - when the includeAll flag is false, add it to the include list (if not already present)
+ */
 message MakeModemMessageBodyParserAvailableToChildOrganizationRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
@@ -432,14 +444,16 @@ message MakeModemMessageBodyParserAvailableToChildOrganizationRequest {
     /* The identifier of the parser that should be updated. */
     string identifier = 2;
 
-    /* The child organization(s) that the parser should be available to.
-     * This will
-     * - when the organization is on the exclude list, remove it
-     * - when the includeAll flag is false, add it to the include list (if not already present)
-     */
+    /* The child organization(s) that the parser should be available to. */
     repeated string available_to = 3;
 }
 
+/* Make this parser unavailable to a specific child organizations.
+ *
+ * This will
+ * - when the organization is on the include list, remove it
+ * - when the includeAll flag is true, add it to the exclude list (if not already present)
+ */
 message MakeModemMessageBodyParserUnavailableToChildOrganizationRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
@@ -447,11 +461,7 @@ message MakeModemMessageBodyParserUnavailableToChildOrganizationRequest {
     /* The identifier of the parser that should be updated. */
     string identifier = 2;
 
-    /* The child organization(s) that the parser should be unavailable to.
-     * This will
-     * - when the organization is on the include list, remove it
-     * - when the includeAll flag is true, add it to the exclude list (if not already present)
-     */
+    /* The child organization(s) that the parser should be unavailable to. */
     repeated string unavailable_to = 3;
 }
 
@@ -466,8 +476,9 @@ message DeleteModemMessageBodyParserRequest {
     ModemMessageBodyParserSelection selection = 2;
 }
 
-/* Test a parsers with a message.
- * This method provides a bunch of options and can be used in multiple ways:
+/* Test a parsers on a message.
+ *
+ * This method provides a number of options and can be used in multiple ways:
  * - Test a real message or an uploaded message body.
  * - Test using an existing parser, an ksy definition or a simple parser definition.
  *

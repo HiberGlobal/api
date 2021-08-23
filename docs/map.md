@@ -1,51 +1,76 @@
-# easypulse.proto
+# map.proto
 
-Easypulse specific view and services.
+Show modems on a map, using the calculated state of the map.
 
-This file contains specific views and services for the easypulse feature set.
-This feature set is only available to organizations with the easypulse feature enabled.
+Uses a tile-based system where the map is split up into tiles, and modems can be efficiently grouped into the tiles.
+The tiles are based on the Google Maps output, which allows us to draw thousands of markers on a map efficiently.
 
-For Easypulse, we've introduced the concept of an Asset, which is a modem with some assumptions about the type of
-data it sends. Additionally, aggregations can be requested of Asset history when requesting Assets, allowing for a
-somewhat customized Asset model.
+This works as follows:
+Assume the world is a grid of 256x256 tiles, and every point can be represented as an x (from lon) and y (from lat)
+coordinate, for example:
+- (0,0) maps to world coordinate (128.0, 128.0)
+- (13.24,122.04) maps roughly to (214.78, 118.49)
+- (-84.27,175.36) maps roughly to (252.70, 250.05)
+Keep in mind that the order is reversed, lat -> -y, long -> x, to get a grid that goes
+from 0,0 at the bottom left of the map to 256,256 at the top right.
 
-#### This file was generated from [easypulse.proto](https://github.com/HiberGlobal/api/blob/master/easypulse.proto).
+Now that we have a simple numeric model of the world, we can start grouping numerically as well.
+If we want 256 horizontal and 256 vertical tiles, all we have to do is `floor` the values to determine their tile.
+Then, we can use the remainder to calculate their position within the tile on another 256x256 grid.
+For example:
+- (0,0) is in tile (128, 128) at (0.0,0.0)
+- (13.24,122.04) is in tile (214, 118)
+- (-84.27,175.36) is in tile (252, 250)
+
+While 65k tiles seems like a lot, it's not enough for the world, of course. So, we're using Google Maps' map levels
+to have more detail. These increase in size exponentially:
+- Level 0  : 1x1 : a single tile for the whole world, containing all of the modems
+- Level 1  : 2x2 : 4 tiles for the whole world.
+- Level 2  : 4x4 : 16 tiles for the whole world.
+- Level 3  : 8x8 : 64 tiles for the whole world.
+- Level 4  : 16x16 : 256 tiles for the whole world.
+- Level 5  : 32x32 : 1024 tiles for the whole world.
+- Level 6  : 64x64 : 4096 tiles for the whole world.
+- Level 7  : 128x128 : 16 384 tiles for the whole world.
+- Level 8  : 256x256 : 65 536 tiles for the whole world.
+- Level 9  : 512x512 : 262 144 tiles for the whole world.
+- Level 10 : 1024x1024 : 1 048 576 tiles for the whole world.
+- Level 11 : 2048x2048 : 4 194 304 tiles for the whole world.
+- Level 12 : 4096x4096 : 16 777 216 tiles for the whole world.
+- Level 13 : 8192x8192 : 67 108 864 tiles for the whole world.
+- Level 14 : 16384x16384 : 268 435 456 tiles for the whole world.
+- Level 15 : 32768x32768 : 1 073 741 824 tiles for the whole world.
+- Level 16 : 65536x65536 : 4 294 967 296 tiles for the whole world.
+- Level 17 : 131072x131072 : 17 179 869 184 tiles for the whole world.
+- Level 18 : 262144x262144 : 68 719 476 736 tiles for the whole world.
+- Level 19 : 524288x524288 : 274 877 906 944 tiles for the whole world.
+- Level 20 : 1048576x1048576 : 1 099 511 627 776 tiles for the whole world.
+- Level 21 : 2097152x2097152 : 4 398 046 511 104 tiles for the whole world.
+
+Finally, we can do the same `floor`-based grouping within the tile. Using the TileMapRequest.Density, we decide
+how many groups to split our tiles into. This means we can still align our tiles to Google Maps, but allow for
+a controlled amount of groups.
+
+#### This file was generated from [map.proto](https://github.com/HiberGlobal/api/blob/master/map.proto).
 
 ## Table of Contents
 
 - Services
-  - [EasypulseService](#easypulseservice)
+  - [MapService](#mapservice)
 
 - Messages
-  - [Easypulse](#easypulse)
-  - [Easypulse.Asset](#easypulseasset)
-  - [Easypulse.Asset.AggregationsEntry](#easypulseassetaggregationsentry)
-  - [Easypulse.Asset.LastUpdate](#easypulseassetlastupdate)
-  - [Easypulse.Asset.PeripheralsEntry](#easypulseassetperipheralsentry)
-  - [Easypulse.AssetSelection](#easypulseassetselection)
-  - [Easypulse.History](#easypulsehistory)
-  - [Easypulse.History.Request](#easypulsehistoryrequest)
-  - [Easypulse.History.Response](#easypulsehistoryresponse)
-  - [Easypulse.History.Response.Value](#easypulsehistoryresponsevalue)
-  - [Easypulse.ListAssets](#easypulselistassets)
-  - [Easypulse.ListAssets.Request](#easypulselistassetsrequest)
-  - [Easypulse.ListAssets.Request.AggregationsEntry](#easypulselistassetsrequestaggregationsentry)
-  - [Easypulse.ListAssets.Response](#easypulselistassetsresponse)
+  - [GroundStation](#groundstation)
+  - [MapTileItem](#maptileitem)
+  - [MapTileItem.Group](#maptileitemgroup)
+  - [MapTileItem.Modem](#maptileitemmodem)
+  - [Satellite](#satellite)
+  - [Satellite.Position](#satelliteposition)
+  - [TileCoordinate](#tilecoordinate)
+  - [TileMapRequest](#tilemaprequest)
+  - [TileMapRequest.Response](#tilemaprequestresponse)
 
 - Enums
-  - [Easypulse.History.Request.Aggregation](#easypulsehistoryrequestaggregation)
-  - [Easypulse.ListAssets.Request.Sort](#easypulselistassetsrequestsort)
-
-- Referenced messages from [health.proto](#referenced-messages-from-healthproto)
-  - [hiber.health.HealthLevel](#hiberhealthhealthlevel)
-  - [hiber.health.HealthLevelSelection](#hiberhealthhealthlevelselection)
-
-
-- Referenced messages from [tag.proto](#referenced-messages-from-tagproto)
-  - [hiber.tag.Tag](#hibertagtag)
-  - [hiber.tag.Tag.Label](#hibertagtaglabel)
-  - [hiber.tag.TagSelection](#hibertagtagselection)
-
+  - [TileMapRequest.Density](#tilemaprequestdensity)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -91,350 +116,127 @@ somewhat customized Asset model.
 - [Scalar Value Types](#scalar-value-types)
 
 
-## EasypulseService
-Service to list and manage Assets.
+## MapService
+Map of modems, in different map levels to enable data to be displayed efficiently
 
-### Assets
-> **rpc** Assets([Easypulse.ListAssets.Request](#easypulselistassetsrequest))
-    [Easypulse.ListAssets.Response](#easypulselistassetsresponse)
+### TileMap
+> **rpc** TileMap([TileMapRequest](#tilemaprequest))
+    [TileMapRequest.Response](#tilemaprequestresponse)
 
-List the Easypulse Assets in your organization.
-Optionally, aggregated historical data can be added to the returned Assets, with a given name.
-
-Fails when your organizations does not have the Easypulse feature.
-
-### History
-> **rpc** History([Easypulse.History.Request](#easypulsehistoryrequest))
-    [Easypulse.History.Response](#easypulsehistoryresponse)
-
-List the history for a single field, and optionally apply an aggregation and/or grouping to it.
+Show the selected modems on the map, in a selected area.
 
 
 ## Messages
 
-### Easypulse
+### GroundStation
 
-
-
-
-### Easypulse.Asset
-
-Asset in your organization.
-An asset is a view of a modem, with assumptions about message data fields handled in the API.
-
-In addition, an Asset can be enriched with aggregations of the data fields when requested (for example,
-fuel level average over the past month, or total run time in the past week).
+The location of ground stations that receive the data sent from the satellite(s).
+Currently, ground station is just a marker on the map.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | The organization the asset is in. |
-| number | [ string](#string) | The modem number for the Asset. |
-| name | [ string](#string) | The custom name for the Asset, defaults to modem number. |
-| external_identifier | [ string](#string) | Optional external identifier the Asset may have. |
-| peripherals | [map Easypulse.Asset.PeripheralsEntry](#easypulseassetperipheralsentry) | A key value map of peripherals for the Assets. |
-| notes | [ string](#string) | Add additional notes to an asset. |
-| secure_notes | [ string](#string) | Add additional notes to an asset that only people with the permission can access. |
-| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | Tags (or groups, when used in Mission Control) this asset is in. |
-| last_update | [ Easypulse.Asset.LastUpdate](#easypulseassetlastupdate) | When this asset was last updated. |
-| fuel_level | [ float](#float) | The most recent fuel level, as a percentage. |
-| tire_pressure | [ float](#float) | The most recent tire pressure in bar. |
-| battery_level | [ float](#float) | The most recent battery level, as a percentage. |
-| temperature | [ float](#float) | The most recent temperature in degrees Celsius. |
-| location | [ hiber.Location](#hiberlocation) | The most recently reported location. |
-| aggregations | [map Easypulse.Asset.AggregationsEntry](#easypulseassetaggregationsentry) | Any aggregations added when this asset was requested. |
+| location | [ hiber.Location](#hiberlocation) | none |
+| name | [ string](#string) | none |
 
-### Easypulse.Asset.AggregationsEntry
+### MapTileItem
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ Easypulse.History.Response](#easypulsehistoryresponse) | none |
+| tile | [ TileCoordinate](#tilecoordinate) | Google maps tile coordinates, counted from the top left of the map. |
+| in_tile | [ TileCoordinate](#tilecoordinate) | Google maps in-tile coordinate, x axis, using a 256x256 grid in the tile. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **modems**.modem | [ MapTileItem.Modem](#maptileitemmodem) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **modems**.modem_group | [ MapTileItem.Group](#maptileitemgroup) | none |
 
-### Easypulse.Asset.LastUpdate
-
-Information about the last update we received from this asset.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| id | [ uint64](#uint64) | none |
-| received_at | [ hiber.Timestamp](#hibertimestamp) | Time the server has received the last update. |
-| sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the asset sent the last update. |
-| body | [ hiber.BytesOrHex](#hiberbytesorhex) | The body of the last update. |
-
-### Easypulse.Asset.PeripheralsEntry
+### MapTileItem.Group
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ string](#string) | none |
+| count | [ int32](#int32) | none |
+| area | [ hiber.Area](#hiberarea) | Area that the group covers. Modems are somewhere in this area. More details can be requested from the modem list or by zooming in, |
+| most_severe_health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | The most severe health for the modems in this group. |
 
-### Easypulse.AssetSelection
-
-An AssetSelection is used to select which Assets should be affected:
-- When listing Assets, it is used to determine which Assets are returned
-- When updating Assets, it is used to determine which Assets are updated
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| search | [ string](#string) | Search for assets by name, modem number, tag or notes. |
-| assets | [ hiber.Filter.Modems](#hiberfiltermodems) | Select assets by modem number. |
-| health_levels | [repeated string](#string) | Select assets by health level. |
-| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) | Select assets by tag. |
-
-### Easypulse.History
-
-List the history for a single field, and optionally apply an aggregation and/or grouping to it.
+### MapTileItem.Modem
 
 
-### Easypulse.History.Request
-
-Request to get the history of a field, for the selected Assets in the organization.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ Easypulse.AssetSelection](#easypulseassetselection) | Select the asset(s) to get the history for. |
-| pagination | [ hiber.Pagination](#hiberpagination) | Paginate the returned values. This may not be relevant, depending on the aggregation (which may result in a single value) and the time range. |
-| time_range | [ hiber.TimeRange](#hibertimerange) | The time to view the history for. |
-| aggregation | [ Easypulse.History.Request.Aggregation](#easypulsehistoryrequestaggregation) | How to aggregate the data. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **group**.split_by_duration | [ hiber.Duration](#hiberduration) | Split up the data in time block of the given size. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **group**.reduce_to_max_size | [ uint32](#uint32) | Limit the results to the given amount of data points, applying the function to each chunk. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.fuel_level | [ bool](#bool) | Get the history for the fuel level. Only one field can be chosen. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.tire_pressure | [ bool](#bool) | Get the history for the tire pressure. Only one field can be chosen. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.battery_level | [ bool](#bool) | Get the history for the battery level. Only one field can be chosen. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.temperature | [ bool](#bool) | Get the history for the temperature. Only one field can be chosen. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.run_time | [ bool](#bool) | Get the history for the run time. Only one field can be chosen. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.idle_time | [ bool](#bool) | Get the history for the idle time. Only one field can be chosen. |
+| number | [ string](#string) | none |
+| location | [ hiber.Location](#hiberlocation) | none |
+| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | none |
 
-### Easypulse.History.Response
+### Satellite
 
-Response with the (aggregated) history of a field, for the selected Assets in the organization.
+
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| values | [repeated Easypulse.History.Response.Value](#easypulsehistoryresponsevalue) | The processed historical data points. For example, when applying the SUM aggregation to all data points, this list would only contains a single value, the sum of values. |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | The pagination result, containing information about amounts and pages. |
-| request | [ Easypulse.History.Request](#easypulsehistoryrequest) | The request that was received, corrected and used to produce this result. |
+| id | [ int32](#int32) | none |
+| name | [ string](#string) | none |
+| positions | [repeated Satellite.Position](#satelliteposition) | none |
 
-### Easypulse.History.Response.Value
-
-Processed historical data point. If this is a group, it will have a time range to denote the group.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.timestamp | [ hiber.Timestamp](#hibertimestamp) | When not grouping, time of the individual point. When grouping, the time at the end of the group (when the value was true). |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.time_range | [ hiber.TimeRange](#hibertimerange) | When grouping, the start and end time for the group. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.fuel_level | [ float](#float) | The fuel level, as a percentage. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.tire_pressure | [ float](#float) | The tire pressure in bar. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.battery_level | [ float](#float) | The battery level, as a percentage. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.temperature | [ float](#float) | The temperature in degrees Celsius. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.run_time | [ hiber.Duration](#hiberduration) | The time the Asset was running. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.idle_time | [ hiber.Duration](#hiberduration) | The time the Asset was idle. |
-
-### Easypulse.ListAssets
-
-List the Easypulse Assets in your organization.
-Optionally, aggregated historical data can be added to the returned Assets, with a given name.
-
-Fails when your organizations does not have the Easypulse feature.
+### Satellite.Position
 
 
-### Easypulse.ListAssets.Request
-
-Request to list Assets in your organization.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ Easypulse.AssetSelection](#easypulseassetselection) | Select the Assets to return. |
-| pagination | [ hiber.Pagination](#hiberpagination) | Paginate over the returned Assets. |
-| aggregations | [map Easypulse.ListAssets.Request.AggregationsEntry](#easypulselistassetsrequestaggregationsentry) | Any aggregations to return with the assets, specified as a name and a History.Request. |
-| sort | [ Easypulse.ListAssets.Request.Sort](#easypulselistassetsrequestsort) | Sort the returned assets using the given option. By default, Assets are sorted by name. |
+| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| location | [ hiber.Location](#hiberlocation) | none |
 
-### Easypulse.ListAssets.Request.AggregationsEntry
+### TileCoordinate
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| x | [ int32](#int32) | none |
+| y | [ int32](#int32) | none |
+
+### TileMapRequest
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ Easypulse.History.Request](#easypulsehistoryrequest) | none |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| selection | [ hiber.LocationSelection](#hiberlocationselection) | Visible part of the map. |
+| level | [ int32](#int32) | Google Maps zoom level, from 0 to 21, where is a view of the whole world and 21 is zoomed in as possible. |
+| modem_selection | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Selection to filter the modems on the map. |
+| include_satellites | [ bool](#bool) | Whether to fill the "satellites" field in the Response. |
+| include_ground_stations | [ bool](#bool) | Whether to fill the "ground_stations" field in the Response. |
+| density | [ TileMapRequest.Density](#tilemaprequestdensity) | The icon density on the map. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **expanded**.child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Whether to include any modems from child organizations. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **expanded**.include_health | [ bool](#bool) | Whether to include the health for groups. |
 
-### Easypulse.ListAssets.Response
+### TileMapRequest.Response
 
-Response with a list of Assets
+
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| assets | [repeated Easypulse.Asset](#easypulseasset) | The selected Assets. |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | The applied pagination, including total results, page information, etc. |
-| request | [ Easypulse.ListAssets.Request](#easypulselistassetsrequest) | The request that was received, corrected and used to produce this result. |
+| ground_stations | [repeated GroundStation](#groundstation) | none |
+| map_items | [repeated MapTileItem](#maptileitem) | none |
+| request | [ TileMapRequest](#tilemaprequest) | none |
+| satellites | [repeated Satellite](#satellite) | none |
 
 
 ## Enums
-### Easypulse.History.Request.Aggregation
-Options to aggregate the history data points (in a group).
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| NONE | Do not aggregate the history data points, just list all of them. | 0 |
-| AVERAGE | Average value of all history data points (in a group). | 1 |
-| SUM | Sum all history data points (in a group). | 2 |
-
-### Easypulse.ListAssets.Request.Sort
+### TileMapRequest.Density
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| NAME | none | 0 |
-| NAME_DESC | none | 1 |
-| LAST_UPDATED | none | 2 |
-| INACTIVITY | none | 3 |
-| NUMBER_ASC | none | 4 |
-| NUMBER_DESC | none | 5 |
-| LOWEST_FUEL_LEVEL | none | 6 |
-| HIGHEST_FUEL_LEVEL | none | 7 |
-| LOWEST_TIRE_PRESSURE | none | 8 |
-| HIGHEST_TIRE_PRESSURE | none | 9 |
-| LOWEST_BATTERY_LEVEL | none | 10 |
-| HIGHEST_BATTERY_LEVEL | none | 11 |
-| LOWEST_TEMPERATURE | none | 12 |
-| HIGHEST_TEMPERATURE | none | 13 |
-| HEALTH | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 14 |
-| HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 15 |
+| DEFAULT | Fills a tile with 8x8 icons. | 0 |
+| DENSE | Fills a tile with 16x16 icons. | 1 |
+| SPARSE | Fills a tile with 4x4 icons. | 2 |
+| VERY_SPARSE | Fills a tile with 2x2 icons. | 3 |
+| SINGLE | Fills a tile with 1 icon. | 4 |
 
-
-
-## Referenced messages from health.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
-
-#### This section was generated from [health.proto](https://github.com/HiberGlobal/api/blob/master/health.proto).
-
-
-### hiber.health.HealthLevel
-
-A health level in an organization.
-Health can be customized depending on your need.
-
-The default health levels are:
-- OK (green): no problems detected
-- WARNING (orange): unresolvable problems detected, for example delayed or skipped messages
-- ERROR (red): significant problems detected (that typically can be resolved),
-  for example inactivity or invalid messages (resolved on a successful message)
-
-Health levels can be customized to as many as you need for your operations, for example:
-- INTERVENTION
-- DEFECT
-- BATTERY
-- HIGH
-- LOW
-
-Health levels are ordered by severity (low to high), and only the most severe level will be returned when
-retrieving a modem.
-
-Health can be assigned using modems alarms, which specify the health level they will cause on a modem (and for how
-long, if it does not resolve automatically).
-
-Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems),
-which can happen when a device manufacturer has provided alarms to your device (e.g. a low battery alarm).
-By default, any unknown health levels map to the level that is marked catch-all.
-
-Health level have a set of named colors, represented by a map where the key is the name of the color
-and the value is a string that represents a valid CSS3 color.
-Simple examples are: green, red, orange, grey, #FF00FF for fuchsia, etc (Keep in mind that CSS3 allows for many
-ways to define colors, see https://www.w3.org/TR/2003/WD-css3-color-20030214/).
-
-All the following definitions also mean "red":
- - rgb(255, 0, 0)
- - rgb(100%, 0, 0)
- - rgba(100%, 0%, 0%, 100%)
- - hsl(0, 100%, 50%)
- - hsla(0, 100%, 50%, 1)
-
-The client is responsible for rendering the correct color from the CSS3 color-space and for setting the colors and
-their names. There is no verification on missing named colors, so the client must set sensible defaults when colors
-are missing.
-
-To assist with sorting, health levels have a numeric severity equal to their index in the sorted list of health
-levels (starting at 1). This means higher numbers denote a more severe health.
-Since these values are noting more than a list index, they should not be cached, compared to another organization or
-compared to values retrieved from the API at another time.
-
-For example, an organization using the default health would have:
-- Ok: severity 1
-- Warning: severity 2
-- Error: severity 3
-
-That organization could then add a new health level in between Ok and Warning, meaning the severity of Warning and
-Error will change:
-- Ok, severity 1
-- ItsComplicated, severity 2
-- Warning, severity 3
-- Error, severity 4
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| level | [ string](#string) | The name of this health level. Levels are identified by their name. The API does support renaming, where the rename is propagated to all the relevant parts of the system. |
-| color | [ string](#string) | Default color for the health level, as a string that represents a valid CSS3 color. DEPRECATED: Maps to the color named "text" in color_data. |
-| color_data | [map hiber.health.HealthLevel.ColorDataEntry](#hiberhealthhealthlevelcolordataentry) | Map of named colors, where key is the name and the value is a valid CSS3 color definition. |
-| severity | [ int64](#int64) | A numeric value equal to the index of this health level in the sorted list of health levels (starting at 1). This means higher numbers denote a more severe health. |
-| catch_all | [ bool](#bool) | Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems), which can happen when a device manufacturer has provided alarms for your device (e.g. a low battery alarm). By default, unknown health levels map to the level of the highest severity, unless another level is marked as catch-all. |
-
-### hiber.health.HealthLevelSelection
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| search | [ string](#string) | Search for the given string in the levels and colors. |
-| levels | [repeated string](#string) | Filter by exact levels. |
-
-
-### Enums
-
-
-## Referenced messages from tag.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
-
-#### This section was generated from [tag.proto](https://github.com/HiberGlobal/api/blob/master/tag.proto).
-
-
-### hiber.tag.Tag
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| id | [ int64](#int64) | none |
-| label | [ hiber.tag.Tag.Label](#hibertagtaglabel) | none |
-
-### hiber.tag.Tag.Label
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| name | [ string](#string) | none |
-
-### hiber.tag.TagSelection
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| search | [repeated string](#string) | none |
-| names | [repeated string](#string) | none |
-| filter | [ hiber.Filter.Tags](#hiberfiltertags) | none |
-
-
-### Enums
 
 
 ## Referenced messages from base.proto

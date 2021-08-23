@@ -42,7 +42,7 @@ enum OrganizationPermission {
     MODEMS_MESSAGE_BODY_PARSERS = 43;
     /* Show and update secure notes. Includes MODEMS permission. */
     MODEMS_SECURE_NOTES = 42;
-    /** Manage and assign message alerts. Includes MODEMS permission. */
+    /* Manage and assign message alerts. Includes MODEMS permission. */
     MODEMS_ALARMS = 44;
 
     /* Read modem messages. */

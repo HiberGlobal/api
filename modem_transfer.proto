@@ -170,12 +170,12 @@ message TransferModemsRequest {
         TRANSFER_EXTERNAL_DEVICES = 3;
     }
 
-    /** What to do with the messages, events and other related data. */
+    /* What to do with the messages, events and other related data. */
     enum DataTransferMode {
-        /** Include all related data in the transfer. */
+        /* Include all related data in the transfer. */
         INCLUDE = 0;
 
-        /** Exclude messages and all events. The data will be deleted. */
+        /* Exclude messages and all events. The data will be deleted. */
         EXCLUDE_ALL = 1;
     }
 
@@ -236,7 +236,7 @@ message TransferModemsRequest {
         GatewayTransferMode gateway_transfer_mode = 8;
     }
 
-    /** What to do with the modem's data, like messages and events. */
+    /* What to do with the modem's data, like messages and events. */
     DataTransferMode data_transfer_mode = 9;
 }
 

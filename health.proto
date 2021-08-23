@@ -100,8 +100,7 @@ message HealthLevel {
     /* Map of named colors, where key is the name and the value is a valid CSS3 color definition. */
     map<string, string> color_data = 4;
 
-    /**
-     * A numeric value equal to the index of this health level in the sorted list of health levels (starting at 1).
+    /* A numeric value equal to the index of this health level in the sorted list of health levels (starting at 1).
      * This means higher numbers denote a more severe health.
      */
     int64 severity = 5;

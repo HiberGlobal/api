@@ -103,8 +103,7 @@ message ModemAlarm {
      */
     string default_health_level = 7;
 
-    /**
-     * Allow the alarm to cause a health level for the modem even after a new message has come in.
+    /* Allow the alarm to cause a health level for the modem even after a new message has come in.
      *
      * Typically, an alarm event only affects the modem health while it is from the last message from that modem.
      * By configuring this, you can specify the modem health should be affected for a longer period.
@@ -366,8 +365,7 @@ message ModemAlarm {
         }
     }
 
-    /**
-     * Allow the alarm to cause a health level for the modem even after a new message has come in.
+    /* Allow the alarm to cause a health level for the modem even after a new message has come in.
      *
      * Typically, an alarm event only affects the modem health while it is from the last message from that modem.
      * By configuring this, you can specify the modem health should be affected for a longer period.
@@ -398,7 +396,7 @@ message ModemAlarmSelection {
 
 message ListModemAlarms {
     message Request {
-        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
 
         ModemAlarmSelection selection = 2;
@@ -411,9 +409,16 @@ message ListModemAlarms {
     }
 }
 
+/* Create a new alarm.
+ *
+ * The request contains the option to add checks as well.
+ * This is a shortcut for creating an alarm and then adding checks, and as such can result in multiple events:
+ * - a created event on the alarm
+ * - an update event on the alarm checks, iff any checks were added
+ */
 message CreateModemAlarm {
     message Request {
-        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
 
         /* A short description of what the alarm should do. */
@@ -422,11 +427,7 @@ message CreateModemAlarm {
         /* Condition determining when an alarm is triggered if it has multiple checks. */
         ModemAlarm.TriggerCondition trigger_condition = 3;
 
-        /* The checks to add to this alarm.
-         * This is a shortcut for creating an alarm and then adding checks to it, and as such results in two events:
-         * - the created event for the alarm
-         * - an update event on the alarm, adding the checks
-         */
+        /* The checks to add to this alarm. Shortcut for creating an alarm and then adding checks to it. */
         repeated ModemAlarm.Check checks = 4;
 
         /* The default health level for this alarm. See ModemAlarm.default_health_level for more information. */
@@ -442,16 +443,45 @@ message CreateModemAlarm {
     }
 }
 
+/* Update the alarm, iff you are the owner or can impersonate the owner organization.
+ *
+ * The request contains the option to add, remove or update checks as well.
+ * This is a shortcut for updating an alarm and then adding, removing and/or updating checks,
+ * and as such can result in multiple events:
+ * - an update event on the alarm, iff there were any non-check changes to the alarm.
+ * - an update event on the alarm checks, iff there were any check addition, updates or deletions
+ */
 message UpdateModemAlarm {
     message Request {
-        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
+
+        /* The identifiers of the alarm to update */
         string identifier = 2;
+
+        /* Update the description, optionally. */
         UpdateClearableString update_description = 3;
+
+        /* Update the trigger condition, optionally. */
         ModemAlarm.TriggerCondition update_trigger_condition = 4;
+
+        /* Update the default health level, optionally. */
         UpdateClearableString update_default_health_level = 5;
+
+        /* Update the health after resolved, optionally. */
         ModemAlarm.HealthLevelAfterResolved update_health_level_after_resolved = 6;
+
+        /* Remove the health after resolved, optionally. */
         bool remove_health_level_after_resolved = 7;
+
+        /* The checks to add to this alarm. Shortcut for updating an alarm and then adding checks to it. */
+        repeated ModemAlarm.Check add_checks = 8;
+
+        /* The checks to update in this alarm. Shortcut for updating an alarm and then updating checks. */
+        map<string, ModemAlarm.Check> update_checks = 9;
+
+        /* The checks to remove from this alarm. Shortcut for updating an alarm and then removing checks. */
+        repeated string delete_checks = 10;
     }
     message Response {
         ModemAlarm updated = 1;
@@ -461,7 +491,7 @@ message UpdateModemAlarm {
 /* Add a check to the alarm, iff you are the owner or can impersonate the owner organization. */
 message UpdateModemAlarmAddCheck {
     message Request {
-        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
         string alarm_identifier = 2;
 
@@ -475,7 +505,7 @@ message UpdateModemAlarmAddCheck {
 
 message UpdateModemAlarmUpdateCheck {
     message Request {
-        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
         string alarm_identifier = 2;
         string check_identifier = 3;
@@ -496,7 +526,7 @@ message UpdateModemAlarmUpdateCheck {
 
 message UpdateModemAlarmRemoveCheck {
     message Request {
-        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
         string alarm_identifier = 2;
         string check_identifier = 3;
@@ -508,7 +538,7 @@ message UpdateModemAlarmRemoveCheck {
 
 message DeleteModemAlarm {
     message Request {
-        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
         string identifier = 2;
     }
@@ -518,7 +548,7 @@ message DeleteModemAlarm {
 
 message TestModemAlarmTestParameters {
     message Request {
-        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
         string alarm_identifier = 2;
         google.protobuf.Struct parameters = 3;
@@ -530,7 +560,7 @@ message TestModemAlarmTestParameters {
 
 message UpdateModemAlarmAvailability {
     message Request {
-        /** Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
         string alarm_identifier = 2;
 

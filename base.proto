@@ -11,6 +11,7 @@ option java_package = "global.hiber.api.grpc";
 option go_package = "hiber";
 
 /* Update object for an int that can be set to 0.
+ *
  * Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,
  * in an update object.
  *
@@ -22,6 +23,7 @@ message UpdateZeroableInt {
 }
 
 /* Update object for a string that can be empty.
+ *
  * Since an empty string is also the default value, we need to distinguish between an omitted value and
  * setting the value to an empty string, in an update object.
  *
@@ -52,6 +54,7 @@ message UpdateOptionalDuration {
 }
 
 /* Update object for a boolean.
+ *
  * Since false is the default value, we need to distinguish between an omitted value and setting the value to false,
  * in an update object.
  *
@@ -75,8 +78,10 @@ message DoubleRange {
 }
 
 /* Timestamp type for convenience.
+ *
  * Some clients are better at parsing Google's seconds/nanos based timestamp, while others prefer a text-based format.
  * To accommodate this, this Timestamp type supports both.
+ *
  * When used as API output, both the timestamp and textual fields will be set. The textual field has the commonly
  * used ISO 8601 format (i.e. "2018-01-01T13:00:00Z").
  * When used an API input, only one of the fields is needed, there is no need to set both. When both are set, the
@@ -88,9 +93,11 @@ message Timestamp {
 }
 
 /* Date type for convenience.
+ *
  * Some clients are better at parsing year, month and day of month as separate fields,
  * while others prefer a text-based format.
  * To accommodate this, this Date type supports both.
+ *
  * When used as API output, both the int fields and textual fields will be set.
  * The textual field has the commonly used ISO 8601 local date format (i.e. "2018-01-01").
  * When used an API input, either specify the int fields or the textual field.
@@ -122,6 +129,7 @@ message Location {
 }
 
 /* Rectangular area between two locations, normalized to bottom-left and top-right points.
+ *
  * Center point is added for convenience; it's simple the point directly between the two corner points.
  * When sending an Area to the api, the center location is ignored.
  */
@@ -136,6 +144,7 @@ message Area {
 
 /* Polygon shape defined by a list of locations, which draw a shape on the map.
  * The last point is connected to the first to close the shape.
+ *
  * For example, the outline of a city would be defined using a Shape,
  * while a rectangular region is easier to define using Area.
  */
@@ -147,6 +156,7 @@ message Shape {
 }
 
 /* Selection object for map data. Filter modems on the map by id, (child)organization.
+ *
  * Also, filter the map data by level and area restriction, to only display a small area at a detailed map level,
  * for example
  */
@@ -160,6 +170,7 @@ message LocationSelection {
 
 /* Some clients may prefer direct binary data, while other prefer a hexadecimal string,
  * both for input and output. To support both methods, this object is used to represent binary data.
+ *
  * When you receive this from the api, both fields are set. When sending it to the api, only one field is required.
  */
 message BytesOrHex {
@@ -202,6 +213,7 @@ message Pagination {
 }
 
 /* Enum of api-accessible events.
+ *
  * The event types in this enum have a protobuf implementation, and can be used, for example, in the
  * api event stream and publishers.
  */
@@ -284,6 +296,7 @@ enum EventType {
  *
  * "Include" fields filter out anything not in the include set.
  * When not set, all items will be returned (except excluded items)
+ *
  * "Exclude" fields filter out anything in the exclude set.
  * When combined with include, exclude takes precedence when determining whether an item is filtered
  */
@@ -325,6 +338,7 @@ message Filter {
     message Modems {
         /* Include all modems with these modem numbers (HEX) */
         repeated string include = 1;
+
         /* Exclude all modems with these modem numbers (HEX).
          * Exclude takes precedence over include.
          */
@@ -388,48 +402,49 @@ enum Health {
 
 /* A NamedFile contains bytes with its mime-type and name.
  * It can represent any file of any type.
+ *
  * Note that depending on where in the API this is used,
  * the server might put restrictions on file size, media-type or name length.
+ *
+ * The file name should be interpreted as-is.
+ * No hierarchical information is stored in the name, nor should you look at the "extension" to know its media-type.
+ * It might not even have a file extension.
+ * The file name may contain characters that cannot be a valid file name on certain systems.
+ *
+ * Specific API calls may pur restrictions on the name or size of the file.
+ *
+ * When showing this as an image in a browser, one can make use of a `data` URI.
+ * The client must convert the bytes to base64 and can then construct a data URI like this
+ *
+ *     data:<media-type>;base64,<base64-encoded-bytes>
+ *
+ * Other type clients should be able to sort-of-directly set the data bytes as the source for an image.
  */
 message NamedFile {
     /* The binary payload that represents the file */
     BytesOrHex data = 1;
+
     /* The media-type of the file, as defined by RFC 6838 or its extensions */
     string media_type = 2;
-    /* A semantic name for this file.
-     * The name should be interpreted as-is.
-     * No hierarchical information is stored in the name,
-     * nor should you look at the "extension" to know its media-type.
-     * It might not even have a file extension.
-     *
-     * Also note that this file may contain characters that cannot be a valid file name on certain systems.
-     *
-     * Specific API calls may limit the validness of this field.
-     * For example setting a maximum length or disallowing certain characters.
-     */
+
+    /* A semantic name for this file. */
     string name = 3;
 }
 
 /* An avatar is represented either by a (publicly) fetchable URL that serves an image,
  * xor a binary payload that knows its name and mime-type.
+ *
+ * If it is a url, it must be obtainable without credentials, though this is not validated by the API.
+ * Because the content behind URL's can change or become unavailable over time,
+ * the client should make sure it properly caches the data fetched from the URL.
+ * ("Properly" means [among other things] respecting the response headers for this resource)
  */
 message Avatar {
     oneof url_or_image {
-        /* A URL that contains the location of avatar.
-         * It must be obtainable without credentials, though this is not validated by the API.
-         * Because the content behind URL's can change or become unavailable over time,
-         * the client should make sure it properly caches the data fetched from the URL.
-         * ("Properly" means [among other things] respecting the response headers for this resource)
-         */
+        /* A URL that contains the location of avatar. */
         string url = 1;
-        /* The data of the avatar as a Named File
-         * When showing this image in a browser, one can make use of a `data` URI.
-         * The client must convert the bytes to base64 and can then construct a data URI like this
-         *
-         * data:<media-type>;base64,<base64-encoded-bytes>
-         *
-         * Other type clients should be able to sort-of-directly set the data bytes as the source for an image.
-         */
+
+        /* The data of the avatar as a Named File. */
         NamedFile image = 2;
     }
 }

@@ -1,3 +1,54 @@
+/* Show modems on a map, using the calculated state of the map.
+ *
+ * Uses a tile-based system where the map is split up into tiles, and modems can be efficiently grouped into the tiles.
+ * The tiles are based on the Google Maps output, which allows us to draw thousands of markers on a map efficiently.
+ *
+ * This works as follows:
+ * Assume the world is a grid of 256x256 tiles, and every point can be represented as an x (from lon) and y (from lat)
+ * coordinate, for example:
+ * - (0,0) maps to world coordinate (128.0, 128.0)
+ * - (13.24,122.04) maps roughly to (214.78, 118.49)
+ * - (-84.27,175.36) maps roughly to (252.70, 250.05)
+ * Keep in mind that the order is reversed, lat -> -y, long -> x, to get a grid that goes
+ * from 0,0 at the bottom left of the map to 256,256 at the top right.
+ *
+ * Now that we have a simple numeric model of the world, we can start grouping numerically as well.
+ * If we want 256 horizontal and 256 vertical tiles, all we have to do is `floor` the values to determine their tile.
+ * Then, we can use the remainder to calculate their position within the tile on another 256x256 grid.
+ * For example:
+ * - (0,0) is in tile (128, 128) at (0.0,0.0)
+ * - (13.24,122.04) is in tile (214, 118)
+ * - (-84.27,175.36) is in tile (252, 250)
+ *
+ * While 65k tiles seems like a lot, it's not enough for the world, of course. So, we're using Google Maps' map levels
+ * to have more detail. These increase in size exponentially:
+ * - Level 0  : 1x1 : a single tile for the whole world, containing all of the modems
+ * - Level 1  : 2x2 : 4 tiles for the whole world.
+ * - Level 2  : 4x4 : 16 tiles for the whole world.
+ * - Level 3  : 8x8 : 64 tiles for the whole world.
+ * - Level 4  : 16x16 : 256 tiles for the whole world.
+ * - Level 5  : 32x32 : 1024 tiles for the whole world.
+ * - Level 6  : 64x64 : 4096 tiles for the whole world.
+ * - Level 7  : 128x128 : 16 384 tiles for the whole world.
+ * - Level 8  : 256x256 : 65 536 tiles for the whole world.
+ * - Level 9  : 512x512 : 262 144 tiles for the whole world.
+ * - Level 10 : 1024x1024 : 1 048 576 tiles for the whole world.
+ * - Level 11 : 2048x2048 : 4 194 304 tiles for the whole world.
+ * - Level 12 : 4096x4096 : 16 777 216 tiles for the whole world.
+ * - Level 13 : 8192x8192 : 67 108 864 tiles for the whole world.
+ * - Level 14 : 16384x16384 : 268 435 456 tiles for the whole world.
+ * - Level 15 : 32768x32768 : 1 073 741 824 tiles for the whole world.
+ * - Level 16 : 65536x65536 : 4 294 967 296 tiles for the whole world.
+ * - Level 17 : 131072x131072 : 17 179 869 184 tiles for the whole world.
+ * - Level 18 : 262144x262144 : 68 719 476 736 tiles for the whole world.
+ * - Level 19 : 524288x524288 : 274 877 906 944 tiles for the whole world.
+ * - Level 20 : 1048576x1048576 : 1 099 511 627 776 tiles for the whole world.
+ * - Level 21 : 2097152x2097152 : 4 398 046 511 104 tiles for the whole world.
+ *
+ * Finally, we can do the same `floor`-based grouping within the tile. Using the TileMapRequest.Density, we decide
+ * how many groups to split our tiles into. This means we can still align our tiles to Google Maps, but allow for
+ * a controlled amount of groups.
+ */
 syntax = "proto3";
 
 package hiber.map;
@@ -11,9 +62,9 @@ option java_package = "global.hiber.api.grpc.map";
 option java_outer_classname = "MapApi";
 option go_package = "hiber";
 
-/* Map of modems, in different map levels to enable data to be displayed efficiently
- */
+/* Map of modems, in different map levels to enable data to be displayed efficiently */
 service MapService {
+    /* Show the selected modems on the map, in a selected area. */
     rpc TileMap (TileMapRequest) returns (TileMapRequest.Response);
 }
 
@@ -74,6 +125,10 @@ message TileMapRequest {
         DENSE = 1;
         /* Fills a tile with 4x4 icons. */
         SPARSE = 2;
+        /* Fills a tile with 2x2 icons. */
+        VERY_SPARSE = 3;
+        /* Fills a tile with 1 icon. */
+        SINGLE = 4;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
