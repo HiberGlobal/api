@@ -120,6 +120,9 @@ message ListInvitationsRequest {
 
     /* Search the invited email addresses. */
     string search = 2;
+
+    /* Whether to include invitations that were already accepted. */
+    bool include_accepted = 3;
 }
 
 /* Accept an invitation to an organization. */

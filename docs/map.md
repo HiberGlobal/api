@@ -763,6 +763,7 @@ Unit of measurement for a numeric value.
 | PRESSURE_BAR | none | 12 |
 | PRESSURE_BAR_GROUND | none | 13 |
 | PRESSURE_PSI | none | 14 |
+| PRESSURE_K_PA | none | 17 |
 | VOLTAGE_MILLIVOLT | none | 15 |
 | PERCENT | none | 16 |
 

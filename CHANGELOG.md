@@ -1,5 +1,33 @@
 # Changelog Hiber API
 
+### 0.86 (2021-08-30)
+
+This release fixes a few bugs and adds a few missing features.
+
+#### Changes
+
+##### base.proto
+
+- Added `PRESSURE_K_PA` to `UnitOfMeasurement`, for pressure in `kPA`.
+
+##### AlarmsService
+
+- Fixed a bug where a location extracted from the message body using
+  `ModemMessageBodyParser.MetadataFields.location_fields` was not available to alarms.
+
+##### ModemService
+
+- Fixed a bug where a specific query could negatively affect message list performance.
+
+##### UserService
+
+- `ListInvitationsRequest` not filters out accepted invitations by default.
+  - Added `ListInvitationsRequest.include_accepted` to include accepted invitations.
+
+##### StatusService
+
+- Fixed a performance issue for the status call when the list of publishers was included.
+
 ### 0.85 (2021-08-23)
 
 This release improves the generated API documentation and fixes a few bugs.
