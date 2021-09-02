@@ -43,6 +43,10 @@
             "name": "example-tag-2"
           }
         }
+      ],
+      "tagNames": [
+        "example-tag",
+        "example-tag-2"
       ]
     },
     "tags": [

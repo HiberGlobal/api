@@ -494,6 +494,9 @@ message ModemMessage {
     /* The tags of the modem that sent the message. */
     repeated tag.Tag tags = 19;
 
+    /* The names of the tags of the modem that sent the message. */
+    repeated string tag_names = 20;
+
     reserved 2;
 }
 

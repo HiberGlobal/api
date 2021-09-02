@@ -12,6 +12,7 @@ option go_package = "hiber";
 service ExportService {
     rpc List (ListExports.Request) returns (ListExports.Response);
     rpc Create (CreateExport.Request) returns (CreateExport.Response);
+    rpc AvailableFields (AvailableFieldsForExport.Request) returns (AvailableFieldsForExport.Response);
     rpc Extend (ExtendExportDownloadExpiry.Request) returns (ExtendExportDownloadExpiry.Response);
     rpc Delete (DeleteExport.Request) returns (DeleteExport.Response);
 }
@@ -179,6 +180,30 @@ message CreateExport {
     message Response {
         Export created = 1;
         Request request = 2;
+    }
+}
+
+message AvailableFieldsForExport {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* Specific configuration to get the fields for. */
+        oneof configuration {
+            /* Get the fields for modem messages, with optional specific fields for the selected modems,
+             * based on assigned parsers.
+             * Time range is ignored for this request.
+             */
+            Export.Configuration.ModemMessages modem_message = 3;
+        }
+    }
+
+    message Response {
+        /* All json paths that are available for json field mapping. */
+        repeated string json_paths = 1;
+
+        /* Available CSV columns, pre-named with suggested names. */
+        repeated Export.Format.Csv.Column csv_columns = 2;
     }
 }
 

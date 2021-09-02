@@ -656,6 +656,7 @@ data and message body. (Your message body is, of course, still encrypted if you'
 
 This is a convenience to access the fields from body_parsed, but if any fields are present in multiple body_parsed results, it is not defined which field will be used in this Struct. This may change in the future. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | The tags of the modem that sent the message. |
+| tag_names | [repeated string](#string) | The names of the tags of the modem that sent the message. |
 
 ### ModemMessage.ParsedBody
 

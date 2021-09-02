@@ -1,5 +1,21 @@
 # Changelog Hiber API
 
+### 0.87 (2021-09-02)
+
+This release add an ease of use improvement for exporting, and contains a number of bugfixes.
+
+#### Changes
+
+##### ModemService
+
+- Added `ModemMessage.tagNames` for convenience, since most of the time the ids are not relevant.
+
+##### ExportService
+
+- Added `AvailableFieldsForExport` (for `ExportService.AvailableFields`) to get the fields that are available to export.
+  - Provides a list of json paths for use in custom json field mapping.
+  - Provides the default column mapping for CSV export.
+
 ### 0.86 (2021-08-30)
 
 This release fixes a few bugs and adds a few missing features.
