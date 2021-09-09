@@ -1,6 +1,13 @@
 # modem_alarm.proto
 
+Service to specify alarm for a modem, monitoring message data, location or activity.
 
+An alarm is a collection of checks that validate the correctness of a modem. For example, an alarm might
+check that the modem is in a given location, or that a field in its messages is between certain values.
+
+Alarms are created in isolation, and need to be assigned to a modem before they do anything.
+This can be done using the Assign and Unassign methods in the service, or using the AssignmentService for more
+advanced use cases, like assigning to a tag.
 
 #### This file was generated from [modem_alarm.proto](https://github.com/HiberGlobal/api/blob/master/modem_alarm.proto).
 
@@ -351,48 +358,91 @@ This is a shortcut for creating an alarm and then adding checks, and as such can
 
 Alarm for a modem, monitoring message data, location or activity.
 
+An alarm is a collection of checks that validate the correctness of a modem. For example, an alarm might
+check that the modem is in a given location, or that a field in its messages is between certain values.
+
+Health for an alarm event is determined by taking the most severe health level from the health_levels configured
+on the failing checks, using this default for any checks that do not have a health_level configured.
+This can be changed on assignment with the default_health_level parameter, to fit the needs of the organization.
+
+Note, when an alarm is inherited the health levels may not match yours. If the health level matches one of
+your health levels, that level is used. Otherwise, the catch-all health level is used.
+See the health definition for more information on the catch all health level (typically the most severe).
+Note that the health level displayed here is the result of the steps above.
+
+When assigned to a (set of) modem(s), an alarm can be customized using its parameters.
+Parameters are based on the check fields, and are also used in the check error message template.
+For the alarm parameters, check parameters are prefixed with the check identifier.
+
+For example: An alarm with check A (field "healthy" equals 1) and check B (field "state" oneof ["OK", "ACTIVE"])
+would have the following parameters:
+{
+  "A": {
+    "expected": 1,
+    "field.path": "healthy",
+    "field.equals.expected": 1
+  },
+  "B": {
+    "expected": ["OK", "ACTIVE"],
+    "field.path": "state",
+    "field.oneof.expected": ["OK", "ACTIVE"]
+  }
+}
+
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifier | [ string](#string) | The identifier for this alarm. This identifier is globally unique, since the alarm can be shared to child organizations. |
 | description | [ string](#string) | none |
 | available_to_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Availability to child organizations. This alarm can be shared to child organizations, so it can be assigned to their modems, either directly or automatically over all selected child organizations. Only the owner organization is able to edit the alarm. |
 | trigger_condition | [ ModemAlarm.TriggerCondition](#modemalarmtriggercondition) | Condition determining when an alarm is triggered if it has multiple checks. |
-| default_health_level | [ string](#string) | The default health level for checks in this alarm, if they have no health_level configured. Health for an alarm event is determined by taking the most severe health level from the health_levels configured on the failing checks, using this default for any checks that do not have a health_level configured.
-
-This can be changed on assignment with the default_health_level parameter, to fit the needs of the organization.
-
-Note, when an alarm is inherited the health levels may not match yours. If the health level matches one of your health levels, that level is used. Otherwise, the catch-all health level is used. See the health definition for more information on the catch all health level (typically the most severe). Note that the health level displayed here is the result of the steps above. |
-| health_level_after_resolved | [ ModemAlarm.HealthLevelAfterResolved](#modemalarmhealthlevelafterresolved) | Allow the alarm to cause a health level for the modem even after a new message has come in.
-
-Typically, an alarm event only affects the modem health while it is from the last message from that modem. By configuring this, you can specify the modem health should be affected for a longer period.
-
-For example, when using an inactivity check, this would could be used to configure modem health ERROR while inactive, lowering to INVESTIGATE for a day after a new message comes in. |
-| checks | [repeated ModemAlarm.Check](#modemalarmcheck) | The checks in this alarm, |
-| alarm_parameters | [ google.protobuf.Struct](#googleprotobufstruct) | Parameters for this alarm. This field displays all the parameters that can be set for the alarm on assignment, with their current value.
-
-Parameters are based on the check fields, and are used in the check error message template. For the alarm parameters, check parameters are prefixed with the check identifier.
-
-For example: An alarm with check A (field "healthy" equals 1) and check B (field "state" oneof ["OK", "ACTIVE"]) would have the following parameters: { "A": { "expected": 1, "field.path": "healthy", "field.equals.expected": 1 }, "B": { "expected": ["OK", "ACTIVE"], "field.path": "state", "field.oneof.expected": ["OK", "ACTIVE"] } } |
+| default_health_level | [ string](#string) | The default health level for checks in this alarm, if they have no health_level configured. |
+| health_level_after_resolved | [ ModemAlarm.HealthLevelAfterResolved](#modemalarmhealthlevelafterresolved) | Allow the alarm to cause a health level for the modem even after it has been resolved. By configuring this, you can specify the modem health should be affected for a longer period. For example, when using an inactivity check, this would could be used to configure modem health ERROR while inactive, lowering to INVESTIGATE for a day after a new message comes in. |
+| checks | [repeated ModemAlarm.Check](#modemalarmcheck) | The checks in this alarm, that validate the state of the modem. |
+| alarm_parameters | [ google.protobuf.Struct](#googleprotobufstruct) | Parameters for this alarm. This field displays all the parameters that can be set for the alarm on assignment, with their current value. |
 
 ### ModemAlarm.Check
 
+A check is a specification of how things should be, i.e. "a value should be within this range".
+When it fails, it produces an event with:
+- a custom health level, or the default defined in the alarm
+- an error message, define from a template in the check
 
+The error message template is a string with parameters for the relevant data.
+The parameters are included as {parameter}, which gets replaced with the value.
+
+The supported parameters are different per check, but the parameters below are always supported:
+- modem: the modem number.
+- message: the id of the message, if any.
+- expected: a shortcut for the expected value(s), depending on the check:
+  - equals check: expected value
+  - oneof check: expected values as [a, b, c]
+  - threshold check: expected range as minimum..maximum
+  - location check: expected area as [(bottom left), (top right)], and shape as [(point), (point), ..., (point)]
+- actual: the invalid actual value(s) for this check.
+
+The checks below define other available parameters.
+
+For example (using some parameters for specific checks):
+- "Your device {modem} has left its designated area! It is now at {actual}."
+- "Your device battery is at {actual}%, which is below the recommended minimum of {field.threshold.minimum}%."
+- "Your device battery is draining faster than expected: {actual}% over the past {field.delta.period}."
+- "Your device temperature has exceeded {value.threshold.maximum} degrees: {actual}."
+- "Your device reported an unhealthy state {actual}. Healthy states are: {expected}."
+- "Your device reported an unhealthy state {actual}. Healthy states are: {field.oneof.expected}."
+- "Your device reported an unhealthy state {actual}. Please set it back to {expected}."
+- "Your device reported an unhealthy state {actual}. Please set it back to {field.equals.expected}."
+- "Unexpected value {actual} for field {field.path}!"
+
+Numeric values can be formatted with an extra postfix on the parameters
+- Round numeric values by adding ":.2f" (for 2 decimals). For example: "{actual:.3f}" (rounds to 3 decimals)
+- Always sign numeric values (when rounded) by prefixing the format with a plus. For example: `{actual:+.3f}`
+- This is applied to numeric fields and fields that can be numeric, like `{actual}` and `{expected}`.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifier | [ string](#string) | Identifier for this check, unique within the alarm. This is used to update or remove the check, and to determine the destination for any parameters. |
-| health_level | [ string](#string) | The health level that this check would cause for a modem, when it fails. This can be changed on assignment, to fit the needs of the organization. If not configured, health is unaffected.
-
-Note, when an alarm is inherited the health levels may not match yours. If the health level matches one of your health levels, that level is used. Otherwise, the catch-all health level is used. See the health definition for more information on the catch all health level (typically the most severe). Note that the health level displayed here is the result of the steps above. |
-| error_message_template | [ string](#string) | The error message for this check, with parameters that will be filled in based on the check. The parameters are included as {parameter}, which gets replaced with the value.
-
-The supported parameters are different per check, but the parameters below are always supported: - modem: the modem number. - message: the id of the message, if any. - expected: a shortcut for the expected value(s), depending on the check: - equals check: expected value - oneof check: expected values as [a, b, c] - threshold check: expected range as minimum..maximum - location check: expected area as [(bottom left), (top right)], and shape as [(point), (point), ..., (point)] - actual: the invalid actual value(s) for this check.
-
-The checks below define other available parameters.
-
-For example (using some parameters for specific checks): - "Your device {modem} has left its designated area! It is now at {actual}." - "Your device battery is at {actual}%, which is below the recommended minimum of {field.threshold.minimum}%." - "Your device battery is draining faster than expected: {actual}% over the past {field.delta.period}." - "Your device temperature has exceeded {value.threshold.maximum} degrees: {actual}." - "Your device reported an unhealthy state {actual}. Healthy states are: {expected}." - "Your device reported an unhealthy state {actual}. Healthy states are: {field.oneof.expected}." - "Your device reported an unhealthy state {actual}. Please set it back to {expected}." - "Your device reported an unhealthy state {actual}. Please set it back to {field.equals.expected}." - "Unexpected value {actual} for field {field.path}!"
-
-Numeric values can be formatted with an extra postfix on the parameters - Round numeric values by adding ":.2f" (for 2 decimals). For example: "{actual:.3f}" (rounds to 3 decimals) - Always sign numeric values (when rounded) by prefixing the format with a plus. For example: `{actual:+.3f}` - This is applied to numeric fields and fields that can be numeric, like `{actual}` and `{expected}`. |
+| health_level | [ string](#string) | The health level that this check would cause for a modem, when it fails. If not set, the alarm default is used. |
+| error_message_template | [ string](#string) | The error message template for this check, with parameters that will be filled in based on the check. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.location | [ ModemAlarm.Check.LocationCheck](#modemalarmchecklocationcheck) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.field | [ ModemAlarm.Check.FieldCheck](#modemalarmcheckfieldcheck) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.inactivity | [ ModemAlarm.Check.InactivityCheck](#modemalarmcheckinactivitycheck) | none |
@@ -415,7 +465,28 @@ Has the following parameters:
 
 A check that evaluates each new message, and checks selected field(s) in the parsed body.
 
-Has the following parameters (matches the fields):
+When multiple fields are selected, the checks are applied to all of them individually.
+
+See the Json Path documentation at https://goessner.net/articles/JsonPath/ for details on json path.
+
+Simple examples selecting a field:
+- $.my_field: a field in the root of the parsed object
+- $.my_obj.my_field: a field in a deeper structure
+- $.my_array[x].my_field: the field my_field of the element at index x is selected
+
+Complex use cases are also possible, but they require a bit more understanding of json path logic:
+- $.my_array.length(): the length of my_array is selected. Combine with an equals or threshold check,
+to require that an array has a certain length.
+- $.my_array[?(@.name == 'D')]: the array of all objects in my_array where name equals 'D' is selected.
+- $.my_array[?(@.name == 'D')]..my_field: the array of my_field values from all objects in
+my_array where name equals 'D' is selected.
+- $.my_array..my_field: the array of my_field values (for all objects in my_array) is selected
+- $.my_array[*].my_field: the array of my_field values (for all objects in my_array) is selected
+
+Note that this for the examples above, if they return an array, the entire array is used as the value
+in the comparison for equals and oneof.
+
+A check of this type has the following parameters (matches the fields):
 - field.path: replace the path for this field
 - field.ignoreFieldNotFound: replace the value for ignore_field_not_found
 
@@ -445,15 +516,7 @@ The delta check also adds a few additional error message variables:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| path | [ string](#string) | Select the field(s) that this check is applied to, using a json path. When multiple fields are selected, the checks are applied to all of them individually.
-
-See the Json Path documentation at https://goessner.net/articles/JsonPath/ for details on json path.
-
-Simple examples selecting a field: - $.my_field: a field in the root of the parsed object - $.my_obj.my_field: a field in a deeper structure - $.my_array[x].my_field: the field my_field of the element at index x is selected
-
-Complex use cases are also possible, but they require a bit more understanding of json path logic: - $.my_array.length(): the length of my_array is selected. Combine with an equals or threshold check, to require that an array has a certain length. - $.my_array[?(@.name == 'D')]: the array of all objects in my_array where name equals 'D' is selected. - $.my_array[?(@.name == 'D')]..my_field: the array of my_field values from all objects in my_array where name equals 'D' is selected. - $.my_array..my_field: the array of my_field values (for all objects in my_array) is selected - $.my_array[*].my_field: the array of my_field values (for all objects in my_array) is selected
-
-Note that this for the examples above, if they return an array, the entire array is used as the value in the comparison for equals and oneof. |
+| path | [ string](#string) | Select the field(s) that this check is applied to, using a json path. |
 | ignore_field_not_found | [ bool](#bool) | Whether to ignore this check if the field is not found. This can be useful if your path selects multiple values in an array, like my_array[*].value, and not all entries have the field, or when fields are omitted if they have a default value. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.equals | [ ModemAlarm.Check.FieldCheck.EqualsCheck](#modemalarmcheckfieldcheckequalscheck) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.oneof | [ ModemAlarm.Check.FieldCheck.OneOfCheck](#modemalarmcheckfieldcheckoneofcheck) | none |
@@ -535,6 +598,7 @@ Has the following parameters:
 - location.expected: replace the expected area or shape
 - location.area: replace the expected area
 - location.shape: replace the expected shape
+- location.named: replace the referenced named location
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |

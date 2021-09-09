@@ -42,8 +42,9 @@ service HealthService {
  * - HIGH
  * - LOW
  *
- * Health levels are ordered by severity (low to high), and only the most severe level will be returned when
- * retrieving a modem.
+ * Health levels are ordered by severity (low to high),
+ * and of all things affecting a modem's health,
+ * only the most severe level will be returned when retrieving a modem.
  *
  * Health can be assigned using modems alarms, which specify the health level they will cause on a modem (and for how
  * long, if it does not resolve automatically).
@@ -100,8 +101,10 @@ message HealthLevel {
     /* Map of named colors, where key is the name and the value is a valid CSS3 color definition. */
     map<string, string> color_data = 4;
 
-    /* A numeric value equal to the index of this health level in the sorted list of health levels (starting at 1).
+    /* A unique numeric value equal to the index of this health level in the list of health levels sorted by ascending severity (starting at 1).
      * This means higher numbers denote a more severe health.
+     * This value cannot be used when creating or updating.
+     * To change the severity for a health level, reorder all health levels.
      */
     int64 severity = 5;
 

@@ -148,20 +148,42 @@ message Simulation {
         /* Interval messages should be simulated at (i.e. once every hour). */
         Duration simulation_interval = 3;
 
-        /* A message body to use for the simulated messages. */
-        BytesOrHex message_body = 4;
+        oneof message_bodies {
+            /* A message body to use for the simulated messages. */
+            BytesOrHex message_body = 4;
+
+            /* Rotate through a list of message bodies. */
+            MessageBodyRotation message_body_rotation = 8;
+        }
 
         /* The indices of bytes in the message body that should be randomized (to have variable values). */
         repeated uint32 message_body_variable_byte_indices = 5;
 
-        /* Randomize modem location within the given area. */
-        Area random_location_in_area = 7;
+        oneof location {
+            /* Randomize modem location within the given area. */
+            Area random_location_in_area = 7;
+
+            /* Rotate through a list of locations. */
+            LocationRotation location_rotation = 9;
+        }
 
         /* Timestamp after which the next simulation run will be triggered (not guaranteed to be exactly at this time).
          * If further in the future, message simulation for this modem is inactive until this time.
          * This may be set to a time in the future manually, or by the ModemInactivitySimulation.
          */
         Timestamp next_simulation_run_after = 6;
+
+        /* Rotate through a list of message bodies. */
+        message MessageBodyRotation {
+            /* The rotating list of message bodies to use when simulating messages. */
+            repeated BytesOrHex message_bodies = 1;
+        }
+
+        /* Rotate through a list of locations. */
+        message LocationRotation {
+            /* The rotating list of locations to use when simulating messages. */
+            repeated Location locations = 1;
+        }
 
         message Defaults {
             /* Default for the amount of messages to simulate per interval for a modem that has simulation enabled.
@@ -210,6 +232,7 @@ message Simulation {
         /* Create or update the modem message simulation for a selection of modems. */
         message Update {
             message Request {
+
                 /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
                 string organization = 1;
 
@@ -224,8 +247,16 @@ message Simulation {
                 /* Interval messages should be simulated at (i.e. once every hour). */
                 Duration simulation_interval = 4;
 
-                /* A message body to use for the simulated messages. */
-                BytesOrHex.Update update_message_body = 5;
+                oneof message_body {
+                    /* A message body to use for the simulated messages. */
+                    BytesOrHex.Update update_message_body = 5;
+
+                    /* Replace the list of message bodies to rotate through.
+                     * This does not have to match the length of the location rotation, if any.
+                     * Note that this **replaces** the entire list of values, to ensure the order is maintained.
+                     */
+                    MessageBodyRotation replace_message_body_rotation = 12;
+                }
 
                 /* Add indices of bytes in the message body that should be randomized (to have variable values). */
                 repeated uint32 message_body_add_variable_byte_indices = 6;
@@ -233,8 +264,16 @@ message Simulation {
                 /* Remove indices of bytes in the message body that should be randomized (to have variable values). */
                 repeated uint32 message_body_remove_variable_byte_indices = 7;
 
-                /* Randomize modem location within the given area. */
-                Area random_location_in_area = 11;
+                oneof location {
+                    /* Randomize modem location within the given area. */
+                    Area random_location_in_area = 11;
+
+                    /* Replace the list of locations to rotate through.
+                     * This does not have to match the length of the message body rotation, if any.
+                     * Note that this **replaces** the entire list of values, to ensure the order is maintained.
+                     */
+                    LocationRotation replace_location_rotation = 13;
+                }
 
                 /* Disable the message simulation until the given date (UTC). */
                 Timestamp set_inactive_until = 8;

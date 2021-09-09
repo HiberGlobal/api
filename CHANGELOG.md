@@ -1,5 +1,43 @@
 # Changelog Hiber API
 
+### 0.88 (2021-09-09)
+
+This release contains a number of bug fixes and usability improvements.
+
+#### Changes
+
+- Improved comments and generated documentation.
+
+##### ExportService
+
+- When requesting available fields for export, providing a non-empty modem selection is no longer required.
+  When an empty (or no) modem selection is provided, the result is the total of all modems in the organization.
+  (The columns may differ per modem because of assigned message body parsers.)
+
+##### HealthService
+
+- Fixed a bug where the modem health was not updated when you deleted a custom health level.
+
+##### ModemService
+
+- Removed the option to consider message with source `TEST` as real (when applying processing).
+  - Simulated modem messages are now considered real to the system, since that was the real use case for this option.
+- Fixed a race condition where modem health would occasionally be "OK", then switch back to its actual health.
+
+##### OrganizationService
+
+- Added `Organization.Feature.MODEM_CREATION` to allow an organization to manually create modems using the ModemService.
+- Fixed a bug where an incorrect error message was returned when creating an organization without the correct
+  OrganizationPermission.
+
+##### SimulationService
+
+- Added `Simulation.ModemMessageSimulation.message_body_rotation` to rotate through a list of pre-configured
+  message bodies when simulating messages. This can be done to simulate a modem looping through different healths
+  during the simulation.
+- Added `Simulation.ModemMessageSimulation.location_rotation` to rotate through a list of pre-configured
+  locations when simulating messages. This can be done to simulate a modem moving on the map during the simulation.
+
 ### 0.87 (2021-09-02)
 
 This release add an ease of use improvement for exporting, and contains a number of bugfixes.

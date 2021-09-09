@@ -335,8 +335,9 @@ Health levels can be customized to as many as you need for your operations, for 
 - HIGH
 - LOW
 
-Health levels are ordered by severity (low to high), and only the most severe level will be returned when
-retrieving a modem.
+Health levels are ordered by severity (low to high),
+and of all things affecting a modem's health,
+only the most severe level will be returned when retrieving a modem.
 
 Health can be assigned using modems alarms, which specify the health level they will cause on a modem (and for how
 long, if it does not resolve automatically).
@@ -383,7 +384,7 @@ Error will change:
 | level | [ string](#string) | The name of this health level. Levels are identified by their name. The API does support renaming, where the rename is propagated to all the relevant parts of the system. |
 | color | [ string](#string) | Default color for the health level, as a string that represents a valid CSS3 color. DEPRECATED: Maps to the color named "text" in color_data. |
 | color_data | [map hiber.health.HealthLevel.ColorDataEntry](#hiberhealthhealthlevelcolordataentry) | Map of named colors, where key is the name and the value is a valid CSS3 color definition. |
-| severity | [ int64](#int64) | A numeric value equal to the index of this health level in the sorted list of health levels (starting at 1). This means higher numbers denote a more severe health. |
+| severity | [ int64](#int64) | A unique numeric value equal to the index of this health level in the list of health levels sorted by ascending severity (starting at 1). This means higher numbers denote a more severe health. This value cannot be used when creating or updating. To change the severity for a health level, reorder all health levels. |
 | catch_all | [ bool](#bool) | Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems), which can happen when a device manufacturer has provided alarms for your device (e.g. a low battery alarm). By default, unknown health levels map to the level of the highest severity, unless another level is marked as catch-all. |
 
 ### hiber.health.HealthLevelSelection
