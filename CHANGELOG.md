@@ -1,5 +1,38 @@
 # Changelog Hiber API
 
+### 0.90 (2021-10-11)
+
+This release contains a number of bugfixes and removes some deprecated options from ModemAlarm.
+
+#### Changes
+
+- Fixed a few performance issues.
+
+##### ModemService
+
+- Fixed a bug where `ModemSelection.filter_by_tags` would return only the modems matching the entire set of given tags
+  (ALL) instead of modems with one of the given tags (ANY).
+
+##### ModemAlarmService
+
+- Remove the deprecated options on `LocationCheck`:
+  - Custom `area` or `shape` are no longer supported, use a named location instead.
+
+##### NamedLocationService
+
+- Cleaned up the comments which referred to saved location instead of named location.
+- Added `NamedLocation.created_at`: the time it was created.
+- Added `NamedLocation.updated_at`: the last time the location was updated, if any.
+- Added `NamedLocation.referenced_by_alarms`, the list of alarms that reference this named location.
+- Using `NamedLocation` for create and updated is no longer practical now that we have added more fields:
+  - Introduced `CreateNamedLocation` to be used to in `CreateNamedLocations.Request`.
+  - Introduced `UpdateNamedLocation` fields to be used to in `UpdateNamedLocation.Request`.
+- Fixed a bug where a named location that is used in an alarm check could still be deleted.
+
+##### SimulationService
+
+- Fixed a bug where, in rare cases, simulated messages might end up with a sent time outside the configured delay range.
+
 ### 0.88 (2021-09-09)
 
 This release contains a number of bug fixes and usability improvements.

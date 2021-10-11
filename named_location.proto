@@ -9,9 +9,9 @@ option java_package = "global.hiber.api.grpc.organization.location";
 option java_outer_classname = "NamedLocationApi";
 option go_package = "hiber";
 
-/* Manage saved locations for your organization.
+/* Manage named locations for your organization.
  * This allows you to save locations to be displayed on the map or used in alarms.
- * Note that when a saved location is used in an alarm, it may be exposed to child organization when the alarm
+ * Note that when a named location is used in an alarm, it may be exposed to child organization when the alarm
  * is available to child organizations.
  */
 service NamedLocationService {
@@ -21,7 +21,7 @@ service NamedLocationService {
     rpc Delete (DeleteNamedLocation.Request) returns (DeleteNamedLocation.Response);
 }
 
-/* A saved location within an organization. */
+/* A named location within an organization. */
 message NamedLocation {
     string name = 1;
     oneof definition {
@@ -29,28 +29,47 @@ message NamedLocation {
         Area area = 3;
         Shape shape = 4;
     }
+
+    /* When the alarm was created. */
+    Timestamp created_at = 5;
+
+    /* When the alarm was updated. */
+    Timestamp updated_at = 6;
+
+    /* Alarms that have one or more location checks that reference this named location. */
+    repeated AlarmReference referenced_by_alarms = 7;
+
+    /* Alarm check that uses the named location. */
+    message AlarmReference {
+        string alarm_identifier = 1;
+        string description = 2;
+        string check = 3;
+    }
 }
 
-/* Look up saved locations by name, or by overlap with a given selection. */
+/* Look up named locations by name, or by overlap with a given selection. */
 message NamedLocationSelection {
-    /* Free text search in the saved location names. */
+    /* Free text search in the named location names. */
     string search = 1;
 
-    /* Select the saved locations with the given names. */
+    /* Select the named locations with the given names. */
     repeated string names = 2;
 
-    /* Select all saved locations that overlap with the given LocationOverlapSelection. */
+    /* Select all named locations that overlap with the given LocationOverlapSelection. */
     LocationOverlapSelection overlaps = 3;
+
+    /* Select named locations that are used by any of the given alarm identifiers. */
+    repeated string referenced_by_alarms = 4;
 }
 
 /* Selection for overlapping with (saved) locations.
  *
  * For example:
- * - Select everything that overlaps with saved location "my-area":
+ * - Select everything that overlaps with named location "my-area":
  *     { overlaps = { saved = "my-area" } }
  * - Select everything that overlaps with a custom shape:
  *     { overlaps = { shape = { path = ... } } }
- * - Select everything that overlaps with the intersection of a saved location and a custom area:
+ * - Select everything that overlaps with the intersection of a named location and a custom area:
  *     { overlaps_all = [{ saved = "my-saved-location" }, { area = ... }] }
  * - Recursive selection using a combination of any and all by adding deeper selections:
  *     { overlaps_any = [{ overlap_all = { ... } }, { saved = { .. } }] }
@@ -97,12 +116,23 @@ message ListNamedLocations {
 }
 
 message CreateNamedLocations {
+    message CreateNamedLocation {
+        string name = 1;
+        oneof definition {
+            Location location = 2;
+            Area area = 3;
+            Shape shape = 4;
+        }
+    }
+
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
 
         /* The locations to save. If the name for any of the given locations already exists, the request fails. */
-        repeated NamedLocation create = 2;
+        repeated CreateNamedLocation create = 3;
+
+        repeated NamedLocation deprecated_create = 2 [deprecated = true];
     }
 
     message Response {
@@ -110,16 +140,29 @@ message CreateNamedLocations {
     }
 }
 
+/* Update for a named location. */
 message UpdateNamedLocation {
+    /* If not empty, replaces the name of the location. */
+    string update_name = 1;
+
+    /* Replace the definition for the named location. */
+    oneof replace_definition {
+        Location location = 2;
+        Area area = 3;
+        Shape shape = 4;
+    }
+
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
 
-        /* The name of the saved location to update. */
+        /* The name of the named location to update. */
         string name = 2;
 
-        /* The new saved location. If the name is different, the saved location is renamed. */
-        NamedLocation updated = 3;
+        /* The update for the named location. */
+        UpdateNamedLocation updated = 4;
+
+        NamedLocation deprecated_updated = 3 [deprecated = true];
     }
 
     message Response {
@@ -127,12 +170,16 @@ message UpdateNamedLocation {
     }
 }
 
+/* Delete a named location.
+ * Note that a named location that is referenced by one or more alarm location checks cannot be deleted without
+ * deleting those alarm checks first. See the AlarmService for more information.
+ */
 message DeleteNamedLocation {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
 
-        /* The name of the saved location to delete. */
+        /* The name of the named location to delete. */
         string name = 2;
     }
 

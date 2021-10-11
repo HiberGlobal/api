@@ -11,6 +11,7 @@
 
 - Messages
   - [CreateNamedLocations](#createnamedlocations)
+  - [CreateNamedLocations.CreateNamedLocation](#createnamedlocationscreatenamedlocation)
   - [CreateNamedLocations.Request](#createnamedlocationsrequest)
   - [CreateNamedLocations.Response](#createnamedlocationsresponse)
   - [DeleteNamedLocation](#deletenamedlocation)
@@ -21,6 +22,7 @@
   - [ListNamedLocations.Response](#listnamedlocationsresponse)
   - [LocationOverlapSelection](#locationoverlapselection)
   - [NamedLocation](#namedlocation)
+  - [NamedLocation.AlarmReference](#namedlocationalarmreference)
   - [NamedLocationSelection](#namedlocationselection)
   - [UpdateNamedLocation](#updatenamedlocation)
   - [UpdateNamedLocation.Request](#updatenamedlocationrequest)
@@ -73,9 +75,9 @@
 
 
 ## NamedLocationService
-Manage saved locations for your organization.
+Manage named locations for your organization.
 This allows you to save locations to be displayed on the map or used in alarms.
-Note that when a saved location is used in an alarm, it may be exposed to child organization when the alarm
+Note that when a named location is used in an alarm, it may be exposed to child organization when the alarm
 is available to child organizations.
 
 ### List
@@ -110,6 +112,17 @@ is available to child organizations.
 
 
 
+### CreateNamedLocations.CreateNamedLocation
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| name | [ string](#string) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **definition**.location | [ hiber.Location](#hiberlocation) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **definition**.area | [ hiber.Area](#hiberarea) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **definition**.shape | [ hiber.Shape](#hibershape) | none |
+
 ### CreateNamedLocations.Request
 
 
@@ -117,7 +130,8 @@ is available to child organizations.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| create | [repeated NamedLocation](#namedlocation) | The locations to save. If the name for any of the given locations already exists, the request fails. |
+| create | [repeated CreateNamedLocations.CreateNamedLocation](#createnamedlocationscreatenamedlocation) | The locations to save. If the name for any of the given locations already exists, the request fails. |
+| deprecated_create | [repeated NamedLocation](#namedlocation) | none |
 
 ### CreateNamedLocations.Response
 
@@ -129,7 +143,9 @@ is available to child organizations.
 
 ### DeleteNamedLocation
 
-
+Delete a named location.
+Note that a named location that is referenced by one or more alarm location checks cannot be deleted without
+deleting those alarm checks first. See the AlarmService for more information.
 
 
 ### DeleteNamedLocation.Request
@@ -139,7 +155,7 @@ is available to child organizations.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| name | [ string](#string) | The name of the saved location to delete. |
+| name | [ string](#string) | The name of the named location to delete. |
 
 ### DeleteNamedLocation.Response
 
@@ -176,11 +192,11 @@ is available to child organizations.
 Selection for overlapping with (saved) locations.
 
 For example:
-- Select everything that overlaps with saved location "my-area":
+- Select everything that overlaps with named location "my-area":
     { overlaps = { saved = "my-area" } }
 - Select everything that overlaps with a custom shape:
     { overlaps = { shape = { path = ... } } }
-- Select everything that overlaps with the intersection of a saved location and a custom area:
+- Select everything that overlaps with the intersection of a named location and a custom area:
     { overlaps_all = [{ saved = "my-saved-location" }, { area = ... }] }
 - Recursive selection using a combination of any and all by adding deeper selections:
     { overlaps_any = [{ overlap_all = { ... } }, { saved = { .. } }] }
@@ -196,7 +212,7 @@ For example:
 
 ### NamedLocation
 
-A saved location within an organization.
+A named location within an organization.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -204,21 +220,41 @@ A saved location within an organization.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **definition**.location | [ hiber.Location](#hiberlocation) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **definition**.area | [ hiber.Area](#hiberarea) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **definition**.shape | [ hiber.Shape](#hibershape) | none |
+| created_at | [ hiber.Timestamp](#hibertimestamp) | When the alarm was created. |
+| updated_at | [ hiber.Timestamp](#hibertimestamp) | When the alarm was updated. |
+| referenced_by_alarms | [repeated NamedLocation.AlarmReference](#namedlocationalarmreference) | Alarms that have one or more location checks that reference this named location. |
 
-### NamedLocationSelection
+### NamedLocation.AlarmReference
 
-Look up saved locations by name, or by overlap with a given selection.
+Alarm check that uses the named location.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| search | [ string](#string) | Free text search in the saved location names. |
-| names | [repeated string](#string) | Select the saved locations with the given names. |
-| overlaps | [ LocationOverlapSelection](#locationoverlapselection) | Select all saved locations that overlap with the given LocationOverlapSelection. |
+| alarm_identifier | [ string](#string) | none |
+| description | [ string](#string) | none |
+| check | [ string](#string) | none |
+
+### NamedLocationSelection
+
+Look up named locations by name, or by overlap with a given selection.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| search | [ string](#string) | Free text search in the named location names. |
+| names | [repeated string](#string) | Select the named locations with the given names. |
+| overlaps | [ LocationOverlapSelection](#locationoverlapselection) | Select all named locations that overlap with the given LocationOverlapSelection. |
+| referenced_by_alarms | [repeated string](#string) | Select named locations that are used by any of the given alarm identifiers. |
 
 ### UpdateNamedLocation
 
+Update for a named location.
 
-
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| update_name | [ string](#string) | If not empty, replaces the name of the location. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **replace_definition**.location | [ hiber.Location](#hiberlocation) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **replace_definition**.area | [ hiber.Area](#hiberarea) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **replace_definition**.shape | [ hiber.Shape](#hibershape) | none |
 
 ### UpdateNamedLocation.Request
 
@@ -227,8 +263,9 @@ Look up saved locations by name, or by overlap with a given selection.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| name | [ string](#string) | The name of the saved location to update. |
-| updated | [ NamedLocation](#namedlocation) | The new saved location. If the name is different, the saved location is renamed. |
+| name | [ string](#string) | The name of the named location to update. |
+| updated | [ UpdateNamedLocation](#updatenamedlocation) | The update for the named location. |
+| deprecated_updated | [ NamedLocation](#namedlocation) | none |
 
 ### UpdateNamedLocation.Response
 

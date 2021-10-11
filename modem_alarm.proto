@@ -209,20 +209,14 @@ message ModemAlarm {
         /* Check that the device location is within a given area.
          *
          * Has the following parameters:
-         * - location.expected: replace the expected area or shape
-         * - location.area: replace the expected area
-         * - location.shape: replace the expected shape
+         * - location.expected: replace the referenced named location
          * - location.named: replace the referenced named location
          */
         message LocationCheck {
-            /* The location the device must be in. */
-            oneof expected {
-                Area area = 1;
-                Shape shape = 2;
+            /* Specify the name of a named location (NamedLocation) that the device must be in. */
+            string named = 3;
 
-                /* Specify the name of a name location (NamedLocation) that the device must be in. */
-                string named = 3;
-            }
+            reserved 1, 2;
         }
 
         /* Check whether the device exceeds inactivity limits.

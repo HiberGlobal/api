@@ -595,16 +595,12 @@ Has the following parameters:
 Check that the device location is within a given area.
 
 Has the following parameters:
-- location.expected: replace the expected area or shape
-- location.area: replace the expected area
-- location.shape: replace the expected shape
+- location.expected: replace the referenced named location
 - location.named: replace the referenced named location
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **expected**.area | [ hiber.Area](#hiberarea) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **expected**.shape | [ hiber.Shape](#hibershape) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **expected**.named | [ string](#string) | Specify the name of a name location (NamedLocation) that the device must be in. |
+| named | [ string](#string) | Specify the name of a named location (NamedLocation) that the device must be in. |
 
 ### ModemAlarm.HealthLevelAfterResolved
 
