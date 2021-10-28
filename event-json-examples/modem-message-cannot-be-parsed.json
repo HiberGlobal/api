@@ -24,18 +24,43 @@
       {
         "id": "1",
         "label": {
-          "name": "example-tag"
+          "name": "example-tag",
+          "type": "group"
         }
       },
       {
         "id": "2",
         "label": {
-          "name": "example-tag-2"
+          "name": "example-tag-2",
+          "type": "group"
         }
       }
     ],
+
     "title": "Message received from modem AAAA AAAA cannot be parsed!",
     "description": "Message received from modem AAAA AAAA cannot be parsed!\nThis can be cause by multiple things:\n- invalid configuration in the modem or the stored modem parameters in the system\n- the message body could not be parsed by any of the assigned parsers\n\nSee the message below for more information:\n\nParsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.\n",
     "modemExternalDeviceId": "00 11 22 33 AA BB CC DD"
+  },
+  "title": "Message received from modem AAAA AAAA cannot be parsed!",
+  "description": "Message received from modem AAAA AAAA cannot be parsed!\nThis can be cause by multiple things:\n- invalid configuration in the modem or the stored modem parameters in the system\n- the message body could not be parsed by any of the assigned parsers\n\nSee the message below for more information:\n\nParsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.\n",
+  "modem": {
+    "number": "AAAA AAAA",
+    "name": "AAAA AAAA",
+    "identifier": "00 11 22 33 AA BB CC DD"
+  },
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z"
+  },
+  "type": "MODEM_MESSAGE_CANNOT_BE_PARSED",
+  "healthLevel": {
+    "level": "Error",
+    "color": "red",
+    "colorData": {
+      "fill": "red",
+      "text": "red"
+    },
+    "catchAll": true,
+    "severity": "3"
   }
 }

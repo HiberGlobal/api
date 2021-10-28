@@ -26,5 +26,12 @@
       "timestamp": "2020-06-04T05:15:25.355Z",
       "textual": "2020-06-04T05:15:25.355Z"
     }
-  }
+  },
+  "title": "Token your-token (id 1) has expired.",
+  "description": "Token your-token (id 1) has expired.",
+  "time": {
+    "timestamp": "2020-06-04T05:15:25.355Z",
+    "textual": "2020-06-04T05:15:25.355Z"
+  },
+  "type": "TOKEN_EXPIRED"
 }

@@ -13,5 +13,12 @@
       "timestamp": "2020-06-01T05:15:25.355Z",
       "textual": "2020-06-01T05:15:25.355Z"
     }
-  }
+  },
+  "title": "Event configuration was updated.",
+  "description": "The event configuration for your-organization was updated:\n - Modem message summary period: PT24H \u003d\u003e PT12H",
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z"
+  },
+  "type": "ORGANIZATION_EVENT_CONFIGURATION_UPDATED"
 }

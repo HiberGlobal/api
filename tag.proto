@@ -22,7 +22,7 @@ service TagService {
 message Tag {
     message Label {
         string name = 1;
-        reserved 2;
+        string type = 2;
     }
 
     int64 id = 1;
@@ -33,6 +33,7 @@ message TagSelection {
     repeated string search = 1;
     repeated string names = 2;
     Filter.Tags filter = 3;
+    repeated string types = 4;
 }
 
 message UpdateTagsForItem {

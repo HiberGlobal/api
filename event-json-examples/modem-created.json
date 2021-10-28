@@ -10,18 +10,33 @@
       {
         "id": "1",
         "label": {
-          "name": "example-tag"
+          "name": "example-tag",
+          "type": "group"
         }
       },
       {
         "id": "2",
         "label": {
-          "name": "example-tag-2"
+          "name": "example-tag-2",
+          "type": "group"
         }
       }
     ],
+
     "title": "Modem AAAA AAAA was created.",
     "description": "Modem AAAA AAAA was automatically created for device 00 11 22 33 AA BB CC DD.",
     "modemExternalDeviceId": "00 11 22 33 AA BB CC DD"
-  }
+  },
+  "title": "Modem AAAA AAAA was created.",
+  "description": "Modem AAAA AAAA was automatically created for device 00 11 22 33 AA BB CC DD.",
+  "modem": {
+    "number": "AAAA AAAA",
+    "name": "AAAA AAAA",
+    "identifier": "00 11 22 33 AA BB CC DD"
+  },
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z"
+  },
+  "type": "MODEM_CREATED"
 }

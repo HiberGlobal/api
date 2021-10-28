@@ -20,13 +20,15 @@
         {
           "id": "1",
           "label": {
-            "name": "example-tag"
+            "name": "example-tag",
+            "type": "group"
           }
         },
         {
           "id": "2",
           "label": {
-            "name": "example-tag-2"
+            "name": "example-tag-2",
+            "type": "group"
           }
         }
       ]
@@ -40,17 +42,27 @@
       {
         "id": "1",
         "label": {
-          "name": "example-tag"
+          "name": "example-tag",
+          "type": "group"
         }
       },
       {
         "id": "2",
         "label": {
-          "name": "example-tag-2"
+          "name": "example-tag-2",
+          "type": "group"
         }
       }
     ],
+
     "title": "You transferred 1 modems to your-organization-2.",
     "description": "1 modems are scheduled to be transferred from your-organization to your-organization-2.\nThe following modems are in this transfer:\n - AAAA AAAA"
-  }
+  },
+  "title": "You transferred 1 modems to your-organization-2.",
+  "description": "1 modems are scheduled to be transferred from your-organization to your-organization-2.\nThe following modems are in this transfer:\n - AAAA AAAA",
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z"
+  },
+  "type": "MODEM_TRANSFER_STARTED"
 }

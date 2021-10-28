@@ -33,13 +33,15 @@
         {
           "id": "1",
           "label": {
-            "name": "example-tag"
+            "name": "example-tag",
+            "type": "group"
           }
         },
         {
           "id": "2",
           "label": {
-            "name": "example-tag-2"
+            "name": "example-tag-2",
+            "type": "group"
           }
         }
       ],
@@ -53,16 +55,19 @@
       {
         "id": "1",
         "label": {
-          "name": "example-tag"
+          "name": "example-tag",
+          "type": "group"
         }
       },
       {
         "id": "2",
         "label": {
-          "name": "example-tag-2"
+          "name": "example-tag-2",
+          "type": "group"
         }
       }
     ],
+
     "title": "The last message from modem AAAA AAAA was delayed by 3600 seconds.",
     "description": "The last message from modem AAAA AAAA arrived with a delay of 3600 seconds.",
     "time": {
@@ -79,5 +84,26 @@
       "severity": "2"
     },
     "modemExternalDeviceId": "00 11 22 33 AA BB CC DD"
+  },
+  "title": "The last message from modem AAAA AAAA was delayed by 3600 seconds.",
+  "description": "The last message from modem AAAA AAAA arrived with a delay of 3600 seconds.",
+  "modem": {
+    "number": "AAAA AAAA",
+    "name": "AAAA AAAA",
+    "identifier": "00 11 22 33 AA BB CC DD"
+  },
+  "time": {
+    "timestamp": "2020-06-01T06:15:25.355Z",
+    "textual": "2020-06-01T06:15:25.355Z"
+  },
+  "type": "MODEM_MESSAGE_DELAYED",
+  "healthLevel": {
+    "level": "Warning",
+    "color": "orange",
+    "colorData": {
+      "fill": "orange",
+      "text": "orange"
+    },
+    "severity": "2"
   }
 }

@@ -66,5 +66,12 @@
       "timestamp": "2020-05-22T05:15:25.355Z",
       "textual": "2020-05-22T05:15:25.355Z"
     }
-  }
+  },
+  "title": "Export of messages for modem AAAA AAAA is ready.",
+  "description": "The export example-identifier of messages for modem AAAA AAAA between 2020-05-02T05:15:25.355Z and 2020-06-01T05:15:25.355Z is ready to download:\n\n - export: https://example.com/export/3cr28rtrtcb23t12noex12etc1.json",
+  "time": {
+    "timestamp": "2020-05-22T05:15:25.355Z",
+    "textual": "2020-05-22T05:15:25.355Z"
+  },
+  "type": "EXPORT_READY"
 }

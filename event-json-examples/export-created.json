@@ -39,5 +39,12 @@
       "timestamp": "2020-06-01T05:15:25.355Z",
       "textual": "2020-06-01T05:15:25.355Z"
     }
-  }
+  },
+  "title": "Exporting messages for modem AAAA AAAA to example-identifier.",
+  "description": "An export was started for messages for modem AAAA AAAA between 2020-05-02T05:15:25.355Z and 2020-06-01T05:15:25.355Z.",
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z"
+  },
+  "type": "EXPORT_CREATED"
 }

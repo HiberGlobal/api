@@ -36,5 +36,21 @@
       },
       "severity": "2"
     }
+  },
+  "title": "Token your-token (id 1) will expire in 14 days.",
+  "description": "Token your-token (id 1) will expire in 14 days.",
+  "time": {
+    "timestamp": "2020-05-21T05:15:25.355Z",
+    "textual": "2020-05-21T05:15:25.355Z"
+  },
+  "type": "TOKEN_EXPIRY_WARNING",
+  "healthLevel": {
+    "level": "Warning",
+    "color": "orange",
+    "colorData": {
+      "fill": "orange",
+      "text": "orange"
+    },
+    "severity": "2"
   }
 }

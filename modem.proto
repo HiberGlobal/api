@@ -99,11 +99,15 @@ message Modem {
     /* The amount of time since the last message from this modem was received on the server. */
     Duration inactivity = 30;
 
-    /* Period in days, if modem inactivity exceeds this period, alerts will be triggered and health will go to error */
+    /* Period in days, if modem inactivity exceeds this period, alerts will be triggered and health will go to error.
+     * Deprecated in favor of using an alarm.
+     */
     int32 maximum_inactivity_period = 8 [deprecated = true];
 
-    /* If modem inactivity exceeds this period, alerts will be triggered and health will go to error */
-    Duration maximum_inactivity = 29;
+    /* If modem inactivity exceeds this period, alerts will be triggered and health will go to error.
+     * Deprecated in favor of using an alarm.
+     */
+    Duration maximum_inactivity = 29 [deprecated = true];
 
     /* Deprecated health based on the number of error and warning events this modem has received in the past 30 days
      * Uses the OK, WARNING, ERROR format.
@@ -238,8 +242,11 @@ message Modem {
         string custom_antenna = 4;
     }
 
-    /* Health configuration for the modem. Defines how the health is calculated for certain built-in alarms. */
+    /* Health configuration for the modem. Defines how the health is calculated for certain built-in alarms.
+     * Deprecated: will move to the event health configuration.
+     */
     message HealthConfig {
+        option deprecated = true;
         reserved 1;
 
         /* The health level that unresolvable alarms, like delayed or skipped messages, set the modem to. */
@@ -927,6 +934,8 @@ message UpdatePeripheralsRequest {
 }
 
 message UpdateModemHealthConfig {
+    option deprecated = true;
+
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
@@ -943,6 +952,8 @@ message UpdateModemHealthConfig {
 }
 
 message LicenseKeysRequest {
+    option deprecated = true;
+
     message Response {
         message ModemLicenseKey {
             string modem_number = 1;

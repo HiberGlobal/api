@@ -1,5 +1,5 @@
 {
-  "directAssignmentAdded": {
+  "assigned": {
     "organization": "your-organization",
     "created": {
       "type": "ASSIGNS_ALARM_TO_MODEM",
@@ -19,25 +19,23 @@
         "ownerOrganization": "your-organization"
       }
     },
-    "tags": [
-      {
-        "id": "1",
-        "label": {
-          "name": "example-tag"
-        }
-      },
-      {
-        "id": "2",
-        "label": {
-          "name": "example-tag-2"
-        }
-      }
-    ],
     "title": "example-identifier was assigned to AAAA AAAA.",
-    "description": "example-identifier was assigned to AAAA AAAA.\n\nAny new message from modem AAAA AAAA will now be validated using example-identifier.\n",
+    "description": "example-identifier was assigned to AAAA AAAA.\n\nAny new message from modem AAAA AAAA will now be validated using alarm example (example-identifier).\n",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
       "textual": "2020-06-01T05:15:25.355Z"
     }
-  }
+  },
+  "title": "example-identifier was assigned to AAAA AAAA.",
+  "description": "example-identifier was assigned to AAAA AAAA.\n\nAny new message from modem AAAA AAAA will now be validated using alarm example (example-identifier).\n",
+  "modem": {
+    "number": "AAAA AAAA",
+    "name": "AAAA AAAA",
+    "identifier": "example-identifier"
+  },
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z"
+  },
+  "type": "ASSIGNED"
 }

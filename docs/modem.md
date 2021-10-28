@@ -486,8 +486,8 @@ when the modem is registered into the system or when a subscription is authorize
 | last_message_sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the modem has sent the last message. |
 | last_message_body | [ hiber.BytesOrHex](#hiberbytesorhex) | The body of the last message. |
 | inactivity | [ hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
-| maximum_inactivity_period | [ int32](#int32) | Period in days, if modem inactivity exceeds this period, alerts will be triggered and health will go to error |
-| maximum_inactivity | [ hiber.Duration](#hiberduration) | If modem inactivity exceeds this period, alerts will be triggered and health will go to error |
+| maximum_inactivity_period | [ int32](#int32) | Period in days, if modem inactivity exceeds this period, alerts will be triggered and health will go to error. Deprecated in favor of using an alarm. |
+| maximum_inactivity | [ hiber.Duration](#hiberduration) | If modem inactivity exceeds this period, alerts will be triggered and health will go to error. Deprecated in favor of using an alarm. |
 | health | [ hiber.Health](#hiberhealth) | Deprecated health based on the number of error and warning events this modem has received in the past 30 days Uses the OK, WARNING, ERROR format. |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
 | health_config | [ Modem.HealthConfig](#modemhealthconfig) | Health configuration for unresolvable built-in modem alarms, like delayed or skipped messages. |
@@ -537,6 +537,7 @@ Additional information when this modem is a gateway.
 ### Modem.HealthConfig
 
 Health configuration for the modem. Defines how the health is calculated for certain built-in alarms.
+Deprecated: will move to the event health configuration.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1462,20 +1463,12 @@ api event stream and publishers.
 | MODEM_MESSAGE_BODY_PARSER_CREATED | none | 46 |
 | MODEM_MESSAGE_BODY_PARSER_UPDATED | none | 47 |
 | MODEM_MESSAGE_BODY_PARSER_DELETED | none | 48 |
-| MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_CREATED | none | 49 |
-| MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_UPDATED | none | 50 |
-| MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_DELETED | none | 51 |
-| MODEM_MESSAGE_BODY_PARSER_ASSIGNED | none | 52 |
-| MODEM_MESSAGE_BODY_PARSER_UNASSIGNED | none | 53 |
 | MODEM_ALARM | none | 56 |
 | MODEM_ALARM_CREATED | none | 57 |
 | MODEM_ALARM_UPDATED | none | 58 |
 | MODEM_ALARM_DELETED | none | 59 |
-| DIRECT_ASSIGNMENT_ADDED | none | 63 |
-| DIRECT_ASSIGNMENT_REMOVED | none | 64 |
-| AUTOMATIC_MODEM_ASSIGNMENT_CREATED | none | 60 |
-| AUTOMATIC_MODEM_ASSIGNMENT_UPDATED | none | 61 |
-| AUTOMATIC_MODEM_ASSIGNMENT_DELETED | none | 62 |
+| ASSIGNED | none | 63 |
+| UNASSIGNED | none | 64 |
 | MODEM_TRANSFER_STARTED | none | 17 |
 | MODEM_TRANSFER_RECEIVED | none | 18 |
 | MODEM_TRANSFER_CANCELLED | none | 19 |

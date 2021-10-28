@@ -32,13 +32,15 @@
         {
           "id": "1",
           "label": {
-            "name": "example-tag"
+            "name": "example-tag",
+            "type": "group"
           }
         },
         {
           "id": "2",
           "label": {
-            "name": "example-tag-2"
+            "name": "example-tag-2",
+            "type": "group"
           }
         }
       ],
@@ -65,21 +67,40 @@
       {
         "id": "1",
         "label": {
-          "name": "example-tag"
+          "name": "example-tag",
+          "type": "group"
         }
       },
       {
         "id": "2",
         "label": {
-          "name": "example-tag-2"
+          "name": "example-tag-2",
+          "type": "group"
         }
       }
     ],
+
     "title": "Webhook 10001 in your-organization has failed.",
     "description": "Webhook 10001 (example) in organization your-organization has failed wth the following error:\nthe request timed out",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
       "textual": "2020-06-01T05:15:25.355Z"
     }
+  },
+  "title": "Webhook 10001 in your-organization has failed.",
+  "description": "Webhook 10001 (example) in organization your-organization has failed wth the following error:\nthe request timed out",
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z"
+  },
+  "type": "PUBLISHER_FAILED",
+  "healthLevel": {
+    "level": "Warning",
+    "color": "orange",
+    "colorData": {
+      "fill": "orange",
+      "text": "orange"
+    },
+    "severity": "2"
   }
 }

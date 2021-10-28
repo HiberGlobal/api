@@ -16,21 +16,36 @@
       {
         "id": "1",
         "label": {
-          "name": "example-tag"
+          "name": "example-tag",
+          "type": "group"
         }
       },
       {
         "id": "2",
         "label": {
-          "name": "example-tag-2"
+          "name": "example-tag-2",
+          "type": "group"
         }
       }
     ],
+
     "title": "New message from modem AAAA AAAA was received. It was sent at 2020-06-01 05:15:25.355Z.",
     "description": "A new message from modem AAAA AAAA was sent at 2020-06-01 05:15:25.355Z:\nIt contained the following body (hex): \n 6578616D706C65\n",
     "time": {
       "timestamp": "2020-06-01T06:15:25.355Z",
       "textual": "2020-06-01T06:15:25.355Z"
     }
-  }
+  },
+  "title": "New message from modem AAAA AAAA was received. It was sent at 2020-06-01 05:15:25.355Z.",
+  "description": "A new message from modem AAAA AAAA was sent at 2020-06-01 05:15:25.355Z:\nIt contained the following body (hex): \n 6578616D706C65\n",
+  "modem": {
+    "number": "AAAA AAAA",
+    "name": "AAAA AAAA",
+    "identifier": "00 11 22 33 AA BB CC DD"
+  },
+  "time": {
+    "timestamp": "2020-06-01T06:15:25.355Z",
+    "textual": "2020-06-01T06:15:25.355Z"
+  },
+  "type": "MODEM_MESSAGE_BODY_RECEIVED"
 }

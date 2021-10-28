@@ -23,5 +23,12 @@
         "textual": "2020-06-01T05:15:25.355Z"
       }
     }
-  }
+  },
+  "title": "Modem message summary for 2020-05-31T05:15:25.355Z..2020-06-01T05:15:25.355Z.",
+  "description": "Modem message summary for your-organization for the period 2020-05-31T05:15:25.355Z..2020-06-01T05:15:25.355Z:\nModems active: [-1431655766]\nMessages received: 10\n",
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z"
+  },
+  "type": "MODEM_MESSAGE_SUMMARY"
 }

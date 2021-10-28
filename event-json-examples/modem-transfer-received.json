@@ -24,13 +24,15 @@
         {
           "id": "1",
           "label": {
-            "name": "example-tag"
+            "name": "example-tag",
+            "type": "group"
           }
         },
         {
           "id": "2",
           "label": {
-            "name": "example-tag-2"
+            "name": "example-tag-2",
+            "type": "group"
           }
         }
       ]
@@ -44,17 +46,27 @@
       {
         "id": "1",
         "label": {
-          "name": "example-tag"
+          "name": "example-tag",
+          "type": "group"
         }
       },
       {
         "id": "2",
         "label": {
-          "name": "example-tag-2"
+          "name": "example-tag-2",
+          "type": "group"
         }
       }
     ],
+
     "title": "Your transfer of 1 modems to your-organization-2 has been received.",
     "description": "A transfer of 1 modems from your-organization to your-organization-2 has been received.\nThe following modems are in this transfer:\n - AAAA AAAA"
-  }
+  },
+  "title": "Your transfer of 1 modems to your-organization-2 has been received.",
+  "description": "A transfer of 1 modems from your-organization to your-organization-2 has been received.\nThe following modems are in this transfer:\n - AAAA AAAA",
+  "time": {
+    "timestamp": "2020-06-01T06:15:25.355Z",
+    "textual": "2020-06-01T06:15:25.355Z"
+  },
+  "type": "MODEM_TRANSFER_RECEIVED"
 }

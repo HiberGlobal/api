@@ -13,28 +13,56 @@
     "healthLevel": {
       "level": "Warning",
       "color": "Yellow",
-      "colorData": { "fill":  "DarkYellow", "text": "Yellow" },
+      "colorData": {
+        "fill": "DarkYellow",
+        "text": "Yellow"
+      },
       "severity": "2"
     },
     "tags": [
       {
         "id": "1",
         "label": {
-          "name": "example-tag"
+          "name": "example-tag",
+          "type": "group"
         }
       },
       {
         "id": "2",
         "label": {
-          "name": "example-tag-2"
+          "name": "example-tag-2",
+          "type": "group"
         }
       }
     ],
+
     "title": "Expected battery to be within 20..100%, but it is now at 15%!",
     "description": "Modem AAAA AAAA has the following alarms (via example-identifier):\n\n{Expected battery to be within 20..100%, but it is now at 15%! (by check example-check-id)}\n",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
       "textual": "2020-06-01T05:15:25.355Z"
     }
+  },
+  "title": "Expected battery to be within 20..100%, but it is now at 15%!",
+  "description": "Modem AAAA AAAA has the following alarms (via example-identifier):\n\n{Expected battery to be within 20..100%, but it is now at 15%! (by check example-check-id)}\n",
+  "modem": {
+    "number": "AAAA AAAA",
+    "name": "AAAA AAAA",
+    "identifier": "00 11 22 33 AA BB CC DD"
+  },
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z"
+  },
+  "type": "MODEM_ALARM",
+  "healthLevel": {
+    "level": "Warning",
+    "color": "Yellow",
+    "colorData": {
+      "fill": "DarkYellow",
+      "text": "Yellow"
+    },
+    "severity": "2"
   }
 }
+

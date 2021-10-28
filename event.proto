@@ -14,13 +14,11 @@ import "modem.proto";
 import "modem_alarm.proto";
 import "modem_claim.proto";
 import "modem_message_body_parser.proto";
-import "modem_message_body_parser_automatic_assignment.proto";
 import "modem_transfer.proto";
 import "organization.proto";
 import "publisher.proto";
 import "tag.proto";
 import "token.proto";
-import "user.proto";
 import "webhook.proto";
 
 option java_multiple_files = false;
@@ -35,15 +33,30 @@ service EventService {
     rpc List (ListEventsRequest) returns (ListEventsRequest.Response);
     rpc Stream (EventStreamRequest) returns (stream Event);
     rpc Resolve (ResolveEvent.Request) returns (ResolveEvent.Response);
+    rpc History (EventHistory.Request) returns (EventHistory.Response);
 
     rpc GetEventConfiguration (EventConfiguration.Request) returns (EventConfiguration);
     rpc UpdateEventConfiguration (EventConfiguration) returns (EventConfiguration);
+    rpc UpdateEventHealthConfiguration (UpdateEventHealthConfiguration.Request) returns (UpdateEventHealthConfiguration.Response);
 }
 
 /* Generic Event object, used in streams where events are mixed. Protobuf provides helper methods to extract
  * the contained object.
  */
 message Event {
+    /* The modem data for this event, if it is related to a single modem. */
+    message Modem {
+        string number = 1;
+        string name = 2;
+        string identifier = 3;
+    }
+
+    /* Time of the event. */
+    EventType type = 98;
+
+    /* Time of the event. */
+    Timestamp time = 99;
+
     /* Whether this event causes the 'Error' health level.
      * If your organization does not use the default health levels, this field will be omitted.
      * Use health_level instead.
@@ -59,42 +72,44 @@ message Event {
     /* The health level caused by this event.
      * This health generally applies to either a modem, a token or a publisher,
      * and is also applied to the organization health.
+     * Not every event affects health, so this field might be empty.
      */
     health.HealthLevel health_level = 101;
+
+    /* Short text describing the event. */
+    string title = 102;
+
+    /* Longer text describing the event in more detail. */
+    string description = 103;
+
+    /* The modem number for this event, if it is related to a single modem. */
+    Modem modem = 104;
 
     oneof event {
         ModemEvent.ModemCreatedEvent modem_created = 55;
         ModemEvent.ModemUpdatedEvent modem_updated = 39;
         ModemEvent.ModemLocationUpdatedEvent modem_location_updated = 2;
         ModemEvent.ModemActivatedEvent modem_activated = 36;
-        ModemEvent.ModemStaleEvent modem_stale = 3;
+        ModemEvent.ModemStaleEvent modem_stale = 3 [deprecated = true];
 
         ModemEvent.MessageEvent.ModemMessageReceivedEvent modem_message_received = 4;
         ModemEvent.MessageEvent.ModemMessageBodyReceivedEvent modem_message_body_received = 44;
         ModemEvent.MessageEvent.ModemMessageBodyParsedEvent modem_message_body_parsed = 45;
-        ModemEvent.MessageEvent.ModemMessageDroppedEvent modem_message_dropped = 5;
-        ModemEvent.MessageEvent.ModemMessageDelayedEvent modem_message_delayed = 6;
+        ModemEvent.MessageEvent.ModemMessageDroppedEvent modem_message_dropped = 5 [deprecated = true];
+        ModemEvent.MessageEvent.ModemMessageDelayedEvent modem_message_delayed = 6 [deprecated = true];
         ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent modem_message_cannot_be_parsed = 7;
 
         ModemEvent.MessageBodyParserEvent.CreatedEvent modem_message_body_parser_created = 46;
         ModemEvent.MessageBodyParserEvent.UpdatedEvent modem_message_body_parser_updated = 47;
         ModemEvent.MessageBodyParserEvent.DeletedEvent modem_message_body_parser_deleted = 48;
-        ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.CreatedEvent modem_message_body_parser_automatic_assignment_created = 49 [deprecated = true];
-        ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.UpdatedEvent modem_message_body_parser_automatic_assignment_updated = 50 [deprecated = true];
-        ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.DeletedEvent modem_message_body_parser_automatic_assignment_deleted = 51 [deprecated = true];
-        ModemEvent.MessageBodyParserEvent.AssignedEvent modem_message_body_parser_assigned = 52 [deprecated = true];
-        ModemEvent.MessageBodyParserEvent.UnassignedEvent modem_message_body_parser_unassigned = 53 [deprecated = true];
 
         ModemEvent.AlarmEvent.ModemAlarmEvent modem_alarm = 56;
         ModemEvent.AlarmEvent.CreatedEvent modem_alarm_created = 57;
         ModemEvent.AlarmEvent.UpdatedEvent modem_alarm_updated = 58;
         ModemEvent.AlarmEvent.DeletedEvent modem_alarm_deleted = 59;
 
-        AssignmentEvent.AutomaticModemAssignmentCreatedEvent automatic_modem_assignment_created = 60;
-        AssignmentEvent.AutomaticModemAssignmentUpdatedEvent automatic_modem_assignment_updated = 61;
-        AssignmentEvent.AutomaticModemAssignmentDeletedEvent automatic_modem_assignment_deleted = 62;
-        AssignmentEvent.DirectAssignmentAddedEvent direct_assignment_added = 63;
-        AssignmentEvent.DirectAssignmentRemovedEvent direct_assignment_removed = 64;
+        AssignmentEvent.AssignedEvent assigned = 68;
+        AssignmentEvent.UnassignedEvent unassigned = 69;
 
         UserEvent.UserAddedEvent user_added = 8;
         UserEvent.UserRemovedEvent user_removed = 9;
@@ -130,7 +145,7 @@ message Event {
         ExportEvent.ExportReadyEvent export_ready = 66;
         ExportEvent.ExportFailedEvent export_failed = 67;
     }
-    reserved 11 to 14, 21, 22, 26 to 29;
+    reserved 11 to 14, 21, 22, 26 to 29, 49 to 53, 60 to 64;
 
     message ModemEvent {
         message ModemCreatedEvent {
@@ -197,6 +212,8 @@ message Event {
          * generated as soon as this condition is determined
          */
         message ModemStaleEvent {
+            option deprecated = true;
+
             string organization = 1;
             string modem_number = 2;
 
@@ -346,6 +363,8 @@ message Event {
              * If no messages come in for a certain period, the ModemStaleEvent is used.
              */
             message ModemMessageDroppedEvent {
+                option deprecated = true;
+
                 string organization = 1;
                 string modem_number = 2;
 
@@ -377,6 +396,8 @@ message Event {
              * station, so that the satellite takes longer to send its data on.
              */
             message ModemMessageDelayedEvent {
+                option deprecated = true;
+
                 string organization = 1;
                 string modem_number = 2;
 
@@ -472,66 +493,6 @@ message Event {
                 string title = 3;
                 string description = 4;
                 Timestamp time = 5;
-            }
-
-            message AssignedEvent {
-                string organization = 1;
-                repeated string parsers = 2;
-                repeated string modems = 3;
-                repeated tag.Tag tags = 4;
-                string title = 5;
-                string description = 6;
-                Timestamp time = 7;
-            }
-
-            message UnassignedEvent {
-                string organization = 1;
-                repeated string parsers = 2;
-                repeated string modems = 3;
-                repeated tag.Tag tags = 4;
-                string title = 5;
-                string description = 6;
-                Timestamp time = 7;
-            }
-
-            message AutomaticAssignmentEvent {
-                message CreatedEvent {
-                    string organization = 1;
-                    modem.message.bodyparser.ModemMessageBodyParserAutomaticAssignmentRule created = 2;
-                    string title = 3;
-                    string description = 4;
-                    Timestamp time = 5;
-                }
-
-                message UpdatedEvent {
-                    message Update {
-                        UpdateClearableString description = 1;
-                        repeated string parsers_added = 2;
-                        repeated string parsers_removed = 3;
-                        Filter.Modems.Update modems = 4;
-                        Filter.Tags.Update tags = 5;
-                        repeated string manufacturers_added = 6;
-                        repeated string manufacturers_removed = 7;
-                        map<string, string> peripherals_added = 8;
-                        repeated string peripherals_removed = 9;
-                        Filter.ChildOrganizations.Update apply_to_child_organizations = 10;
-                        UpdateBoolean active = 11;
-                    }
-
-                    string organization = 1;
-                    Update updated = 2;
-                    string title = 3;
-                    string description = 4;
-                    Timestamp time = 5;
-                }
-
-                message DeletedEvent {
-                    string organization = 1;
-                    string deleted = 2;
-                    string title = 3;
-                    string description = 4;
-                    Timestamp time = 5;
-                }
             }
         }
 
@@ -681,63 +642,22 @@ message Event {
     }
 
     message AssignmentEvent {
-        message DirectAssignmentAddedEvent {
+        message AssignedEvent {
             string organization = 1;
-            assign.DirectAssignment created = 2;
+            assign.Assignment created = 2;
             repeated tag.Tag tags = 4;
             string title = 5;
             string description = 6;
             Timestamp time = 7;
         }
 
-        message DirectAssignmentRemovedEvent {
+        message UnassignedEvent {
             string organization = 1;
-            assign.DirectAssignment removed = 2;
+            assign.Assignment removed = 2;
             repeated tag.Tag tags = 4;
             string title = 5;
             string description = 6;
             Timestamp time = 7;
-        }
-
-        message AutomaticModemAssignmentCreatedEvent {
-            string organization = 1;
-            assign.AutomaticModemAssignment created = 2;
-            string title = 3;
-            string description = 4;
-            Timestamp time = 5;
-        }
-
-        message AutomaticModemAssignmentUpdatedEvent {
-            message Update {
-                UpdateClearableString description = 1;
-                map<string, google.protobuf.Struct> alarms_added = 2;
-                repeated string alarms_removed = 3;
-                repeated string parsers_added = 12;
-                repeated string parsers_removed = 13;
-                Filter.Modems.Update modems = 4;
-                Filter.Tags.Update tags = 5;
-                repeated string manufacturers_added = 6;
-                repeated string manufacturers_removed = 7;
-                map<string, string> peripherals_added = 8;
-                repeated string peripherals_removed = 9;
-                Filter.ChildOrganizations.Update apply_to_child_organizations = 10;
-                UpdateBoolean active = 11;
-            }
-
-            string organization = 1;
-            string identifier = 2;
-            Update updated = 3;
-            string title = 4;
-            string description = 5;
-            Timestamp time = 6;
-        }
-
-        message AutomaticModemAssignmentDeletedEvent {
-            string organization = 1;
-            string deleted = 2;
-            string title = 3;
-            string description = 4;
-            Timestamp time = 5;
         }
     }
 
@@ -1069,24 +989,28 @@ message EventSelection {
     Filter.Tags tags = 4;
     TimeRange time_range = 6;
 
-    /* Return events that cause the default Error health.
-     * Deprecated: use health_levels instead for better accuracy if you've customized health levels or event health.
-     */
-    bool errors_only = 7 [deprecated = true];
-
-    /* Return events that cause the default Warning health.
-     * Deprecated: use health_levels instead for better accuracy if you've customized health levels or event health.
-     */
-    bool warnings_only = 10 [deprecated = true];
-
     /* Filter events by actual configured health level. */
     repeated string health_levels = 11;
 
+    /* By default, events that have been resolved are not listed. */
+    bool include_resolved_events = 9;
+
     /* When not set, no unbundled events are returned.
      * When set, returns unbundled events per type, paginated per type.
+     * Deprecated: use unbundled_events on ListEventsRequest
      */
-    bool unbundled_events = 8;
-    bool include_resolved_events = 9;
+    bool unbundled_events = 8 [deprecated = true];
+
+
+    /* Return only events that cause the default Error health.
+     * Deprecated: use health_levels with custom health levels instead.
+     */
+    bool errors_only = 7 [deprecated = true];
+
+    /* Return only events that cause the default Warning health.
+     * Deprecated: use health_levels with custom health levels instead.
+     */
+    bool warnings_only = 10 [deprecated = true];
 }
 
 /* Lists all events matching the given criteria.
@@ -1125,6 +1049,35 @@ message ListEventsRequest {
     /* Pagination is applied per event type on unbundled events. It is not necessary for bundled events. */
     Pagination pagination = 3;
     Sort sort = 4;
+    /* When not set, bundled/grouped events are returned.
+     * When set, returns unbundled events per type, paginated per type.
+     * Overrides unbundled_events in EventSelection message.
+     */
+    bool unbundled_events = 5;
+}
+
+/* Get the history of events that match the given filter, chronologically (by default, from now backwards in time).
+ *
+ * Only returns the Event with first-level fields set, event details are not included in the response
+ * (the oneof is not set).
+ */
+message EventHistory {
+    /* Selection for which events to include the response.
+     * Using the EventSelection you'll be able to filter on specific types, or other properties of events.
+     * The Pagination object will let you limit the number of events returned.
+     */
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        EventSelection selection = 2;
+        Pagination pagination = 3;
+    }
+
+    message Response {
+        Request request = 1;
+        repeated Event events = 2;
+        Pagination.Result pagination = 3;
+    }
 }
 
 /* Creates a stream for new events, matching the provided selection.
@@ -1189,11 +1142,79 @@ message EventConfiguration {
         bool include_empty_summaries = 4;
     }
 
+    /* Details the health level configuration for an event-type.
+     * Health of the system can be influenced by multiple things, among which certain events.
+     * When an event that has health associated with it,
+     * said health level will be applied to the part of the system it refers to.
+     * For instance, an event about not being able to parse modem messages, will influence modem health.
+     * An event about a failing parser, will affect parser health.
+     *
+     * In general, when multiple events affect the health level of a subsystem,
+     * the most severe health will be applied.
+     *
+     * When an expiry duration is set, events will no longer affect health of the subsystem after the configured period.
+     * Health levels reset to the least severe applicable level, typically "Ok".
+     *
+     * For instance, a modem-message-delayed event, might not be relevant anymore after 5 days.
+     * By setting expiry to "5d", the event will resolve automatically 5 days after the last event happened.
+     * Depending on other factors that influence modem health,
+     * the health level will be reset to the least severe health level available.
+     *
+     * If there is no expiry duration, events need to be resolved manually.
+     *
+     * To update, use EventService/UpdateEventHealthConfiguration(UpdateEventHealthConfiguration.Request)
+     */
+    message EventHealthLevelConfiguration {
+        /* The event type for which this configuration is applicable. */
+        EventType type = 1;
+        /* The health level to produce when this event happens. */
+        health.HealthLevel level = 2;
+        /* If set, the duration for which the health level is applied. Afterward this event has no effect on health. */
+        Duration expiry = 3;
+
+        /* When this configuration item was created. */
+        Timestamp created_at = 4;
+        /* The most recent time this configuration item was updated. */
+        Timestamp updated_at = 5;
+    }
+
     string organization = 1;
     ModemMessageSummaryConfiguration modem_message_summary_configuration = 2;
+
+    /* List of event-types that have a health-level associated with them. Ignored when updating. */
+    repeated EventHealthLevelConfiguration event_health_level_configuration = 3;
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+    }
+}
+
+
+message UpdateEventHealthConfiguration {
+
+    /* Updates health-level configuration for a specific event-type.
+     * To find available health-level names, use HealthService/List(ListHealthLevels.Request).
+     * To clear an existing expiry, set `updated` true and leave `duration` to be the default value.
+     */
+    message UpdateEventHealth {
+        /* When set, events of this type will affect the system with the configured health level. */
+        EventType type = 1;
+        /* The health level to produce when the event happens, by name. */
+        string level = 2;
+        /* After the expiry duration, the event will not affect health anymore. Clear for manual resolving of events. */
+        UpdateOptionalDuration expiry = 3;
+    }
 
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
+        /* List of event-types to update health for. When listing same event twice, behaviour is undefined. */
+        repeated UpdateEventHealth updates = 2;
+    }
+    message Response {
+        /* The original request, echoed back. */
+        Request request = 1;
+        /* The updated event configuration. */
+        EventConfiguration event_configuration = 2;
     }
 }

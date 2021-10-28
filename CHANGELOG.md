@@ -1,5 +1,115 @@
 # Changelog Hiber API
 
+### Upcoming
+
+### 0.91 (2021-10-28)
+
+This release replaces a number of assignment-related services and reduces it all to a single, simlpe assignment service.
+This release also contains a lot of work to improve events, including listing them in a timeline and
+adding base information without having to look inside the oneof to determine the details.
+
+Note: this release contains a number of backwards-incompatible changes!
+
+#### Changes
+
+##### AssignmentService
+
+- **[B]** Removed the entire `DirectAssignmentservice`, `AutomaticAssignmentservice`,
+  `ModemMessageBodyParserAssignmentService` and `ModemMessageBodyParserAutomaticAssignmentService`.
+  - All functionality is now available in the `AssignmentService`.
+    Unfortunately, this could not be done in a backwards-compatible way.
+  - **[B]** Removed the option to assign an alarm to a parser, for now.
+- Added `AssignmentService.assign` to assign things.
+  - Added assignments to tags:
+    - modem to tag: implements the modem tags.
+    - alarm to tag: effectively assigns the alarm to all modems with that tag.
+    - parser to tag: effectively assigns the parser to all modems with that tag.
+- Added `AssignmentService.unassign` to remove assignments.
+- Added `AssignmentService.TagAssignments` to list tags and everything assigned to them.
+- Added `AssignmentService.AlarmAssignments` to list alarms with everything they are assigned to.
+- Added `AssignmentService.ModemMessageBodyParserAssignments` to list parsers with everything they are assigned to.
+- Introduced new assignment events:
+  - `AssignedEvent` for a new assignments.
+  - `UnassignedEvent` when an assignment is removed.
+
+##### EventService
+
+- Added `EventHistory` to list all `Event`s in single timeline. Does not fill the event details in `Event.event` oneof.
+  - Added a lot of common information to `Event`:
+    - Added `Event.type`.
+    - Added `Event.time`.
+    - Added `Event.title` and `Event.description`.
+    - Added `Event.modem`, which is a `Event.Modem` ocject with `number`, `name` and `identifier`.
+- Added `UpdateEventHealthConfiguration` to configure the effect events have on the health of the system.
+  This only allows changing health for events that actually affect health.
+- Added `EventSelection.include_resolved_events` to include resolved events.
+- Added `ListEventsRequest.unbundled_events` to replace `EventSelection.unbundled_events`.
+  - Deprecated `EventSelection.unbundled_events`.
+- **[B]** Removed a number of assignment-related events. They have all been replaced with the new assignment events.
+  - **[B]** Removed `ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.CreatedEvent` and
+    `EventType.MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_CREATED`.
+  - **[B]** Removed `ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.UpdatedEvent` and
+    `EventType.MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_UPDATED`.
+  - **[B]** Removed `ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.DeletedEvent` and
+    `EventType.MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_DELETED`.
+  - **[B]** Removed `ModemEvent.MessageBodyParserEvent.AssignedEvent` and
+    `EventType.MODEM_MESSAGE_BODY_PARSER_ASSIGNED`.
+  - **[B]** Removed `ModemEvent.MessageBodyParserEvent.UnassignedEvent` and
+    `EventType.MODEM_MESSAGE_BODY_PARSER_UNASSIGNED`.
+  - **[B]** Removed `AssignmentEvent.AutomaticModemAssignmentCreatedEvent` and
+    `EventType.AUTOMATIC_MODEM_ASSIGNMENT_CREATED`.
+  - **[B]** Removed `AssignmentEvent.AutomaticModemAssignmentUpdatedEvent` and
+    `EventType.AUTOMATIC_MODEM_ASSIGNMENT_UPDATED`.
+  - **[B]** Removed `AssignmentEvent.AutomaticModemAssignmentDeletedEvent` and
+    `EventType.AUTOMATIC_MODEM_ASSIGNMENT_DELETED`.
+  - **[B]** Removed `AssignmentEvent.DirectAssignmentAddedEvent` and `EventType.DIRECT_ASSIGNMENT_ADDED`.
+  - **[B]** Removed `AssignmentEvent.DirectAssignmentRemovedEvent` and `EventType.DIRECT_ASSIGNMENT_REMOVED`.
+  - Added `AssignmentEvent.AssignedEvent` and `EventType.ASSIGNED` for a new assignments,
+    or when assignments are updated
+  - Added `AssignmentEvent.UnassignedEvent` and `EventType.UNASSIGNED` when an assignment is removed.
+- Deprecated a few events that will be replaced by alarms:
+  - `ModemStaleEvent`: use an inactivity check in an alarm instead.
+  - `ModemMessageDroppedEvent`: only worked for some modems.
+  - `ModemMessageDelayedEvent`: use a delayed check in an alarm instead.
+
+##### ModemService
+
+- Deprecated `Modem.maximum_inactivity_period` and `Modem.maximum_inactivity`:
+  use an inactivity check in an alarm instead.
+- Deprecated `Modem.HealthConfig`: use the new health configuration for events instead.
+- Deprecated `LicenseKeysRequest`: this is no longer in use and will be removed soon.
+
+##### TagService
+
+- Add `type` to `Tag.Label`, to give tags more flexibility. All current tags have been set to the default type `group`.
+  - New tags for which no type is specified will default to group, but this may change in the future.
+
+#### Backwards incompatible changes
+
+- **[B]** Removed the `DirectAssignmentservice`.
+- **[B]** Removed the `AutomaticAssignmentservice`.
+- **[B]** Removed the `ModemMessageBodyParserAssignmentService`.
+- **[B]** Removed the `ModemMessageBodyParserAutomaticAssignmentService`.
+- **[B]** Removed the option to assign an alarm to a parser, for now.
+- **[B]** Removed `ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.CreatedEvent` and
+  `EventType.MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_CREATED`.
+- **[B]** Removed `ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.UpdatedEvent` and
+  `EventType.MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_UPDATED`.
+- **[B]** Removed `ModemEvent.MessageBodyParserEvent.AutomaticAssignmentEvent.DeletedEvent` and
+  `EventType.MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_DELETED`.
+- **[B]** Removed `ModemEvent.MessageBodyParserEvent.AssignedEvent` and
+  `EventType.MODEM_MESSAGE_BODY_PARSER_ASSIGNED`.
+- **[B]** Removed `ModemEvent.MessageBodyParserEvent.UnassignedEvent` and
+  `EventType.MODEM_MESSAGE_BODY_PARSER_UNASSIGNED`.
+- **[B]** Removed `AssignmentEvent.AutomaticModemAssignmentCreatedEvent` and
+  `EventType.AUTOMATIC_MODEM_ASSIGNMENT_CREATED`.
+- **[B]** Removed `AssignmentEvent.AutomaticModemAssignmentUpdatedEvent` and
+  `EventType.AUTOMATIC_MODEM_ASSIGNMENT_UPDATED`.
+- **[B]** Removed `AssignmentEvent.AutomaticModemAssignmentDeletedEvent` and
+  `EventType.AUTOMATIC_MODEM_ASSIGNMENT_DELETED`.
+- **[B]** Removed `AssignmentEvent.DirectAssignmentAddedEvent` and `EventType.DIRECT_ASSIGNMENT_ADDED`.
+- **[B]** Removed `AssignmentEvent.DirectAssignmentRemovedEvent` and `EventType.DIRECT_ASSIGNMENT_REMOVED`.
+
 ### 0.90 (2021-10-11)
 
 This release contains a number of bugfixes and removes some deprecated options from ModemAlarm.

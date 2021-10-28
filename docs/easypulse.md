@@ -423,6 +423,7 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | name | [ string](#string) | none |
+| type | [ string](#string) | none |
 
 ### hiber.tag.TagSelection
 
@@ -433,6 +434,7 @@ so not all messages listed here are referenced.)
 | search | [repeated string](#string) | none |
 | names | [repeated string](#string) | none |
 | filter | [ hiber.Filter.Tags](#hiberfiltertags) | none |
+| types | [repeated string](#string) | none |
 
 
 ### Enums
@@ -895,20 +897,12 @@ api event stream and publishers.
 | MODEM_MESSAGE_BODY_PARSER_CREATED | none | 46 |
 | MODEM_MESSAGE_BODY_PARSER_UPDATED | none | 47 |
 | MODEM_MESSAGE_BODY_PARSER_DELETED | none | 48 |
-| MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_CREATED | none | 49 |
-| MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_UPDATED | none | 50 |
-| MODEM_MESSAGE_BODY_PARSER_AUTOMATIC_ASSIGNMENT_DELETED | none | 51 |
-| MODEM_MESSAGE_BODY_PARSER_ASSIGNED | none | 52 |
-| MODEM_MESSAGE_BODY_PARSER_UNASSIGNED | none | 53 |
 | MODEM_ALARM | none | 56 |
 | MODEM_ALARM_CREATED | none | 57 |
 | MODEM_ALARM_UPDATED | none | 58 |
 | MODEM_ALARM_DELETED | none | 59 |
-| DIRECT_ASSIGNMENT_ADDED | none | 63 |
-| DIRECT_ASSIGNMENT_REMOVED | none | 64 |
-| AUTOMATIC_MODEM_ASSIGNMENT_CREATED | none | 60 |
-| AUTOMATIC_MODEM_ASSIGNMENT_UPDATED | none | 61 |
-| AUTOMATIC_MODEM_ASSIGNMENT_DELETED | none | 62 |
+| ASSIGNED | none | 63 |
+| UNASSIGNED | none | 64 |
 | MODEM_TRANSFER_STARTED | none | 17 |
 | MODEM_TRANSFER_RECEIVED | none | 18 |
 | MODEM_TRANSFER_CANCELLED | none | 19 |
