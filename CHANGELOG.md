@@ -2,6 +2,51 @@
 
 ### Upcoming
 
+### 0.92 (2021-11-08)
+
+This release adds some much-needed defaults and fields to the AlarmService,
+adds a call to show the location history for a modem and fixes some bugs.
+
+#### Changes
+
+##### AlarmService
+
+- Added optional `name` to `ModemAlarm`.
+- Added optional `description` to `ModemAlarm.Check`
+- Renamed `ModemAlarm.Check.identifier` to `ModemAlarm.Check.name`, since it is not like other identifiers.
+- Added default names for checks, based on the initial config.
+- Added default error message templates for all check types:
+  - LocationCheck: "Modem {modem} is no longer in {expected}! It is now at {actual}."
+  - InactivityCheck: "Modem {modem} is inactive! It has not sent any messages for {actual}!"
+  - DelayedCheck: "Message from {modem} was delayed for {actual}!"
+  - FieldCheck.EqualsCheck: "{modem}: {field:path} should be {expected}, but was {actual:.3f}!"
+  - FieldCheck.OneOfCheck: "{modem}: {field:path} should be in {expected}, but was {actual:.3f}!"
+  - FieldCheck.MinimumCheck: "{modem}: {field:path} should be higher than {expected}, but was {actual:.3f}!"
+  - FieldCheck.MaximumCheck: "{modem}: {field:path} should be lower than {expected}, but was {actual:.3f}!"
+  - FieldCheck.ThresholdCheck: "{modem}: {field:path} should be between {field:threshold:minimum} and
+      {field:threshold:maximum}, but was {actual:.3f}!"
+  - FieldCheck.DeltaCheck: "{modem}: delta for {field:path} should be between {field:delta:threshold:minimum} and
+      {field:delta:threshold:maximum}, but was {actual:.3f} (from {field:delta:previous:.3f} to
+      {field:delta:current:.3f})"
+- Fixed a number of bugs related to named locations used in alarms.
+
+##### EventService
+
+- **[B]** Removed `ModemMessageDroppedEvent` and its event type.
+
+##### MapService
+
+- Added `LocationHistory` to list the location history for a modem, with path simplification based on the zoom level.
+
+##### ModemTransferService
+
+- Fixed a bug that blocked the transfer of a connected device without its gateway, even though the gateway
+  was active in the recipient organization.
+
+##### NamedLocationService
+
+- Fixed a bug where named locations could not be deleted.
+
 ### 0.91 (2021-10-28)
 
 This release replaces a number of assignment-related services and reduces it all to a single, simlpe assignment service.

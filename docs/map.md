@@ -60,6 +60,9 @@ a controlled amount of groups.
 
 - Messages
   - [GroundStation](#groundstation)
+  - [LocationHistory](#locationhistory)
+  - [LocationHistory.Request](#locationhistoryrequest)
+  - [LocationHistory.Response](#locationhistoryresponse)
   - [MapTileItem](#maptileitem)
   - [MapTileItem.Group](#maptileitemgroup)
   - [MapTileItem.Modem](#maptileitemmodem)
@@ -125,6 +128,12 @@ Map of modems, in different map levels to enable data to be displayed efficientl
 
 Show the selected modems on the map, in a selected area.
 
+### LocationHistory
+> **rpc** LocationHistory([LocationHistory.Request](#locationhistoryrequest))
+    [LocationHistory.Response](#locationhistoryresponse)
+
+List the location history for a modem.
+
 
 ## Messages
 
@@ -137,6 +146,40 @@ Currently, ground station is just a marker on the map.
 | ----- | ---- | ----------- |
 | location | [ hiber.Location](#hiberlocation) | none |
 | name | [ string](#string) | none |
+
+### LocationHistory
+
+List the location history for a modem.
+This is typically used to plot a path on a map based on the locations the modem sent.
+
+Depending on the map zoom level, the data set is reduced to reduce the number of points on the map, using the
+Ramer–Douglas–Peucker algorithm.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| location | [ hiber.Location](#hiberlocation) | The location for this point in the history. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **when**.time | [ hiber.Timestamp](#hibertimestamp) | The time the modem was at this location. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **when**.time_range | [ hiber.TimeRange](#hibertimerange) | The time the modem was at this location, if it was at the location for longer period. |
+
+### LocationHistory.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| modem_number | [ string](#string) | The modem to get the location history for. |
+| time_range | [ hiber.TimeRange](#hibertimerange) | The time the history should be in. Defaults to 7 days ago to now. |
+| level | [ int32](#int32) | Google Maps zoom level, from 0 to 21, where 0 is a view of the whole world and 21 is zoomed in as far as possible. |
+
+### LocationHistory.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| history | [repeated LocationHistory](#locationhistory) | none |
+| request | [ LocationHistory.Request](#locationhistoryrequest) | none |
 
 ### MapTileItem
 
@@ -689,7 +732,6 @@ api event stream and publishers.
 | MODEM_MESSAGE_RECEIVED | none | 5 |
 | MODEM_MESSAGE_BODY_PARSED | none | 39 |
 | MODEM_MESSAGE_BODY_RECEIVED | none | 45 |
-| MODEM_MESSAGE_DROPPED | none | 13 |
 | MODEM_MESSAGE_DELAYED | none | 14 |
 | MODEM_MESSAGE_CANNOT_BE_PARSED | none | 15 |
 | MODEM_MESSAGE_SUMMARY | none | 42 |

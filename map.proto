@@ -66,6 +66,9 @@ option go_package = "hiber";
 service MapService {
     /* Show the selected modems on the map, in a selected area. */
     rpc TileMap (TileMapRequest) returns (TileMapRequest.Response);
+
+    /* List the location history for a modem. */
+    rpc LocationHistory (LocationHistory.Request) returns (LocationHistory.Response);
 }
 
 /* The location of ground stations that receive the data sent from the satellite(s).
@@ -170,4 +173,42 @@ message Satellite {
     int32 id = 1;
     string name = 2;
     repeated Position positions = 3;
+}
+
+/* List the location history for a modem.
+ * This is typically used to plot a path on a map based on the locations the modem sent.
+ *
+ * Depending on the map zoom level, the data set is reduced to reduce the number of points on the map, using the
+ * Ramer–Douglas–Peucker algorithm.
+ */
+message LocationHistory {
+    /* The location for this point in the history. */
+    Location location = 1;
+
+    oneof when {
+        /* The time the modem was at this location. */
+        Timestamp time = 2;
+
+        /* The time the modem was at this location, if it was at the location for longer period. */
+        TimeRange time_range = 3;
+    }
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* The modem to get the location history for. */
+        string modem_number = 2;
+
+        /* The time the history should be in. Defaults to 7 days ago to now. */
+        TimeRange time_range = 3;
+
+        /* Google Maps zoom level, from 0 to 21, where 0 is a view of the whole world and 21 is zoomed in as far as possible. */
+        int32 level = 4;
+    }
+
+    message Response {
+        repeated LocationHistory history = 1;
+        Request request = 2;
+    }
 }

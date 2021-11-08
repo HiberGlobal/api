@@ -276,6 +276,7 @@ This is a shortcut for creating an alarm and then adding checks, and as such can
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| name | [ string](#string) | A name for the alarm. |
 | description | [ string](#string) | A short description of what the alarm should do. |
 | trigger_condition | [ ModemAlarm.TriggerCondition](#modemalarmtriggercondition) | Condition determining when an alarm is triggered if it has multiple checks. |
 | checks | [repeated ModemAlarm.Check](#modemalarmcheck) | The checks to add to this alarm. Shortcut for creating an alarm and then adding checks to it. |
@@ -392,7 +393,8 @@ would have the following parameters:
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifier | [ string](#string) | The identifier for this alarm. This identifier is globally unique, since the alarm can be shared to child organizations. |
-| description | [ string](#string) | none |
+| name | [ string](#string) | Short name for this alarm (optional). |
+| description | [ string](#string) | Longer description for this alarm (optional). |
 | available_to_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Availability to child organizations. This alarm can be shared to child organizations, so it can be assigned to their modems, either directly or automatically over all selected child organizations. Only the owner organization is able to edit the alarm. |
 | trigger_condition | [ ModemAlarm.TriggerCondition](#modemalarmtriggercondition) | Condition determining when an alarm is triggered if it has multiple checks. |
 | default_health_level | [ string](#string) | The default health level for checks in this alarm, if they have no health_level configured. |
@@ -440,7 +442,8 @@ Numeric values can be formatted with an extra postfix on the parameters
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| identifier | [ string](#string) | Identifier for this check, unique within the alarm. This is used to update or remove the check, and to determine the destination for any parameters. |
+| name | [ string](#string) | Name of this check, unique within the alarm. This is used to update or remove the check, and to determine the destination for any parameters. If omitted, a random name is generated based on the type of check. |
+| description | [ string](#string) | Longer description for this check (optional). |
 | health_level | [ string](#string) | The health level that this check would cause for a modem, when it fails. If not set, the alarm default is used. |
 | error_message_template | [ string](#string) | The error message template for this check, with parameters that will be filled in based on the check. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.location | [ ModemAlarm.Check.LocationCheck](#modemalarmchecklocationcheck) | none |
@@ -697,6 +700,7 @@ and as such can result in multiple events:
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifiers of the alarm to update |
+| update_name | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the name, optionally. |
 | update_description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the description, optionally. |
 | update_trigger_condition | [ ModemAlarm.TriggerCondition](#modemalarmtriggercondition) | Update the trigger condition, optionally. |
 | update_default_health_level | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the default health level, optionally. |
@@ -1438,7 +1442,6 @@ api event stream and publishers.
 | MODEM_MESSAGE_RECEIVED | none | 5 |
 | MODEM_MESSAGE_BODY_PARSED | none | 39 |
 | MODEM_MESSAGE_BODY_RECEIVED | none | 45 |
-| MODEM_MESSAGE_DROPPED | none | 13 |
 | MODEM_MESSAGE_DELAYED | none | 14 |
 | MODEM_MESSAGE_CANNOT_BE_PARSED | none | 15 |
 | MODEM_MESSAGE_SUMMARY | none | 42 |

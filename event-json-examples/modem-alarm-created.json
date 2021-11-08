@@ -3,6 +3,7 @@
     "organization": "your-organization",
     "created": {
       "identifier": "example-identifier",
+      "name": "example",
       "description": "example",
       "triggerCondition": "ANY_CHECK_FAILED",
       "defaultHealthLevel": "Error",

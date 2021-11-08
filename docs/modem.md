@@ -1456,7 +1456,6 @@ api event stream and publishers.
 | MODEM_MESSAGE_RECEIVED | none | 5 |
 | MODEM_MESSAGE_BODY_PARSED | none | 39 |
 | MODEM_MESSAGE_BODY_RECEIVED | none | 45 |
-| MODEM_MESSAGE_DROPPED | none | 13 |
 | MODEM_MESSAGE_DELAYED | none | 14 |
 | MODEM_MESSAGE_CANNOT_BE_PARSED | none | 15 |
 | MODEM_MESSAGE_SUMMARY | none | 42 |

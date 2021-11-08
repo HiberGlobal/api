@@ -234,7 +234,6 @@ enum EventType {
     MODEM_MESSAGE_RECEIVED = 5;
     MODEM_MESSAGE_BODY_PARSED = 39;
     MODEM_MESSAGE_BODY_RECEIVED = 45;
-    MODEM_MESSAGE_DROPPED = 13;
     MODEM_MESSAGE_DELAYED = 14;
     MODEM_MESSAGE_CANNOT_BE_PARSED = 15;
     MODEM_MESSAGE_SUMMARY = 42;
@@ -281,7 +280,7 @@ enum EventType {
     EXPORT_READY = 66;
     EXPORT_FAILED = 67;
 
-    // reserved 6, 7, 23, 24, 27, 28, 29, 30;
+    reserved 6, 7, 13, 23, 24, 27, 28, 29, 30;
 }
 
 /* Filters used in many api calls to filter the data sources, results, etc.

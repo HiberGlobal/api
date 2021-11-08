@@ -100,6 +100,11 @@ message ModemAlarm {
      * This identifier is globally unique, since the alarm can be shared to child organizations.
      */
     string identifier = 1;
+
+    /* Short name for this alarm (optional). */
+    string name = 9;
+
+    /* Longer description for this alarm (optional). */
     string description = 2;
 
     /* Availability to child organizations.
@@ -186,10 +191,14 @@ message ModemAlarm {
      * - This is applied to numeric fields and fields that can be numeric, like `{actual}` and `{expected}`.
      */
     message Check {
-        /* Identifier for this check, unique within the alarm.
+        /* Name of this check, unique within the alarm.
          * This is used to update or remove the check, and to determine the destination for any parameters.
+         * If omitted, a random name is generated based on the type of check.
          */
-        string identifier = 1;
+        string name = 1;
+
+        /* Longer description for this check (optional). */
+        string description = 8;
 
         /* The health level that this check would cause for a modem, when it fails.
          * If not set, the alarm default is used.
@@ -426,6 +435,9 @@ message CreateModemAlarm {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
 
+        /* A name for the alarm. */
+        string name = 7;
+
         /* A short description of what the alarm should do. */
         string description = 2;
 
@@ -463,6 +475,9 @@ message UpdateModemAlarm {
 
         /* The identifiers of the alarm to update */
         string identifier = 2;
+
+        /* Update the name, optionally. */
+        UpdateClearableString update_name = 11;
 
         /* Update the description, optionally. */
         UpdateClearableString update_description = 3;
