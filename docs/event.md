@@ -5096,6 +5096,7 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organizations | [repeated string](#string) | The slug for this organization, used to identify organizations |
+| pagination | [ hiber.Pagination](#hiberpagination) | none |
 
 ### hiber.organization.GetOrganizationAvatar.Response
 
@@ -5104,6 +5105,7 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | avatars | [map hiber.organization.GetOrganizationAvatar.Response.AvatarsEntry](#hiberorganizationgetorganizationavatarresponseavatarsentry) | Avatars, indexed by organization slug |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
 
 ### hiber.organization.GetOrganizationAvatar.Response.AvatarsEntry
 
@@ -5268,6 +5270,8 @@ Note that the organization field specifies the organization, it is not used to u
 | HILO | A limited set of features corresponding to the HiberHilo product. | 2 |
 | EASYPULSE | A set of additional features to allow advanced tracking on the map. | 3 |
 | MODEM_CREATION | Required to manually create modems using the ModemService. | 4 |
+| EARLY_ACCESS | Used for organizations that get early access to features. | 5 |
+| EXPERIMENTAL | Used for organizations that get access to experimental features. e.g. feature work in progress. | 6 |
 
 
 

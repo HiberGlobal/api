@@ -1,0 +1,19 @@
+{
+  "modemMessageBodyParserDeleted": {
+    "organization": "your-organization",
+    "deleted": "example-identifier",
+    "title": "Modem Message Body Parser example-identifier was deleted.",
+    "description": "The modem message body parser example-identifier was deleted.",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z"
+    }
+  },
+  "type": "MODEM_MESSAGE_BODY_PARSER_DELETED",
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z"
+  },
+  "title": "Modem Message Body Parser example-identifier was deleted.",
+  "description": "The modem message body parser example-identifier was deleted."
+}

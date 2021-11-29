@@ -1,5 +1,5 @@
 {
-  "isError": true,
+  "isWarning": true,
   "publisherFailed": {
     "organization": "your-organization",
     "reason": "the request timed out",

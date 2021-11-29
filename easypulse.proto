@@ -206,6 +206,8 @@ message Easypulse {
             /* How to aggregate the data. */
             Aggregation aggregation = 4;
 
+            Sort sort = 15;
+
             /* Options to group the data, reducing data points to a set of groups.
              * If no grouping is set, the aggregation typically returns a single value.
              */
@@ -217,14 +219,20 @@ message Easypulse {
                 uint32 reduce_to_max_size = 6;
             }
 
-            oneof field {
-                bool fuel_level = 7; // Get the history for the fuel level. Only one field can be chosen.
-                bool tire_pressure = 8; // Get the history for the tire pressure. Only one field can be chosen.
-                bool battery_level = 9; // Get the history for the battery level. Only one field can be chosen.
-                bool temperature = 10; // Get the history for the temperature. Only one field can be chosen.
-                bool run_time = 11; // Get the history for the run time. Only one field can be chosen.
-                bool idle_time = 12; // Get the history for the idle time. Only one field can be chosen.
-            }
+            /* Get the history for the fuel level. */
+            bool fuel_level = 7;
+            /* Get the history for the tire pressure. */
+            bool tire_pressure = 8;
+            /* Get the history for the battery level. */
+            bool battery_level = 9;
+            /* Get the history for the temperature. */
+            bool temperature = 10;
+            /* Get the history for the run time. */
+            bool run_time = 11;
+            /* Get the history for the idle time. */
+            bool idle_time = 12;
+            /* Get the history for the location. */
+            bool location = 14;
 
             /* Options to aggregate the history data points (in a group). */
             enum Aggregation {
@@ -236,6 +244,15 @@ message Easypulse {
 
                 /* Sum all history data points (in a group). */
                 SUM = 2;
+
+                /* Just take the last value (in a group). */
+                LAST = 3;
+            }
+
+            /* How to sort the returned values. */
+            enum Sort {
+                TIME_DESCENDING = 0;
+                TIME_ASCENDING = 1;
             }
         }
 
@@ -265,14 +282,20 @@ message Easypulse {
                     TimeRange time_range = 2;
                 }
 
-                oneof value {
-                    float fuel_level = 3; // The fuel level, as a percentage.
-                    float tire_pressure = 4; // The tire pressure in bar.
-                    float battery_level = 5; // The battery level, as a percentage.
-                    float temperature = 6; // The temperature in degrees Celsius.
-                    Duration run_time = 7; // The time the Asset was running.
-                    Duration idle_time = 8; // The time the Asset was idle.
-                }
+                /* The fuel level, as a percentage. */
+                float fuel_level = 3;
+                /* The tire pressure in bar. */
+                float tire_pressure = 4;
+                /* The battery level, as a percentage. */
+                float battery_level = 5;
+                /* The temperature in degrees Celsius. */
+                float temperature = 6;
+                /* The time the Asset was running. */
+                Duration run_time = 7;
+                /* The time the Asset was idle. */
+                Duration idle_time = 8;
+                /* The location of the asset at the timestamp, or the last location in the time range. */
+                Location location = 9;
             }
         }
     }

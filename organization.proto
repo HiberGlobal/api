@@ -56,6 +56,12 @@ message Organization {
 
         /* Required to manually create modems using the ModemService. */
         MODEM_CREATION = 4;
+
+        /* Used for organizations that get early access to features. */
+        EARLY_ACCESS = 5;
+
+        /* Used for organizations that get access to experimental features. e.g. feature work in progress. */
+        EXPERIMENTAL = 6;
     }
 
     /* The slug for this organization, used to identify organizations */
@@ -224,9 +230,13 @@ message GetOrganizationAvatar {
     message Request {
         /* The slug for this organization, used to identify organizations */
         repeated string organizations = 1;
+
+        Pagination pagination = 2;
     }
     message Response {
         /* Avatars, indexed by organization slug */
         map<string, Avatar> avatars = 1;
+
+        Pagination.Result pagination = 2;
     }
 }

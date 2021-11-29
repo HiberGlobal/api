@@ -1,6 +1,34 @@
 # Changelog Hiber API
 
-### Upcoming
+#### Upcoming Changes
+
+### 0.93 (2021-11-25)
+
+This release contains a number of bugfixes and some Easypulse improvements.
+
+#### Changes
+
+- Cleaned up the example event json files and added a few that were missing.
+
+##### AlarmService
+
+- Fix a bug where the inactivity check would trigger correctly, but fill an incorrect value in the error message.
+
+##### EasypulseService
+
+- Removed the `oneof` from `Easypulse.History.Request` and `Easypulse.History.Response`.
+  All fiels can now be requrested at the same time.
+- Added `sort` to `Easypulse.History` to specify if the results should be sorted by time descending or ascending.
+- Added new `Easypulse.History.Request.Aggregation` option: `LAST`, which just takes the last value in a time range.
+  This is especially useful when grouping the data.
+- Added `Easypulse.History.Request.location` and `Easypulse.History.Response.location` to get the location at a
+  given time. Since most aggregations don't make sense for the location, it always uss the `LAST` aggregation when
+  aggregating.
+
+##### OrganizationService
+
+- Added `pagination` to `GetOrganizationAvatar` to limit the amount of Avatars that can be requested at once.
+- Added new `EXPERIMENTAL` and `EARLY_ACCESS` flag.
 
 ### 0.92 (2021-11-08)
 

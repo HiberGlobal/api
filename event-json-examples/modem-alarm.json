@@ -11,13 +11,14 @@
       "example-check-id": "Expected battery to be within 20..100%, but it is now at 15%!"
     },
     "healthLevel": {
-      "level": "Warning",
-      "color": "Yellow",
+      "level": "Error",
+      "color": "red",
       "colorData": {
-        "fill": "DarkYellow",
-        "text": "Yellow"
+        "fill": "red",
+        "text": "red"
       },
-      "severity": "2"
+      "catchAll": true,
+      "severity": "3"
     },
     "tags": [
       {
@@ -35,7 +36,6 @@
         }
       }
     ],
-
     "title": "Expected battery to be within 20..100%, but it is now at 15%!",
     "description": "Modem AAAA AAAA has the following alarms (via example-identifier):\n\n{Expected battery to be within 20..100%, but it is now at 15%! (by check example-check-id)}\n",
     "time": {
@@ -56,13 +56,14 @@
   },
   "type": "MODEM_ALARM",
   "healthLevel": {
-    "level": "Warning",
-    "color": "Yellow",
+    "level": "Error",
+    "color": "red",
     "colorData": {
-      "fill": "DarkYellow",
-      "text": "Yellow"
+      "fill": "red",
+      "text": "red"
     },
-    "severity": "2"
+    "catchAll": true,
+    "severity": "3"
   }
 }
 

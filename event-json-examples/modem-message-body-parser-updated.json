@@ -1,0 +1,28 @@
+{
+  "modemMessageBodyParserUpdated": {
+    "organization": "your-organization",
+    "updatedName": {
+      "updated": true,
+      "value": "example"
+    },
+    "updatedContentKsy": {
+    },
+    "updatedAvailableToChildOrganizations": {
+      "value": {
+      }
+    },
+    "title": "Modem Message Body Parser example-identifier was updated.",
+    "description": "Modem Message Body Parser example-identifier was updated:\n - Name: example-old \u003d\u003e example",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z"
+    }
+  },
+  "type": "MODEM_MESSAGE_BODY_PARSER_UPDATED",
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z"
+  },
+  "title": "Modem Message Body Parser example-identifier was updated.",
+  "description": "Modem Message Body Parser example-identifier was updated:\n - Name: example-old \u003d\u003e example"
+}
