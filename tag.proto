@@ -46,7 +46,9 @@ message ListTagsRequest {
     message Response {
         repeated Tag tags = 1;
         ListTagsRequest request = 2;
+        /* map<tag-id, count> */
         map<int64, int32> tag_modem_count = 3;
+        /* map<webhook-id, count> */
         map<int64, int32> tag_webhook_count = 4;
     }
 

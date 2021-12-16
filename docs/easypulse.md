@@ -34,7 +34,6 @@ somewhat customized Asset model.
 
 - Enums
   - [Easypulse.History.Request.Aggregation](#easypulsehistoryrequestaggregation)
-  - [Easypulse.History.Request.Sort](#easypulsehistoryrequestsort)
   - [Easypulse.ListAssets.Request.Sort](#easypulselistassetsrequestsort)
 
 - Referenced messages from [health.proto](#referenced-messages-from-healthproto)
@@ -203,16 +202,14 @@ Request to get the history of a field, for the selected Assets in the organizati
 | pagination | [ hiber.Pagination](#hiberpagination) | Paginate the returned values. This may not be relevant, depending on the aggregation (which may result in a single value) and the time range. |
 | time_range | [ hiber.TimeRange](#hibertimerange) | The time to view the history for. |
 | aggregation | [ Easypulse.History.Request.Aggregation](#easypulsehistoryrequestaggregation) | How to aggregate the data. |
-| sort | [ Easypulse.History.Request.Sort](#easypulsehistoryrequestsort) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **group**.split_by_duration | [ hiber.Duration](#hiberduration) | Split up the data in time block of the given size. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **group**.reduce_to_max_size | [ uint32](#uint32) | Limit the results to the given amount of data points, applying the function to each chunk. |
-| fuel_level | [ bool](#bool) | Get the history for the fuel level. |
-| tire_pressure | [ bool](#bool) | Get the history for the tire pressure. |
-| battery_level | [ bool](#bool) | Get the history for the battery level. |
-| temperature | [ bool](#bool) | Get the history for the temperature. |
-| run_time | [ bool](#bool) | Get the history for the run time. |
-| idle_time | [ bool](#bool) | Get the history for the idle time. |
-| location | [ bool](#bool) | Get the history for the location. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.fuel_level | [ bool](#bool) | Get the history for the fuel level. Only one field can be chosen. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.tire_pressure | [ bool](#bool) | Get the history for the tire pressure. Only one field can be chosen. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.battery_level | [ bool](#bool) | Get the history for the battery level. Only one field can be chosen. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.temperature | [ bool](#bool) | Get the history for the temperature. Only one field can be chosen. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.run_time | [ bool](#bool) | Get the history for the run time. Only one field can be chosen. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.idle_time | [ bool](#bool) | Get the history for the idle time. Only one field can be chosen. |
 
 ### Easypulse.History.Response
 
@@ -232,13 +229,12 @@ Processed historical data point. If this is a group, it will have a time range t
 | ----- | ---- | ----------- |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.timestamp | [ hiber.Timestamp](#hibertimestamp) | When not grouping, time of the individual point. When grouping, the time at the end of the group (when the value was true). |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.time_range | [ hiber.TimeRange](#hibertimerange) | When grouping, the start and end time for the group. |
-| fuel_level | [ float](#float) | The fuel level, as a percentage. |
-| tire_pressure | [ float](#float) | The tire pressure in bar. |
-| battery_level | [ float](#float) | The battery level, as a percentage. |
-| temperature | [ float](#float) | The temperature in degrees Celsius. |
-| run_time | [ hiber.Duration](#hiberduration) | The time the Asset was running. |
-| idle_time | [ hiber.Duration](#hiberduration) | The time the Asset was idle. |
-| location | [ hiber.Location](#hiberlocation) | The location of the asset at the timestamp, or the last location in the time range. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.fuel_level | [ float](#float) | The fuel level, as a percentage. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.tire_pressure | [ float](#float) | The tire pressure in bar. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.battery_level | [ float](#float) | The battery level, as a percentage. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.temperature | [ float](#float) | The temperature in degrees Celsius. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.run_time | [ hiber.Duration](#hiberduration) | The time the Asset was running. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.idle_time | [ hiber.Duration](#hiberduration) | The time the Asset was idle. |
 
 ### Easypulse.ListAssets
 
@@ -289,15 +285,6 @@ Options to aggregate the history data points (in a group).
 | NONE | Do not aggregate the history data points, just list all of them. | 0 |
 | AVERAGE | Average value of all history data points (in a group). | 1 |
 | SUM | Sum all history data points (in a group). | 2 |
-| LAST | Just take the last value (in a group). | 3 |
-
-### Easypulse.History.Request.Sort
-How to sort the returned values.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| TIME_DESCENDING | none | 0 |
-| TIME_ASCENDING | none | 1 |
 
 ### Easypulse.ListAssets.Request.Sort
 

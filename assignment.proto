@@ -75,6 +75,7 @@ enum AssignmentType {
 message Assignment {
     message ModemAlarmAssignment {
         string identifier = 1;
+        string name = 5;
         string description = 2;
         google.protobuf.Struct parameters = 3;
         string owner_organization = 4;

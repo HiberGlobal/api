@@ -7,6 +7,7 @@
       "assignAlarm": {
         "identifier": "example-identifier",
         "description": "example",
+        "name": "example alarm name",
         "parameters": {
           "example-equals-check": {
             "field.path": ".my-custom-field",

@@ -84,6 +84,9 @@ message Easypulse {
         /* The most recent temperature in degrees Celsius. */
         float temperature = 14;
 
+        /* The most recent speed measurement in km/h. */
+        float speed = 17;
+
         /* The most recently reported location. */
         Location location = 15;
 
@@ -233,6 +236,8 @@ message Easypulse {
             bool idle_time = 12;
             /* Get the history for the location. */
             bool location = 14;
+            /* Get the history for the speed. */
+            bool speed = 16;
 
             /* Options to aggregate the history data points (in a group). */
             enum Aggregation {
@@ -296,6 +301,8 @@ message Easypulse {
                 Duration idle_time = 8;
                 /* The location of the asset at the timestamp, or the last location in the time range. */
                 Location location = 9;
+                /* The speed of the asset in km/h. */
+                float speed = 10;
             }
         }
     }

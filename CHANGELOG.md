@@ -2,6 +2,34 @@
 
 #### Upcoming Changes
 
+### 0.95 (2021-12-16)
+
+#### Changes
+
+- Added some additional comments in a few places.
+
+##### AssignmentService
+
+- Add alarm name when an alarm is returned.
+
+##### EasypulseService
+
+- Add `speed` in km/h to `Easypulse.Asset`, `Easypulse.History.Request` and `Easypulse.History.Response.Value`.
+
+##### TransferService
+
+- When excluding data from transfer, the data will now be actually deleted after a set period.
+- It is now (temporary) not possible anymore to transfer data with modems.
+
+### 0.94 (2021-12-02)
+
+This release fixes an issue where the health for some events, sthat should resolve over time,
+was not resolved.
+
+#### Changes
+
+- Fixed a bug where the health for events (where health expires over time) was not consistently updated.
+
 ### 0.93 (2021-11-25)
 
 This release contains a number of bugfixes and some Easypulse improvements.

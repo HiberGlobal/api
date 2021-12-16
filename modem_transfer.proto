@@ -172,11 +172,11 @@ message TransferModemsRequest {
 
     /* What to do with the messages, events and other related data. */
     enum DataTransferMode {
-        /* Include all related data in the transfer. */
-        INCLUDE = 0;
+        /* The API Will reject any request without an explicitly set DataTransferMode. */
+        UNKNOWN = 0;
 
         /* Exclude messages and all events. The data will be deleted. */
-        EXCLUDE_ALL = 1;
+        DELETE_DATA = 1;
     }
 
     message Response {

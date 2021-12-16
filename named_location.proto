@@ -23,6 +23,9 @@ service NamedLocationService {
 
 /* A named location within an organization. */
 message NamedLocation {
+    /* Names of locations are guaranteed to be unique per organization.
+     * This means that the name can be used as a unique identifier for CRUD operations.
+     */
     string name = 1;
     oneof definition {
         Location location = 2;
