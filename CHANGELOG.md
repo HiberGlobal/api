@@ -2,6 +2,63 @@
 
 #### Upcoming Changes
 
+### 0.96 (2022-01-20)
+
+This release collects a number of small bug fixes, improvements, deprecations
+and some experimental features.
+
+- The new MessageService aims to simplify the ModemService and provide a more consistent
+  service for handling messages.
+- The Easypulse service now supports the experimental Easypulse Scorecard
+
+##### AssignmentService
+
+- Fixed an issue where alarm name was not set.
+- Fixed an issue where assigning something that was already assigned would throw an error
+  instead of just returning the existing assignment.
+
+##### EasypulseService
+
+- Added some fields related to the new Easypulse Scorecard screen.
+
+##### EventService
+
+- Fixed a bug that blocked retrieving events of type `MODEM_MESSAGE_BODY_PARSED` in specific cases.
+- Fixed a bug where filtering on modem number would exclude some event types incorrectly.
+  Specifically: transfer events, claim events and modem alarm events were excluded incorrectly.
+
+##### OrganizationService
+
+- Added `Organization.Feature.EASYPULSE_SCORECARD`.
+
+##### MessageService
+
+- Added new service `MessageService`, for message-related functionality.
+  - `List` messages for modems (like `ListModemMessagesRequest` in the `ModemService`)
+  - `Count` messages for modems (like `MessageCountRequest` in the `ModemService`)
+  - `AvailableBodyFields` lists the available message body fields for modems(s), based on the assigned parsers.
+    Uses the `ModemMessageBodyParser.DataField` from `ModemMessageBodyParserService` instead of the error-prone
+    implementation from `ModemService`.
+  - `History` for message body field(s). Port of the `Easypulse.History` for all modems.
+    This allows you to fetch individual message fields and apply aggregations to them, for example:
+    - the average value per day
+    - the sum per week
+
+##### ModemService
+
+- Deprecated `Messages` (`ListModemMessagesRequest`), in favor of the new `MessageService`.
+- Deprecated `MessageCount` (`MessageCountRequest`), in favor of the new `MessageService`.
+- **[B]** Removed `LicenseKeys` (`LicenseKeysRequest`), which was no longer supported and deprecated for a while.
+- **[B]** Removed `AvailableMessageFields` (`AvailableModemMessageFields.Request`),
+  in favor of the new `MessageService`.
+
+##### ModemMessageBodyParserService
+
+- Added `ModemMessageBodyParser.DataFieldGroup`, to group fields that represent the same value,
+  in different units (used in `ModemMessageBodyParser.data_fields_with_groups`).
+- Added `unit_symbol` to `ModemMessageBodyParser.DataField`, the symbol for the `unit_of_measurement`, for convenience.
+- Added `priority` to `ModemMessageBodyParser.DataField`, to order the fields.
+
 ### 0.95 (2021-12-16)
 
 #### Changes

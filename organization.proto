@@ -54,6 +54,9 @@ message Organization {
         /* A set of additional features to allow advanced tracking on the map. */
         EASYPULSE = 3;
 
+        /* Used for an easypulse scorecard feature that we will introduce at a later point. */
+        EASYPULSE_SCORECARD = 7;
+
         /* Required to manually create modems using the ModemService. */
         MODEM_CREATION = 4;
 

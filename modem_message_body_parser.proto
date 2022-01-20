@@ -98,7 +98,7 @@ message ModemMessageBodyParser {
         }
 
         /* The name of the field (if in the root structure) or a JsonPath to the field. */
-        string name = 1;
+        string field = 1;
 
         /* An optional display name for the field. */
         string display_name = 2;
@@ -113,8 +113,37 @@ message ModemMessageBodyParser {
         /* If numeric, the unit of the value. */
         UnitOfMeasurement unit_of_measurement = 4;
 
-        /* The type of field. */
+        /* The symbol for the unit. */
+        string unit_symbol = 6;
+
+        /* Use the type of the field to better know how to display the data. */
         Type type = 5;
+
+        /* Priority of the field, typically used for ordering. */
+        int32 priority = 7;
+    }
+
+    /* Group of fields that have the same display_name.
+     * Typically, they represent the same data, but in different units.
+     * (e.g. measured temperature in both Celsius and Fahrenheit.)
+     */
+    message DataFieldGroup {
+        /* Name of the group. */
+        string display_name = 1;
+
+        /* The DataFields in this group. */
+        repeated DataField fields = 2;
+
+        /* Use the type of the field to better know how to display the data. */
+        DataField.Type type = 3;
+    }
+
+    /* Helper to list groups and fields together. */
+    message DataFieldOrGroup {
+        oneof field_or_group {
+            DataField field = 1;
+            DataFieldGroup group = 2;
+        }
     }
 
     /* Fields in the parsed result that match common things that can be processed by the system,
@@ -159,6 +188,11 @@ message ModemMessageBodyParser {
      */
     repeated DataField data_fields = 11;
     repeated string data_fields_deprecated = 9 [deprecated = true];
+
+    /* Fields in the parsed result that contain data, grouped when multiple fields represent the same data,
+     * but in different units.
+     */
+    repeated DataFieldOrGroup data_fields_with_groups = 12;
 
     /* Fields in the parsed result that contain metadata, and special things like a location. */
     MetadataFields metadata_fields = 10;

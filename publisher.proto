@@ -4,7 +4,6 @@ package hiber.publisher;
 
 import "base.proto";
 import "email_notifications.proto";
-import "google/protobuf/timestamp.proto";
 import "integration_aws_iot.proto";
 import "integration_mqtt.proto";
 import "integration_slack.proto";

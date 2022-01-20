@@ -3,8 +3,6 @@ syntax = "proto3";
 package hiber.email;
 
 import "base.proto";
-import "google/protobuf/timestamp.proto";
-import "tag.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.email";

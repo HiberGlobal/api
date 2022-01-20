@@ -1,0 +1,304 @@
+/* Message management.
+ *
+ *
+ */
+syntax = "proto3";
+
+package hiber.message;
+
+import "google/protobuf/struct.proto";
+
+import "base.proto";
+import "modem.proto";
+import "modem_message_body_parser.proto";
+import "tag.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.message";
+option java_outer_classname = "MessageApi";
+option go_package = "hiber";
+
+/* This service contains calls to list and manage messages. */
+service MessageService {
+    /* List messages for the selected modems. */
+    rpc List (ListMessages.Request) returns (ListMessages.Response);
+
+    /* Count messages for the selected modems. */
+    rpc Count (CountMessages.Request) returns (CountMessages.Response);
+
+    rpc AvailableBodyFields (AvailableMessageBodyFields.Request) returns (AvailableMessageBodyFields.Response);
+
+    rpc History (MessageBodyFieldHistory.Request) returns (MessageBodyFieldHistory.Response);
+}
+
+/* Message received from a device in the field.
+ * Messages have a number of default field, like sent and received time, and location. In addition, depending on the
+ * assigned body parsers, messages have a number of body fields with values.
+ */
+message Message {
+    /* Parsed message body.
+     * If any parsers are configured for the modem, they are applied to the message.
+     * The result is stored either as a json object or an error string.
+     */
+    message ParsedBody {
+        /* Globally unique identifier of the parser that was used. */
+        string parser_identifier = 6;
+
+        /* Name of the parser that was used. */
+        string parser_name = 2;
+
+        oneof parsed {
+            /* Error while parsing the message body. */
+            string error = 4;
+
+            /* Result of parsing the body with this parser. */
+            google.protobuf.Struct result = 5;
+        }
+
+        reserved 1, 3;
+    }
+
+    /* Unique message identifier. */
+    uint64 message_id = 1;
+
+    /* Modem number of the modem that sent the message. */
+    string modem_number = 2;
+
+    /* The name of the modem that sent the message. */
+    string modem_name = 3;
+
+    /* The device identifier for the modem that sent the message (e.g. a MAC address). */
+    string modem_identifier = 4;
+
+    /* Time the message was sent from the modem. */
+    Timestamp sent_at = 5;
+
+    /* Time the message was received on the server. */
+    Timestamp received_at = 6;
+
+    /* Modem location when the message was sent. */
+    Location location = 7;
+
+    /* Message body. */
+    bytes body = 8 [deprecated = true];
+
+    /* Message body convenience object. */
+    BytesOrHex body_bytes = 9;
+
+    /* A list of applied body parsers and their results. */
+    repeated ParsedBody body_parsed = 10;
+
+    /* Convenience flag marking whether the body was parsed successfully by at least one parser. */
+    bool body_parsed_successfully = 11;
+
+    /* True if the the TEST source is in the sources. */
+    bool is_test = 12;
+
+    /* Whether this message contains other messages. */
+    bool is_gateway_message = 13;
+
+    /* The gateway message this message was sent in. */
+    uint64 via_gateway_message = 14;
+
+    /* Message metadata, defined by the modem or gateway. */
+    google.protobuf.Struct metadata = 15;
+
+    /* Flattened results of all successful body parsers.
+     *
+     * This is a convenience to access the fields from body_parsed, but if any fields are present in
+     * multiple body_parsed results, it is not defined which field will be used in this Struct.
+     * This may change in the future.
+     */
+    google.protobuf.Struct body_fields = 16;
+
+    /* The tags of the modem that sent the message. */
+    repeated tag.Tag tags = 19;
+
+    /* The names of the tags of the modem that sent the message. */
+    repeated string tag_names = 20;
+}
+
+/* Selection object for modem messages.
+ * Filter messages by modem and time sent (note that this is not the time the message was received)
+ */
+message MessageSelection {
+    /* Select the modems to return messages for. */
+    modem.ModemSelection modem_selection = 1;
+
+    /* Filter message by time range. This field is required, to limit the amount of messages. */
+    TimeRange time_range = 2;
+}
+
+message ListMessages {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        MessageSelection selection = 2;
+
+        Pagination pagination = 3;
+    }
+
+    message Response {
+        repeated Message messages = 1;
+        Request request = 2;
+        Pagination.Result pagination = 3;
+    }
+}
+
+message CountMessages {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        MessageSelection selection = 2;
+
+        /* Numeric timezone offset for day grouping. Optional. */
+        int32 time_zone_offset = 5;
+
+        /* Timezone string for day grouping. Optional. */
+        string time_zone = 6;
+    }
+    message Response {
+        message MessageCount {
+            Date date = 1;
+            int32 count = 2;
+        }
+
+        repeated MessageCount message_count_per_day = 1;
+        Request request = 2;
+    }
+}
+
+message AvailableMessageBodyFields {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        modem.ModemSelection modems = 2;
+        Pagination pagination = 3;
+
+        /* Whether to also calculate the total fields for all selected modems,
+         * and return them as a single list in the response.
+         * This can be useful to display table columns, for example.
+         */
+        bool include_total = 4;
+    }
+
+    message Response {
+        message ModemWithFields {
+            string modem = 1;
+            repeated modem.message.bodyparser.ModemMessageBodyParser.DataFieldOrGroup message_body_fields = 2;
+        }
+
+        repeated ModemWithFields modems = 1;
+        Request request = 2;
+        Pagination.Result pagination = 3;
+
+        /* A merged result of all fields, for all modems. This can be useful to display table columns, for example. */
+        repeated modem.message.bodyparser.ModemMessageBodyParser.DataFieldOrGroup total = 4;
+    }
+}
+
+/* List the history for a single field, and optionally apply an aggregation and/or grouping to it. */
+message MessageBodyFieldHistory {
+
+    /* Request to get the history of (a) field(s), for the selected modems in the organization. */
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* Select the modem(s) to get the history for. */
+        modem.ModemSelection selection = 2;
+
+        /* Paginate the returned values.
+         * This may not be relevant, depending on the aggregation (which may result in a single value) and the
+         * time range.
+         */
+        Pagination pagination = 13;
+
+        /* The time to view the history for. */
+        TimeRange time_range = 3;
+
+        /* How to aggregate the data. */
+        Aggregation aggregation = 4;
+
+        Sort sort = 5;
+
+        /* Options to group the data, reducing data points to a set of groups.
+         * If no grouping is set, the aggregation typically returns a single value.
+         */
+        oneof group {
+            /* Split up the data in time block of the given size. */
+            Duration split_by_duration = 6;
+
+            /* Limit the results to the given amount of data points, applying the function to each chunk. */
+            uint32 reduce_to_max_size = 7;
+        }
+
+        /* Get the history for the selected fields. */
+        repeated string message_body_fields = 8;
+
+        /* Get the history for the location.
+         * Locations cannot be summed, or averaged, so default to the LAST aggregation when aggregating.
+         */
+        bool include_location = 9;
+
+        /* Whether to exclude empty groups when grouping. Empty groups are included by default. */
+        bool exclude_empty_groups = 10;
+
+        /* Options to aggregate the history data points (in a group). */
+        enum Aggregation {
+            /* Do not aggregate the history data points, just list all of them. */
+            NONE = 0;
+
+            /* Average value of all history data points (in a group). */
+            AVERAGE = 1;
+
+            /* Sum all history data points (in a group). */
+            SUM = 2;
+
+            /* Just take the last value (in a group). */
+            LAST = 3;
+        }
+
+        /* How to sort the returned values. */
+        enum Sort {
+            TIME_DESCENDING = 0;
+            TIME_ASCENDING = 1;
+        }
+    }
+
+    /* Response with the (aggregated) history of (a) field(s), for the selected modems in the organization. */
+    message Response {
+        /* The processed historical data points.
+         * For example, when applying the SUM aggregation to all data points, this list would only contains a
+         * single value, the sum of values.
+         */
+        repeated Value values = 1;
+
+        /* The pagination result, containing information about amounts and pages. */
+        Pagination.Result pagination = 2;
+
+        /* The request that was received, corrected and used to produce this result. */
+        Request request = 3;
+
+        /* Processed historical data point. If this is a group, it will have a time range to denote the group. */
+        message Value {
+            oneof time {
+                /* When not grouping, time of the individual point.
+                 * When grouping, the time at the end of the group (when the value was true).
+                 */
+                Timestamp timestamp = 1;
+
+                /* When grouping, the start and end time for the group. */
+                TimeRange time_range = 2;
+            }
+
+            /* The values for the given fields (if available). */
+            google.protobuf.Struct field_values = 3;
+
+            /* The location of the modem at the timestamp, or the last location in the time range. */
+            Location location = 4;
+        }
+    }
+}

@@ -38,12 +38,14 @@ service ModemService {
     rpc Grouped (ListModemsGrouped.Request) returns (ListModemsGrouped.Response);
 
     /* List messages for the selected modems. */
-    rpc Messages (ListModemMessagesRequest) returns (ListModemMessagesRequest.Response);
+    rpc Messages (ListModemMessagesRequest) returns (ListModemMessagesRequest.Response){
+        option deprecated = true;
+    };
 
     /* Count messages for the selected modems. */
-    rpc MessageCount (MessageCountRequest) returns (MessageCountRequest.Response);
-
-    rpc AvailableMessageFields (AvailableModemMessageFields.Request) returns (AvailableModemMessageFields.Response);
+    rpc MessageCount (MessageCountRequest) returns (MessageCountRequest.Response){
+        option deprecated = true;
+    };
 
     /* Change the name of a modem to the given value. */
     rpc Rename (RenameModemRequest) returns (Modem);
@@ -65,8 +67,6 @@ service ModemService {
 
     /* Add and remove peripherals for the selected modems. */
     rpc UpdatePeripherals (UpdatePeripheralsRequest) returns (UpdatePeripheralsRequest.Response);
-
-    rpc LicenseKeys (LicenseKeysRequest) returns (LicenseKeysRequest.Response);
 
     /* Count the modems in your organization by health. */
     rpc HealthCount (ModemHealthCount.Request) returns (ModemHealthCount.Response);
@@ -404,6 +404,8 @@ message ModemSelection {
  * data and message body. (Your message body is, of course, still encrypted if you've encrypted it yourself)
  */
 message ModemMessage {
+    option deprecated = true; // moved to modem_message.proto as Message
+
     enum Source {
         /* A real message from a modem or gateway, sent over Hiberband to the server. */
         HIBERBAND = 0;
@@ -511,6 +513,8 @@ message ModemMessage {
  * Filter messages by modem id, (child)organization, and time sent (note that this is not the time the message was received)
  */
 message ModemMessageSelection {
+    option deprecated = true; // moved to modem_message.proto as MessageSelection
+
     message ModemMessageSourceFilter {
         repeated ModemMessage.Source include = 1;
         repeated ModemMessage.Source exclude = 2;
@@ -536,23 +540,6 @@ message ModemMessageSelection {
     ModemMessageSourceFilter filter_by_sources = 4;
 
     reserved 2;
-}
-
-/* Selects the fields included in a ModemMessage.
- * Use this to get, for example, only the message sentAt and body.
- */
-message ModemMessageFieldSelection {
-    /* Fields in the ModemMessage structure to include in the response.
-     * Nested fields are not supported.
-     */
-    repeated string fields = 1;
-
-    /* Data fields in the body_fields Struct to include in the response.
-     *
-     * Nested fields are supported, using a json path expression.
-     * See the Json Path documentation at https://goessner.net/articles/JsonPath/ for details on json path.
-     */
-    repeated string message_body_fields = 2;
 }
 
 message GetModemRequest {
@@ -694,6 +681,8 @@ message ListModemsGrouped {
 }
 
 message ListModemMessagesRequest {
+    option deprecated = true; // moved to modem_message.proto as ListMessages
+
     message Response {
         repeated ModemMessage messages = 1;
         ListModemMessagesRequest request = 2;
@@ -708,41 +697,9 @@ message ListModemMessagesRequest {
     reserved 4;
 }
 
-message AvailableModemMessageFields {
-    /* The modem the field specification is for. */
-    string modem = 1;
-
-    /* The available fields to be filtered.
-     *
-     * The message body fields are only set when the fields are marked explicitly using the data fields option
-     * on any assigned modem message body parsers.
-     */
-    ModemMessageFieldSelection fields = 2;
-
-    message Request {
-        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
-        ModemSelection modems = 2;
-        Pagination pagination = 3;
-
-        /* Whether to also calculate the total fields for all selected modems,
-         * and return them as a single ModemMessageFieldSelection in the response.
-         * This can be useful to display table columns, for example.
-         */
-        bool include_total = 4;
-    }
-
-    message Response {
-        repeated AvailableModemMessageFields modem_message_fields = 1;
-        Request request = 2;
-        Pagination.Result pagination = 3;
-
-        /* A merged result of all fields, for all modems. This can be useful to display table columns, for example. */
-        ModemMessageFieldSelection total = 4;
-    }
-}
-
 message MessageCountRequest {
+    option deprecated = true; // moved to modem_message.proto as CountMessages
+
     message Response {
         message MessageCount {
             Date date = 1;
@@ -949,26 +906,6 @@ message UpdateModemHealthConfig {
 
     message Response {
     }
-}
-
-message LicenseKeysRequest {
-    option deprecated = true;
-
-    message Response {
-        message ModemLicenseKey {
-            string modem_number = 1;
-            string license_key = 2;
-        }
-
-        LicenseKeysRequest request = 1;
-        repeated ModemLicenseKey license_keys = 2;
-        Pagination.Result pagination = 3;
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    ModemSelection selection = 2;
-    Pagination pagination = 3;
 }
 
 message ModemHealthCount {

@@ -239,6 +239,22 @@ message Easypulse {
             /* Get the history for the speed. */
             bool speed = 16;
 
+            /* Get the fuel efficiency in ???. */
+            bool fuel_efficiency = 17;
+            /* Get the distance traveled in ???. */
+            bool distance_traveled = 18;
+
+            /* Get the normalized score for the fuel efficiency, using a preconfigured baseline. */
+            bool fuel_efficiency_score = 19;
+            /* Get the normalized score for the distance traveled, using a preconfigured baseline. */
+            bool distance_traveled_score = 20;
+            /* Get the normalized score for the idle time, using a preconfigured baseline. */
+            bool idle_time_score = 21;
+            /* Get the normalized score for the run time, using a preconfigured baseline. */
+            bool run_time_score = 22;
+            /* Get the average normalized score for the run time, idle time, distance traveled and fuel efficiency. */
+            bool utilization_score = 23;
+
             /* Options to aggregate the history data points (in a group). */
             enum Aggregation {
                 /* Do not aggregate the history data points, just list all of them. */
@@ -303,6 +319,22 @@ message Easypulse {
                 Location location = 9;
                 /* The speed of the asset in km/h. */
                 float speed = 10;
+
+                /* Fuel efficiency in ???. */
+                float fuel_efficiency = 11;
+                /* Distance traveled in ???. */
+                float distance_traveled = 12;
+
+                /* Normalized score for the fuel efficiency, using a preconfigured baseline. */
+                float fuel_efficiency_score = 13;
+                /* Normalized score for the distance traveled, using a preconfigured baseline. */
+                float distance_traveled_score = 14;
+                /* Normalized score for the idle time, using a preconfigured baseline. */
+                float idle_time_score = 15;
+                /* Normalized score for the run time, using a preconfigured baseline. */
+                float run_time_score = 16;
+                /* Average normalized score for the run time, idle time, distance traveled and fuel efficiency. */
+                float utilization_score = 23;
             }
         }
     }
