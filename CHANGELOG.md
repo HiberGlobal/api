@@ -2,6 +2,43 @@
 
 #### Upcoming Changes
 
+### 0.98 (2022-02-17)
+
+##### EventService
+
+- Added `MarkEventsResolved` to mark events as manually resolved in bulk.
+
+##### ModemAlarmService
+
+- Added `ModemAlarm.created_at` and `ModemAlarm.updated_at` to track alarm creation and last update, respectively.
+
+##### MessageService
+
+- Fixed a bug that affected message fetch performance when selecting a large time range.
+
+### 0.97 (2022-01-27)
+
+##### EasypulseService
+
+- Fixed a bug where the last chunk was not included when requesting history, if the grouping did not fit exactly.
+
+##### EventService
+
+- Fixed a bug where filtering on modem number would exclude some event types incorrectly.
+  Specifically: transfer events, claim events and modem alarm events were excluded incorrectly.
+- Imrpoved performance of fetching events.
+
+##### MessageService
+
+- Fixed a bug where the last chunk was not included when requesting history, if the grouping did not fit exactly.
+
+##### ModemMessageBodyParserService
+
+- Added `priority` to `ModemMessageBodyParser.DataFieldGroup` as well, with the maximum value of the group.
+- Added `group_identifier` to `ModemMessageBodyParser.DataField`, to group the fields.
+  - Fields are grouped iff they have the same `group_identifier` or (if `group_identifier` is not set)
+    the same `display_name`.
+
 ### 0.96 (2022-01-20)
 
 This release collects a number of small bug fixes, improvements, deprecations

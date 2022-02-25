@@ -5,6 +5,10 @@
       "identifier": "example-identifier",
       "name": "example",
       "description": "example",
+      "createdAt": {
+        "timestamp": "2020-06-01T05:15:25.355Z",
+        "textual": "2020-06-01T05:15:25.355Z"
+      },
       "triggerCondition": "ANY_CHECK_FAILED",
       "defaultHealthLevel": "Error",
       "healthLevelAfterResolved": {

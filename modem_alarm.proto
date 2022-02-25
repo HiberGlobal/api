@@ -107,6 +107,12 @@ message ModemAlarm {
     /* Longer description for this alarm (optional). */
     string description = 2;
 
+    /* When this alarm was created. */
+    Timestamp created_at = 10;
+
+    /* When this alarm was last updated. */
+    Timestamp updated_at = 11;
+
     /* Availability to child organizations.
      * This alarm can be shared to child organizations, so it can be assigned to their modems, either directly or
      * automatically over all selected child organizations.

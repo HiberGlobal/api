@@ -121,6 +121,12 @@ message ModemMessageBodyParser {
 
         /* Priority of the field, typically used for ordering. */
         int32 priority = 7;
+
+        /* The group this field is in.
+         * Fields are grouped iff they have the same `group_identifier` or (if `group_identifier` is not set)
+         * the same `display_name`.
+         */
+        string group_identifier = 8;
     }
 
     /* Group of fields that have the same display_name.
@@ -128,14 +134,20 @@ message ModemMessageBodyParser {
      * (e.g. measured temperature in both Celsius and Fahrenheit.)
      */
     message DataFieldGroup {
+        /* Identifier for the group. */
+        string identifier = 1;
+
         /* Name of the group. */
-        string display_name = 1;
+        string display_name = 4;
 
         /* The DataFields in this group. */
         repeated DataField fields = 2;
 
         /* Use the type of the field to better know how to display the data. */
         DataField.Type type = 3;
+
+        /* Priority of the group, typically used for ordering. The highest priority of the fields in the group. */
+        int32 priority = 5;
     }
 
     /* Helper to list groups and fields together. */

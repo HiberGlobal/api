@@ -33,6 +33,7 @@ service EventService {
     rpc List (ListEventsRequest) returns (ListEventsRequest.Response);
     rpc Stream (EventStreamRequest) returns (stream Event);
     rpc Resolve (ResolveEvent.Request) returns (ResolveEvent.Response);
+    rpc MarkResolved (MarkEventsResolved.Request) returns (MarkEventsResolved.Response);
     rpc History (EventHistory.Request) returns (EventHistory.Response);
 
     rpc GetEventConfiguration (EventConfiguration.Request) returns (EventConfiguration);
@@ -1075,6 +1076,24 @@ message ResolveEvent {
     }
     message Response {
         Event event = 1;
+    }
+}
+
+/* Mark a selection of events as resolved. */
+message MarkEventsResolved {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* Selection of events to resolve. */
+        EventSelection selection = 3;
+    }
+    message Response {
+        /* The amount of events that were resolved. */
+        uint32 resolved = 1;
+
+        /* The original request, echoed back with any applied corrections. */
+        Request request = 2;
     }
 }
 
