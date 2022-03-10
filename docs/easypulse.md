@@ -34,6 +34,7 @@ somewhat customized Asset model.
 
 - Enums
   - [Easypulse.History.Request.Aggregation](#easypulsehistoryrequestaggregation)
+  - [Easypulse.History.Request.Sort](#easypulsehistoryrequestsort)
   - [Easypulse.ListAssets.Request.Sort](#easypulselistassetsrequestsort)
 
 - Referenced messages from [health.proto](#referenced-messages-from-healthproto)
@@ -141,6 +142,7 @@ fuel level average over the past month, or total run time in the past week).
 | tire_pressure | [ float](#float) | The most recent tire pressure in bar. |
 | battery_level | [ float](#float) | The most recent battery level, as a percentage. |
 | temperature | [ float](#float) | The most recent temperature in degrees Celsius. |
+| speed | [ float](#float) | The most recent speed measurement in km/h. |
 | location | [ hiber.Location](#hiberlocation) | The most recently reported location. |
 | aggregations | [map Easypulse.Asset.AggregationsEntry](#easypulseassetaggregationsentry) | Any aggregations added when this asset was requested. |
 
@@ -202,14 +204,24 @@ Request to get the history of a field, for the selected Assets in the organizati
 | pagination | [ hiber.Pagination](#hiberpagination) | Paginate the returned values. This may not be relevant, depending on the aggregation (which may result in a single value) and the time range. |
 | time_range | [ hiber.TimeRange](#hibertimerange) | The time to view the history for. |
 | aggregation | [ Easypulse.History.Request.Aggregation](#easypulsehistoryrequestaggregation) | How to aggregate the data. |
+| sort | [ Easypulse.History.Request.Sort](#easypulsehistoryrequestsort) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **group**.split_by_duration | [ hiber.Duration](#hiberduration) | Split up the data in time block of the given size. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **group**.reduce_to_max_size | [ uint32](#uint32) | Limit the results to the given amount of data points, applying the function to each chunk. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.fuel_level | [ bool](#bool) | Get the history for the fuel level. Only one field can be chosen. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.tire_pressure | [ bool](#bool) | Get the history for the tire pressure. Only one field can be chosen. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.battery_level | [ bool](#bool) | Get the history for the battery level. Only one field can be chosen. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.temperature | [ bool](#bool) | Get the history for the temperature. Only one field can be chosen. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.run_time | [ bool](#bool) | Get the history for the run time. Only one field can be chosen. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.idle_time | [ bool](#bool) | Get the history for the idle time. Only one field can be chosen. |
+| fuel_level | [ bool](#bool) | Get the history for the fuel level. |
+| tire_pressure | [ bool](#bool) | Get the history for the tire pressure. |
+| battery_level | [ bool](#bool) | Get the history for the battery level. |
+| temperature | [ bool](#bool) | Get the history for the temperature. |
+| run_time | [ bool](#bool) | Get the history for the run time. |
+| idle_time | [ bool](#bool) | Get the history for the idle time. |
+| location | [ bool](#bool) | Get the history for the location. |
+| speed | [ bool](#bool) | Get the history for the speed. |
+| fuel_efficiency | [ bool](#bool) | Get the fuel efficiency in ???. |
+| distance_traveled | [ bool](#bool) | Get the distance traveled in ???. |
+| fuel_efficiency_score | [ bool](#bool) | Get the normalized score for the fuel efficiency, using a preconfigured baseline. |
+| distance_traveled_score | [ bool](#bool) | Get the normalized score for the distance traveled, using a preconfigured baseline. |
+| idle_time_score | [ bool](#bool) | Get the normalized score for the idle time, using a preconfigured baseline. |
+| run_time_score | [ bool](#bool) | Get the normalized score for the run time, using a preconfigured baseline. |
+| utilization_score | [ bool](#bool) | Get the average normalized score for the run time, idle time, distance traveled and fuel efficiency. |
 
 ### Easypulse.History.Response
 
@@ -229,12 +241,21 @@ Processed historical data point. If this is a group, it will have a time range t
 | ----- | ---- | ----------- |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.timestamp | [ hiber.Timestamp](#hibertimestamp) | When not grouping, time of the individual point. When grouping, the time at the end of the group (when the value was true). |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.time_range | [ hiber.TimeRange](#hibertimerange) | When grouping, the start and end time for the group. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.fuel_level | [ float](#float) | The fuel level, as a percentage. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.tire_pressure | [ float](#float) | The tire pressure in bar. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.battery_level | [ float](#float) | The battery level, as a percentage. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.temperature | [ float](#float) | The temperature in degrees Celsius. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.run_time | [ hiber.Duration](#hiberduration) | The time the Asset was running. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.idle_time | [ hiber.Duration](#hiberduration) | The time the Asset was idle. |
+| fuel_level | [ float](#float) | The fuel level, as a percentage. |
+| tire_pressure | [ float](#float) | The tire pressure in bar. |
+| battery_level | [ float](#float) | The battery level, as a percentage. |
+| temperature | [ float](#float) | The temperature in degrees Celsius. |
+| run_time | [ hiber.Duration](#hiberduration) | The time the Asset was running. |
+| idle_time | [ hiber.Duration](#hiberduration) | The time the Asset was idle. |
+| location | [ hiber.Location](#hiberlocation) | The location of the asset at the timestamp, or the last location in the time range. |
+| speed | [ float](#float) | The speed of the asset in km/h. |
+| fuel_efficiency | [ float](#float) | Fuel efficiency in ???. |
+| distance_traveled | [ float](#float) | Distance traveled in ???. |
+| fuel_efficiency_score | [ float](#float) | Normalized score for the fuel efficiency, using a preconfigured baseline. |
+| distance_traveled_score | [ float](#float) | Normalized score for the distance traveled, using a preconfigured baseline. |
+| idle_time_score | [ float](#float) | Normalized score for the idle time, using a preconfigured baseline. |
+| run_time_score | [ float](#float) | Normalized score for the run time, using a preconfigured baseline. |
+| utilization_score | [ float](#float) | Average normalized score for the run time, idle time, distance traveled and fuel efficiency. |
 
 ### Easypulse.ListAssets
 
@@ -285,6 +306,15 @@ Options to aggregate the history data points (in a group).
 | NONE | Do not aggregate the history data points, just list all of them. | 0 |
 | AVERAGE | Average value of all history data points (in a group). | 1 |
 | SUM | Sum all history data points (in a group). | 2 |
+| LAST | Just take the last value (in a group). | 3 |
+
+### Easypulse.History.Request.Sort
+How to sort the returned values.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| TIME_DESCENDING | none | 0 |
+| TIME_ASCENDING | none | 1 |
 
 ### Easypulse.ListAssets.Request.Sort
 
@@ -945,19 +975,39 @@ Unit of measurement for a numeric value.
 | DURATION_MINUTES | none | 2 |
 | DURATION_HOURS | none | 3 |
 | DURATION_DAYS | none | 4 |
-| TEMPERATURE_KELVIN | none | 5 |
-| TEMPERATURE_DEGREES_CELSIUS | none | 6 |
-| TEMPERATURE_DEGREES_FAHRENHEIT | none | 7 |
+| FUEL_EFFICIENCY_LITER_PER_100_KILOMETER | none | 30 |
+| FUEL_EFFICIENCY_KILOMETER_PER_LITER | none | 31 |
+| FUEL_EFFICIENCY_KILOMETER_PER_US_GALLON | none | 32 |
+| FUEL_EFFICIENCY_KILOMETER_PER_IMPERIAL_GALLON | none | 33 |
+| FUEL_EFFICIENCY_MILE_PER_US_GALLON | none | 34 |
+| FUEL_EFFICIENCY_MILE_PER_IMPERIAL_GALLON | none | 35 |
+| FUEL_EFFICIENCY_MILE_PER_LITER | none | 36 |
 | DISTANCE_METER | none | 8 |
 | DISTANCE_MILLIMETER | none | 9 |
 | DISTANCE_CENTIMETER | none | 10 |
 | DISTANCE_KILOMETER | none | 11 |
+| DISTANCE_NAUTICAL_MILE | none | 26 |
+| DISTANCE_MILE | none | 21 |
+| DISTANCE_YARD | none | 27 |
+| DISTANCE_FOOT | none | 28 |
+| DISTANCE_INCH | none | 29 |
+| PERCENT | none | 16 |
 | PRESSURE_BAR | none | 12 |
-| PRESSURE_BAR_GROUND | none | 13 |
 | PRESSURE_PSI | none | 14 |
 | PRESSURE_K_PA | none | 17 |
+| SPEED_KILOMETERS_PER_HOUR | none | 18 |
+| SPEED_KNOTS | none | 19 |
+| SPEED_METERS_PER_SECOND | none | 20 |
+| SPEED_MILES_PER_HOUR | none | 22 |
+| TEMPERATURE_KELVIN | none | 5 |
+| TEMPERATURE_DEGREES_CELSIUS | none | 6 |
+| TEMPERATURE_DEGREES_FAHRENHEIT | none | 7 |
 | VOLTAGE_MILLIVOLT | none | 15 |
-| PERCENT | none | 16 |
+| VOLUME_LITER | none | 23 |
+| VOLUME_GALLON_US | none | 24 |
+| VOLUME_GALLON_IMPERIAL | none | 25 |
+| WEIGHT_KILOGRAMS | none | 37 |
+| WEIGHT_POUNDS | none | 38 |
 
 ## Scalar Value Types
 

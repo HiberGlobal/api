@@ -62,6 +62,8 @@
   - [hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser)
   - [hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations](#hibermodemmessagebodyparsermodemmessagebodyparseravailabletochildorganizations)
   - [hiber.modem.message.bodyparser.ModemMessageBodyParser.DataField](#hibermodemmessagebodyparsermodemmessagebodyparserdatafield)
+  - [hiber.modem.message.bodyparser.ModemMessageBodyParser.DataFieldGroup](#hibermodemmessagebodyparsermodemmessagebodyparserdatafieldgroup)
+  - [hiber.modem.message.bodyparser.ModemMessageBodyParser.DataFieldOrGroup](#hibermodemmessagebodyparsermodemmessagebodyparserdatafieldorgroup)
   - [hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields)
   - [hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafieldslocationfields)
   - [hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection)
@@ -314,6 +316,7 @@ An assignment assigning one thing to another.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifier | [ string](#string) | none |
+| name | [ string](#string) | none |
 | description | [ string](#string) | none |
 | parameters | [ google.protobuf.Struct](#googleprotobufstruct) | none |
 | owner_organization | [ string](#string) | none |
@@ -741,6 +744,7 @@ A parser can be defined in two ways: using a .ksy (Kaitai struct https://kaitai.
 | simple_parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) | The simple parser this .ksy was generated from, if it was generated from a simple parser. This field may be omitted on demand to save data in the list call. |
 | data_fields | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.DataField](#hibermodemmessagebodyparsermodemmessagebodyparserdatafield) | Fields in the parsed result that contain data. Data fields are cached for efficient retrieval and allow all kinds of processing. |
 | data_fields_deprecated | [repeated string](#string) | none |
+| data_fields_with_groups | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.DataFieldOrGroup](#hibermodemmessagebodyparsermodemmessagebodyparserdatafieldorgroup) | Fields in the parsed result that contain data, grouped when multiple fields represent the same data, but in different units. |
 | metadata_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields) | Fields in the parsed result that contain metadata, and special things like a location. |
 | available_to_child_organizations | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations](#hibermodemmessagebodyparsermodemmessagebodyparseravailabletochildorganizations) | If set, this parser is available to your child organizations, as a Provided parser. |
 
@@ -760,11 +764,37 @@ Data fields are cached for efficient retrieval and allow all kinds of processing
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| name | [ string](#string) | The name of the field (if in the root structure) or a JsonPath to the field. |
+| field | [ string](#string) | The name of the field (if in the root structure) or a JsonPath to the field. |
 | display_name | [ string](#string) | An optional display name for the field. |
 | encrypted | [ bool](#bool) | Whether this field should be stored encrypted or not. If it is, some processing options may be unavailable or slower. For example, determining the time between ENUM state transitions requires encryption to be disabled for that field. |
 | unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | If numeric, the unit of the value. |
-| type | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.DataField.Type](#hibermodemmessagebodyparsermodemmessagebodyparserdatafieldtype) | The type of field. |
+| unit_symbol | [ string](#string) | The symbol for the unit. |
+| type | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.DataField.Type](#hibermodemmessagebodyparsermodemmessagebodyparserdatafieldtype) | Use the type of the field to better know how to display the data. |
+| priority | [ int32](#int32) | Priority of the field, typically used for ordering. |
+| group_identifier | [ string](#string) | The group this field is in. Fields are grouped iff they have the same `group_identifier` or (if `group_identifier` is not set) the same `display_name`. |
+
+### hiber.modem.message.bodyparser.ModemMessageBodyParser.DataFieldGroup
+
+Group of fields that have the same display_name.
+Typically, they represent the same data, but in different units.
+(e.g. measured temperature in both Celsius and Fahrenheit.)
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifier | [ string](#string) | Identifier for the group. |
+| display_name | [ string](#string) | Name of the group. |
+| fields | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.DataField](#hibermodemmessagebodyparsermodemmessagebodyparserdatafield) | The DataFields in this group. |
+| type | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.DataField.Type](#hibermodemmessagebodyparsermodemmessagebodyparserdatafieldtype) | Use the type of the field to better know how to display the data. |
+| priority | [ int32](#int32) | Priority of the group, typically used for ordering. The highest priority of the fields in the group. |
+
+### hiber.modem.message.bodyparser.ModemMessageBodyParser.DataFieldOrGroup
+
+Helper to list groups and fields together.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field_or_group**.field | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.DataField](#hibermodemmessagebodyparsermodemmessagebodyparserdatafield) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field_or_group**.group | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.DataFieldGroup](#hibermodemmessagebodyparsermodemmessagebodyparserdatafieldgroup) | none |
 
 ### hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields
 
@@ -1383,6 +1413,8 @@ would have the following parameters:
 | identifier | [ string](#string) | The identifier for this alarm. This identifier is globally unique, since the alarm can be shared to child organizations. |
 | name | [ string](#string) | Short name for this alarm (optional). |
 | description | [ string](#string) | Longer description for this alarm (optional). |
+| created_at | [ hiber.Timestamp](#hibertimestamp) | When this alarm was created. |
+| updated_at | [ hiber.Timestamp](#hibertimestamp) | When this alarm was last updated. |
 | available_to_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Availability to child organizations. This alarm can be shared to child organizations, so it can be assigned to their modems, either directly or automatically over all selected child organizations. Only the owner organization is able to edit the alarm. |
 | trigger_condition | [ hiber.modem.alarm.ModemAlarm.TriggerCondition](#hibermodemalarmmodemalarmtriggercondition) | Condition determining when an alarm is triggered if it has multiple checks. |
 | default_health_level | [ string](#string) | The default health level for checks in this alarm, if they have no health_level configured. |
@@ -2377,19 +2409,39 @@ Unit of measurement for a numeric value.
 | DURATION_MINUTES | none | 2 |
 | DURATION_HOURS | none | 3 |
 | DURATION_DAYS | none | 4 |
-| TEMPERATURE_KELVIN | none | 5 |
-| TEMPERATURE_DEGREES_CELSIUS | none | 6 |
-| TEMPERATURE_DEGREES_FAHRENHEIT | none | 7 |
+| FUEL_EFFICIENCY_LITER_PER_100_KILOMETER | none | 30 |
+| FUEL_EFFICIENCY_KILOMETER_PER_LITER | none | 31 |
+| FUEL_EFFICIENCY_KILOMETER_PER_US_GALLON | none | 32 |
+| FUEL_EFFICIENCY_KILOMETER_PER_IMPERIAL_GALLON | none | 33 |
+| FUEL_EFFICIENCY_MILE_PER_US_GALLON | none | 34 |
+| FUEL_EFFICIENCY_MILE_PER_IMPERIAL_GALLON | none | 35 |
+| FUEL_EFFICIENCY_MILE_PER_LITER | none | 36 |
 | DISTANCE_METER | none | 8 |
 | DISTANCE_MILLIMETER | none | 9 |
 | DISTANCE_CENTIMETER | none | 10 |
 | DISTANCE_KILOMETER | none | 11 |
+| DISTANCE_NAUTICAL_MILE | none | 26 |
+| DISTANCE_MILE | none | 21 |
+| DISTANCE_YARD | none | 27 |
+| DISTANCE_FOOT | none | 28 |
+| DISTANCE_INCH | none | 29 |
+| PERCENT | none | 16 |
 | PRESSURE_BAR | none | 12 |
-| PRESSURE_BAR_GROUND | none | 13 |
 | PRESSURE_PSI | none | 14 |
 | PRESSURE_K_PA | none | 17 |
+| SPEED_KILOMETERS_PER_HOUR | none | 18 |
+| SPEED_KNOTS | none | 19 |
+| SPEED_METERS_PER_SECOND | none | 20 |
+| SPEED_MILES_PER_HOUR | none | 22 |
+| TEMPERATURE_KELVIN | none | 5 |
+| TEMPERATURE_DEGREES_CELSIUS | none | 6 |
+| TEMPERATURE_DEGREES_FAHRENHEIT | none | 7 |
 | VOLTAGE_MILLIVOLT | none | 15 |
-| PERCENT | none | 16 |
+| VOLUME_LITER | none | 23 |
+| VOLUME_GALLON_US | none | 24 |
+| VOLUME_GALLON_IMPERIAL | none | 25 |
+| WEIGHT_KILOGRAMS | none | 37 |
+| WEIGHT_POUNDS | none | 38 |
 
 ## Scalar Value Types
 

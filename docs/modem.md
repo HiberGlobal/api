@@ -13,18 +13,12 @@ used to identify them.
   - [ModemService](#modemservice)
 
 - Messages
-  - [AvailableModemMessageFields](#availablemodemmessagefields)
-  - [AvailableModemMessageFields.Request](#availablemodemmessagefieldsrequest)
-  - [AvailableModemMessageFields.Response](#availablemodemmessagefieldsresponse)
   - [CreateModem](#createmodem)
   - [CreateModem.Request](#createmodemrequest)
   - [CreateModem.Request.PeripheralsEntry](#createmodemrequestperipheralsentry)
   - [CreateModem.Response](#createmodemresponse)
   - [CreateModem.Response.CreatedModem](#createmodemresponsecreatedmodem)
   - [GetModemRequest](#getmodemrequest)
-  - [LicenseKeysRequest](#licensekeysrequest)
-  - [LicenseKeysRequest.Response](#licensekeysrequestresponse)
-  - [LicenseKeysRequest.Response.ModemLicenseKey](#licensekeysrequestresponsemodemlicensekey)
   - [ListModemMessagesRequest](#listmodemmessagesrequest)
   - [ListModemMessagesRequest.Response](#listmodemmessagesrequestresponse)
   - [ListModemsGrouped](#listmodemsgrouped)
@@ -51,7 +45,6 @@ used to identify them.
   - [ModemHealthCount.Response](#modemhealthcountresponse)
   - [ModemMessage](#modemmessage)
   - [ModemMessage.ParsedBody](#modemmessageparsedbody)
-  - [ModemMessageFieldSelection](#modemmessagefieldselection)
   - [ModemMessageSelection](#modemmessageselection)
   - [ModemMessageSelection.ModemMessageSourceFilter](#modemmessageselectionmodemmessagesourcefilter)
   - [ModemSelection](#modemselection)
@@ -169,12 +162,6 @@ List messages for the selected modems.
 
 Count messages for the selected modems.
 
-### AvailableMessageFields
-> **rpc** AvailableMessageFields([AvailableModemMessageFields.Request](#availablemodemmessagefieldsrequest))
-    [AvailableModemMessageFields.Response](#availablemodemmessagefieldsresponse)
-
-
-
 ### Rename
 > **rpc** Rename([RenameModemRequest](#renamemodemrequest))
     [Modem](#modem)
@@ -217,12 +204,6 @@ Update the health configuration for the selected modems.
 
 Add and remove peripherals for the selected modems.
 
-### LicenseKeys
-> **rpc** LicenseKeys([LicenseKeysRequest](#licensekeysrequest))
-    [LicenseKeysRequest.Response](#licensekeysrequestresponse)
-
-
-
 ### HealthCount
 > **rpc** HealthCount([ModemHealthCount.Request](#modemhealthcountrequest))
     [ModemHealthCount.Response](#modemhealthcountresponse)
@@ -231,39 +212,6 @@ Count the modems in your organization by health.
 
 
 ## Messages
-
-### AvailableModemMessageFields
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| modem | [ string](#string) | The modem the field specification is for. |
-| fields | [ ModemMessageFieldSelection](#modemmessagefieldselection) | The available fields to be filtered.
-
-The message body fields are only set when the fields are marked explicitly using the data fields option on any assigned modem message body parsers. |
-
-### AvailableModemMessageFields.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| modems | [ ModemSelection](#modemselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
-| include_total | [ bool](#bool) | Whether to also calculate the total fields for all selected modems, and return them as a single ModemMessageFieldSelection in the response. This can be useful to display table columns, for example. |
-
-### AvailableModemMessageFields.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| modem_message_fields | [repeated AvailableModemMessageFields](#availablemodemmessagefields) | none |
-| request | [ AvailableModemMessageFields.Request](#availablemodemmessagefieldsrequest) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
-| total | [ ModemMessageFieldSelection](#modemmessagefieldselection) | A merged result of all fields, for all modems. This can be useful to display table columns, for example. |
 
 ### CreateModem
 
@@ -329,35 +277,6 @@ when you want to connect a device to the API using just the API calls in the Tes
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | modem_number | [ string](#string) | none |
 | child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | none |
-
-### LicenseKeysRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ ModemSelection](#modemselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
-
-### LicenseKeysRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| request | [ LicenseKeysRequest](#licensekeysrequest) | none |
-| license_keys | [repeated LicenseKeysRequest.Response.ModemLicenseKey](#licensekeysrequestresponsemodemlicensekey) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
-
-### LicenseKeysRequest.Response.ModemLicenseKey
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| modem_number | [ string](#string) | none |
-| license_key | [ string](#string) | none |
 
 ### ListModemMessagesRequest
 
@@ -672,18 +591,6 @@ The result is stored either as a json object or an error string.
 | parser_name | [ string](#string) | Name of the parser that was used. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **parsed**.error | [ string](#string) | Error while parsing the message body. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **parsed**.result | [ google.protobuf.Struct](#googleprotobufstruct) | Result of parsing the body with this parser. |
-
-### ModemMessageFieldSelection
-
-Selects the fields included in a ModemMessage.
-Use this to get, for example, only the message sentAt and body.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| fields | [repeated string](#string) | Fields in the ModemMessage structure to include in the response. Nested fields are not supported. |
-| message_body_fields | [repeated string](#string) | Data fields in the body_fields Struct to include in the response.
-
-Nested fields are supported, using a json path expression. See the Json Path documentation at https://goessner.net/articles/JsonPath/ for details on json path. |
 
 ### ModemMessageSelection
 
@@ -1511,19 +1418,39 @@ Unit of measurement for a numeric value.
 | DURATION_MINUTES | none | 2 |
 | DURATION_HOURS | none | 3 |
 | DURATION_DAYS | none | 4 |
-| TEMPERATURE_KELVIN | none | 5 |
-| TEMPERATURE_DEGREES_CELSIUS | none | 6 |
-| TEMPERATURE_DEGREES_FAHRENHEIT | none | 7 |
+| FUEL_EFFICIENCY_LITER_PER_100_KILOMETER | none | 30 |
+| FUEL_EFFICIENCY_KILOMETER_PER_LITER | none | 31 |
+| FUEL_EFFICIENCY_KILOMETER_PER_US_GALLON | none | 32 |
+| FUEL_EFFICIENCY_KILOMETER_PER_IMPERIAL_GALLON | none | 33 |
+| FUEL_EFFICIENCY_MILE_PER_US_GALLON | none | 34 |
+| FUEL_EFFICIENCY_MILE_PER_IMPERIAL_GALLON | none | 35 |
+| FUEL_EFFICIENCY_MILE_PER_LITER | none | 36 |
 | DISTANCE_METER | none | 8 |
 | DISTANCE_MILLIMETER | none | 9 |
 | DISTANCE_CENTIMETER | none | 10 |
 | DISTANCE_KILOMETER | none | 11 |
+| DISTANCE_NAUTICAL_MILE | none | 26 |
+| DISTANCE_MILE | none | 21 |
+| DISTANCE_YARD | none | 27 |
+| DISTANCE_FOOT | none | 28 |
+| DISTANCE_INCH | none | 29 |
+| PERCENT | none | 16 |
 | PRESSURE_BAR | none | 12 |
-| PRESSURE_BAR_GROUND | none | 13 |
 | PRESSURE_PSI | none | 14 |
 | PRESSURE_K_PA | none | 17 |
+| SPEED_KILOMETERS_PER_HOUR | none | 18 |
+| SPEED_KNOTS | none | 19 |
+| SPEED_METERS_PER_SECOND | none | 20 |
+| SPEED_MILES_PER_HOUR | none | 22 |
+| TEMPERATURE_KELVIN | none | 5 |
+| TEMPERATURE_DEGREES_CELSIUS | none | 6 |
+| TEMPERATURE_DEGREES_FAHRENHEIT | none | 7 |
 | VOLTAGE_MILLIVOLT | none | 15 |
-| PERCENT | none | 16 |
+| VOLUME_LITER | none | 23 |
+| VOLUME_GALLON_US | none | 24 |
+| VOLUME_GALLON_IMPERIAL | none | 25 |
+| WEIGHT_KILOGRAMS | none | 37 |
+| WEIGHT_POUNDS | none | 38 |
 
 ## Scalar Value Types
 

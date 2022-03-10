@@ -68,6 +68,8 @@ message CurrentUser {
 
 /* Get your personal data. */
 message CurrentUserRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
 }
 
 /* Request access to an organization by name, if it exists.

@@ -2,6 +2,32 @@
 
 #### Upcoming Changes
 
+### 0.99 (2022-03-10)
+
+##### CurrentUserService
+
+- Added `organization` to `CurrentUser`, to get the 'current' organization values for an organization other than the default organization.
+
+##### EventService
+
+- Fixed a bug where a modem filter would exclude assigned and unassign events
+
+##### OrganizationService
+
+- Added `OrganizationFeature.BI_TOOLING_BETA` for integrating BI tooling in the Mission Control interface.
+
+##### SingleSignOnService
+
+- Added `DundasSSO` to sign in to Dundas with your Mission Control session.
+
+##### ModemAlarmService
+
+- Fixed a bug where inactivity alarms without a health level would never trrigger.
+
+##### UnitPreferencesService
+
+- Added option to manage unit preferences in the API.
+
 ### 0.98 (2022-02-17)
 
 ##### EventService

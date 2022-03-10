@@ -12,10 +12,22 @@ service SingleSignOnService {
 
     /* Zendesk SSO using custom JWT */
     rpc Zendesk (ZendeskTokenRequest) returns (ZendeskTokenRequest.Response);
+
+    /* Dundas SSO */
+    rpc Dundas (DundasSSO.Request) returns (DundasSSO.Response);
 }
 
 message ZendeskTokenRequest {
     message Response {
         string token = 1;
+    }
+}
+
+message DundasSSO {
+    message Request {
+        string organization = 1;
+    }
+    message Response {
+        string session_id = 1;
     }
 }

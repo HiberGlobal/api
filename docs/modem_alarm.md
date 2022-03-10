@@ -395,6 +395,8 @@ would have the following parameters:
 | identifier | [ string](#string) | The identifier for this alarm. This identifier is globally unique, since the alarm can be shared to child organizations. |
 | name | [ string](#string) | Short name for this alarm (optional). |
 | description | [ string](#string) | Longer description for this alarm (optional). |
+| created_at | [ hiber.Timestamp](#hibertimestamp) | When this alarm was created. |
+| updated_at | [ hiber.Timestamp](#hibertimestamp) | When this alarm was last updated. |
 | available_to_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Availability to child organizations. This alarm can be shared to child organizations, so it can be assigned to their modems, either directly or automatically over all selected child organizations. Only the owner organization is able to edit the alarm. |
 | trigger_condition | [ ModemAlarm.TriggerCondition](#modemalarmtriggercondition) | Condition determining when an alarm is triggered if it has multiple checks. |
 | default_health_level | [ string](#string) | The default health level for checks in this alarm, if they have no health_level configured. |
@@ -1497,19 +1499,39 @@ Unit of measurement for a numeric value.
 | DURATION_MINUTES | none | 2 |
 | DURATION_HOURS | none | 3 |
 | DURATION_DAYS | none | 4 |
-| TEMPERATURE_KELVIN | none | 5 |
-| TEMPERATURE_DEGREES_CELSIUS | none | 6 |
-| TEMPERATURE_DEGREES_FAHRENHEIT | none | 7 |
+| FUEL_EFFICIENCY_LITER_PER_100_KILOMETER | none | 30 |
+| FUEL_EFFICIENCY_KILOMETER_PER_LITER | none | 31 |
+| FUEL_EFFICIENCY_KILOMETER_PER_US_GALLON | none | 32 |
+| FUEL_EFFICIENCY_KILOMETER_PER_IMPERIAL_GALLON | none | 33 |
+| FUEL_EFFICIENCY_MILE_PER_US_GALLON | none | 34 |
+| FUEL_EFFICIENCY_MILE_PER_IMPERIAL_GALLON | none | 35 |
+| FUEL_EFFICIENCY_MILE_PER_LITER | none | 36 |
 | DISTANCE_METER | none | 8 |
 | DISTANCE_MILLIMETER | none | 9 |
 | DISTANCE_CENTIMETER | none | 10 |
 | DISTANCE_KILOMETER | none | 11 |
+| DISTANCE_NAUTICAL_MILE | none | 26 |
+| DISTANCE_MILE | none | 21 |
+| DISTANCE_YARD | none | 27 |
+| DISTANCE_FOOT | none | 28 |
+| DISTANCE_INCH | none | 29 |
+| PERCENT | none | 16 |
 | PRESSURE_BAR | none | 12 |
-| PRESSURE_BAR_GROUND | none | 13 |
 | PRESSURE_PSI | none | 14 |
 | PRESSURE_K_PA | none | 17 |
+| SPEED_KILOMETERS_PER_HOUR | none | 18 |
+| SPEED_KNOTS | none | 19 |
+| SPEED_METERS_PER_SECOND | none | 20 |
+| SPEED_MILES_PER_HOUR | none | 22 |
+| TEMPERATURE_KELVIN | none | 5 |
+| TEMPERATURE_DEGREES_CELSIUS | none | 6 |
+| TEMPERATURE_DEGREES_FAHRENHEIT | none | 7 |
 | VOLTAGE_MILLIVOLT | none | 15 |
-| PERCENT | none | 16 |
+| VOLUME_LITER | none | 23 |
+| VOLUME_GALLON_US | none | 24 |
+| VOLUME_GALLON_IMPERIAL | none | 25 |
+| WEIGHT_KILOGRAMS | none | 37 |
+| WEIGHT_POUNDS | none | 38 |
 
 ## Scalar Value Types
 

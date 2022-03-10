@@ -1,0 +1,576 @@
+syntax = "proto3";
+
+package hiber;
+
+import "base.proto";
+
+option java_multiple_files = true;
+option java_package = "global.hiber.api.grpc.value";
+option go_package = "hiber";
+
+service UnitPreferencesService {
+    rpc UnitPreferences (UnitPreferences.Request) returns (UnitPreferences.Response);
+}
+
+message Value {
+    /* The type of value that is represented. */
+    enum Type {
+        OTHER = 0;
+
+        /* This field contains numeric values, with an optional unit of measurement defined below. */
+        NUMERIC = 1;
+
+        /* This field contains text to be displayed. */
+        TEXT = 2;
+    }
+
+    Type type = 1;
+    oneof value {
+        Numeric numeric = 2;
+        string text = 3;
+    }
+
+    message Numeric {
+        /* The type of numeric value that is represented.
+         * Supported types will automatically convert to the preferred unit (based on the user settings).
+         */
+        enum Type {
+            TYPE_UNKNOWN = 0;
+            PERCENTAGE = 1;
+            TEMPERATURE = 2;
+            DISTANCE = 3;
+            PRESSURE = 4;
+            VOLTAGE = 5;
+            SPEED = 6;
+            VOLUME = 7;
+            DURATION = 8;
+            FUEL_EFFICIENCY = 9;
+            WEIGHT = 10;
+            BATTERY_LEVEL = 11;
+        }
+
+        /* Special case for battery level, since it can be provided in many units.
+         * Not included in the UnitPreferences, since it cannot be converted.
+         */
+        message BatteryLevel {
+            enum Unit {
+                /* Battery level as a percentage (technically not a unit). */
+                PERCENT = 0;
+                // other units will be added here later, like voltage
+            }
+
+            double value = 1;
+            Unit unit = 2;
+
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
+            string textual = 3;
+
+            /* The original unit, iff this value was converted from another unit because of user preferences. */
+            Unit converted_from = 4;
+        }
+
+        /* The value is a distance value, converted to your preferred distance unit. */
+        message Distance {
+            enum Unit {
+                METER = 0;
+                MILLIMETER = 1;
+                CENTIMETER = 2;
+                KILOMETER = 3;
+                YARD = 5;
+                MILE = 4;
+                FOOT = 6;
+                INCH = 7;
+
+                /* This is a special case unit and may not be auto-converted to your UnitPreference. */
+                NAUTICAL_MILE = 8;
+            }
+
+            double value = 1;
+            Unit unit = 2;
+
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
+            string textual = 3;
+
+            /* The original unit, iff this value was converted from another unit because of user preferences. */
+            Unit converted_from = 4;
+        }
+
+        /* The value is a distance value, converted to your preferred distance unit. */
+        message FuelEfficiency {
+            enum Unit {
+                LITER_PER_100_KILOMETER = 0;
+                KILOMETER_PER_LITER = 1;
+                KILOMETER_PER_GALLON = 2;
+                KILOMETER_PER_IMPERIAL_GALLON = 3;
+                MILE_PER_GALLON = 4;
+                MILE_PER_IMPERIAL_GALLON = 5;
+                MILE_PER_LITER = 6;
+            }
+
+            double value = 1;
+            Unit unit = 2;
+
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
+            string textual = 3;
+
+            /* The original unit, iff this value was converted from another unit because of user preferences. */
+            Unit converted_from = 4;
+        }
+
+        /* The value is a percentage. */
+        message Percentage {
+            float value = 1;
+
+            /* Textual representation with % symbol, rounded based on the user preferences and field config. */
+            string textual = 2;
+        }
+
+        /* The value is a pressure value, converted to your preferred pressure unit. */
+        message Pressure {
+            enum Unit {
+                BAR = 0;
+                PSI = 1;
+                K_PA = 2;
+            }
+
+            double value = 1;
+            Unit unit = 2;
+
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
+            string textual = 3;
+
+            /* The original unit, iff this value was converted from another unit because of user preferences. */
+            Unit converted_from = 4;
+        }
+
+        /* The value is a speed value, converted to your preferred speed unit. */
+        message Speed {
+            enum Unit {
+                KILOMETERS_PER_HOUR = 0;
+                /* This is a special case unit and may not be auto-converted to your UnitPreference. */
+                KNOTS = 1;
+                METERS_PER_SECOND = 2;
+                MILES_PER_HOUR = 3;
+            }
+
+            double value = 1;
+            Unit unit = 2;
+
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
+            string textual = 3;
+
+            /* The original unit, iff this value was converted from another unit because of user preferences. */
+            Unit converted_from = 4;
+        }
+
+        /* The value is a temperature, converted to your preferred temperature unit. */
+        message Temperature {
+            enum Unit {
+                KELVIN = 0;
+                DEGREES_CELSIUS = 1;
+                DEGREES_FAHRENHEIT = 2;
+            }
+
+            double value = 1;
+            Unit unit = 2;
+
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
+            string textual = 3;
+
+            /* The original unit, iff this value was converted from another unit because of user preferences. */
+            Unit converted_from = 4;
+        }
+
+        /* The value is a voltage, converted to your preferred voltage unit. */
+        message Voltage {
+            enum Unit {
+                MILLIVOLT = 0;
+            }
+
+            double value = 1;
+            Unit unit = 2;
+
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
+            string textual = 3;
+
+            /* The original unit, iff this value was converted from another unit because of user preferences. */
+            Unit converted_from = 4;
+        }
+
+        /* The value is a volume value, converted to your preferred volume unit. */
+        message Volume {
+            enum Unit {
+                LITER = 0;
+                GALLON_US = 1;
+                GALLON_IMPERIAL = 2;
+            }
+
+            double value = 1;
+            Unit unit = 2;
+
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
+            string textual = 3;
+
+            /* The original unit, iff this value was converted from another unit because of user preferences. */
+            Unit converted_from = 4;
+        }
+
+        /* The value is a volume value, converted to your preferred volume unit. */
+        message Weight {
+            enum Unit {
+                KILOGRAMS = 0;
+                POUNDS = 1;
+            }
+
+            double value = 1;
+            Unit unit = 2;
+
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
+            string textual = 3;
+
+            /* The original unit, iff this value was converted from another unit because of user preferences. */
+            Unit converted_from = 4;
+        }
+
+        /* The duration enum is not wrapped in Duration, since duration is always returned as a normalize Duration.
+         * This unit is still used for fields, however.
+         */
+        enum DurationUnit {
+            MILLISECONDS = 0;
+            SECONDS = 1;
+            MINUTES = 2;
+            HOURS = 3;
+            DAYS = 4;
+        }
+
+        Type type = 1;
+        oneof value {
+            BatteryLevel battery_level = 11;
+            Distance distance = 3;
+            Duration duration = 4;
+            Percentage percentage = 5;
+            Pressure pressure = 6;
+            Speed speed = 7;
+            Temperature temperature = 8;
+            Voltage voltage = 9;
+            Volume volume = 10;
+        }
+    }
+}
+
+message Field {
+    /* If the field is numeric, this specifies the details for the field. */
+    message Numeric {
+        /* Formatting options for the field. */
+        message Format {
+            /* How to round the value when scale is applied.
+             * For example, a value of 3.1415 with scale 3 could be
+             *   4.141 (DOWN, HALF_DOWN, FLOOR) or
+             *   4.142 (HALF_UP, UP, CEILING).
+             */
+            enum RoundingMode {
+                /* Round towards "nearest neighbor" unless both neighbors are equidistant, in which case round up
+                 * Effectively round up when >= .5, otherwise round down.
+                 */
+                HALF_UP = 0;
+
+                /* Round towards "nearest neighbor" unless both neighbors are equidistant, in which case round down.
+                 * Effectively round up when > .5, otherwise round down.
+                 */
+                HALF_DOWN = 1;
+
+                /* Round away from zero: 1.1 -> 2, while -1.1 -> -2. */
+                UP = 3;
+
+                /* Round towards zero: 1.1 -> 1, while -1.1 -> -1. */
+                DOWN = 4;
+
+                /* Round towards positive infinity. */
+                CEILING = 5;
+
+                /* Round towards negative infinity. */
+                FLOOR = 6;
+
+                /* Round towards the "nearest neighbor" unless both neighbors are equidistant, in which case,
+                 * round towards the even neighbor.
+                 * Effectively round up when >= .5 and next integer value is even, otherwise round down.
+                 */
+                HALF_EVEN = 7;
+            }
+
+            /* Whether to round the value. */
+            oneof round {
+                /* Round to an integer. */
+                bool round_to_integer = 3;
+
+                /* Round to a number of decimals (at least 1). */
+                uint32 round_to_scale = 1;
+            }
+
+            /* How to round the value when scale is applied. */
+            RoundingMode rounding_mode = 2;
+        }
+
+        /* The type of numeric value. */
+        Value.Numeric.Type type = 1;
+
+        /* The symbol to use for the field's unit. */
+        string symbol = 2;
+
+        /* How to format the values (number of decimals, rounding, etc.). */
+        Format format = 3;
+
+        /* The unit for the field, per numeric value type. */
+        oneof numeric_unit {
+            Value.Numeric.BatteryLevel.Unit battery_level_unit = 14;
+            Value.Numeric.Distance.Unit distance_unit = 5;
+
+            /* The duration unit the field is in.
+             * Note that duration is mapped to a normalized Duration object for convenience,
+             * so the unit is only used to convert from the field value to Duration.
+             */
+            Value.Numeric.DurationUnit duration_unit = 6;
+
+            Value.Numeric.FuelEfficiency.Unit fuel_efficiency_unit = 7;
+            Value.Numeric.Pressure.Unit pressure_unit = 8;
+            Value.Numeric.Speed.Unit speed_unit = 9;
+            Value.Numeric.Temperature.Unit temperature_unit = 10;
+            Value.Numeric.Voltage.Unit voltage_unit = 11;
+            Value.Numeric.Volume.Unit volume_unit = 12;
+            Value.Numeric.Weight.Unit weight_unit = 13;
+        }
+    }
+
+    /* The name of the field (if in the root structure) or a JsonPath to the field. */
+    string field = 1;
+
+    /* An optional display name for the field. */
+    string display_name = 2;
+
+    /* Priority of the field, typically used for ordering. */
+    int32 priority = 7;
+
+    /* The type of value the field contains. */
+    Value.Type type = 5;
+
+    /* The details for the type.
+     * Value.Type.TEXT has no details.
+     */
+    oneof details {
+        Numeric numeric = 9;
+    }
+
+    /* Whether this field should be stored encrypted or not.
+     * If it is, some processing options may be unavailable or slower.
+     */
+    bool encrypted = 3;
+
+    /* If numeric, the unit of the field.
+     * Deprecated: use numeric.numeric_unit oneof instead
+     */
+    UnitOfMeasurement unit_of_measurement = 4 [deprecated = true];
+
+    /* The symbol for the unit.
+     * Deprecated: use numeric.symbol instead
+     */
+    string unit_symbol = 6 [deprecated = true];
+
+    reserved 8;
+}
+
+/* The preferred units for the current user. */
+message UnitPreferences {
+    enum UnitCategory {
+        METRIC = 0;
+        IMPERIAL = 1;
+    }
+
+    /* User preferences for distance values. */
+    message DistancePreference {
+        /* Unit category (metric / imperial) to convert distance values to. */
+        UnitCategory unit_category = 1;
+
+        /* Optional formatting options for values (rounding, etc). */
+        Field.Numeric.Format format = 2;
+    }
+
+    /* Optional distance preference for the current user. */
+    oneof distance {
+        DistancePreference distance_preference = 1;
+        bool no_distance_preference = 11;
+    }
+
+    /* User preferences for fuel efficiency values. */
+    message FuelEfficiencyPreference {
+        Value.Numeric.FuelEfficiency.Unit unit = 1;
+
+        /* Optional formatting options for values (rounding, etc). */
+        Field.Numeric.Format format = 2;
+    }
+
+    /* Optional fuel efficiency preference for the current user. */
+    oneof fuel_efficiency {
+        FuelEfficiencyPreference fuel_efficiency_preference = 2;
+        bool no_fuel_efficiency_preference = 12;
+    }
+
+    /* User preferences for percentage values. */
+    message PercentagePreference {
+
+        /* Optional formatting options for values (rounding, etc). */
+        Field.Numeric.Format format = 1;
+    }
+
+    /* Optional percentage preference for the current user. */
+    oneof percentage {
+        PercentagePreference percentage_preference = 3;
+        bool no_percentage_preference = 13;
+    }
+
+    /* User preferences for pressure values. */
+    message PressurePreference {
+        Value.Numeric.Pressure.Unit unit = 1;
+
+        /* Optional formatting options for values (rounding, etc). */
+        Field.Numeric.Format format = 2;
+    }
+
+    /* Optional pressure preference for the current user. */
+    oneof pressure {
+        PressurePreference pressure_preference = 4;
+        bool no_pressure_preference = 14;
+    }
+
+    /* User preferences for speed values. */
+    message SpeedPreference {
+        /* Unit category (metric / imperial) to convert speed values to. */
+        UnitCategory unit_category = 1;
+
+        /* Optional formatting options for values (rounding, etc). */
+        Field.Numeric.Format format = 2;
+    }
+
+    /* Optional speed preference for the current user. */
+    oneof speed {
+        SpeedPreference speed_preference = 5;
+        bool no_speed_preference = 15;
+    }
+
+    /* User preferences for temperature values. */
+    message TemperaturePreference {
+        Value.Numeric.Temperature.Unit unit = 1;
+
+        /* Optional formatting options for values (rounding, etc). */
+        Field.Numeric.Format format = 2;
+    }
+
+    /* Optional temperature preference for the current user. */
+    oneof temperature {
+        TemperaturePreference temperature_preference = 6;
+        bool no_temperature_preference = 16;
+    }
+
+    /* User preferences for voltage values. */
+    message VoltagePreference {
+        Value.Numeric.Voltage.Unit unit = 1;
+
+        /* Optional formatting options for values (rounding, etc). */
+        Field.Numeric.Format format = 2;
+    }
+
+    /* Optional voltage preference for the current user. */
+    oneof voltage {
+        VoltagePreference voltage_preference = 7;
+        bool no_voltage_preference = 17;
+    }
+
+    /* User preferences for volume values. */
+    message VolumePreference {
+        /* Unit category (metric / imperial) to convert volume values to. */
+        UnitCategory unit_category = 1;
+
+        /* Optional formatting options for values (rounding, etc). */
+        Field.Numeric.Format format = 2;
+    }
+
+    /* Optional volume preference for the current user. */
+    oneof volume {
+        VolumePreference volume_preference = 8;
+        bool no_volume_preference = 18;
+    }
+
+    /* User preferences for weight values. */
+    message WeightPreference {
+        /* Unit category (metric / imperial) to convert weight values to. */
+        UnitCategory unit_category = 1;
+
+        /* Optional formatting options for values (rounding, etc). */
+        Field.Numeric.Format format = 2;
+    }
+
+    /* Optional weight preference for the current user. */
+    oneof weight {
+        WeightPreference weight_preference = 9;
+        bool no_weight_preference = 19;
+    }
+
+    message Request {
+        /* Update or remove the distance preference. */
+        oneof distance {
+            DistancePreference update_distance_preference = 1;
+            bool remove_distance_preference = 11;
+        }
+
+        /* Update or remove the fuel efficiency preference. */
+        oneof fuel_efficiency {
+            FuelEfficiencyPreference update_fuel_efficiency_preference = 2;
+            bool remove_fuel_efficiency_preference = 12;
+        }
+
+        /* Update or remove the percentage preference. */
+        oneof percentage {
+            PercentagePreference update_percentage_preference = 3;
+            bool remove_percentage_preference = 13;
+        }
+
+        /* Update or remove the pressure preference. */
+        oneof pressure {
+            PressurePreference update_pressure_preference = 4;
+            bool remove_pressure_preference = 14;
+        }
+
+        /* Update or remove the speed preference. */
+        oneof speed {
+            SpeedPreference update_speed_preference = 5;
+            bool remove_speed_preference = 15;
+        }
+
+        /* Update or remove the temperature preference. */
+        oneof temperature {
+            TemperaturePreference update_temperature_preference = 6;
+            bool remove_temperature_preference = 16;
+        }
+
+        /* Update or remove the voltage preference. */
+        oneof voltage {
+            VoltagePreference update_voltage_preference = 7;
+            bool remove_voltage_preference = 17;
+        }
+
+        /* Update or remove the volume preference. */
+        oneof volume {
+            VolumePreference update_volume_preference = 8;
+            bool remove_volume_preference = 18;
+        }
+
+        /* Update or remove the weight preference. */
+        oneof weight {
+            WeightPreference update_weight_preference = 9;
+            bool remove_weight_preference = 19;
+        }
+    }
+
+    message Response {
+        UnitPreferences preferences = 1;
+    }
+}
