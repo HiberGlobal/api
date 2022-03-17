@@ -29,6 +29,7 @@
   - [Value.Numeric](#valuenumeric)
   - [Value.Numeric.BatteryLevel](#valuenumericbatterylevel)
   - [Value.Numeric.Distance](#valuenumericdistance)
+  - [Value.Numeric.Flow](#valuenumericflow)
   - [Value.Numeric.FuelEfficiency](#valuenumericfuelefficiency)
   - [Value.Numeric.Percentage](#valuenumericpercentage)
   - [Value.Numeric.Pressure](#valuenumericpressure)
@@ -44,6 +45,7 @@
   - [Value.Numeric.BatteryLevel.Unit](#valuenumericbatterylevelunit)
   - [Value.Numeric.Distance.Unit](#valuenumericdistanceunit)
   - [Value.Numeric.DurationUnit](#valuenumericdurationunit)
+  - [Value.Numeric.Flow.Unit](#valuenumericflowunit)
   - [Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit)
   - [Value.Numeric.Pressure.Unit](#valuenumericpressureunit)
   - [Value.Numeric.Speed.Unit](#valuenumericspeedunit)
@@ -144,6 +146,7 @@ If the field is numeric, this specifies the details for the field.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **numeric_unit**.voltage_unit | [ Value.Numeric.Voltage.Unit](#valuenumericvoltageunit) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **numeric_unit**.volume_unit | [ Value.Numeric.Volume.Unit](#valuenumericvolumeunit) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **numeric_unit**.weight_unit | [ Value.Numeric.Weight.Unit](#valuenumericweightunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **numeric_unit**.flow_unit | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) | none |
 
 ### Field.Numeric.Format
 
@@ -319,6 +322,7 @@ User preferences for weight values.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.temperature | [ Value.Numeric.Temperature](#valuenumerictemperature) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.voltage | [ Value.Numeric.Voltage](#valuenumericvoltage) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.volume | [ Value.Numeric.Volume](#valuenumericvolume) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.flow | [ Value.Numeric.Flow](#valuenumericflow) | none |
 
 ### Value.Numeric.BatteryLevel
 
@@ -342,6 +346,17 @@ The value is a distance value, converted to your preferred distance unit.
 | unit | [ Value.Numeric.Distance.Unit](#valuenumericdistanceunit) | none |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ Value.Numeric.Distance.Unit](#valuenumericdistanceunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### Value.Numeric.Flow
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### Value.Numeric.FuelEfficiency
 
@@ -491,6 +506,13 @@ This unit is still used for fields, however.
 | HOURS | none | 3 |
 | DAYS | none | 4 |
 
+### Value.Numeric.Flow.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| CUBIC_METER_PER_HOUR | none | 0 |
+
 ### Value.Numeric.FuelEfficiency.Unit
 
 
@@ -550,6 +572,7 @@ Supported types will automatically convert to the preferred unit (based on the u
 | FUEL_EFFICIENCY | none | 9 |
 | WEIGHT | none | 10 |
 | BATTERY_LEVEL | none | 11 |
+| FLOW | none | 12 |
 
 ### Value.Numeric.Voltage.Unit
 
@@ -1124,6 +1147,7 @@ Unit of measurement for a numeric value.
 | VOLUME_GALLON_IMPERIAL | none | 25 |
 | WEIGHT_KILOGRAMS | none | 37 |
 | WEIGHT_POUNDS | none | 38 |
+| FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
 
 ## Scalar Value Types
 

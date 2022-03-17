@@ -2,6 +2,10 @@
 
 #### Upcoming Changes
 
+### 0.100 (2022-03-17)
+
+- Added `flow` measure with `cubic meters per hour` unit.
+
 ### 0.99 (2022-03-10)
 
 ##### CurrentUserService

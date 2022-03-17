@@ -47,6 +47,7 @@ message Value {
             FUEL_EFFICIENCY = 9;
             WEIGHT = 10;
             BATTERY_LEVEL = 11;
+            FLOW = 12;
         }
 
         /* Special case for battery level, since it can be provided in many units.
@@ -232,6 +233,20 @@ message Value {
             Unit converted_from = 4;
         }
 
+        message Flow {
+            enum Unit {
+                CUBIC_METER_PER_HOUR = 0;
+            }
+
+            double value = 1;
+            Unit unit = 2;
+
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
+            string textual = 3;
+            /* The original unit, iff this value was converted from another unit because of user preferences. */
+            Unit converted_from = 4;
+        }
+
         /* The duration enum is not wrapped in Duration, since duration is always returned as a normalize Duration.
          * This unit is still used for fields, however.
          */
@@ -254,6 +269,7 @@ message Value {
             Temperature temperature = 8;
             Voltage voltage = 9;
             Volume volume = 10;
+            Flow flow = 13;
         }
     }
 }
@@ -338,6 +354,7 @@ message Field {
             Value.Numeric.Voltage.Unit voltage_unit = 11;
             Value.Numeric.Volume.Unit volume_unit = 12;
             Value.Numeric.Weight.Unit weight_unit = 13;
+            Value.Numeric.Flow.Unit flow_unit = 15;
         }
     }
 

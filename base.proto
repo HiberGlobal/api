@@ -491,5 +491,7 @@ enum UnitOfMeasurement {
     WEIGHT_KILOGRAMS = 37;
     WEIGHT_POUNDS = 38;
 
+    FLOW_CUBIC_METERS_PER_HOUR = 39;
+
     reserved 13;
 }

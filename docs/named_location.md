@@ -817,6 +817,7 @@ Unit of measurement for a numeric value.
 | VOLUME_GALLON_IMPERIAL | none | 25 |
 | WEIGHT_KILOGRAMS | none | 37 |
 | WEIGHT_POUNDS | none | 38 |
+| FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
 
 ## Scalar Value Types
 
