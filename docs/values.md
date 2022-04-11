@@ -13,9 +13,12 @@
   - [Field](#field)
   - [Field.Numeric](#fieldnumeric)
   - [Field.Numeric.Format](#fieldnumericformat)
+  - [Field.Numeric.Unit](#fieldnumericunit)
   - [UnitPreferences](#unitpreferences)
   - [UnitPreferences.DistancePreference](#unitpreferencesdistancepreference)
+  - [UnitPreferences.FlowPreference](#unitpreferencesflowpreference)
   - [UnitPreferences.FuelEfficiencyPreference](#unitpreferencesfuelefficiencypreference)
+  - [UnitPreferences.MassPreference](#unitpreferencesmasspreference)
   - [UnitPreferences.PercentagePreference](#unitpreferencespercentagepreference)
   - [UnitPreferences.PressurePreference](#unitpreferencespressurepreference)
   - [UnitPreferences.Request](#unitpreferencesrequest)
@@ -24,20 +27,19 @@
   - [UnitPreferences.TemperaturePreference](#unitpreferencestemperaturepreference)
   - [UnitPreferences.VoltagePreference](#unitpreferencesvoltagepreference)
   - [UnitPreferences.VolumePreference](#unitpreferencesvolumepreference)
-  - [UnitPreferences.WeightPreference](#unitpreferencesweightpreference)
   - [Value](#value)
   - [Value.Numeric](#valuenumeric)
   - [Value.Numeric.BatteryLevel](#valuenumericbatterylevel)
   - [Value.Numeric.Distance](#valuenumericdistance)
   - [Value.Numeric.Flow](#valuenumericflow)
   - [Value.Numeric.FuelEfficiency](#valuenumericfuelefficiency)
+  - [Value.Numeric.Mass](#valuenumericmass)
   - [Value.Numeric.Percentage](#valuenumericpercentage)
   - [Value.Numeric.Pressure](#valuenumericpressure)
   - [Value.Numeric.Speed](#valuenumericspeed)
   - [Value.Numeric.Temperature](#valuenumerictemperature)
   - [Value.Numeric.Voltage](#valuenumericvoltage)
   - [Value.Numeric.Volume](#valuenumericvolume)
-  - [Value.Numeric.Weight](#valuenumericweight)
 
 - Enums
   - [Field.Numeric.Format.RoundingMode](#fieldnumericformatroundingmode)
@@ -47,13 +49,13 @@
   - [Value.Numeric.DurationUnit](#valuenumericdurationunit)
   - [Value.Numeric.Flow.Unit](#valuenumericflowunit)
   - [Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit)
+  - [Value.Numeric.Mass.Unit](#valuenumericmassunit)
   - [Value.Numeric.Pressure.Unit](#valuenumericpressureunit)
   - [Value.Numeric.Speed.Unit](#valuenumericspeedunit)
   - [Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit)
   - [Value.Numeric.Type](#valuenumerictype)
   - [Value.Numeric.Voltage.Unit](#valuenumericvoltageunit)
   - [Value.Numeric.Volume.Unit](#valuenumericvolumeunit)
-  - [Value.Numeric.Weight.Unit](#valuenumericweightunit)
   - [Value.Type](#valuetype)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
@@ -124,7 +126,7 @@
 | type | [ Value.Type](#valuetype) | The type of value the field contains. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.numeric | [ Field.Numeric](#fieldnumeric) | none |
 | encrypted | [ bool](#bool) | Whether this field should be stored encrypted or not. If it is, some processing options may be unavailable or slower. |
-| unit_of_measurement | [ UnitOfMeasurement](#unitofmeasurement) | If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
+| unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
 | unit_symbol | [ string](#string) | The symbol for the unit. Deprecated: use numeric.symbol instead |
 
 ### Field.Numeric
@@ -136,17 +138,7 @@ If the field is numeric, this specifies the details for the field.
 | type | [ Value.Numeric.Type](#valuenumerictype) | The type of numeric value. |
 | symbol | [ string](#string) | The symbol to use for the field's unit. |
 | format | [ Field.Numeric.Format](#fieldnumericformat) | How to format the values (number of decimals, rounding, etc.). |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **numeric_unit**.battery_level_unit | [ Value.Numeric.BatteryLevel.Unit](#valuenumericbatterylevelunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **numeric_unit**.distance_unit | [ Value.Numeric.Distance.Unit](#valuenumericdistanceunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **numeric_unit**.duration_unit | [ Value.Numeric.DurationUnit](#valuenumericdurationunit) | The duration unit the field is in. Note that duration is mapped to a normalized Duration object for convenience, so the unit is only used to convert from the field value to Duration. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **numeric_unit**.fuel_efficiency_unit | [ Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **numeric_unit**.pressure_unit | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **numeric_unit**.speed_unit | [ Value.Numeric.Speed.Unit](#valuenumericspeedunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **numeric_unit**.temperature_unit | [ Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **numeric_unit**.voltage_unit | [ Value.Numeric.Voltage.Unit](#valuenumericvoltageunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **numeric_unit**.volume_unit | [ Value.Numeric.Volume.Unit](#valuenumericvolumeunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **numeric_unit**.weight_unit | [ Value.Numeric.Weight.Unit](#valuenumericweightunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **numeric_unit**.flow_unit | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) | none |
+| unit | [ Field.Numeric.Unit](#fieldnumericunit) | The unit for the field, depending on the type. |
 
 ### Field.Numeric.Format
 
@@ -158,6 +150,24 @@ Formatting options for the field.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **round**.round_to_scale | [ uint32](#uint32) | Round to a number of decimals (at least 1). |
 | rounding_mode | [ Field.Numeric.Format.RoundingMode](#fieldnumericformatroundingmode) | How to round the value when scale is applied. |
 
+### Field.Numeric.Unit
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.battery_level | [ Value.Numeric.BatteryLevel.Unit](#valuenumericbatterylevelunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.distance | [ Value.Numeric.Distance.Unit](#valuenumericdistanceunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.duration | [ Value.Numeric.DurationUnit](#valuenumericdurationunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.fuel_efficiency | [ Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.flow | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.pressure | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.speed | [ Value.Numeric.Speed.Unit](#valuenumericspeedunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.temperature | [ Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.voltage | [ Value.Numeric.Voltage.Unit](#valuenumericvoltageunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.volume | [ Value.Numeric.Volume.Unit](#valuenumericvolumeunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.mass | [ Value.Numeric.Mass.Unit](#valuenumericmassunit) | none |
+
 ### UnitPreferences
 
 The preferred units for the current user.
@@ -166,8 +176,12 @@ The preferred units for the current user.
 | ----- | ---- | ----------- |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **distance**.distance_preference | [ UnitPreferences.DistancePreference](#unitpreferencesdistancepreference) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **distance**.no_distance_preference | [ bool](#bool) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **flow**.flow_preference | [ UnitPreferences.FlowPreference](#unitpreferencesflowpreference) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **flow**.no_flow_preference | [ bool](#bool) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **fuel_efficiency**.fuel_efficiency_preference | [ UnitPreferences.FuelEfficiencyPreference](#unitpreferencesfuelefficiencypreference) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **fuel_efficiency**.no_fuel_efficiency_preference | [ bool](#bool) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **mass**.mass_preference | [ UnitPreferences.MassPreference](#unitpreferencesmasspreference) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **mass**.no_mass_preference | [ bool](#bool) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **percentage**.percentage_preference | [ UnitPreferences.PercentagePreference](#unitpreferencespercentagepreference) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **percentage**.no_percentage_preference | [ bool](#bool) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **pressure**.pressure_preference | [ UnitPreferences.PressurePreference](#unitpreferencespressurepreference) | none |
@@ -180,8 +194,6 @@ The preferred units for the current user.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **voltage**.no_voltage_preference | [ bool](#bool) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **volume**.volume_preference | [ UnitPreferences.VolumePreference](#unitpreferencesvolumepreference) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **volume**.no_volume_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **weight**.weight_preference | [ UnitPreferences.WeightPreference](#unitpreferencesweightpreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **weight**.no_weight_preference | [ bool](#bool) | none |
 
 ### UnitPreferences.DistancePreference
 
@@ -192,6 +204,15 @@ User preferences for distance values.
 | unit_category | [ UnitPreferences.UnitCategory](#unitpreferencesunitcategory) | Unit category (metric / imperial) to convert distance values to. |
 | format | [ Field.Numeric.Format](#fieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
+### UnitPreferences.FlowPreference
+
+User preferences for mass values.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| unit | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) | none |
+| format | [ Field.Numeric.Format](#fieldnumericformat) | Optional formatting options for values (rounding, etc). |
+
 ### UnitPreferences.FuelEfficiencyPreference
 
 User preferences for fuel efficiency values.
@@ -199,6 +220,15 @@ User preferences for fuel efficiency values.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | unit | [ Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit) | none |
+| format | [ Field.Numeric.Format](#fieldnumericformat) | Optional formatting options for values (rounding, etc). |
+
+### UnitPreferences.MassPreference
+
+User preferences for mass values.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| unit_category | [ UnitPreferences.UnitCategory](#unitpreferencesunitcategory) | Unit category (metric / imperial) to convert mass values to. |
 | format | [ Field.Numeric.Format](#fieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
 ### UnitPreferences.PercentagePreference
@@ -226,8 +256,12 @@ User preferences for pressure values.
 | ----- | ---- | ----------- |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **distance**.update_distance_preference | [ UnitPreferences.DistancePreference](#unitpreferencesdistancepreference) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **distance**.remove_distance_preference | [ bool](#bool) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **flow**.update_flow_preference | [ UnitPreferences.FlowPreference](#unitpreferencesflowpreference) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **flow**.remove_flow_preference | [ bool](#bool) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **fuel_efficiency**.update_fuel_efficiency_preference | [ UnitPreferences.FuelEfficiencyPreference](#unitpreferencesfuelefficiencypreference) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **fuel_efficiency**.remove_fuel_efficiency_preference | [ bool](#bool) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **mass**.update_mass_preference | [ UnitPreferences.MassPreference](#unitpreferencesmasspreference) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **mass**.remove_mass_preference | [ bool](#bool) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **percentage**.update_percentage_preference | [ UnitPreferences.PercentagePreference](#unitpreferencespercentagepreference) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **percentage**.remove_percentage_preference | [ bool](#bool) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **pressure**.update_pressure_preference | [ UnitPreferences.PressurePreference](#unitpreferencespressurepreference) | none |
@@ -240,8 +274,6 @@ User preferences for pressure values.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **voltage**.remove_voltage_preference | [ bool](#bool) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **volume**.update_volume_preference | [ UnitPreferences.VolumePreference](#unitpreferencesvolumepreference) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **volume**.remove_volume_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **weight**.update_weight_preference | [ UnitPreferences.WeightPreference](#unitpreferencesweightpreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **weight**.remove_weight_preference | [ bool](#bool) | none |
 
 ### UnitPreferences.Response
 
@@ -287,15 +319,6 @@ User preferences for volume values.
 | unit_category | [ UnitPreferences.UnitCategory](#unitpreferencesunitcategory) | Unit category (metric / imperial) to convert volume values to. |
 | format | [ Field.Numeric.Format](#fieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
-### UnitPreferences.WeightPreference
-
-User preferences for weight values.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| unit_category | [ UnitPreferences.UnitCategory](#unitpreferencesunitcategory) | Unit category (metric / imperial) to convert weight values to. |
-| format | [ Field.Numeric.Format](#fieldnumericformat) | Optional formatting options for values (rounding, etc). |
-
 ### Value
 
 
@@ -315,14 +338,17 @@ User preferences for weight values.
 | type | [ Value.Numeric.Type](#valuenumerictype) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.battery_level | [ Value.Numeric.BatteryLevel](#valuenumericbatterylevel) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.distance | [ Value.Numeric.Distance](#valuenumericdistance) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.duration | [ Duration](#duration) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.duration | [ hiber.Duration](#hiberduration) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.fuel_efficiency | [ Value.Numeric.FuelEfficiency](#valuenumericfuelefficiency) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.percentage | [ Value.Numeric.Percentage](#valuenumericpercentage) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.pressure | [ Value.Numeric.Pressure](#valuenumericpressure) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.speed | [ Value.Numeric.Speed](#valuenumericspeed) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.temperature | [ Value.Numeric.Temperature](#valuenumerictemperature) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.voltage | [ Value.Numeric.Voltage](#valuenumericvoltage) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.volume | [ Value.Numeric.Volume](#valuenumericvolume) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.mass | [ Value.Numeric.Mass](#valuenumericmass) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.flow | [ Value.Numeric.Flow](#valuenumericflow) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.unknown | [ double](#double) | none |
 
 ### Value.Numeric.BatteryLevel
 
@@ -368,6 +394,17 @@ The value is a distance value, converted to your preferred distance unit.
 | unit | [ Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit) | none |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### Value.Numeric.Mass
+
+The value is a volume value, converted to your preferred volume unit.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ Value.Numeric.Mass.Unit](#valuenumericmassunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ Value.Numeric.Mass.Unit](#valuenumericmassunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### Value.Numeric.Percentage
 
@@ -432,17 +469,6 @@ The value is a volume value, converted to your preferred volume unit.
 | unit | [ Value.Numeric.Volume.Unit](#valuenumericvolumeunit) | none |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ Value.Numeric.Volume.Unit](#valuenumericvolumeunit) | The original unit, iff this value was converted from another unit because of user preferences. |
-
-### Value.Numeric.Weight
-
-The value is a volume value, converted to your preferred volume unit.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.Weight.Unit](#valuenumericweightunit) | none |
-| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Weight.Unit](#valuenumericweightunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 
 ## Enums
@@ -526,6 +552,14 @@ This unit is still used for fields, however.
 | MILE_PER_IMPERIAL_GALLON | none | 5 |
 | MILE_PER_LITER | none | 6 |
 
+### Value.Numeric.Mass.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| KILOGRAMS | none | 0 |
+| POUNDS | none | 1 |
+
 ### Value.Numeric.Pressure.Unit
 
 
@@ -570,7 +604,7 @@ Supported types will automatically convert to the preferred unit (based on the u
 | VOLUME | none | 7 |
 | DURATION | none | 8 |
 | FUEL_EFFICIENCY | none | 9 |
-| WEIGHT | none | 10 |
+| MASS | none | 10 |
 | BATTERY_LEVEL | none | 11 |
 | FLOW | none | 12 |
 
@@ -590,14 +624,6 @@ Supported types will automatically convert to the preferred unit (based on the u
 | GALLON_US | none | 1 |
 | GALLON_IMPERIAL | none | 2 |
 
-### Value.Numeric.Weight.Unit
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| KILOGRAMS | none | 0 |
-| POUNDS | none | 1 |
-
 ### Value.Type
 The type of value that is represented.
 
@@ -606,6 +632,7 @@ The type of value that is represented.
 | OTHER | none | 0 |
 | NUMERIC | This field contains numeric values, with an optional unit of measurement defined below. | 1 |
 | TEXT | This field contains text to be displayed. | 2 |
+| ENUM | This field switches between several predefined values. Typically used for status fields. | 3 |
 
 
 
@@ -1110,6 +1137,7 @@ Unit of measurement for a numeric value.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | UNIT_UNKNOWN | none | 0 |
+| DURATION_MILLISECONDS | none | 40 |
 | DURATION_SECONDS | none | 1 |
 | DURATION_MINUTES | none | 2 |
 | DURATION_HOURS | none | 3 |
@@ -1145,8 +1173,8 @@ Unit of measurement for a numeric value.
 | VOLUME_LITER | none | 23 |
 | VOLUME_GALLON_US | none | 24 |
 | VOLUME_GALLON_IMPERIAL | none | 25 |
-| WEIGHT_KILOGRAMS | none | 37 |
-| WEIGHT_POUNDS | none | 38 |
+| MASS_KILOGRAMS | none | 37 |
+| MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
 
 ## Scalar Value Types

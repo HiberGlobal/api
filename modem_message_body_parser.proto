@@ -17,6 +17,7 @@ package hiber.modem.message.bodyparser;
 import "base.proto";
 import "google/protobuf/struct.proto";
 import "modem.proto";
+import "value.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.modem.message.bodyparser";
@@ -80,84 +81,6 @@ message ModemMessageBodyParser {
         Filter.ChildOrganizations child_organizations = 1;
     }
 
-    /* Fields in the parsed result that contain data.
-     * Data fields are cached for efficient retrieval and allow all kinds of processing.
-     */
-    message DataField {
-        enum Type {
-            OTHER = 0;
-
-            /* This field contains numeric values, with an optional unit of measurement defined below. */
-            NUMERIC = 1;
-
-            /* This field contains text to be displayed. */
-            TEXT = 2;
-
-            /* This field switches between several predefined values. Typically used for status fields. */
-            ENUM = 3;
-        }
-
-        /* The name of the field (if in the root structure) or a JsonPath to the field. */
-        string field = 1;
-
-        /* An optional display name for the field. */
-        string display_name = 2;
-
-        /* Whether this field should be stored encrypted or not.
-         * If it is, some processing options may be unavailable or slower.
-         * For example, determining the time between ENUM state transitions requires encryption to be disabled for
-         * that field.
-         */
-        bool encrypted = 3;
-
-        /* If numeric, the unit of the value. */
-        UnitOfMeasurement unit_of_measurement = 4;
-
-        /* The symbol for the unit. */
-        string unit_symbol = 6;
-
-        /* Use the type of the field to better know how to display the data. */
-        Type type = 5;
-
-        /* Priority of the field, typically used for ordering. */
-        int32 priority = 7;
-
-        /* The group this field is in.
-         * Fields are grouped iff they have the same `group_identifier` or (if `group_identifier` is not set)
-         * the same `display_name`.
-         */
-        string group_identifier = 8;
-    }
-
-    /* Group of fields that have the same display_name.
-     * Typically, they represent the same data, but in different units.
-     * (e.g. measured temperature in both Celsius and Fahrenheit.)
-     */
-    message DataFieldGroup {
-        /* Identifier for the group. */
-        string identifier = 1;
-
-        /* Name of the group. */
-        string display_name = 4;
-
-        /* The DataFields in this group. */
-        repeated DataField fields = 2;
-
-        /* Use the type of the field to better know how to display the data. */
-        DataField.Type type = 3;
-
-        /* Priority of the group, typically used for ordering. The highest priority of the fields in the group. */
-        int32 priority = 5;
-    }
-
-    /* Helper to list groups and fields together. */
-    message DataFieldOrGroup {
-        oneof field_or_group {
-            DataField field = 1;
-            DataFieldGroup group = 2;
-        }
-    }
-
     /* Fields in the parsed result that match common things that can be processed by the system,
      * like a location or battery percentage. */
     message MetadataFields {
@@ -198,13 +121,8 @@ message ModemMessageBodyParser {
     /* Fields in the parsed result that contain data.
      * Data fields are cached for efficient retrieval and allow all kinds of processing.
      */
-    repeated DataField data_fields = 11;
+    repeated value.Field data_fields = 11;
     repeated string data_fields_deprecated = 9 [deprecated = true];
-
-    /* Fields in the parsed result that contain data, grouped when multiple fields represent the same data,
-     * but in different units.
-     */
-    repeated DataFieldOrGroup data_fields_with_groups = 12;
 
     /* Fields in the parsed result that contain metadata, and special things like a location. */
     MetadataFields metadata_fields = 10;
@@ -212,7 +130,7 @@ message ModemMessageBodyParser {
     /* If set, this parser is available to your child organizations, as a Provided parser. */
     AvailableToChildOrganizations available_to_child_organizations = 6;
 
-    reserved 1, 5;
+    reserved 1, 5, 12;
 }
 
 /* Simple modem message body parser. This can be used a convenient way to create a .ksy parser. */
@@ -385,11 +303,12 @@ message UploadModemMessageBodyParserRequest {
     /* Fields in the parsed result that contain data.
      * This can be useful to track which fields could be plotted, etc.
      */
-    repeated ModemMessageBodyParser.DataField data_fields = 5;
-    repeated string data_fields_deprecated = 4 [deprecated = true];
+    repeated value.Field data_fields = 5;
 
     /* Fields in the parsed result that match special things that can be processed by the system, like a location. */
     ModemMessageBodyParser.MetadataFields metadata_fields = 10;
+
+    reserved 4;
 }
 
 /* Upload an updated body parser from a .ksy file, replacing the previous file. */
@@ -415,8 +334,7 @@ message UpdateUploadedModemMessageBodyParserRequest {
     string content_ksy = 3;
 
     /* Add fields to the data fields list. */
-    repeated ModemMessageBodyParser.DataField add_data_fields = 7;
-    repeated string add_data_fields_deprecated = 5 [deprecated = true];
+    repeated value.Field add_data_fields = 7;
 
     /* Remove fields from the data fields list. */
     repeated string remove_data_fields = 6;
@@ -424,7 +342,7 @@ message UpdateUploadedModemMessageBodyParserRequest {
     /* Fields in the parsed result that match special things that can be processed by the system, like a location. */
     MetadataFields metadata_fields = 10;
 
-    reserved 2;
+    reserved 2, 5;
 }
 
 /* Create a simple modem message parser, which generates a .ksy specification. */

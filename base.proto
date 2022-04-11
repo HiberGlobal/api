@@ -444,6 +444,7 @@ message Avatar {
 enum UnitOfMeasurement {
     UNIT_UNKNOWN = 0;
 
+    DURATION_MILLISECONDS = 40;
     DURATION_SECONDS = 1;
     DURATION_MINUTES = 2;
     DURATION_HOURS = 3;
@@ -488,8 +489,8 @@ enum UnitOfMeasurement {
     VOLUME_GALLON_US = 24;
     VOLUME_GALLON_IMPERIAL = 25;
 
-    WEIGHT_KILOGRAMS = 37;
-    WEIGHT_POUNDS = 38;
+    MASS_KILOGRAMS = 37;
+    MASS_POUNDS = 38;
 
     FLOW_CUBIC_METERS_PER_HOUR = 39;
 

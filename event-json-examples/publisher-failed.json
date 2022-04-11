@@ -50,7 +50,8 @@
         "url": "https://example.com/my-webhook",
         "secret": "my-secret",
         "contentType": "JSON",
-        "certificateId": "1"
+        "certificateId": "1",
+        "hmacHeaderName": "X-Hub-Signature"
       },
       "createdBy": "example-identifier"
     },

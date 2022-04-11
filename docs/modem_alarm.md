@@ -324,6 +324,7 @@ This is a shortcut for creating an alarm and then adding checks, and as such can
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | selection | [ ModemAlarmSelection](#modemalarmselection) | none |
 | pagination | [ hiber.Pagination](#hiberpagination) | none |
+| apply_unit_preferences | [ bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
 
 ### ListModemAlarms.Response
 
@@ -523,6 +524,9 @@ The delta check also adds a few additional error message variables:
 | ----- | ---- | ----------- |
 | path | [ string](#string) | Select the field(s) that this check is applied to, using a json path. |
 | ignore_field_not_found | [ bool](#bool) | Whether to ignore this check if the field is not found. This can be useful if your path selects multiple values in an array, like my_array[*].value, and not all entries have the field, or when fields are omitted if they have a default value. |
+| unit | [ hiber.value.Field.Numeric.Unit](#hibervaluefieldnumericunit) | The unit that this alarm check is using. The field's values will automatically be converted into this unit before the check is applied.
+
+Note: unit is not currently available in the alarm_parameters. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.equals | [ ModemAlarm.Check.FieldCheck.EqualsCheck](#modemalarmcheckfieldcheckequalscheck) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.oneof | [ ModemAlarm.Check.FieldCheck.OneOfCheck](#modemalarmcheckfieldcheckoneofcheck) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.minimum | [ ModemAlarm.Check.FieldCheck.MinimumCheck](#modemalarmcheckfieldcheckminimumcheck) | none |
@@ -1495,6 +1499,7 @@ Unit of measurement for a numeric value.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | UNIT_UNKNOWN | none | 0 |
+| DURATION_MILLISECONDS | none | 40 |
 | DURATION_SECONDS | none | 1 |
 | DURATION_MINUTES | none | 2 |
 | DURATION_HOURS | none | 3 |
@@ -1530,8 +1535,8 @@ Unit of measurement for a numeric value.
 | VOLUME_LITER | none | 23 |
 | VOLUME_GALLON_US | none | 24 |
 | VOLUME_GALLON_IMPERIAL | none | 25 |
-| WEIGHT_KILOGRAMS | none | 37 |
-| WEIGHT_POUNDS | none | 38 |
+| MASS_KILOGRAMS | none | 37 |
+| MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
 
 ## Scalar Value Types

@@ -33,9 +33,6 @@ where you can find documentation, examples and a web IDE.
   - [MakeModemMessageBodyParserUnavailableToChildOrganizationRequest](#makemodemmessagebodyparserunavailabletochildorganizationrequest)
   - [ModemMessageBodyParser](#modemmessagebodyparser)
   - [ModemMessageBodyParser.AvailableToChildOrganizations](#modemmessagebodyparseravailabletochildorganizations)
-  - [ModemMessageBodyParser.DataField](#modemmessagebodyparserdatafield)
-  - [ModemMessageBodyParser.DataFieldGroup](#modemmessagebodyparserdatafieldgroup)
-  - [ModemMessageBodyParser.DataFieldOrGroup](#modemmessagebodyparserdatafieldorgroup)
   - [ModemMessageBodyParser.MetadataFields](#modemmessagebodyparsermetadatafields)
   - [ModemMessageBodyParser.MetadataFields.LocationFields](#modemmessagebodyparsermetadatafieldslocationfields)
   - [ModemMessageBodyParserSelection](#modemmessagebodyparserselection)
@@ -62,7 +59,6 @@ where you can find documentation, examples and a web IDE.
   - [UploadModemMessageBodyParserRequest](#uploadmodemmessagebodyparserrequest)
 
 - Enums
-  - [ModemMessageBodyParser.DataField.Type](#modemmessagebodyparserdatafieldtype)
   - [SimpleModemMessageBodyParser.Endian](#simplemodemmessagebodyparserendian)
 
 - Referenced messages from [modem.proto](#referenced-messages-from-modemproto)
@@ -334,9 +330,8 @@ A parser can be defined in two ways: using a .ksy (Kaitai struct https://kaitai.
 | name | [ string](#string) | The name for this parser. |
 | content_ksy | [ string](#string) | The content of this parsers script. If simple_parser is set, this content is generated from that definition. This field may be omitted by the list call to save data. |
 | simple_parser | [ SimpleModemMessageBodyParser](#simplemodemmessagebodyparser) | The simple parser this .ksy was generated from, if it was generated from a simple parser. This field may be omitted on demand to save data in the list call. |
-| data_fields | [repeated ModemMessageBodyParser.DataField](#modemmessagebodyparserdatafield) | Fields in the parsed result that contain data. Data fields are cached for efficient retrieval and allow all kinds of processing. |
+| data_fields | [repeated hiber.value.Field](#hibervaluefield) | Fields in the parsed result that contain data. Data fields are cached for efficient retrieval and allow all kinds of processing. |
 | data_fields_deprecated | [repeated string](#string) | none |
-| data_fields_with_groups | [repeated ModemMessageBodyParser.DataFieldOrGroup](#modemmessagebodyparserdatafieldorgroup) | Fields in the parsed result that contain data, grouped when multiple fields represent the same data, but in different units. |
 | metadata_fields | [ ModemMessageBodyParser.MetadataFields](#modemmessagebodyparsermetadatafields) | Fields in the parsed result that contain metadata, and special things like a location. |
 | available_to_child_organizations | [ ModemMessageBodyParser.AvailableToChildOrganizations](#modemmessagebodyparseravailabletochildorganizations) | If set, this parser is available to your child organizations, as a Provided parser. |
 
@@ -348,45 +343,6 @@ This means the child organization can use it, but not update or delete it.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | none |
-
-### ModemMessageBodyParser.DataField
-
-Fields in the parsed result that contain data.
-Data fields are cached for efficient retrieval and allow all kinds of processing.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| field | [ string](#string) | The name of the field (if in the root structure) or a JsonPath to the field. |
-| display_name | [ string](#string) | An optional display name for the field. |
-| encrypted | [ bool](#bool) | Whether this field should be stored encrypted or not. If it is, some processing options may be unavailable or slower. For example, determining the time between ENUM state transitions requires encryption to be disabled for that field. |
-| unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | If numeric, the unit of the value. |
-| unit_symbol | [ string](#string) | The symbol for the unit. |
-| type | [ ModemMessageBodyParser.DataField.Type](#modemmessagebodyparserdatafieldtype) | Use the type of the field to better know how to display the data. |
-| priority | [ int32](#int32) | Priority of the field, typically used for ordering. |
-| group_identifier | [ string](#string) | The group this field is in. Fields are grouped iff they have the same `group_identifier` or (if `group_identifier` is not set) the same `display_name`. |
-
-### ModemMessageBodyParser.DataFieldGroup
-
-Group of fields that have the same display_name.
-Typically, they represent the same data, but in different units.
-(e.g. measured temperature in both Celsius and Fahrenheit.)
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifier | [ string](#string) | Identifier for the group. |
-| display_name | [ string](#string) | Name of the group. |
-| fields | [repeated ModemMessageBodyParser.DataField](#modemmessagebodyparserdatafield) | The DataFields in this group. |
-| type | [ ModemMessageBodyParser.DataField.Type](#modemmessagebodyparserdatafieldtype) | Use the type of the field to better know how to display the data. |
-| priority | [ int32](#int32) | Priority of the group, typically used for ordering. The highest priority of the fields in the group. |
-
-### ModemMessageBodyParser.DataFieldOrGroup
-
-Helper to list groups and fields together.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field_or_group**.field | [ ModemMessageBodyParser.DataField](#modemmessagebodyparserdatafield) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field_or_group**.group | [ ModemMessageBodyParser.DataFieldGroup](#modemmessagebodyparserdatafieldgroup) | none |
 
 ### ModemMessageBodyParser.MetadataFields
 
@@ -617,8 +573,7 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifier of the parser that should be updated. |
 | content_ksy | [ string](#string) | The new ksy definition for this parser. |
-| add_data_fields | [repeated ModemMessageBodyParser.DataField](#modemmessagebodyparserdatafield) | Add fields to the data fields list. |
-| add_data_fields_deprecated | [repeated string](#string) | none |
+| add_data_fields | [repeated hiber.value.Field](#hibervaluefield) | Add fields to the data fields list. |
 | remove_data_fields | [repeated string](#string) | Remove fields from the data fields list. |
 | metadata_fields | [ UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#updateuploadedmodemmessagebodyparserrequestmetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
 
@@ -641,22 +596,11 @@ Upload a new body parser from a .ksy file.
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | name | [ string](#string) | A descriptive name for this parser. |
 | content_ksy | [ string](#string) | The ksy definition for this parser. |
-| data_fields | [repeated ModemMessageBodyParser.DataField](#modemmessagebodyparserdatafield) | Fields in the parsed result that contain data. This can be useful to track which fields could be plotted, etc. |
-| data_fields_deprecated | [repeated string](#string) | none |
+| data_fields | [repeated hiber.value.Field](#hibervaluefield) | Fields in the parsed result that contain data. This can be useful to track which fields could be plotted, etc. |
 | metadata_fields | [ ModemMessageBodyParser.MetadataFields](#modemmessagebodyparsermetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
 
 
 ## Enums
-### ModemMessageBodyParser.DataField.Type
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| OTHER | none | 0 |
-| NUMERIC | This field contains numeric values, with an optional unit of measurement defined below. | 1 |
-| TEXT | This field contains text to be displayed. | 2 |
-| ENUM | This field switches between several predefined values. Typically used for status fields. | 3 |
-
 ### SimpleModemMessageBodyParser.Endian
 
 
@@ -1317,6 +1261,7 @@ Unit of measurement for a numeric value.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | UNIT_UNKNOWN | none | 0 |
+| DURATION_MILLISECONDS | none | 40 |
 | DURATION_SECONDS | none | 1 |
 | DURATION_MINUTES | none | 2 |
 | DURATION_HOURS | none | 3 |
@@ -1352,8 +1297,8 @@ Unit of measurement for a numeric value.
 | VOLUME_LITER | none | 23 |
 | VOLUME_GALLON_US | none | 24 |
 | VOLUME_GALLON_IMPERIAL | none | 25 |
-| WEIGHT_KILOGRAMS | none | 37 |
-| WEIGHT_POUNDS | none | 38 |
+| MASS_KILOGRAMS | none | 37 |
+| MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
 
 ## Scalar Value Types

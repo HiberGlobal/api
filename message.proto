@@ -10,8 +10,8 @@ import "google/protobuf/struct.proto";
 
 import "base.proto";
 import "modem.proto";
-import "modem_message_body_parser.proto";
 import "tag.proto";
+import "value.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.message";
@@ -185,9 +185,16 @@ message AvailableMessageBodyFields {
     }
 
     message Response {
+        /* Deprecated wrapper for backwards compatibility */
+        message FieldWrapperDeprecated {
+            option deprecated = true;
+            value.Field field = 1;
+        }
+
         message ModemWithFields {
             string modem = 1;
-            repeated modem.message.bodyparser.ModemMessageBodyParser.DataFieldOrGroup message_body_fields = 2;
+            repeated FieldWrapperDeprecated message_body_fields_deprecated = 2 [deprecated = true];
+            repeated value.Field message_body_fields = 3;
         }
 
         repeated ModemWithFields modems = 1;
@@ -195,7 +202,7 @@ message AvailableMessageBodyFields {
         Pagination.Result pagination = 3;
 
         /* A merged result of all fields, for all modems. This can be useful to display table columns, for example. */
-        repeated modem.message.bodyparser.ModemMessageBodyParser.DataFieldOrGroup total = 4;
+        repeated value.Field total = 4;
     }
 }
 
@@ -274,7 +281,7 @@ message MessageBodyFieldHistory {
          * For example, when applying the SUM aggregation to all data points, this list would only contains a
          * single value, the sum of values.
          */
-        repeated Value values = 1;
+        repeated TimedValue values = 1;
 
         /* The pagination result, containing information about amounts and pages. */
         Pagination.Result pagination = 2;
@@ -283,7 +290,7 @@ message MessageBodyFieldHistory {
         Request request = 3;
 
         /* Processed historical data point. If this is a group, it will have a time range to denote the group. */
-        message Value {
+        message TimedValue {
             oneof time {
                 /* When not grouping, time of the individual point.
                  * When grouping, the time at the end of the group (when the value was true).
@@ -294,8 +301,13 @@ message MessageBodyFieldHistory {
                 TimeRange time_range = 2;
             }
 
-            /* The values for the given fields (if available). */
+            /* The values for the given fields (if available).
+             * When the user has unit preferences set, they are applied to these values.
+             */
             google.protobuf.Struct field_values = 3;
+
+            /* The values for the given fields (if available), with additional unit information. */
+            map<string, value.Value> field_value_details = 5;
 
             /* The location of the modem at the timestamp, or the last location in the time range. */
             Location location = 4;

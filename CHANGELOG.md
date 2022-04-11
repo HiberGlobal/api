@@ -2,6 +2,87 @@
 
 #### Upcoming Changes
 
+### 0.101 (2022-04-07)
+
+##### Units
+
+- Renamed Weight to Mass
+- Added Flow to UnitPreferences (mostly for formatting, since there is currrently just one unit)
+- Add `ENUM` option to `Value.Type`
+- Extracted the values in `Value.Numeric.numeric_unit` to `Value.Numeric.Unit` for simplicity.
+
+##### AssignmentService
+
+- Added `apply_unit_preferences` to apply the unit preferences to the alarm check values
+  (i.e. displaying a check defined in kelvin as celsius), in requests for aggregated assignments:
+  - `ListModemAssignments.Request`
+  - `ListAlarmAssignments.Request`
+  - `ListTagAssignments.Request`
+
+##### EasypulseService
+
+- Added 4 new measures
+  - odometer: the value of total distance travelled
+  - fuel_used: the total volume of fuel used by this vehicle
+  - engine_runtime: the total duration of runtime for the engine of this vehicle
+  - engine_oil_temperature: the temperature of the engine oil.
+- Added conversions for existing measures (deprecating the old versions)
+  - speed: the speed of the asset. (Old measure renamed to speed_deprecated)
+  - temperature: the temperature of the asset. (Old measure renamed to temperature_deprecated)
+  - fuel_level: the percentage of fuel available to the asset. (Old measure renamed to fuel_level_deprecated)
+  - battery_level: The percentage of battery charge left (Old renamed to battery_level_deprecated)
+  - tire_pressure: The pressure of the tires. (Old renamed to tire_pressure_deprecated)
+
+##### ExportService
+
+- Fixed a bug where an export that is ready could also mark similar exports ready that were running
+  at the same time.
+
+##### ModemAlarmService
+
+- Added `unit` to `ModemAlarm.Check`, to set alarms in a different unit than the field you are checking.
+  - For example, a sensor returns data in Kelvin, but you want to set an alarm in Celsius. Now, you can make a check in
+    Celsius and the Kelvin value is converted to Celsius automatically before the check is applied.
+- Added `apply_unit_preferences` to `ListModemAlarms.Request` to apply the unit preferences to the alarm check values
+  (i.e. displaying a check defined in kelvin as celsius).
+
+##### ModemMessageBodyParserService
+
+- Replaced `ModemMessageBodyParser.DataField` with `value.Field`
+  - Removed `ModemMessageBodyParser.DataField`. The replacement, `value.Field` is backwards compatible, so current
+    clients should keep working, but need to update their code when they regenerate from proto files.
+  - Removed grouping for fields.
+    - **[B]** Removed `modem.message.bodyparser.ModemMessageBodyParser.DataFieldOrGroup`
+    - **[B]** Removed `ModemMessageBodyParser.data_fields_with_groups`
+- **[B]** Removed the deprecated `data_fields_deprecated` from `UploadModemMessageBodyParserRequest`
+- **[B]** Removed the deprecated `add_data_fields_deprecated` from `UpdateUploadedModemMessageBodyParserRequest`
+
+##### ModemMessageService
+
+- Changed the type of `AvailableMessageBodyFields.Response.ModemWithFields.message_body_fields` to `repeated value.Field`.
+  This type is backwards compatible, so current clients should keep working, but need to update their code when they
+  regenerate from proto files.
+  - Also changes the type for `AvailableMessageBodyFields.Response.total` to `repeated value.Field`.
+- Added `field_value_details` to `Value` in `MessageBodyFieldHistory.Response`.
+  This is a map of field to `value.Value`, which specifies the unit and what it was converted from (based on your
+  unit preferences)
+  - Renamed `Value` in `MessageBodyFieldHistory.Response` to `TimedValue`, to not conflict with `value.Value`.
+
+##### WebhookService
+
+- Added `hmac_header_name` to `WebhookData`, to customize the hmac signature header name.
+  - Added `update_hmac_header_name` to `UpdateWebhook` to update it.
+- Added `custom_headers` to `WebhookData`, to add headers to every webhook call.
+  - Added `add_custom_headers` and `remove_custom_headers` to `UpdateWebhook` to update them.
+- Fixed a bug where blocked calls were included when listing history with the `only_failures` flag.
+
+### 0.100.1 (2022-03-22)
+
+##### ExportService
+
+- Fixed a bug where an export that is ready could also mark similar exports ready that were running
+  at the same time.
+
 ### 0.100 (2022-03-17)
 
 - Added `flow` measure with `cubic meters per hour` unit.

@@ -53,18 +53,26 @@ message Webhook {
 
     message WebhookData {
         string url = 1;
+
         /* Used to generate the HMAC-SHA256 header on every webhook call, which you can use to verify the message.
          * The HMAC-SHA256 header is calculated with the message body and this secret.
          * There are many examples of how to do this in different languages, for example:
          * https://github.com/danharper/hmac-examples
          */
         string secret = 2;
+
+        /* The header that the hmac value is placed in. Defaults to X-Hub-Signature. */
+        string hmac_header_name = 9;
+
         ContentType content_type = 3;
         bool disabled = 4;
         int64 certificate_id = 5;
         string certificate_name = 6;
         int64 ca_certificate_id = 7;
         string ca_certificate_name = 8;
+
+        /* Custom headers to add to every call. */
+        map<string, string> custom_headers = 10;
     }
 
     message WebhookFilters {
@@ -300,6 +308,18 @@ message UpdateWebhookRequest {
          * If the failure percentage is higher, within the warning period, the health is switched to WARNING.
          */
         UpdateZeroableInt health_warning_failure_percentage = 15;
+
+        /* Update the custom hmac header, or clear to reset to default. */
+        UpdateClearableString update_hmac_header_name = 18;
+
+        /* Custom headers to add to every call. */
+        map<string, string> add_custom_headers = 19;
+
+        /* Remove previously configured custom headers. */
+        repeated string remove_custom_headers = 20;
+
+        /* Replace the custom headers to add to every call. If set, remove_custom_headers is ignored. */
+        map<string, string> replace_custom_headers = 21;
     }
 
     int64 id = 1;

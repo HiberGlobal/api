@@ -217,6 +217,12 @@ message ListModemAssignments {
 
         /* Whether to include modems that are in the selection and have no assignments. */
         bool include_modems_without_assignments = 8;
+
+        /* Apply your UnitPreferences to the alarm checks.
+         * For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for
+         * temperature, the check value will be converted to celsius instead.
+         */
+        bool apply_unit_preferences = 9;
     }
 
     message Response {
@@ -272,6 +278,12 @@ message ListTagAssignments {
 
         /* Whether to include alarms that are in the selection and have no assignments. */
         bool include_tags_without_assignments = 8;
+
+        /* Apply your UnitPreferences to the alarm checks.
+         * For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for
+         * temperature, the check value will be converted to celsius instead.
+         */
+        bool apply_unit_preferences = 9;
     }
 
     message Response {
@@ -314,6 +326,12 @@ message ListAlarmAssignments {
 
         /* Whether to include alarms that are in the selection and have no assignments. */
         bool include_alarms_without_assignments = 5;
+
+        /* Apply your UnitPreferences to the alarm checks.
+         * For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for
+         * temperature, the check value will be converted to celsius instead.
+         */
+        bool apply_unit_preferences = 6;
     }
 
     message Response {

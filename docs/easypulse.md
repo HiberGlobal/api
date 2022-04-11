@@ -138,11 +138,20 @@ fuel level average over the past month, or total run time in the past week).
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | Tags (or groups, when used in Mission Control) this asset is in. |
 | last_update | [ Easypulse.Asset.LastUpdate](#easypulseassetlastupdate) | When this asset was last updated. |
-| fuel_level | [ float](#float) | The most recent fuel level, as a percentage. |
-| tire_pressure | [ float](#float) | The most recent tire pressure in bar. |
-| battery_level | [ float](#float) | The most recent battery level, as a percentage. |
-| temperature | [ float](#float) | The most recent temperature in degrees Celsius. |
-| speed | [ float](#float) | The most recent speed measurement in km/h. |
+| fuel_level_deprecated | [ float](#float) | The most recent fuel level, as a percentage. |
+| tire_pressure_deprecated | [ float](#float) | The most recent tire pressure in bar. |
+| battery_level_deprecated | [ float](#float) | The most recent battery level, as a percentage. |
+| temperature_deprecated | [ float](#float) | The most recent temperature in degrees Celsius. |
+| speed_deprecated | [ float](#float) | The most recent speed measurement in km/h. |
+| odometer | [ hiber.value.Value.Numeric.Distance](#hibervaluevaluenumericdistance) | Current value of the odometer. |
+| engine_runtime | [ hiber.Duration](#hiberduration) | Duration of total hours the engine has ran. |
+| fuel_used | [ hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume) | The total amount of fuel used by this vehicle. |
+| engine_oil_temperature | [ hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature) | Engine temperature. |
+| fuel_level | [ hiber.value.Value.Numeric.Percentage](#hibervaluevaluenumericpercentage) | The most recent fuel level. |
+| temperature | [ hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature) | The most recent temperature in degrees Celsius. |
+| speed | [ hiber.value.Value.Numeric.Speed](#hibervaluevaluenumericspeed) | The most recent speed measurement. |
+| tire_pressure | [ hiber.value.Value.Numeric.Pressure](#hibervaluevaluenumericpressure) | The most recent tire pressure measurement. |
+| battery_level | [ hiber.value.Value.Numeric.BatteryLevel](#hibervaluevaluenumericbatterylevel) | The most recent battery level. |
 | location | [ hiber.Location](#hiberlocation) | The most recently reported location. |
 | aggregations | [map Easypulse.Asset.AggregationsEntry](#easypulseassetaggregationsentry) | Any aggregations added when this asset was requested. |
 
@@ -217,6 +226,10 @@ Request to get the history of a field, for the selected Assets in the organizati
 | speed | [ bool](#bool) | Get the history for the speed. |
 | fuel_efficiency | [ bool](#bool) | Get the fuel efficiency in ???. |
 | distance_traveled | [ bool](#bool) | Get the distance traveled in ???. |
+| odometer | [ bool](#bool) | Get the value of the odometer. (Total traveled distance by vehicle) |
+| engine_runtime | [ bool](#bool) | Get the total amount of run-time hours for the engine. |
+| fuel_used | [ bool](#bool) | Get the total amount of fuel used by this vehicle. |
+| engine_oil_temperature | [ bool](#bool) | Get the history for the engine oil temperature. |
 | fuel_efficiency_score | [ bool](#bool) | Get the normalized score for the fuel efficiency, using a preconfigured baseline. |
 | distance_traveled_score | [ bool](#bool) | Get the normalized score for the distance traveled, using a preconfigured baseline. |
 | idle_time_score | [ bool](#bool) | Get the normalized score for the idle time, using a preconfigured baseline. |
@@ -242,13 +255,13 @@ Processed historical data point. If this is a group, it will have a time range t
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.timestamp | [ hiber.Timestamp](#hibertimestamp) | When not grouping, time of the individual point. When grouping, the time at the end of the group (when the value was true). |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.time_range | [ hiber.TimeRange](#hibertimerange) | When grouping, the start and end time for the group. |
 | fuel_level | [ float](#float) | The fuel level, as a percentage. |
-| tire_pressure | [ float](#float) | The tire pressure in bar. |
-| battery_level | [ float](#float) | The battery level, as a percentage. |
+| tire_pressure_deprecated | [ float](#float) | The tire pressure in bar. |
+| battery_level_deprecated | [ float](#float) | The battery level, as a percentage. |
 | temperature | [ float](#float) | The temperature in degrees Celsius. |
 | run_time | [ hiber.Duration](#hiberduration) | The time the Asset was running. |
 | idle_time | [ hiber.Duration](#hiberduration) | The time the Asset was idle. |
 | location | [ hiber.Location](#hiberlocation) | The location of the asset at the timestamp, or the last location in the time range. |
-| speed | [ float](#float) | The speed of the asset in km/h. |
+| speed_deprecated | [ float](#float) | The speed of the asset in km/h. |
 | fuel_efficiency | [ float](#float) | Fuel efficiency in ???. |
 | distance_traveled | [ float](#float) | Distance traveled in ???. |
 | fuel_efficiency_score | [ float](#float) | Normalized score for the fuel efficiency, using a preconfigured baseline. |
@@ -256,6 +269,13 @@ Processed historical data point. If this is a group, it will have a time range t
 | idle_time_score | [ float](#float) | Normalized score for the idle time, using a preconfigured baseline. |
 | run_time_score | [ float](#float) | Normalized score for the run time, using a preconfigured baseline. |
 | utilization_score | [ float](#float) | Average normalized score for the run time, idle time, distance traveled and fuel efficiency. |
+| odometer | [ hiber.value.Value.Numeric.Distance](#hibervaluevaluenumericdistance) | Current value of the odometer. |
+| engine_runtime | [ hiber.Duration](#hiberduration) | Duration of total hours the engine has ran. |
+| fuel_used | [ hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume) | The total amount of fuel used by this vehicle. |
+| engine_oil_temperature | [ hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature) | Engine temperature. |
+| speed | [ hiber.value.Value.Numeric.Speed](#hibervaluevaluenumericspeed) | Speed of the asset. |
+| tire_pressure | [ hiber.value.Value.Numeric.Pressure](#hibervaluevaluenumericpressure) | The tire pressure of the asset. |
+| battery_level | [ hiber.value.Value.Numeric.BatteryLevel](#hibervaluevaluenumericbatterylevel) | The battery level, as a percentage. |
 
 ### Easypulse.ListAssets
 
@@ -971,6 +991,7 @@ Unit of measurement for a numeric value.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | UNIT_UNKNOWN | none | 0 |
+| DURATION_MILLISECONDS | none | 40 |
 | DURATION_SECONDS | none | 1 |
 | DURATION_MINUTES | none | 2 |
 | DURATION_HOURS | none | 3 |
@@ -1006,8 +1027,8 @@ Unit of measurement for a numeric value.
 | VOLUME_LITER | none | 23 |
 | VOLUME_GALLON_US | none | 24 |
 | VOLUME_GALLON_IMPERIAL | none | 25 |
-| WEIGHT_KILOGRAMS | none | 37 |
-| WEIGHT_POUNDS | none | 38 |
+| MASS_KILOGRAMS | none | 37 |
+| MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
 
 ## Scalar Value Types

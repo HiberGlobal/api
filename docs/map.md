@@ -783,6 +783,7 @@ Unit of measurement for a numeric value.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | UNIT_UNKNOWN | none | 0 |
+| DURATION_MILLISECONDS | none | 40 |
 | DURATION_SECONDS | none | 1 |
 | DURATION_MINUTES | none | 2 |
 | DURATION_HOURS | none | 3 |
@@ -818,8 +819,8 @@ Unit of measurement for a numeric value.
 | VOLUME_LITER | none | 23 |
 | VOLUME_GALLON_US | none | 24 |
 | VOLUME_GALLON_IMPERIAL | none | 25 |
-| WEIGHT_KILOGRAMS | none | 37 |
-| WEIGHT_POUNDS | none | 38 |
+| MASS_KILOGRAMS | none | 37 |
+| MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
 
 ## Scalar Value Types

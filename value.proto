@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package hiber;
+package hiber.value;
 
 import "base.proto";
 
@@ -22,6 +22,9 @@ message Value {
 
         /* This field contains text to be displayed. */
         TEXT = 2;
+
+        /* This field switches between several predefined values. Typically used for status fields. */
+        ENUM = 3;
     }
 
     Type type = 1;
@@ -45,7 +48,7 @@ message Value {
             VOLUME = 7;
             DURATION = 8;
             FUEL_EFFICIENCY = 9;
-            WEIGHT = 10;
+            MASS = 10;
             BATTERY_LEVEL = 11;
             FLOW = 12;
         }
@@ -217,7 +220,7 @@ message Value {
         }
 
         /* The value is a volume value, converted to your preferred volume unit. */
-        message Weight {
+        message Mass {
             enum Unit {
                 KILOGRAMS = 0;
                 POUNDS = 1;
@@ -263,13 +266,16 @@ message Value {
             BatteryLevel battery_level = 11;
             Distance distance = 3;
             Duration duration = 4;
+            FuelEfficiency fuel_efficiency = 14;
             Percentage percentage = 5;
             Pressure pressure = 6;
             Speed speed = 7;
             Temperature temperature = 8;
             Voltage voltage = 9;
             Volume volume = 10;
+            Mass mass = 12;
             Flow flow = 13;
+            double unknown = 15;
         }
     }
 }
@@ -277,6 +283,22 @@ message Value {
 message Field {
     /* If the field is numeric, this specifies the details for the field. */
     message Numeric {
+        message Unit {
+            oneof unit {
+                Value.Numeric.BatteryLevel.Unit battery_level = 1;
+                Value.Numeric.Distance.Unit distance = 2;
+                Value.Numeric.DurationUnit duration = 3;
+                Value.Numeric.FuelEfficiency.Unit fuel_efficiency = 4;
+                Value.Numeric.Flow.Unit flow = 5;
+                Value.Numeric.Pressure.Unit pressure = 6;
+                Value.Numeric.Speed.Unit speed = 7;
+                Value.Numeric.Temperature.Unit temperature = 8;
+                Value.Numeric.Voltage.Unit voltage = 9;
+                Value.Numeric.Volume.Unit volume = 10;
+                Value.Numeric.Mass.Unit mass = 11;
+            }
+        }
+
         /* Formatting options for the field. */
         message Format {
             /* How to round the value when scale is applied.
@@ -336,26 +358,8 @@ message Field {
         /* How to format the values (number of decimals, rounding, etc.). */
         Format format = 3;
 
-        /* The unit for the field, per numeric value type. */
-        oneof numeric_unit {
-            Value.Numeric.BatteryLevel.Unit battery_level_unit = 14;
-            Value.Numeric.Distance.Unit distance_unit = 5;
-
-            /* The duration unit the field is in.
-             * Note that duration is mapped to a normalized Duration object for convenience,
-             * so the unit is only used to convert from the field value to Duration.
-             */
-            Value.Numeric.DurationUnit duration_unit = 6;
-
-            Value.Numeric.FuelEfficiency.Unit fuel_efficiency_unit = 7;
-            Value.Numeric.Pressure.Unit pressure_unit = 8;
-            Value.Numeric.Speed.Unit speed_unit = 9;
-            Value.Numeric.Temperature.Unit temperature_unit = 10;
-            Value.Numeric.Voltage.Unit voltage_unit = 11;
-            Value.Numeric.Volume.Unit volume_unit = 12;
-            Value.Numeric.Weight.Unit weight_unit = 13;
-            Value.Numeric.Flow.Unit flow_unit = 15;
-        }
+        /* The unit for the field, depending on the type. */
+        Unit unit = 4;
     }
 
     /* The name of the field (if in the root structure) or a JsonPath to the field. */
@@ -417,6 +421,20 @@ message UnitPreferences {
         bool no_distance_preference = 11;
     }
 
+    /* User preferences for mass values. */
+    message FlowPreference {
+        Value.Numeric.Flow.Unit unit = 1;
+
+        /* Optional formatting options for values (rounding, etc). */
+        Field.Numeric.Format format = 2;
+    }
+
+    /* Optional mass preference for the current user. */
+    oneof flow {
+        FlowPreference flow_preference = 10;
+        bool no_flow_preference = 20;
+    }
+
     /* User preferences for fuel efficiency values. */
     message FuelEfficiencyPreference {
         Value.Numeric.FuelEfficiency.Unit unit = 1;
@@ -429,6 +447,21 @@ message UnitPreferences {
     oneof fuel_efficiency {
         FuelEfficiencyPreference fuel_efficiency_preference = 2;
         bool no_fuel_efficiency_preference = 12;
+    }
+
+    /* User preferences for mass values. */
+    message MassPreference {
+        /* Unit category (metric / imperial) to convert mass values to. */
+        UnitCategory unit_category = 1;
+
+        /* Optional formatting options for values (rounding, etc). */
+        Field.Numeric.Format format = 2;
+    }
+
+    /* Optional mass preference for the current user. */
+    oneof mass {
+        MassPreference mass_preference = 9;
+        bool no_mass_preference = 19;
     }
 
     /* User preferences for percentage values. */
@@ -516,21 +549,6 @@ message UnitPreferences {
         bool no_volume_preference = 18;
     }
 
-    /* User preferences for weight values. */
-    message WeightPreference {
-        /* Unit category (metric / imperial) to convert weight values to. */
-        UnitCategory unit_category = 1;
-
-        /* Optional formatting options for values (rounding, etc). */
-        Field.Numeric.Format format = 2;
-    }
-
-    /* Optional weight preference for the current user. */
-    oneof weight {
-        WeightPreference weight_preference = 9;
-        bool no_weight_preference = 19;
-    }
-
     message Request {
         /* Update or remove the distance preference. */
         oneof distance {
@@ -538,10 +556,22 @@ message UnitPreferences {
             bool remove_distance_preference = 11;
         }
 
+        /* Update or remove the mass preference. */
+        oneof flow {
+            FlowPreference update_flow_preference = 10;
+            bool remove_flow_preference = 20;
+        }
+
         /* Update or remove the fuel efficiency preference. */
         oneof fuel_efficiency {
             FuelEfficiencyPreference update_fuel_efficiency_preference = 2;
             bool remove_fuel_efficiency_preference = 12;
+        }
+
+        /* Update or remove the mass preference. */
+        oneof mass {
+            MassPreference update_mass_preference = 9;
+            bool remove_mass_preference = 19;
         }
 
         /* Update or remove the percentage preference. */
@@ -578,12 +608,6 @@ message UnitPreferences {
         oneof volume {
             VolumePreference update_volume_preference = 8;
             bool remove_volume_preference = 18;
-        }
-
-        /* Update or remove the weight preference. */
-        oneof weight {
-            WeightPreference update_weight_preference = 9;
-            bool remove_weight_preference = 19;
         }
     }
 

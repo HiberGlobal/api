@@ -14,6 +14,7 @@ package hiber.easypulse;
 import "base.proto";
 import "health.proto";
 import "tag.proto";
+import "value.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.easypulse";
@@ -73,19 +74,46 @@ message Easypulse {
         LastUpdate last_update = 10;
 
         /* The most recent fuel level, as a percentage. */
-        float fuel_level = 11;
+        float fuel_level_deprecated = 11 [deprecated = true];
 
         /* The most recent tire pressure in bar. */
-        float tire_pressure = 12;
+        float tire_pressure_deprecated = 12 [deprecated = true];
 
         /* The most recent battery level, as a percentage. */
-        float battery_level = 13;
+        float battery_level_deprecated = 13 [deprecated = true];
 
         /* The most recent temperature in degrees Celsius. */
-        float temperature = 14;
+        float temperature_deprecated = 14 [deprecated = true];
 
         /* The most recent speed measurement in km/h. */
-        float speed = 17;
+        float speed_deprecated = 17 [deprecated = true];
+
+        /* Current value of the odometer. */
+        hiber.value.Value.Numeric.Distance odometer = 18;
+
+        /* Duration of total hours the engine has ran. */
+        Duration engine_runtime = 19;
+
+        /* The total amount of fuel used by this vehicle. */
+        hiber.value.Value.Numeric.Volume fuel_used = 20;
+
+        /* Engine temperature. */
+        hiber.value.Value.Numeric.Temperature engine_oil_temperature = 21;
+
+        /* The most recent fuel level. */
+        hiber.value.Value.Numeric.Percentage fuel_level = 22;
+
+        /* The most recent temperature in degrees Celsius. */
+        hiber.value.Value.Numeric.Temperature temperature = 24;
+
+        /* The most recent speed measurement. */
+        hiber.value.Value.Numeric.Speed speed = 23;
+
+        /* The most recent tire pressure measurement. */
+        hiber.value.Value.Numeric.Pressure tire_pressure = 25;
+
+        /* The most recent battery level. */
+        hiber.value.Value.Numeric.BatteryLevel battery_level = 26;
 
         /* The most recently reported location. */
         Location location = 15;
@@ -244,6 +272,15 @@ message Easypulse {
             /* Get the distance traveled in ???. */
             bool distance_traveled = 18;
 
+            /* Get the value of the odometer. (Total traveled distance by vehicle) */
+            bool odometer = 24;
+            /* Get the total amount of run-time hours for the engine. */
+            bool engine_runtime = 25;
+            /* Get the total amount of fuel used by this vehicle. */
+            bool fuel_used = 26;
+            /* Get the history for the engine oil temperature. */
+            bool engine_oil_temperature = 27;
+
             /* Get the normalized score for the fuel efficiency, using a preconfigured baseline. */
             bool fuel_efficiency_score = 19;
             /* Get the normalized score for the distance traveled, using a preconfigured baseline. */
@@ -306,9 +343,9 @@ message Easypulse {
                 /* The fuel level, as a percentage. */
                 float fuel_level = 3;
                 /* The tire pressure in bar. */
-                float tire_pressure = 4;
+                float tire_pressure_deprecated = 4 [deprecated = true];
                 /* The battery level, as a percentage. */
-                float battery_level = 5;
+                float battery_level_deprecated = 5 [deprecated = true];
                 /* The temperature in degrees Celsius. */
                 float temperature = 6;
                 /* The time the Asset was running. */
@@ -318,7 +355,7 @@ message Easypulse {
                 /* The location of the asset at the timestamp, or the last location in the time range. */
                 Location location = 9;
                 /* The speed of the asset in km/h. */
-                float speed = 10;
+                float speed_deprecated = 10 [deprecated = true];
 
                 /* Fuel efficiency in ???. */
                 float fuel_efficiency = 11;
@@ -335,6 +372,20 @@ message Easypulse {
                 float run_time_score = 16;
                 /* Average normalized score for the run time, idle time, distance traveled and fuel efficiency. */
                 float utilization_score = 23;
+                /* Current value of the odometer. */
+                hiber.value.Value.Numeric.Distance odometer = 17;
+                /* Duration of total hours the engine has ran. */
+                Duration engine_runtime = 18;
+                /* The total amount of fuel used by this vehicle. */
+                hiber.value.Value.Numeric.Volume fuel_used = 19;
+                /* Engine temperature. */
+                hiber.value.Value.Numeric.Temperature engine_oil_temperature = 20;
+                /* Speed of the asset. */
+                hiber.value.Value.Numeric.Speed speed = 21;
+                /* The tire pressure of the asset. */
+                hiber.value.Value.Numeric.Pressure tire_pressure = 22;
+                /* The battery level, as a percentage. */
+                hiber.value.Value.Numeric.BatteryLevel battery_level = 24;
             }
         }
     }

@@ -15,6 +15,7 @@ import "google/protobuf/struct.proto";
 
 import "base.proto";
 import "modem.proto";
+import "value.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.modem.alarm";
@@ -318,6 +319,13 @@ message ModemAlarm {
              */
             bool ignore_field_not_found = 2;
 
+            /* The unit that this alarm check is using.
+             * The field's values will automatically be converted into this unit before the check is applied.
+             *
+             * Note: unit is not currently available in the alarm_parameters.
+             */
+            value.Field.Numeric.Unit unit = 9;
+
             oneof check {
                 EqualsCheck equals = 3;
                 OneOfCheck oneof = 4;
@@ -421,6 +429,12 @@ message ListModemAlarms {
 
         ModemAlarmSelection selection = 2;
         Pagination pagination = 3;
+
+        /* Apply your UnitPreferences to the alarm checks.
+         * For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for
+         * temperature, the check value will be converted to celsius instead.
+         */
+        bool apply_unit_preferences = 4;
     }
     message Response {
         repeated ModemAlarm modem_alarms = 1;

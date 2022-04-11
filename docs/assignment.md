@@ -61,9 +61,6 @@
   - [hiber.modem.message.bodyparser.MakeModemMessageBodyParserUnavailableToChildOrganizationRequest](#hibermodemmessagebodyparsermakemodemmessagebodyparserunavailabletochildorganizationrequest)
   - [hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser)
   - [hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations](#hibermodemmessagebodyparsermodemmessagebodyparseravailabletochildorganizations)
-  - [hiber.modem.message.bodyparser.ModemMessageBodyParser.DataField](#hibermodemmessagebodyparsermodemmessagebodyparserdatafield)
-  - [hiber.modem.message.bodyparser.ModemMessageBodyParser.DataFieldGroup](#hibermodemmessagebodyparsermodemmessagebodyparserdatafieldgroup)
-  - [hiber.modem.message.bodyparser.ModemMessageBodyParser.DataFieldOrGroup](#hibermodemmessagebodyparsermodemmessagebodyparserdatafieldorgroup)
   - [hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields)
   - [hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafieldslocationfields)
   - [hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection)
@@ -89,7 +86,6 @@
   - [hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafields)
   - [hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest](#hibermodemmessagebodyparseruploadmodemmessagebodyparserrequest)
 
-    - [hiber.modem.message.bodyparser.ModemMessageBodyParser.DataField.Type](#hibermodemmessagebodyparsermodemmessagebodyparserdatafieldtype)
     - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian](#hibermodemmessagebodyparsersimplemodemmessagebodyparserendian)
 
 - Referenced messages from [modem.proto](#referenced-messages-from-modemproto)
@@ -368,6 +364,7 @@ An assignment assigning one thing to another.
 | pagination | [ hiber.Pagination](#hiberpagination) | none |
 | include_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Whether to include alarms and modems from child organizations in this list (and which organizations). |
 | include_alarms_without_assignments | [ bool](#bool) | Whether to include alarms that are in the selection and have no assignments. |
+| apply_unit_preferences | [ bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
 
 ### ListAlarmAssignments.Response
 
@@ -452,6 +449,7 @@ Things that an alarm is assigned to.
 | include_message_body_parser_content | [ bool](#bool) | Whether to include, for example, the message body parser ksy content in the result. Excluded by default to save data. |
 | include_modems_in_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Whether to include modems from child organizations in this list (and which organizations). |
 | include_modems_without_assignments | [ bool](#bool) | Whether to include modems that are in the selection and have no assignments. |
+| apply_unit_preferences | [ bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
 
 ### ListModemAssignments.Response
 
@@ -534,6 +532,7 @@ Things that an alarm is assigned to.
 | include_message_body_parser_content | [ bool](#bool) | Whether to include, for example, the message body parser ksy content in the result. Excluded by default to save data. |
 | include_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Whether to include alarms and modems from child organizations in this list (and which organizations). |
 | include_tags_without_assignments | [ bool](#bool) | Whether to include alarms that are in the selection and have no assignments. |
+| apply_unit_preferences | [ bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
 
 ### ListTagAssignments.Response
 
@@ -742,9 +741,8 @@ A parser can be defined in two ways: using a .ksy (Kaitai struct https://kaitai.
 | name | [ string](#string) | The name for this parser. |
 | content_ksy | [ string](#string) | The content of this parsers script. If simple_parser is set, this content is generated from that definition. This field may be omitted by the list call to save data. |
 | simple_parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) | The simple parser this .ksy was generated from, if it was generated from a simple parser. This field may be omitted on demand to save data in the list call. |
-| data_fields | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.DataField](#hibermodemmessagebodyparsermodemmessagebodyparserdatafield) | Fields in the parsed result that contain data. Data fields are cached for efficient retrieval and allow all kinds of processing. |
+| data_fields | [repeated hiber.value.Field](#hibervaluefield) | Fields in the parsed result that contain data. Data fields are cached for efficient retrieval and allow all kinds of processing. |
 | data_fields_deprecated | [repeated string](#string) | none |
-| data_fields_with_groups | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.DataFieldOrGroup](#hibermodemmessagebodyparsermodemmessagebodyparserdatafieldorgroup) | Fields in the parsed result that contain data, grouped when multiple fields represent the same data, but in different units. |
 | metadata_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields) | Fields in the parsed result that contain metadata, and special things like a location. |
 | available_to_child_organizations | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations](#hibermodemmessagebodyparsermodemmessagebodyparseravailabletochildorganizations) | If set, this parser is available to your child organizations, as a Provided parser. |
 
@@ -756,45 +754,6 @@ This means the child organization can use it, but not update or delete it.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | none |
-
-### hiber.modem.message.bodyparser.ModemMessageBodyParser.DataField
-
-Fields in the parsed result that contain data.
-Data fields are cached for efficient retrieval and allow all kinds of processing.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| field | [ string](#string) | The name of the field (if in the root structure) or a JsonPath to the field. |
-| display_name | [ string](#string) | An optional display name for the field. |
-| encrypted | [ bool](#bool) | Whether this field should be stored encrypted or not. If it is, some processing options may be unavailable or slower. For example, determining the time between ENUM state transitions requires encryption to be disabled for that field. |
-| unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | If numeric, the unit of the value. |
-| unit_symbol | [ string](#string) | The symbol for the unit. |
-| type | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.DataField.Type](#hibermodemmessagebodyparsermodemmessagebodyparserdatafieldtype) | Use the type of the field to better know how to display the data. |
-| priority | [ int32](#int32) | Priority of the field, typically used for ordering. |
-| group_identifier | [ string](#string) | The group this field is in. Fields are grouped iff they have the same `group_identifier` or (if `group_identifier` is not set) the same `display_name`. |
-
-### hiber.modem.message.bodyparser.ModemMessageBodyParser.DataFieldGroup
-
-Group of fields that have the same display_name.
-Typically, they represent the same data, but in different units.
-(e.g. measured temperature in both Celsius and Fahrenheit.)
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifier | [ string](#string) | Identifier for the group. |
-| display_name | [ string](#string) | Name of the group. |
-| fields | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.DataField](#hibermodemmessagebodyparsermodemmessagebodyparserdatafield) | The DataFields in this group. |
-| type | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.DataField.Type](#hibermodemmessagebodyparsermodemmessagebodyparserdatafieldtype) | Use the type of the field to better know how to display the data. |
-| priority | [ int32](#int32) | Priority of the group, typically used for ordering. The highest priority of the fields in the group. |
-
-### hiber.modem.message.bodyparser.ModemMessageBodyParser.DataFieldOrGroup
-
-Helper to list groups and fields together.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field_or_group**.field | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.DataField](#hibermodemmessagebodyparsermodemmessagebodyparserdatafield) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field_or_group**.group | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.DataFieldGroup](#hibermodemmessagebodyparsermodemmessagebodyparserdatafieldgroup) | none |
 
 ### hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields
 
@@ -1025,8 +984,7 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifier of the parser that should be updated. |
 | content_ksy | [ string](#string) | The new ksy definition for this parser. |
-| add_data_fields | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.DataField](#hibermodemmessagebodyparsermodemmessagebodyparserdatafield) | Add fields to the data fields list. |
-| add_data_fields_deprecated | [repeated string](#string) | none |
+| add_data_fields | [repeated hiber.value.Field](#hibervaluefield) | Add fields to the data fields list. |
 | remove_data_fields | [repeated string](#string) | Remove fields from the data fields list. |
 | metadata_fields | [ hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
 
@@ -1049,22 +1007,11 @@ Upload a new body parser from a .ksy file.
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | name | [ string](#string) | A descriptive name for this parser. |
 | content_ksy | [ string](#string) | The ksy definition for this parser. |
-| data_fields | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.DataField](#hibermodemmessagebodyparsermodemmessagebodyparserdatafield) | Fields in the parsed result that contain data. This can be useful to track which fields could be plotted, etc. |
-| data_fields_deprecated | [repeated string](#string) | none |
+| data_fields | [repeated hiber.value.Field](#hibervaluefield) | Fields in the parsed result that contain data. This can be useful to track which fields could be plotted, etc. |
 | metadata_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
 
 
 ### Enums
-#### hiber.modem.message.bodyparser.ModemMessageBodyParser.DataField.Type
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| OTHER | none | 0 |
-| NUMERIC | This field contains numeric values, with an optional unit of measurement defined below. | 1 |
-| TEXT | This field contains text to be displayed. | 2 |
-| ENUM | This field switches between several predefined values. Typically used for status fields. | 3 |
-
 #### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian
 
 
@@ -1342,6 +1289,7 @@ This is a shortcut for creating an alarm and then adding checks, and as such can
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | selection | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) | none |
 | pagination | [ hiber.Pagination](#hiberpagination) | none |
+| apply_unit_preferences | [ bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
 
 ### hiber.modem.alarm.ListModemAlarms.Response
 
@@ -1541,6 +1489,9 @@ The delta check also adds a few additional error message variables:
 | ----- | ---- | ----------- |
 | path | [ string](#string) | Select the field(s) that this check is applied to, using a json path. |
 | ignore_field_not_found | [ bool](#bool) | Whether to ignore this check if the field is not found. This can be useful if your path selects multiple values in an array, like my_array[*].value, and not all entries have the field, or when fields are omitted if they have a default value. |
+| unit | [ hiber.value.Field.Numeric.Unit](#hibervaluefieldnumericunit) | The unit that this alarm check is using. The field's values will automatically be converted into this unit before the check is applied.
+
+Note: unit is not currently available in the alarm_parameters. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.equals | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.EqualsCheck](#hibermodemalarmmodemalarmcheckfieldcheckequalscheck) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.oneof | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.OneOfCheck](#hibermodemalarmmodemalarmcheckfieldcheckoneofcheck) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.minimum | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.MinimumCheck](#hibermodemalarmmodemalarmcheckfieldcheckminimumcheck) | none |
@@ -2405,6 +2356,7 @@ Unit of measurement for a numeric value.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | UNIT_UNKNOWN | none | 0 |
+| DURATION_MILLISECONDS | none | 40 |
 | DURATION_SECONDS | none | 1 |
 | DURATION_MINUTES | none | 2 |
 | DURATION_HOURS | none | 3 |
@@ -2440,8 +2392,8 @@ Unit of measurement for a numeric value.
 | VOLUME_LITER | none | 23 |
 | VOLUME_GALLON_US | none | 24 |
 | VOLUME_GALLON_IMPERIAL | none | 25 |
-| WEIGHT_KILOGRAMS | none | 37 |
-| WEIGHT_POUNDS | none | 38 |
+| MASS_KILOGRAMS | none | 37 |
+| MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
 
 ## Scalar Value Types
