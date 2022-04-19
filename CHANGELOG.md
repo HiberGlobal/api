@@ -2,6 +2,14 @@
 
 #### Upcoming Changes
 
+### 0.102 (2022-04-19)
+
+##### Value and Field
+
+- Added `Unit` (with a single value `PERCENT`) to `Value.Numeric.Percenatage`, for client convenience.
+- Added `percentage` to `Field.Numeric.Unit`, for consistency.
+- Added `converted_from` to `Field.Numeric`, so you can tell that unit preferences were applied.
+
 ### 0.101 (2022-04-07)
 
 ##### Units

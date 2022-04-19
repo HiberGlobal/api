@@ -123,7 +123,13 @@ message Value {
 
         /* The value is a percentage. */
         message Percentage {
+            enum Unit {
+                /* Technically not a unit, but for consistency, we've added it here. */
+                PERCENT = 0;
+            }
+
             float value = 1;
+            Unit unit = 3;
 
             /* Textual representation with % symbol, rounded based on the user preferences and field config. */
             string textual = 2;
@@ -290,6 +296,7 @@ message Field {
                 Value.Numeric.DurationUnit duration = 3;
                 Value.Numeric.FuelEfficiency.Unit fuel_efficiency = 4;
                 Value.Numeric.Flow.Unit flow = 5;
+                Value.Numeric.Percentage.Unit percentage = 12;
                 Value.Numeric.Pressure.Unit pressure = 6;
                 Value.Numeric.Speed.Unit speed = 7;
                 Value.Numeric.Temperature.Unit temperature = 8;
@@ -360,6 +367,11 @@ message Field {
 
         /* The unit for the field, depending on the type. */
         Unit unit = 4;
+
+        /* If the unit preferences were applied, and the unit is different, the field will be converted to the preferred
+         * unit, from the original unit specified in this field.
+         */
+        Unit converted_from = 5;
     }
 
     /* The name of the field (if in the root structure) or a JsonPath to the field. */
