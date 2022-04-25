@@ -2,6 +2,22 @@
 
 #### Upcoming Changes
 
+### 0.103 (2022-04-25)
+
+##### AlarmService
+
+- Added default error message templates for all checks.
+  You can now omit the error message template when creating a check, using the default automatically.
+
+### 0.102.1 (2022-04-21)
+
+##### AlarmService
+
+- Fixed a bug where the alarm would not correctly detect the field unit, and fail with
+
+
+    Invalid configuration: unit is configured, but field does not have a unit! Invalid configuration: unit is configured, but field does not have a unit!
+
 ### 0.102 (2022-04-19)
 
 ##### Value and Field
