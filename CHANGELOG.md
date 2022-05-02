@@ -4,13 +4,6 @@
 
 ### 0.104 (2022-05-02)
 
-### 0.103 (2022-04-25)
-
-##### AlarmService
-
-- Added default error message templates for all checks.
-  You can now omit the error message template when creating a check, using the default automatically.
-
 ##### ModemService
 
 - Added `metadata` to `Modem`, a json object of metadata, similar to `ModemMesssage.metadata`.
@@ -23,6 +16,13 @@
     - Renamed `add_metadata_fields` to `add_message_metadata_fields` for clarity.
     - Renamed `remove_metadata_fields` to `remove_message_metadata_fields` for clarity.
     - Added `replace_message_metadata_fields` and `replace_modem_metadata_fields` for convenience.
+
+### 0.103 (2022-04-25)
+
+##### AlarmService
+
+- Added default error message templates for all checks.
+  You can now omit the error message template when creating a check, using the default automatically.
 
 ### 0.102.1 (2022-04-21)
 
