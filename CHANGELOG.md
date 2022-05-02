@@ -2,6 +2,8 @@
 
 #### Upcoming Changes
 
+### 0.104 (2022-05-02)
+
 ### 0.103 (2022-04-25)
 
 ##### AlarmService
@@ -9,12 +11,24 @@
 - Added default error message templates for all checks.
   You can now omit the error message template when creating a check, using the default automatically.
 
+##### ModemService
+
+- Added `metadata` to `Modem`, a json object of metadata, similar to `ModemMesssage.metadata`.
+
+##### ModemMessageBodyParserService
+
+- Added `ModemMessageBodyParser.MetadataFields.modem_metadata_fields` for fields that should sync to modem metadata.
+  - Related changes in `UpdateUploadedModemMessageBodyParserRequest.MetadataFields`:
+    - Added `add_modem_metadata_fields`, `remove_modem_metadata_fields` for the new modem metadata fields.
+    - Renamed `add_metadata_fields` to `add_message_metadata_fields` for clarity.
+    - Renamed `remove_metadata_fields` to `remove_message_metadata_fields` for clarity.
+    - Added `replace_message_metadata_fields` and `replace_modem_metadata_fields` for convenience.
+
 ### 0.102.1 (2022-04-21)
 
 ##### AlarmService
 
 - Fixed a bug where the alarm would not correctly detect the field unit, and fail with
-
 
     Invalid configuration: unit is configured, but field does not have a unit! Invalid configuration: unit is configured, but field does not have a unit!
 

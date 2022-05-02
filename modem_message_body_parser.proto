@@ -89,13 +89,16 @@ message ModemMessageBodyParser {
             string longitude = 2;
         }
 
-        /* Other metadata fields, which will be added to the metadata json for easy processing. */
-        repeated string metadata_fields = 1;
-
         /* Specify a pair of fields in the message body that contain location data,
          * which will update the modem location and the map.
          */
         LocationFields location_fields = 2;
+
+        /* Custom metadata fields, which will be added to the message metadata json. */
+        repeated string message_metadata_fields = 1;
+
+        /* Custom metadata fields, which will be added to the modem metadata json. */
+        repeated string modem_metadata_fields = 3;
     }
 
     /* The globally (across organizations) unique identifier for this parser. */
@@ -314,14 +317,26 @@ message UploadModemMessageBodyParserRequest {
 /* Upload an updated body parser from a .ksy file, replacing the previous file. */
 message UpdateUploadedModemMessageBodyParserRequest {
     message MetadataFields {
-        /* Add metadata fields to the metadata fields list. */
-        repeated string add_metadata_fields = 1;
-
-        /* Remove metadata fields from the metadata fields list. */
-        repeated string remove_metadata_fields = 2;
-
         /* Update the location fields. */
         ModemMessageBodyParser.MetadataFields.LocationFields update_location_fields = 3;
+
+        /* Add fields to the message metadata fields list. */
+        repeated string add_message_metadata_fields = 1;
+
+        /* Remove fields from the message metadata fields list. */
+        repeated string remove_message_metadata_fields = 2;
+
+        /* Replace the message metadata fields list. */
+        repeated string replace_message_metadata_fields = 4;
+
+        /* Add fields to the modem metadata fields list. */
+        repeated string add_modem_metadata_fields = 5;
+
+        /* Remove fields from the modem metadata fields list. */
+        repeated string remove_modem_metadata_fields = 6;
+
+        /* Replace the modem metadata fields list. */
+        repeated string replace_modem_metadata_fields = 7;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
