@@ -2,6 +2,12 @@
 
 #### Upcoming Changes
 
+### 0.105 (2022-05-09)
+
+##### PublisherService
+
+- Fixed a bug where updating the health filter would fail.
+
 ### 0.104 (2022-05-02)
 
 ##### ModemService
