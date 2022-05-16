@@ -2,6 +2,10 @@
 
 This is the protobuf specification of the Hiber GRPC API.
 
+Hiber also offers a limited, [read-only rest API](https://github.com/hiberglobal/rest-api) for convenience.
+This is based on the protobuf object definitions, but is (for now) mainly intended as a compatibility option
+to fetch messages and message events.
+
 ## Technical tools
 
 ### Protocol Buffers
@@ -207,23 +211,22 @@ For more information and a small number of examples, see the examples of version
 
 ## Developing on our API
 
-For Hiber customer development, we have set up endpoints under [dev.hiber.global](https://dev.hiber.global):
+For Hiber customer development, we have set up endpoints under [acc.env.hiber.cloud](https://acc.env.hiber.cloud):
 
-- [dev.hiber.global](https://dev.hiber.global): The Hiber web application
-- [api.dev.hiber.global](https://api.dev.hiber.global) (or [grpc.dev.hiber.global](https://grpc.dev.hiber.global)):
+- [acc.env.hiber.cloud](https://acc.env.hiber.cloud): The Hiber web application
+- [api.acc.env.hiber.cloud](https://api.acc.env.hiber.cloud) (or [grpc.acc.env.hiber.cloud](https://grpc.acc.env.hiber.cloud)):
 The GRPC API, accessible over https on port 443 or 1443.
 (Note that opening this url in your browser will not work, since it requires HTTP2.)
-- [grpc-web.dev.hiber.global](https://grpc-web.dev.hiber.global): The GRPC Web API, used in the web application.
 
 Notes:
-- This is *your* development environment, and can be considered a stable production-like environment.
+- This can be considered a stable production-like environment.
 - Technically, you might be able to connect a normal GRPC client to the GRPC Web API, but this is not recommended.
 
 ### API Tokens
 
 The Hiber API requires a token for all GRPC calls, using a metadata field called `authorization` with value `bearer $YOUR_TOKEN_HERE`.
 
-To get a token for our API, go to the web application at [dev.hiber.global](https://dev.hiber.global) and log in.
+To get a token for our API, go to the web application at [acc.env.hiber.cloud](https://acc.env.hiber.cloud) and log in.
 Once you are linked to an organization (this process is defined in the api, but not implemented in the web interface yet)
 you can create a token (using another token) on the API.
 
@@ -237,7 +240,6 @@ For actual modems and modem messages, use [hiber.cloud](https://hiber.cloud):
 - [api.hiber.cloud](https://api.hiber.cloud) (or [grpc.hiber.cloud](https://grpc.hiber.cloud)):
 The GRPC API, accessible over https on port 443 or 1443.
 (Note that opening this url in your browser will not work, since it requires HTTP2.)
-- [grpc-web.hiber.cloud](https://grpc-web.hiber.cloud): The GRPC Web API, used in the web application.
 
 ## Examples
 

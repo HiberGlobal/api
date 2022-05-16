@@ -12,8 +12,9 @@
       "metadataFields": {
       }
     },
-    "title": "Modem Message Body Parser example-identifier was created.",
-    "description": "The modem message body parser example-identifier was created with the following configuration:\n\nexample",
+    "title": "Modem Message Body Parser example (example-identifier) was created.",
+    "description": "Modem Message Body Parser example (example-identifier) was created with the following configuration:\n\nexample",
+
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
       "textual": "2020-06-01T05:15:25.355Z"
@@ -24,6 +25,6 @@
     "timestamp": "2020-06-01T05:15:25.355Z",
     "textual": "2020-06-01T05:15:25.355Z"
   },
-  "title": "Modem Message Body Parser example-identifier was created.",
-  "description": "The modem message body parser example-identifier was created with the following configuration:\n\nexample"
+  "title": "Modem Message Body Parser example (example-identifier) was created.",
+  "description": "Modem Message Body Parser example (example-identifier) was created with the following configuration:\n\nexample"
 }

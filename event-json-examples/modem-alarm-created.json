@@ -19,15 +19,15 @@
         }
       }
     },
-    "title": "Modem alarm example-identifier was created.",
-    "description": "Modem alarm example-identifier was created: example.",
+    "title": "Modem alarm example (example-identifier) was created.",
+    "description": "Modem alarm example (example-identifier) was created:\n\nexample",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
       "textual": "2020-06-01T05:15:25.355Z"
     }
   },
-  "title": "Modem alarm example-identifier was created.",
-  "description": "Modem alarm example-identifier was created: example.",
+  "title": "Modem alarm example (example-identifier) was created.",
+  "description": "Modem alarm example (example-identifier) was created:\n\nexample",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
     "textual": "2020-06-01T05:15:25.355Z"

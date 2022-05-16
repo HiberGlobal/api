@@ -2,15 +2,15 @@
   "organizationDeleted": {
     "parentOrganization": "your-organization",
     "deletedOrganization": "your-organization-2",
-    "title": "your-organization-2 was deleted.",
-    "description": "Organization your-organization-2 under your-organization was deleted.\nModems were migrated to the parent organization your-organization, with their messages and events.\nAny other data, such as webhooks or tokens, have been deleted.\n",
+    "title": "Organization your-organization-2 was deleted.",
+    "description": "Organization your-organization-2 under your-organization was deleted.\n\nAll data was deleted. It can be recovered by contacting Hiber support until 2020-07-01.",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
       "textual": "2020-06-01T05:15:25.355Z"
     }
   },
-  "title": "your-organization-2 was deleted.",
-  "description": "Organization your-organization-2 under your-organization was deleted.\nModems were migrated to the parent organization your-organization, with their messages and events.\nAny other data, such as webhooks or tokens, have been deleted.\n",
+  "title": "Organization your-organization-2 was deleted.",
+  "description": "Organization your-organization-2 under your-organization was deleted.\n\nAll data was deleted. It can be recovered by contacting Hiber support until 2020-07-01.",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
     "textual": "2020-06-01T05:15:25.355Z"

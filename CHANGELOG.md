@@ -2,6 +2,20 @@
 
 #### Upcoming Changes
 
+### 0.106 (2022-05-16)
+
+##### EventService
+
+- Improved the event titles and descriptions.
+
+##### ModemService
+
+- Added `time_zone` to `Modem` and `UpdatePeripheralsRequest`, to manage the time zone that a
+  modem is in. In the future, this will be used to 
+  - retrieve data in the correct time zone
+  - aggregate on days using the correct time zone
+  - etc.
+
 ### 0.105 (2022-05-09)
 
 ##### PublisherService

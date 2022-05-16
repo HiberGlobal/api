@@ -68,7 +68,7 @@
       }
     ],
 
-    "title": "The last message from modem AAAA AAAA was delayed by 3600 seconds.",
+    "title": "The last message from modem AAAA AAAA arrived with a delay of 3600 seconds.",
     "description": "The last message from modem AAAA AAAA arrived with a delay of 3600 seconds.",
     "time": {
       "timestamp": "2020-06-01T06:15:25.355Z",
@@ -85,7 +85,7 @@
     },
     "modemExternalDeviceId": "00 11 22 33 AA BB CC DD"
   },
-  "title": "The last message from modem AAAA AAAA was delayed by 3600 seconds.",
+  "title": "The last message from modem AAAA AAAA arrived with a delay of 3600 seconds.",
   "description": "The last message from modem AAAA AAAA arrived with a delay of 3600 seconds.",
   "modem": {
     "number": "AAAA AAAA",

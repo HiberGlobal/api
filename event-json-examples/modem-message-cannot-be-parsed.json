@@ -38,11 +38,11 @@
     ],
 
     "title": "Message received from modem AAAA AAAA cannot be parsed!",
-    "description": "Message received from modem AAAA AAAA cannot be parsed!\nThis can be cause by multiple things:\n- invalid configuration in the modem or the stored modem parameters in the system\n- the message body could not be parsed by any of the assigned parsers\n\nSee the message below for more information:\n\nParsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.\n",
+    "description": "Message received from modem AAAA AAAA cannot be parsed!\n\nThis can be caused by multiple things:\n- invalid configuration in the modem or the stored modem parameters in the system;\n- the message body could not be parsed by any of the assigned parsers.\n\nSee the message below for more information:\n\nParsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.",
     "modemExternalDeviceId": "00 11 22 33 AA BB CC DD"
   },
   "title": "Message received from modem AAAA AAAA cannot be parsed!",
-  "description": "Message received from modem AAAA AAAA cannot be parsed!\nThis can be cause by multiple things:\n- invalid configuration in the modem or the stored modem parameters in the system\n- the message body could not be parsed by any of the assigned parsers\n\nSee the message below for more information:\n\nParsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.\n",
+  "description": "Message received from modem AAAA AAAA cannot be parsed!\n\nThis can be caused by multiple things:\n- invalid configuration in the modem or the stored modem parameters in the system;\n- the message body could not be parsed by any of the assigned parsers.\n\nSee the message below for more information:\n\nParsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.",
   "modem": {
     "number": "AAAA AAAA",
     "name": "AAAA AAAA",

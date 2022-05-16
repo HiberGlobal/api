@@ -124,11 +124,11 @@
       }
     ],
 
-    "title": "1 of the 1 modems you sent to your-organization-2 are being returned!",
-    "description": "1 of the 1 modems that were transferred from your-organization to your-organization-2 are being returned.\nThe following modems are in this return transfer example-identifier-2:\n - Damaged: AAAA AAAA"
+    "title": "You returned 1 modem of the 1 modem you received from your-organization.",
+    "description": "1 modem of the 1 modem that were transferred from your-organization to your-organization-2 are being returned.\n\nThe following modems are in this return transfer:\n\n- AAAA AAAA"
   },
-  "title": "1 of the 1 modems you sent to your-organization-2 are being returned!",
-  "description": "1 of the 1 modems that were transferred from your-organization to your-organization-2 are being returned.\nThe following modems are in this return transfer example-identifier-2:\n - Damaged: AAAA AAAA",
+  "title": "You returned 1 modem of the 1 modem you received from your-organization.",
+  "description": "1 modem of the 1 modem that were transferred from your-organization to your-organization-2 are being returned.\n\nThe following modems are in this return transfer:\n\n- AAAA AAAA",
   "time": {
     "timestamp": "2020-06-03T05:15:25.355Z",
     "textual": "2020-06-03T05:15:25.355Z"

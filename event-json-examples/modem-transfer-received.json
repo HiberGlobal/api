@@ -59,11 +59,11 @@
       }
     ],
 
-    "title": "Your transfer of 1 modems to your-organization-2 has been received.",
-    "description": "A transfer of 1 modems from your-organization to your-organization-2 has been received.\nThe following modems are in this transfer:\n - AAAA AAAA"
+    "title": "Your transfer of 1 modem to your-organization-2 has been received.",
+    "description": "A transfer of 1 modem from your-organization to your-organization-2 has been received.\n\nThe following modems are in this transfer:\n\n- AAAA AAAA"
   },
-  "title": "Your transfer of 1 modems to your-organization-2 has been received.",
-  "description": "A transfer of 1 modems from your-organization to your-organization-2 has been received.\nThe following modems are in this transfer:\n - AAAA AAAA",
+  "title": "Your transfer of 1 modem to your-organization-2 has been received.",
+  "description": "A transfer of 1 modem from your-organization to your-organization-2 has been received.\n\nThe following modems are in this transfer:\n\n- AAAA AAAA",
   "time": {
     "timestamp": "2020-06-01T06:15:25.355Z",
     "textual": "2020-06-01T06:15:25.355Z"

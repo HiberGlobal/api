@@ -7,8 +7,8 @@
         "amount": 10
       }
     ],
-    "title": "Modem message summary for 2020-05-31T05:15:25.355Z..2020-06-01T05:15:25.355Z.",
-    "description": "Modem message summary for your-organization for the period 2020-05-31T05:15:25.355Z..2020-06-01T05:15:25.355Z:\nModems active: [-1431655766]\nMessages received: 10\n",
+    "title": "Modem message summary from 2020-05-31 05:15:25Z to 2020-06-01 05:15:25Z.",
+    "description": "Modem message summary for your-organization from 2020-05-31 05:15:25Z to 2020-06-01 05:15:25Z:\n\nModems active: [AAAA AAAA]\n\nMessages received: 10",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
       "textual": "2020-06-01T05:15:25.355Z"
@@ -24,8 +24,8 @@
       }
     }
   },
-  "title": "Modem message summary for 2020-05-31T05:15:25.355Z..2020-06-01T05:15:25.355Z.",
-  "description": "Modem message summary for your-organization for the period 2020-05-31T05:15:25.355Z..2020-06-01T05:15:25.355Z:\nModems active: [-1431655766]\nMessages received: 10\n",
+  "title": "Modem message summary from 2020-05-31 05:15:25Z to 2020-06-01 05:15:25Z.",
+  "description": "Modem message summary for your-organization from 2020-05-31 05:15:25Z to 2020-06-01 05:15:25Z:\n\nModems active: [AAAA AAAA]\n\nMessages received: 10",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
     "textual": "2020-06-01T05:15:25.355Z"

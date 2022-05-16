@@ -170,6 +170,9 @@ message Modem {
     /* Modem metadata, typically extracted from messages. */
     google.protobuf.Struct metadata = 31;
 
+    /* The timezone configured for the modem. */
+    string time_zone = 32;
+
     /* Additional information when this modem is a gateway. */
     message GatewayInfo {
         int32 number_of_connected_devices = 1;
@@ -891,6 +894,7 @@ message UpdatePeripheralsRequest {
     reserved 8;
     Pagination pagination = 9;
     string custom_antenna = 10;
+    UpdateClearableString time_zone = 11;
 }
 
 message UpdateModemHealthConfig {

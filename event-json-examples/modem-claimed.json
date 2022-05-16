@@ -14,11 +14,11 @@
       "timestamp": "2020-06-01T05:15:25.355Z",
       "textual": "2020-06-01T05:15:25.355Z"
     },
-    "title": "Your modem with number -1431655766 was claimed by your-organization-2.",
+    "title": "Your modem with number AAAA AAAA was claimed by your-organization-2.",
     "description": "Your modem with number AAAA AAAA was claimed by your-organization-2.",
     "modemExternalDeviceId": "00 11 22 33 AA BB CC DD"
   },
-  "title": "Your modem with number -1431655766 was claimed by your-organization-2.",
+  "title": "Your modem with number AAAA AAAA was claimed by your-organization-2.",
   "description": "Your modem with number AAAA AAAA was claimed by your-organization-2.",
   "modem": {
     "number": "AAAA AAAA",
