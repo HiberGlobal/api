@@ -2,6 +2,15 @@
 
 #### Upcoming Changes
 
+### 0.107 (2022-05-23)
+
+##### EasypulseService
+
+- Added `time_zone` to `Asset`. In the future, this will be used to
+  - retrieve data in the correct time zone
+  - aggregate on days using the correct time zone
+  - etc.
+
 ### 0.106 (2022-05-16)
 
 ##### EventService

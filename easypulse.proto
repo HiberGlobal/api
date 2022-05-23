@@ -64,6 +64,9 @@ message Easypulse {
         /* Add additional notes to an asset that only people with the permission can access. */
         string secure_notes = 7;
 
+        /* The timezone configured for the asset. */
+        string time_zone = 27;
+
         /* Health level based on the modem alarm and some always-present alarms. */
         health.HealthLevel health_level = 8;
 
@@ -72,21 +75,6 @@ message Easypulse {
 
         /* When this asset was last updated. */
         LastUpdate last_update = 10;
-
-        /* The most recent fuel level, as a percentage. */
-        float fuel_level_deprecated = 11 [deprecated = true];
-
-        /* The most recent tire pressure in bar. */
-        float tire_pressure_deprecated = 12 [deprecated = true];
-
-        /* The most recent battery level, as a percentage. */
-        float battery_level_deprecated = 13 [deprecated = true];
-
-        /* The most recent temperature in degrees Celsius. */
-        float temperature_deprecated = 14 [deprecated = true];
-
-        /* The most recent speed measurement in km/h. */
-        float speed_deprecated = 17 [deprecated = true];
 
         /* Current value of the odometer. */
         hiber.value.Value.Numeric.Distance odometer = 18;
@@ -134,6 +122,8 @@ message Easypulse {
             /* The body of the last update. */
             BytesOrHex body = 4;
         }
+
+        reserved 11,12,13,14,17;
     }
 
     /* An AssetSelection is used to select which Assets should be affected:
