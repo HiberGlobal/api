@@ -2,6 +2,12 @@
 
 #### Upcoming Changes
 
+### 0.108 (2022-05-30)
+
+##### ModemService
+
+- Fixed an issue where time zone could not be cleared.
+
 ### 0.107 (2022-05-23)
 
 ##### EasypulseService
