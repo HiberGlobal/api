@@ -2,6 +2,31 @@
 
 #### Upcoming Changes
 
+### 0.109 (2022-06-07)
+
+##### CurrentUserService
+
+- Fixed search for AccessibleOrganizations, to also search the organization display name.
+
+##### EasypulseService
+
+- Added `Easypulse.TargetValues`, with a call to list them and a call to set them.
+  - These values will be used to calculate scores at a later point in time.
+
+##### ExportService
+
+- Fixed an issue where CSV export asked for configuration to be set, while it did work when the configuration was empty.
+
+##### Organization
+
+- Added `SINARMAS_SPECIFIC` to `Organization.Feature` for some specific processing.
+
+##### Units
+
+- Added `WEEKS` to `Value.Numeric.DurationUnit`.
+- Added `CUBIC_METER` and `CUBIC_FOOT` to `Value.Numeric.Volume.Unit`.
+- (Added equivalent values to the deprecated `UnitOfMeasurement`)
+
 ### 0.108 (2022-05-30)
 
 ##### ModemService
@@ -26,7 +51,7 @@
 ##### ModemService
 
 - Added `time_zone` to `Modem` and `UpdatePeripheralsRequest`, to manage the time zone that a
-  modem is in. In the future, this will be used to 
+  modem is in. In the future, this will be used to
   - retrieve data in the correct time zone
   - aggregate on days using the correct time zone
   - etc.

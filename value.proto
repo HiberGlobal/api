@@ -213,6 +213,8 @@ message Value {
                 LITER = 0;
                 GALLON_US = 1;
                 GALLON_IMPERIAL = 2;
+                CUBIC_METER = 3;
+                CUBIC_FEET = 4;
             }
 
             double value = 1;
@@ -265,6 +267,7 @@ message Value {
             MINUTES = 2;
             HOURS = 3;
             DAYS = 4;
+            WEEKS = 5;
         }
 
         Type type = 1;
