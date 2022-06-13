@@ -62,9 +62,6 @@ service ModemService {
     /* Change the status of the selected modems to the given value. */
     rpc UpdateStatus (UpdateModemStatusRequest) returns (UpdateModemStatusRequest.Response);
 
-    /* Update the health configuration for the selected modems. */
-    rpc UpdateModemHealthConfig (UpdateModemHealthConfig.Request) returns (UpdateModemHealthConfig.Response);
-
     /* Add and remove peripherals for the selected modems. */
     rpc UpdatePeripherals (UpdatePeripheralsRequest) returns (UpdatePeripheralsRequest.Response);
 
@@ -99,16 +96,6 @@ message Modem {
     /* The amount of time since the last message from this modem was received on the server. */
     Duration inactivity = 30;
 
-    /* Period in days, if modem inactivity exceeds this period, alerts will be triggered and health will go to error.
-     * Deprecated in favor of using an alarm.
-     */
-    int32 maximum_inactivity_period = 8 [deprecated = true];
-
-    /* If modem inactivity exceeds this period, alerts will be triggered and health will go to error.
-     * Deprecated in favor of using an alarm.
-     */
-    Duration maximum_inactivity = 29 [deprecated = true];
-
     /* Deprecated health based on the number of error and warning events this modem has received in the past 30 days
      * Uses the OK, WARNING, ERROR format.
      */
@@ -116,9 +103,6 @@ message Modem {
 
     /* Health level based on the modem alarm and some always-present alarms. */
     health.HealthLevel health_level = 28;
-
-    /* Health configuration for unresolvable built-in modem alarms, like delayed or skipped messages. */
-    HealthConfig health_config = 24;
 
     Status status = 12;
 
@@ -246,20 +230,6 @@ message Modem {
         bool gps = 2;
         map<string, string> peripherals = 3;
         string custom_antenna = 4;
-    }
-
-    /* Health configuration for the modem. Defines how the health is calculated for certain built-in alarms.
-     * Deprecated: will move to the event health configuration.
-     */
-    message HealthConfig {
-        option deprecated = true;
-        reserved 1;
-
-        /* The health level that unresolvable alarms, like delayed or skipped messages, set the modem to. */
-        string health_level = 3;
-
-        /* Period to consider when determining health from warning events. Warning events cannot be resolved. */
-        Duration health_unresolvable_period = 2;
     }
 
     /* Modem statuses for its lifecycle. */
@@ -895,24 +865,6 @@ message UpdatePeripheralsRequest {
     Pagination pagination = 9;
     string custom_antenna = 10;
     UpdateClearableString time_zone = 11;
-}
-
-message UpdateModemHealthConfig {
-    option deprecated = true;
-
-    message Request {
-        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
-        ModemSelection selection = 2;
-
-        reserved 3;
-
-        /* Period to consider when determining health from warning events. Warning events cannot be resolved. */
-        Duration health_warning_period = 4;
-    }
-
-    message Response {
-    }
 }
 
 message ModemHealthCount {

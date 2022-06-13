@@ -91,12 +91,10 @@ message Event {
         ModemEvent.ModemUpdatedEvent modem_updated = 39;
         ModemEvent.ModemLocationUpdatedEvent modem_location_updated = 2;
         ModemEvent.ModemActivatedEvent modem_activated = 36;
-        ModemEvent.ModemStaleEvent modem_stale = 3 [deprecated = true];
 
         ModemEvent.MessageEvent.ModemMessageReceivedEvent modem_message_received = 4;
         ModemEvent.MessageEvent.ModemMessageBodyReceivedEvent modem_message_body_received = 44;
         ModemEvent.MessageEvent.ModemMessageBodyParsedEvent modem_message_body_parsed = 45;
-        ModemEvent.MessageEvent.ModemMessageDelayedEvent modem_message_delayed = 6 [deprecated = true];
         ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent modem_message_cannot_be_parsed = 7;
 
         ModemEvent.MessageBodyParserEvent.CreatedEvent modem_message_body_parser_created = 46;
@@ -145,7 +143,7 @@ message Event {
         ExportEvent.ExportReadyEvent export_ready = 66;
         ExportEvent.ExportFailedEvent export_failed = 67;
     }
-    reserved 11 to 14, 21, 22, 26 to 29, 49 to 53, 60 to 64;
+    reserved 3, 6, 11 to 14, 21, 22, 26 to 29, 49 to 53, 60 to 64;
 
     message ModemEvent {
         message ModemCreatedEvent {
@@ -206,38 +204,6 @@ message Event {
             repeated tag.Tag tags = 5;
             string title = 6;
             string description = 7;
-        }
-
-        /* When a modem hasn't received any message for a configurable period, it is considered stale. This event is
-         * generated as soon as this condition is determined
-         */
-        message ModemStaleEvent {
-            option deprecated = true;
-
-            string organization = 1;
-            string modem_number = 2;
-
-            /* External device id for this modem (e.g. a MAC address). */
-            string modem_external_device_id = 9;
-
-            /* The number of days this modem is allowed to be inactive before triggering this event. */
-            int32 maximum_inactivity_period = 3 [deprecated = true];
-
-            /* The period this modem is allowed to be inactive before triggering this event. */
-            Duration maximum_inactivity = 10;
-
-            /* The time this modems inactivity exceeded the maximum_inactivity_period. */
-            Timestamp time = 4;
-
-            /* The last time this modem sent a message. */
-            Timestamp last_message = 5;
-
-            repeated tag.Tag tags = 6;
-            string title = 7;
-            string description = 8;
-
-            /* The health level caused for the modem (and organization) by this event. */
-            health.HealthLevel health_level = 11;
         }
 
         /* When the first _real_ message for a modem comes in, the modem is considered to be activated.
@@ -354,39 +320,6 @@ message Event {
                 string title = 10;
                 string description = 11;
                 Timestamp time = 12;
-            }
-
-            /* Triggered when the time between sending and receiving the message is above a certain threshold. This can
-             * indicate that there is a communication issue between the modem and the server, e.g. a malfunction ground
-             * station, so that the satellite takes longer to send its data on.
-             */
-            message ModemMessageDelayedEvent {
-                option deprecated = true;
-
-                string organization = 1;
-                string modem_number = 2;
-
-                /* External device id for this modem (e.g. a MAC address). */
-                string modem_external_device_id = 10;
-
-                /* The message that produced this event.
-                 * Note that this is a reduced version of the message, and may omit parsed body.
-                 */
-                modem.ModemMessage message = 3;
-
-                /* The amount of seconds the message was delayed, if it is more than 1 day. */
-                int64 delay_seconds = 4;
-
-                /* The modem's tags at the time this message was received. */
-                repeated tag.Tag tags = 5;
-
-                Health modem_health = 6;
-                string title = 7;
-                string description = 8;
-                Timestamp time = 9;
-
-                /* The health level caused for the modem (and organization) by this event. */
-                health.HealthLevel health_level = 11;
             }
 
             /* Triggered when a message cannot be parsed. This can have multiple reasons, for example, an invalid
@@ -1138,7 +1071,7 @@ message EventConfiguration {
      * When an expiry duration is set, events will no longer affect health of the subsystem after the configured period.
      * Health levels reset to the least severe applicable level, typically "Ok".
      *
-     * For instance, a modem-message-delayed event, might not be relevant anymore after 5 days.
+     * For instance, an event might not be relevant anymore after 5 days.
      * By setting expiry to "5d", the event will resolve automatically 5 days after the last event happened.
      * Depending on other factors that influence modem health,
      * the health level will be reset to the least severe health level available.

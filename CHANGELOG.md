@@ -2,6 +2,40 @@
 
 #### Upcoming Changes
 
+### 0.110 (2022-06-13)
+
+- Added support for textual shortcuts in `Timestamp.textual`:
+  - "now": converted to the request time
+- Added support for textual shortcuts for `TimeRange`,
+  which allows a few more values in `Timestamp.textual` in `TimeRange` only:
+  - "now": converted to the request time
+  - a duration as an offset of now, i.e. "-10h" or "PT-10h": converted to now + offset, so -10h for start is 10 hours before the end time
+    - For example, to fetch messages in the past hour, a request could use the
+      TimeRange `{ start.textual = "-1h", end.textual = "now" }` instead of specifying Timestamps explicitly.
+
+##### EventService
+
+- **[B]** Removed deprecated events types:
+  - **[B]** Removed `Event.ModemEvent.ModemStaleEvent`. This functionality can be replicated with alarms instead, using the inactivity check type.
+  - **[B]** Removed `Event.ModemEvent.MessageEvent.ModemMessageDelayedEvent`. This functionality can be replicated with alarms instead, using the delay check type.
+  - **[B]** Remove EventType.MODEM_STALE and EventType.MODEM_MESSAGE_DELAYED.
+- When retrieving events that relate to a modem, the modem time zone is used to set the returned `Timestamp.textual` in the right time zone.
+
+##### ModemService
+
+- When retrieving messages, the modem time zone is used to set the returned `Timestamp.textual` in the right time zone.
+
+##### MessageService
+
+- When retrieving messages, the modem time zone is used to set the returned `Timestamp.textual` in the right time zone.
+
+##### Backwards incompatible changes
+
+- **[B]** Removed deprecated events types:
+  - **[B]** Removed `Event.ModemEvent.ModemStaleEvent`.
+  - **[B]** Removed `Event.ModemEvent.MessageEvent.ModemMessageDelayedEvent`.
+  - **[B]** Remove EventType.MODEM_STALE and EventType.MODEM_MESSAGE_DELAYED.
+
 ### 0.109 (2022-06-07)
 
 ##### CurrentUserService

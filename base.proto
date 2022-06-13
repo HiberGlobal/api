@@ -65,7 +65,15 @@ message UpdateBoolean {
     bool value = 2;
 }
 
-/* Period of time between two timestamps. Typically used for filtering. */
+/* Period of time between two timestamps. Typically used for filtering.
+ *
+ * This can be used with textual shortcuts for timestamp, and some additional duration textual shortcuts:
+ * - a duration as an offset of now, i.e. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is
+ *   10 hours before the end time (using the ISO 8601 duration format)
+ * Examples:
+ * - start "-10h" end "now": a time range from 10 hours before the request time, to the request time
+ * - start "-10h" end "2022-01-01 20:00": becomes start 2022-01-01 10:00 end 2022-01-01 20:00
+ */
 message TimeRange {
     Timestamp start = 1;
     Timestamp end = 2;
@@ -86,6 +94,10 @@ message DoubleRange {
  * used ISO 8601 format (i.e. "2018-01-01T13:00:00Z").
  * When used an API input, only one of the fields is needed, there is no need to set both. When both are set, the
  * timestamp field will be used, the textual field will be discarded.
+ *
+ * In addition, the textual field, when used as input, allows for a number of shortcuts that get converted into
+ * timestamps:
+ * - "now": converted to the current timestamp at the time of the request
  */
 message Timestamp {
     google.protobuf.Timestamp timestamp = 1;
@@ -229,12 +241,10 @@ enum EventType {
     MODEM_UPDATED = 36;
     MODEM_LOCATION_UPDATED = 4;
     MODEM_ACTIVATED = 33;
-    MODEM_STALE = 16;
 
     MODEM_MESSAGE_RECEIVED = 5;
     MODEM_MESSAGE_BODY_PARSED = 39;
     MODEM_MESSAGE_BODY_RECEIVED = 45;
-    MODEM_MESSAGE_DELAYED = 14;
     MODEM_MESSAGE_CANNOT_BE_PARSED = 15;
     MODEM_MESSAGE_SUMMARY = 42;
 
@@ -280,7 +290,7 @@ enum EventType {
     EXPORT_READY = 66;
     EXPORT_FAILED = 67;
 
-    reserved 6, 7, 13, 23, 24, 27, 28, 29, 30;
+    reserved 6, 7, 13, 14, 16, 23, 24, 27, 28, 29, 30;
 }
 
 /* Filters used in many api calls to filter the data sources, results, etc.
