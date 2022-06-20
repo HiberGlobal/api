@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Protocol Documentation</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        margin: 1em auto;
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0;  
+      }
+
+       
+      .field-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .field-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .field-table td:nth-child(3) {  
+        width: 6em;
+      }
+      .field-table td:nth-child(4) {  
+        width: auto;
+      }
+
+       
+      .extension-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) {  
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) {  
+        width: auto;
+      }
+
+       
+      .enum-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) {  
+        width: auto;
+      }
+
+       
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+       
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+       
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+       
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+  </head>
+
+  <body>
+
+    <h1 id="title">Protocol Documentation</h1>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+        
+          
+          <li>
+            <a href="#permission.proto">permission.proto</a>
+            <ul>
+              
+              
+                <li>
+                  <a href="#hiber.OrganizationPermission"><span class="badge">E</span>OrganizationPermission</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.UserPermission"><span class="badge">E</span>UserPermission</a>
+                </li>
+              
+              
+              
+            </ul>
+          </li>
+        
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+    
+      
+      <div class="file-heading">
+        <h2 id="permission.proto">permission.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Permissions limit what a user can do through the API.</p>
+
+      
+
+      
+        <h3 id="hiber.OrganizationPermission">OrganizationPermission</h3>
+        <p>OrganizationPermissions limit what a user can do in an Organization.</p><p>By default, everyone who has access to an organization, can access:</p><p>- organization data</p><p>- dashboard (including the map, and message count for the past days, and any events they have access to)</p><p>- tags</p><p>- deleting tags, but only if they are allowed to update the modems and webhooks the tag is assigned to</p><p>Events are filtered by permission, i.e. if you cannot access the users, you would not see user-related events.</p><p>Requesting user-related events explicitly if you cannot access the users will return an error.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>PERMISSION_DEFAULT</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ORGANIZATION_CREATE</td>
+                <td>1</td>
+                <td><p>Create a new child organization.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ORGANIZATION_UPDATE</td>
+                <td>2</td>
+                <td><p>Update the organizations data, such as billing information, address, and contact.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ORGANIZATION_DELETE</td>
+                <td>3</td>
+                <td><p>Delete child organizations.
+You cannot delete your own organization. To delete your organization, contact support.</p></td>
+              </tr>
+            
+              <tr>
+                <td>MODEMS</td>
+                <td>10</td>
+                <td><p>List modems, see their details and health</p></td>
+              </tr>
+            
+              <tr>
+                <td>MODEMS_CREATE</td>
+                <td>50</td>
+                <td><p>Create new modems. Includes MODEMS permission.</p></td>
+              </tr>
+            
+              <tr>
+                <td>MODEMS_UPDATE</td>
+                <td>11</td>
+                <td><p>Update modems, such as their peripherals, display name and tags. Includes MODEMS permission.</p></td>
+              </tr>
+            
+              <tr>
+                <td>MODEMS_LICENSE_KEYS</td>
+                <td>12</td>
+                <td><p>Show and regenerate license keys. Includes MODEMS permission.</p></td>
+              </tr>
+            
+              <tr>
+                <td>MODEMS_MESSAGE_BODY_PARSERS</td>
+                <td>43</td>
+                <td><p>Manage and assign message body parsers. Includes MODEMS permission.</p></td>
+              </tr>
+            
+              <tr>
+                <td>MODEMS_SECURE_NOTES</td>
+                <td>42</td>
+                <td><p>Show and update secure notes. Includes MODEMS permission.</p></td>
+              </tr>
+            
+              <tr>
+                <td>MODEMS_ALARMS</td>
+                <td>44</td>
+                <td><p>Manage and assign message alerts. Includes MODEMS permission.</p></td>
+              </tr>
+            
+              <tr>
+                <td>MODEM_MESSAGES</td>
+                <td>15</td>
+                <td><p>Read modem messages.</p></td>
+              </tr>
+            
+              <tr>
+                <td>MODEM_MESSAGES_SEND_TEST_MESSAGES</td>
+                <td>16</td>
+                <td><p>Send modem messages using the TestingService. Does not include MODEMS or MESSAGES permission.</p></td>
+              </tr>
+            
+              <tr>
+                <td>MODEM_MESSAGES_SEND_REAL_MESSAGES</td>
+                <td>41</td>
+                <td><p>Send modem messages using real message sources (i.e. gateway). Does not include MODEMS or MESSAGES permission.</p></td>
+              </tr>
+            
+              <tr>
+                <td>MODEM_DOWNLINK_MESSAGES</td>
+                <td>51</td>
+                <td><p>Send modem downlink messages.</p></td>
+              </tr>
+            
+              <tr>
+                <td>MODEM_TRANSFERS</td>
+                <td>20</td>
+                <td><p>See modem transfers, inbound and outbound modems. Includes modems permission.</p></td>
+              </tr>
+            
+              <tr>
+                <td>MODEM_TRANSFERS_SEND</td>
+                <td>21</td>
+                <td><p>Transfer modems to another organization, cancel open transfers and send return transfers.
+Includes modems_transfers permission.</p></td>
+              </tr>
+            
+              <tr>
+                <td>MODEM_TRANSFERS_PROCESS</td>
+                <td>22</td>
+                <td><p>Mark transfers as received, prepare modems for return. This does not include actually sending the return transfer.
+Includes modems_transfers permission.</p></td>
+              </tr>
+            
+              <tr>
+                <td>MODEM_CLAIM</td>
+                <td>25</td>
+                <td><p>Claiming modems.</p></td>
+              </tr>
+            
+              <tr>
+                <td>USERS</td>
+                <td>30</td>
+                <td><p>List all users, see their names and email addresses.</p></td>
+              </tr>
+            
+              <tr>
+                <td>USERS_MANAGE</td>
+                <td>31</td>
+                <td><p>Approve or create new users, remove users from the organization. Includes users permission.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PUBLISHERS</td>
+                <td>35</td>
+                <td><p>Manage publishers: webhooks, MQTT integration, AWS IoT integration and custom email publishers.</p></td>
+              </tr>
+            
+              <tr>
+                <td>TOKENS</td>
+                <td>36</td>
+                <td><p>Manage tokens.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CERTIFICATES</td>
+                <td>38</td>
+                <td><p>Read and use uploaded certificates (i.e. for publishers).</p></td>
+              </tr>
+            
+              <tr>
+                <td>CERTIFICATES_MANAGE</td>
+                <td>39</td>
+                <td><p>Upload certificates, and update or delete uploaded certificates.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSIGNMENTS</td>
+                <td>45</td>
+                <td><p>Manage assignments using the assignment services and individual calls on, for example, ModemService.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SIMULATION_MANAGE</td>
+                <td>46</td>
+                <td><p>Manage simulations, like modem message simulation.</p></td>
+              </tr>
+            
+              <tr>
+                <td>HEALTH_MANAGE</td>
+                <td>47</td>
+                <td><p>Manage custom health levels.</p></td>
+              </tr>
+            
+              <tr>
+                <td>LOCATIONS_MANAGE</td>
+                <td>48</td>
+                <td><p>Manage saved locations using the OrganizationLocationService.</p></td>
+              </tr>
+            
+              <tr>
+                <td>EXPORT</td>
+                <td>49</td>
+                <td><p>Create, access and download exports.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="hiber.UserPermission">UserPermission</h3>
+        <p>UserPermissions are generally used to limit what a token can do to its user.</p><p>By default, a user has all UserPermissions, which apply only to himself.</p><p>When creating a token, however, the token typically does not need permission to affect the user at all.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>READ</td>
+                <td>0</td>
+                <td><p>Read your name, email, linked organizations and mission-control settings.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UPDATE</td>
+                <td>1</td>
+                <td><p>Update your personal information, mission-control settings and default organization. Includes read permission.</p></td>
+              </tr>
+            
+              <tr>
+                <td>REQUEST_ACCESS</td>
+                <td>2</td>
+                <td><p>Request access to an organization and cancel open requests. Does not include read permission.</p></td>
+              </tr>
+            
+              <tr>
+                <td>DELETE</td>
+                <td>3</td>
+                <td><p>Delete your user account permanently. Includes read permission.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+    
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr><td>.proto Type</td><td>Notes</td><td>C++</td><td>Java</td><td>Python</td><td>Go</td><td>C#</td><td>PHP</td><td>Ruby</td></tr>
+      </thead>
+      <tbody>
+        
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>double</td>
+            <td>double</td>
+            <td>float</td>
+            <td>float64</td>
+            <td>double</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+        
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+            <td>float</td>
+            <td>float</td>
+            <td>float32</td>
+            <td>float</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+        
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int/long</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>boolean</td>
+            <td>bool</td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>TrueClass/FalseClass</td>
+          </tr>
+        
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>string</td>
+            <td>String</td>
+            <td>str/unicode</td>
+            <td>string</td>
+            <td>string</td>
+            <td>string</td>
+            <td>String (UTF-8)</td>
+          </tr>
+        
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>string</td>
+            <td>ByteString</td>
+            <td>str</td>
+            <td>[]byte</td>
+            <td>ByteString</td>
+            <td>string</td>
+            <td>String (ASCII-8BIT)</td>
+          </tr>
+        
+      </tbody>
+    </table>
+  </body>
+</html>
+

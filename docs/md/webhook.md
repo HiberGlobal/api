@@ -1,46 +1,54 @@
-# easypulse.proto
+# webhook.proto
 
-Easypulse specific view and services.
 
-This file contains specific views and services for the easypulse feature set.
-This feature set is only available to organizations with the easypulse feature enabled.
 
-For Easypulse, we've introduced the concept of an Asset, which is a modem with some assumptions about the type of
-data it sends. Additionally, aggregations can be requested of Asset history when requesting Assets, allowing for a
-somewhat customized Asset model.
-
-#### This file was generated from [easypulse.proto](https://github.com/HiberGlobal/api/blob/master/easypulse.proto).
+#### This file was generated from [webhook.proto](https://github.com/HiberGlobal/api/blob/master/webhook.proto).
 
 ## Table of Contents
 
 - Services
-  - [EasypulseService](#easypulseservice)
+  - [WebhookService](#webhookservice)
 
 - Messages
-  - [Easypulse](#easypulse)
-  - [Easypulse.Asset](#easypulseasset)
-  - [Easypulse.Asset.AggregationsEntry](#easypulseassetaggregationsentry)
-  - [Easypulse.Asset.LastUpdate](#easypulseassetlastupdate)
-  - [Easypulse.Asset.PeripheralsEntry](#easypulseassetperipheralsentry)
-  - [Easypulse.AssetSelection](#easypulseassetselection)
-  - [Easypulse.History](#easypulsehistory)
-  - [Easypulse.History.Request](#easypulsehistoryrequest)
-  - [Easypulse.History.Response](#easypulsehistoryresponse)
-  - [Easypulse.History.Response.Value](#easypulsehistoryresponsevalue)
-  - [Easypulse.ListAssets](#easypulselistassets)
-  - [Easypulse.ListAssets.Request](#easypulselistassetsrequest)
-  - [Easypulse.ListAssets.Request.AggregationsEntry](#easypulselistassetsrequestaggregationsentry)
-  - [Easypulse.ListAssets.Response](#easypulselistassetsresponse)
+  - [CreateWebhookRequest](#createwebhookrequest)
+  - [DeleteWebhookRequest](#deletewebhookrequest)
+  - [DeleteWebhookRequest.Response](#deletewebhookrequestresponse)
+  - [DisableWebhookRequest](#disablewebhookrequest)
+  - [EnableWebhookRequest](#enablewebhookrequest)
+  - [GetWebhookRequest](#getwebhookrequest)
+  - [ListWebhooksRequest](#listwebhooksrequest)
+  - [ListWebhooksRequest.Response](#listwebhooksrequestresponse)
+  - [UpdateWebhookFilterRequest](#updatewebhookfilterrequest)
+  - [UpdateWebhookFilterRequest.UpdateEvents](#updatewebhookfilterrequestupdateevents)
+  - [UpdateWebhookFilterRequest.UpdateModems](#updatewebhookfilterrequestupdatemodems)
+  - [UpdateWebhookFilterRequest.UpdateTags](#updatewebhookfilterrequestupdatetags)
+  - [UpdateWebhookRequest](#updatewebhookrequest)
+  - [UpdateWebhookRequest.UpdateWebhook](#updatewebhookrequestupdatewebhook)
+  - [UpdateWebhookRequest.UpdateWebhook.AddCustomHeadersEntry](#updatewebhookrequestupdatewebhookaddcustomheadersentry)
+  - [UpdateWebhookRequest.UpdateWebhook.ReplaceCustomHeadersEntry](#updatewebhookrequestupdatewebhookreplacecustomheadersentry)
+  - [UpdateWebhookRequest.UpdateWebhook.UpdateEvents](#updatewebhookrequestupdatewebhookupdateevents)
+  - [UpdateWebhookRequest.UpdateWebhook.UpdateModems](#updatewebhookrequestupdatewebhookupdatemodems)
+  - [UpdateWebhookRequest.UpdateWebhook.UpdateTags](#updatewebhookrequestupdatewebhookupdatetags)
+  - [UpdateWebhookTagsRequest](#updatewebhooktagsrequest)
+  - [UpdateWebhookTagsRequest.Response](#updatewebhooktagsrequestresponse)
+  - [UpdateWebhooksRequest](#updatewebhooksrequest)
+  - [UpdateWebhooksRequest.Response](#updatewebhooksrequestresponse)
+  - [UpdateWebhooksRequest.Update](#updatewebhooksrequestupdate)
+  - [Webhook](#webhook)
+  - [Webhook.HealthConfig](#webhookhealthconfig)
+  - [Webhook.WebhookData](#webhookwebhookdata)
+  - [Webhook.WebhookData.CustomHeadersEntry](#webhookwebhookdatacustomheadersentry)
+  - [Webhook.WebhookFilters](#webhookwebhookfilters)
+  - [WebhookCall](#webhookcall)
+  - [WebhookCall.HeadersEntry](#webhookcallheadersentry)
+  - [WebhookHistoryRequest](#webhookhistoryrequest)
+  - [WebhookHistoryRequest.Response](#webhookhistoryrequestresponse)
+  - [WebhookHistorySelection](#webhookhistoryselection)
+  - [WebhookSelection](#webhookselection)
 
 - Enums
-  - [Easypulse.History.Request.Aggregation](#easypulsehistoryrequestaggregation)
-  - [Easypulse.History.Request.Sort](#easypulsehistoryrequestsort)
-  - [Easypulse.ListAssets.Request.Sort](#easypulselistassetsrequestsort)
-
-- Referenced messages from [health.proto](#referenced-messages-from-healthproto)
-  - [hiber.health.HealthLevel](#hiberhealthhealthlevel)
-  - [hiber.health.HealthLevelSelection](#hiberhealthhealthlevelselection)
-
+  - [ListWebhooksRequest.Sort](#listwebhooksrequestsort)
+  - [Webhook.ContentType](#webhookcontenttype)
 
 - Referenced messages from [tag.proto](#referenced-messages-from-tagproto)
   - [hiber.tag.Tag](#hibertagtag)
@@ -92,90 +100,236 @@ somewhat customized Asset model.
 - [Scalar Value Types](#scalar-value-types)
 
 
-## EasypulseService
-Service to list and manage Assets.
+## WebhookService
 
-### Assets
-> **rpc** Assets([Easypulse.ListAssets.Request](#easypulselistassetsrequest))
-    [Easypulse.ListAssets.Response](#easypulselistassetsresponse)
 
-List the Easypulse Assets in your organization.
-Optionally, aggregated historical data can be added to the returned Assets, with a given name.
+### List
+> **rpc** List([ListWebhooksRequest](#listwebhooksrequest))
+    [ListWebhooksRequest.Response](#listwebhooksrequestresponse)
 
-Fails when your organizations does not have the Easypulse feature.
+
 
 ### History
-> **rpc** History([Easypulse.History.Request](#easypulsehistoryrequest))
-    [Easypulse.History.Response](#easypulsehistoryresponse)
+> **rpc** History([WebhookHistoryRequest](#webhookhistoryrequest))
+    [WebhookHistoryRequest.Response](#webhookhistoryrequestresponse)
 
-List the history for a single field, and optionally apply an aggregation and/or grouping to it.
+
+
+### Create
+> **rpc** Create([CreateWebhookRequest](#createwebhookrequest))
+    [Webhook](#webhook)
+
+
+
+### Enable
+> **rpc** Enable([EnableWebhookRequest](#enablewebhookrequest))
+    [Webhook](#webhook)
+
+
+
+### Disable
+> **rpc** Disable([DisableWebhookRequest](#disablewebhookrequest))
+    [Webhook](#webhook)
+
+
+
+### UpdateFilter
+> **rpc** UpdateFilter([UpdateWebhookFilterRequest](#updatewebhookfilterrequest))
+    [Webhook](#webhook)
+
+
+
+### Update
+> **rpc** Update([UpdateWebhookRequest](#updatewebhookrequest))
+    [Webhook](#webhook)
+
+
+
+### UpdateWebhooks
+> **rpc** UpdateWebhooks([UpdateWebhooksRequest](#updatewebhooksrequest))
+    [UpdateWebhooksRequest.Response](#updatewebhooksrequestresponse)
+
+
+
+### UpdateTags
+> **rpc** UpdateTags([UpdateWebhookTagsRequest](#updatewebhooktagsrequest))
+    [UpdateWebhookTagsRequest.Response](#updatewebhooktagsrequestresponse)
+
+
+
+### Get
+> **rpc** Get([GetWebhookRequest](#getwebhookrequest))
+    [Webhook](#webhook)
+
+
+
+### Delete
+> **rpc** Delete([DeleteWebhookRequest](#deletewebhookrequest))
+    [DeleteWebhookRequest.Response](#deletewebhookrequestresponse)
+
+
 
 
 ## Messages
 
-### Easypulse
-
-
-
-
-### Easypulse.Asset
-
-Asset in your organization.
-An asset is a view of a modem, with assumptions about message data fields handled in the API.
-
-In addition, an Asset can be enriched with aggregations of the data fields when requested (for example,
-fuel level average over the past month, or total run time in the past week).
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | The organization the asset is in. |
-| number | [ string](#string) | The modem number for the Asset. |
-| name | [ string](#string) | The custom name for the Asset, defaults to modem number. |
-| external_identifier | [ string](#string) | Optional external identifier the Asset may have. |
-| peripherals | [map Easypulse.Asset.PeripheralsEntry](#easypulseassetperipheralsentry) | A key value map of peripherals for the Assets. |
-| notes | [ string](#string) | Add additional notes to an asset. |
-| secure_notes | [ string](#string) | Add additional notes to an asset that only people with the permission can access. |
-| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | Tags (or groups, when used in Mission Control) this asset is in. |
-| last_update | [ Easypulse.Asset.LastUpdate](#easypulseassetlastupdate) | When this asset was last updated. |
-| fuel_level_deprecated | [ float](#float) | The most recent fuel level, as a percentage. |
-| tire_pressure_deprecated | [ float](#float) | The most recent tire pressure in bar. |
-| battery_level_deprecated | [ float](#float) | The most recent battery level, as a percentage. |
-| temperature_deprecated | [ float](#float) | The most recent temperature in degrees Celsius. |
-| speed_deprecated | [ float](#float) | The most recent speed measurement in km/h. |
-| odometer | [ hiber.value.Value.Numeric.Distance](#hibervaluevaluenumericdistance) | Current value of the odometer. |
-| engine_runtime | [ hiber.Duration](#hiberduration) | Duration of total hours the engine has ran. |
-| fuel_used | [ hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume) | The total amount of fuel used by this vehicle. |
-| engine_oil_temperature | [ hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature) | Engine temperature. |
-| fuel_level | [ hiber.value.Value.Numeric.Percentage](#hibervaluevaluenumericpercentage) | The most recent fuel level. |
-| temperature | [ hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature) | The most recent temperature in degrees Celsius. |
-| speed | [ hiber.value.Value.Numeric.Speed](#hibervaluevaluenumericspeed) | The most recent speed measurement. |
-| tire_pressure | [ hiber.value.Value.Numeric.Pressure](#hibervaluevaluenumericpressure) | The most recent tire pressure measurement. |
-| battery_level | [ hiber.value.Value.Numeric.BatteryLevel](#hibervaluevaluenumericbatterylevel) | The most recent battery level. |
-| location | [ hiber.Location](#hiberlocation) | The most recently reported location. |
-| aggregations | [map Easypulse.Asset.AggregationsEntry](#easypulseassetaggregationsentry) | Any aggregations added when this asset was requested. |
-
-### Easypulse.Asset.AggregationsEntry
+### CreateWebhookRequest
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ Easypulse.History.Response](#easypulsehistoryresponse) | none |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| description | [ string](#string) | none |
+| data | [ Webhook.WebhookData](#webhookwebhookdata) | none |
+| filters | [ Webhook.WebhookFilters](#webhookwebhookfilters) | none |
+| health_levels | [repeated string](#string) | Filter events by health level caused. |
+| tags | [repeated int64](#int64) | none |
+| certificate_id | [ int64](#int64) | Optionally, a client certificate can be used for the webhook call. See the CertificateService for certificate management options. |
 
-### Easypulse.Asset.LastUpdate
+### DeleteWebhookRequest
 
-Information about the last update we received from this asset.
+
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| id | [ uint64](#uint64) | none |
-| received_at | [ hiber.Timestamp](#hibertimestamp) | Time the server has received the last update. |
-| sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the asset sent the last update. |
-| body | [ hiber.BytesOrHex](#hiberbytesorhex) | The body of the last update. |
+| id | [ int64](#int64) | none |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 
-### Easypulse.Asset.PeripheralsEntry
+### DeleteWebhookRequest.Response
+
+
+
+
+### DisableWebhookRequest
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| id | [ int64](#int64) | none |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+
+### EnableWebhookRequest
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| id | [ int64](#int64) | none |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+
+### GetWebhookRequest
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| id | [ int64](#int64) | none |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+
+### ListWebhooksRequest
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| selection | [ WebhookSelection](#webhookselection) | none |
+| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| sort | [repeated ListWebhooksRequest.Sort](#listwebhooksrequestsort) | none |
+
+### ListWebhooksRequest.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| webhooks | [repeated Webhook](#webhook) | none |
+| request | [ ListWebhooksRequest](#listwebhooksrequest) | none |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+
+### UpdateWebhookFilterRequest
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| id | [ int64](#int64) | none |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| deprecated_event_filter | [ UpdateWebhookFilterRequest.UpdateEvents](#updatewebhookfilterrequestupdateevents) | none |
+| deprecated_modem_filter | [ UpdateWebhookFilterRequest.UpdateModems](#updatewebhookfilterrequestupdatemodems) | none |
+| deprecated_tag_filter | [ UpdateWebhookFilterRequest.UpdateTags](#updatewebhookfilterrequestupdatetags) | none |
+| event_filter | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) | none |
+| modem_filter | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | none |
+| tag_filter | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | none |
+| add_health_levels_to_filter | [repeated string](#string) | Add health levels to the health levels filter. |
+| remove_health_levels_from_filter | [repeated string](#string) | Remove health levels from the health levels filter. |
+
+### UpdateWebhookFilterRequest.UpdateEvents
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| updated | [ bool](#bool) | none |
+| value | [ hiber.Filter.Events](#hiberfilterevents) | none |
+
+### UpdateWebhookFilterRequest.UpdateModems
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| updated | [ bool](#bool) | none |
+| value | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
+
+### UpdateWebhookFilterRequest.UpdateTags
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| updated | [ bool](#bool) | none |
+| value | [ hiber.Filter.Tags](#hiberfiltertags) | none |
+
+### UpdateWebhookRequest
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| id | [ int64](#int64) | none |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| update | [ UpdateWebhookRequest.UpdateWebhook](#updatewebhookrequestupdatewebhook) | none |
+
+### UpdateWebhookRequest.UpdateWebhook
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| url | [ string](#string) | none |
+| secret | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
+| content_type | [ Webhook.ContentType](#webhookcontenttype) | none |
+| description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
+| deprecated_event_filter | [ UpdateWebhookRequest.UpdateWebhook.UpdateEvents](#updatewebhookrequestupdatewebhookupdateevents) | none |
+| deprecated_modem_filter | [ UpdateWebhookRequest.UpdateWebhook.UpdateModems](#updatewebhookrequestupdatewebhookupdatemodems) | none |
+| deprecated_tag_filter | [ UpdateWebhookRequest.UpdateWebhook.UpdateTags](#updatewebhookrequestupdatewebhookupdatetags) | none |
+| event_filter | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) | none |
+| modem_filter | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | none |
+| tag_filter | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | none |
+| add_health_levels | [repeated string](#string) | Add health levels to the health levels filter. |
+| remove_health_levels | [repeated string](#string) | Remove health levels from the health levels filter. |
+| active | [ hiber.UpdateBoolean](#hiberupdateboolean) | none |
+| certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | A value of 0 removes the certificate |
+| health_warning_period | [ hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
+| health_warning_failure_percentage | [ hiber.UpdateZeroableInt](#hiberupdatezeroableint) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
+| update_hmac_header_name | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the custom hmac header, or clear to reset to default. |
+| add_custom_headers | [map UpdateWebhookRequest.UpdateWebhook.AddCustomHeadersEntry](#updatewebhookrequestupdatewebhookaddcustomheadersentry) | Custom headers to add to every call. |
+| remove_custom_headers | [repeated string](#string) | Remove previously configured custom headers. |
+| replace_custom_headers | [map UpdateWebhookRequest.UpdateWebhook.ReplaceCustomHeadersEntry](#updatewebhookrequestupdatewebhookreplacecustomheadersentry) | Replace the custom headers to add to every call. If set, remove_custom_headers is ignored. |
+
+### UpdateWebhookRequest.UpdateWebhook.AddCustomHeadersEntry
 
 
 
@@ -184,270 +338,243 @@ Information about the last update we received from this asset.
 | key | [ string](#string) | none |
 | value | [ string](#string) | none |
 
-### Easypulse.AssetSelection
-
-An AssetSelection is used to select which Assets should be affected:
-- When listing Assets, it is used to determine which Assets are returned
-- When updating Assets, it is used to determine which Assets are updated
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| search | [ string](#string) | Search for assets by name, modem number, tag or notes. |
-| assets | [ hiber.Filter.Modems](#hiberfiltermodems) | Select assets by modem number. |
-| health_levels | [repeated string](#string) | Select assets by health level. |
-| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) | Select assets by tag. |
-
-### Easypulse.History
-
-List the history for a single field, and optionally apply an aggregation and/or grouping to it.
-
-
-### Easypulse.History.Request
-
-Request to get the history of a field, for the selected Assets in the organization.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ Easypulse.AssetSelection](#easypulseassetselection) | Select the asset(s) to get the history for. |
-| pagination | [ hiber.Pagination](#hiberpagination) | Paginate the returned values. This may not be relevant, depending on the aggregation (which may result in a single value) and the time range. |
-| time_range | [ hiber.TimeRange](#hibertimerange) | The time to view the history for. |
-| aggregation | [ Easypulse.History.Request.Aggregation](#easypulsehistoryrequestaggregation) | How to aggregate the data. |
-| sort | [ Easypulse.History.Request.Sort](#easypulsehistoryrequestsort) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **group**.split_by_duration | [ hiber.Duration](#hiberduration) | Split up the data in time block of the given size. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **group**.reduce_to_max_size | [ uint32](#uint32) | Limit the results to the given amount of data points, applying the function to each chunk. |
-| fuel_level | [ bool](#bool) | Get the history for the fuel level. |
-| tire_pressure | [ bool](#bool) | Get the history for the tire pressure. |
-| battery_level | [ bool](#bool) | Get the history for the battery level. |
-| temperature | [ bool](#bool) | Get the history for the temperature. |
-| run_time | [ bool](#bool) | Get the history for the run time. |
-| idle_time | [ bool](#bool) | Get the history for the idle time. |
-| location | [ bool](#bool) | Get the history for the location. |
-| speed | [ bool](#bool) | Get the history for the speed. |
-| fuel_efficiency | [ bool](#bool) | Get the fuel efficiency in ???. |
-| distance_traveled | [ bool](#bool) | Get the distance traveled in ???. |
-| odometer | [ bool](#bool) | Get the value of the odometer. (Total traveled distance by vehicle) |
-| engine_runtime | [ bool](#bool) | Get the total amount of run-time hours for the engine. |
-| fuel_used | [ bool](#bool) | Get the total amount of fuel used by this vehicle. |
-| engine_oil_temperature | [ bool](#bool) | Get the history for the engine oil temperature. |
-| fuel_efficiency_score | [ bool](#bool) | Get the normalized score for the fuel efficiency, using a preconfigured baseline. |
-| distance_traveled_score | [ bool](#bool) | Get the normalized score for the distance traveled, using a preconfigured baseline. |
-| idle_time_score | [ bool](#bool) | Get the normalized score for the idle time, using a preconfigured baseline. |
-| run_time_score | [ bool](#bool) | Get the normalized score for the run time, using a preconfigured baseline. |
-| utilization_score | [ bool](#bool) | Get the average normalized score for the run time, idle time, distance traveled and fuel efficiency. |
-
-### Easypulse.History.Response
-
-Response with the (aggregated) history of a field, for the selected Assets in the organization.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| values | [repeated Easypulse.History.Response.Value](#easypulsehistoryresponsevalue) | The processed historical data points. For example, when applying the SUM aggregation to all data points, this list would only contains a single value, the sum of values. |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | The pagination result, containing information about amounts and pages. |
-| request | [ Easypulse.History.Request](#easypulsehistoryrequest) | The request that was received, corrected and used to produce this result. |
-
-### Easypulse.History.Response.Value
-
-Processed historical data point. If this is a group, it will have a time range to denote the group.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.timestamp | [ hiber.Timestamp](#hibertimestamp) | When not grouping, time of the individual point. When grouping, the time at the end of the group (when the value was true). |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.time_range | [ hiber.TimeRange](#hibertimerange) | When grouping, the start and end time for the group. |
-| fuel_level | [ float](#float) | The fuel level, as a percentage. |
-| tire_pressure_deprecated | [ float](#float) | The tire pressure in bar. |
-| battery_level_deprecated | [ float](#float) | The battery level, as a percentage. |
-| temperature | [ float](#float) | The temperature in degrees Celsius. |
-| run_time | [ hiber.Duration](#hiberduration) | The time the Asset was running. |
-| idle_time | [ hiber.Duration](#hiberduration) | The time the Asset was idle. |
-| location | [ hiber.Location](#hiberlocation) | The location of the asset at the timestamp, or the last location in the time range. |
-| speed_deprecated | [ float](#float) | The speed of the asset in km/h. |
-| fuel_efficiency | [ float](#float) | Fuel efficiency in ???. |
-| distance_traveled | [ float](#float) | Distance traveled in ???. |
-| fuel_efficiency_score | [ float](#float) | Normalized score for the fuel efficiency, using a preconfigured baseline. |
-| distance_traveled_score | [ float](#float) | Normalized score for the distance traveled, using a preconfigured baseline. |
-| idle_time_score | [ float](#float) | Normalized score for the idle time, using a preconfigured baseline. |
-| run_time_score | [ float](#float) | Normalized score for the run time, using a preconfigured baseline. |
-| utilization_score | [ float](#float) | Average normalized score for the run time, idle time, distance traveled and fuel efficiency. |
-| odometer | [ hiber.value.Value.Numeric.Distance](#hibervaluevaluenumericdistance) | Current value of the odometer. |
-| engine_runtime | [ hiber.Duration](#hiberduration) | Duration of total hours the engine has ran. |
-| fuel_used | [ hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume) | The total amount of fuel used by this vehicle. |
-| engine_oil_temperature | [ hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature) | Engine temperature. |
-| speed | [ hiber.value.Value.Numeric.Speed](#hibervaluevaluenumericspeed) | Speed of the asset. |
-| tire_pressure | [ hiber.value.Value.Numeric.Pressure](#hibervaluevaluenumericpressure) | The tire pressure of the asset. |
-| battery_level | [ hiber.value.Value.Numeric.BatteryLevel](#hibervaluevaluenumericbatterylevel) | The battery level, as a percentage. |
-
-### Easypulse.ListAssets
-
-List the Easypulse Assets in your organization.
-Optionally, aggregated historical data can be added to the returned Assets, with a given name.
-
-Fails when your organizations does not have the Easypulse feature.
-
-
-### Easypulse.ListAssets.Request
-
-Request to list Assets in your organization.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ Easypulse.AssetSelection](#easypulseassetselection) | Select the Assets to return. |
-| pagination | [ hiber.Pagination](#hiberpagination) | Paginate over the returned Assets. |
-| aggregations | [map Easypulse.ListAssets.Request.AggregationsEntry](#easypulselistassetsrequestaggregationsentry) | Any aggregations to return with the assets, specified as a name and a History.Request. |
-| sort | [ Easypulse.ListAssets.Request.Sort](#easypulselistassetsrequestsort) | Sort the returned assets using the given option. By default, Assets are sorted by name. |
-
-### Easypulse.ListAssets.Request.AggregationsEntry
+### UpdateWebhookRequest.UpdateWebhook.ReplaceCustomHeadersEntry
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | key | [ string](#string) | none |
-| value | [ Easypulse.History.Request](#easypulsehistoryrequest) | none |
+| value | [ string](#string) | none |
 
-### Easypulse.ListAssets.Response
+### UpdateWebhookRequest.UpdateWebhook.UpdateEvents
 
-Response with a list of Assets
+
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| assets | [repeated Easypulse.Asset](#easypulseasset) | The selected Assets. |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | The applied pagination, including total results, page information, etc. |
-| request | [ Easypulse.ListAssets.Request](#easypulselistassetsrequest) | The request that was received, corrected and used to produce this result. |
+| updated | [ bool](#bool) | none |
+| value | [ hiber.Filter.Events](#hiberfilterevents) | none |
+
+### UpdateWebhookRequest.UpdateWebhook.UpdateModems
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| updated | [ bool](#bool) | none |
+| value | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
+
+### UpdateWebhookRequest.UpdateWebhook.UpdateTags
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| updated | [ bool](#bool) | none |
+| value | [ hiber.Filter.Tags](#hiberfiltertags) | none |
+
+### UpdateWebhookTagsRequest
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | none |
+| webhook_ids | [repeated int64](#int64) | none |
+| update | [ hiber.tag.UpdateTagsForItem](#hibertagupdatetagsforitem) | none |
+
+### UpdateWebhookTagsRequest.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| webhooks | [repeated Webhook](#webhook) | none |
+
+### UpdateWebhooksRequest
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| webhook_updates | [repeated UpdateWebhooksRequest.Update](#updatewebhooksrequestupdate) | none |
+
+### UpdateWebhooksRequest.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| webhooks | [repeated Webhook](#webhook) | none |
+| request | [ UpdateWebhooksRequest](#updatewebhooksrequest) | none |
+
+### UpdateWebhooksRequest.Update
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| id | [ int64](#int64) | none |
+| update | [ UpdateWebhookRequest.UpdateWebhook](#updatewebhookrequestupdatewebhook) | none |
+
+### Webhook
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| id | [ int64](#int64) | none |
+| organization | [ string](#string) | none |
+| created_by | [ string](#string) | none |
+| description | [ string](#string) | none |
+| data | [ Webhook.WebhookData](#webhookwebhookdata) | none |
+| filters | [ Webhook.WebhookFilters](#webhookwebhookfilters) | none |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
+| health | [ hiber.Health](#hiberhealth) | none |
+| health_config | [ Webhook.HealthConfig](#webhookhealthconfig) | none |
+| in_cooldown_until | [ hiber.Timestamp](#hibertimestamp) | When the webhook call fails, it enters cooldown, so as not to overload a failing server or spend unnecessary time on an incorrectly configured webhook. When the first call after the cooldown time has passed fails again, the cooldown is increased as follows: 1m, 2m, 5m, 10m, 15m, 30m, 1h, 3h, 6h, 12h, 24h
+
+To disable the cooldown, use EnableWebhookRequest to re-enable it. |
+
+### Webhook.HealthConfig
+
+Health configuration for the webhook. Defines how the health is calculated.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| health_warning_period | [ hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. |
+| health_warning_failure_percentage | [ int32](#int32) | Allowed percentage of failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
+
+### Webhook.WebhookData
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| url | [ string](#string) | none |
+| secret | [ string](#string) | Used to generate the HMAC-SHA256 header on every webhook call, which you can use to verify the message. The HMAC-SHA256 header is calculated with the message body and this secret. There are many examples of how to do this in different languages, for example: https://github.com/danharper/hmac-examples |
+| hmac_header_name | [ string](#string) | The header that the hmac value is placed in. Defaults to X-Hub-Signature. |
+| content_type | [ Webhook.ContentType](#webhookcontenttype) | none |
+| disabled | [ bool](#bool) | none |
+| certificate_id | [ int64](#int64) | none |
+| certificate_name | [ string](#string) | none |
+| ca_certificate_id | [ int64](#int64) | none |
+| ca_certificate_name | [ string](#string) | none |
+| custom_headers | [map Webhook.WebhookData.CustomHeadersEntry](#webhookwebhookdatacustomheadersentry) | Custom headers to add to every call. |
+
+### Webhook.WebhookData.CustomHeadersEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) | none |
+| value | [ string](#string) | none |
+
+### Webhook.WebhookFilters
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| event_types | [ hiber.Filter.Events](#hiberfilterevents) | none |
+| modem_numbers | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
+| tags | [ hiber.Filter.Tags](#hiberfiltertags) | none |
+| health_levels | [repeated string](#string) | Filter events by health level caused. |
+
+### WebhookCall
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| url | [ string](#string) | none |
+| headers | [map WebhookCall.HeadersEntry](#webhookcallheadersentry) | none |
+| body_proto | [ bytes](#bytes) | none |
+| body_json | [ string](#string) | none |
+| successful | [ bool](#bool) | none |
+| error | [ string](#string) | none |
+
+### WebhookCall.HeadersEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) | none |
+| value | [ string](#string) | none |
+
+### WebhookHistoryRequest
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| webhook_id | [ int64](#int64) | none |
+| selection | [ WebhookHistorySelection](#webhookhistoryselection) | none |
+| pagination | [ hiber.Pagination](#hiberpagination) | none |
+
+### WebhookHistoryRequest.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| calls | [repeated WebhookCall](#webhookcall) | none |
+| request | [ WebhookHistoryRequest](#webhookhistoryrequest) | none |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+
+### WebhookHistorySelection
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| only_failures | [ bool](#bool) | none |
+| time_range | [ hiber.TimeRange](#hibertimerange) | none |
+
+### WebhookSelection
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| description | [ string](#string) | none |
+| url | [ string](#string) | none |
+| webhooks | [ hiber.Filter.Webhooks](#hiberfilterwebhooks) | none |
+| tags | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
+| health | [repeated hiber.Health](#hiberhealth) | none |
+| certificate_ids | [repeated int64](#int64) | none |
+| search | [ string](#string) | Search in the all available text, like description and url. |
 
 
 ## Enums
-### Easypulse.History.Request.Aggregation
-Options to aggregate the history data points (in a group).
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| NONE | Do not aggregate the history data points, just list all of them. | 0 |
-| AVERAGE | Average value of all history data points (in a group). | 1 |
-| SUM | Sum all history data points (in a group). | 2 |
-| LAST | Just take the last value (in a group). | 3 |
-
-### Easypulse.History.Request.Sort
-How to sort the returned values.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| TIME_DESCENDING | none | 0 |
-| TIME_ASCENDING | none | 1 |
-
-### Easypulse.ListAssets.Request.Sort
+### ListWebhooksRequest.Sort
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| NAME | none | 0 |
-| NAME_DESC | none | 1 |
-| LAST_UPDATED | none | 2 |
-| INACTIVITY | none | 3 |
-| NUMBER_ASC | none | 4 |
-| NUMBER_DESC | none | 5 |
-| LOWEST_FUEL_LEVEL | none | 6 |
-| HIGHEST_FUEL_LEVEL | none | 7 |
-| LOWEST_TIRE_PRESSURE | none | 8 |
-| HIGHEST_TIRE_PRESSURE | none | 9 |
-| LOWEST_BATTERY_LEVEL | none | 10 |
-| HIGHEST_BATTERY_LEVEL | none | 11 |
-| LOWEST_TEMPERATURE | none | 12 |
-| HIGHEST_TEMPERATURE | none | 13 |
-| HEALTH | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 14 |
-| HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 15 |
+| DEFAULT | Sort by id. | 0 |
+| ID_DESC | Sort by id, high to low. | 1 |
+| DESCRIPTION | Sort by description. | 2 |
+| DESCRIPTION_DESC | Sort by description, z to a. | 3 |
+| URL | Sort by url. | 4 |
+| URL_DESC | Sort by url, z to a. | 5 |
+| HEALTH | Sort unhealthy webhooks before health webhooks. | 6 |
+
+### Webhook.ContentType
 
 
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| DEFAULT | none | 0 |
+| JSON | none | 1 |
+| PROTO | none | 2 |
 
-## Referenced messages from health.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
-
-#### This section was generated from [health.proto](https://github.com/HiberGlobal/api/blob/master/health.proto).
-
-
-### hiber.health.HealthLevel
-
-A health level in an organization.
-Health can be customized depending on your need.
-
-The default health levels are:
-- OK (green): no problems detected
-- WARNING (orange): unresolvable problems detected, for example delayed or skipped messages
-- ERROR (red): significant problems detected (that typically can be resolved),
-  for example inactivity or invalid messages (resolved on a successful message)
-
-Health levels can be customized to as many as you need for your operations, for example:
-- INTERVENTION
-- DEFECT
-- BATTERY
-- HIGH
-- LOW
-
-Health levels are ordered by severity (low to high),
-and of all things affecting a modem's health,
-only the most severe level will be returned when retrieving a modem.
-
-Health can be assigned using modems alarms, which specify the health level they will cause on a modem (and for how
-long, if it does not resolve automatically).
-
-Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems),
-which can happen when a device manufacturer has provided alarms to your device (e.g. a low battery alarm).
-By default, any unknown health levels map to the level that is marked catch-all.
-
-Health level have a set of named colors, represented by a map where the key is the name of the color
-and the value is a string that represents a valid CSS3 color.
-Simple examples are: green, red, orange, grey, #FF00FF for fuchsia, etc (Keep in mind that CSS3 allows for many
-ways to define colors, see https://www.w3.org/TR/2003/WD-css3-color-20030214/).
-
-All the following definitions also mean "red":
- - rgb(255, 0, 0)
- - rgb(100%, 0, 0)
- - rgba(100%, 0%, 0%, 100%)
- - hsl(0, 100%, 50%)
- - hsla(0, 100%, 50%, 1)
-
-The client is responsible for rendering the correct color from the CSS3 color-space and for setting the colors and
-their names. There is no verification on missing named colors, so the client must set sensible defaults when colors
-are missing.
-
-To assist with sorting, health levels have a numeric severity equal to their index in the sorted list of health
-levels (starting at 1). This means higher numbers denote a more severe health.
-Since these values are noting more than a list index, they should not be cached, compared to another organization or
-compared to values retrieved from the API at another time.
-
-For example, an organization using the default health would have:
-- Ok: severity 1
-- Warning: severity 2
-- Error: severity 3
-
-That organization could then add a new health level in between Ok and Warning, meaning the severity of Warning and
-Error will change:
-- Ok, severity 1
-- ItsComplicated, severity 2
-- Warning, severity 3
-- Error, severity 4
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| level | [ string](#string) | The name of this health level. Levels are identified by their name. The API does support renaming, where the rename is propagated to all the relevant parts of the system. |
-| color | [ string](#string) | Default color for the health level, as a string that represents a valid CSS3 color. DEPRECATED: Maps to the color named "text" in color_data. |
-| color_data | [map hiber.health.HealthLevel.ColorDataEntry](#hiberhealthhealthlevelcolordataentry) | Map of named colors, where key is the name and the value is a valid CSS3 color definition. |
-| severity | [ int64](#int64) | A unique numeric value equal to the index of this health level in the list of health levels sorted by ascending severity (starting at 1). This means higher numbers denote a more severe health. This value cannot be used when creating or updating. To change the severity for a health level, reorder all health levels. |
-| catch_all | [ bool](#bool) | Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems), which can happen when a device manufacturer has provided alarms for your device (e.g. a low battery alarm). By default, unknown health levels map to the level of the highest severity, unless another level is marked as catch-all. |
-
-### hiber.health.HealthLevelSelection
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| search | [ string](#string) | Search for the given string in the levels and colors. |
-| levels | [repeated string](#string) | Filter by exact levels. |
-
-
-### Enums
 
 
 ## Referenced messages from tag.proto
@@ -830,6 +957,13 @@ while a rectangular region is easier to define using Area.
 
 Period of time between two timestamps. Typically used for filtering.
 
+This can be used with textual shortcuts for timestamp, and some additional duration textual shortcuts:
+- a duration as an offset of now, i.e. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is
+  10 hours before the end time (using the ISO 8601 duration format)
+Examples:
+- start "-10h" end "now": a time range from 10 hours before the request time, to the request time
+- start "-10h" end "2022-01-01 20:00": becomes start 2022-01-01 10:00 end 2022-01-01 20:00
+
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | start | [ hiber.Timestamp](#hibertimestamp) | none |
@@ -846,6 +980,10 @@ When used as API output, both the timestamp and textual fields will be set. The 
 used ISO 8601 format (i.e. "2018-01-01T13:00:00Z").
 When used an API input, only one of the fields is needed, there is no need to set both. When both are set, the
 timestamp field will be used, the textual field will be discarded.
+
+In addition, the textual field, when used as input, allows for a number of shortcuts that get converted into
+timestamps:
+- "now": converted to the current timestamp at the time of the request
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -936,11 +1074,9 @@ api event stream and publishers.
 | MODEM_UPDATED | none | 36 |
 | MODEM_LOCATION_UPDATED | none | 4 |
 | MODEM_ACTIVATED | none | 33 |
-| MODEM_STALE | none | 16 |
 | MODEM_MESSAGE_RECEIVED | none | 5 |
 | MODEM_MESSAGE_BODY_PARSED | none | 39 |
 | MODEM_MESSAGE_BODY_RECEIVED | none | 45 |
-| MODEM_MESSAGE_DELAYED | none | 14 |
 | MODEM_MESSAGE_CANNOT_BE_PARSED | none | 15 |
 | MODEM_MESSAGE_SUMMARY | none | 42 |
 | MODEM_MESSAGE_BODY_PARSER_CREATED | none | 46 |
@@ -996,6 +1132,7 @@ Unit of measurement for a numeric value.
 | DURATION_MINUTES | none | 2 |
 | DURATION_HOURS | none | 3 |
 | DURATION_DAYS | none | 4 |
+| DURATION_WEEKS | none | 41 |
 | FUEL_EFFICIENCY_LITER_PER_100_KILOMETER | none | 30 |
 | FUEL_EFFICIENCY_KILOMETER_PER_LITER | none | 31 |
 | FUEL_EFFICIENCY_KILOMETER_PER_US_GALLON | none | 32 |
@@ -1027,6 +1164,8 @@ Unit of measurement for a numeric value.
 | VOLUME_LITER | none | 23 |
 | VOLUME_GALLON_US | none | 24 |
 | VOLUME_GALLON_IMPERIAL | none | 25 |
+| VOLUME_CUBIC_METER | none | 42 |
+| VOLUME_CUBIC_FOOT | none | 43 |
 | MASS_KILOGRAMS | none | 37 |
 | MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |

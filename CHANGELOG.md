@@ -2,6 +2,8 @@
 
 #### Upcoming Changes
 
+### 0.111 (2022-06-20)
+
 ### 0.110 (2022-06-13)
 
 - Added support for textual shortcuts in `Timestamp.textual`:
@@ -27,6 +29,10 @@
 
 ##### MessageService
 
+- Added `MessageSelection.override_time_range_with_modem_time_zone` to replace whatever time zone was specified
+  in the start and end time with the modem time zone.
+  - This means you may get values outside of the original time range, but can be useful when requesting
+    data for a date, for example.
 - When retrieving messages, the modem time zone is used to set the returned `Timestamp.textual` in the right time zone.
 
 ##### Backwards incompatible changes

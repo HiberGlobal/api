@@ -762,8 +762,9 @@ like a location or battery percentage.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| metadata_fields | [repeated string](#string) | Other metadata fields, which will be added to the metadata json for easy processing. |
 | location_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafieldslocationfields) | Specify a pair of fields in the message body that contain location data, which will update the modem location and the map. |
+| message_metadata_fields | [repeated string](#string) | Custom metadata fields, which will be added to the message metadata json. |
+| modem_metadata_fields | [repeated string](#string) | Custom metadata fields, which will be added to the modem metadata json. |
 
 ### hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields
 
@@ -994,9 +995,13 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| add_metadata_fields | [repeated string](#string) | Add metadata fields to the metadata fields list. |
-| remove_metadata_fields | [repeated string](#string) | Remove metadata fields from the metadata fields list. |
 | update_location_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafieldslocationfields) | Update the location fields. |
+| add_message_metadata_fields | [repeated string](#string) | Add fields to the message metadata fields list. |
+| remove_message_metadata_fields | [repeated string](#string) | Remove fields from the message metadata fields list. |
+| replace_message_metadata_fields | [repeated string](#string) | Replace the message metadata fields list. |
+| add_modem_metadata_fields | [repeated string](#string) | Add fields to the modem metadata fields list. |
+| remove_modem_metadata_fields | [repeated string](#string) | Remove fields from the modem metadata fields list. |
+| replace_modem_metadata_fields | [repeated string](#string) | Replace the modem metadata fields list. |
 
 ### hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest
 
@@ -1047,11 +1052,8 @@ when the modem is registered into the system or when a subscription is authorize
 | last_message_sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the modem has sent the last message. |
 | last_message_body | [ hiber.BytesOrHex](#hiberbytesorhex) | The body of the last message. |
 | inactivity | [ hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
-| maximum_inactivity_period | [ int32](#int32) | Period in days, if modem inactivity exceeds this period, alerts will be triggered and health will go to error. Deprecated in favor of using an alarm. |
-| maximum_inactivity | [ hiber.Duration](#hiberduration) | If modem inactivity exceeds this period, alerts will be triggered and health will go to error. Deprecated in favor of using an alarm. |
 | health | [ hiber.Health](#hiberhealth) | Deprecated health based on the number of error and warning events this modem has received in the past 30 days Uses the OK, WARNING, ERROR format. |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
-| health_config | [ hiber.modem.Modem.HealthConfig](#hibermodemmodemhealthconfig) | Health configuration for unresolvable built-in modem alarms, like delayed or skipped messages. |
 | status | [ hiber.modem.Modem.Status](#hibermodemmodemstatus) | none |
 | active_subscription | [ hiber.modem.Modem.ActiveSubscription](#hibermodemmodemactivesubscription) | additional information |
 | technical | [ hiber.modem.Modem.TechnicalData](#hibermodemmodemtechnicaldata) | none |
@@ -1067,6 +1069,8 @@ when the modem is registered into the system or when a subscription is authorize
 | type | [ hiber.modem.Modem.Type](#hibermodemmodemtype) | The type of modem. Used mainly to differentiate in the UI or to sort on. |
 | gateway_info | [ hiber.modem.Modem.GatewayInfo](#hibermodemmodemgatewayinfo) | Additional information when this modem is a gateway. |
 | connected_device_info | [ hiber.modem.Modem.ConnectedDeviceInfo](#hibermodemmodemconnecteddeviceinfo) | Additional information when this modem is a connected device. |
+| metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
+| time_zone | [ string](#string) | The timezone configured for the modem. |
 
 ### hiber.modem.ModemSelection
 
@@ -2195,6 +2199,13 @@ while a rectangular region is easier to define using Area.
 
 Period of time between two timestamps. Typically used for filtering.
 
+This can be used with textual shortcuts for timestamp, and some additional duration textual shortcuts:
+- a duration as an offset of now, i.e. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is
+  10 hours before the end time (using the ISO 8601 duration format)
+Examples:
+- start "-10h" end "now": a time range from 10 hours before the request time, to the request time
+- start "-10h" end "2022-01-01 20:00": becomes start 2022-01-01 10:00 end 2022-01-01 20:00
+
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | start | [ hiber.Timestamp](#hibertimestamp) | none |
@@ -2211,6 +2222,10 @@ When used as API output, both the timestamp and textual fields will be set. The 
 used ISO 8601 format (i.e. "2018-01-01T13:00:00Z").
 When used an API input, only one of the fields is needed, there is no need to set both. When both are set, the
 timestamp field will be used, the textual field will be discarded.
+
+In addition, the textual field, when used as input, allows for a number of shortcuts that get converted into
+timestamps:
+- "now": converted to the current timestamp at the time of the request
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -2301,11 +2316,9 @@ api event stream and publishers.
 | MODEM_UPDATED | none | 36 |
 | MODEM_LOCATION_UPDATED | none | 4 |
 | MODEM_ACTIVATED | none | 33 |
-| MODEM_STALE | none | 16 |
 | MODEM_MESSAGE_RECEIVED | none | 5 |
 | MODEM_MESSAGE_BODY_PARSED | none | 39 |
 | MODEM_MESSAGE_BODY_RECEIVED | none | 45 |
-| MODEM_MESSAGE_DELAYED | none | 14 |
 | MODEM_MESSAGE_CANNOT_BE_PARSED | none | 15 |
 | MODEM_MESSAGE_SUMMARY | none | 42 |
 | MODEM_MESSAGE_BODY_PARSER_CREATED | none | 46 |
@@ -2361,6 +2374,7 @@ Unit of measurement for a numeric value.
 | DURATION_MINUTES | none | 2 |
 | DURATION_HOURS | none | 3 |
 | DURATION_DAYS | none | 4 |
+| DURATION_WEEKS | none | 41 |
 | FUEL_EFFICIENCY_LITER_PER_100_KILOMETER | none | 30 |
 | FUEL_EFFICIENCY_KILOMETER_PER_LITER | none | 31 |
 | FUEL_EFFICIENCY_KILOMETER_PER_US_GALLON | none | 32 |
@@ -2392,6 +2406,8 @@ Unit of measurement for a numeric value.
 | VOLUME_LITER | none | 23 |
 | VOLUME_GALLON_US | none | 24 |
 | VOLUME_GALLON_IMPERIAL | none | 25 |
+| VOLUME_CUBIC_METER | none | 42 |
+| VOLUME_CUBIC_FOOT | none | 43 |
 | MASS_KILOGRAMS | none | 37 |
 | MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |

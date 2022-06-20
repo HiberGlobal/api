@@ -622,6 +622,13 @@ while a rectangular region is easier to define using Area.
 
 Period of time between two timestamps. Typically used for filtering.
 
+This can be used with textual shortcuts for timestamp, and some additional duration textual shortcuts:
+- a duration as an offset of now, i.e. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is
+  10 hours before the end time (using the ISO 8601 duration format)
+Examples:
+- start "-10h" end "now": a time range from 10 hours before the request time, to the request time
+- start "-10h" end "2022-01-01 20:00": becomes start 2022-01-01 10:00 end 2022-01-01 20:00
+
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | start | [ hiber.Timestamp](#hibertimestamp) | none |
@@ -638,6 +645,10 @@ When used as API output, both the timestamp and textual fields will be set. The 
 used ISO 8601 format (i.e. "2018-01-01T13:00:00Z").
 When used an API input, only one of the fields is needed, there is no need to set both. When both are set, the
 timestamp field will be used, the textual field will be discarded.
+
+In addition, the textual field, when used as input, allows for a number of shortcuts that get converted into
+timestamps:
+- "now": converted to the current timestamp at the time of the request
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -728,11 +739,9 @@ api event stream and publishers.
 | MODEM_UPDATED | none | 36 |
 | MODEM_LOCATION_UPDATED | none | 4 |
 | MODEM_ACTIVATED | none | 33 |
-| MODEM_STALE | none | 16 |
 | MODEM_MESSAGE_RECEIVED | none | 5 |
 | MODEM_MESSAGE_BODY_PARSED | none | 39 |
 | MODEM_MESSAGE_BODY_RECEIVED | none | 45 |
-| MODEM_MESSAGE_DELAYED | none | 14 |
 | MODEM_MESSAGE_CANNOT_BE_PARSED | none | 15 |
 | MODEM_MESSAGE_SUMMARY | none | 42 |
 | MODEM_MESSAGE_BODY_PARSER_CREATED | none | 46 |
@@ -788,6 +797,7 @@ Unit of measurement for a numeric value.
 | DURATION_MINUTES | none | 2 |
 | DURATION_HOURS | none | 3 |
 | DURATION_DAYS | none | 4 |
+| DURATION_WEEKS | none | 41 |
 | FUEL_EFFICIENCY_LITER_PER_100_KILOMETER | none | 30 |
 | FUEL_EFFICIENCY_KILOMETER_PER_LITER | none | 31 |
 | FUEL_EFFICIENCY_KILOMETER_PER_US_GALLON | none | 32 |
@@ -819,6 +829,8 @@ Unit of measurement for a numeric value.
 | VOLUME_LITER | none | 23 |
 | VOLUME_GALLON_US | none | 24 |
 | VOLUME_GALLON_IMPERIAL | none | 25 |
+| VOLUME_CUBIC_METER | none | 42 |
+| VOLUME_CUBIC_FOOT | none | 43 |
 | MASS_KILOGRAMS | none | 37 |
 | MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |

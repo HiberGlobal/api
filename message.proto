@@ -127,6 +127,16 @@ message MessageSelection {
 
     /* Filter message by time range. This field is required, to limit the amount of messages. */
     TimeRange time_range = 2;
+
+    /* Replace whatever time zone was specified in the start and end time with the modem time zone.
+     * This means you may get values outside of the original time range, but can be useful when requesting
+     * data for a date, for example.
+     *
+     * For example: start.textual = 2022-01-01, end.textual = 2022-02-01 would return a month of data in UTC time.
+     * When combined with this flag, it would return that month of data in the time zone of the modem, which may
+     * even be different per modem.
+     */
+    bool override_time_range_with_modem_time_zone = 3;
 }
 
 message ListMessages {
