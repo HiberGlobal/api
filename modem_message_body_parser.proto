@@ -101,6 +101,12 @@ message ModemMessageBodyParser {
         repeated string modem_metadata_fields = 3;
     }
 
+    /* The type of post-processing to be applied to the result of this parser. */
+    enum PostProcessing {
+        NOTHING = 0;
+        EASYPULSE = 1;
+    }
+
     /* The globally (across organizations) unique identifier for this parser. */
     string identifier = 7;
 
@@ -132,6 +138,9 @@ message ModemMessageBodyParser {
 
     /* If set, this parser is available to your child organizations, as a Provided parser. */
     AvailableToChildOrganizations available_to_child_organizations = 6;
+
+    /* The list of post-processing steps applied to the result of this parser. */
+    repeated PostProcessing post_processing = 13;
 
     reserved 1, 5, 12;
 }
@@ -311,6 +320,8 @@ message UploadModemMessageBodyParserRequest {
     /* Fields in the parsed result that match special things that can be processed by the system, like a location. */
     ModemMessageBodyParser.MetadataFields metadata_fields = 10;
 
+    repeated ModemMessageBodyParser.PostProcessing post_processing = 6;
+
     reserved 4;
 }
 
@@ -356,6 +367,11 @@ message UpdateUploadedModemMessageBodyParserRequest {
 
     /* Fields in the parsed result that match special things that can be processed by the system, like a location. */
     MetadataFields metadata_fields = 10;
+
+    /* Add a post-processing step to the result of this parser. */
+    repeated ModemMessageBodyParser.PostProcessing add_post_processing = 8;
+    /* Remove a post-processing step to the result of this parser. */
+    repeated ModemMessageBodyParser.PostProcessing remove_post_processing = 9;
 
     reserved 2, 5;
 }

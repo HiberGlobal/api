@@ -85,9 +85,18 @@ message Easypulse {
 
         /* Duration of total hours the engine has ran. */
         Duration engine_runtime = 19;
+        /* Duration of total hours the engine has idled. */
+        Duration engine_idle_time = 29;
 
         /* The total amount of fuel used by this vehicle. */
-        hiber.value.Value.Numeric.Volume fuel_used = 20;
+        hiber.value.Value.Numeric.Volume fuel_used_running = 20;
+        /* The total amount of fuel used by this vehicle while idling. */
+        hiber.value.Value.Numeric.Volume fuel_used_idling = 28;
+
+        /* The amount of times the power-take-off was engaged */
+        int32 power_take_off_engagement_count = 31;
+        /* The duration the power-take-off was engaged for */
+        Duration power_take_off_engagement_duration = 32;
 
         /* Engine temperature. */
         hiber.value.Value.Numeric.Temperature engine_oil_temperature = 21;
@@ -100,6 +109,9 @@ message Easypulse {
 
         /* The most recent speed measurement. */
         hiber.value.Value.Numeric.Speed speed = 23;
+
+        /* The most recent peak rpm measurement. */
+        int32 rpm = 30;
 
         /* The most recent tire pressure measurement. */
         hiber.value.Value.Numeric.Pressure tire_pressure = 25;
@@ -260,6 +272,11 @@ message Easypulse {
             bool location = 14;
             /* Get the history for the speed. */
             bool speed = 16;
+            /* Get the history for the rpm of the engine */
+            bool rpm = 28;
+            /* Get the history for the engine state */
+            bool engine_state = 34;
+
 
             /* Get the fuel efficiency in ???. */
             bool fuel_efficiency = 17;
@@ -270,8 +287,19 @@ message Easypulse {
             bool odometer = 24;
             /* Get the total amount of run-time hours for the engine. */
             bool engine_runtime = 25;
-            /* Get the total amount of fuel used by this vehicle. */
-            bool fuel_used = 26;
+            /* Get the total amount of idle-time hours for the engine. */
+            bool engine_idle_time = 29;
+
+            /* Get the total amount of fuel used by the engine while running. */
+            bool fuel_used_running = 26;
+            /* Get the total amount of fuel used by the engine while idling. */
+            bool fuel_used_idling = 31;
+
+            /* Get the total amount of times the power take of was engaged. */
+            bool power_take_off_engagement_count = 32;
+            /* Get the total duration of time the power take of was engaged. */
+            bool power_take_off_engagement_duration = 33;
+
             /* Get the history for the engine oil temperature. */
             bool engine_oil_temperature = 27;
 
@@ -351,10 +379,15 @@ message Easypulse {
                 /* The speed of the asset in km/h. */
                 float speed_deprecated = 10 [deprecated = true];
 
+                int32 rpm = 30;
+
                 /* Fuel efficiency in ???. */
                 float fuel_efficiency = 11;
                 /* Distance traveled in ???. */
                 float distance_traveled = 12;
+
+                /* State of the engine */
+                EngineState engine_state = 25;
 
                 /* Normalized score for the fuel efficiency, using a preconfigured baseline. */
                 float fuel_efficiency_score = 13;
@@ -368,10 +401,20 @@ message Easypulse {
                 float utilization_score = 23;
                 /* Current value of the odometer. */
                 hiber.value.Value.Numeric.Distance odometer = 17;
+
                 /* Duration of total hours the engine has ran. */
                 Duration engine_runtime = 18;
+                /* Duration of total hours the engine has been idling. */
+                Duration engine_idle_time = 27;
+
                 /* The total amount of fuel used by this vehicle. */
-                hiber.value.Value.Numeric.Volume fuel_used = 19;
+                hiber.value.Value.Numeric.Volume fuel_used_running = 19;
+                /* The total amount of fuel used by this vehicle while idling. */
+                hiber.value.Value.Numeric.Volume fuel_used_idling = 26;
+
+                int32 power_take_off_engagement_count = 28;
+                Duration power_take_off_engagement_duration = 29;
+
                 /* Engine temperature. */
                 hiber.value.Value.Numeric.Temperature engine_oil_temperature = 20;
                 /* Speed of the asset. */
@@ -510,5 +553,12 @@ message Easypulse {
                 SinarmasTargetValues replace_sinarmas_specific = 10;
             }
         }
+    }
+
+    enum EngineState {
+        OFF = 0;
+        IDLING = 1;
+        RUNNING = 2;
+        RESERVED = 3;
     }
 }

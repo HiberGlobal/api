@@ -2,6 +2,21 @@
 
 #### Upcoming Changes
 
+### 0.112 (2022-06-27)
+
+- Added new fields for EasyPulse Assets
+  - rpm: Latest peak rpm measurement
+  - fuelUsageIdling: The amount of fuel used while idling.
+  - engineIdleTime: The amount of time the engine has been idling
+  - powerTakeOfEngagementCount: The amount of times the power-take-off was engaged
+  - powerTakeOfEngagementDuration: The duration the power-take-off was engaged for
+
+- Add option to configure post-processing to message parser in API.
+
+##### EventService
+
+- Improved the title and description for alarm events with multiple error messages.
+
 ### 0.111 (2022-06-20)
 
 ### 0.110 (2022-06-13)
