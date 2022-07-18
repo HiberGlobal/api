@@ -14,8 +14,8 @@ package hiber.modem.alarm;
 import "google/protobuf/struct.proto";
 
 import "base.proto";
+import "field.proto";
 import "modem.proto";
-import "value.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.modem.alarm";
@@ -324,11 +324,12 @@ message ModemAlarm {
              *
              * Note: unit is not currently available in the alarm_parameters.
              */
-            value.Field.Numeric.Unit unit = 9;
+            field.Field.Numeric.Unit unit = 9;
 
             oneof check {
                 EqualsCheck equals = 3;
-                OneOfCheck oneof = 4;
+                AllowedCheck allowed = 4;
+                BlockedCheck blocked = 10;
                 MinimumCheck minimum = 7;
                 MaximumCheck maximum = 8;
                 ThresholdCheck threshold = 5;
@@ -341,9 +342,14 @@ message ModemAlarm {
             }
 
             /* Check that the field is in a set of expected values. */
-            message OneOfCheck {
+            message AllowedCheck {
                 /* The list of allowed values, one of which should match the field value. */
-                repeated google.protobuf.Value expected = 1;
+                repeated google.protobuf.Value allowed = 1;
+            }
+
+            /* Check that the field is not in a set of blocked values. */
+            message BlockedCheck {
+                repeated google.protobuf.Value blocked = 1;
             }
 
             /* Check that the field is higher than the given value. */

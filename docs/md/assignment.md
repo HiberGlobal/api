@@ -86,6 +86,7 @@
   - [hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafields)
   - [hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest](#hibermodemmessagebodyparseruploadmodemmessagebodyparserrequest)
 
+    - [hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing)
     - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian](#hibermodemmessagebodyparsersimplemodemmessagebodyparserendian)
 
 - Referenced messages from [modem.proto](#referenced-messages-from-modemproto)
@@ -120,11 +121,12 @@
   - [hiber.modem.alarm.ModemAlarm.Check](#hibermodemalarmmodemalarmcheck)
   - [hiber.modem.alarm.ModemAlarm.Check.DelayCheck](#hibermodemalarmmodemalarmcheckdelaycheck)
   - [hiber.modem.alarm.ModemAlarm.Check.FieldCheck](#hibermodemalarmmodemalarmcheckfieldcheck)
+  - [hiber.modem.alarm.ModemAlarm.Check.FieldCheck.AllowedCheck](#hibermodemalarmmodemalarmcheckfieldcheckallowedcheck)
+  - [hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedCheck](#hibermodemalarmmodemalarmcheckfieldcheckblockedcheck)
   - [hiber.modem.alarm.ModemAlarm.Check.FieldCheck.DeltaCheck](#hibermodemalarmmodemalarmcheckfieldcheckdeltacheck)
   - [hiber.modem.alarm.ModemAlarm.Check.FieldCheck.EqualsCheck](#hibermodemalarmmodemalarmcheckfieldcheckequalscheck)
   - [hiber.modem.alarm.ModemAlarm.Check.FieldCheck.MaximumCheck](#hibermodemalarmmodemalarmcheckfieldcheckmaximumcheck)
   - [hiber.modem.alarm.ModemAlarm.Check.FieldCheck.MinimumCheck](#hibermodemalarmmodemalarmcheckfieldcheckminimumcheck)
-  - [hiber.modem.alarm.ModemAlarm.Check.FieldCheck.OneOfCheck](#hibermodemalarmmodemalarmcheckfieldcheckoneofcheck)
   - [hiber.modem.alarm.ModemAlarm.Check.FieldCheck.ThresholdCheck](#hibermodemalarmmodemalarmcheckfieldcheckthresholdcheck)
   - [hiber.modem.alarm.ModemAlarm.Check.InactivityCheck](#hibermodemalarmmodemalarmcheckinactivitycheck)
   - [hiber.modem.alarm.ModemAlarm.Check.LocationCheck](#hibermodemalarmmodemalarmchecklocationcheck)
@@ -741,10 +743,11 @@ A parser can be defined in two ways: using a .ksy (Kaitai struct https://kaitai.
 | name | [ string](#string) | The name for this parser. |
 | content_ksy | [ string](#string) | The content of this parsers script. If simple_parser is set, this content is generated from that definition. This field may be omitted by the list call to save data. |
 | simple_parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) | The simple parser this .ksy was generated from, if it was generated from a simple parser. This field may be omitted on demand to save data in the list call. |
-| data_fields | [repeated hiber.value.Field](#hibervaluefield) | Fields in the parsed result that contain data. Data fields are cached for efficient retrieval and allow all kinds of processing. |
+| data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Fields in the parsed result that contain data. Data fields are cached for efficient retrieval and allow all kinds of processing. |
 | data_fields_deprecated | [repeated string](#string) | none |
 | metadata_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields) | Fields in the parsed result that contain metadata, and special things like a location. |
 | available_to_child_organizations | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations](#hibermodemmessagebodyparsermodemmessagebodyparseravailabletochildorganizations) | If set, this parser is available to your child organizations, as a Provided parser. |
+| post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | The list of post-processing steps applied to the result of this parser. |
 
 ### hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations
 
@@ -985,9 +988,11 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifier of the parser that should be updated. |
 | content_ksy | [ string](#string) | The new ksy definition for this parser. |
-| add_data_fields | [repeated hiber.value.Field](#hibervaluefield) | Add fields to the data fields list. |
+| add_data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Add fields to the data fields list. |
 | remove_data_fields | [repeated string](#string) | Remove fields from the data fields list. |
 | metadata_fields | [ hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
+| add_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | Add a post-processing step to the result of this parser. |
+| remove_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | Remove a post-processing step to the result of this parser. |
 
 ### hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields
 
@@ -1012,11 +1017,20 @@ Upload a new body parser from a .ksy file.
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | name | [ string](#string) | A descriptive name for this parser. |
 | content_ksy | [ string](#string) | The ksy definition for this parser. |
-| data_fields | [repeated hiber.value.Field](#hibervaluefield) | Fields in the parsed result that contain data. This can be useful to track which fields could be plotted, etc. |
+| data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Fields in the parsed result that contain data. This can be useful to track which fields could be plotted, etc. |
 | metadata_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
+| post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | none |
 
 
 ### Enums
+#### hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing
+The type of post-processing to be applied to the result of this parser.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| NOTHING | none | 0 |
+| EASYPULSE | none | 1 |
+
 #### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian
 
 
@@ -1493,15 +1507,32 @@ The delta check also adds a few additional error message variables:
 | ----- | ---- | ----------- |
 | path | [ string](#string) | Select the field(s) that this check is applied to, using a json path. |
 | ignore_field_not_found | [ bool](#bool) | Whether to ignore this check if the field is not found. This can be useful if your path selects multiple values in an array, like my_array[*].value, and not all entries have the field, or when fields are omitted if they have a default value. |
-| unit | [ hiber.value.Field.Numeric.Unit](#hibervaluefieldnumericunit) | The unit that this alarm check is using. The field's values will automatically be converted into this unit before the check is applied.
+| unit | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | The unit that this alarm check is using. The field's values will automatically be converted into this unit before the check is applied.
 
 Note: unit is not currently available in the alarm_parameters. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.equals | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.EqualsCheck](#hibermodemalarmmodemalarmcheckfieldcheckequalscheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.oneof | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.OneOfCheck](#hibermodemalarmmodemalarmcheckfieldcheckoneofcheck) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.allowed | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.AllowedCheck](#hibermodemalarmmodemalarmcheckfieldcheckallowedcheck) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.blocked | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedCheck](#hibermodemalarmmodemalarmcheckfieldcheckblockedcheck) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.minimum | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.MinimumCheck](#hibermodemalarmmodemalarmcheckfieldcheckminimumcheck) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.maximum | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.MaximumCheck](#hibermodemalarmmodemalarmcheckfieldcheckmaximumcheck) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.threshold | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.ThresholdCheck](#hibermodemalarmmodemalarmcheckfieldcheckthresholdcheck) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.delta | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.DeltaCheck](#hibermodemalarmmodemalarmcheckfieldcheckdeltacheck) | none |
+
+### hiber.modem.alarm.ModemAlarm.Check.FieldCheck.AllowedCheck
+
+Check that the field is in a set of expected values.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| allowed | [repeated google.protobuf.Value](#googleprotobufvalue) | The list of allowed values, one of which should match the field value. |
+
+### hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedCheck
+
+Check that the field is not in a set of blocked values.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| blocked | [repeated google.protobuf.Value](#googleprotobufvalue) | none |
 
 ### hiber.modem.alarm.ModemAlarm.Check.FieldCheck.DeltaCheck
 
@@ -1537,14 +1568,6 @@ Check that the field is higher than the given value.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | minimum | [ double](#double) | The minimum numeric value the field should have. |
-
-### hiber.modem.alarm.ModemAlarm.Check.FieldCheck.OneOfCheck
-
-Check that the field is in a set of expected values.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| expected | [repeated google.protobuf.Value](#googleprotobufvalue) | The list of allowed values, one of which should match the field value. |
 
 ### hiber.modem.alarm.ModemAlarm.Check.FieldCheck.ThresholdCheck
 

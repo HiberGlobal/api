@@ -8,10 +8,6 @@ option java_multiple_files = true;
 option java_package = "global.hiber.api.grpc.value";
 option go_package = "hiber";
 
-service UnitPreferencesService {
-    rpc UnitPreferences (UnitPreferences.Request) returns (UnitPreferences.Response);
-}
-
 message Value {
     /* The type of value that is represented. */
     enum Type {
@@ -31,8 +27,10 @@ message Value {
     oneof value {
         Numeric numeric = 2;
         string text = 3;
+        Enum enum = 4;
     }
 
+    /* If the value is numeric, this specifies the unit, value, etc. */
     message Numeric {
         /* The type of numeric value that is represented.
          * Supported types will automatically convert to the preferred unit (based on the user settings).
@@ -287,346 +285,22 @@ message Value {
             double unknown = 15;
         }
     }
-}
 
-message Field {
-    /* If the field is numeric, this specifies the details for the field. */
-    message Numeric {
-        message Unit {
-            oneof unit {
-                Value.Numeric.BatteryLevel.Unit battery_level = 1;
-                Value.Numeric.Distance.Unit distance = 2;
-                Value.Numeric.DurationUnit duration = 3;
-                Value.Numeric.FuelEfficiency.Unit fuel_efficiency = 4;
-                Value.Numeric.Flow.Unit flow = 5;
-                Value.Numeric.Percentage.Unit percentage = 12;
-                Value.Numeric.Pressure.Unit pressure = 6;
-                Value.Numeric.Speed.Unit speed = 7;
-                Value.Numeric.Temperature.Unit temperature = 8;
-                Value.Numeric.Voltage.Unit voltage = 9;
-                Value.Numeric.Volume.Unit volume = 10;
-                Value.Numeric.Mass.Unit mass = 11;
-            }
-        }
+    /* If this value is an enum, this specifies the value, display name and color for this enum value. */
+    message Enum {
+        /* The enum value. This might be a cryptic value, see the display_name and description for more information. */
+        string value = 1;
 
-        /* Formatting options for the field. */
-        message Format {
-            /* How to round the value when scale is applied.
-             * For example, a value of 3.1415 with scale 3 could be
-             *   4.141 (DOWN, HALF_DOWN, FLOOR) or
-             *   4.142 (HALF_UP, UP, CEILING).
-             */
-            enum RoundingMode {
-                /* Round towards "nearest neighbor" unless both neighbors are equidistant, in which case round up
-                 * Effectively round up when >= .5, otherwise round down.
-                 */
-                HALF_UP = 0;
+        /* User-facing name for this value. */
+        string display_name = 2;
 
-                /* Round towards "nearest neighbor" unless both neighbors are equidistant, in which case round down.
-                 * Effectively round up when > .5, otherwise round down.
-                 */
-                HALF_DOWN = 1;
+        /* More details for this enum value. */
+        string description = 3;
 
-                /* Round away from zero: 1.1 -> 2, while -1.1 -> -2. */
-                UP = 3;
+        /* (Optional) color for this enum value. */
+        string color = 4;
 
-                /* Round towards zero: 1.1 -> 1, while -1.1 -> -1. */
-                DOWN = 4;
-
-                /* Round towards positive infinity. */
-                CEILING = 5;
-
-                /* Round towards negative infinity. */
-                FLOOR = 6;
-
-                /* Round towards the "nearest neighbor" unless both neighbors are equidistant, in which case,
-                 * round towards the even neighbor.
-                 * Effectively round up when >= .5 and next integer value is even, otherwise round down.
-                 */
-                HALF_EVEN = 7;
-            }
-
-            /* Whether to round the value. */
-            oneof round {
-                /* Round to an integer. */
-                bool round_to_integer = 3;
-
-                /* Round to a number of decimals (at least 1). */
-                uint32 round_to_scale = 1;
-            }
-
-            /* How to round the value when scale is applied. */
-            RoundingMode rounding_mode = 2;
-        }
-
-        /* The type of numeric value. */
-        Value.Numeric.Type type = 1;
-
-        /* The symbol to use for the field's unit. */
-        string symbol = 2;
-
-        /* How to format the values (number of decimals, rounding, etc.). */
-        Format format = 3;
-
-        /* The unit for the field, depending on the type. */
-        Unit unit = 4;
-
-        /* If the unit preferences were applied, and the unit is different, the field will be converted to the preferred
-         * unit, from the original unit specified in this field.
-         */
-        Unit converted_from = 5;
-    }
-
-    /* The name of the field (if in the root structure) or a JsonPath to the field. */
-    string field = 1;
-
-    /* An optional display name for the field. */
-    string display_name = 2;
-
-    /* Priority of the field, typically used for ordering. */
-    int32 priority = 7;
-
-    /* The type of value the field contains. */
-    Value.Type type = 5;
-
-    /* The details for the type.
-     * Value.Type.TEXT has no details.
-     */
-    oneof details {
-        Numeric numeric = 9;
-    }
-
-    /* Whether this field should be stored encrypted or not.
-     * If it is, some processing options may be unavailable or slower.
-     */
-    bool encrypted = 3;
-
-    /* If numeric, the unit of the field.
-     * Deprecated: use numeric.numeric_unit oneof instead
-     */
-    UnitOfMeasurement unit_of_measurement = 4 [deprecated = true];
-
-    /* The symbol for the unit.
-     * Deprecated: use numeric.symbol instead
-     */
-    string unit_symbol = 6 [deprecated = true];
-
-    reserved 8;
-}
-
-/* The preferred units for the current user. */
-message UnitPreferences {
-    enum UnitCategory {
-        METRIC = 0;
-        IMPERIAL = 1;
-    }
-
-    /* User preferences for distance values. */
-    message DistancePreference {
-        /* Unit category (metric / imperial) to convert distance values to. */
-        UnitCategory unit_category = 1;
-
-        /* Optional formatting options for values (rounding, etc). */
-        Field.Numeric.Format format = 2;
-    }
-
-    /* Optional distance preference for the current user. */
-    oneof distance {
-        DistancePreference distance_preference = 1;
-        bool no_distance_preference = 11;
-    }
-
-    /* User preferences for mass values. */
-    message FlowPreference {
-        Value.Numeric.Flow.Unit unit = 1;
-
-        /* Optional formatting options for values (rounding, etc). */
-        Field.Numeric.Format format = 2;
-    }
-
-    /* Optional mass preference for the current user. */
-    oneof flow {
-        FlowPreference flow_preference = 10;
-        bool no_flow_preference = 20;
-    }
-
-    /* User preferences for fuel efficiency values. */
-    message FuelEfficiencyPreference {
-        Value.Numeric.FuelEfficiency.Unit unit = 1;
-
-        /* Optional formatting options for values (rounding, etc). */
-        Field.Numeric.Format format = 2;
-    }
-
-    /* Optional fuel efficiency preference for the current user. */
-    oneof fuel_efficiency {
-        FuelEfficiencyPreference fuel_efficiency_preference = 2;
-        bool no_fuel_efficiency_preference = 12;
-    }
-
-    /* User preferences for mass values. */
-    message MassPreference {
-        /* Unit category (metric / imperial) to convert mass values to. */
-        UnitCategory unit_category = 1;
-
-        /* Optional formatting options for values (rounding, etc). */
-        Field.Numeric.Format format = 2;
-    }
-
-    /* Optional mass preference for the current user. */
-    oneof mass {
-        MassPreference mass_preference = 9;
-        bool no_mass_preference = 19;
-    }
-
-    /* User preferences for percentage values. */
-    message PercentagePreference {
-
-        /* Optional formatting options for values (rounding, etc). */
-        Field.Numeric.Format format = 1;
-    }
-
-    /* Optional percentage preference for the current user. */
-    oneof percentage {
-        PercentagePreference percentage_preference = 3;
-        bool no_percentage_preference = 13;
-    }
-
-    /* User preferences for pressure values. */
-    message PressurePreference {
-        Value.Numeric.Pressure.Unit unit = 1;
-
-        /* Optional formatting options for values (rounding, etc). */
-        Field.Numeric.Format format = 2;
-    }
-
-    /* Optional pressure preference for the current user. */
-    oneof pressure {
-        PressurePreference pressure_preference = 4;
-        bool no_pressure_preference = 14;
-    }
-
-    /* User preferences for speed values. */
-    message SpeedPreference {
-        /* Unit category (metric / imperial) to convert speed values to. */
-        UnitCategory unit_category = 1;
-
-        /* Optional formatting options for values (rounding, etc). */
-        Field.Numeric.Format format = 2;
-    }
-
-    /* Optional speed preference for the current user. */
-    oneof speed {
-        SpeedPreference speed_preference = 5;
-        bool no_speed_preference = 15;
-    }
-
-    /* User preferences for temperature values. */
-    message TemperaturePreference {
-        Value.Numeric.Temperature.Unit unit = 1;
-
-        /* Optional formatting options for values (rounding, etc). */
-        Field.Numeric.Format format = 2;
-    }
-
-    /* Optional temperature preference for the current user. */
-    oneof temperature {
-        TemperaturePreference temperature_preference = 6;
-        bool no_temperature_preference = 16;
-    }
-
-    /* User preferences for voltage values. */
-    message VoltagePreference {
-        Value.Numeric.Voltage.Unit unit = 1;
-
-        /* Optional formatting options for values (rounding, etc). */
-        Field.Numeric.Format format = 2;
-    }
-
-    /* Optional voltage preference for the current user. */
-    oneof voltage {
-        VoltagePreference voltage_preference = 7;
-        bool no_voltage_preference = 17;
-    }
-
-    /* User preferences for volume values. */
-    message VolumePreference {
-        /* Unit category (metric / imperial) to convert volume values to. */
-        UnitCategory unit_category = 1;
-
-        /* Optional formatting options for values (rounding, etc). */
-        Field.Numeric.Format format = 2;
-    }
-
-    /* Optional volume preference for the current user. */
-    oneof volume {
-        VolumePreference volume_preference = 8;
-        bool no_volume_preference = 18;
-    }
-
-    message Request {
-        /* Update or remove the distance preference. */
-        oneof distance {
-            DistancePreference update_distance_preference = 1;
-            bool remove_distance_preference = 11;
-        }
-
-        /* Update or remove the mass preference. */
-        oneof flow {
-            FlowPreference update_flow_preference = 10;
-            bool remove_flow_preference = 20;
-        }
-
-        /* Update or remove the fuel efficiency preference. */
-        oneof fuel_efficiency {
-            FuelEfficiencyPreference update_fuel_efficiency_preference = 2;
-            bool remove_fuel_efficiency_preference = 12;
-        }
-
-        /* Update or remove the mass preference. */
-        oneof mass {
-            MassPreference update_mass_preference = 9;
-            bool remove_mass_preference = 19;
-        }
-
-        /* Update or remove the percentage preference. */
-        oneof percentage {
-            PercentagePreference update_percentage_preference = 3;
-            bool remove_percentage_preference = 13;
-        }
-
-        /* Update or remove the pressure preference. */
-        oneof pressure {
-            PressurePreference update_pressure_preference = 4;
-            bool remove_pressure_preference = 14;
-        }
-
-        /* Update or remove the speed preference. */
-        oneof speed {
-            SpeedPreference update_speed_preference = 5;
-            bool remove_speed_preference = 15;
-        }
-
-        /* Update or remove the temperature preference. */
-        oneof temperature {
-            TemperaturePreference update_temperature_preference = 6;
-            bool remove_temperature_preference = 16;
-        }
-
-        /* Update or remove the voltage preference. */
-        oneof voltage {
-            VoltagePreference update_voltage_preference = 7;
-            bool remove_voltage_preference = 17;
-        }
-
-        /* Update or remove the volume preference. */
-        oneof volume {
-            VolumePreference update_volume_preference = 8;
-            bool remove_volume_preference = 18;
-        }
-    }
-
-    message Response {
-        UnitPreferences preferences = 1;
+        /* Priority of the value, typically used for ordering. */
+        int32 priority = 5;
     }
 }

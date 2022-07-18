@@ -37,11 +37,12 @@ advanced use cases, like assigning to a tag.
   - [ModemAlarm.Check](#modemalarmcheck)
   - [ModemAlarm.Check.DelayCheck](#modemalarmcheckdelaycheck)
   - [ModemAlarm.Check.FieldCheck](#modemalarmcheckfieldcheck)
+  - [ModemAlarm.Check.FieldCheck.AllowedCheck](#modemalarmcheckfieldcheckallowedcheck)
+  - [ModemAlarm.Check.FieldCheck.BlockedCheck](#modemalarmcheckfieldcheckblockedcheck)
   - [ModemAlarm.Check.FieldCheck.DeltaCheck](#modemalarmcheckfieldcheckdeltacheck)
   - [ModemAlarm.Check.FieldCheck.EqualsCheck](#modemalarmcheckfieldcheckequalscheck)
   - [ModemAlarm.Check.FieldCheck.MaximumCheck](#modemalarmcheckfieldcheckmaximumcheck)
   - [ModemAlarm.Check.FieldCheck.MinimumCheck](#modemalarmcheckfieldcheckminimumcheck)
-  - [ModemAlarm.Check.FieldCheck.OneOfCheck](#modemalarmcheckfieldcheckoneofcheck)
   - [ModemAlarm.Check.FieldCheck.ThresholdCheck](#modemalarmcheckfieldcheckthresholdcheck)
   - [ModemAlarm.Check.InactivityCheck](#modemalarmcheckinactivitycheck)
   - [ModemAlarm.Check.LocationCheck](#modemalarmchecklocationcheck)
@@ -524,15 +525,32 @@ The delta check also adds a few additional error message variables:
 | ----- | ---- | ----------- |
 | path | [ string](#string) | Select the field(s) that this check is applied to, using a json path. |
 | ignore_field_not_found | [ bool](#bool) | Whether to ignore this check if the field is not found. This can be useful if your path selects multiple values in an array, like my_array[*].value, and not all entries have the field, or when fields are omitted if they have a default value. |
-| unit | [ hiber.value.Field.Numeric.Unit](#hibervaluefieldnumericunit) | The unit that this alarm check is using. The field's values will automatically be converted into this unit before the check is applied.
+| unit | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | The unit that this alarm check is using. The field's values will automatically be converted into this unit before the check is applied.
 
 Note: unit is not currently available in the alarm_parameters. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.equals | [ ModemAlarm.Check.FieldCheck.EqualsCheck](#modemalarmcheckfieldcheckequalscheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.oneof | [ ModemAlarm.Check.FieldCheck.OneOfCheck](#modemalarmcheckfieldcheckoneofcheck) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.allowed | [ ModemAlarm.Check.FieldCheck.AllowedCheck](#modemalarmcheckfieldcheckallowedcheck) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.blocked | [ ModemAlarm.Check.FieldCheck.BlockedCheck](#modemalarmcheckfieldcheckblockedcheck) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.minimum | [ ModemAlarm.Check.FieldCheck.MinimumCheck](#modemalarmcheckfieldcheckminimumcheck) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.maximum | [ ModemAlarm.Check.FieldCheck.MaximumCheck](#modemalarmcheckfieldcheckmaximumcheck) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.threshold | [ ModemAlarm.Check.FieldCheck.ThresholdCheck](#modemalarmcheckfieldcheckthresholdcheck) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.delta | [ ModemAlarm.Check.FieldCheck.DeltaCheck](#modemalarmcheckfieldcheckdeltacheck) | none |
+
+### ModemAlarm.Check.FieldCheck.AllowedCheck
+
+Check that the field is in a set of expected values.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| allowed | [repeated google.protobuf.Value](#googleprotobufvalue) | The list of allowed values, one of which should match the field value. |
+
+### ModemAlarm.Check.FieldCheck.BlockedCheck
+
+Check that the field is not in a set of blocked values.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| blocked | [repeated google.protobuf.Value](#googleprotobufvalue) | none |
 
 ### ModemAlarm.Check.FieldCheck.DeltaCheck
 
@@ -568,14 +586,6 @@ Check that the field is higher than the given value.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | minimum | [ double](#double) | The minimum numeric value the field should have. |
-
-### ModemAlarm.Check.FieldCheck.OneOfCheck
-
-Check that the field is in a set of expected values.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| expected | [repeated google.protobuf.Value](#googleprotobufvalue) | The list of allowed values, one of which should match the field value. |
 
 ### ModemAlarm.Check.FieldCheck.ThresholdCheck
 

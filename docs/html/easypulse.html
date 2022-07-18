@@ -286,6 +286,18 @@
                   <a href="#hiber.easypulse.Easypulse.TargetValues.VolumeTargetValue"><span class="badge">M</span>Easypulse.TargetValues.VolumeTargetValue</a>
                 </li>
               
+                <li>
+                  <a href="#hiber.easypulse.Easypulse.TellTale"><span class="badge">M</span>Easypulse.TellTale</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.easypulse.Easypulse.TellTale.Indicator"><span class="badge">M</span>Easypulse.TellTale.Indicator</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#hiber.easypulse.Easypulse.EngineState"><span class="badge">E</span>Easypulse.EngineState</a>
+                </li>
               
                 <li>
                   <a href="#hiber.easypulse.Easypulse.History.Request.Aggregation"><span class="badge">E</span>Easypulse.History.Request.Aggregation</a>
@@ -297,6 +309,10 @@
               
                 <li>
                   <a href="#hiber.easypulse.Easypulse.ListAssets.Request.Sort"><span class="badge">E</span>Easypulse.ListAssets.Request.Sort</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.easypulse.Easypulse.TellTale.Indicator.State"><span class="badge">E</span>Easypulse.TellTale.Indicator.State</a>
                 </li>
               
               
@@ -746,10 +762,38 @@
                 </tr>
               
                 <tr>
-                  <td>fuel_used</td>
+                  <td>engine_idle_time</td>
+                  <td><a href="#hiber.Duration">hiber.Duration</a></td>
+                  <td></td>
+                  <td><p>Duration of total hours the engine has idled. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fuel_used_running</td>
                   <td><a href="#hiber.value.Value.Numeric.Volume">hiber.value.Value.Numeric.Volume</a></td>
                   <td></td>
                   <td><p>The total amount of fuel used by this vehicle. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fuel_used_idling</td>
+                  <td><a href="#hiber.value.Value.Numeric.Volume">hiber.value.Value.Numeric.Volume</a></td>
+                  <td></td>
+                  <td><p>The total amount of fuel used by this vehicle while idling. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>power_take_off_engagement_count</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>The amount of times the power-take-off was engaged </p></td>
+                </tr>
+              
+                <tr>
+                  <td>power_take_off_engagement_duration</td>
+                  <td><a href="#hiber.Duration">hiber.Duration</a></td>
+                  <td></td>
+                  <td><p>The duration the power-take-off was engaged for </p></td>
                 </tr>
               
                 <tr>
@@ -781,6 +825,13 @@
                 </tr>
               
                 <tr>
+                  <td>rpm</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>The most recent peak rpm measurement. </p></td>
+                </tr>
+              
+                <tr>
                   <td>tire_pressure</td>
                   <td><a href="#hiber.value.Value.Numeric.Pressure">hiber.value.Value.Numeric.Pressure</a></td>
                   <td></td>
@@ -806,6 +857,13 @@
                   <td><a href="#hiber.easypulse.Easypulse.Asset.AggregationsEntry">Easypulse.Asset.AggregationsEntry</a></td>
                   <td>repeated</td>
                   <td><p>Any aggregations added when this asset was requested. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tell_tales</td>
+                  <td><a href="#hiber.easypulse.Easypulse.TellTale">Easypulse.TellTale</a></td>
+                  <td>repeated</td>
+                  <td><p>List of tell-tale status indicators. The order of the list is intentional. </p></td>
                 </tr>
               
             </tbody>
@@ -1099,6 +1157,20 @@ time range. </p></td>
                 </tr>
               
                 <tr>
+                  <td>rpm</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Get the history for the rpm of the engine </p></td>
+                </tr>
+              
+                <tr>
+                  <td>engine_state</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Get the history for the engine state </p></td>
+                </tr>
+              
+                <tr>
                   <td>fuel_efficiency</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -1127,10 +1199,38 @@ time range. </p></td>
                 </tr>
               
                 <tr>
-                  <td>fuel_used</td>
+                  <td>engine_idle_time</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Get the total amount of fuel used by this vehicle. </p></td>
+                  <td><p>Get the total amount of idle-time hours for the engine. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fuel_used_running</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Get the total amount of fuel used by the engine while running. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fuel_used_idling</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Get the total amount of fuel used by the engine while idling. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>power_take_off_engagement_count</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Get the total amount of times the power take of was engaged. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>power_take_off_engagement_duration</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Get the total duration of time the power take of was engaged. </p></td>
                 </tr>
               
                 <tr>
@@ -1237,7 +1337,8 @@ single value, the sum of values. </p></td>
                   <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
                   <td></td>
                   <td><p>When not grouping, time of the individual point.
-When grouping, the time at the end of the group (when the value was true). </p></td>
+When grouping would return an exact data point (i.e. not an average), the time of that point.
+When grouping would not return an exact data point (i.e. average), the end of the time range. </p></td>
                 </tr>
               
                 <tr>
@@ -1304,6 +1405,13 @@ When grouping, the time at the end of the group (when the value was true). </p><
                 </tr>
               
                 <tr>
+                  <td>rpm</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>fuel_efficiency</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
@@ -1315,6 +1423,13 @@ When grouping, the time at the end of the group (when the value was true). </p><
                   <td><a href="#float">float</a></td>
                   <td></td>
                   <td><p>Distance traveled in ???. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>engine_state</td>
+                  <td><a href="#hiber.easypulse.Easypulse.EngineState">Easypulse.EngineState</a></td>
+                  <td></td>
+                  <td><p>State of the engine </p></td>
                 </tr>
               
                 <tr>
@@ -1367,10 +1482,38 @@ When grouping, the time at the end of the group (when the value was true). </p><
                 </tr>
               
                 <tr>
-                  <td>fuel_used</td>
+                  <td>engine_idle_time</td>
+                  <td><a href="#hiber.Duration">hiber.Duration</a></td>
+                  <td></td>
+                  <td><p>Duration of total hours the engine has been idling. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fuel_used_running</td>
                   <td><a href="#hiber.value.Value.Numeric.Volume">hiber.value.Value.Numeric.Volume</a></td>
                   <td></td>
                   <td><p>The total amount of fuel used by this vehicle. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fuel_used_idling</td>
+                  <td><a href="#hiber.value.Value.Numeric.Volume">hiber.value.Value.Numeric.Volume</a></td>
+                  <td></td>
+                  <td><p>The total amount of fuel used by this vehicle while idling. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>power_take_off_engagement_count</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>power_take_off_engagement_duration</td>
+                  <td><a href="#hiber.Duration">hiber.Duration</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
                 <tr>
@@ -2132,7 +2275,132 @@ When grouping, the time at the end of the group (when the value was true). </p><
 
         
       
+        <h3 id="hiber.easypulse.Easypulse.TellTale">Easypulse.TellTale</h3>
+        <p>A tell tale is an indicator of a part of the system.</p>
 
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>indicator</td>
+                  <td><a href="#hiber.easypulse.Easypulse.TellTale.Indicator">Easypulse.TellTale.Indicator</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>label</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>enum_value</td>
+                  <td><a href="#hiber.value.Value.Enum">hiber.value.Value.Enum</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.easypulse.Easypulse.TellTale.Indicator">Easypulse.TellTale.Indicator</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>state</td>
+                  <td><a href="#hiber.easypulse.Easypulse.TellTale.Indicator.State">Easypulse.TellTale.Indicator.State</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>color</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>label</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="hiber.easypulse.Easypulse.EngineState">Easypulse.EngineState</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>OFF</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>IDLING</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>RUNNING</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>RESERVED</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
         <h3 id="hiber.easypulse.Easypulse.History.Request.Aggregation">Easypulse.History.Request.Aggregation</h3>
         <p>Options to aggregate the history data points (in a group).</p>
@@ -2294,6 +2562,53 @@ When grouping, the time at the end of the group (when the value was true). </p><
                 <td>HEALTH_DESC</td>
                 <td>15</td>
                 <td><p>Health sorted from most to least severe (i.e. ERROR, WARNING, OK).</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="hiber.easypulse.Easypulse.TellTale.Indicator.State">Easypulse.TellTale.Indicator.State</h3>
+        <p>The state of a tell-tale sensor. Ordinal numbers follow the spec of the CAN bus for states</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>OFF</td>
+                <td>0</td>
+                <td><p>The tell-tale has not been triggered. This can be considered an OK state.</p></td>
+              </tr>
+            
+              <tr>
+                <td>RED</td>
+                <td>1</td>
+                <td><p>The tell-tale indicates something is very wrong with the system it is monitoring.</p></td>
+              </tr>
+            
+              <tr>
+                <td>YELLOW</td>
+                <td>2</td>
+                <td><p>The tell-tale indicates something is wrong with the system it is monitoring, but not broken yet.</p></td>
+              </tr>
+            
+              <tr>
+                <td>INFO</td>
+                <td>3</td>
+                <td><p>The tell-tale indicates there is some information about the system it is monitoring.</p></td>
+              </tr>
+            
+              <tr>
+                <td>NOT_AVAILABLE</td>
+                <td>4</td>
+                <td><p>The tell-tale sensor for this system is not available.</p></td>
+              </tr>
+            
+              <tr>
+                <td>OTHER</td>
+                <td>5</td>
+                <td><p>Other, not part of the CAN-Bus spec.</p></td>
               </tr>
             
           </tbody>

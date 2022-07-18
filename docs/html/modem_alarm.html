@@ -259,6 +259,14 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.AllowedCheck"><span class="badge">M</span>ModemAlarm.Check.FieldCheck.AllowedCheck</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedCheck"><span class="badge">M</span>ModemAlarm.Check.FieldCheck.BlockedCheck</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.DeltaCheck"><span class="badge">M</span>ModemAlarm.Check.FieldCheck.DeltaCheck</a>
                 </li>
               
@@ -272,10 +280,6 @@
               
                 <li>
                   <a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.MinimumCheck"><span class="badge">M</span>ModemAlarm.Check.FieldCheck.MinimumCheck</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.OneOfCheck"><span class="badge">M</span>ModemAlarm.Check.FieldCheck.OneOfCheck</a>
                 </li>
               
                 <li>
@@ -1514,7 +1518,7 @@ and not all entries have the field, or when fields are omitted if they have a de
               
                 <tr>
                   <td>unit</td>
-                  <td><a href="#hiber.value.Field.Numeric.Unit">hiber.value.Field.Numeric.Unit</a></td>
+                  <td><a href="#hiber.field.Field.Numeric.Unit">hiber.field.Field.Numeric.Unit</a></td>
                   <td></td>
                   <td><p>The unit that this alarm check is using.
 The field&#39;s values will automatically be converted into this unit before the check is applied.
@@ -1530,8 +1534,15 @@ Note: unit is not currently available in the alarm_parameters. </p></td>
                 </tr>
               
                 <tr>
-                  <td>oneof</td>
-                  <td><a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.OneOfCheck">ModemAlarm.Check.FieldCheck.OneOfCheck</a></td>
+                  <td>allowed</td>
+                  <td><a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.AllowedCheck">ModemAlarm.Check.FieldCheck.AllowedCheck</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>blocked</td>
+                  <td><a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedCheck">ModemAlarm.Check.FieldCheck.BlockedCheck</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1561,6 +1572,54 @@ Note: unit is not currently available in the alarm_parameters. </p></td>
                   <td>delta</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.DeltaCheck">ModemAlarm.Check.FieldCheck.DeltaCheck</a></td>
                   <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.modem.alarm.ModemAlarm.Check.FieldCheck.AllowedCheck">ModemAlarm.Check.FieldCheck.AllowedCheck</h3>
+        <p>Check that the field is in a set of expected values.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>allowed</td>
+                  <td><a href="#google.protobuf.Value">google.protobuf.Value</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of allowed values, one of which should match the field value. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedCheck">ModemAlarm.Check.FieldCheck.BlockedCheck</h3>
+        <p>Check that the field is not in a set of blocked values.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>blocked</td>
+                  <td><a href="#google.protobuf.Value">google.protobuf.Value</a></td>
+                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1683,30 +1742,6 @@ be available to unencrypted values due to performance issues. </p></td>
                   <td><a href="#double">double</a></td>
                   <td></td>
                   <td><p>The minimum numeric value the field should have. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.alarm.ModemAlarm.Check.FieldCheck.OneOfCheck">ModemAlarm.Check.FieldCheck.OneOfCheck</h3>
-        <p>Check that the field is in a set of expected values.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>expected</td>
-                  <td><a href="#google.protobuf.Value">google.protobuf.Value</a></td>
-                  <td>repeated</td>
-                  <td><p>The list of allowed values, one of which should match the field value. </p></td>
                 </tr>
               
             </tbody>

@@ -1591,6 +1591,14 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.AllowedCheck"><span class="badge">M</span>ModemAlarm.Check.FieldCheck.AllowedCheck</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedCheck"><span class="badge">M</span>ModemAlarm.Check.FieldCheck.BlockedCheck</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.DeltaCheck"><span class="badge">M</span>ModemAlarm.Check.FieldCheck.DeltaCheck</a>
                 </li>
               
@@ -1604,10 +1612,6 @@
               
                 <li>
                   <a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.MinimumCheck"><span class="badge">M</span>ModemAlarm.Check.FieldCheck.MinimumCheck</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.OneOfCheck"><span class="badge">M</span>ModemAlarm.Check.FieldCheck.OneOfCheck</a>
                 </li>
               
                 <li>
@@ -1932,6 +1936,10 @@
                   <a href="#hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest"><span class="badge">M</span>UploadModemMessageBodyParserRequest</a>
                 </li>
               
+              
+                <li>
+                  <a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing"><span class="badge">E</span>ModemMessageBodyParser.PostProcessing</a>
+                </li>
               
                 <li>
                   <a href="#hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian"><span class="badge">E</span>SimpleModemMessageBodyParser.Endian</a>
@@ -17927,7 +17935,7 @@ and not all entries have the field, or when fields are omitted if they have a de
               
                 <tr>
                   <td>unit</td>
-                  <td><a href="#hiber.value.Field.Numeric.Unit">hiber.value.Field.Numeric.Unit</a></td>
+                  <td><a href="#hiber.field.Field.Numeric.Unit">hiber.field.Field.Numeric.Unit</a></td>
                   <td></td>
                   <td><p>The unit that this alarm check is using.
 The field&#39;s values will automatically be converted into this unit before the check is applied.
@@ -17943,8 +17951,15 @@ Note: unit is not currently available in the alarm_parameters. </p></td>
                 </tr>
               
                 <tr>
-                  <td>oneof</td>
-                  <td><a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.OneOfCheck">ModemAlarm.Check.FieldCheck.OneOfCheck</a></td>
+                  <td>allowed</td>
+                  <td><a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.AllowedCheck">ModemAlarm.Check.FieldCheck.AllowedCheck</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>blocked</td>
+                  <td><a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedCheck">ModemAlarm.Check.FieldCheck.BlockedCheck</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -17974,6 +17989,54 @@ Note: unit is not currently available in the alarm_parameters. </p></td>
                   <td>delta</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.DeltaCheck">ModemAlarm.Check.FieldCheck.DeltaCheck</a></td>
                   <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.modem.alarm.ModemAlarm.Check.FieldCheck.AllowedCheck">ModemAlarm.Check.FieldCheck.AllowedCheck</h3>
+        <p>Check that the field is in a set of expected values.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>allowed</td>
+                  <td><a href="#google.protobuf.Value">google.protobuf.Value</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of allowed values, one of which should match the field value. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedCheck">ModemAlarm.Check.FieldCheck.BlockedCheck</h3>
+        <p>Check that the field is not in a set of blocked values.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>blocked</td>
+                  <td><a href="#google.protobuf.Value">google.protobuf.Value</a></td>
+                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -18096,30 +18159,6 @@ be available to unencrypted values due to performance issues. </p></td>
                   <td><a href="#double">double</a></td>
                   <td></td>
                   <td><p>The minimum numeric value the field should have. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.alarm.ModemAlarm.Check.FieldCheck.OneOfCheck">ModemAlarm.Check.FieldCheck.OneOfCheck</h3>
-        <p>Check that the field is in a set of expected values.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>expected</td>
-                  <td><a href="#google.protobuf.Value">google.protobuf.Value</a></td>
-                  <td>repeated</td>
-                  <td><p>The list of allowed values, one of which should match the field value. </p></td>
                 </tr>
               
             </tbody>
@@ -19771,7 +19810,7 @@ This field may be omitted on demand to save data in the list call. </p></td>
               
                 <tr>
                   <td>data_fields</td>
-                  <td><a href="#hiber.value.Field">hiber.value.Field</a></td>
+                  <td><a href="#hiber.field.Field">hiber.field.Field</a></td>
                   <td>repeated</td>
                   <td><p>Fields in the parsed result that contain data.
 Data fields are cached for efficient retrieval and allow all kinds of processing. </p></td>
@@ -19796,6 +19835,13 @@ Data fields are cached for efficient retrieval and allow all kinds of processing
                   <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations">ModemMessageBodyParser.AvailableToChildOrganizations</a></td>
                   <td></td>
                   <td><p>If set, this parser is available to your child organizations, as a Provided parser. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>post_processing</td>
+                  <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing">ModemMessageBodyParser.PostProcessing</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of post-processing steps applied to the result of this parser. </p></td>
                 </tr>
               
             </tbody>
@@ -20678,7 +20724,7 @@ This can be combined with a size to limit the amounts of bytes that are parsed. 
               
                 <tr>
                   <td>add_data_fields</td>
-                  <td><a href="#hiber.value.Field">hiber.value.Field</a></td>
+                  <td><a href="#hiber.field.Field">hiber.field.Field</a></td>
                   <td>repeated</td>
                   <td><p>Add fields to the data fields list. </p></td>
                 </tr>
@@ -20695,6 +20741,20 @@ This can be combined with a size to limit the amounts of bytes that are parsed. 
                   <td><a href="#hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields">UpdateUploadedModemMessageBodyParserRequest.MetadataFields</a></td>
                   <td></td>
                   <td><p>Fields in the parsed result that match special things that can be processed by the system, like a location. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>add_post_processing</td>
+                  <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing">ModemMessageBodyParser.PostProcessing</a></td>
+                  <td>repeated</td>
+                  <td><p>Add a post-processing step to the result of this parser. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remove_post_processing</td>
+                  <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing">ModemMessageBodyParser.PostProcessing</a></td>
+                  <td>repeated</td>
+                  <td><p>Remove a post-processing step to the result of this parser. </p></td>
                 </tr>
               
             </tbody>
@@ -20803,7 +20863,7 @@ This can be combined with a size to limit the amounts of bytes that are parsed. 
               
                 <tr>
                   <td>data_fields</td>
-                  <td><a href="#hiber.value.Field">hiber.value.Field</a></td>
+                  <td><a href="#hiber.field.Field">hiber.field.Field</a></td>
                   <td>repeated</td>
                   <td><p>Fields in the parsed result that contain data.
 This can be useful to track which fields could be plotted, etc. </p></td>
@@ -20816,6 +20876,13 @@ This can be useful to track which fields could be plotted, etc. </p></td>
                   <td><p>Fields in the parsed result that match special things that can be processed by the system, like a location. </p></td>
                 </tr>
               
+                <tr>
+                  <td>post_processing</td>
+                  <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing">ModemMessageBodyParser.PostProcessing</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -20824,6 +20891,29 @@ This can be useful to track which fields could be plotted, etc. </p></td>
         
       
 
+      
+        <h3 id="hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing">ModemMessageBodyParser.PostProcessing</h3>
+        <p>The type of post-processing to be applied to the result of this parser.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>NOTHING</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>EASYPULSE</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
         <h3 id="hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian">SimpleModemMessageBodyParser.Endian</h3>
         <p></p>

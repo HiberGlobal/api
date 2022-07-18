@@ -6,28 +6,11 @@
 
 ## Table of Contents
 
-- Services
-  - [UnitPreferencesService](#unitpreferencesservice)
+
 
 - Messages
-  - [Field](#field)
-  - [Field.Numeric](#fieldnumeric)
-  - [Field.Numeric.Format](#fieldnumericformat)
-  - [Field.Numeric.Unit](#fieldnumericunit)
-  - [UnitPreferences](#unitpreferences)
-  - [UnitPreferences.DistancePreference](#unitpreferencesdistancepreference)
-  - [UnitPreferences.FlowPreference](#unitpreferencesflowpreference)
-  - [UnitPreferences.FuelEfficiencyPreference](#unitpreferencesfuelefficiencypreference)
-  - [UnitPreferences.MassPreference](#unitpreferencesmasspreference)
-  - [UnitPreferences.PercentagePreference](#unitpreferencespercentagepreference)
-  - [UnitPreferences.PressurePreference](#unitpreferencespressurepreference)
-  - [UnitPreferences.Request](#unitpreferencesrequest)
-  - [UnitPreferences.Response](#unitpreferencesresponse)
-  - [UnitPreferences.SpeedPreference](#unitpreferencesspeedpreference)
-  - [UnitPreferences.TemperaturePreference](#unitpreferencestemperaturepreference)
-  - [UnitPreferences.VoltagePreference](#unitpreferencesvoltagepreference)
-  - [UnitPreferences.VolumePreference](#unitpreferencesvolumepreference)
   - [Value](#value)
+  - [Value.Enum](#valueenum)
   - [Value.Numeric](#valuenumeric)
   - [Value.Numeric.BatteryLevel](#valuenumericbatterylevel)
   - [Value.Numeric.Distance](#valuenumericdistance)
@@ -42,8 +25,6 @@
   - [Value.Numeric.Volume](#valuenumericvolume)
 
 - Enums
-  - [Field.Numeric.Format.RoundingMode](#fieldnumericformatroundingmode)
-  - [UnitPreferences.UnitCategory](#unitpreferencesunitcategory)
   - [Value.Numeric.BatteryLevel.Unit](#valuenumericbatterylevelunit)
   - [Value.Numeric.Distance.Unit](#valuenumericdistanceunit)
   - [Value.Numeric.DurationUnit](#valuenumericdurationunit)
@@ -102,225 +83,7 @@
 
 - [Scalar Value Types](#scalar-value-types)
 
-
-## UnitPreferencesService
-
-
-### UnitPreferences
-> **rpc** UnitPreferences([UnitPreferences.Request](#unitpreferencesrequest))
-    [UnitPreferences.Response](#unitpreferencesresponse)
-
-
-
-
 ## Messages
-
-### Field
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| field | [ string](#string) | The name of the field (if in the root structure) or a JsonPath to the field. |
-| display_name | [ string](#string) | An optional display name for the field. |
-| priority | [ int32](#int32) | Priority of the field, typically used for ordering. |
-| type | [ Value.Type](#valuetype) | The type of value the field contains. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.numeric | [ Field.Numeric](#fieldnumeric) | none |
-| encrypted | [ bool](#bool) | Whether this field should be stored encrypted or not. If it is, some processing options may be unavailable or slower. |
-| unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
-| unit_symbol | [ string](#string) | The symbol for the unit. Deprecated: use numeric.symbol instead |
-
-### Field.Numeric
-
-If the field is numeric, this specifies the details for the field.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| type | [ Value.Numeric.Type](#valuenumerictype) | The type of numeric value. |
-| symbol | [ string](#string) | The symbol to use for the field's unit. |
-| format | [ Field.Numeric.Format](#fieldnumericformat) | How to format the values (number of decimals, rounding, etc.). |
-| unit | [ Field.Numeric.Unit](#fieldnumericunit) | The unit for the field, depending on the type. |
-| converted_from | [ Field.Numeric.Unit](#fieldnumericunit) | If the unit preferences were applied, and the unit is different, the field will be converted to the preferred unit, from the original unit specified in this field. |
-
-### Field.Numeric.Format
-
-Formatting options for the field.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **round**.round_to_integer | [ bool](#bool) | Round to an integer. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **round**.round_to_scale | [ uint32](#uint32) | Round to a number of decimals (at least 1). |
-| rounding_mode | [ Field.Numeric.Format.RoundingMode](#fieldnumericformatroundingmode) | How to round the value when scale is applied. |
-
-### Field.Numeric.Unit
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.battery_level | [ Value.Numeric.BatteryLevel.Unit](#valuenumericbatterylevelunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.distance | [ Value.Numeric.Distance.Unit](#valuenumericdistanceunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.duration | [ Value.Numeric.DurationUnit](#valuenumericdurationunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.fuel_efficiency | [ Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.flow | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.percentage | [ Value.Numeric.Percentage.Unit](#valuenumericpercentageunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.pressure | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.speed | [ Value.Numeric.Speed.Unit](#valuenumericspeedunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.temperature | [ Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.voltage | [ Value.Numeric.Voltage.Unit](#valuenumericvoltageunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.volume | [ Value.Numeric.Volume.Unit](#valuenumericvolumeunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.mass | [ Value.Numeric.Mass.Unit](#valuenumericmassunit) | none |
-
-### UnitPreferences
-
-The preferred units for the current user.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **distance**.distance_preference | [ UnitPreferences.DistancePreference](#unitpreferencesdistancepreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **distance**.no_distance_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **flow**.flow_preference | [ UnitPreferences.FlowPreference](#unitpreferencesflowpreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **flow**.no_flow_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **fuel_efficiency**.fuel_efficiency_preference | [ UnitPreferences.FuelEfficiencyPreference](#unitpreferencesfuelefficiencypreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **fuel_efficiency**.no_fuel_efficiency_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **mass**.mass_preference | [ UnitPreferences.MassPreference](#unitpreferencesmasspreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **mass**.no_mass_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **percentage**.percentage_preference | [ UnitPreferences.PercentagePreference](#unitpreferencespercentagepreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **percentage**.no_percentage_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **pressure**.pressure_preference | [ UnitPreferences.PressurePreference](#unitpreferencespressurepreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **pressure**.no_pressure_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **speed**.speed_preference | [ UnitPreferences.SpeedPreference](#unitpreferencesspeedpreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **speed**.no_speed_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **temperature**.temperature_preference | [ UnitPreferences.TemperaturePreference](#unitpreferencestemperaturepreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **temperature**.no_temperature_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **voltage**.voltage_preference | [ UnitPreferences.VoltagePreference](#unitpreferencesvoltagepreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **voltage**.no_voltage_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **volume**.volume_preference | [ UnitPreferences.VolumePreference](#unitpreferencesvolumepreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **volume**.no_volume_preference | [ bool](#bool) | none |
-
-### UnitPreferences.DistancePreference
-
-User preferences for distance values.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| unit_category | [ UnitPreferences.UnitCategory](#unitpreferencesunitcategory) | Unit category (metric / imperial) to convert distance values to. |
-| format | [ Field.Numeric.Format](#fieldnumericformat) | Optional formatting options for values (rounding, etc). |
-
-### UnitPreferences.FlowPreference
-
-User preferences for mass values.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| unit | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) | none |
-| format | [ Field.Numeric.Format](#fieldnumericformat) | Optional formatting options for values (rounding, etc). |
-
-### UnitPreferences.FuelEfficiencyPreference
-
-User preferences for fuel efficiency values.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| unit | [ Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit) | none |
-| format | [ Field.Numeric.Format](#fieldnumericformat) | Optional formatting options for values (rounding, etc). |
-
-### UnitPreferences.MassPreference
-
-User preferences for mass values.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| unit_category | [ UnitPreferences.UnitCategory](#unitpreferencesunitcategory) | Unit category (metric / imperial) to convert mass values to. |
-| format | [ Field.Numeric.Format](#fieldnumericformat) | Optional formatting options for values (rounding, etc). |
-
-### UnitPreferences.PercentagePreference
-
-User preferences for percentage values.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| format | [ Field.Numeric.Format](#fieldnumericformat) | Optional formatting options for values (rounding, etc). |
-
-### UnitPreferences.PressurePreference
-
-User preferences for pressure values.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| unit | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) | none |
-| format | [ Field.Numeric.Format](#fieldnumericformat) | Optional formatting options for values (rounding, etc). |
-
-### UnitPreferences.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **distance**.update_distance_preference | [ UnitPreferences.DistancePreference](#unitpreferencesdistancepreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **distance**.remove_distance_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **flow**.update_flow_preference | [ UnitPreferences.FlowPreference](#unitpreferencesflowpreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **flow**.remove_flow_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **fuel_efficiency**.update_fuel_efficiency_preference | [ UnitPreferences.FuelEfficiencyPreference](#unitpreferencesfuelefficiencypreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **fuel_efficiency**.remove_fuel_efficiency_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **mass**.update_mass_preference | [ UnitPreferences.MassPreference](#unitpreferencesmasspreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **mass**.remove_mass_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **percentage**.update_percentage_preference | [ UnitPreferences.PercentagePreference](#unitpreferencespercentagepreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **percentage**.remove_percentage_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **pressure**.update_pressure_preference | [ UnitPreferences.PressurePreference](#unitpreferencespressurepreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **pressure**.remove_pressure_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **speed**.update_speed_preference | [ UnitPreferences.SpeedPreference](#unitpreferencesspeedpreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **speed**.remove_speed_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **temperature**.update_temperature_preference | [ UnitPreferences.TemperaturePreference](#unitpreferencestemperaturepreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **temperature**.remove_temperature_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **voltage**.update_voltage_preference | [ UnitPreferences.VoltagePreference](#unitpreferencesvoltagepreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **voltage**.remove_voltage_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **volume**.update_volume_preference | [ UnitPreferences.VolumePreference](#unitpreferencesvolumepreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **volume**.remove_volume_preference | [ bool](#bool) | none |
-
-### UnitPreferences.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| preferences | [ UnitPreferences](#unitpreferences) | none |
-
-### UnitPreferences.SpeedPreference
-
-User preferences for speed values.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| unit_category | [ UnitPreferences.UnitCategory](#unitpreferencesunitcategory) | Unit category (metric / imperial) to convert speed values to. |
-| format | [ Field.Numeric.Format](#fieldnumericformat) | Optional formatting options for values (rounding, etc). |
-
-### UnitPreferences.TemperaturePreference
-
-User preferences for temperature values.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| unit | [ Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit) | none |
-| format | [ Field.Numeric.Format](#fieldnumericformat) | Optional formatting options for values (rounding, etc). |
-
-### UnitPreferences.VoltagePreference
-
-User preferences for voltage values.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| unit | [ Value.Numeric.Voltage.Unit](#valuenumericvoltageunit) | none |
-| format | [ Field.Numeric.Format](#fieldnumericformat) | Optional formatting options for values (rounding, etc). |
-
-### UnitPreferences.VolumePreference
-
-User preferences for volume values.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| unit_category | [ UnitPreferences.UnitCategory](#unitpreferencesunitcategory) | Unit category (metric / imperial) to convert volume values to. |
-| format | [ Field.Numeric.Format](#fieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
 ### Value
 
@@ -331,10 +94,23 @@ User preferences for volume values.
 | type | [ Value.Type](#valuetype) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.numeric | [ Value.Numeric](#valuenumeric) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.text | [ string](#string) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.enum | [ Value.Enum](#valueenum) | none |
+
+### Value.Enum
+
+If this value is an enum, this specifies the value, display name and color for this enum value.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ string](#string) | The enum value. This might be a cryptic value, see the display_name and description for more information. |
+| display_name | [ string](#string) | User-facing name for this value. |
+| description | [ string](#string) | More details for this enum value. |
+| color | [ string](#string) | (Optional) color for this enum value. |
+| priority | [ int32](#int32) | Priority of the value, typically used for ordering. |
 
 ### Value.Numeric
 
-
+If the value is numeric, this specifies the unit, value, etc.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -476,30 +252,6 @@ The value is a volume value, converted to your preferred volume unit.
 
 
 ## Enums
-### Field.Numeric.Format.RoundingMode
-How to round the value when scale is applied.
-For example, a value of 3.1415 with scale 3 could be
-  4.141 (DOWN, HALF_DOWN, FLOOR) or
-  4.142 (HALF_UP, UP, CEILING).
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| HALF_UP | Round towards "nearest neighbor" unless both neighbors are equidistant, in which case round up Effectively round up when >= .5, otherwise round down. | 0 |
-| HALF_DOWN | Round towards "nearest neighbor" unless both neighbors are equidistant, in which case round down. Effectively round up when > .5, otherwise round down. | 1 |
-| UP | Round away from zero: 1.1 -> 2, while -1.1 -> -2. | 3 |
-| DOWN | Round towards zero: 1.1 -> 1, while -1.1 -> -1. | 4 |
-| CEILING | Round towards positive infinity. | 5 |
-| FLOOR | Round towards negative infinity. | 6 |
-| HALF_EVEN | Round towards the "nearest neighbor" unless both neighbors are equidistant, in which case, round towards the even neighbor. Effectively round up when >= .5 and next integer value is even, otherwise round down. | 7 |
-
-### UnitPreferences.UnitCategory
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| METRIC | none | 0 |
-| IMPERIAL | none | 1 |
-
 ### Value.Numeric.BatteryLevel.Unit
 
 

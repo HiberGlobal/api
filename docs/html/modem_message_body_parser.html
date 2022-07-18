@@ -328,6 +328,10 @@
               
               
                 <li>
+                  <a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing"><span class="badge">E</span>ModemMessageBodyParser.PostProcessing</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian"><span class="badge">E</span>SimpleModemMessageBodyParser.Endian</a>
                 </li>
               
@@ -1143,7 +1147,7 @@ This field may be omitted on demand to save data in the list call. </p></td>
               
                 <tr>
                   <td>data_fields</td>
-                  <td><a href="#hiber.value.Field">hiber.value.Field</a></td>
+                  <td><a href="#hiber.field.Field">hiber.field.Field</a></td>
                   <td>repeated</td>
                   <td><p>Fields in the parsed result that contain data.
 Data fields are cached for efficient retrieval and allow all kinds of processing. </p></td>
@@ -1168,6 +1172,13 @@ Data fields are cached for efficient retrieval and allow all kinds of processing
                   <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations">ModemMessageBodyParser.AvailableToChildOrganizations</a></td>
                   <td></td>
                   <td><p>If set, this parser is available to your child organizations, as a Provided parser. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>post_processing</td>
+                  <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing">ModemMessageBodyParser.PostProcessing</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of post-processing steps applied to the result of this parser. </p></td>
                 </tr>
               
             </tbody>
@@ -2050,7 +2061,7 @@ This can be combined with a size to limit the amounts of bytes that are parsed. 
               
                 <tr>
                   <td>add_data_fields</td>
-                  <td><a href="#hiber.value.Field">hiber.value.Field</a></td>
+                  <td><a href="#hiber.field.Field">hiber.field.Field</a></td>
                   <td>repeated</td>
                   <td><p>Add fields to the data fields list. </p></td>
                 </tr>
@@ -2067,6 +2078,20 @@ This can be combined with a size to limit the amounts of bytes that are parsed. 
                   <td><a href="#hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields">UpdateUploadedModemMessageBodyParserRequest.MetadataFields</a></td>
                   <td></td>
                   <td><p>Fields in the parsed result that match special things that can be processed by the system, like a location. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>add_post_processing</td>
+                  <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing">ModemMessageBodyParser.PostProcessing</a></td>
+                  <td>repeated</td>
+                  <td><p>Add a post-processing step to the result of this parser. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remove_post_processing</td>
+                  <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing">ModemMessageBodyParser.PostProcessing</a></td>
+                  <td>repeated</td>
+                  <td><p>Remove a post-processing step to the result of this parser. </p></td>
                 </tr>
               
             </tbody>
@@ -2175,7 +2200,7 @@ This can be combined with a size to limit the amounts of bytes that are parsed. 
               
                 <tr>
                   <td>data_fields</td>
-                  <td><a href="#hiber.value.Field">hiber.value.Field</a></td>
+                  <td><a href="#hiber.field.Field">hiber.field.Field</a></td>
                   <td>repeated</td>
                   <td><p>Fields in the parsed result that contain data.
 This can be useful to track which fields could be plotted, etc. </p></td>
@@ -2188,6 +2213,13 @@ This can be useful to track which fields could be plotted, etc. </p></td>
                   <td><p>Fields in the parsed result that match special things that can be processed by the system, like a location. </p></td>
                 </tr>
               
+                <tr>
+                  <td>post_processing</td>
+                  <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing">ModemMessageBodyParser.PostProcessing</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -2196,6 +2228,29 @@ This can be useful to track which fields could be plotted, etc. </p></td>
         
       
 
+      
+        <h3 id="hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing">ModemMessageBodyParser.PostProcessing</h3>
+        <p>The type of post-processing to be applied to the result of this parser.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>NOTHING</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>EASYPULSE</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
         <h3 id="hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian">SimpleModemMessageBodyParser.Endian</h3>
         <p></p>

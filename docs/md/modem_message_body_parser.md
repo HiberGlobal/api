@@ -59,6 +59,7 @@ where you can find documentation, examples and a web IDE.
   - [UploadModemMessageBodyParserRequest](#uploadmodemmessagebodyparserrequest)
 
 - Enums
+  - [ModemMessageBodyParser.PostProcessing](#modemmessagebodyparserpostprocessing)
   - [SimpleModemMessageBodyParser.Endian](#simplemodemmessagebodyparserendian)
 
 - Referenced messages from [modem.proto](#referenced-messages-from-modemproto)
@@ -330,10 +331,11 @@ A parser can be defined in two ways: using a .ksy (Kaitai struct https://kaitai.
 | name | [ string](#string) | The name for this parser. |
 | content_ksy | [ string](#string) | The content of this parsers script. If simple_parser is set, this content is generated from that definition. This field may be omitted by the list call to save data. |
 | simple_parser | [ SimpleModemMessageBodyParser](#simplemodemmessagebodyparser) | The simple parser this .ksy was generated from, if it was generated from a simple parser. This field may be omitted on demand to save data in the list call. |
-| data_fields | [repeated hiber.value.Field](#hibervaluefield) | Fields in the parsed result that contain data. Data fields are cached for efficient retrieval and allow all kinds of processing. |
+| data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Fields in the parsed result that contain data. Data fields are cached for efficient retrieval and allow all kinds of processing. |
 | data_fields_deprecated | [repeated string](#string) | none |
 | metadata_fields | [ ModemMessageBodyParser.MetadataFields](#modemmessagebodyparsermetadatafields) | Fields in the parsed result that contain metadata, and special things like a location. |
 | available_to_child_organizations | [ ModemMessageBodyParser.AvailableToChildOrganizations](#modemmessagebodyparseravailabletochildorganizations) | If set, this parser is available to your child organizations, as a Provided parser. |
+| post_processing | [repeated ModemMessageBodyParser.PostProcessing](#modemmessagebodyparserpostprocessing) | The list of post-processing steps applied to the result of this parser. |
 
 ### ModemMessageBodyParser.AvailableToChildOrganizations
 
@@ -574,9 +576,11 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifier of the parser that should be updated. |
 | content_ksy | [ string](#string) | The new ksy definition for this parser. |
-| add_data_fields | [repeated hiber.value.Field](#hibervaluefield) | Add fields to the data fields list. |
+| add_data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Add fields to the data fields list. |
 | remove_data_fields | [repeated string](#string) | Remove fields from the data fields list. |
 | metadata_fields | [ UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#updateuploadedmodemmessagebodyparserrequestmetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
+| add_post_processing | [repeated ModemMessageBodyParser.PostProcessing](#modemmessagebodyparserpostprocessing) | Add a post-processing step to the result of this parser. |
+| remove_post_processing | [repeated ModemMessageBodyParser.PostProcessing](#modemmessagebodyparserpostprocessing) | Remove a post-processing step to the result of this parser. |
 
 ### UpdateUploadedModemMessageBodyParserRequest.MetadataFields
 
@@ -601,11 +605,20 @@ Upload a new body parser from a .ksy file.
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | name | [ string](#string) | A descriptive name for this parser. |
 | content_ksy | [ string](#string) | The ksy definition for this parser. |
-| data_fields | [repeated hiber.value.Field](#hibervaluefield) | Fields in the parsed result that contain data. This can be useful to track which fields could be plotted, etc. |
+| data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Fields in the parsed result that contain data. This can be useful to track which fields could be plotted, etc. |
 | metadata_fields | [ ModemMessageBodyParser.MetadataFields](#modemmessagebodyparsermetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
+| post_processing | [repeated ModemMessageBodyParser.PostProcessing](#modemmessagebodyparserpostprocessing) | none |
 
 
 ## Enums
+### ModemMessageBodyParser.PostProcessing
+The type of post-processing to be applied to the result of this parser.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| NOTHING | none | 0 |
+| EASYPULSE | none | 1 |
+
 ### SimpleModemMessageBodyParser.Endian
 
 

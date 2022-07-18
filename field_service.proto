@@ -1,0 +1,205 @@
+syntax = "proto3";
+
+package hiber.field;
+
+import "base.proto";
+import "field.proto";
+import "modem.proto";
+import "modem_message_body_parser.proto";
+import "value.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.field";
+option java_outer_classname = "FieldApi";
+option go_package = "hiber";
+
+service FieldService {
+    rpc List (ListFields.Request) returns (ListFields.Response);
+
+    rpc Add (AddFieldsRequest) returns (modem.message.bodyparser.ModemMessageBodyParser);
+    rpc ReplaceAll (ReplaceAllFieldsRequest) returns (modem.message.bodyparser.ModemMessageBodyParser);
+    rpc Delete (DeleteFieldsRequest) returns (modem.message.bodyparser.ModemMessageBodyParser);
+
+    rpc Update (UpdateFieldRequest) returns (Field);
+    rpc UpdateNumericDetails (UpdateFieldNumericDetails.Request) returns (Field);
+    rpc UpdateEnumValues (UpdateFieldEnumValues.Request) returns (Field);
+}
+
+message FieldSelection {
+    /* Search the fields (matches field, display_name and parser identifier). */
+    string search = 1;
+
+    /* Only return the fields owned by your organization (exclude fields from inherited parsers). */
+    bool only_owned = 2;
+
+    /* Filter fields by type. */
+    repeated value.Value.Type types = 3;
+
+    /* Filter fields by numeric type. Limits field types to numeric. */
+    repeated value.Value.Numeric.Type numeric_types = 4;
+
+    /* Filter fields by field identifiers. */
+    repeated string field_identifiers = 5;
+}
+
+message ListFields {
+    enum Sort {
+        /* Sort by parser and priority in the parser. */
+        PARSER_PRIORITY = 0;
+
+        /* Sort by display_name. */
+        DISPLAY_NAME = 1;
+
+        /* Sort by json path only. */
+        FIELD_PATH = 2;
+    }
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* Select which fields to return. */
+        FieldSelection selection = 2;
+
+        Pagination pagination = 3;
+        Sort sort = 4;
+
+        /* Whether to apply the unit preferences to the fields.
+         * This will convert any fields into you preferred unit, for convenience.
+         */
+        bool apply_unit_preferences = 5;
+    }
+
+    message Response {
+        repeated Field fields = 1;
+        Request request = 2;
+        Pagination.Result pagination = 3;
+    }
+}
+
+message AddFieldsRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+
+    /* The identifier for the parser to remove the field from. */
+    string parser_identifier = 2;
+
+    /* The fields to add to the parser. */
+    repeated Field fields = 3;
+}
+
+/* Replace all fields for a parser with the fields given. */
+message ReplaceAllFieldsRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+
+    /* The identifier for the parser to remove the field from. */
+    string parser_identifier = 2;
+
+    /* The fields to add to the parser, replacing all previous fields. */
+    repeated Field replace_with_fields = 3;
+}
+
+/* Delete the given fields from a parser. */
+message DeleteFieldsRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+
+    /* The identifier for the parser to remove the field from. */
+    string parser_identifier = 2;
+
+    /* The name or JsonPath of the field to remove. */
+    repeated string field_identifiers = 3;
+}
+
+message UpdateFieldRequest {
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    string organization = 1;
+
+    /* The identifier for the field. */
+    string field_identifier = 2;
+
+    /* An optional display name for the field. */
+    UpdateClearableString display_name = 3;
+
+    /* Priority of the field, typically used for ordering. */
+    UpdateZeroableInt priority = 4;
+
+    /* Whether this field should be stored encrypted or not.
+     * When set to true at a later point, earlier values are not encrypted retro-actively.
+     */
+    UpdateBoolean encrypted = 5;
+
+    /* Update field details, like numeric details or enum values. */
+    oneof update_details {
+        UpdateFieldNumericDetails numeric = 6;
+        UpdateFieldEnumValues enum = 7;
+    }
+}
+
+message UpdateFieldNumericDetails {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* The identifier for the field. */
+        string field_identifier = 2;
+
+        UpdateFieldNumericDetails update = 3;
+    }
+
+    /* Replace the unit for this field. Automatically replaces the type and the symbol based on the unit. */
+    Field.Numeric.Unit replace_unit = 4;
+
+    /* Replace the formatting for this field. The entire object must be configured. */
+    Field.Numeric.Format replace_format = 5;
+
+    /* Replace the unit for this field. Automatically replaces the type and the symbol based on the unit.
+     * Deprecated: use replace_unit instead
+     */
+    UnitOfMeasurement replace_unit_of_measurement = 6 [deprecated = true];
+}
+
+message UpdateFieldEnumValues {
+    message Request {
+
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* The identifier for the field. */
+        string field_identifier = 2;
+
+        UpdateFieldEnumValues update = 3;
+    }
+
+    message UpdateEnumValue {
+        /* The enum value. This might be a cryptic value, see the display_name and description for more information. */
+        string value = 1;
+
+        /* Update the user-facing name for this value. */
+        UpdateClearableString update_display_name = 2;
+
+        /* Update the description for this enum value. */
+        UpdateClearableString update_description = 3;
+
+        /* Update the color for this enum value. */
+        UpdateClearableString update_color = 4;
+
+        /* Update the priority, which is used to sort the enum values. */
+        UpdateZeroableInt update_priority = 5;
+    }
+
+    /* Add new enum values to this field. Fails when any already exist. */
+    repeated value.Value.Enum add_values = 4;
+
+    /* Remove enum values from this field. */
+    repeated string remove_values = 5;
+
+    /* Update enum value details for this field. */
+    repeated UpdateEnumValue update_values = 6;
+
+    /* Delete all enum values for this field and replace them with this set of enum values.
+     * Cannot be combined with update_values, for obvious reasons.
+     */
+    repeated value.Value.Enum replace_all_values = 7;
+}

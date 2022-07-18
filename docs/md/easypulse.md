@@ -44,11 +44,15 @@ somewhat customized Asset model.
   - [Easypulse.TargetValues.Update](#easypulsetargetvaluesupdate)
   - [Easypulse.TargetValues.Update.Request](#easypulsetargetvaluesupdaterequest)
   - [Easypulse.TargetValues.VolumeTargetValue](#easypulsetargetvaluesvolumetargetvalue)
+  - [Easypulse.TellTale](#easypulsetelltale)
+  - [Easypulse.TellTale.Indicator](#easypulsetelltaleindicator)
 
 - Enums
+  - [Easypulse.EngineState](#easypulseenginestate)
   - [Easypulse.History.Request.Aggregation](#easypulsehistoryrequestaggregation)
   - [Easypulse.History.Request.Sort](#easypulsehistoryrequestsort)
   - [Easypulse.ListAssets.Request.Sort](#easypulselistassetsrequestsort)
+  - [Easypulse.TellTale.Indicator.State](#easypulsetelltaleindicatorstate)
 
 - Referenced messages from [health.proto](#referenced-messages-from-healthproto)
   - [hiber.health.HealthLevel](#hiberhealthhealthlevel)
@@ -166,15 +170,21 @@ fuel level average over the past month, or total run time in the past week).
 | last_update | [ Easypulse.Asset.LastUpdate](#easypulseassetlastupdate) | When this asset was last updated. |
 | odometer | [ hiber.value.Value.Numeric.Distance](#hibervaluevaluenumericdistance) | Current value of the odometer. |
 | engine_runtime | [ hiber.Duration](#hiberduration) | Duration of total hours the engine has ran. |
-| fuel_used | [ hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume) | The total amount of fuel used by this vehicle. |
+| engine_idle_time | [ hiber.Duration](#hiberduration) | Duration of total hours the engine has idled. |
+| fuel_used_running | [ hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume) | The total amount of fuel used by this vehicle. |
+| fuel_used_idling | [ hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume) | The total amount of fuel used by this vehicle while idling. |
+| power_take_off_engagement_count | [ int32](#int32) | The amount of times the power-take-off was engaged |
+| power_take_off_engagement_duration | [ hiber.Duration](#hiberduration) | The duration the power-take-off was engaged for |
 | engine_oil_temperature | [ hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature) | Engine temperature. |
 | fuel_level | [ hiber.value.Value.Numeric.Percentage](#hibervaluevaluenumericpercentage) | The most recent fuel level. |
 | temperature | [ hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature) | The most recent temperature in degrees Celsius. |
 | speed | [ hiber.value.Value.Numeric.Speed](#hibervaluevaluenumericspeed) | The most recent speed measurement. |
+| rpm | [ int32](#int32) | The most recent peak rpm measurement. |
 | tire_pressure | [ hiber.value.Value.Numeric.Pressure](#hibervaluevaluenumericpressure) | The most recent tire pressure measurement. |
 | battery_level | [ hiber.value.Value.Numeric.BatteryLevel](#hibervaluevaluenumericbatterylevel) | The most recent battery level. |
 | location | [ hiber.Location](#hiberlocation) | The most recently reported location. |
 | aggregations | [map Easypulse.Asset.AggregationsEntry](#easypulseassetaggregationsentry) | Any aggregations added when this asset was requested. |
+| tell_tales | [repeated Easypulse.TellTale](#easypulsetelltale) | List of tell-tale status indicators. The order of the list is intentional. |
 
 ### Easypulse.Asset.AggregationsEntry
 
@@ -245,11 +255,17 @@ Request to get the history of a field, for the selected Assets in the organizati
 | idle_time | [ bool](#bool) | Get the history for the idle time. |
 | location | [ bool](#bool) | Get the history for the location. |
 | speed | [ bool](#bool) | Get the history for the speed. |
+| rpm | [ bool](#bool) | Get the history for the rpm of the engine |
+| engine_state | [ bool](#bool) | Get the history for the engine state |
 | fuel_efficiency | [ bool](#bool) | Get the fuel efficiency in ???. |
 | distance_traveled | [ bool](#bool) | Get the distance traveled in ???. |
 | odometer | [ bool](#bool) | Get the value of the odometer. (Total traveled distance by vehicle) |
 | engine_runtime | [ bool](#bool) | Get the total amount of run-time hours for the engine. |
-| fuel_used | [ bool](#bool) | Get the total amount of fuel used by this vehicle. |
+| engine_idle_time | [ bool](#bool) | Get the total amount of idle-time hours for the engine. |
+| fuel_used_running | [ bool](#bool) | Get the total amount of fuel used by the engine while running. |
+| fuel_used_idling | [ bool](#bool) | Get the total amount of fuel used by the engine while idling. |
+| power_take_off_engagement_count | [ bool](#bool) | Get the total amount of times the power take of was engaged. |
+| power_take_off_engagement_duration | [ bool](#bool) | Get the total duration of time the power take of was engaged. |
 | engine_oil_temperature | [ bool](#bool) | Get the history for the engine oil temperature. |
 | fuel_efficiency_score | [ bool](#bool) | Get the normalized score for the fuel efficiency, using a preconfigured baseline. |
 | distance_traveled_score | [ bool](#bool) | Get the normalized score for the distance traveled, using a preconfigured baseline. |
@@ -273,8 +289,8 @@ Processed historical data point. If this is a group, it will have a time range t
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.timestamp | [ hiber.Timestamp](#hibertimestamp) | When not grouping, time of the individual point. When grouping, the time at the end of the group (when the value was true). |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.time_range | [ hiber.TimeRange](#hibertimerange) | When grouping, the start and end time for the group. |
+| timestamp | [ hiber.Timestamp](#hibertimestamp) | When not grouping, time of the individual point. When grouping would return an exact data point (i.e. not an average), the time of that point. When grouping would not return an exact data point (i.e. average), the end of the time range. |
+| time_range | [ hiber.TimeRange](#hibertimerange) | When grouping, the start and end time for the group. |
 | fuel_level | [ float](#float) | The fuel level, as a percentage. |
 | tire_pressure_deprecated | [ float](#float) | The tire pressure in bar. |
 | battery_level_deprecated | [ float](#float) | The battery level, as a percentage. |
@@ -283,8 +299,10 @@ Processed historical data point. If this is a group, it will have a time range t
 | idle_time | [ hiber.Duration](#hiberduration) | The time the Asset was idle. |
 | location | [ hiber.Location](#hiberlocation) | The location of the asset at the timestamp, or the last location in the time range. |
 | speed_deprecated | [ float](#float) | The speed of the asset in km/h. |
+| rpm | [ int32](#int32) | none |
 | fuel_efficiency | [ float](#float) | Fuel efficiency in ???. |
 | distance_traveled | [ float](#float) | Distance traveled in ???. |
+| engine_state | [ Easypulse.EngineState](#easypulseenginestate) | State of the engine |
 | fuel_efficiency_score | [ float](#float) | Normalized score for the fuel efficiency, using a preconfigured baseline. |
 | distance_traveled_score | [ float](#float) | Normalized score for the distance traveled, using a preconfigured baseline. |
 | idle_time_score | [ float](#float) | Normalized score for the idle time, using a preconfigured baseline. |
@@ -292,7 +310,11 @@ Processed historical data point. If this is a group, it will have a time range t
 | utilization_score | [ float](#float) | Average normalized score for the run time, idle time, distance traveled and fuel efficiency. |
 | odometer | [ hiber.value.Value.Numeric.Distance](#hibervaluevaluenumericdistance) | Current value of the odometer. |
 | engine_runtime | [ hiber.Duration](#hiberduration) | Duration of total hours the engine has ran. |
-| fuel_used | [ hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume) | The total amount of fuel used by this vehicle. |
+| engine_idle_time | [ hiber.Duration](#hiberduration) | Duration of total hours the engine has been idling. |
+| fuel_used_running | [ hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume) | The total amount of fuel used by this vehicle. |
+| fuel_used_idling | [ hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume) | The total amount of fuel used by this vehicle while idling. |
+| power_take_off_engagement_count | [ int32](#int32) | none |
+| power_take_off_engagement_duration | [ hiber.Duration](#hiberduration) | none |
 | engine_oil_temperature | [ hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature) | Engine temperature. |
 | speed | [ hiber.value.Value.Numeric.Speed](#hibervaluevaluenumericspeed) | Speed of the asset. |
 | tire_pressure | [ hiber.value.Value.Numeric.Pressure](#hibervaluevaluenumericpressure) | The tire pressure of the asset. |
@@ -476,8 +498,40 @@ A target value that measures volume per time, i.e. 2 liters per day.
 | unit | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) | none |
 | per_time | [ hiber.value.Value.Numeric.DurationUnit](#hibervaluevaluenumericdurationunit) | none |
 
+### Easypulse.TellTale
+
+A tell tale is an indicator of a part of the system.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| indicator | [ Easypulse.TellTale.Indicator](#easypulsetelltaleindicator) | none |
+| name | [ string](#string) | none |
+| label | [ string](#string) | none |
+| description | [ string](#string) | none |
+| enum_value | [ hiber.value.Value.Enum](#hibervaluevalueenum) | none |
+
+### Easypulse.TellTale.Indicator
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| state | [ Easypulse.TellTale.Indicator.State](#easypulsetelltaleindicatorstate) | none |
+| color | [ string](#string) | none |
+| label | [ string](#string) | none |
+
 
 ## Enums
+### Easypulse.EngineState
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| OFF | none | 0 |
+| IDLING | none | 1 |
+| RUNNING | none | 2 |
+| RESERVED | none | 3 |
+
 ### Easypulse.History.Request.Aggregation
 Options to aggregate the history data points (in a group).
 
@@ -517,6 +571,18 @@ How to sort the returned values.
 | HIGHEST_TEMPERATURE | none | 13 |
 | HEALTH | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 14 |
 | HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 15 |
+
+### Easypulse.TellTale.Indicator.State
+The state of a tell-tale sensor. Ordinal numbers follow the spec of the CAN bus for states
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| OFF | The tell-tale has not been triggered. This can be considered an OK state. | 0 |
+| RED | The tell-tale indicates something is very wrong with the system it is monitoring. | 1 |
+| YELLOW | The tell-tale indicates something is wrong with the system it is monitoring, but not broken yet. | 2 |
+| INFO | The tell-tale indicates there is some information about the system it is monitoring. | 3 |
+| NOT_AVAILABLE | The tell-tale sensor for this system is not available. | 4 |
+| OTHER | Other, not part of the CAN-Bus spec. | 5 |
 
 
 

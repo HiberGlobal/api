@@ -15,9 +15,9 @@ syntax = "proto3";
 package hiber.modem.message.bodyparser;
 
 import "base.proto";
+import "field.proto";
 import "google/protobuf/struct.proto";
 import "modem.proto";
-import "value.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.modem.message.bodyparser";
@@ -130,7 +130,7 @@ message ModemMessageBodyParser {
     /* Fields in the parsed result that contain data.
      * Data fields are cached for efficient retrieval and allow all kinds of processing.
      */
-    repeated value.Field data_fields = 11;
+    repeated field.Field data_fields = 11;
     repeated string data_fields_deprecated = 9 [deprecated = true];
 
     /* Fields in the parsed result that contain metadata, and special things like a location. */
@@ -315,7 +315,7 @@ message UploadModemMessageBodyParserRequest {
     /* Fields in the parsed result that contain data.
      * This can be useful to track which fields could be plotted, etc.
      */
-    repeated value.Field data_fields = 5;
+    repeated field.Field data_fields = 5;
 
     /* Fields in the parsed result that match special things that can be processed by the system, like a location. */
     ModemMessageBodyParser.MetadataFields metadata_fields = 10;
@@ -360,7 +360,7 @@ message UpdateUploadedModemMessageBodyParserRequest {
     string content_ksy = 3;
 
     /* Add fields to the data fields list. */
-    repeated value.Field add_data_fields = 7;
+    repeated field.Field add_data_fields = 7;
 
     /* Remove fields from the data fields list. */
     repeated string remove_data_fields = 6;

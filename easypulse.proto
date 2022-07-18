@@ -125,6 +125,9 @@ message Easypulse {
         /* Any aggregations added when this asset was requested. */
         map<string, History.Response> aggregations = 16;
 
+        /* List of tell-tale status indicators. The order of the list is intentional.*/
+        repeated TellTale tell_tales = 33;
+
         /* Information about the last update we received from this asset. */
         message LastUpdate {
             uint64 id = 1;
@@ -352,15 +355,14 @@ message Easypulse {
 
             /* Processed historical data point. If this is a group, it will have a time range to denote the group. */
             message Value {
-                oneof time {
-                    /* When not grouping, time of the individual point.
-                     * When grouping, the time at the end of the group (when the value was true).
-                     */
-                    Timestamp timestamp = 1;
+                /* When not grouping, time of the individual point.
+                 * When grouping would return an exact data point (i.e. not an average), the time of that point.
+                 * When grouping would not return an exact data point (i.e. average), the end of the time range.
+                 */
+                Timestamp timestamp = 1;
 
-                    /* When grouping, the start and end time for the group. */
-                    TimeRange time_range = 2;
-                }
+                /* When grouping, the start and end time for the group. */
+                TimeRange time_range = 2;
 
                 /* The fuel level, as a percentage. */
                 float fuel_level = 3;
@@ -561,4 +563,37 @@ message Easypulse {
         RUNNING = 2;
         RESERVED = 3;
     }
+
+    /* A tell tale is an indicator of a part of the system. */
+    message TellTale {
+        Indicator indicator = 1;
+        string name = 2;
+        string label = 3;
+        string description = 4;
+        value.Value.Enum enum_value = 5;
+
+        message Indicator {
+            State state = 1;
+            string color = 2;
+            string label = 3;
+
+            /* The state of a tell-tale sensor. Ordinal numbers follow the spec of the CAN bus for states */
+            enum State {
+                /* The tell-tale has not been triggered. This can be considered an OK state. */
+                OFF = 0;
+                /* The tell-tale indicates something is very wrong with the system it is monitoring. */
+                RED = 1;
+                /* The tell-tale indicates something is wrong with the system it is monitoring, but not broken yet. */
+                YELLOW = 2;
+                /* The tell-tale indicates there is some information about the system it is monitoring. */
+                INFO = 3;
+                /* The tell-tale sensor for this system is not available. */
+                NOT_AVAILABLE = 4;
+
+                /* Other, not part of the CAN-Bus spec. */
+                OTHER = 5;
+            }
+        }
+    }
+
 }

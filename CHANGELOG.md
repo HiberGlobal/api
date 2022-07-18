@@ -2,6 +2,66 @@
 
 #### Upcoming Changes
 
+### 0.114 (2022-07-18)
+
+##### EasypulseService
+
+- Added tell-tale fields to EasyPulse Assets
+- Improved accuracy for history results:
+  - Removed `oneof` around `timestamp` and `time_range` in `History.Response.Value`.
+    Instead, `timestamp` will be set when we have an exact time:
+    - When not grouping, time of the individual point (and `time_range` would not be set, as before)
+    - When the aggregation applies to a single data point, time of that point
+    - When the aggregation would return an exact data point (i.e. LAST), the time of that point.
+    - When the aggregation would not return an exact data point (i.e. AVERAGE), no value is set for timestamp.
+
+##### EventService
+
+- Fixed a bug where some `PublisherEvent.UpdatedEvent` would not be saved.
+
+##### Field
+
+- Extracted field from `value.proto` to `field.proto`
+- **[B]** Changed package to `field`, instead of `value`
+  - Doesn't break backwards compatibility, but requires code changes when proto files are recompiled
+    because the package changed.
+
+##### FieldService
+
+- Introducing the FieldService to manage fields:
+  - `List`: list fields for an organization based on all parsers.
+  - `Add`: add fields to a parser.
+  - `Update`: update a field, changing the `display_name`, `priority`, numeric details or enum values.
+  - `UpdateNumericDetails`: just update the numeric details on a field.
+  - `UpdateEnumValues`: just update the enum values for a field.
+  - `Delete`: delete a field (from a parser).
+
+##### MessageService
+
+- Improved accuracy for history results:
+  - Removed `oneof` around `timestamp` and `time_range` in `MessageBodyFieldHistory.Response.TimedValue`.
+    Instead, `timestamp` will be set when we have an exact time:
+    - When not grouping, time of the individual point (and `time_range` would not be set, as before)
+    - When the aggregation applies to a single data point, time of that point
+    - When the aggregation would return an exact data point (i.e. LAST), the time of that point.
+    - When the aggregation would not return an exact data point (i.e. AVERAGE), no value is set for timestamp.
+
+##### ModemAlarmService
+
+- Renamed `OneOfCheck` to `AllowedCheck` in `ModemAlarm.Check.Field`.
+- Added `BlockedCheck` in `ModemAlarm.Check.Field`, which is the opposite of the `AllowedCheck`:
+  if the value is in the `blocked` list, the alarm is triggered.
+
+##### UnitPreferencesService
+
+- Extracted UnitPreferencesService from `value.proto` to `unit_preferences_service.proto`
+
+##### Value
+
+- Added `Value.Enum` with the enum `value`, `display_name` and optional `description`, `color` and `priority`.
+
+### 0.113 (2022-07-04)
+
 ### 0.112 (2022-06-27)
 
 - Added new fields for EasyPulse Assets

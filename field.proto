@@ -1,0 +1,144 @@
+syntax = "proto3";
+
+package hiber.field;
+
+import "base.proto";
+import "value.proto";
+
+option java_multiple_files = true;
+option java_package = "global.hiber.api.grpc.field";
+option go_package = "hiber";
+
+message Field {
+    /* If the field is numeric, this specifies the unit and formatting details for the field. */
+    message Numeric {
+        message Unit {
+            oneof unit {
+                value.Value.Numeric.BatteryLevel.Unit battery_level = 1;
+                value.Value.Numeric.Distance.Unit distance = 2;
+                value.Value.Numeric.DurationUnit duration = 3;
+                value.Value.Numeric.FuelEfficiency.Unit fuel_efficiency = 4;
+                value.Value.Numeric.Flow.Unit flow = 5;
+                value.Value.Numeric.Percentage.Unit percentage = 12;
+                value.Value.Numeric.Pressure.Unit pressure = 6;
+                value.Value.Numeric.Speed.Unit speed = 7;
+                value.Value.Numeric.Temperature.Unit temperature = 8;
+                value.Value.Numeric.Voltage.Unit voltage = 9;
+                value.Value.Numeric.Volume.Unit volume = 10;
+                value.Value.Numeric.Mass.Unit mass = 11;
+            }
+        }
+
+        /* Formatting options for the field. */
+        message Format {
+            /* How to round the value when scale is applied.
+             * For example, a value of 3.1415 with scale 3 could be
+             *   4.141 (DOWN, HALF_DOWN, FLOOR) or
+             *   4.142 (HALF_UP, UP, CEILING).
+             */
+            enum RoundingMode {
+                /* Round towards "nearest neighbor" unless both neighbors are equidistant, in which case round up
+                 * Effectively round up when >= .5, otherwise round down.
+                 */
+                HALF_UP = 0;
+
+                /* Round towards "nearest neighbor" unless both neighbors are equidistant, in which case round down.
+                 * Effectively round up when > .5, otherwise round down.
+                 */
+                HALF_DOWN = 1;
+
+                /* Round away from zero: 1.1 -> 2, while -1.1 -> -2. */
+                UP = 3;
+
+                /* Round towards zero: 1.1 -> 1, while -1.1 -> -1. */
+                DOWN = 4;
+
+                /* Round towards positive infinity. */
+                CEILING = 5;
+
+                /* Round towards negative infinity. */
+                FLOOR = 6;
+
+                /* Round towards the "nearest neighbor" unless both neighbors are equidistant, in which case,
+                 * round towards the even neighbor.
+                 * Effectively round up when >= .5 and next integer value is even, otherwise round down.
+                 */
+                HALF_EVEN = 7;
+            }
+
+            /* Whether to round the value. */
+            oneof round {
+                /* Round to an integer. */
+                bool round_to_integer = 3;
+
+                /* Round to a number of decimals (at least 1). */
+                uint32 round_to_scale = 1;
+            }
+
+            /* How to round the value when scale is applied. */
+            RoundingMode rounding_mode = 2;
+        }
+
+        /* The type of numeric value. */
+        value.Value.Numeric.Type type = 1;
+
+        /* The symbol to use for the field's unit. */
+        string symbol = 2;
+
+        /* How to format the values (number of decimals, rounding, etc.). */
+        Format format = 3;
+
+        /* The unit for the field, depending on the type. */
+        Unit unit = 4;
+
+        /* If the unit preferences were applied, and the unit is different, the field will be converted to the preferred
+         * unit, from the original unit specified in this field.
+         */
+        Unit converted_from = 5;
+    }
+
+    /* If the field is an enum, this specifies the enum values for the field. */
+    message Enum {
+        repeated value.Value.Enum values = 1;
+    }
+
+    /* Unique identifier for this field. */
+    string identifier = 11;
+
+    /* The name of the field (if in the root structure) or a JsonPath to the field. */
+    string field = 1;
+
+    /* An optional display name for the field. */
+    string display_name = 2;
+
+    /* Priority of the field, typically used for ordering. */
+    int32 priority = 7;
+
+    /* The type of value the field contains. */
+    value.Value.Type type = 5;
+
+    /* The details for the type.
+     * Value.Type.TEXT has no details.
+     */
+    oneof details {
+        Numeric numeric = 9;
+        Enum enum = 10;
+    }
+
+    /* Whether this field should be stored encrypted or not.
+     * If it is, some processing options may be unavailable or slower.
+     */
+    bool encrypted = 3;
+
+    /* If numeric, the unit of the field.
+     * Deprecated: use numeric.numeric_unit oneof instead
+     */
+    UnitOfMeasurement unit_of_measurement = 4 [deprecated = true];
+
+    /* The symbol for the unit.
+     * Deprecated: use numeric.symbol instead
+     */
+    string unit_symbol = 6 [deprecated = true];
+
+    reserved 8;
+}

@@ -9,6 +9,7 @@ package hiber.message;
 import "google/protobuf/struct.proto";
 
 import "base.proto";
+import "field.proto";
 import "modem.proto";
 import "tag.proto";
 import "value.proto";
@@ -198,13 +199,13 @@ message AvailableMessageBodyFields {
         /* Deprecated wrapper for backwards compatibility */
         message FieldWrapperDeprecated {
             option deprecated = true;
-            value.Field field = 1;
+            field.Field field = 1;
         }
 
         message ModemWithFields {
             string modem = 1;
             repeated FieldWrapperDeprecated message_body_fields_deprecated = 2 [deprecated = true];
-            repeated value.Field message_body_fields = 3;
+            repeated field.Field message_body_fields = 3;
         }
 
         repeated ModemWithFields modems = 1;
@@ -212,7 +213,7 @@ message AvailableMessageBodyFields {
         Pagination.Result pagination = 3;
 
         /* A merged result of all fields, for all modems. This can be useful to display table columns, for example. */
-        repeated value.Field total = 4;
+        repeated field.Field total = 4;
     }
 }
 
@@ -301,15 +302,14 @@ message MessageBodyFieldHistory {
 
         /* Processed historical data point. If this is a group, it will have a time range to denote the group. */
         message TimedValue {
-            oneof time {
-                /* When not grouping, time of the individual point.
-                 * When grouping, the time at the end of the group (when the value was true).
-                 */
-                Timestamp timestamp = 1;
+            /* When not grouping, time of the individual point.
+             * When grouping would return an exact data point (i.e. not an average), the time of that point.
+             * When grouping would not return an exact data point (i.e. average), the end of the time range.
+             */
+            Timestamp timestamp = 1;
 
-                /* When grouping, the start and end time for the group. */
-                TimeRange time_range = 2;
-            }
+            /* When grouping, the start and end time for the group. */
+            TimeRange time_range = 2;
 
             /* The values for the given fields (if available).
              * When the user has unit preferences set, they are applied to these values.
