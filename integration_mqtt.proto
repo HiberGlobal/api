@@ -63,10 +63,17 @@ message MQTTPublisher {
         /* Optional password to authenticate with. Requires username to be set. */
         string password = 7;
 
+        /* Client certificate to use when connecting to the MQTT server. */
         int64 certificate_id = 8;
         string certificate_name = 10;
+
+        /* CA certificate for the client certificate to use when connecting to the MQTT server. */
         int64 ca_certificate_id = 11;
         string ca_certificate_name = 12;
+
+        /* Server CA certificate to use when connecting to the MQTT server. */
+        int64 server_ca_certificate_id = 13;
+        string server_ca_certificate_name = 14;
 
         bool disabled = 9;
 
@@ -116,8 +123,12 @@ message MQTTPublisherSelection {
     /* Partial text match on the topic. */
     string search_topic = 4;
 
+    /* Only return MQTT integrations that use the given content types. */
     repeated MQTTPublisher.ContentType content_types = 5;
+
+    /* Filter by referenced certificate (id), either as client or server certificate. */
     repeated int64 certificate_ids = 6;
+
     hiber.tag.TagSelection tags = 7;
     repeated Health health = 8;
 }
@@ -212,12 +223,18 @@ message CreateMQTTPublisherRequest {
     /* Optional password to authenticate with. Requires username to be set. */
     string password = 16;
 
+    /* Client certificate to use when connecting to the MQTT server. */
     int64 certificate_id = 17;
+
+    /* Server CA certificate to use when connecting to the MQTT server. */
+    int64 server_ca_certificate_id = 21;
 
     /* Disable the MQTT publisher after creation, so it needs to be enabled before it is active. */
     bool disabled = 18;
 
     repeated int64 tags = 20;
+
+    reserved 19;
 }
 
 /* Enable a disabled publisher or re-enable a publisher that's failed and is in cooldown. */
@@ -273,7 +290,11 @@ message UpdateMQTTPublisherRequest {
     /* Optional password to authenticate with. Requires username to be set. */
     UpdateClearableString password = 17;
 
+    /* Update or remove the client certificate to use when connecting to the MQTT server. */
     UpdateOptionalId certificate_id = 18;
+
+    /* Update or remove the server CA certificate to use when connecting to the MQTT server. */
+    UpdateOptionalId server_ca_certificate_id = 23;
 
     /* Disable the MQTT publisher, so it needs to be enabled again before it is active. */
     UpdateBoolean active = 19;

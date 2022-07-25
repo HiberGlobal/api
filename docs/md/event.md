@@ -66,7 +66,6 @@
   - [Event.PublisherEvent.DeletedEvent](#eventpublishereventdeletedevent)
   - [Event.PublisherEvent.FailedEvent](#eventpublishereventfailedevent)
   - [Event.PublisherEvent.UpdatedEvent](#eventpublishereventupdatedevent)
-  - [Event.PublisherEvent.UpdatedEvent.AWSIoTUpdate](#eventpublishereventupdatedeventawsiotupdate)
   - [Event.PublisherEvent.UpdatedEvent.EmailUpdate](#eventpublishereventupdatedeventemailupdate)
   - [Event.PublisherEvent.UpdatedEvent.MQTTUpdate](#eventpublishereventupdatedeventmqttupdate)
   - [Event.PublisherEvent.UpdatedEvent.WebhookUpdate](#eventpublishereventupdatedeventwebhookupdate)
@@ -218,21 +217,6 @@
 - Referenced messages from [health.proto](#referenced-messages-from-healthproto)
   - [hiber.health.HealthLevel](#hiberhealthhealthlevel)
   - [hiber.health.HealthLevelSelection](#hiberhealthhealthlevelselection)
-
-
-- Referenced messages from [integration_aws_iot.proto](#referenced-messages-from-integration_aws_iotproto)
-  - [hiber.integration.awsiot.AWSIoTConfiguration](#hiberintegrationawsiotawsiotconfiguration)
-  - [hiber.integration.awsiot.AWSIoTConfiguration.HealthConfig](#hiberintegrationawsiotawsiotconfigurationhealthconfig)
-  - [hiber.integration.awsiot.AWSIoTIntegrationConfigurationRequest](#hiberintegrationawsiotawsiotintegrationconfigurationrequest)
-  - [hiber.integration.awsiot.AWSIoTIntegrationConfigurationRequest.Response](#hiberintegrationawsiotawsiotintegrationconfigurationrequestresponse)
-  - [hiber.integration.awsiot.DisableAWSIoTIntegrationRequest](#hiberintegrationawsiotdisableawsiotintegrationrequest)
-  - [hiber.integration.awsiot.DisableAWSIoTIntegrationRequest.Response](#hiberintegrationawsiotdisableawsiotintegrationrequestresponse)
-  - [hiber.integration.awsiot.EnableAWSIoTIntegrationRequest](#hiberintegrationawsiotenableawsiotintegrationrequest)
-  - [hiber.integration.awsiot.EnableAWSIoTIntegrationRequest.Response](#hiberintegrationawsiotenableawsiotintegrationrequestresponse)
-  - [hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest](#hiberintegrationawsiotinitializeawsiotintegrationrequest)
-  - [hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.Response](#hiberintegrationawsiotinitializeawsiotintegrationrequestresponse)
-  - [hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest](#hiberintegrationawsiotupdateawsiotintegrationconfigurationrequest)
-  - [hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.Response](#hiberintegrationawsiotupdateawsiotintegrationconfigurationrequestresponse)
 
 
 - Referenced messages from [integration_mqtt.proto](#referenced-messages-from-integration_mqttproto)
@@ -1347,7 +1331,6 @@ This event is disabled by default.
 | partial_update_data | [ hiber.publisher.Publisher.Data](#hiberpublisherpublisherdata) | Deprecated in favor of the new updated_data field |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.webhook | [ Event.PublisherEvent.UpdatedEvent.WebhookUpdate](#eventpublishereventupdatedeventwebhookupdate) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.mqtt | [ Event.PublisherEvent.UpdatedEvent.MQTTUpdate](#eventpublishereventupdatedeventmqttupdate) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.aws_iot | [ Event.PublisherEvent.UpdatedEvent.AWSIoTUpdate](#eventpublishereventupdatedeventawsiotupdate) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.email | [ Event.PublisherEvent.UpdatedEvent.EmailUpdate](#eventpublishereventupdatedeventemailupdate) | none |
 | updated_event_filter | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) | none |
 | updated_modem_filter | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | none |
@@ -1358,16 +1341,6 @@ This event is disabled by default.
 | title | [ string](#string) | none |
 | description | [ string](#string) | none |
 | time | [ hiber.Timestamp](#hibertimestamp) | none |
-
-### Event.PublisherEvent.UpdatedEvent.AWSIoTUpdate
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| aws_iot_url | [ string](#string) | none |
-| certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | none |
-| mqtt_client_identifier | [ string](#string) | none |
 
 ### Event.PublisherEvent.UpdatedEvent.EmailUpdate
 
@@ -2516,6 +2489,7 @@ timestamps:
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) | none |
+| time_zone | [ string](#string) | none |
 | textual | [ string](#string) | none |
 
 ### hiber.UpdateBoolean
@@ -3038,138 +3012,6 @@ Error will change:
 ### Enums
 
 
-## Referenced messages from integration_aws_iot.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
-
-#### This section was generated from [integration_aws_iot.proto](https://github.com/HiberGlobal/api/blob/master/integration_aws_iot.proto).
-
-
-### hiber.integration.awsiot.AWSIoTConfiguration
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| publisher_id | [ int64](#int64) | none |
-| created_by | [ string](#string) | The uid of the user that created this publisher. |
-| url | [ string](#string) | none |
-| modems | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
-| certificate_id | [ int64](#int64) | none |
-| certificate_name | [ string](#string) | none |
-| ca_certificate_id | [ int64](#int64) | none |
-| ca_certificate_name | [ string](#string) | none |
-| disabled | [ bool](#bool) | none |
-| mqtt_client_identifier | [ string](#string) | none |
-| health | [ hiber.Health](#hiberhealth) | none |
-| health_config | [ hiber.integration.awsiot.AWSIoTConfiguration.HealthConfig](#hiberintegrationawsiotawsiotconfigurationhealthconfig) | none |
-
-### hiber.integration.awsiot.AWSIoTConfiguration.HealthConfig
-
-Health configuration for the AWS IoT integration. Defines how the health is calculated.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| health_warning_period | [ hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. |
-| health_warning_failure_percentage | [ int32](#int32) | Allowed percentage of failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
-
-### hiber.integration.awsiot.AWSIoTIntegrationConfigurationRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-
-### hiber.integration.awsiot.AWSIoTIntegrationConfigurationRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| aws_iot_configuration | [ hiber.integration.awsiot.AWSIoTConfiguration](#hiberintegrationawsiotawsiotconfiguration) | none |
-
-### hiber.integration.awsiot.DisableAWSIoTIntegrationRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-
-### hiber.integration.awsiot.DisableAWSIoTIntegrationRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| aws_iot_configuration | [ hiber.integration.awsiot.AWSIoTConfiguration](#hiberintegrationawsiotawsiotconfiguration) | none |
-
-### hiber.integration.awsiot.EnableAWSIoTIntegrationRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-
-### hiber.integration.awsiot.EnableAWSIoTIntegrationRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| aws_iot_configuration | [ hiber.integration.awsiot.AWSIoTConfiguration](#hiberintegrationawsiotawsiotconfiguration) | none |
-
-### hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| aws_iot_url | [ string](#string) | Your AWS IoT url, i.e. ${identifier}-ats.iot.${region}.amazonaws.com. |
-| existing_certificate_id | [ int64](#int64) | If you've previously uploaded your AWS IoT certificate, CA certificate and private key, use their id here. |
-| upload_certificate | [ hiber.certificate.UploadCertificateRequest](#hibercertificateuploadcertificaterequest) | If you've not previously uploaded your AWS IoT certificate, upload it now using this message. |
-| modems | [ hiber.Filter.Modems](#hiberfiltermodems) | Limit the modems to activate AWS IoT integration for. |
-| mqtt_client_identifier | [ string](#string) | Identifier that the MQTT client uses. Defaults to 'hiber'. |
-
-### hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| aws_iot_configuration | [ hiber.integration.awsiot.AWSIoTConfiguration](#hiberintegrationawsiotawsiotconfiguration) | none |
-| request | [ hiber.integration.awsiot.InitializeAWSIoTIntegrationRequest](#hiberintegrationawsiotinitializeawsiotintegrationrequest) | none |
-
-### hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| aws_iot_url | [ string](#string) | none |
-| certificate_id | [ int64](#int64) | none |
-| modems | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | none |
-| mqtt_client_identifier | [ string](#string) | none |
-| health_warning_period | [ hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
-| health_warning_failure_percentage | [ hiber.UpdateZeroableInt](#hiberupdatezeroableint) | Allowed percentage of failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
-
-### hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| aws_iot_configuration | [ hiber.integration.awsiot.AWSIoTConfiguration](#hiberintegrationawsiotawsiotconfiguration) | none |
-| request | [ hiber.integration.awsiot.UpdateAWSIoTIntegrationConfigurationRequest](#hiberintegrationawsiotupdateawsiotintegrationconfigurationrequest) | none |
-
-
-### Enums
-
-
 ## Referenced messages from integration_mqtt.proto
 (Note that these are included because there is a proto dependency on the file,
 so not all messages listed here are referenced.)
@@ -3195,7 +3037,8 @@ so not all messages listed here are referenced.)
 | identifier | [ string](#string) | Identifier used by the MQTT client. Defaults to "hiber". |
 | username | [ string](#string) | Optional username to authenticate with. |
 | password | [ string](#string) | Optional password to authenticate with. Requires username to be set. |
-| certificate_id | [ int64](#int64) | none |
+| certificate_id | [ int64](#int64) | Client certificate to use when connecting to the MQTT server. |
+| server_ca_certificate_id | [ int64](#int64) | Server CA certificate to use when connecting to the MQTT server. |
 | disabled | [ bool](#bool) | Disable the MQTT publisher after creation, so it needs to be enabled before it is active. |
 | tags | [repeated int64](#int64) | none |
 
@@ -3312,10 +3155,12 @@ Enable a disabled publisher or re-enable a publisher that's failed and is in coo
 | identifier | [ string](#string) | Identifier used by the MQTT client. Defaults to "hiber". |
 | username | [ string](#string) | Optional username to authenticate with. |
 | password | [ string](#string) | Optional password to authenticate with. Requires username to be set. |
-| certificate_id | [ int64](#int64) | none |
+| certificate_id | [ int64](#int64) | Client certificate to use when connecting to the MQTT server. |
 | certificate_name | [ string](#string) | none |
-| ca_certificate_id | [ int64](#int64) | none |
+| ca_certificate_id | [ int64](#int64) | CA certificate for the client certificate to use when connecting to the MQTT server. |
 | ca_certificate_name | [ string](#string) | none |
+| server_ca_certificate_id | [ int64](#int64) | Server CA certificate to use when connecting to the MQTT server. |
+| server_ca_certificate_name | [ string](#string) | none |
 | disabled | [ bool](#bool) | none |
 
 ### hiber.integration.mqtt.MQTTPublisher.HealthConfig
@@ -3367,8 +3212,8 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 | description | [ string](#string) | Partial text match on the description. |
 | search_url | [ string](#string) | Partial text match on the url. |
 | search_topic | [ string](#string) | Partial text match on the topic. |
-| content_types | [repeated hiber.integration.mqtt.MQTTPublisher.ContentType](#hiberintegrationmqttmqttpublishercontenttype) | none |
-| certificate_ids | [repeated int64](#int64) | none |
+| content_types | [repeated hiber.integration.mqtt.MQTTPublisher.ContentType](#hiberintegrationmqttmqttpublishercontenttype) | Only return MQTT integrations that use the given content types. |
+| certificate_ids | [repeated int64](#int64) | Filter by referenced certificate (id), either as client or server certificate. |
 | tags | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
 | health | [repeated hiber.Health](#hiberhealth) | none |
 
@@ -3391,7 +3236,8 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 | identifier | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Identifier used by the MQTT client. Defaults to "hiber". |
 | username | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Optional username to authenticate with. |
 | password | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Optional password to authenticate with. Requires username to be set. |
-| certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | none |
+| certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | Update or remove the client certificate to use when connecting to the MQTT server. |
+| server_ca_certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | Update or remove the server CA certificate to use when connecting to the MQTT server. |
 | active | [ hiber.UpdateBoolean](#hiberupdateboolean) | Disable the MQTT publisher, so it needs to be enabled again before it is active. |
 | health_warning_period | [ hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
 | health_warning_failure_percentage | [ hiber.UpdateZeroableInt](#hiberupdatezeroableint) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
@@ -3867,6 +3713,7 @@ A check that evaluates each new message, and checks selected field(s) in the par
 When multiple fields are selected, the checks are applied to all of them individually.
 
 See the Json Path documentation at https://goessner.net/articles/JsonPath/ for details on json path.
+We currently do not allow filter expressions.
 
 Simple examples selecting a field:
 - $.my_field: a field in the root of the parsed object
@@ -3876,9 +3723,6 @@ Simple examples selecting a field:
 Complex use cases are also possible, but they require a bit more understanding of json path logic:
 - $.my_array.length(): the length of my_array is selected. Combine with an equals or threshold check,
 to require that an array has a certain length.
-- $.my_array[?(@.name == 'D')]: the array of all objects in my_array where name equals 'D' is selected.
-- $.my_array[?(@.name == 'D')]..my_field: the array of my_field values from all objects in
-my_array where name equals 'D' is selected.
 - $.my_array..my_field: the array of my_field values (for all objects in my_array) is selected
 - $.my_array[*].my_field: the array of my_field values (for all objects in my_array) is selected
 
@@ -5326,7 +5170,6 @@ so not all messages listed here are referenced.)
 Generic publisher. A Publisher is a generic parent of the
 - webhook publisher
 - MQTT publisher
-- AWS IoT publisher
 - email publisher
 
 As such, it has common data and can have a configuration for one of those types.
@@ -5334,7 +5177,6 @@ As such, it has common data and can have a configuration for one of those types.
 Used to have it's own API encompassing everything, but this has been split up to its individual parts in
 - WebhookService
 - MQTTService
-- AWSIoTService
 - EmailNotificationPreferencesService
 
 Now, this types is only used in the relevant events.
@@ -5353,7 +5195,6 @@ Now, this types is only used in the relevant events.
 | created_by | [ string](#string) | Firebase uid of the user that created this publisher |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.http | [ hiber.webhook.Webhook.WebhookData](#hiberwebhookwebhookwebhookdata) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.mqtt | [ hiber.integration.mqtt.MQTTPublisher.Data](#hiberintegrationmqttmqttpublisherdata) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.aws_iot | [ hiber.integration.awsiot.AWSIoTConfiguration](#hiberintegrationawsiotawsiotconfiguration) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.email | [ hiber.email.EmailNotificationPreferences](#hiberemailemailnotificationpreferences) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.slack | [ hiber.integration.slack.SlackPublisher.Data](#hiberintegrationslackslackpublisherdata) | none |
 
@@ -5445,7 +5286,6 @@ This type remains for backwards compatibility, but it should not be used.
 | ---- | ----------- | ------ |
 | HTTP | none | 0 |
 | MQTT | none | 1 |
-| AWS_IOT | none | 2 |
 | EMAIL | none | 3 |
 | SLACK | none | 4 |
 

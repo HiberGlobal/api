@@ -4,7 +4,6 @@ package hiber.publisher;
 
 import "base.proto";
 import "email_notifications.proto";
-import "integration_aws_iot.proto";
 import "integration_mqtt.proto";
 import "integration_slack.proto";
 import "tag.proto";
@@ -18,7 +17,6 @@ option go_package = "hiber";
 /* Generic publisher. A Publisher is a generic parent of the
  * - webhook publisher
  * - MQTT publisher
- * - AWS IoT publisher
  * - email publisher
  *
  * As such, it has common data and can have a configuration for one of those types.
@@ -26,7 +24,6 @@ option go_package = "hiber";
  * Used to have it's own API encompassing everything, but this has been split up to its individual parts in
  * - WebhookService
  * - MQTTService
- * - AWSIoTService
  * - EmailNotificationPreferencesService
  *
  * Now, this types is only used in the relevant events.
@@ -51,10 +48,11 @@ message Publisher {
     oneof data {
         webhook.Webhook.WebhookData http = 10;
         integration.mqtt.MQTTPublisher.Data mqtt = 11;
-        integration.awsiot.AWSIoTConfiguration aws_iot = 12;
         email.EmailNotificationPreferences email = 13;
         integration.slack.SlackPublisher.Data slack = 14;
     }
+
+    reserved 12;
 
     /* This type remains for backwards compatibility, but it should not be used. */
     enum ContentType {
@@ -68,9 +66,10 @@ message Publisher {
     enum Type {
         HTTP = 0;
         MQTT = 1;
-        AWS_IOT = 2;
         EMAIL = 3;
         SLACK = 4;
+
+        reserved 2;
     }
 
     /* This type remains for backwards compatibility, but it should not be used. */

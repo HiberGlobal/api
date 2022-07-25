@@ -8,7 +8,6 @@ import "assignment.proto";
 import "base.proto";
 import "export.proto";
 import "health.proto";
-import "integration_aws_iot.proto";
 import "integration_mqtt.proto";
 import "modem.proto";
 import "modem_alarm.proto";
@@ -630,12 +629,6 @@ message Event {
                 UpdateOptionalId certificate_id = 8;
             }
 
-            message AWSIoTUpdate {
-                string aws_iot_url = 2;
-                UpdateOptionalId certificate_id = 3;
-                string mqtt_client_identifier = 5;
-            }
-
             message EmailUpdate {
             }
 
@@ -648,7 +641,6 @@ message Event {
             oneof updated_data {
                 WebhookUpdate webhook = 15;
                 MQTTUpdate mqtt = 16;
-                AWSIoTUpdate aws_iot = 17;
                 EmailUpdate email = 18;
             }
 
@@ -664,6 +656,8 @@ message Event {
             string title = 9;
             string description = 10;
             Timestamp time = 11;
+
+            reserved 17;
         }
 
         message DeletedEvent {

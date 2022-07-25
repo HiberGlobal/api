@@ -2,6 +2,29 @@
 
 #### Upcoming Changes
 
+### 0.115 (2022-07-25)
+
+##### AWSIoTService
+
+- **[B]** Removed the AWS IoT Integration. It was not used and outdated, and may be replaced in the future.
+
+##### ModemAlarmService
+
+- Removed support for JsonPath filter expressions for now.
+- Added validation to check names: spaces and most symbols except for `_` and `-` and no longer allowed.
+
+##### MQTTService
+
+- Improved error handling and messages.
+- Fixed an issue where setting a password could result in an internal server error because of
+  incorrect encryption parameters.
+- Improved MQTT client reliability.
+- Added server CA certificate option.
+
+##### base.proto
+
+- Added `time_zone` to `Timestamp`. It will mostly be empty (UTC), but might be used when a modem has a time zone.
+
 ### 0.114 (2022-07-18)
 
 ##### EasypulseService

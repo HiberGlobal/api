@@ -73,7 +73,7 @@ enum OrganizationPermission {
     /* Approve or create new users, remove users from the organization. Includes users permission. */
     USERS_MANAGE = 31;
 
-    /* Manage publishers: webhooks, MQTT integration, AWS IoT integration and custom email publishers. */
+    /* Manage publishers: webhooks, MQTT integration and custom email publishers. */
     PUBLISHERS = 35;
     /* Manage tokens. */
     TOKENS = 36;

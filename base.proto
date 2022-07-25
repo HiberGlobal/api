@@ -101,6 +101,7 @@ message DoubleRange {
  */
 message Timestamp {
     google.protobuf.Timestamp timestamp = 1;
+    string time_zone = 2;
     string textual = 4;
 }
 

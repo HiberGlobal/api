@@ -988,6 +988,7 @@ timestamps:
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) | none |
+| time_zone | [ string](#string) | none |
 | textual | [ string](#string) | none |
 
 ### hiber.UpdateBoolean

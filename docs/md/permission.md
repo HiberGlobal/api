@@ -51,7 +51,7 @@ Requesting user-related events explicitly if you cannot access the users will re
 | MODEM_CLAIM | Claiming modems. | 25 |
 | USERS | List all users, see their names and email addresses. | 30 |
 | USERS_MANAGE | Approve or create new users, remove users from the organization. Includes users permission. | 31 |
-| PUBLISHERS | Manage publishers: webhooks, MQTT integration, AWS IoT integration and custom email publishers. | 35 |
+| PUBLISHERS | Manage publishers: webhooks, MQTT integration and custom email publishers. | 35 |
 | TOKENS | Manage tokens. | 36 |
 | CERTIFICATES | Read and use uploaded certificates (i.e. for publishers). | 38 |
 | CERTIFICATES_MANAGE | Upload certificates, and update or delete uploaded certificates. | 39 |

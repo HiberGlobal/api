@@ -1457,6 +1457,7 @@ A check that evaluates each new message, and checks selected field(s) in the par
 When multiple fields are selected, the checks are applied to all of them individually.
 
 See the Json Path documentation at https://goessner.net/articles/JsonPath/ for details on json path.
+We currently do not allow filter expressions.
 
 Simple examples selecting a field:
 - $.my_field: a field in the root of the parsed object
@@ -1466,9 +1467,6 @@ Simple examples selecting a field:
 Complex use cases are also possible, but they require a bit more understanding of json path logic:
 - $.my_array.length(): the length of my_array is selected. Combine with an equals or threshold check,
 to require that an array has a certain length.
-- $.my_array[?(@.name == 'D')]: the array of all objects in my_array where name equals 'D' is selected.
-- $.my_array[?(@.name == 'D')]..my_field: the array of my_field values from all objects in
-my_array where name equals 'D' is selected.
 - $.my_array..my_field: the array of my_field values (for all objects in my_array) is selected
 - $.my_array[*].my_field: the array of my_field values (for all objects in my_array) is selected
 
@@ -2253,6 +2251,7 @@ timestamps:
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) | none |
+| time_zone | [ string](#string) | none |
 | textual | [ string](#string) | none |
 
 ### hiber.UpdateBoolean
