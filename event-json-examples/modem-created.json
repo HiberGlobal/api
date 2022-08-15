@@ -24,11 +24,11 @@
     ],
 
     "title": "Modem AAAA AAAA was created.",
-    "description": "Modem AAAA AAAA was automatically created for device 00 11 22 33 AA BB CC DD.",
+    "description": "Modem AAAA AAAA was automatically created for device 00 11 22 33 AA BB CC DD.\n\ngroup: example-tag, example-tag-2",
     "modemExternalDeviceId": "00 11 22 33 AA BB CC DD"
   },
   "title": "Modem AAAA AAAA was created.",
-  "description": "Modem AAAA AAAA was automatically created for device 00 11 22 33 AA BB CC DD.",
+  "description": "Modem AAAA AAAA was automatically created for device 00 11 22 33 AA BB CC DD.\n\ngroup: example-tag, example-tag-2",
   "modem": {
     "number": "AAAA AAAA",
     "name": "AAAA AAAA",

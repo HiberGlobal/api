@@ -1954,7 +1954,6 @@ Things that an alarm is assigned to.
 | include_alarm_details | [ bool](#bool) | Whether to include the full alarms that are assigned, instead of just assignment. |
 | include_message_body_parser_details | [ bool](#bool) | Whether to include the full parsers that are assigned, instead of just assignment. |
 | include_message_body_parser_content | [ bool](#bool) | Whether to include, for example, the message body parser ksy content in the result. Excluded by default to save data. |
-| include_modems_in_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Whether to include modems from child organizations in this list (and which organizations). |
 | include_modems_without_assignments | [ bool](#bool) | Whether to include modems that are in the selection and have no assignments. |
 | apply_unit_preferences | [ bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
 
@@ -1996,7 +1995,7 @@ Things that are assigned to a modem.
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | selection | [ hiber.assign.AssignmentSelection](#hiberassignassignmentselection) | none |
 | pagination | [ hiber.Pagination](#hiberpagination) | none |
-| include_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Whether to include alarms and modems from child organizations in this list (and which organizations). |
+| include_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Whether to include modems from child organizations in this list (and which organizations). |
 | include_parser_without_assignments | [ bool](#bool) | Whether to include alarms that are in the selection and have no assignments. |
 
 ### hiber.assign.ListModemMessageBodyParserAssignments.Response
@@ -2037,7 +2036,6 @@ Things that an alarm is assigned to.
 | include_alarm_details | [ bool](#bool) | Whether to include the full alarms that are assigned, instead of just assignment. |
 | include_message_body_parser_details | [ bool](#bool) | Whether to include the full parsers that are assigned, instead of just assignment. |
 | include_message_body_parser_content | [ bool](#bool) | Whether to include, for example, the message body parser ksy content in the result. Excluded by default to save data. |
-| include_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Whether to include alarms and modems from child organizations in this list (and which organizations). |
 | include_tags_without_assignments | [ bool](#bool) | Whether to include alarms that are in the selection and have no assignments. |
 | apply_unit_preferences | [ bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
 
@@ -3341,6 +3339,7 @@ when the modem is registered into the system or when a subscription is authorize
 | connected_device_info | [ hiber.modem.Modem.ConnectedDeviceInfo](#hibermodemmodemconnecteddeviceinfo) | Additional information when this modem is a connected device. |
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
 | time_zone | [ string](#string) | The timezone configured for the modem. |
+| transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
 
 ### hiber.modem.ModemSelection
 

@@ -264,9 +264,14 @@ when you want to connect a device to the API using just the API calls in the Tes
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| modem_number | [ string](#string) | none |
-| child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **where**.organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **where**.in_organizations | [ hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) | If set, look up the modem in multiple organizations, instead of in the given or default organization. This can be used to find a modem if you do not know in which organization it is.
+
+Since this is a selection object, an empty selection searches in all accessible organizations, but the organizations can be limited using the fields in the OrganizationSelection.
+
+This replaces the child_organizations option, allowing search in all accessible organizations. |
+| modem_number | [ string](#string) | The modem to get. |
+| child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Look for the modem in child organizations. DEPRECATED: use the in_organizations flag instead. |
 
 ### ListModemMessagesRequest
 
@@ -333,7 +338,7 @@ The usage of ListModemsRequest and ListModemsRequest.Response in the Response.Gr
 | sort_by | [repeated ListModemsRequest.Sort](#listmodemsrequestsort) | Sort the modem with the given sort options. |
 | include_inbound_modems | [ bool](#bool) | Whether to include inbound modems in the results. Inbound modems are modems that are in a transfer that has been sent *to* your organization, but that has not been marked as received yet. |
 | include_outbound_modems | [ bool](#bool) | Whether to include outbound modems in the results. Inbound modems are modems that are in a transfer that has been sent *from* your organization, but that has not been marked as received yet. |
-| child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Include modems from the selected child organizations. |
+| child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Include modems from the selected child organizations. DEPRECATED: this option will be removed in the future! |
 | location_selection | [ hiber.LocationSelection](#hiberlocationselection) | Filter modems by location. |
 | include_missing_group_parents | [ bool](#bool) | Set this to true to populate the group_parents field in the response. This will be populated with missing group parents (i.e. gateways) for the the modems on this page. Any group parent that is on the current page is not included in this list to avoid duplicate data. |
 
@@ -414,6 +419,7 @@ when the modem is registered into the system or when a subscription is authorize
 | connected_device_info | [ Modem.ConnectedDeviceInfo](#modemconnecteddeviceinfo) | Additional information when this modem is a connected device. |
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
 | time_zone | [ string](#string) | The timezone configured for the modem. |
+| transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
 
 ### Modem.ActiveSubscription
 
@@ -777,6 +783,8 @@ For example: - exclude { 'bluetooth' -> [ ] } returns only modems that do not ha
 | pagination | [ hiber.Pagination](#hiberpagination) | none |
 | custom_antenna | [ string](#string) | none |
 | time_zone | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
+| update_transmission_interval | [ hiber.Duration](#hiberduration) | none |
+| remove_transmission_interval | [ bool](#bool) | none |
 
 ### UpdatePeripheralsRequest.AddPeripheralsEntry
 

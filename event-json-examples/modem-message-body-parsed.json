@@ -31,14 +31,14 @@
     ],
 
     "title": "A message from modem AAAA AAAA was parsed by body parser example-identifier.",
-    "description": "A message from modem AAAA AAAA was parsed by body parser example-identifier:\n\n{\"text\": \"example\"}",
+    "description": "A message from modem AAAA AAAA was parsed by body parser example-identifier:\n\n{\"text\": \"example\"}\n\ngroup: example-tag, example-tag-2",
     "time": {
       "timestamp": "2020-06-01T07:15:25.355Z",
       "textual": "2020-06-01T07:15:25.355Z"
     }
   },
   "title": "A message from modem AAAA AAAA was parsed by body parser example-identifier.",
-  "description": "A message from modem AAAA AAAA was parsed by body parser example-identifier:\n\n{\"text\": \"example\"}",
+  "description": "A message from modem AAAA AAAA was parsed by body parser example-identifier:\n\n{\"text\": \"example\"}\n\ngroup: example-tag, example-tag-2",
   "modem": {
     "number": "AAAA AAAA",
     "name": "AAAA AAAA",

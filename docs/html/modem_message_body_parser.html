@@ -2641,22 +2641,57 @@ Only available when include_verification_code was set to true. </p></td>
                 </tr>
               
                 <tr>
+                  <td>in_organizations</td>
+                  <td><a href="#hiber.organization.OrganizationSelection">hiber.organization.OrganizationSelection</a></td>
+                  <td></td>
+                  <td><p>If set, look up the modem in multiple organizations, instead of in the given or default organization.
+This can be used to find a modem if you do not know in which organization it is.
+
+Since this is a selection object, an empty selection searches in all accessible organizations, but
+the organizations can be limited using the fields in the OrganizationSelection.
+
+This replaces the child_organizations option, allowing search in all accessible organizations. </p></td>
+                </tr>
+              
+                <tr>
                   <td>modem_number</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The modem to get. </p></td>
                 </tr>
               
                 <tr>
                   <td>child_organizations</td>
                   <td><a href="#hiber.Filter.ChildOrganizations">hiber.Filter.ChildOrganizations</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Look for the modem in child organizations.
+DEPRECATED: use the in_organizations flag instead. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>child_organizations</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -2910,7 +2945,8 @@ been marked as received yet. </p></td>
                   <td>child_organizations</td>
                   <td><a href="#hiber.Filter.ChildOrganizations">hiber.Filter.ChildOrganizations</a></td>
                   <td></td>
-                  <td><p>Include modems from the selected child organizations. </p></td>
+                  <td><p><strong>Deprecated.</strong> Include modems from the selected child organizations.
+DEPRECATED: this option will be removed in the future! </p></td>
                 </tr>
               
                 <tr>
@@ -2932,6 +2968,27 @@ Any group parent that is on the current page is not included in this list to avo
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>child_organizations</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -3307,6 +3364,13 @@ Used mainly to differentiate in the UI or to sort on. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>The timezone configured for the modem. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>transmission_interval</td>
+                  <td><a href="#hiber.Duration">hiber.Duration</a></td>
+                  <td></td>
+                  <td><p>The transmission interval for this modem, if configured. </p></td>
                 </tr>
               
             </tbody>
@@ -4974,6 +5038,20 @@ values were different. Set this to true to apply it anyway. </p></td>
                 <tr>
                   <td>time_zone</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>update_transmission_interval</td>
+                  <td><a href="#hiber.Duration">hiber.Duration</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remove_transmission_interval</td>
+                  <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>

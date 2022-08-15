@@ -11,6 +11,7 @@ import "google/protobuf/struct.proto";
 
 import "base.proto";
 import "health.proto";
+import "organization.proto";
 import "subscription.proto";
 import "tag.proto";
 
@@ -156,6 +157,9 @@ message Modem {
 
     /* The timezone configured for the modem. */
     string time_zone = 32;
+
+    /* The transmission interval for this modem, if configured. */
+    Duration transmission_interval = 33;
 
     /* Additional information when this modem is a gateway. */
     message GatewayInfo {
@@ -519,11 +523,28 @@ message ModemMessageSelection {
 }
 
 message GetModemRequest {
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    oneof where {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* If set, look up the modem in multiple organizations, instead of in the given or default organization.
+         * This can be used to find a modem if you do not know in which organization it is.
+         *
+         * Since this is a selection object, an empty selection searches in all accessible organizations, but
+         * the organizations can be limited using the fields in the OrganizationSelection.
+         *
+         * This replaces the child_organizations option, allowing search in all accessible organizations.
+         */
+        organization.OrganizationSelection in_organizations = 3;
+    }
+
+    /* The modem to get. */
     string modem_number = 2;
-    reserved 3;
-    Filter.ChildOrganizations child_organizations = 4;
+
+    /* Look for the modem in child organizations.
+     * DEPRECATED: use the in_organizations flag instead.
+     */
+    Filter.ChildOrganizations child_organizations = 4 [deprecated = true];
 }
 
 message ListModemsRequest {
@@ -590,8 +611,10 @@ message ListModemsRequest {
      */
     bool include_outbound_modems = 7;
 
-    /* Include modems from the selected child organizations. */
-    Filter.ChildOrganizations child_organizations = 8;
+    /* Include modems from the selected child organizations.
+     * DEPRECATED: this option will be removed in the future!
+     */
+    Filter.ChildOrganizations child_organizations = 8 [deprecated = true];
 
     /* Filter modems by location. */
     LocationSelection location_selection = 9;
@@ -865,6 +888,8 @@ message UpdatePeripheralsRequest {
     Pagination pagination = 9;
     string custom_antenna = 10;
     UpdateClearableString time_zone = 11;
+    Duration update_transmission_interval = 12;
+    bool remove_transmission_interval = 13;
 }
 
 message ModemHealthCount {

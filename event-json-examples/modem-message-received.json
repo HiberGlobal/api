@@ -81,7 +81,7 @@
     ],
 
     "title": "New message from modem AAAA AAAA was received and processed. It was sent at 2020-06-01 05:15:25Z.",
-    "description": "A new message from modem AAAA AAAA was received and processed.\n\nThe message was sent at 2020-06-01 05:15:25Z with location [20.222,30.33299].\n\nThe body (hex) was: 6578616D706C65\n\nIt was parsed to:\n\n{\n    \"text\": \"example\"\n}",
+    "description": "A new message from modem AAAA AAAA was received and processed.\n\nThe message was sent at 2020-06-01 05:15:25Z with location [20.222,30.33299].\n\nThe body (hex) was: 6578616D706C65\n\nIt was parsed to:\n\n{\n    \"text\": \"example\"\n}\n\ngroup: example-tag, example-tag-2",
     "time": {
       "timestamp": "2020-06-01T06:15:25.365Z",
       "textual": "2020-06-01T06:15:25.365Z"
@@ -89,7 +89,7 @@
     "modemExternalDeviceId": "00 11 22 33 AA BB CC DD"
   },
   "title": "New message from modem AAAA AAAA was received and processed. It was sent at 2020-06-01 05:15:25Z.",
-  "description": "A new message from modem AAAA AAAA was received and processed.\n\nThe message was sent at 2020-06-01 05:15:25Z with location [20.222,30.33299].\n\nThe body (hex) was: 6578616D706C65\n\nIt was parsed to:\n\n{\n    \"text\": \"example\"\n}",
+  "description": "A new message from modem AAAA AAAA was received and processed.\n\nThe message was sent at 2020-06-01 05:15:25Z with location [20.222,30.33299].\n\nThe body (hex) was: 6578616D706C65\n\nIt was parsed to:\n\n{\n    \"text\": \"example\"\n}\n\ngroup: example-tag, example-tag-2",
   "modem": {
     "number": "AAAA AAAA",
     "name": "AAAA AAAA",

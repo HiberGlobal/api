@@ -212,9 +212,6 @@ message ListModemAssignments {
          */
         bool include_message_body_parser_content = 6;
 
-        /* Whether to include modems from child organizations in this list (and which organizations). */
-        Filter.ChildOrganizations include_modems_in_child_organizations = 7;
-
         /* Whether to include modems that are in the selection and have no assignments. */
         bool include_modems_without_assignments = 8;
 
@@ -223,6 +220,8 @@ message ListModemAssignments {
          * temperature, the check value will be converted to celsius instead.
          */
         bool apply_unit_preferences = 9;
+
+        reserved 7;
     }
 
     message Response {
@@ -273,9 +272,6 @@ message ListTagAssignments {
          */
         bool include_message_body_parser_content = 6;
 
-        /* Whether to include alarms and modems from child organizations in this list (and which organizations). */
-        Filter.ChildOrganizations include_child_organizations = 7;
-
         /* Whether to include alarms that are in the selection and have no assignments. */
         bool include_tags_without_assignments = 8;
 
@@ -284,6 +280,8 @@ message ListTagAssignments {
          * temperature, the check value will be converted to celsius instead.
          */
         bool apply_unit_preferences = 9;
+
+        reserved 7;
     }
 
     message Response {
@@ -369,7 +367,7 @@ message ListModemMessageBodyParserAssignments {
         AssignmentSelection selection = 2;
         Pagination pagination = 3;
 
-        /* Whether to include alarms and modems from child organizations in this list (and which organizations). */
+        /* Whether to include modems from child organizations in this list (and which organizations). */
         Filter.ChildOrganizations include_child_organizations = 4;
 
         /* Whether to include alarms that are in the selection and have no assignments. */

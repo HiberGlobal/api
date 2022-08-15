@@ -21,13 +21,20 @@
           "id": "1",
           "label": {
             "name": "example-tag",
-            "type": "group"
+            "type": "well"
           }
         },
         {
           "id": "2",
           "label": {
             "name": "example-tag-2",
+            "type": "well"
+          }
+        },
+        {
+          "id": "3",
+          "label": {
+            "name": "example-tag",
             "type": "group"
           }
         }
@@ -43,23 +50,30 @@
         "id": "1",
         "label": {
           "name": "example-tag",
-          "type": "group"
+          "type": "well"
         }
       },
       {
         "id": "2",
         "label": {
           "name": "example-tag-2",
+          "type": "well"
+        }
+      },
+      {
+        "id": "3",
+        "label": {
+          "name": "example-tag",
           "type": "group"
         }
       }
     ],
 
     "title": "You transferred 1 modem to your-organization-2.",
-    "description": "A transfer of 1 modem is scheduled from your-organization to your-organization-2.\n\nThe following modems are in this transfer:\n\n- AAAA AAAA"
+    "description": "A transfer of 1 modem is scheduled from your-organization to your-organization-2.\n\nThe following modems are in this transfer:\n\n- AAAA AAAA\n\nwell: example-tag, example-tag-2\ngroup: example-tag"
   },
   "title": "You transferred 1 modem to your-organization-2.",
-  "description": "A transfer of 1 modem is scheduled from your-organization to your-organization-2.\n\nThe following modems are in this transfer:\n\n- AAAA AAAA",
+  "description": "A transfer of 1 modem is scheduled from your-organization to your-organization-2.\n\nThe following modems are in this transfer:\n\n- AAAA AAAA\n\nwell: example-tag, example-tag-2\ngroup: example-tag",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
     "textual": "2020-06-01T05:15:25.355Z"

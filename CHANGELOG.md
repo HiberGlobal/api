@@ -2,11 +2,28 @@
 
 #### Upcoming Changes
 
+### 0.117 (2022-08-15)
+
+### 0.116 (2022-08-01)
+
+##### FieldService
+
+- When type is not specified for a new field, and no details (numeric or enum) are specified, it will now default to type text, instead of OTHER.
+
 ### 0.115 (2022-07-25)
+
+##### AssignmentService
+
+- **[B]** Removed `include_child_organizations` from `ListTagAssignments` and `ListModemAssignments`.
 
 ##### AWSIoTService
 
 - **[B]** Removed the AWS IoT Integration. It was not used and outdated, and may be replaced in the future.
+
+##### ModemService
+
+- Deprecated `ListModemsRequest.child_organizations`, it will be removed in the future.
+- Added `in_accessible_organizations` to `GetModemRequest`, to find the modem in any organization you have access to.
 
 ##### ModemAlarmService
 
