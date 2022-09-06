@@ -16,6 +16,10 @@
   - [ListFields](#listfields)
   - [ListFields.Request](#listfieldsrequest)
   - [ListFields.Response](#listfieldsresponse)
+  - [ListFieldsForModem](#listfieldsformodem)
+  - [ListFieldsForModem.Request](#listfieldsformodemrequest)
+  - [ListFieldsForModem.Response](#listfieldsformodemresponse)
+  - [ListFieldsForModem.Response.ModemWithFields](#listfieldsformodemresponsemodemwithfields)
   - [ReplaceAllFieldsRequest](#replaceallfieldsrequest)
   - [UpdateFieldEnumValues](#updatefieldenumvalues)
   - [UpdateFieldEnumValues.Request](#updatefieldenumvaluesrequest)
@@ -87,6 +91,12 @@
 ### List
 > **rpc** List([ListFields.Request](#listfieldsrequest))
     [ListFields.Response](#listfieldsresponse)
+
+
+
+### ForModem
+> **rpc** ForModem([ListFieldsForModem.Request](#listfieldsformodemrequest))
+    [ListFieldsForModem.Response](#listfieldsformodemresponse)
 
 
 
@@ -176,7 +186,7 @@ Delete the given fields from a parser.
 | selection | [ FieldSelection](#fieldselection) | Select which fields to return. |
 | pagination | [ hiber.Pagination](#hiberpagination) | none |
 | sort | [ ListFields.Sort](#listfieldssort) | none |
-| apply_unit_preferences | [ bool](#bool) | Whether to apply the unit preferences to the fields. This will convert any fields into you preferred unit, for convenience. |
+| apply_unit_preferences | [ bool](#bool) | Whether to apply the unit preferences to the fields. This will convert any fields into your preferred unit, for convenience. |
 
 ### ListFields.Response
 
@@ -187,6 +197,45 @@ Delete the given fields from a parser.
 | fields | [repeated Field](#field) | none |
 | request | [ ListFields.Request](#listfieldsrequest) | none |
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+
+### ListFieldsForModem
+
+
+
+
+### ListFieldsForModem.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| modem_selection | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the modems to fetch the fields for. |
+| field_selection | [ FieldSelection](#fieldselection) | Select which fields to return. |
+| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| sort | [ ListFields.Sort](#listfieldssort) | none |
+| apply_unit_preferences | [ bool](#bool) | Whether to apply the unit preferences to the fields. This will convert any fields into you preferred unit, for convenience. |
+| include_total | [ bool](#bool) | Whether to also calculate the total fields for all selected modems, and return them as a single list in the response. This can be useful to display table columns, for example. |
+
+### ListFieldsForModem.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| modem_fields | [repeated ListFieldsForModem.Response.ModemWithFields](#listfieldsformodemresponsemodemwithfields) | none |
+| request | [ ListFieldsForModem.Request](#listfieldsformodemrequest) | none |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| total | [repeated Field](#field) | A merged result of all fields, for all modems. This can be useful to display table columns, for example. |
+
+### ListFieldsForModem.Response.ModemWithFields
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| modem | [ string](#string) | none |
+| fields | [repeated Field](#field) | none |
 
 ### ReplaceAllFieldsRequest
 
@@ -262,6 +311,7 @@ Replace all fields for a parser with the fields given.
 | display_name | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | An optional display name for the field. |
 | priority | [ hiber.UpdateZeroableInt](#hiberupdatezeroableint) | Priority of the field, typically used for ordering. |
 | encrypted | [ hiber.UpdateBoolean](#hiberupdateboolean) | Whether this field should be stored encrypted or not. When set to true at a later point, earlier values are not encrypted retro-actively. |
+| optional | [ hiber.UpdateBoolean](#hiberupdateboolean) | Whether this field is optional or not. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update_details**.numeric | [ UpdateFieldNumericDetails](#updatefieldnumericdetails) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update_details**.enum | [ UpdateFieldEnumValues](#updatefieldenumvalues) | none |
 
@@ -299,6 +349,7 @@ so not all messages listed here are referenced.)
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.numeric | [ hiber.field.Field.Numeric](#hiberfieldfieldnumeric) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.enum | [ hiber.field.Field.Enum](#hiberfieldfieldenum) | none |
 | encrypted | [ bool](#bool) | Whether this field should be stored encrypted or not. If it is, some processing options may be unavailable or slower. |
+| optional | [ bool](#bool) | Whether this field should be validated from the parser output. |
 | unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
 | unit_symbol | [ string](#string) | The symbol for the unit. Deprecated: use numeric.symbol instead |
 

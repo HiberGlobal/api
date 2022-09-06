@@ -15,6 +15,7 @@ option go_package = "hiber";
 
 service FieldService {
     rpc List (ListFields.Request) returns (ListFields.Response);
+    rpc ForModem (ListFieldsForModem.Request) returns (ListFieldsForModem.Response);
 
     rpc Add (AddFieldsRequest) returns (modem.message.bodyparser.ModemMessageBodyParser);
     rpc ReplaceAll (ReplaceAllFieldsRequest) returns (modem.message.bodyparser.ModemMessageBodyParser);
@@ -65,7 +66,7 @@ message ListFields {
         Sort sort = 4;
 
         /* Whether to apply the unit preferences to the fields.
-         * This will convert any fields into you preferred unit, for convenience.
+         * This will convert any fields into your preferred unit, for convenience.
          */
         bool apply_unit_preferences = 5;
     }
@@ -76,6 +77,48 @@ message ListFields {
         Pagination.Result pagination = 3;
     }
 }
+
+message ListFieldsForModem {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* Select the modems to fetch the fields for. */
+        modem.ModemSelection modem_selection = 2;
+
+        /* Select which fields to return. */
+        FieldSelection field_selection = 3;
+
+        Pagination pagination = 4;
+        ListFields.Sort sort = 5;
+
+        /* Whether to apply the unit preferences to the fields.
+         * This will convert any fields into you preferred unit, for convenience.
+         */
+        bool apply_unit_preferences = 6;
+
+        /* Whether to also calculate the total fields for all selected modems,
+         * and return them as a single list in the response.
+         * This can be useful to display table columns, for example.
+         */
+        bool include_total = 7;
+    }
+
+    message Response {
+        message ModemWithFields {
+            string modem = 1;
+            repeated Field fields = 2;
+        }
+
+        repeated ModemWithFields modem_fields = 1;
+        Request request = 2;
+        Pagination.Result pagination = 3;
+
+        /* A merged result of all fields, for all modems. This can be useful to display table columns, for example. */
+        repeated field.Field total = 4;
+    }
+}
+
 
 message AddFieldsRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
@@ -129,6 +172,9 @@ message UpdateFieldRequest {
      * When set to true at a later point, earlier values are not encrypted retro-actively.
      */
     UpdateBoolean encrypted = 5;
+
+    /* Whether this field is optional or not. */
+    UpdateBoolean optional = 8;
 
     /* Update field details, like numeric details or enum values. */
     oneof update_details {

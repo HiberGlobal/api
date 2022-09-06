@@ -2,6 +2,40 @@
 
 #### Upcoming Changes
 
+### 0.119 (2022-09-05)
+
+##### EasypulseService
+
+- Added `MINIMUM` and `MAXIMUM` aggregation to `Easypulse.History.Request.Aggregation`.
+
+##### FieldService
+
+- Added `ForModem` call (with `ListFieldsForModem`) to list the fields for a selection of modems.
+  - This is an improved version to `MessageService.AvailableBodyFields`
+    - Added `apply_unit_preferences` to choose whether to apply the unit preferences.
+    - Added `field_selection` to filter the fields.
+- Added `optional` to `Field` to indicate the system should not consider the parser result invalid
+  if the field is not in it.
+  - Added `optional` to `UpdateFieldRequest`.
+
+##### MessageService
+
+- Added `MINIMUM` and `MAXIMUM` aggregation to `MessageBodyFieldHistory.Request.Aggregation`.
+- Deprecated `History` call in favor of the new `ValueService`.
+- Deprecated `AvailableBodyFields` call in favor of the new `FieldService.ForModem` call.
+
+##### SingleSignOnService
+
+- Added `current_session_id` to `DundasSSO.Request` to submit your current session id.
+  If it is still valid, no new session is created and the given session id is returned.
+- Added `session_id_subdomain` to `DundasSSO.Response` with the subdomain to write the session id to, for convenience.
+
+##### ValueService
+
+- Introducing the `ValueService` to fetch time series data from our system.
+  - Use `List` to list absolute values for a given period of time.
+  - Use `Aggregated` to aggregate values over a given period of time, optionally partitioned (i.e. average per day).
+
 ### 0.118 (2022-08-22)
 
 ### 0.117 (2022-08-15)

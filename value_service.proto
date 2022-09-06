@@ -1,0 +1,250 @@
+/* Service to fetch time series data from our system.
+ *
+ * Time series data is produced by the device and sent in the form of messages.
+ * Messages are parsed to a number of values (depending on the parser), which can be retrieved using this service.
+ */
+syntax = "proto3";
+
+package hiber.value;
+
+import "base.proto";
+import "modem.proto";
+import "value.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.value";
+option java_outer_classname = "ValueServiceApi";
+option go_package = "hiber";
+
+service ValueService {
+    rpc List (ListValues.Request) returns (ListValues.Response);
+    rpc Aggregated (AggregatedValues.Request) returns (AggregatedValues.Response);
+}
+
+/* Select the values to return. */
+message ValueSelection {
+    /* Select the modem(s) to get the values for. */
+    modem.ModemSelection modems = 1;
+
+    /* Get the values for the selected fields. */
+    repeated string fields = 2;
+
+    /* The time to view the values for. */
+    TimeRange time_range = 3;
+
+    /* Include the location (which is not a field). */
+    bool include_location = 4;
+
+    /* Filter the values for enum fields. */
+    repeated Filter.FieldEnumValues filter_enum_values = 6;
+}
+
+/* A Value at a time, for a given modem and field. */
+message ValueContext {
+    string modem = 1;
+    string field = 2;
+
+    /* The time for this value. */
+    Timestamp time = 3;
+
+    oneof value_type {
+        /* The value at this time. */
+        Value value = 4;
+
+        /* The value at this time. */
+        ValueDurations duration = 5;
+
+        /* The value at this time. */
+        ValueDelta delta = 6;
+    }
+
+    /* The amount of time a field for a modem was at different values. */
+    message ValueDurations {
+        repeated ValueDuration durations = 1;
+    }
+
+    /* The amount of time a field for a modem was in this value. */
+    message ValueDuration {
+        /* The value the duration is for. */
+        Value value = 1;
+
+        /* The aggregated duration the field was this value. */
+        Duration duration = 2;
+    }
+
+    /* The delta of a value: the difference between a value and the previous value. */
+    message ValueDelta {
+        /* The delta of the two values. */
+        Value delta = 1;
+
+        /* The value at this time. */
+        Value current = 2;
+
+        /* The previous value to compare it with. */
+        Value previous = 3;
+    }
+}
+
+/* Transform the values into a derived value. */
+enum ValueTransformation {
+    /* Instead of returning the value, return the amount of time a value was active.
+     * Aggregation (if applicable) is applied afterwards on the duration value.
+     */
+    DURATION = 0;
+
+    /* Instead of returning the value, return the difference between the value and the previous value.
+     * Aggregation (if applicable) is applied before the delta is calculated.
+     */
+    DELTA = 1;
+}
+
+/* List values for a (set of) modem(s), filtering by field and time. */
+message ListValues {
+    /* How to sort the values. */
+    enum Sort {
+        TIME_ASCENDING = 0;
+        TIME_DESCENDING = 1;
+    }
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        ValueSelection selection = 2;
+        Pagination pagination = 3;
+        Sort sort = 4;
+
+        /* Transform the values for a field into a derived value.
+         * Fields specified here must have been specified in the selection.
+         */
+        map<string, ValueTransformation> transform_fields = 5;
+    }
+
+    message Response {
+        repeated ValueContext values = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}
+
+/* Get the values for the selected field.
+ *
+ * There are a few limitations here:
+ * - text fields can only use the LAST aggregation.
+ * - enum fields support a subset of aggregations:
+ *   - DEFAULT and LAST return the last value.
+ *   - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order.
+ *   - AVERAGE and SUM are not supported.
+ *
+ * - enum duration
+ *
+ * An enum example:
+ * Field "status" with this timeline: 00:00 OK, 00:10 FAILED, 00:20 OK, 00:25 FAILED, 00:40 OK
+ * - aggregation DEFAULT or LAST: OK, since it's OK at the end of the time range.
+ * - aggregation SUM: OK: 35m, FAILED: 25m
+ */
+enum ValueAggregation {
+    DEFAULT = 0;
+
+    /* Return the average value.
+     * Not supported for textual and enum fields. When used with these fields, LAST is used instead.
+     */
+    AVERAGE = 1;
+
+    /* Return the sum all values.
+     * Not supported for textual and enum fields. When used with these fields, LAST is used instead.
+     */
+    SUM = 2;
+
+    /* Just take the last value. */
+    LAST = 3;
+
+    /* Return the lowest value.
+     * For enum fields, the order of values is used to determine the MINIMUM.
+     * Not supported for textual fields. When used with these fields, LAST is used instead.
+     */
+    MINIMUM = 4;
+
+    /* Return the highest value.
+     * For enum fields, the order of values is used to determine the MAXIMUM.
+     * Not supported for textual fields. When used with these fields, LAST is used instead.
+     */
+    MAXIMUM = 5;
+}
+
+/* Aggregate values for a (set of) modem(s), filtering by field and time. */
+message AggregatedValues {
+    /* The time range that was aggregated. */
+    TimeRange time_range = 1;
+
+    /* The aggregated values for the requested fields.
+     *
+     * Timestamp is only set if the aggregation can return an exact data point:
+     * - if the aggregation would return an exact point: LAST, MAXIMUM, MINIMUM.
+     * - if the aggregation is applied to a single value, for a single field.
+     */
+    repeated ValueContext values = 2;
+
+    /* The last location in the time range. */
+    Location location = 3;
+
+    /* Request aggregated values, reducing the selected time range to a single value per field. */
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* The values to return. */
+        ValueSelection selection = 2;
+
+        /* The aggregations to use for the fields, resulting in a single value for each field.
+         * When an aggregation is not specified for a field, the default aggregation for that field type is used.
+         *
+         * Fields specified here must have been specified in the selection.
+         */
+        map<string, ValueAggregation> aggregations = 3;
+
+        /* Transform the values for a field into a derived value.
+         *
+         * Fields specified here must have been specified in the selection.
+         */
+        map<string, ValueTransformation> transform_fields = 4;
+
+        oneof optional_partition {
+            /* Partition the time range and apply aggregation to each part. */
+            Partition partition = 5;
+        }
+
+        /* Partition the time range and apply aggregation to each part (instead of over all values in the time range).
+         * If no partition is set, the aggregation returns a single value.
+         *
+         * For example:
+         * - get the average value per day for a month
+         * - get the sum of all values per hour in a day
+         */
+        message Partition {
+            oneof partition {
+                /* Split up the data in time block of the given size. */
+                Duration split_by_duration = 1;
+
+                /* Limit the results to the given amount of data points, applying the function to each chunk. */
+                uint32 reduce_to_max_size = 2;
+            }
+
+            /* Paginate the returned partitions of the time range. */
+            Pagination pagination = 3;
+
+            /* How to sort the returned values. */
+            ListValues.Sort sort = 4;
+
+            /* Exclude any partitions that do not have any data from response.
+             * This is especially useful when the amount of partitions exceeds your pagination size.
+             */
+            bool exclude_empty = 5;
+        }
+    }
+
+    message Response {
+        repeated AggregatedValues aggregated_values = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}

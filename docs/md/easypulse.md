@@ -78,6 +78,7 @@ somewhat customized Asset model.
   - [hiber.Filter.ChildOrganizations.Update](#hiberfilterchildorganizationsupdate)
   - [hiber.Filter.Events](#hiberfilterevents)
   - [hiber.Filter.Events.Update](#hiberfiltereventsupdate)
+  - [hiber.Filter.FieldEnumValues](#hiberfilterfieldenumvalues)
   - [hiber.Filter.Modems](#hiberfiltermodems)
   - [hiber.Filter.Modems.Update](#hiberfiltermodemsupdate)
   - [hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions)
@@ -423,6 +424,7 @@ A target value that measures fuel efficiency.
 | selection | [ Easypulse.AssetSelection](#easypulseassetselection) | Select the Assets to return. |
 | pagination | [ hiber.Pagination](#hiberpagination) | Paginate over the returned Assets. |
 | sort | [ Easypulse.ListAssets.Request.Sort](#easypulselistassetsrequestsort) | Sort the returned assets using the given option. By default, Assets are sorted by name. |
+| apply_unit_preferences | [ bool](#bool) | Whether to apply the unit preferences to the fields. This will convert any fields into your preferred unit, for convenience. |
 
 ### Easypulse.TargetValues.List.Response
 
@@ -541,6 +543,8 @@ Options to aggregate the history data points (in a group).
 | AVERAGE | Average value of all history data points (in a group). | 1 |
 | SUM | Sum all history data points (in a group). | 2 |
 | LAST | Just take the last value (in a group). | 3 |
+| MINIMUM | Take the lowest value (in a group). | 4 |
+| MAXIMUM | Take the highest value (in a group). | 5 |
 
 ### Easypulse.History.Request.Sort
 How to sort the returned values.
@@ -862,6 +866,16 @@ Update object to update a Filter.Events field.
 | ----- | ---- | ----------- |
 | updated | [ bool](#bool) | none |
 | value | [ hiber.Filter.Events](#hiberfilterevents) | none |
+
+### hiber.Filter.FieldEnumValues
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| field | [ string](#string) | none |
+| include | [repeated string](#string) | none |
+| exclude | [repeated string](#string) | none |
 
 ### hiber.Filter.Modems
 

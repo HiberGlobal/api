@@ -1,79 +1,69 @@
-# modem_alarm.proto
+# value_service.proto
 
-Service to specify alarm for a modem, monitoring message data, location or activity.
+Service to fetch time series data from our system.
 
-An alarm is a collection of checks that validate the correctness of a modem. For example, an alarm might
-check that the modem is in a given location, or that a field in its messages is between certain values.
+Time series data is produced by the device and sent in the form of messages.
+Messages are parsed to a number of values (depending on the parser), which can be retrieved using this service.
 
-Alarms are created in isolation, and need to be assigned to a modem before they do anything.
-This can be done using the Assign and Unassign methods in the service, or using the AssignmentService for more
-advanced use cases, like assigning to a tag.
-
-#### This file was generated from [modem_alarm.proto](https://github.com/HiberGlobal/api/blob/master/modem_alarm.proto).
+#### This file was generated from [value_service.proto](https://github.com/HiberGlobal/api/blob/master/value_service.proto).
 
 ## Table of Contents
 
 - Services
-  - [ModemAlarmService](#modemalarmservice)
+  - [ValueService](#valueservice)
 
 - Messages
-  - [AssignModemAlarms](#assignmodemalarms)
-  - [AssignModemAlarms.Request](#assignmodemalarmsrequest)
-  - [AssignModemAlarms.Request.ParametersEntry](#assignmodemalarmsrequestparametersentry)
-  - [AssignModemAlarms.Response](#assignmodemalarmsresponse)
-  - [AssignedModemAlarm](#assignedmodemalarm)
-  - [CreateModemAlarm](#createmodemalarm)
-  - [CreateModemAlarm.Request](#createmodemalarmrequest)
-  - [CreateModemAlarm.Response](#createmodemalarmresponse)
-  - [DeleteModemAlarm](#deletemodemalarm)
-  - [DeleteModemAlarm.Request](#deletemodemalarmrequest)
-  - [DeleteModemAlarm.Response](#deletemodemalarmresponse)
-  - [ListModemAlarms](#listmodemalarms)
-  - [ListModemAlarms.Request](#listmodemalarmsrequest)
-  - [ListModemAlarms.Response](#listmodemalarmsresponse)
-  - [MakeModemAlarmAvailableToChildOrganizationRequest](#makemodemalarmavailabletochildorganizationrequest)
-  - [MakeModemAlarmUnavailableToChildOrganizationRequest](#makemodemalarmunavailabletochildorganizationrequest)
-  - [ModemAlarm](#modemalarm)
-  - [ModemAlarm.Check](#modemalarmcheck)
-  - [ModemAlarm.Check.DelayCheck](#modemalarmcheckdelaycheck)
-  - [ModemAlarm.Check.FieldCheck](#modemalarmcheckfieldcheck)
-  - [ModemAlarm.Check.FieldCheck.AllowedCheck](#modemalarmcheckfieldcheckallowedcheck)
-  - [ModemAlarm.Check.FieldCheck.BlockedCheck](#modemalarmcheckfieldcheckblockedcheck)
-  - [ModemAlarm.Check.FieldCheck.DeltaCheck](#modemalarmcheckfieldcheckdeltacheck)
-  - [ModemAlarm.Check.FieldCheck.EqualsCheck](#modemalarmcheckfieldcheckequalscheck)
-  - [ModemAlarm.Check.FieldCheck.MaximumCheck](#modemalarmcheckfieldcheckmaximumcheck)
-  - [ModemAlarm.Check.FieldCheck.MinimumCheck](#modemalarmcheckfieldcheckminimumcheck)
-  - [ModemAlarm.Check.FieldCheck.ThresholdCheck](#modemalarmcheckfieldcheckthresholdcheck)
-  - [ModemAlarm.Check.InactivityCheck](#modemalarmcheckinactivitycheck)
-  - [ModemAlarm.Check.LocationCheck](#modemalarmchecklocationcheck)
-  - [ModemAlarm.HealthLevelAfterResolved](#modemalarmhealthlevelafterresolved)
-  - [ModemAlarmSelection](#modemalarmselection)
-  - [TestModemAlarmTestParameters](#testmodemalarmtestparameters)
-  - [TestModemAlarmTestParameters.Request](#testmodemalarmtestparametersrequest)
-  - [TestModemAlarmTestParameters.Response](#testmodemalarmtestparametersresponse)
-  - [UnassignModemAlarms](#unassignmodemalarms)
-  - [UnassignModemAlarms.Request](#unassignmodemalarmsrequest)
-  - [UnassignModemAlarms.Response](#unassignmodemalarmsresponse)
-  - [UpdateModemAlarm](#updatemodemalarm)
-  - [UpdateModemAlarm.Request](#updatemodemalarmrequest)
-  - [UpdateModemAlarm.Request.UpdateChecksEntry](#updatemodemalarmrequestupdatechecksentry)
-  - [UpdateModemAlarm.Response](#updatemodemalarmresponse)
-  - [UpdateModemAlarmAddCheck](#updatemodemalarmaddcheck)
-  - [UpdateModemAlarmAddCheck.Request](#updatemodemalarmaddcheckrequest)
-  - [UpdateModemAlarmAddCheck.Response](#updatemodemalarmaddcheckresponse)
-  - [UpdateModemAlarmAvailability](#updatemodemalarmavailability)
-  - [UpdateModemAlarmAvailability.Request](#updatemodemalarmavailabilityrequest)
-  - [UpdateModemAlarmAvailability.Response](#updatemodemalarmavailabilityresponse)
-  - [UpdateModemAlarmRemoveCheck](#updatemodemalarmremovecheck)
-  - [UpdateModemAlarmRemoveCheck.Request](#updatemodemalarmremovecheckrequest)
-  - [UpdateModemAlarmRemoveCheck.Response](#updatemodemalarmremovecheckresponse)
-  - [UpdateModemAlarmUpdateCheck](#updatemodemalarmupdatecheck)
-  - [UpdateModemAlarmUpdateCheck.Request](#updatemodemalarmupdatecheckrequest)
-  - [UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry](#updatemodemalarmupdatecheckrequestupdateusingparametersentry)
-  - [UpdateModemAlarmUpdateCheck.Response](#updatemodemalarmupdatecheckresponse)
+  - [AggregatedValues](#aggregatedvalues)
+  - [AggregatedValues.Request](#aggregatedvaluesrequest)
+  - [AggregatedValues.Request.AggregationsEntry](#aggregatedvaluesrequestaggregationsentry)
+  - [AggregatedValues.Request.Partition](#aggregatedvaluesrequestpartition)
+  - [AggregatedValues.Request.TransformFieldsEntry](#aggregatedvaluesrequesttransformfieldsentry)
+  - [AggregatedValues.Response](#aggregatedvaluesresponse)
+  - [ListValues](#listvalues)
+  - [ListValues.Request](#listvaluesrequest)
+  - [ListValues.Request.TransformFieldsEntry](#listvaluesrequesttransformfieldsentry)
+  - [ListValues.Response](#listvaluesresponse)
+  - [ValueContext](#valuecontext)
+  - [ValueContext.ValueDelta](#valuecontextvaluedelta)
+  - [ValueContext.ValueDuration](#valuecontextvalueduration)
+  - [ValueContext.ValueDurations](#valuecontextvaluedurations)
+  - [ValueSelection](#valueselection)
 
 - Enums
-  - [ModemAlarm.TriggerCondition](#modemalarmtriggercondition)
+  - [ListValues.Sort](#listvaluessort)
+  - [ValueAggregation](#valueaggregation)
+  - [ValueTransformation](#valuetransformation)
+
+- Referenced messages from [value.proto](#referenced-messages-from-valueproto)
+  - [hiber.value.Value](#hibervaluevalue)
+  - [hiber.value.Value.Enum](#hibervaluevalueenum)
+  - [hiber.value.Value.Numeric](#hibervaluevaluenumeric)
+  - [hiber.value.Value.Numeric.BatteryLevel](#hibervaluevaluenumericbatterylevel)
+  - [hiber.value.Value.Numeric.Distance](#hibervaluevaluenumericdistance)
+  - [hiber.value.Value.Numeric.Flow](#hibervaluevaluenumericflow)
+  - [hiber.value.Value.Numeric.FuelEfficiency](#hibervaluevaluenumericfuelefficiency)
+  - [hiber.value.Value.Numeric.Mass](#hibervaluevaluenumericmass)
+  - [hiber.value.Value.Numeric.Percentage](#hibervaluevaluenumericpercentage)
+  - [hiber.value.Value.Numeric.Pressure](#hibervaluevaluenumericpressure)
+  - [hiber.value.Value.Numeric.Speed](#hibervaluevaluenumericspeed)
+  - [hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature)
+  - [hiber.value.Value.Numeric.Voltage](#hibervaluevaluenumericvoltage)
+  - [hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume)
+
+    - [hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit)
+    - [hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit)
+    - [hiber.value.Value.Numeric.DurationUnit](#hibervaluevaluenumericdurationunit)
+    - [hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit)
+    - [hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit)
+    - [hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit)
+    - [hiber.value.Value.Numeric.Percentage.Unit](#hibervaluevaluenumericpercentageunit)
+    - [hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit)
+    - [hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit)
+    - [hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit)
+    - [hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype)
+    - [hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit)
+    - [hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit)
+    - [hiber.value.Value.Type](#hibervaluevaluetype)
 
 - Referenced messages from [modem.proto](#referenced-messages-from-modemproto)
   - [hiber.modem.Modem](#hibermodemmodem)
@@ -131,731 +121,552 @@ advanced use cases, like assigning to a tag.
 - [Scalar Value Types](#scalar-value-types)
 
 
-## ModemAlarmService
+## ValueService
 
 
 ### List
-> **rpc** List([ListModemAlarms.Request](#listmodemalarmsrequest))
-    [ListModemAlarms.Response](#listmodemalarmsresponse)
+> **rpc** List([ListValues.Request](#listvaluesrequest))
+    [ListValues.Response](#listvaluesresponse)
 
-List available modem alarms (including inherited from your parent organizations).
 
-### Create
-> **rpc** Create([CreateModemAlarm.Request](#createmodemalarmrequest))
-    [CreateModemAlarm.Response](#createmodemalarmresponse)
 
-Create a new modem alarm with any number of checks.
+### Aggregated
+> **rpc** Aggregated([AggregatedValues.Request](#aggregatedvaluesrequest))
+    [AggregatedValues.Response](#aggregatedvaluesresponse)
 
-### Update
-> **rpc** Update([UpdateModemAlarm.Request](#updatemodemalarmrequest))
-    [UpdateModemAlarm.Response](#updatemodemalarmresponse)
 
-Update a modem alarm and its checks, if you are the owner.
-
-### Delete
-> **rpc** Delete([DeleteModemAlarm.Request](#deletemodemalarmrequest))
-    [DeleteModemAlarm.Response](#deletemodemalarmresponse)
-
-Delete a modem alarm, if you are the owner.
-
-### AddCheck
-> **rpc** AddCheck([UpdateModemAlarmAddCheck.Request](#updatemodemalarmaddcheckrequest))
-    [UpdateModemAlarmAddCheck.Response](#updatemodemalarmaddcheckresponse)
-
-Add a check to a modem alarm, if you are the owner.
-
-### UpdateCheck
-> **rpc** UpdateCheck([UpdateModemAlarmUpdateCheck.Request](#updatemodemalarmupdatecheckrequest))
-    [UpdateModemAlarmUpdateCheck.Response](#updatemodemalarmupdatecheckresponse)
-
-Update a check in a modem alarm, if you are the owner.
-
-### RemoveCheck
-> **rpc** RemoveCheck([UpdateModemAlarmRemoveCheck.Request](#updatemodemalarmremovecheckrequest))
-    [UpdateModemAlarmRemoveCheck.Response](#updatemodemalarmremovecheckresponse)
-
-Remove a check from a modem alarm, if you are the owner.
-
-### TestParameters
-> **rpc** TestParameters([TestModemAlarmTestParameters.Request](#testmodemalarmtestparametersrequest))
-    [TestModemAlarmTestParameters.Response](#testmodemalarmtestparametersresponse)
-
-Test a set of parameters on a modem alarm, to see the result when they are applied during assignment.
-
-### UpdateAvailability
-> **rpc** UpdateAvailability([UpdateModemAlarmAvailability.Request](#updatemodemalarmavailabilityrequest))
-    [UpdateModemAlarmAvailability.Response](#updatemodemalarmavailabilityresponse)
-
-Make a modem alarm (un)available to (a selection of) child organizations.
-
-### MakeAvailableToChildOrganization
-> **rpc** MakeAvailableToChildOrganization([MakeModemAlarmAvailableToChildOrganizationRequest](#makemodemalarmavailabletochildorganizationrequest))
-    [ModemAlarm](#modemalarm)
-
-Make a modem alarm available to a child organization.
-
-### MakeUnavailableToChildOrganization
-> **rpc** MakeUnavailableToChildOrganization([MakeModemAlarmUnavailableToChildOrganizationRequest](#makemodemalarmunavailabletochildorganizationrequest))
-    [ModemAlarm](#modemalarm)
-
-Make a modem alarm unavailable to a child organization.
-
-### Assign
-> **rpc** Assign([AssignModemAlarms.Request](#assignmodemalarmsrequest))
-    [AssignModemAlarms.Response](#assignmodemalarmsresponse)
-
-Assign a modem alarm to a modem.
-
-### Unassign
-> **rpc** Unassign([UnassignModemAlarms.Request](#unassignmodemalarmsrequest))
-    [UnassignModemAlarms.Response](#unassignmodemalarmsresponse)
-
-Unassign a modem alarm from a modem.
 
 
 ## Messages
 
-### AssignModemAlarms
+### AggregatedValues
 
-Add direct assignments.
-If an overlapping assignment using a rule exists, it is shadowed by the direct assignment.
+Aggregate values for a (set of) modem(s), filtering by field and time.
 
-Simplified version of assign.AssignDirectly.
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| time_range | [ hiber.TimeRange](#hibertimerange) | The time range that was aggregated. |
+| values | [repeated ValueContext](#valuecontext) | The aggregated values for the requested fields.
 
+Timestamp is only set if the aggregation can return an exact data point: - if the aggregation would return an exact point: LAST, MAXIMUM, MINIMUM. - if the aggregation is applied to a single value, for a single field. |
+| location | [ hiber.Location](#hiberlocation) | The last location in the time range. |
 
-### AssignModemAlarms.Request
+### AggregatedValues.Request
 
-
+Request aggregated values, reducing the selected time range to a single value per field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| alarms | [ ModemAlarmSelection](#modemalarmselection) | none |
-| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | none |
-| parameters | [map AssignModemAlarms.Request.ParametersEntry](#assignmodemalarmsrequestparametersentry) | The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
+| selection | [ ValueSelection](#valueselection) | The values to return. |
+| aggregations | [map AggregatedValues.Request.AggregationsEntry](#aggregatedvaluesrequestaggregationsentry) | The aggregations to use for the fields, resulting in a single value for each field. When an aggregation is not specified for a field, the default aggregation for that field type is used.
 
-### AssignModemAlarms.Request.ParametersEntry
+Fields specified here must have been specified in the selection. |
+| transform_fields | [map AggregatedValues.Request.TransformFieldsEntry](#aggregatedvaluesrequesttransformfieldsentry) | Transform the values for a field into a derived value.
+
+Fields specified here must have been specified in the selection. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **optional_partition**.partition | [ AggregatedValues.Request.Partition](#aggregatedvaluesrequestpartition) | Partition the time range and apply aggregation to each part. |
+
+### AggregatedValues.Request.AggregationsEntry
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | key | [ string](#string) | none |
-| value | [ google.protobuf.Struct](#googleprotobufstruct) | none |
+| value | [ ValueAggregation](#valueaggregation) | none |
 
-### AssignModemAlarms.Response
+### AggregatedValues.Request.Partition
+
+Partition the time range and apply aggregation to each part (instead of over all values in the time range).
+If no partition is set, the aggregation returns a single value.
+
+For example:
+- get the average value per day for a month
+- get the sum of all values per hour in a day
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **partition**.split_by_duration | [ hiber.Duration](#hiberduration) | Split up the data in time block of the given size. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **partition**.reduce_to_max_size | [ uint32](#uint32) | Limit the results to the given amount of data points, applying the function to each chunk. |
+| pagination | [ hiber.Pagination](#hiberpagination) | Paginate the returned partitions of the time range. |
+| sort | [ ListValues.Sort](#listvaluessort) | How to sort the returned values. |
+| exclude_empty | [ bool](#bool) | Exclude any partitions that do not have any data from response. This is especially useful when the amount of partitions exceeds your pagination size. |
+
+### AggregatedValues.Request.TransformFieldsEntry
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| created | [repeated AssignedModemAlarm](#assignedmodemalarm) | none |
-| request | [ AssignModemAlarms.Request](#assignmodemalarmsrequest) | none |
+| key | [ string](#string) | none |
+| value | [ ValueTransformation](#valuetransformation) | none |
 
-### AssignedModemAlarm
-
-Directly assigned modem alarm to a modem.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| alarm_identifier | [ string](#string) | none |
-| modem_number | [ string](#string) | none |
-
-### CreateModemAlarm
-
-Create a new alarm.
-
-The request contains the option to add checks as well.
-This is a shortcut for creating an alarm and then adding checks, and as such can result in multiple events:
-- a created event on the alarm
-- an update event on the alarm checks, iff any checks were added
-
-
-### CreateModemAlarm.Request
+### AggregatedValues.Response
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| name | [ string](#string) | A name for the alarm. |
-| description | [ string](#string) | A short description of what the alarm should do. |
-| trigger_condition | [ ModemAlarm.TriggerCondition](#modemalarmtriggercondition) | Condition determining when an alarm is triggered if it has multiple checks. |
-| checks | [repeated ModemAlarm.Check](#modemalarmcheck) | The checks to add to this alarm. Shortcut for creating an alarm and then adding checks to it. |
-| default_health_level | [ string](#string) | The default health level for this alarm. See ModemAlarm.default_health_level for more information. |
-| health_level_after_resolved | [ ModemAlarm.HealthLevelAfterResolved](#modemalarmhealthlevelafterresolved) | The health level this alarm should cause after it is resolved. See ModemAlarm.health_level_after_resolved for more information. |
-
-### CreateModemAlarm.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| created | [ ModemAlarm](#modemalarm) | none |
-
-### DeleteModemAlarm
-
-
-
-
-### DeleteModemAlarm.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| identifier | [ string](#string) | none |
-
-### DeleteModemAlarm.Response
-
-
-
-
-### ListModemAlarms
-
-
-
-
-### ListModemAlarms.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ ModemAlarmSelection](#modemalarmselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
-| apply_unit_preferences | [ bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
-
-### ListModemAlarms.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| modem_alarms | [repeated ModemAlarm](#modemalarm) | none |
+| aggregated_values | [repeated AggregatedValues](#aggregatedvalues) | none |
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
-| request | [ ListModemAlarms.Request](#listmodemalarmsrequest) | none |
+| request | [ AggregatedValues.Request](#aggregatedvaluesrequest) | none |
 
-### MakeModemAlarmAvailableToChildOrganizationRequest
+### ListValues
+
+List values for a (set of) modem(s), filtering by field and time.
 
 
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| identifier | [ string](#string) | The identifier of the alarm that should be updated. |
-| available_to | [repeated string](#string) | The child organization(s) that the alarm should be available to. This will - when the organization is on the exclude list, remove it - when the includeAll flag is false, add it to the include list (if not already present) |
-
-### MakeModemAlarmUnavailableToChildOrganizationRequest
+### ListValues.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| identifier | [ string](#string) | The identifier of the alarm that should be updated. |
-| unavailable_to | [repeated string](#string) | The child organization(s) that the alarm should be unavailable to. This will - when the organization is on the include list, remove it - when the includeAll flag is true, add it to the exclude list (if not already present) |
-
-### ModemAlarm
-
-Alarm for a modem, monitoring message data, location or activity.
-
-An alarm is a collection of checks that validate the correctness of a modem. For example, an alarm might
-check that the modem is in a given location, or that a field in its messages is between certain values.
-
-Health for an alarm event is determined by taking the most severe health level from the health_levels configured
-on the failing checks, using this default for any checks that do not have a health_level configured.
-This can be changed on assignment with the default_health_level parameter, to fit the needs of the organization.
-
-Note, when an alarm is inherited the health levels may not match yours. If the health level matches one of
-your health levels, that level is used. Otherwise, the catch-all health level is used.
-See the health definition for more information on the catch all health level (typically the most severe).
-Note that the health level displayed here is the result of the steps above.
-
-When assigned to a (set of) modem(s), an alarm can be customized using its parameters.
-Parameters are based on the check fields, and are also used in the check error message template.
-For the alarm parameters, check parameters are prefixed with the check identifier.
-
-For example: An alarm with check A (field "healthy" equals 1) and check B (field "state" oneof ["OK", "ACTIVE"])
-would have the following parameters:
-{
-  "A": {
-    "expected": 1,
-    "field.path": "healthy",
-    "field.equals.expected": 1
-  },
-  "B": {
-    "expected": ["OK", "ACTIVE"],
-    "field.path": "state",
-    "field.oneof.expected": ["OK", "ACTIVE"]
-  }
-}
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifier | [ string](#string) | The identifier for this alarm. This identifier is globally unique, since the alarm can be shared to child organizations. |
-| name | [ string](#string) | Short name for this alarm (optional). |
-| description | [ string](#string) | Longer description for this alarm (optional). |
-| created_at | [ hiber.Timestamp](#hibertimestamp) | When this alarm was created. |
-| updated_at | [ hiber.Timestamp](#hibertimestamp) | When this alarm was last updated. |
-| available_to_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Availability to child organizations. This alarm can be shared to child organizations, so it can be assigned to their modems, either directly or automatically over all selected child organizations. Only the owner organization is able to edit the alarm. |
-| trigger_condition | [ ModemAlarm.TriggerCondition](#modemalarmtriggercondition) | Condition determining when an alarm is triggered if it has multiple checks. |
-| default_health_level | [ string](#string) | The default health level for checks in this alarm, if they have no health_level configured. |
-| health_level_after_resolved | [ ModemAlarm.HealthLevelAfterResolved](#modemalarmhealthlevelafterresolved) | Allow the alarm to cause a health level for the modem even after it has been resolved. By configuring this, you can specify the modem health should be affected for a longer period. For example, when using an inactivity check, this would could be used to configure modem health ERROR while inactive, lowering to INVESTIGATE for a day after a new message comes in. |
-| checks | [repeated ModemAlarm.Check](#modemalarmcheck) | The checks in this alarm, that validate the state of the modem. |
-| alarm_parameters | [ google.protobuf.Struct](#googleprotobufstruct) | Parameters for this alarm. This field displays all the parameters that can be set for the alarm on assignment, with their current value. |
-
-### ModemAlarm.Check
-
-A check is a specification of how things should be, i.e. "a value should be within this range".
-When it fails, it produces an event with:
-- a custom health level, or the default defined in the alarm
-- an error message, define from a template in the check
-
-The error message template is a string with parameters for the relevant data.
-The parameters are included as {parameter}, which gets replaced with the value.
-
-The supported parameters are different per check, but the parameters below are always supported:
-- modem: the modem number.
-- message: the id of the message, if any.
-- expected: a shortcut for the expected value(s), depending on the check:
-  - equals check: expected value
-  - oneof check: expected values as [a, b, c]
-  - threshold check: expected range as minimum..maximum
-  - location check: expected area as [(bottom left), (top right)], and shape as [(point), (point), ..., (point)]
-- actual: the invalid actual value(s) for this check.
-
-The checks below define other available parameters.
-
-For example (using some parameters for specific checks):
-- "Your device {modem} has left its designated area! It is now at {actual}."
-- "Your device battery is at {actual}%, which is below the recommended minimum of {field.threshold.minimum}%."
-- "Your device battery is draining faster than expected: {actual}% over the past {field.delta.period}."
-- "Your device temperature has exceeded {value.threshold.maximum} degrees: {actual}."
-- "Your device reported an unhealthy state {actual}. Healthy states are: {expected}."
-- "Your device reported an unhealthy state {actual}. Healthy states are: {field.oneof.expected}."
-- "Your device reported an unhealthy state {actual}. Please set it back to {expected}."
-- "Your device reported an unhealthy state {actual}. Please set it back to {field.equals.expected}."
-- "Unexpected value {actual} for field {field.path}!"
-
-Numeric values can be formatted with an extra postfix on the parameters
-- Round numeric values by adding ":.2f" (for 2 decimals). For example: "{actual:.3f}" (rounds to 3 decimals)
-- Always sign numeric values (when rounded) by prefixing the format with a plus. For example: `{actual:+.3f}`
-- This is applied to numeric fields and fields that can be numeric, like `{actual}` and `{expected}`.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| name | [ string](#string) | Name of this check, unique within the alarm. This is used to update or remove the check, and to determine the destination for any parameters. If omitted, a random name is generated based on the type of check. |
-| description | [ string](#string) | Longer description for this check (optional). |
-| health_level | [ string](#string) | The health level that this check would cause for a modem, when it fails. If not set, the alarm default is used. |
-| error_message_template | [ string](#string) | The error message template for this check, with parameters that will be filled in based on the check. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.location | [ ModemAlarm.Check.LocationCheck](#modemalarmchecklocationcheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.field | [ ModemAlarm.Check.FieldCheck](#modemalarmcheckfieldcheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.inactivity | [ ModemAlarm.Check.InactivityCheck](#modemalarmcheckinactivitycheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.delay | [ ModemAlarm.Check.DelayCheck](#modemalarmcheckdelaycheck) | none |
-
-### ModemAlarm.Check.DelayCheck
-
-Check whether the message was delayed more than a configured limit.
-The delay is the time between the message was sent (ModemMessage.sent_at) and the time it was
-received on the server (ModemMessage.received_at).
-
-Has the following parameters:
-- delay.maximum: the maximum allowed delay
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| maximum | [ hiber.Duration](#hiberduration) | The maximum value for the message delay (duration between sent and received time). |
-
-### ModemAlarm.Check.FieldCheck
-
-A check that evaluates each new message, and checks selected field(s) in the parsed body.
-
-When multiple fields are selected, the checks are applied to all of them individually.
-
-See the Json Path documentation at https://goessner.net/articles/JsonPath/ for details on json path.
-We currently do not allow filter expressions.
-
-Simple examples selecting a field:
-- $.my_field: a field in the root of the parsed object
-- $.my_obj.my_field: a field in a deeper structure
-- $.my_array[x].my_field: the field my_field of the element at index x is selected
-
-Complex use cases are also possible, but they require a bit more understanding of json path logic:
-- $.my_array.length(): the length of my_array is selected. Combine with an equals or threshold check,
-to require that an array has a certain length.
-- $.my_array..my_field: the array of my_field values (for all objects in my_array) is selected
-- $.my_array[*].my_field: the array of my_field values (for all objects in my_array) is selected
-
-Note that this for the examples above, if they return an array, the entire array is used as the value
-in the comparison for equals and oneof.
-
-A check of this type has the following parameters (matches the fields):
-- field.path: replace the path for this field
-- field.ignoreFieldNotFound: replace the value for ignore_field_not_found
-
-For the equals check:
-- field.equals.expected: iff this is an equals check, replace the expected value
-
-For the oneof check:
-- field.oneof.expected: iff this is a oneof check, replace the expected values
-
-For the threshold check:
-- field.threshold.expected: iff this is a threshold check, replace the expected range
-- field.threshold.minimum: iff this is a threshold check, replace the expected minimum
-- field.threshold.maximum: iff this is a threshold check, replace the expected maximum
-
-For the delta check:
-- field.delta.period:
-- field.delta.threshold.expected: iff this is a delta check, replace the expected range
-- field.delta.threshold.minimum: iff this is a delta check, replace the expected minimum
-- field.delta.threshold.maximum: iff this is a delta check, replace the expected maximum
-
-All of the parameters above can be used in the error message template.
-
-The delta check also adds a few additional error message variables:
-- {field.delta.previous}: the previous value for the field
-- {field.delta.difference} (also {actual}): the difference between previous and current value for the field
-- {field.delta.current}: the current value for the field
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| path | [ string](#string) | Select the field(s) that this check is applied to, using a json path. |
-| ignore_field_not_found | [ bool](#bool) | Whether to ignore this check if the field is not found. This can be useful if your path selects multiple values in an array, like my_array[*].value, and not all entries have the field, or when fields are omitted if they have a default value. |
-| unit | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | The unit that this alarm check is using. The field's values will automatically be converted into this unit before the check is applied.
-
-Note: unit is not currently available in the alarm_parameters. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.equals | [ ModemAlarm.Check.FieldCheck.EqualsCheck](#modemalarmcheckfieldcheckequalscheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.allowed | [ ModemAlarm.Check.FieldCheck.AllowedCheck](#modemalarmcheckfieldcheckallowedcheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.blocked | [ ModemAlarm.Check.FieldCheck.BlockedCheck](#modemalarmcheckfieldcheckblockedcheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.minimum | [ ModemAlarm.Check.FieldCheck.MinimumCheck](#modemalarmcheckfieldcheckminimumcheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.maximum | [ ModemAlarm.Check.FieldCheck.MaximumCheck](#modemalarmcheckfieldcheckmaximumcheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.threshold | [ ModemAlarm.Check.FieldCheck.ThresholdCheck](#modemalarmcheckfieldcheckthresholdcheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.delta | [ ModemAlarm.Check.FieldCheck.DeltaCheck](#modemalarmcheckfieldcheckdeltacheck) | none |
-
-### ModemAlarm.Check.FieldCheck.AllowedCheck
-
-Check that the field is in a set of expected values.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| allowed | [repeated google.protobuf.Value](#googleprotobufvalue) | The list of allowed values, one of which should match the field value. |
-
-### ModemAlarm.Check.FieldCheck.BlockedCheck
-
-Check that the field is not in a set of blocked values.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| blocked | [repeated google.protobuf.Value](#googleprotobufvalue) | none |
-
-### ModemAlarm.Check.FieldCheck.DeltaCheck
-
-A check that evaluates the differences in values over time, for the selected field(s) in the parsed body.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| period | [ hiber.Duration](#hiberduration) | The period to evaluate when determining the value difference. |
-| threshold | [ ModemAlarm.Check.FieldCheck.ThresholdCheck](#modemalarmcheckfieldcheckthresholdcheck) | Check that the delta is within a given numeric range. |
-| encrypted | [ bool](#bool) | Whether the field data should be encrypted in cache storage. Delta checks use a cache for field from messages that are affected by a delta check. Encrypting the individual field values is (relatively) computationally expensive and may lead to a slightly delayed alarm event. In the future, some delta features may only be available to unencrypted values due to performance issues. |
-| ignore_previous_value_not_found | [ bool](#bool) | Whether to ignore this check if the previous value is not found (i.e. there is no history). |
-
-### ModemAlarm.Check.FieldCheck.EqualsCheck
-
-Check that the field is equal to the given value.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| expected | [ google.protobuf.Value](#googleprotobufvalue) | none |
-
-### ModemAlarm.Check.FieldCheck.MaximumCheck
-
-Check that the field is lower than the given value.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| maximum | [ double](#double) | The maximum numeric value the field should have. |
-
-### ModemAlarm.Check.FieldCheck.MinimumCheck
-
-Check that the field is higher than the given value.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| minimum | [ double](#double) | The minimum numeric value the field should have. |
-
-### ModemAlarm.Check.FieldCheck.ThresholdCheck
-
-Check that the field is within a given numeric range.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| expected | [ hiber.DoubleRange](#hiberdoublerange) | The range the value must be in. |
-| minimum | [ double](#double) | The minimum expected value, available separately for convenience and check parameters. |
-| maximum | [ double](#double) | The maximum expected value, available separately for convenience and check parameters. |
-
-### ModemAlarm.Check.InactivityCheck
-
-Check whether the device exceeds inactivity limits.
-
-Has the following parameters:
-- inactivity.maximum: the maximum allowed inactivity
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| maximum | [ hiber.Duration](#hiberduration) | The maximum value for the modem's inactivity (time since last message was received on the server). |
-| deprecated_maximum | [ hiber.Duration](#hiberduration) | none |
-
-### ModemAlarm.Check.LocationCheck
-
-Check that the device location is within a given area.
-
-Has the following parameters:
-- location.expected: replace the referenced named location
-- location.named: replace the referenced named location
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| named | [ string](#string) | Specify the name of a named location (NamedLocation) that the device must be in. |
-
-### ModemAlarm.HealthLevelAfterResolved
-
-Allow the alarm to cause a health level for the modem even after a new message has come in.
-
-Typically, an alarm event only affects the modem health while it is from the last message from that modem.
-By configuring this, you can specify the modem health should be affected for a longer period.
-
-For example, when using an inactivity check, this would could be used to configure modem health ERROR while
-inactive, lowering to INVESTIGATE for a day after a new message comes in.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| health_level | [ string](#string) | The health level that this check would cause for a modem, when the original failure is resolved. |
-| period | [ hiber.Duration](#hiberduration) | The amount of time that this health level would be active. |
-
-### ModemAlarmSelection
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifiers | [repeated string](#string) | none |
-| search | [ string](#string) | Search for the given string in identifier, description, fields and values. |
-| owner_organizations | [repeated string](#string) | Only return alarms that were created by the given organizations. |
-| only_owned_alarms | [ bool](#bool) | none |
-
-### TestModemAlarmTestParameters
-
-
-
-
-### TestModemAlarmTestParameters.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| alarm_identifier | [ string](#string) | none |
-| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | none |
-
-### TestModemAlarmTestParameters.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| result | [ ModemAlarm](#modemalarm) | none |
-
-### UnassignModemAlarms
-
-Remove a direct assignment.
-If an overlapping assignment using a rule exists, it is not affected, except that it is longer shadowed.
-
-Simplified version of assign.UnassignDirectly.
-
-
-### UnassignModemAlarms.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| alarms | [ ModemAlarmSelection](#modemalarmselection) | none |
-| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | none |
-
-### UnassignModemAlarms.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| removed_direct_assignments | [repeated AssignedModemAlarm](#assignedmodemalarm) | none |
-| request | [ UnassignModemAlarms.Request](#unassignmodemalarmsrequest) | none |
-
-### UpdateModemAlarm
-
-Update the alarm, iff you are the owner or can impersonate the owner organization.
-
-The request contains the option to add, remove or update checks as well.
-This is a shortcut for updating an alarm and then adding, removing and/or updating checks,
-and as such can result in multiple events:
-- an update event on the alarm, iff there were any non-check changes to the alarm.
-- an update event on the alarm checks, iff there were any check addition, updates or deletions
-
-
-### UpdateModemAlarm.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| identifier | [ string](#string) | The identifiers of the alarm to update |
-| update_name | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the name, optionally. |
-| update_description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the description, optionally. |
-| update_trigger_condition | [ ModemAlarm.TriggerCondition](#modemalarmtriggercondition) | Update the trigger condition, optionally. |
-| update_default_health_level | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the default health level, optionally. |
-| update_health_level_after_resolved | [ ModemAlarm.HealthLevelAfterResolved](#modemalarmhealthlevelafterresolved) | Update the health after resolved, optionally. |
-| remove_health_level_after_resolved | [ bool](#bool) | Remove the health after resolved, optionally. |
-| add_checks | [repeated ModemAlarm.Check](#modemalarmcheck) | The checks to add to this alarm. Shortcut for updating an alarm and then adding checks to it. |
-| update_checks | [map UpdateModemAlarm.Request.UpdateChecksEntry](#updatemodemalarmrequestupdatechecksentry) | The checks to update in this alarm. Shortcut for updating an alarm and then updating checks. |
-| delete_checks | [repeated string](#string) | The checks to remove from this alarm. Shortcut for updating an alarm and then removing checks. |
-
-### UpdateModemAlarm.Request.UpdateChecksEntry
+| selection | [ ValueSelection](#valueselection) | none |
+| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| sort | [ ListValues.Sort](#listvaluessort) | none |
+| transform_fields | [map ListValues.Request.TransformFieldsEntry](#listvaluesrequesttransformfieldsentry) | Transform the values for a field into a derived value. Fields specified here must have been specified in the selection. |
+
+### ListValues.Request.TransformFieldsEntry
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | key | [ string](#string) | none |
-| value | [ ModemAlarm.Check](#modemalarmcheck) | none |
+| value | [ ValueTransformation](#valuetransformation) | none |
 
-### UpdateModemAlarm.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| updated | [ ModemAlarm](#modemalarm) | none |
-
-### UpdateModemAlarmAddCheck
-
-Add a check to the alarm, iff you are the owner or can impersonate the owner organization.
-
-
-### UpdateModemAlarmAddCheck.Request
+### ListValues.Response
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| alarm_identifier | [ string](#string) | none |
-| check | [ ModemAlarm.Check](#modemalarmcheck) | The check to add to the Modem Alarm. Identifier must be unique within the alarm. |
+| values | [repeated ValueContext](#valuecontext) | none |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| request | [ ListValues.Request](#listvaluesrequest) | none |
 
-### UpdateModemAlarmAddCheck.Response
+### ValueContext
 
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| updated | [ ModemAlarm](#modemalarm) | none |
-
-### UpdateModemAlarmAvailability
-
-
-
-
-### UpdateModemAlarmAvailability.Request
-
-
+A Value at a time, for a given modem and field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| alarm_identifier | [ string](#string) | none |
-| replace_apply_to_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | The new set of child organizations that this rule applies to. Replaces the original value! |
+| modem | [ string](#string) | none |
+| field | [ string](#string) | none |
+| time | [ hiber.Timestamp](#hibertimestamp) | The time for this value. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value_type**.value | [ Value](#value) | The value at this time. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value_type**.duration | [ ValueContext.ValueDurations](#valuecontextvaluedurations) | The value at this time. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value_type**.delta | [ ValueContext.ValueDelta](#valuecontextvaluedelta) | The value at this time. |
 
-### UpdateModemAlarmAvailability.Response
+### ValueContext.ValueDelta
 
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| updated | [ ModemAlarm](#modemalarm) | none |
-
-### UpdateModemAlarmRemoveCheck
-
-
-
-
-### UpdateModemAlarmRemoveCheck.Request
-
-
+The delta of a value: the difference between a value and the previous value.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| alarm_identifier | [ string](#string) | none |
-| check_identifier | [ string](#string) | none |
+| delta | [ Value](#value) | The delta of the two values. |
+| current | [ Value](#value) | The value at this time. |
+| previous | [ Value](#value) | The previous value to compare it with. |
 
-### UpdateModemAlarmRemoveCheck.Response
+### ValueContext.ValueDuration
 
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| updated | [ ModemAlarm](#modemalarm) | none |
-
-### UpdateModemAlarmUpdateCheck
-
-
-
-
-### UpdateModemAlarmUpdateCheck.Request
-
-
+The amount of time a field for a modem was in this value.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| alarm_identifier | [ string](#string) | none |
-| check_identifier | [ string](#string) | none |
-| update_check | [ ModemAlarm.Check](#modemalarmcheck) | none |
-| update_using_parameters | [map UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry](#updatemodemalarmupdatecheckrequestupdateusingparametersentry) | Use parameters to update the check, as it would be when they were added when the alarm was assigned. |
-| test_parameters_only | [ bool](#bool) | If set, the update is not actually saved, but only applied and returned. This is a convenience to easily test parameters for a check similar to TestModemAlarmTestParameters. |
+| value | [ Value](#value) | The value the duration is for. |
+| duration | [ hiber.Duration](#hiberduration) | The aggregated duration the field was this value. |
 
-### UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry
+### ValueContext.ValueDurations
 
-
+The amount of time a field for a modem was at different values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
+| durations | [repeated ValueContext.ValueDuration](#valuecontextvalueduration) | none |
 
-### UpdateModemAlarmUpdateCheck.Response
+### ValueSelection
 
-
+Select the values to return.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ ModemAlarm](#modemalarm) | none |
+| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the modem(s) to get the values for. |
+| fields | [repeated string](#string) | Get the values for the selected fields. |
+| time_range | [ hiber.TimeRange](#hibertimerange) | The time to view the values for. |
+| include_location | [ bool](#bool) | Include the location (which is not a field). |
+| filter_enum_values | [repeated hiber.Filter.FieldEnumValues](#hiberfilterfieldenumvalues) | Filter the values for enum fields. |
 
 
 ## Enums
-### ModemAlarm.TriggerCondition
-Condition determining when an alarm is triggered if it has multiple checks.
+### ListValues.Sort
+How to sort the values.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| DEFAULT | Defaults to the current value when updating, or to ANY_CHECK_FAILED when creating. | 0 |
-| ANY_CHECK_FAILED | Trigger the alarm when any of the checks fail. This is useful when providing a single device health alarm, that checks, for example, battery, operating temperature, etc. and should trigger when any of those are outside the expected range. | 1 |
-| ALL_CHECKS_FAILED | Trigger the alarm only when all checks fail. This is useful when creating a combined alarm, where several data points factor into the decisions to trigger the alarm, for example, combining a check on the current value with a delta check on the historical values, to trigger only if the value is high for a longer period. | 2 |
+| TIME_ASCENDING | none | 0 |
+| TIME_DESCENDING | none | 1 |
+
+### ValueAggregation
+Get the values for the selected field.
+
+There are a few limitations here:
+- text fields can only use the LAST aggregation.
+- enum fields support a subset of aggregations:
+  - DEFAULT and LAST return the last value.
+  - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order.
+  - AVERAGE and SUM are not supported.
+
+- enum duration
+
+An enum example:
+Field "status" with this timeline: 00:00 OK, 00:10 FAILED, 00:20 OK, 00:25 FAILED, 00:40 OK
+- aggregation DEFAULT or LAST: OK, since it's OK at the end of the time range.
+- aggregation SUM: OK: 35m, FAILED: 25m
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| DEFAULT | none | 0 |
+| AVERAGE | Return the average value. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 1 |
+| SUM | Return the sum all values. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 2 |
+| LAST | Just take the last value. | 3 |
+| MINIMUM | Return the lowest value. For enum fields, the order of values is used to determine the MINIMUM. Not supported for textual fields. When used with these fields, LAST is used instead. | 4 |
+| MAXIMUM | Return the highest value. For enum fields, the order of values is used to determine the MAXIMUM. Not supported for textual fields. When used with these fields, LAST is used instead. | 5 |
+
+### ValueTransformation
+Transform the values into a derived value.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| DURATION | Instead of returning the value, return the amount of time a value was active. Aggregation (if applicable) is applied afterwards on the duration value. | 0 |
+| DELTA | Instead of returning the value, return the difference between the value and the previous value. Aggregation (if applicable) is applied before the delta is calculated. | 1 |
+
+
+
+## Referenced messages from value.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [value.proto](https://github.com/HiberGlobal/api/blob/master/value.proto).
+
+
+### hiber.value.Value
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| type | [ hiber.value.Value.Type](#hibervaluevaluetype) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.numeric | [ hiber.value.Value.Numeric](#hibervaluevaluenumeric) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.text | [ string](#string) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.enum | [ hiber.value.Value.Enum](#hibervaluevalueenum) | none |
+
+### hiber.value.Value.Enum
+
+If this value is an enum, this specifies the value, display name and color for this enum value.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ string](#string) | The enum value. This might be a cryptic value, see the display_name and description for more information. |
+| display_name | [ string](#string) | User-facing name for this value. |
+| description | [ string](#string) | More details for this enum value. |
+| color | [ string](#string) | (Optional) color for this enum value. |
+| priority | [ int32](#int32) | Priority of the value, typically used for ordering. |
+
+### hiber.value.Value.Numeric
+
+If the value is numeric, this specifies the unit, value, etc.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| type | [ hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.battery_level | [ hiber.value.Value.Numeric.BatteryLevel](#hibervaluevaluenumericbatterylevel) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.distance | [ hiber.value.Value.Numeric.Distance](#hibervaluevaluenumericdistance) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.duration | [ hiber.Duration](#hiberduration) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.fuel_efficiency | [ hiber.value.Value.Numeric.FuelEfficiency](#hibervaluevaluenumericfuelefficiency) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.percentage | [ hiber.value.Value.Numeric.Percentage](#hibervaluevaluenumericpercentage) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.pressure | [ hiber.value.Value.Numeric.Pressure](#hibervaluevaluenumericpressure) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.speed | [ hiber.value.Value.Numeric.Speed](#hibervaluevaluenumericspeed) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.temperature | [ hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.voltage | [ hiber.value.Value.Numeric.Voltage](#hibervaluevaluenumericvoltage) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.volume | [ hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.mass | [ hiber.value.Value.Numeric.Mass](#hibervaluevaluenumericmass) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.flow | [ hiber.value.Value.Numeric.Flow](#hibervaluevaluenumericflow) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.unknown | [ double](#double) | none |
+
+### hiber.value.Value.Numeric.BatteryLevel
+
+Special case for battery level, since it can be provided in many units.
+Not included in the UnitPreferences, since it cannot be converted.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Distance
+
+The value is a distance value, converted to your preferred distance unit.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Flow
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.FuelEfficiency
+
+The value is a distance value, converted to your preferred distance unit.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Mass
+
+The value is a volume value, converted to your preferred volume unit.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Percentage
+
+The value is a percentage.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ float](#float) | none |
+| unit | [ hiber.value.Value.Numeric.Percentage.Unit](#hibervaluevaluenumericpercentageunit) | none |
+| textual | [ string](#string) | Textual representation with % symbol, rounded based on the user preferences and field config. |
+
+### hiber.value.Value.Numeric.Pressure
+
+The value is a pressure value, converted to your preferred pressure unit.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Speed
+
+The value is a speed value, converted to your preferred speed unit.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Temperature
+
+The value is a temperature, converted to your preferred temperature unit.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Voltage
+
+The value is a voltage, converted to your preferred voltage unit.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Volume
+
+The value is a volume value, converted to your preferred volume unit.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+
+### Enums
+#### hiber.value.Value.Numeric.BatteryLevel.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| PERCENT | Battery level as a percentage (technically not a unit).
+
+other units will be added here later, like voltage | 0 |
+
+#### hiber.value.Value.Numeric.Distance.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| METER | none | 0 |
+| MILLIMETER | none | 1 |
+| CENTIMETER | none | 2 |
+| KILOMETER | none | 3 |
+| YARD | none | 5 |
+| MILE | none | 4 |
+| FOOT | none | 6 |
+| INCH | none | 7 |
+| NAUTICAL_MILE | This is a special case unit and may not be auto-converted to your UnitPreference. | 8 |
+
+#### hiber.value.Value.Numeric.DurationUnit
+The duration enum is not wrapped in Duration, since duration is always returned as a normalize Duration.
+This unit is still used for fields, however.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| MILLISECONDS | none | 0 |
+| SECONDS | none | 1 |
+| MINUTES | none | 2 |
+| HOURS | none | 3 |
+| DAYS | none | 4 |
+| WEEKS | none | 5 |
+
+#### hiber.value.Value.Numeric.Flow.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| CUBIC_METER_PER_HOUR | none | 0 |
+
+#### hiber.value.Value.Numeric.FuelEfficiency.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| LITER_PER_100_KILOMETER | none | 0 |
+| KILOMETER_PER_LITER | none | 1 |
+| KILOMETER_PER_GALLON | none | 2 |
+| KILOMETER_PER_IMPERIAL_GALLON | none | 3 |
+| MILE_PER_GALLON | none | 4 |
+| MILE_PER_IMPERIAL_GALLON | none | 5 |
+| MILE_PER_LITER | none | 6 |
+
+#### hiber.value.Value.Numeric.Mass.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| KILOGRAMS | none | 0 |
+| POUNDS | none | 1 |
+
+#### hiber.value.Value.Numeric.Percentage.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| PERCENT | Technically not a unit, but for consistency, we've added it here. | 0 |
+
+#### hiber.value.Value.Numeric.Pressure.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| BAR | none | 0 |
+| PSI | none | 1 |
+| K_PA | none | 2 |
+
+#### hiber.value.Value.Numeric.Speed.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| KILOMETERS_PER_HOUR | none | 0 |
+| KNOTS | This is a special case unit and may not be auto-converted to your UnitPreference. | 1 |
+| METERS_PER_SECOND | none | 2 |
+| MILES_PER_HOUR | none | 3 |
+
+#### hiber.value.Value.Numeric.Temperature.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| KELVIN | none | 0 |
+| DEGREES_CELSIUS | none | 1 |
+| DEGREES_FAHRENHEIT | none | 2 |
+
+#### hiber.value.Value.Numeric.Type
+The type of numeric value that is represented.
+Supported types will automatically convert to the preferred unit (based on the user settings).
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| TYPE_UNKNOWN | none | 0 |
+| PERCENTAGE | none | 1 |
+| TEMPERATURE | none | 2 |
+| DISTANCE | none | 3 |
+| PRESSURE | none | 4 |
+| VOLTAGE | none | 5 |
+| SPEED | none | 6 |
+| VOLUME | none | 7 |
+| DURATION | none | 8 |
+| FUEL_EFFICIENCY | none | 9 |
+| MASS | none | 10 |
+| BATTERY_LEVEL | none | 11 |
+| FLOW | none | 12 |
+
+#### hiber.value.Value.Numeric.Voltage.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| MILLIVOLT | none | 0 |
+
+#### hiber.value.Value.Numeric.Volume.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| LITER | none | 0 |
+| GALLON_US | none | 1 |
+| GALLON_IMPERIAL | none | 2 |
+| CUBIC_METER | none | 3 |
+| CUBIC_FEET | none | 4 |
+
+#### hiber.value.Value.Type
+The type of value that is represented.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| OTHER | none | 0 |
+| NUMERIC | This field contains numeric values, with an optional unit of measurement defined below. | 1 |
+| TEXT | This field contains text to be displayed. | 2 |
+| ENUM | This field switches between several predefined values. Typically used for status fields. | 3 |
 
 
 

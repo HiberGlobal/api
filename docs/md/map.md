@@ -88,6 +88,7 @@ a controlled amount of groups.
   - [hiber.Filter.ChildOrganizations.Update](#hiberfilterchildorganizationsupdate)
   - [hiber.Filter.Events](#hiberfilterevents)
   - [hiber.Filter.Events.Update](#hiberfiltereventsupdate)
+  - [hiber.Filter.FieldEnumValues](#hiberfilterfieldenumvalues)
   - [hiber.Filter.Modems](#hiberfiltermodems)
   - [hiber.Filter.Modems.Update](#hiberfiltermodemsupdate)
   - [hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions)
@@ -428,6 +429,16 @@ Update object to update a Filter.Events field.
 | ----- | ---- | ----------- |
 | updated | [ bool](#bool) | none |
 | value | [ hiber.Filter.Events](#hiberfilterevents) | none |
+
+### hiber.Filter.FieldEnumValues
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| field | [ string](#string) | none |
+| include | [repeated string](#string) | none |
+| exclude | [repeated string](#string) | none |
 
 ### hiber.Filter.Modems
 

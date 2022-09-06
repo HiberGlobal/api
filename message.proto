@@ -27,9 +27,13 @@ service MessageService {
     /* Count messages for the selected modems. */
     rpc Count (CountMessages.Request) returns (CountMessages.Response);
 
-    rpc AvailableBodyFields (AvailableMessageBodyFields.Request) returns (AvailableMessageBodyFields.Response);
+    rpc AvailableBodyFields (AvailableMessageBodyFields.Request) returns (AvailableMessageBodyFields.Response) {
+        option deprecated = true;
+    }
 
-    rpc History (MessageBodyFieldHistory.Request) returns (MessageBodyFieldHistory.Response);
+    rpc History (MessageBodyFieldHistory.Request) returns (MessageBodyFieldHistory.Response) {
+        option deprecated = true;
+    }
 }
 
 /* Message received from a device in the field.
@@ -182,7 +186,11 @@ message CountMessages {
 }
 
 message AvailableMessageBodyFields {
+    option deprecated = true;
+
     message Request {
+        option deprecated = true;
+
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
         modem.ModemSelection modems = 2;
@@ -196,6 +204,8 @@ message AvailableMessageBodyFields {
     }
 
     message Response {
+        option deprecated = true;
+
         /* Deprecated wrapper for backwards compatibility */
         message FieldWrapperDeprecated {
             option deprecated = true;
@@ -219,9 +229,12 @@ message AvailableMessageBodyFields {
 
 /* List the history for a single field, and optionally apply an aggregation and/or grouping to it. */
 message MessageBodyFieldHistory {
+    option deprecated = true;
 
     /* Request to get the history of (a) field(s), for the selected modems in the organization. */
     message Request {
+        option deprecated = true;
+
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
 
@@ -253,11 +266,13 @@ message MessageBodyFieldHistory {
             uint32 reduce_to_max_size = 7;
         }
 
-        /* Get the history for the selected fields. */
+        /* Get the history for the selected fields.
+         * Text and Enum fields cannot be summed, or averaged, they always use LAST aggregation when aggregating.
+         */
         repeated string message_body_fields = 8;
 
         /* Get the history for the location.
-         * Locations cannot be summed, or averaged, so default to the LAST aggregation when aggregating.
+         * Locations cannot be summed, or averaged, they always use LAST aggregation when aggregating.
          */
         bool include_location = 9;
 
@@ -266,6 +281,8 @@ message MessageBodyFieldHistory {
 
         /* Options to aggregate the history data points (in a group). */
         enum Aggregation {
+            option deprecated = true;
+
             /* Do not aggregate the history data points, just list all of them. */
             NONE = 0;
 
@@ -277,6 +294,12 @@ message MessageBodyFieldHistory {
 
             /* Just take the last value (in a group). */
             LAST = 3;
+
+            /* Take the lowest value (in a group). */
+            MINIMUM = 4;
+
+            /* Take the highest value (in a group). */
+            MAXIMUM = 5;
         }
 
         /* How to sort the returned values. */
@@ -288,6 +311,8 @@ message MessageBodyFieldHistory {
 
     /* Response with the (aggregated) history of (a) field(s), for the selected modems in the organization. */
     message Response {
+        option deprecated = true;
+
         /* The processed historical data points.
          * For example, when applying the SUM aggregation to all data points, this list would only contains a
          * single value, the sum of values.

@@ -130,6 +130,9 @@ message Field {
      */
     bool encrypted = 3;
 
+    /* Whether this field should be validated from the parser output. */
+    bool optional = 12;
+
     /* If numeric, the unit of the field.
      * Deprecated: use numeric.numeric_unit oneof instead
      */

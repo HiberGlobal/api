@@ -203,6 +203,22 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.field.ListFieldsForModem"><span class="badge">M</span>ListFieldsForModem</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.field.ListFieldsForModem.Request"><span class="badge">M</span>ListFieldsForModem.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.field.ListFieldsForModem.Response"><span class="badge">M</span>ListFieldsForModem.Response</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.field.ListFieldsForModem.Response.ModemWithFields"><span class="badge">M</span>ListFieldsForModem.Response.ModemWithFields</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.field.ReplaceAllFieldsRequest"><span class="badge">M</span>ReplaceAllFieldsRequest</a>
                 </li>
               
@@ -835,7 +851,7 @@
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>Whether to apply the unit preferences to the fields.
-This will convert any fields into you preferred unit, for convenience. </p></td>
+This will convert any fields into your preferred unit, for convenience. </p></td>
                 </tr>
               
             </tbody>
@@ -873,6 +889,158 @@ This will convert any fields into you preferred unit, for convenience. </p></td>
                   <td>pagination</td>
                   <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
                   <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.field.ListFieldsForModem">ListFieldsForModem</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.field.ListFieldsForModem.Request">ListFieldsForModem.Request</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>modem_selection</td>
+                  <td><a href="#hiber.modem.ModemSelection">hiber.modem.ModemSelection</a></td>
+                  <td></td>
+                  <td><p>Select the modems to fetch the fields for. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>field_selection</td>
+                  <td><a href="#hiber.field.FieldSelection">FieldSelection</a></td>
+                  <td></td>
+                  <td><p>Select which fields to return. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#hiber.field.ListFields.Sort">ListFields.Sort</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>apply_unit_preferences</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether to apply the unit preferences to the fields.
+This will convert any fields into you preferred unit, for convenience. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>include_total</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether to also calculate the total fields for all selected modems,
+and return them as a single list in the response.
+This can be useful to display table columns, for example. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.field.ListFieldsForModem.Response">ListFieldsForModem.Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>modem_fields</td>
+                  <td><a href="#hiber.field.ListFieldsForModem.Response.ModemWithFields">ListFieldsForModem.Response.ModemWithFields</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#hiber.field.ListFieldsForModem.Request">ListFieldsForModem.Request</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>total</td>
+                  <td><a href="#hiber.field.Field">Field</a></td>
+                  <td>repeated</td>
+                  <td><p>A merged result of all fields, for all modems. This can be useful to display table columns, for example. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.field.ListFieldsForModem.Response.ModemWithFields">ListFieldsForModem.Response.ModemWithFields</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>modem</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fields</td>
+                  <td><a href="#hiber.field.Field">Field</a></td>
+                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1202,6 +1370,13 @@ When set to true at a later point, earlier values are not encrypted retro-active
                 </tr>
               
                 <tr>
+                  <td>optional</td>
+                  <td><a href="#hiber.UpdateBoolean">hiber.UpdateBoolean</a></td>
+                  <td></td>
+                  <td><p>Whether this field is optional or not. </p></td>
+                </tr>
+              
+                <tr>
                   <td>numeric</td>
                   <td><a href="#hiber.field.UpdateFieldNumericDetails">UpdateFieldNumericDetails</a></td>
                   <td></td>
@@ -1269,6 +1444,13 @@ When set to true at a later point, earlier values are not encrypted retro-active
                 <td>List</td>
                 <td><a href="#hiber.field.ListFields.Request">ListFields.Request</a></td>
                 <td><a href="#hiber.field.ListFields.Response">ListFields.Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ForModem</td>
+                <td><a href="#hiber.field.ListFieldsForModem.Request">ListFieldsForModem.Request</a></td>
+                <td><a href="#hiber.field.ListFieldsForModem.Response">ListFieldsForModem.Response</a></td>
                 <td><p></p></td>
               </tr>
             
@@ -1391,6 +1573,13 @@ When set to true at a later point, earlier values are not encrypted retro-active
                   <td></td>
                   <td><p>Whether this field should be stored encrypted or not.
 If it is, some processing options may be unavailable or slower. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>optional</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether this field should be validated from the parser output. </p></td>
                 </tr>
               
                 <tr>

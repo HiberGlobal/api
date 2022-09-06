@@ -330,6 +330,12 @@ message Easypulse {
 
                 /* Just take the last value (in a group). */
                 LAST = 3;
+
+                /* Take the lowest value (in a group). */
+                MINIMUM = 4;
+
+                /* Take the highest value (in a group). */
+                MAXIMUM = 5;
             }
 
             /* How to sort the returned values. */
@@ -511,6 +517,11 @@ message Easypulse {
 
                 /* Sort the returned assets using the given option. By default, Assets are sorted by name. */
                 ListAssets.Request.Sort sort = 4;
+
+                /* Whether to apply the unit preferences to the fields.
+                 * This will convert any fields into your preferred unit, for convenience.
+                 */
+                bool apply_unit_preferences = 5;
             }
 
             message Response {

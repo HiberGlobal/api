@@ -392,6 +392,12 @@ message Filter {
         repeated UserPermission include = 2;
         repeated UserPermission exclude = 3;
     }
+
+    message FieldEnumValues {
+        string field = 1;
+        repeated string include = 2;
+        repeated string exclude = 3;
+    }
 }
 
 /* Health is an indicator for issues. It is used for publishers to give a quick indication of issues.

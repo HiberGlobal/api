@@ -532,6 +532,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.Filter.FieldEnumValues"><span class="badge">M</span>Filter.FieldEnumValues</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.Filter.Modems"><span class="badge">M</span>Filter.Modems</a>
                 </li>
               
@@ -1970,6 +1974,14 @@ When grouping would not return an exact data point (i.e. average), the end of th
                   <td><p>Sort the returned assets using the given option. By default, Assets are sorted by name. </p></td>
                 </tr>
               
+                <tr>
+                  <td>apply_unit_preferences</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether to apply the unit preferences to the fields.
+This will convert any fields into your preferred unit, for convenience. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -2432,6 +2444,18 @@ When grouping would not return an exact data point (i.e. average), the end of th
                 <td>LAST</td>
                 <td>3</td>
                 <td><p>Just take the last value (in a group).</p></td>
+              </tr>
+            
+              <tr>
+                <td>MINIMUM</td>
+                <td>4</td>
+                <td><p>Take the lowest value (in a group).</p></td>
+              </tr>
+            
+              <tr>
+                <td>MAXIMUM</td>
+                <td>5</td>
+                <td><p>Take the highest value (in a group).</p></td>
               </tr>
             
           </tbody>
@@ -4120,6 +4144,44 @@ the field color in HealthLevel </p></td>
                   <td>value</td>
                   <td><a href="#hiber.Filter.Events">Filter.Events</a></td>
                   <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.Filter.FieldEnumValues">Filter.FieldEnumValues</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>field</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>include</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>exclude</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
