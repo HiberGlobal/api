@@ -2,6 +2,8 @@
 
 #### Upcoming Changes
 
+### 0.120 (2022-09-12)
+
 ### 0.119 (2022-09-05)
 
 ##### EasypulseService
