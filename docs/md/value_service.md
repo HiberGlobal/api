@@ -749,16 +749,16 @@ Sorting options for the results.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| LAST_MESSAGE_RECEIVED | none | 0 |
-| LAST_MESSAGE_RECEIVED_INVERTED | none | 1 |
-| MODEM_NUMBER_ASC | Sort numerically on the number of the modem. | 2 |
-| MODEM_NUMBER_DESC | none | 3 |
-| STATUS_ASC | none | 4 |
-| STATUS_DESC | none | 5 |
-| MODEM_NAME_ASC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number | 6 |
-| MODEM_NAME_DESC | none | 7 |
-| ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the modem | 8 |
-| ORGANIZATION_DESC | none | 9 |
+| LAST_MESSAGE_RECEIVED | Sorts messages in descending time order. | 0 |
+| LAST_MESSAGE_RECEIVED_INVERTED | Sorts messages in ascending time order. | 1 |
+| MODEM_NUMBER_ASC | Sort numerically on the number of the modem, in ascending order. | 2 |
+| MODEM_NUMBER_DESC | Sort numerically on the number of the modem, in descending order. | 3 |
+| STATUS_ASC | Sort modem on its Status. | 4 |
+| STATUS_DESC | Sort modem on its Status in reverse order. | 5 |
+| MODEM_NAME_ASC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in ascending order. | 6 |
+| MODEM_NAME_DESC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in descending order. | 7 |
+| ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the modem, in ascending order. | 8 |
+| ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the modem, in descending order. | 9 |
 | HEALTH | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 10 |
 | HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 11 |
 

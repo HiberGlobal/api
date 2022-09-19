@@ -2,6 +2,23 @@
 
 #### Upcoming Changes
 
+### 0.121 (2022-09-19)
+
+##### ModemService
+
+- Fixed a bug where modems created (using the Create command) would get a random location, when location and location_in_area were not set.
+
+##### ValueSimulationService
+
+Created a new simulation service that allows to directly simulate values.
+
+- Create/list/update/delete rotating values for any field
+- Create/list/update/delete rotating values for location or pick random location within a square area.
+
+###### SingleSignOnService
+
+- Added `DundasSSO.Request.kill_other_sessions` to kill other sessions when validating or creating the session cookie.
+
 ### 0.120 (2022-09-12)
 
 ### 0.119 (2022-09-05)

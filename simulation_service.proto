@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+package hiber.simulation;
+
+import "base.proto";
+import "modem.proto";
+import "simulation.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.simulation";
+option java_outer_classname = "SimulationServiceApi";
+option go_package = "hiber";
+
+/* Service to directly simulate device values.
+ * These simulations skip the entire message pipeline and directly insert values for devices.
+ * This can help with API integration and with demonstrations.
+ */
+service ValueSimulationService {
+    rpc ListValueSimulations (List.Request) returns (List.Response);
+    rpc UpdateValueSimulations (Update.Request) returns (Update.Response);
+    rpc DisableValueSimulations (Delete.Request) returns (Delete.Response);
+}
+
+message List {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        modem.ModemSelection modems = 2;
+        Pagination pagination = 3;
+    }
+    message Response {
+        repeated ValueSimulation simulations = 1;
+        Request request = 2;
+        Pagination.Result pagination = 3;
+    }
+}
+
+/* Create or update the modem value simulation for a selection of modems. */
+message Update {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* Modems to create or update the value simulation for. */
+        modem.ModemSelection modems = 2;
+
+        /* Simulation is done using the configured output fields of a parser. */
+        string parser_identifier = 3;
+
+        /* List of fields to set simulation for. Number of values do not have to be the same for all fields. */
+        repeated ValueSimulation.ValueRotation values = 4;
+
+        oneof location {
+            /* Randomize modem location within the given area. */
+            Area random_location_in_area = 5;
+
+            /* Replace the list of locations to rotate through.
+             * This does not have to match the length of the message value rotation, if any.
+             * Note that this **replaces** the entire list of values, to ensure the order is maintained.
+             */
+            ValueSimulation.LocationRotation replace_location_rotation = 6;
+        }
+    }
+    message Response {
+        repeated ValueSimulation simulations = 1;
+        Request request = 2;
+    }
+}
+
+message Delete {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        /* Apply deletion on simulations for devices/modems referenced by this ModemSelection. */
+        modem.ModemSelection modems = 2;
+
+        oneof field {
+            bool remove_all = 3;
+            /* Remove only the listed specific fields */
+            ValueSimulationSelection fields = 4;
+        }
+    }
+    message Response {
+        uint32 deleted = 1;
+        Request request = 2;
+    }
+}
+
+/* Selection for specific ValueSimulations. */
+message ValueSimulationSelection {
+    /* Include only the listed specific fields */
+    repeated string fields = 1;
+    /* When set to true, includes location simulation */
+    bool location = 2;
+}

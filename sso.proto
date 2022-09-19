@@ -33,6 +33,9 @@ message DundasSSO {
          * This makes it easier to avoid having multiple sessions.
          */
         string current_session_id = 2;
+
+        /* Kill any other sessions for your account. */
+        bool kill_other_sessions = 3;
     }
     message Response {
         /* A valid session id for the given organization.

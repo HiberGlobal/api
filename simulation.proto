@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+package hiber.simulation;
+
+import "base.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.simulation";
+option go_package = "hiber";
+
+/* ValueSimulation represents a set of simulated data for a specific device (aka modem).
+ * Values can be simulated for any value that a message-parser would otherwise produce.
+ * In other words: all configured fields for a parser (be it "normal" or refined fields),
+ * can be simulated directly without the need for a binary payload.
+ * (There is also a simulation option to fully simulate messages from the binary payload)
+ *
+ * This message represents all simulated fields, including a possible location simulation, for one specific modem.
+ */
+message ValueSimulation {
+    /* The modem this simulation applies to. */
+    string modem_number = 1;
+
+    /* The list of value simulations for this modem, one per simulated field. */
+    repeated ValueRotation values = 2;
+
+    oneof location {
+        /* Randomize modem location within the given area. */
+        Area random_location_in_area = 3;
+
+        /* Rotate through a list of locations. */
+        LocationRotation location_rotation = 4;
+    }
+
+    /* A list of values for a field to rotate through on a set schedule.
+     * Contains a set simulation_interval for which each interval a simulation will be done.
+     */
+    message ValueRotation {
+        /* The name of the field (if in the root structure) or a JsonPath to the field of the simulated value. */
+        oneof field_selection {
+            string field_path = 1;
+            string field_identifier = 2;
+        }
+
+        /* Pick which type of value to simulate. One can give a list of values per type. */
+        oneof value {
+            Numeric numeric = 3;
+            Text text = 4;
+            Enum enum = 5;
+        }
+
+        /* Interval messages should be simulated at (i.e. once every hour). */
+        Duration simulation_interval = 6;
+
+        /* Timestamp after which the next simulation run will be triggered (not guaranteed to be exactly at this time).
+         * If further in the future, message simulation for this modem is inactive until this time.
+         * This may be set to a time in the future manually, or by the ModemInactivitySimulation.
+         */
+        Timestamp next_simulation_run_after = 7;
+
+        message Numeric {
+            repeated double values = 1;
+        }
+        message Text {
+            repeated string values = 1;
+        }
+        message Enum {
+            /* Enumerations are represented as strings.
+             * When setting value simulations, the enum values given will not be validated.
+             * The API client needs to make sure it sets the correct list of values.
+             */
+            repeated string values = 1;
+        }
+    }
+
+    /* Rotate through a list of locations. */
+    message LocationRotation {
+        /* The rotating list of locations to use when simulating messages. */
+        repeated Location locations = 1;
+
+        /* Interval messages should be simulated at (i.e. once every hour). */
+        Duration simulation_interval = 2;
+
+        /* Timestamp after which the next simulation run will be triggered (not guaranteed to be exactly at this time).
+         * If further in the future, message simulation for this modem is inactive until this time.
+         * This may be set to a time in the future manually, or by the ModemInactivitySimulation.
+         */
+        Timestamp next_simulation_run_after = 3;
+    }
+}

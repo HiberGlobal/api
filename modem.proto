@@ -563,22 +563,29 @@ message ListModemsRequest {
 
     /* Sorting options for the results. */
     enum Sort {
+        /* Sorts messages in descending time order. */
         LAST_MESSAGE_RECEIVED = 0;
+        /* Sorts messages in ascending time order. */
         LAST_MESSAGE_RECEIVED_INVERTED = 1;
 
-        /* Sort numerically on the number of the modem. */
+        /* Sort numerically on the number of the modem, in ascending order. */
         MODEM_NUMBER_ASC = 2;
+        /* Sort numerically on the number of the modem, in descending order. */
         MODEM_NUMBER_DESC = 3;
 
+        /* Sort modem on its Status. */
         STATUS_ASC = 4;
+        /* Sort modem on its Status in reverse order. */
         STATUS_DESC = 5;
 
-        /* Sort alphabetically on the name of the modem. De default name of the modem is its HEX number */
+        /* Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in ascending order. */
         MODEM_NAME_ASC = 6;
+        /* Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in descending order. */
         MODEM_NAME_DESC = 7;
 
-        /* Sort alphabetically on the name of the organization that owns the modem */
+        /* Sort alphabetically on the name of the organization that owns the modem, in ascending order. */
         ORGANIZATION_ASC = 8;
+        /* Sort alphabetically on the name of the organization that owns the modem, in descending order. */
         ORGANIZATION_DESC = 9;
 
         /* Health sorted from least to most severe (i.e. OK, WARNING, ERROR). */
