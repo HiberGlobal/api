@@ -2,6 +2,12 @@
 
 #### Upcoming Changes
 
+### 0.122 (2022-09-26)
+
+##### ValueService
+
+- Implemented the `DELTA` value transformation for numeric values.
+
 ### 0.121 (2022-09-19)
 
 ##### ModemService
@@ -20,6 +26,15 @@ Created a new simulation service that allows to directly simulate values.
 - Added `DundasSSO.Request.kill_other_sessions` to kill other sessions when validating or creating the session cookie.
 
 ### 0.120 (2022-09-12)
+
+#### ModemMessageBodyParserService
+
+- Added `measured_at_time_field` and `measured_at_offset_field` to `ModemMessageBodyParser.MetadataFields`
+  and `UpdateUploadedModemMessageBodyParserRequest.MetadataFields`.
+  - `measured_at_time_field`: contains the time (epoch seconds) to use for the values extracted from the message.
+  - `measured_at_offset_field`: contains the time offset (second before sent time) to use for the values extracted
+    from the message.
+  - Only one of these can be set
 
 ### 0.119 (2022-09-05)
 

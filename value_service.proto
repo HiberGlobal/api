@@ -222,7 +222,7 @@ message AggregatedValues {
          */
         message Partition {
             oneof partition {
-                /* Split up the data in time block of the given size. */
+                /* Split up the time range in equal parts of the given duration. */
                 Duration split_by_duration = 1;
 
                 /* Limit the results to the given amount of data points, applying the function to each chunk. */

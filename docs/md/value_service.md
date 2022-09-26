@@ -187,7 +187,7 @@ For example:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **partition**.split_by_duration | [ hiber.Duration](#hiberduration) | Split up the data in time block of the given size. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **partition**.split_by_duration | [ hiber.Duration](#hiberduration) | Split up the time range in equal parts of the given duration. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **partition**.reduce_to_max_size | [ uint32](#uint32) | Limit the results to the given amount of data points, applying the function to each chunk. |
 | pagination | [ hiber.Pagination](#hiberpagination) | Paginate the returned partitions of the time range. |
 | sort | [ ListValues.Sort](#listvaluessort) | How to sort the returned values. |

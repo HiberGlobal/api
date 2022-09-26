@@ -99,6 +99,18 @@ message ModemMessageBodyParser {
 
         /* Custom metadata fields, which will be added to the modem metadata json. */
         repeated string modem_metadata_fields = 3;
+
+        oneof measured_at_field {
+            /* Field that contains the time (epoch seconds) to use for the values extracted from the message.
+             * If not set, sent time is used.
+             */
+            string measured_at_time_field = 4;
+
+            /* Field that contains the time offset (second before sent time) to use for the values extracted
+             * from the message. If not set, sent time is used.
+             */
+            string measured_at_offset_field = 5;
+        }
     }
 
     /* The type of post-processing to be applied to the result of this parser. */
@@ -348,6 +360,14 @@ message UpdateUploadedModemMessageBodyParserRequest {
 
         /* Replace the modem metadata fields list. */
         repeated string replace_modem_metadata_fields = 7;
+
+        oneof measured_at_field {
+            /* Update the custom field to extract to measured_at time. */
+            UpdateClearableString measured_at_time_field = 8;
+
+            /* Update the custom field to extract to measured_at offset from the sent_at time in seconds. */
+            UpdateClearableString measured_at_offset_field = 9;
+        }
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */

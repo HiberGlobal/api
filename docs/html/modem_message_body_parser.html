@@ -1269,6 +1269,22 @@ which will update the modem location and the map. </p></td>
                   <td><p>Custom metadata fields, which will be added to the modem metadata json. </p></td>
                 </tr>
               
+                <tr>
+                  <td>measured_at_time_field</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Field that contains the time (epoch seconds) to use for the values extracted from the message.
+If not set, sent time is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>measured_at_offset_field</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Field that contains the time offset (second before sent time) to use for the values extracted
+from the message. If not set, sent time is used. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -2162,6 +2178,20 @@ This can be combined with a size to limit the amounts of bytes that are parsed. 
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>Replace the modem metadata fields list. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>measured_at_time_field</td>
+                  <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td></td>
+                  <td><p>Update the custom field to extract to measured_at time. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>measured_at_offset_field</td>
+                  <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td></td>
+                  <td><p>Update the custom field to extract to measured_at offset from the sent_at time in seconds. </p></td>
                 </tr>
               
             </tbody>

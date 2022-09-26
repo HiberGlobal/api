@@ -357,6 +357,8 @@ like a location or battery percentage.
 | location_fields | [ ModemMessageBodyParser.MetadataFields.LocationFields](#modemmessagebodyparsermetadatafieldslocationfields) | Specify a pair of fields in the message body that contain location data, which will update the modem location and the map. |
 | message_metadata_fields | [repeated string](#string) | Custom metadata fields, which will be added to the message metadata json. |
 | modem_metadata_fields | [repeated string](#string) | Custom metadata fields, which will be added to the modem metadata json. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_time_field | [ string](#string) | Field that contains the time (epoch seconds) to use for the values extracted from the message. If not set, sent time is used. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_offset_field | [ string](#string) | Field that contains the time offset (second before sent time) to use for the values extracted from the message. If not set, sent time is used. |
 
 ### ModemMessageBodyParser.MetadataFields.LocationFields
 
@@ -596,6 +598,8 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 | add_modem_metadata_fields | [repeated string](#string) | Add fields to the modem metadata fields list. |
 | remove_modem_metadata_fields | [repeated string](#string) | Remove fields from the modem metadata fields list. |
 | replace_modem_metadata_fields | [repeated string](#string) | Replace the modem metadata fields list. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_time_field | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the custom field to extract to measured_at time. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_offset_field | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the custom field to extract to measured_at offset from the sent_at time in seconds. |
 
 ### UploadModemMessageBodyParserRequest
 
