@@ -2,6 +2,16 @@
 
 #### Upcoming Changes
 
+### 0.123 (2022-10-03)
+
+##### EasypulseService
+
+- Deprecated the `Easypulse.History` in favor of the `ValueService`.
+
+##### UserService
+
+- Fixed a bug with leftover invites when a user was invited, but was added to an organization in another way.
+
 ### 0.122 (2022-09-26)
 
 ##### ValueService

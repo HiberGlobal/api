@@ -127,6 +127,7 @@ Fails when your organizations does not have the Easypulse feature.
     [Easypulse.History.Response](#easypulsehistoryresponse)
 
 List the history for a single field, and optionally apply an aggregation and/or grouping to it.
+Deprecated in favor of the ValueService.
 
 ### TargetValues
 > **rpc** TargetValues([Easypulse.TargetValues.List.Request](#easypulsetargetvalueslistrequest))
@@ -232,11 +233,13 @@ An AssetSelection is used to select which Assets should be affected:
 ### Easypulse.History
 
 List the history for a single field, and optionally apply an aggregation and/or grouping to it.
+Deprecated in favor of the ValueService.
 
 
 ### Easypulse.History.Request
 
 Request to get the history of a field, for the selected Assets in the organization.
+Deprecated in favor of the ValueService.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -277,6 +280,7 @@ Request to get the history of a field, for the selected Assets in the organizati
 ### Easypulse.History.Response
 
 Response with the (aggregated) history of a field, for the selected Assets in the organization.
+Deprecated in favor of the ValueService.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |

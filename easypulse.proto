@@ -30,8 +30,12 @@ service EasypulseService {
      */
     rpc Assets (Easypulse.ListAssets.Request) returns (Easypulse.ListAssets.Response);
 
-    /* List the history for a single field, and optionally apply an aggregation and/or grouping to it. */
-    rpc History (Easypulse.History.Request) returns (Easypulse.History.Response);
+    /* List the history for a single field, and optionally apply an aggregation and/or grouping to it.
+     * Deprecated in favor of the ValueService.
+     */
+    rpc History (Easypulse.History.Request) returns (Easypulse.History.Response){
+        option deprecated = true;
+    }
 
     /* Manage the target values that are used to determine score values. */
     rpc TargetValues (Easypulse.TargetValues.List.Request) returns (Easypulse.TargetValues.List.Response);
@@ -223,11 +227,18 @@ message Easypulse {
         }
     }
 
-    /* List the history for a single field, and optionally apply an aggregation and/or grouping to it. */
+    /* List the history for a single field, and optionally apply an aggregation and/or grouping to it.
+     * Deprecated in favor of the ValueService.
+     */
     message History {
+        option deprecated = true;
 
-        /* Request to get the history of a field, for the selected Assets in the organization. */
+        /* Request to get the history of a field, for the selected Assets in the organization.
+         * Deprecated in favor of the ValueService.
+         */
         message Request {
+            option deprecated = true;
+
             /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
             string organization = 1;
 
@@ -345,8 +356,12 @@ message Easypulse {
             }
         }
 
-        /* Response with the (aggregated) history of a field, for the selected Assets in the organization. */
+        /* Response with the (aggregated) history of a field, for the selected Assets in the organization.
+         * Deprecated in favor of the ValueService.
+         */
         message Response {
+            option deprecated = true;
+
             /* The processed historical data points.
              * For example, when applying the SUM aggregation to all data points, this list would only contains a
              * single value, the sum of values.
