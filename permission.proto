@@ -116,3 +116,11 @@ enum UserPermission {
     /* Delete your user account permanently. Includes read permission. */
     DELETE = 3;
 }
+
+/* SupportPermissions are used for features typically reserved for customer support, or that behave differently
+ * when used by a customer support operator.
+ */
+enum SupportPermission {
+    /* Allow Customer Support functions. */
+    CUSTOMER_SUPPORT = 0;
+}

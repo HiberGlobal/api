@@ -53,12 +53,12 @@ used to identify them.
   - [ModemSelection.Peripherals.OneOfValues](#modemselectionperipheralsoneofvalues)
   - [ModemSelection.Transfers](#modemselectiontransfers)
   - [RenameModemRequest](#renamemodemrequest)
+  - [UpdateModemLifecycleRequest](#updatemodemlifecyclerequest)
+  - [UpdateModemLifecycleRequest.Response](#updatemodemlifecyclerequestresponse)
   - [UpdateModemNotesRequest](#updatemodemnotesrequest)
   - [UpdateModemNotesRequest.Response](#updatemodemnotesrequestresponse)
   - [UpdateModemSecureNotesRequest](#updatemodemsecurenotesrequest)
   - [UpdateModemSecureNotesRequest.Response](#updatemodemsecurenotesrequestresponse)
-  - [UpdateModemStatusRequest](#updatemodemstatusrequest)
-  - [UpdateModemStatusRequest.Response](#updatemodemstatusrequestresponse)
   - [UpdateModemTagsRequest](#updatemodemtagsrequest)
   - [UpdateModemTagsRequest.Response](#updatemodemtagsrequestresponse)
   - [UpdatePeripheralsRequest](#updateperipheralsrequest)
@@ -67,8 +67,8 @@ used to identify them.
 
 - Enums
   - [ListModemsRequest.Sort](#listmodemsrequestsort)
+  - [Modem.Lifecycle](#modemlifecycle)
   - [Modem.Peripherals.HiberAntenna](#modemperipheralshiberantenna)
-  - [Modem.Status](#modemstatus)
   - [Modem.Transfer.Status](#modemtransferstatus)
   - [Modem.Type](#modemtype)
   - [ModemMessage.Source](#modemmessagesource)
@@ -92,6 +92,7 @@ used to identify them.
   - [hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions)
   - [hiber.Filter.Organizations](#hiberfilterorganizations)
   - [hiber.Filter.Publishers](#hiberfilterpublishers)
+  - [hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions)
   - [hiber.Filter.Tags](#hiberfiltertags)
   - [hiber.Filter.Tags.Update](#hiberfiltertagsupdate)
   - [hiber.Filter.UserPermissions](#hiberfilteruserpermissions)
@@ -184,8 +185,8 @@ Change the notes for the selected modems to the given value.
 Change the secure notes for the selected modems to the given value, if you have permission.
 
 ### UpdateStatus
-> **rpc** UpdateStatus([UpdateModemStatusRequest](#updatemodemstatusrequest))
-    [UpdateModemStatusRequest.Response](#updatemodemstatusrequestresponse)
+> **rpc** UpdateStatus([UpdateModemLifecycleRequest](#updatemodemlifecyclerequest))
+    [UpdateModemLifecycleRequest.Response](#updatemodemlifecyclerequestresponse)
 
 Change the status of the selected modems to the given value.
 
@@ -221,7 +222,7 @@ when you want to connect a device to the API using just the API calls in the Tes
 | amount | [ uint32](#uint32) | The amount of modems to create. |
 | names | [repeated string](#string) | The name(s) to give the new modem(s). Must not contain more values than the amount of modems to create. |
 | external_device_identifiers | [repeated string](#string) | The external device identifiers for the new modems. Must not contain more values than the amount of modems to create. The order of this list matches the order of the name, values in the same index are applied to the same modem. |
-| status | [ Modem.Status](#modemstatus) | The status for the new modems. |
+| lifecycle | [ Modem.Lifecycle](#modemlifecycle) | The status for the new modems. |
 | technical | [ Modem.TechnicalData](#modemtechnicaldata) | The technical data, such as manufacturer and hardware information for the new modems. |
 | peripherals | [map CreateModem.Request.PeripheralsEntry](#createmodemrequestperipheralsentry) | The peripherals for the new modems. |
 | notes | [ string](#string) | Notes for all new modems. |
@@ -403,7 +404,7 @@ when the modem is registered into the system or when a subscription is authorize
 | inactivity | [ hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
 | health | [ hiber.Health](#hiberhealth) | Deprecated health based on the number of error and warning events this modem has received in the past 30 days Uses the OK, WARNING, ERROR format. |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
-| status | [ Modem.Status](#modemstatus) | none |
+| lifecycle | [ Modem.Lifecycle](#modemlifecycle) | none |
 | active_subscription | [ Modem.ActiveSubscription](#modemactivesubscription) | additional information |
 | technical | [ Modem.TechnicalData](#modemtechnicaldata) | none |
 | peripherals | [ Modem.Peripherals](#modemperipherals) | none |
@@ -608,13 +609,13 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 | ----- | ---- | ----------- |
 | modems | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
 | free_text_search | [ string](#string) | none |
-| only_active | [ bool](#bool) | none |
+| only_active | [ bool](#bool) | Use lifecycle filter instead. |
 | activated_in | [ hiber.TimeRange](#hibertimerange) | none |
 | with_last_message_in | [ hiber.TimeRange](#hibertimerange) | none |
 | with_service_type | [repeated hiber.organization.subscription.ServiceType](#hiberorganizationsubscriptionservicetype) | none |
 | health | [repeated hiber.Health](#hiberhealth) | Deprecated health that uses the OK, WARNING, ERROR format. |
 | health_levels | [repeated string](#string) | Filter modems by health level. |
-| status | [repeated Modem.Status](#modemstatus) | Filter modems by status(es). Defaults to nominal statuses, excluding disabled, dead, lost or damaged modems. |
+| lifecycles | [repeated Modem.Lifecycle](#modemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
 | transfers | [ ModemSelection.Transfers](#modemselectiontransfers) | none |
 | include_types | [repeated Modem.Type](#modemtype) | Only include modems that have a type listed in types. In other words, when providing multiple types, this is an "OR" relationship. |
 | exclude_types | [repeated Modem.Type](#modemtype) | Exclude modems that have a type listed in types. |
@@ -683,6 +684,29 @@ For example: - exclude { 'bluetooth' -> [ ] } returns only modems that do not ha
 | modem_number | [ string](#string) | none |
 | name | [ string](#string) | none |
 
+### UpdateModemLifecycleRequest
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| modem_number | [ string](#string) | Either pick a single modem to update. DEPRECATED, since ModemSelection is more flexible. |
+| modem_selection | [ ModemSelection](#modemselection) | Or a modem selection. |
+| update_lifecycle | [ Modem.Lifecycle](#modemlifecycle) | The new status for the modem(s). |
+| pagination | [ hiber.Pagination](#hiberpagination) | Pagination for the modems in the Response. |
+
+### UpdateModemLifecycleRequest.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| modem | [ Modem](#modem) | none |
+| modems | [repeated Modem](#modem) | none |
+| request | [ UpdateModemLifecycleRequest](#updatemodemlifecyclerequest) | none |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+
 ### UpdateModemNotesRequest
 
 
@@ -723,29 +747,6 @@ For example: - exclude { 'bluetooth' -> [ ] } returns only modems that do not ha
 | ----- | ---- | ----------- |
 | modem | [ Modem](#modem) | none |
 | request | [ UpdateModemSecureNotesRequest](#updatemodemsecurenotesrequest) | none |
-
-### UpdateModemStatusRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| modem_number | [ string](#string) | Either pick a single modem to update. DEPRECATED, since ModemSelection is more flexible. |
-| modem_selection | [ ModemSelection](#modemselection) | Or a modem selection. |
-| update_status | [ Modem.Status](#modemstatus) | The new status for the modem(s). |
-| pagination | [ hiber.Pagination](#hiberpagination) | Pagination for the modems in the Response. |
-
-### UpdateModemStatusRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| modem | [ Modem](#modem) | none |
-| modems | [repeated Modem](#modem) | none |
-| request | [ UpdateModemStatusRequest](#updatemodemstatusrequest) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
 
 ### UpdateModemTagsRequest
 
@@ -819,12 +820,29 @@ Sorting options for the results.
 | MODEM_NUMBER_DESC | Sort numerically on the number of the modem, in descending order. | 3 |
 | STATUS_ASC | Sort modem on its Status. | 4 |
 | STATUS_DESC | Sort modem on its Status in reverse order. | 5 |
+| STATUS_ASC_ALPHABETICAL | Status sorted alphabetically by Status name. | 14 |
+| STATUS_DESC_ALPHABETICAL | Status sorted alphabetically by Status name, descending order. | 15 |
 | MODEM_NAME_ASC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in ascending order. | 6 |
 | MODEM_NAME_DESC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in descending order. | 7 |
 | ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the modem, in ascending order. | 8 |
 | ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the modem, in descending order. | 9 |
 | HEALTH | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 10 |
 | HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 11 |
+| HEALTH_ASC_ALPHABETICAL | Health sorted alphabetically by health level name. | 12 |
+| HEALTH_DESC_ALPHABETICAL | Health sorted alphabetically by health level name, descending order. | 13 |
+
+### Modem.Lifecycle
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| ACCEPTANCE_TESTING | Modem is deployed, but not active yet. Invisible for customer. | 0 |
+| INSTALLED | Modem is active and sending messages. See health for more details on its health, based on the past messages. | 1 |
+| PAUSED | none | 6 |
+| DISABLED | none | 5 |
+| DECOMMISSIONED | none | 4 |
+| DAMAGED | Kept for backwards compatibility. Internally mapped to decommissioned | 2 |
+| LOST | Kept for backwards compatibility. Internally mapped to decommissioned | 3 |
 
 ### Modem.Peripherals.HiberAntenna
 A Hiber antenna is required for the modem to function.
@@ -836,18 +854,6 @@ A Hiber antenna is required for the modem to function.
 | HIBER_GRIZZLY | none | 2 |
 | HIBER_BLACK | none | 3 |
 | CUSTOM | none | 4 |
-
-### Modem.Status
-Modem statuses for its lifecycle.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| DEFAULT | Modem is in your inventory, but not deployed or active. | 0 |
-| ACTIVE | Modem is active and sending messages. See health for more details on its health, based on the past messages. | 1 |
-| DAMAGED | none | 2 |
-| LOST | none | 3 |
-| DEAD | none | 4 |
-| DISABLED | none | 5 |
 
 ### Modem.Transfer.Status
 
@@ -1085,6 +1091,15 @@ Update object to update a Filter.Modems field.
 | include | [repeated int64](#int64) | none |
 | exclude | [repeated int64](#int64) | none |
 | only_active | [ bool](#bool) | none |
+
+### hiber.Filter.SupportPermissions
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| include | [repeated hiber.SupportPermission](#hibersupportpermission) | none |
+| exclude | [repeated hiber.SupportPermission](#hibersupportpermission) | none |
 
 ### hiber.Filter.Tags
 

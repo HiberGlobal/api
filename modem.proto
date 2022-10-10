@@ -61,7 +61,7 @@ service ModemService {
     rpc UpdateSecureNotes (UpdateModemSecureNotesRequest) returns (UpdateModemSecureNotesRequest.Response);
 
     /* Change the status of the selected modems to the given value. */
-    rpc UpdateStatus (UpdateModemStatusRequest) returns (UpdateModemStatusRequest.Response);
+    rpc UpdateStatus (UpdateModemLifecycleRequest) returns (UpdateModemLifecycleRequest.Response);
 
     /* Add and remove peripherals for the selected modems. */
     rpc UpdatePeripherals (UpdatePeripheralsRequest) returns (UpdatePeripheralsRequest.Response);
@@ -105,7 +105,7 @@ message Modem {
     /* Health level based on the modem alarm and some always-present alarms. */
     health.HealthLevel health_level = 28;
 
-    Status status = 12;
+    Lifecycle lifecycle = 12;
 
     // additional information
     ActiveSubscription active_subscription = 6;
@@ -236,18 +236,21 @@ message Modem {
         string custom_antenna = 4;
     }
 
-    /* Modem statuses for its lifecycle. */
-    enum Status {
-        /* Modem is in your inventory, but not deployed or active. */
-        DEFAULT = 0;
+    enum Lifecycle {
+        /* Modem is deployed, but not active yet. Invisible for customer. */
+        ACCEPTANCE_TESTING = 0;
         /* Modem is active and sending messages.
          * See health for more details on its health, based on the past messages.
          */
-        ACTIVE = 1;
-        DAMAGED = 2;
-        LOST = 3;
-        DEAD = 4;
+        INSTALLED = 1;
+        PAUSED = 6;
         DISABLED = 5;
+        DECOMMISSIONED = 4;
+
+        /* Kept for backwards compatibility. Internally mapped to decommissioned */
+        DAMAGED = 2 [deprecated = true];
+        /* Kept for backwards compatibility. Internally mapped to decommissioned */
+        LOST = 3 [deprecated = true];
     }
 
     /* The effective type of this modem.
@@ -329,7 +332,8 @@ message ModemSelection {
     Filter.Modems modems = 1;
     string free_text_search = 8;
 
-    bool only_active = 4;
+    /* Use lifecycle filter instead. */
+    bool only_active = 4 [deprecated = true];
     TimeRange activated_in = 5;
     TimeRange with_last_message_in = 7;
     repeated hiber.organization.subscription.ServiceType with_service_type = 6;
@@ -340,10 +344,10 @@ message ModemSelection {
     /* Filter modems by health level. */
     repeated string health_levels = 18;
 
-    /* Filter modems by status(es).
-     * Defaults to nominal statuses, excluding disabled, dead, lost or damaged modems.
+    /* Filter modems by lifecycle(s).
+     * Defaults to nominal lifecycles, excluding disabled or decommissioned modems.
      */
-    repeated Modem.Status status = 10;
+    repeated Modem.Lifecycle lifecycles = 10;
     Transfers transfers = 11;
 
     /* Only include modems that have a type listed in types.
@@ -577,6 +581,10 @@ message ListModemsRequest {
         STATUS_ASC = 4;
         /* Sort modem on its Status in reverse order. */
         STATUS_DESC = 5;
+        /* Status sorted alphabetically by Status name. */
+        STATUS_ASC_ALPHABETICAL = 14;
+        /* Status sorted alphabetically by Status name, descending order. */
+        STATUS_DESC_ALPHABETICAL = 15;
 
         /* Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in ascending order. */
         MODEM_NAME_ASC = 6;
@@ -592,6 +600,10 @@ message ListModemsRequest {
         HEALTH = 10;
         /* Health sorted from most to least severe (i.e. ERROR, WARNING, OK). */
         HEALTH_DESC = 11;
+        /* Health sorted alphabetically by health level name. */
+        HEALTH_ASC_ALPHABETICAL = 12;
+        /* Health sorted alphabetically by health level name, descending order. */
+        HEALTH_DESC_ALPHABETICAL = 13;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
@@ -749,7 +761,7 @@ message CreateModem {
         repeated string external_device_identifiers = 4;
 
         /* The status for the new modems. */
-        Modem.Status status = 5;
+        Modem.Lifecycle lifecycle = 5;
 
         /* The technical data, such as manufacturer and hardware information for the new modems. */
         Modem.TechnicalData technical = 6;
@@ -850,11 +862,11 @@ message UpdateModemSecureNotesRequest {
     string secure_notes = 3;
 }
 
-message UpdateModemStatusRequest {
+message UpdateModemLifecycleRequest {
     message Response {
         Modem modem = 1 [deprecated = true];
         repeated Modem modems = 3;
-        UpdateModemStatusRequest request = 2;
+        UpdateModemLifecycleRequest request = 2;
         Pagination.Result pagination = 4;
     }
 
@@ -868,7 +880,7 @@ message UpdateModemStatusRequest {
     ModemSelection modem_selection = 4;
 
     /* The new status for the modem(s). */
-    Modem.Status update_status = 3;
+    Modem.Lifecycle update_lifecycle = 3;
 
     /* Pagination for the modems in the Response. */
     Pagination pagination = 5;

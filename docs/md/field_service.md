@@ -55,7 +55,7 @@
   - [hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature)
   - [hiber.value.Value.Numeric.Voltage](#hibervaluevaluenumericvoltage)
   - [hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume)
-
+  - Enums
     - [hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit)
     - [hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit)
     - [hiber.value.Value.Numeric.DurationUnit](#hibervaluevaluenumericdurationunit)
@@ -70,14 +70,16 @@
     - [hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit)
     - [hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit)
     - [hiber.value.Value.Type](#hibervaluevaluetype)
+    - [hiber.value.ValueAggregation](#hibervaluevalueaggregation)
+    - [hiber.value.ValueTransformation](#hibervaluevaluetransformation)
 
 - Referenced messages from [modem.proto](#referenced-messages-from-modemproto)
   - [hiber.modem.Modem](#hibermodemmodem)
   - [hiber.modem.ModemSelection](#hibermodemmodemselection)
 
     - [hiber.modem.ListModemsRequest.Sort](#hibermodemlistmodemsrequestsort)
+    - [hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle)
     - [hiber.modem.Modem.Peripherals.HiberAntenna](#hibermodemmodemperipheralshiberantenna)
-    - [hiber.modem.Modem.Status](#hibermodemmodemstatus)
     - [hiber.modem.Modem.Transfer.Status](#hibermodemmodemtransferstatus)
     - [hiber.modem.Modem.Type](#hibermodemmodemtype)
     - [hiber.modem.ModemMessage.Source](#hibermodemmodemmessagesource)
@@ -744,6 +746,40 @@ The type of value that is represented.
 | TEXT | This field contains text to be displayed. | 2 |
 | ENUM | This field switches between several predefined values. Typically used for status fields. | 3 |
 
+#### hiber.value.ValueAggregation
+Get the values for the selected field.
+
+There are a few limitations here:
+- text fields can only use the LAST aggregation.
+- enum fields support a subset of aggregations:
+  - DEFAULT and LAST return the last value.
+  - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order.
+  - AVERAGE and SUM are not supported.
+
+- enum duration
+
+An enum example:
+Field "status" with this timeline: 00:00 OK, 00:10 FAILED, 00:20 OK, 00:25 FAILED, 00:40 OK
+- aggregation DEFAULT or LAST: OK, since it's OK at the end of the time range.
+- aggregation SUM: OK: 35m, FAILED: 25m
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| DEFAULT | none | 0 |
+| AVERAGE | Return the average value. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 1 |
+| SUM | Return the sum all values. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 2 |
+| LAST | Just take the last value. | 3 |
+| MINIMUM | Return the lowest value. For enum fields, the order of values is used to determine the MINIMUM. Not supported for textual fields. When used with these fields, LAST is used instead. | 4 |
+| MAXIMUM | Return the highest value. For enum fields, the order of values is used to determine the MAXIMUM. Not supported for textual fields. When used with these fields, LAST is used instead. | 5 |
+
+#### hiber.value.ValueTransformation
+Transform the values into a derived value.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| DURATION | Instead of returning the value, return the amount of time a value was active. Aggregation (if applicable) is applied afterwards on the duration value. | 0 |
+| DELTA | Instead of returning the value, return the difference between the value and the previous value. Aggregation (if applicable) is applied before the delta is calculated. | 1 |
+
 
 
 ## Referenced messages from modem.proto
@@ -772,7 +808,7 @@ when the modem is registered into the system or when a subscription is authorize
 | inactivity | [ hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
 | health | [ hiber.Health](#hiberhealth) | Deprecated health based on the number of error and warning events this modem has received in the past 30 days Uses the OK, WARNING, ERROR format. |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
-| status | [ hiber.modem.Modem.Status](#hibermodemmodemstatus) | none |
+| lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | none |
 | active_subscription | [ hiber.modem.Modem.ActiveSubscription](#hibermodemmodemactivesubscription) | additional information |
 | technical | [ hiber.modem.Modem.TechnicalData](#hibermodemmodemtechnicaldata) | none |
 | peripherals | [ hiber.modem.Modem.Peripherals](#hibermodemmodemperipherals) | none |
@@ -800,13 +836,13 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 | ----- | ---- | ----------- |
 | modems | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
 | free_text_search | [ string](#string) | none |
-| only_active | [ bool](#bool) | none |
+| only_active | [ bool](#bool) | Use lifecycle filter instead. |
 | activated_in | [ hiber.TimeRange](#hibertimerange) | none |
 | with_last_message_in | [ hiber.TimeRange](#hibertimerange) | none |
 | with_service_type | [repeated hiber.organization.subscription.ServiceType](#hiberorganizationsubscriptionservicetype) | none |
 | health | [repeated hiber.Health](#hiberhealth) | Deprecated health that uses the OK, WARNING, ERROR format. |
 | health_levels | [repeated string](#string) | Filter modems by health level. |
-| status | [repeated hiber.modem.Modem.Status](#hibermodemmodemstatus) | Filter modems by status(es). Defaults to nominal statuses, excluding disabled, dead, lost or damaged modems. |
+| lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
 | transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) | none |
 | include_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Only include modems that have a type listed in types. In other words, when providing multiple types, this is an "OR" relationship. |
 | exclude_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Exclude modems that have a type listed in types. |
@@ -831,12 +867,29 @@ Sorting options for the results.
 | MODEM_NUMBER_DESC | Sort numerically on the number of the modem, in descending order. | 3 |
 | STATUS_ASC | Sort modem on its Status. | 4 |
 | STATUS_DESC | Sort modem on its Status in reverse order. | 5 |
+| STATUS_ASC_ALPHABETICAL | Status sorted alphabetically by Status name. | 14 |
+| STATUS_DESC_ALPHABETICAL | Status sorted alphabetically by Status name, descending order. | 15 |
 | MODEM_NAME_ASC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in ascending order. | 6 |
 | MODEM_NAME_DESC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in descending order. | 7 |
 | ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the modem, in ascending order. | 8 |
 | ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the modem, in descending order. | 9 |
 | HEALTH | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 10 |
 | HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 11 |
+| HEALTH_ASC_ALPHABETICAL | Health sorted alphabetically by health level name. | 12 |
+| HEALTH_DESC_ALPHABETICAL | Health sorted alphabetically by health level name, descending order. | 13 |
+
+#### hiber.modem.Modem.Lifecycle
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| ACCEPTANCE_TESTING | Modem is deployed, but not active yet. Invisible for customer. | 0 |
+| INSTALLED | Modem is active and sending messages. See health for more details on its health, based on the past messages. | 1 |
+| PAUSED | none | 6 |
+| DISABLED | none | 5 |
+| DECOMMISSIONED | none | 4 |
+| DAMAGED | Kept for backwards compatibility. Internally mapped to decommissioned | 2 |
+| LOST | Kept for backwards compatibility. Internally mapped to decommissioned | 3 |
 
 #### hiber.modem.Modem.Peripherals.HiberAntenna
 A Hiber antenna is required for the modem to function.
@@ -848,18 +901,6 @@ A Hiber antenna is required for the modem to function.
 | HIBER_GRIZZLY | none | 2 |
 | HIBER_BLACK | none | 3 |
 | CUSTOM | none | 4 |
-
-#### hiber.modem.Modem.Status
-Modem statuses for its lifecycle.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| DEFAULT | Modem is in your inventory, but not deployed or active. | 0 |
-| ACTIVE | Modem is active and sending messages. See health for more details on its health, based on the past messages. | 1 |
-| DAMAGED | none | 2 |
-| LOST | none | 3 |
-| DEAD | none | 4 |
-| DISABLED | none | 5 |
 
 #### hiber.modem.Modem.Transfer.Status
 

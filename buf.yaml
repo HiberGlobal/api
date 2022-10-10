@@ -1,0 +1,52 @@
+version: v1
+name: buf.build/hiber/api
+breaking:
+  use:
+    - WIRE
+  except:
+    - FIELD_WIRE_COMPATIBLE_TYPE
+lint:
+  use:
+    - DEFAULT
+  except:
+    - ENUM_VALUE_PREFIX
+    - DIRECTORY_SAME_PACKAGE
+    - PACKAGE_SAME_JAVA_MULTIPLE_FILES # this works fine for Java
+    - PACKAGE_DIRECTORY_MATCH
+    - PACKAGE_VERSION_SUFFIX
+    - RPC_RESPONSE_STANDARD_NAME
+    - RPC_REQUEST_STANDARD_NAME
+    - RPC_REQUEST_RESPONSE_UNIQUE
+  ignore_only:
+    # For C++ compatibility, enums in the same package can not have the same enum value names
+    # This is mostly not an issue, since the values are mostly unique within a package, except for:
+    # the unknown/unspecified zeroth enum value.
+    # We should start making those unique.
+    ENUM_ZERO_VALUE_SUFFIX:
+      - assignment.proto
+      - base.proto
+      - easypulse.proto
+      - event.proto
+      - export.proto
+      - field.proto
+      - field_service.proto
+      - integration_mqtt.proto
+      - integration_slack.proto
+      - map.proto
+      - message.proto
+      - modem.proto
+      - modem_alarm.proto
+      - modem_message_body_parser.proto
+      - modem_message_downlink.proto
+      - modem_transfer.proto
+      - organization.proto
+      - permission.proto
+      - publisher.proto
+      - subscription.proto
+      - unit_preferences_service.proto
+      - user.proto
+      - value.proto
+      - value_service.proto
+      - webhook.proto
+      # The sort enum is unique in its own right and doesn't need a suffix.
+      - device_service.proto

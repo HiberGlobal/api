@@ -85,19 +85,6 @@ message ValueContext {
     }
 }
 
-/* Transform the values into a derived value. */
-enum ValueTransformation {
-    /* Instead of returning the value, return the amount of time a value was active.
-     * Aggregation (if applicable) is applied afterwards on the duration value.
-     */
-    DURATION = 0;
-
-    /* Instead of returning the value, return the difference between the value and the previous value.
-     * Aggregation (if applicable) is applied before the delta is calculated.
-     */
-    DELTA = 1;
-}
-
 /* List values for a (set of) modem(s), filtering by field and time. */
 message ListValues {
     /* How to sort the values. */
@@ -124,51 +111,6 @@ message ListValues {
         Pagination.Result pagination = 2;
         Request request = 3;
     }
-}
-
-/* Get the values for the selected field.
- *
- * There are a few limitations here:
- * - text fields can only use the LAST aggregation.
- * - enum fields support a subset of aggregations:
- *   - DEFAULT and LAST return the last value.
- *   - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order.
- *   - AVERAGE and SUM are not supported.
- *
- * - enum duration
- *
- * An enum example:
- * Field "status" with this timeline: 00:00 OK, 00:10 FAILED, 00:20 OK, 00:25 FAILED, 00:40 OK
- * - aggregation DEFAULT or LAST: OK, since it's OK at the end of the time range.
- * - aggregation SUM: OK: 35m, FAILED: 25m
- */
-enum ValueAggregation {
-    DEFAULT = 0;
-
-    /* Return the average value.
-     * Not supported for textual and enum fields. When used with these fields, LAST is used instead.
-     */
-    AVERAGE = 1;
-
-    /* Return the sum all values.
-     * Not supported for textual and enum fields. When used with these fields, LAST is used instead.
-     */
-    SUM = 2;
-
-    /* Just take the last value. */
-    LAST = 3;
-
-    /* Return the lowest value.
-     * For enum fields, the order of values is used to determine the MINIMUM.
-     * Not supported for textual fields. When used with these fields, LAST is used instead.
-     */
-    MINIMUM = 4;
-
-    /* Return the highest value.
-     * For enum fields, the order of values is used to determine the MAXIMUM.
-     * Not supported for textual fields. When used with these fields, LAST is used instead.
-     */
-    MAXIMUM = 5;
 }
 
 /* Aggregate values for a (set of) modem(s), filtering by field and time. */

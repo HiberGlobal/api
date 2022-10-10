@@ -94,6 +94,7 @@ a controlled amount of groups.
   - [hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions)
   - [hiber.Filter.Organizations](#hiberfilterorganizations)
   - [hiber.Filter.Publishers](#hiberfilterpublishers)
+  - [hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions)
   - [hiber.Filter.Tags](#hiberfiltertags)
   - [hiber.Filter.Tags.Update](#hiberfiltertagsupdate)
   - [hiber.Filter.UserPermissions](#hiberfilteruserpermissions)
@@ -486,6 +487,15 @@ Update object to update a Filter.Modems field.
 | include | [repeated int64](#int64) | none |
 | exclude | [repeated int64](#int64) | none |
 | only_active | [ bool](#bool) | none |
+
+### hiber.Filter.SupportPermissions
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| include | [repeated hiber.SupportPermission](#hibersupportpermission) | none |
+| exclude | [repeated hiber.SupportPermission](#hibersupportpermission) | none |
 
 ### hiber.Filter.Tags
 

@@ -413,6 +413,14 @@
                   <a href="#hiber.value.Value.Type"><span class="badge">E</span>Value.Type</a>
                 </li>
               
+                <li>
+                  <a href="#hiber.value.ValueAggregation"><span class="badge">E</span>ValueAggregation</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.value.ValueTransformation"><span class="badge">E</span>ValueTransformation</a>
+                </li>
+              
               
               
             </ul>
@@ -584,6 +592,14 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.modem.UpdateModemLifecycleRequest"><span class="badge">M</span>UpdateModemLifecycleRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.modem.UpdateModemLifecycleRequest.Response"><span class="badge">M</span>UpdateModemLifecycleRequest.Response</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.modem.UpdateModemNotesRequest"><span class="badge">M</span>UpdateModemNotesRequest</a>
                 </li>
               
@@ -597,14 +613,6 @@
               
                 <li>
                   <a href="#hiber.modem.UpdateModemSecureNotesRequest.Response"><span class="badge">M</span>UpdateModemSecureNotesRequest.Response</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.UpdateModemStatusRequest"><span class="badge">M</span>UpdateModemStatusRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.UpdateModemStatusRequest.Response"><span class="badge">M</span>UpdateModemStatusRequest.Response</a>
                 </li>
               
                 <li>
@@ -633,11 +641,11 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.Modem.Peripherals.HiberAntenna"><span class="badge">E</span>Modem.Peripherals.HiberAntenna</a>
+                  <a href="#hiber.modem.Modem.Lifecycle"><span class="badge">E</span>Modem.Lifecycle</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.Modem.Status"><span class="badge">E</span>Modem.Status</a>
+                  <a href="#hiber.modem.Modem.Peripherals.HiberAntenna"><span class="badge">E</span>Modem.Peripherals.HiberAntenna</a>
                 </li>
               
                 <li>
@@ -3136,6 +3144,84 @@ other units will be added here later, like voltage</p></td>
           </tbody>
         </table>
       
+        <h3 id="hiber.value.ValueAggregation">ValueAggregation</h3>
+        <p>Get the values for the selected field.</p><p>There are a few limitations here:</p><p>- text fields can only use the LAST aggregation.</p><p>- enum fields support a subset of aggregations:</p><p>- DEFAULT and LAST return the last value.</p><p>- MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order.</p><p>- AVERAGE and SUM are not supported.</p><p>- enum duration</p><p>An enum example:</p><p>Field "status" with this timeline: 00:00 OK, 00:10 FAILED, 00:20 OK, 00:25 FAILED, 00:40 OK</p><p>- aggregation DEFAULT or LAST: OK, since it's OK at the end of the time range.</p><p>- aggregation SUM: OK: 35m, FAILED: 25m</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>DEFAULT</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>AVERAGE</td>
+                <td>1</td>
+                <td><p>Return the average value.
+Not supported for textual and enum fields. When used with these fields, LAST is used instead.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SUM</td>
+                <td>2</td>
+                <td><p>Return the sum all values.
+Not supported for textual and enum fields. When used with these fields, LAST is used instead.</p></td>
+              </tr>
+            
+              <tr>
+                <td>LAST</td>
+                <td>3</td>
+                <td><p>Just take the last value.</p></td>
+              </tr>
+            
+              <tr>
+                <td>MINIMUM</td>
+                <td>4</td>
+                <td><p>Return the lowest value.
+For enum fields, the order of values is used to determine the MINIMUM.
+Not supported for textual fields. When used with these fields, LAST is used instead.</p></td>
+              </tr>
+            
+              <tr>
+                <td>MAXIMUM</td>
+                <td>5</td>
+                <td><p>Return the highest value.
+For enum fields, the order of values is used to determine the MAXIMUM.
+Not supported for textual fields. When used with these fields, LAST is used instead.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="hiber.value.ValueTransformation">ValueTransformation</h3>
+        <p>Transform the values into a derived value.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>DURATION</td>
+                <td>0</td>
+                <td><p>Instead of returning the value, return the amount of time a value was active.
+Aggregation (if applicable) is applied afterwards on the duration value.</p></td>
+              </tr>
+            
+              <tr>
+                <td>DELTA</td>
+                <td>1</td>
+                <td><p>Instead of returning the value, return the difference between the value and the previous value.
+Aggregation (if applicable) is applied before the delta is calculated.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
 
       
 
@@ -3197,8 +3283,8 @@ The order of this list matches the order of the name, values in the same index a
                 </tr>
               
                 <tr>
-                  <td>status</td>
-                  <td><a href="#hiber.modem.Modem.Status">Modem.Status</a></td>
+                  <td>lifecycle</td>
+                  <td><a href="#hiber.modem.Modem.Lifecycle">Modem.Lifecycle</a></td>
                   <td></td>
                   <td><p>The status for the new modems. </p></td>
                 </tr>
@@ -3987,8 +4073,8 @@ Uses the OK, WARNING, ERROR format. </p></td>
                 </tr>
               
                 <tr>
-                  <td>status</td>
-                  <td><a href="#hiber.modem.Modem.Status">Modem.Status</a></td>
+                  <td>lifecycle</td>
+                  <td><a href="#hiber.modem.Modem.Lifecycle">Modem.Lifecycle</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -4951,7 +5037,7 @@ and excluding [HIBERBAND] will filter out the message, even though it also has D
                   <td>only_active</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Use lifecycle filter instead. </p></td>
                 </tr>
               
                 <tr>
@@ -4990,11 +5076,11 @@ and excluding [HIBERBAND] will filter out the message, even though it also has D
                 </tr>
               
                 <tr>
-                  <td>status</td>
-                  <td><a href="#hiber.modem.Modem.Status">Modem.Status</a></td>
+                  <td>lifecycles</td>
+                  <td><a href="#hiber.modem.Modem.Lifecycle">Modem.Lifecycle</a></td>
                   <td>repeated</td>
-                  <td><p>Filter modems by status(es).
-Defaults to nominal statuses, excluding disabled, dead, lost or damaged modems. </p></td>
+                  <td><p>Filter modems by lifecycle(s).
+Defaults to nominal lifecycles, excluding disabled or decommissioned modems. </p></td>
                 </tr>
               
                 <tr>
@@ -5088,6 +5174,11 @@ create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. </p></td
                 </tr>
               </thead>
               <tbody>
+              
+                <tr>
+                  <td>only_active</td>
+                  <td><p>true</p></td>
+                </tr>
               
                 <tr>
                   <td>health</td>
@@ -5324,6 +5415,145 @@ For example:
 
         
       
+        <h3 id="hiber.modem.UpdateModemLifecycleRequest">UpdateModemLifecycleRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>modem_number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p><strong>Deprecated.</strong> Either pick a single modem to update. DEPRECATED, since ModemSelection is more flexible. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>modem_selection</td>
+                  <td><a href="#hiber.modem.ModemSelection">ModemSelection</a></td>
+                  <td></td>
+                  <td><p>Or a modem selection. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>update_lifecycle</td>
+                  <td><a href="#hiber.modem.Modem.Lifecycle">Modem.Lifecycle</a></td>
+                  <td></td>
+                  <td><p>The new status for the modem(s). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
+                  <td></td>
+                  <td><p>Pagination for the modems in the Response. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>modem_number</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
+        <h3 id="hiber.modem.UpdateModemLifecycleRequest.Response">UpdateModemLifecycleRequest.Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>modem</td>
+                  <td><a href="#hiber.modem.Modem">Modem</a></td>
+                  <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>modems</td>
+                  <td><a href="#hiber.modem.Modem">Modem</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#hiber.modem.UpdateModemLifecycleRequest">UpdateModemLifecycleRequest</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>modem</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
         <h3 id="hiber.modem.UpdateModemNotesRequest">UpdateModemNotesRequest</h3>
         <p></p>
 
@@ -5480,145 +5710,6 @@ values were different. Set this to true to apply it anyway. </p></td>
             </tbody>
           </table>
 
-          
-
-        
-      
-        <h3 id="hiber.modem.UpdateModemStatusRequest">UpdateModemStatusRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modem_number</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong> Either pick a single modem to update. DEPRECATED, since ModemSelection is more flexible. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modem_selection</td>
-                  <td><a href="#hiber.modem.ModemSelection">ModemSelection</a></td>
-                  <td></td>
-                  <td><p>Or a modem selection. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>update_status</td>
-                  <td><a href="#hiber.modem.Modem.Status">Modem.Status</a></td>
-                  <td></td>
-                  <td><p>The new status for the modem(s). </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pagination</td>
-                  <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
-                  <td></td>
-                  <td><p>Pagination for the modems in the Response. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>modem_number</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
-          
-
-        
-      
-        <h3 id="hiber.modem.UpdateModemStatusRequest.Response">UpdateModemStatusRequest.Response</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>modem</td>
-                  <td><a href="#hiber.modem.Modem">Modem</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modems</td>
-                  <td><a href="#hiber.modem.Modem">Modem</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>request</td>
-                  <td><a href="#hiber.modem.UpdateModemStatusRequest">UpdateModemStatusRequest</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pagination</td>
-                  <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>modem</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -5923,6 +6014,18 @@ values were different. Set this to true to apply it anyway. </p></td>
               </tr>
             
               <tr>
+                <td>STATUS_ASC_ALPHABETICAL</td>
+                <td>14</td>
+                <td><p>Status sorted alphabetically by Status name.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS_DESC_ALPHABETICAL</td>
+                <td>15</td>
+                <td><p>Status sorted alphabetically by Status name, descending order.</p></td>
+              </tr>
+            
+              <tr>
                 <td>MODEM_NAME_ASC</td>
                 <td>6</td>
                 <td><p>Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in ascending order.</p></td>
@@ -5956,6 +6059,72 @@ values were different. Set this to true to apply it anyway. </p></td>
                 <td>HEALTH_DESC</td>
                 <td>11</td>
                 <td><p>Health sorted from most to least severe (i.e. ERROR, WARNING, OK).</p></td>
+              </tr>
+            
+              <tr>
+                <td>HEALTH_ASC_ALPHABETICAL</td>
+                <td>12</td>
+                <td><p>Health sorted alphabetically by health level name.</p></td>
+              </tr>
+            
+              <tr>
+                <td>HEALTH_DESC_ALPHABETICAL</td>
+                <td>13</td>
+                <td><p>Health sorted alphabetically by health level name, descending order.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="hiber.modem.Modem.Lifecycle">Modem.Lifecycle</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ACCEPTANCE_TESTING</td>
+                <td>0</td>
+                <td><p>Modem is deployed, but not active yet. Invisible for customer.</p></td>
+              </tr>
+            
+              <tr>
+                <td>INSTALLED</td>
+                <td>1</td>
+                <td><p>Modem is active and sending messages.
+See health for more details on its health, based on the past messages.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PAUSED</td>
+                <td>6</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DISABLED</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DECOMMISSIONED</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DAMAGED</td>
+                <td>2</td>
+                <td><p>Kept for backwards compatibility. Internally mapped to decommissioned</p></td>
+              </tr>
+            
+              <tr>
+                <td>LOST</td>
+                <td>3</td>
+                <td><p>Kept for backwards compatibility. Internally mapped to decommissioned</p></td>
               </tr>
             
           </tbody>
@@ -5996,54 +6165,6 @@ values were different. Set this to true to apply it anyway. </p></td>
               <tr>
                 <td>CUSTOM</td>
                 <td>4</td>
-                <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-        <h3 id="hiber.modem.Modem.Status">Modem.Status</h3>
-        <p>Modem statuses for its lifecycle.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>DEFAULT</td>
-                <td>0</td>
-                <td><p>Modem is in your inventory, but not deployed or active.</p></td>
-              </tr>
-            
-              <tr>
-                <td>ACTIVE</td>
-                <td>1</td>
-                <td><p>Modem is active and sending messages.
-See health for more details on its health, based on the past messages.</p></td>
-              </tr>
-            
-              <tr>
-                <td>DAMAGED</td>
-                <td>2</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>LOST</td>
-                <td>3</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>DEAD</td>
-                <td>4</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>DISABLED</td>
-                <td>5</td>
                 <td><p></p></td>
               </tr>
             
@@ -6247,8 +6368,8 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
             
               <tr>
                 <td>UpdateStatus</td>
-                <td><a href="#hiber.modem.UpdateModemStatusRequest">UpdateModemStatusRequest</a></td>
-                <td><a href="#hiber.modem.UpdateModemStatusRequest.Response">UpdateModemStatusRequest.Response</a></td>
+                <td><a href="#hiber.modem.UpdateModemLifecycleRequest">UpdateModemLifecycleRequest</a></td>
+                <td><a href="#hiber.modem.UpdateModemLifecycleRequest.Response">UpdateModemLifecycleRequest.Response</a></td>
                 <td><p>Change the status of the selected modems to the given value.</p></td>
               </tr>
             

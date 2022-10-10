@@ -2,6 +2,39 @@
 
 #### Upcoming Changes
 
+### 0.124 (2022-10-10)
+
+##### Permissions
+
+- Added `SupportPermission`s:
+  - `SupportPermission`s are used for features typically reserved for customer support, or that behave differently
+    when used by a customer support operator.
+  - Added `Filter.SupportPermissions`.
+
+##### CurrentUserService
+
+- Added `CurrentUser.support_permissions` to show the support permissions for the current user.
+
+##### EasypulseService
+
+- Added `Fields` call to get field configuration for Easypulse.
+
+##### ModemService
+
+- Added a few more options to `ListModemsRequest.Sort`:
+  - `STATUS_ASC_ALPHABETICAL` and `STATUS_DESC_ALPHABETICAL`: sort by status, alphabetically (instead of by status enum order).
+  - `HEALTH_ASC_ALPHABETICAL` and `HEALTH_DESC_ALPHABETICAL`: sort by health, alphabetically (instead of by severity).
+- Renamed Modem.Status to Modem.Lifecycle
+  - Updated enum values:
+    - DEFAULT = ACCEPTANCE_TESTING
+    - ACTIVE = INSTALLED
+    - DEAD = DECOMMISSIONED
+  - Added enum value:
+    - PAUSED
+  - Deprecated enum values:
+    - DAMAGED
+    - LOST
+
 ### 0.123 (2022-10-03)
 
 ##### EasypulseService

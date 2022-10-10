@@ -58,6 +58,12 @@ message CurrentUser {
     /* Permissions for the user. If this is a token, the user permissions may be limited. */
     Filter.UserPermissions user_permissions = 10;
 
+    /* Permissions for customer support.
+     * Used for features typically reserved for customer support, or that behave differently
+     * when used by a customer support operator.
+     */
+    Filter.SupportPermissions support_permissions = 14;
+
     string mission_control_settings = 11;
 
     /* Whether the user accepted the terms and conditions. */

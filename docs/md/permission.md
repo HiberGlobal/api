@@ -10,6 +10,7 @@ Permissions limit what a user can do through the API.
 
 - Enums
   - [OrganizationPermission](#organizationpermission)
+  - [SupportPermission](#supportpermission)
   - [UserPermission](#userpermission)
 
 
@@ -60,6 +61,14 @@ Requesting user-related events explicitly if you cannot access the users will re
 | HEALTH_MANAGE | Manage custom health levels. | 47 |
 | LOCATIONS_MANAGE | Manage saved locations using the OrganizationLocationService. | 48 |
 | EXPORT | Create, access and download exports. | 49 |
+
+### SupportPermission
+SupportPermissions are used for features typically reserved for customer support, or that behave differently
+when used by a customer support operator.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| CUSTOMER_SUPPORT | Allow Customer Support functions. | 0 |
 
 ### UserPermission
 UserPermissions are generally used to limit what a token can do to its user.

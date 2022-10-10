@@ -393,6 +393,11 @@ message Filter {
         repeated UserPermission exclude = 3;
     }
 
+    message SupportPermissions {
+        repeated SupportPermission include = 1;
+        repeated SupportPermission exclude = 2;
+    }
+
     message FieldEnumValues {
         string field = 1;
         repeated string include = 2;

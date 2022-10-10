@@ -39,6 +39,8 @@
   - [Value.Numeric.Voltage.Unit](#valuenumericvoltageunit)
   - [Value.Numeric.Volume.Unit](#valuenumericvolumeunit)
   - [Value.Type](#valuetype)
+  - [ValueAggregation](#valueaggregation)
+  - [ValueTransformation](#valuetransformation)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -59,6 +61,7 @@
   - [hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions)
   - [hiber.Filter.Organizations](#hiberfilterorganizations)
   - [hiber.Filter.Publishers](#hiberfilterpublishers)
+  - [hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions)
   - [hiber.Filter.Tags](#hiberfiltertags)
   - [hiber.Filter.Tags.Update](#hiberfiltertagsupdate)
   - [hiber.Filter.UserPermissions](#hiberfilteruserpermissions)
@@ -401,6 +404,40 @@ The type of value that is represented.
 | TEXT | This field contains text to be displayed. | 2 |
 | ENUM | This field switches between several predefined values. Typically used for status fields. | 3 |
 
+### ValueAggregation
+Get the values for the selected field.
+
+There are a few limitations here:
+- text fields can only use the LAST aggregation.
+- enum fields support a subset of aggregations:
+  - DEFAULT and LAST return the last value.
+  - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order.
+  - AVERAGE and SUM are not supported.
+
+- enum duration
+
+An enum example:
+Field "status" with this timeline: 00:00 OK, 00:10 FAILED, 00:20 OK, 00:25 FAILED, 00:40 OK
+- aggregation DEFAULT or LAST: OK, since it's OK at the end of the time range.
+- aggregation SUM: OK: 35m, FAILED: 25m
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| DEFAULT | none | 0 |
+| AVERAGE | Return the average value. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 1 |
+| SUM | Return the sum all values. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 2 |
+| LAST | Just take the last value. | 3 |
+| MINIMUM | Return the lowest value. For enum fields, the order of values is used to determine the MINIMUM. Not supported for textual fields. When used with these fields, LAST is used instead. | 4 |
+| MAXIMUM | Return the highest value. For enum fields, the order of values is used to determine the MAXIMUM. Not supported for textual fields. When used with these fields, LAST is used instead. | 5 |
+
+### ValueTransformation
+Transform the values into a derived value.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| DURATION | Instead of returning the value, return the amount of time a value was active. Aggregation (if applicable) is applied afterwards on the duration value. | 0 |
+| DELTA | Instead of returning the value, return the difference between the value and the previous value. Aggregation (if applicable) is applied before the delta is calculated. | 1 |
+
 
 
 ## Referenced messages from base.proto
@@ -606,6 +643,15 @@ Update object to update a Filter.Modems field.
 | include | [repeated int64](#int64) | none |
 | exclude | [repeated int64](#int64) | none |
 | only_active | [ bool](#bool) | none |
+
+### hiber.Filter.SupportPermissions
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| include | [repeated hiber.SupportPermission](#hibersupportpermission) | none |
+| exclude | [repeated hiber.SupportPermission](#hibersupportpermission) | none |
 
 ### hiber.Filter.Tags
 
