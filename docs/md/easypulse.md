@@ -54,11 +54,21 @@ somewhat customized Asset model.
   - [Easypulse.TellTale.Indicator](#easypulsetelltaleindicator)
 
 - Enums
+  - [Easypulse.Asset.Lifecycle](#easypulseassetlifecycle)
   - [Easypulse.EngineState](#easypulseenginestate)
   - [Easypulse.History.Request.Aggregation](#easypulsehistoryrequestaggregation)
   - [Easypulse.History.Request.Sort](#easypulsehistoryrequestsort)
   - [Easypulse.ListAssets.Request.Sort](#easypulselistassetsrequestsort)
   - [Easypulse.TellTale.Indicator.State](#easypulsetelltaleindicatorstate)
+
+- Referenced messages from [field.proto](#referenced-messages-from-fieldproto)
+  - [hiber.field.Field](#hiberfieldfield)
+  - [hiber.field.Field.Enum](#hiberfieldfieldenum)
+  - [hiber.field.Field.Numeric](#hiberfieldfieldnumeric)
+  - [hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat)
+  - [hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit)
+
+    - [hiber.field.Field.Numeric.Format.RoundingMode](#hiberfieldfieldnumericformatroundingmode)
 
 - Referenced messages from [health.proto](#referenced-messages-from-healthproto)
   - [hiber.health.HealthLevel](#hiberhealthhealthlevel)
@@ -103,15 +113,6 @@ somewhat customized Asset model.
     - [hiber.value.Value.Type](#hibervaluevaluetype)
     - [hiber.value.ValueAggregation](#hibervaluevalueaggregation)
     - [hiber.value.ValueTransformation](#hibervaluevaluetransformation)
-
-- Referenced messages from [field.proto](#referenced-messages-from-fieldproto)
-  - [hiber.field.Field](#hiberfieldfield)
-  - [hiber.field.Field.Enum](#hiberfieldfieldenum)
-  - [hiber.field.Field.Numeric](#hiberfieldfieldnumeric)
-  - [hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat)
-  - [hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit)
-
-    - [hiber.field.Field.Numeric.Format.RoundingMode](#hiberfieldfieldnumericformatroundingmode)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -223,6 +224,7 @@ fuel level average over the past month, or total run time in the past week).
 | secure_notes | [ string](#string) | Add additional notes to an asset that only people with the permission can access. |
 | time_zone | [ string](#string) | The timezone configured for the asset. |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
+| lifecycle | [ Easypulse.Asset.Lifecycle](#easypulseassetlifecycle) | none |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | Tags (or groups, when used in Mission Control) this asset is in. |
 | last_update | [ Easypulse.Asset.LastUpdate](#easypulseassetlastupdate) | When this asset was last updated. |
 | odometer | [ hiber.value.Value.Numeric.Distance](#hibervaluevaluenumericdistance) | Current value of the odometer. |
@@ -651,6 +653,17 @@ A tell tale is an indicator of a part of the system.
 
 
 ## Enums
+### Easypulse.Asset.Lifecycle
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| ACCEPTANCE_TESTING | Modem is deployed, but not active yet. Invisible for customer. | 0 |
+| INSTALLED | Modem is active and sending messages. See health for more details on its health, based on the past messages. | 1 |
+| PAUSED | none | 6 |
+| DISABLED | none | 5 |
+| DECOMMISSIONED | none | 4 |
+
 ### Easypulse.EngineState
 
 
@@ -702,6 +715,12 @@ How to sort the returned values.
 | HIGHEST_TEMPERATURE | none | 13 |
 | HEALTH | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 14 |
 | HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 15 |
+| HEALTH_ASC_ALPHABETICAL | Health sorted alphabetically by health level name. | 16 |
+| HEALTH_DESC_ALPHABETICAL | Health sorted alphabetically by health level name, descending order. | 17 |
+| LIFECYCLE_ASC | Sort modem on its Status. | 18 |
+| LIFECYCLE_DESC | Sort modem on its Status in reverse order. | 19 |
+| LIFECYCLE_ASC_ALPHABETICAL | Status sorted alphabetically by Status name. | 20 |
+| LIFECYCLE_DESC_ALPHABETICAL | Status sorted alphabetically by Status name, descending order. | 21 |
 
 ### Easypulse.TellTale.Indicator.State
 The state of a tell-tale sensor. Ordinal numbers follow the spec of the CAN bus for states
@@ -714,6 +733,100 @@ The state of a tell-tale sensor. Ordinal numbers follow the spec of the CAN bus 
 | INFO | The tell-tale indicates there is some information about the system it is monitoring. | 3 |
 | NOT_AVAILABLE | The tell-tale sensor for this system is not available. | 4 |
 | OTHER | Other, not part of the CAN-Bus spec. | 5 |
+
+
+
+## Referenced messages from field.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [field.proto](https://github.com/HiberGlobal/api/blob/master/field.proto).
+
+
+### hiber.field.Field
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifier | [ string](#string) | Unique identifier for this field. |
+| field | [ string](#string) | The name of the field (if in the root structure) or a JsonPath to the field. |
+| display_name | [ string](#string) | An optional display name for the field. |
+| priority | [ int32](#int32) | Priority of the field, typically used for ordering. |
+| type | [ hiber.value.Value.Type](#hibervaluevaluetype) | The type of value the field contains. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.numeric | [ hiber.field.Field.Numeric](#hiberfieldfieldnumeric) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.enum | [ hiber.field.Field.Enum](#hiberfieldfieldenum) | none |
+| encrypted | [ bool](#bool) | Whether this field should be stored encrypted or not. If it is, some processing options may be unavailable or slower. |
+| optional | [ bool](#bool) | Whether this field should be validated from the parser output. |
+| unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
+| unit_symbol | [ string](#string) | The symbol for the unit. Deprecated: use numeric.symbol instead |
+
+### hiber.field.Field.Enum
+
+If the field is an enum, this specifies the enum values for the field.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| values | [repeated hiber.value.Value.Enum](#hibervaluevalueenum) | none |
+
+### hiber.field.Field.Numeric
+
+If the field is numeric, this specifies the unit and formatting details for the field.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| type | [ hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The type of numeric value. |
+| symbol | [ string](#string) | The symbol to use for the field's unit. |
+| format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | How to format the values (number of decimals, rounding, etc.). |
+| unit | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | The unit for the field, depending on the type. |
+| converted_from | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | If the unit preferences were applied, and the unit is different, the field will be converted to the preferred unit, from the original unit specified in this field. |
+
+### hiber.field.Field.Numeric.Format
+
+Formatting options for the field.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **round**.round_to_integer | [ bool](#bool) | Round to an integer. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **round**.round_to_scale | [ uint32](#uint32) | Round to a number of decimals (at least 1). |
+| rounding_mode | [ hiber.field.Field.Numeric.Format.RoundingMode](#hiberfieldfieldnumericformatroundingmode) | How to round the value when scale is applied. |
+
+### hiber.field.Field.Numeric.Unit
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.battery_level | [ hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.distance | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.duration | [ hiber.value.Value.Numeric.DurationUnit](#hibervaluevaluenumericdurationunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.fuel_efficiency | [ hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.flow | [ hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.percentage | [ hiber.value.Value.Numeric.Percentage.Unit](#hibervaluevaluenumericpercentageunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.pressure | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.speed | [ hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.temperature | [ hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.voltage | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.volume | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.mass | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) | none |
+
+
+### Enums
+#### hiber.field.Field.Numeric.Format.RoundingMode
+How to round the value when scale is applied.
+For example, a value of 3.1415 with scale 3 could be
+  4.141 (DOWN, HALF_DOWN, FLOOR) or
+  4.142 (HALF_UP, UP, CEILING).
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| HALF_UP | Round towards "nearest neighbor" unless both neighbors are equidistant, in which case round up Effectively round up when >= .5, otherwise round down. | 0 |
+| HALF_DOWN | Round towards "nearest neighbor" unless both neighbors are equidistant, in which case round down. Effectively round up when > .5, otherwise round down. | 1 |
+| UP | Round away from zero: 1.1 -> 2, while -1.1 -> -2. | 3 |
+| DOWN | Round towards zero: 1.1 -> 1, while -1.1 -> -1. | 4 |
+| CEILING | Round towards positive infinity. | 5 |
+| FLOOR | Round towards negative infinity. | 6 |
+| HALF_EVEN | Round towards the "nearest neighbor" unless both neighbors are equidistant, in which case, round towards the even neighbor. Effectively round up when >= .5 and next integer value is even, otherwise round down. | 7 |
 
 
 
@@ -1022,13 +1135,11 @@ The value is a volume value, converted to your preferred volume unit.
 
 ### Enums
 #### hiber.value.Value.Numeric.BatteryLevel.Unit
-
+other units will be added here later, like voltage
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| PERCENT | Battery level as a percentage (technically not a unit).
-
-other units will be added here later, like voltage | 0 |
+| PERCENT | Battery level as a percentage (technically not a unit). | 0 |
 
 #### hiber.value.Value.Numeric.Distance.Unit
 
@@ -1202,100 +1313,6 @@ Transform the values into a derived value.
 | ---- | ----------- | ------ |
 | DURATION | Instead of returning the value, return the amount of time a value was active. Aggregation (if applicable) is applied afterwards on the duration value. | 0 |
 | DELTA | Instead of returning the value, return the difference between the value and the previous value. Aggregation (if applicable) is applied before the delta is calculated. | 1 |
-
-
-
-## Referenced messages from field.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
-
-#### This section was generated from [field.proto](https://github.com/HiberGlobal/api/blob/master/field.proto).
-
-
-### hiber.field.Field
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifier | [ string](#string) | Unique identifier for this field. |
-| field | [ string](#string) | The name of the field (if in the root structure) or a JsonPath to the field. |
-| display_name | [ string](#string) | An optional display name for the field. |
-| priority | [ int32](#int32) | Priority of the field, typically used for ordering. |
-| type | [ hiber.value.Value.Type](#hibervaluevaluetype) | The type of value the field contains. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.numeric | [ hiber.field.Field.Numeric](#hiberfieldfieldnumeric) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.enum | [ hiber.field.Field.Enum](#hiberfieldfieldenum) | none |
-| encrypted | [ bool](#bool) | Whether this field should be stored encrypted or not. If it is, some processing options may be unavailable or slower. |
-| optional | [ bool](#bool) | Whether this field should be validated from the parser output. |
-| unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
-| unit_symbol | [ string](#string) | The symbol for the unit. Deprecated: use numeric.symbol instead |
-
-### hiber.field.Field.Enum
-
-If the field is an enum, this specifies the enum values for the field.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| values | [repeated hiber.value.Value.Enum](#hibervaluevalueenum) | none |
-
-### hiber.field.Field.Numeric
-
-If the field is numeric, this specifies the unit and formatting details for the field.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| type | [ hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The type of numeric value. |
-| symbol | [ string](#string) | The symbol to use for the field's unit. |
-| format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | How to format the values (number of decimals, rounding, etc.). |
-| unit | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | The unit for the field, depending on the type. |
-| converted_from | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | If the unit preferences were applied, and the unit is different, the field will be converted to the preferred unit, from the original unit specified in this field. |
-
-### hiber.field.Field.Numeric.Format
-
-Formatting options for the field.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **round**.round_to_integer | [ bool](#bool) | Round to an integer. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **round**.round_to_scale | [ uint32](#uint32) | Round to a number of decimals (at least 1). |
-| rounding_mode | [ hiber.field.Field.Numeric.Format.RoundingMode](#hiberfieldfieldnumericformatroundingmode) | How to round the value when scale is applied. |
-
-### hiber.field.Field.Numeric.Unit
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.battery_level | [ hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.distance | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.duration | [ hiber.value.Value.Numeric.DurationUnit](#hibervaluevaluenumericdurationunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.fuel_efficiency | [ hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.flow | [ hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.percentage | [ hiber.value.Value.Numeric.Percentage.Unit](#hibervaluevaluenumericpercentageunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.pressure | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.speed | [ hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.temperature | [ hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.voltage | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.volume | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.mass | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) | none |
-
-
-### Enums
-#### hiber.field.Field.Numeric.Format.RoundingMode
-How to round the value when scale is applied.
-For example, a value of 3.1415 with scale 3 could be
-  4.141 (DOWN, HALF_DOWN, FLOOR) or
-  4.142 (HALF_UP, UP, CEILING).
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| HALF_UP | Round towards "nearest neighbor" unless both neighbors are equidistant, in which case round up Effectively round up when >= .5, otherwise round down. | 0 |
-| HALF_DOWN | Round towards "nearest neighbor" unless both neighbors are equidistant, in which case round down. Effectively round up when > .5, otherwise round down. | 1 |
-| UP | Round away from zero: 1.1 -> 2, while -1.1 -> -2. | 3 |
-| DOWN | Round towards zero: 1.1 -> 1, while -1.1 -> -1. | 4 |
-| CEILING | Round towards positive infinity. | 5 |
-| FLOOR | Round towards negative infinity. | 6 |
-| HALF_EVEN | Round towards the "nearest neighbor" unless both neighbors are equidistant, in which case, round towards the even neighbor. Effectively round up when >= .5 and next integer value is even, otherwise round down. | 7 |
 
 
 

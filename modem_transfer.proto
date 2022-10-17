@@ -148,7 +148,6 @@ message TransferModemsRequest {
 
         /* When transferring a gateway, *orphan* all external devices.
          * The devices are re-created in the recipient organization when they transmit through the gateway.
-         *
          * The old modem is unchanged, but can no longer receive new messages, unless it is connected to
          * another gateway in the sender organization.
          * Old messages from the modem remain in the sender organization under its old modem number.
@@ -157,7 +156,6 @@ message TransferModemsRequest {
 
         /* When transferring a gateway, mark all external devices as *DEAD*.
          * The devices are re-created in the recipient organization when they transmit through the gateway.
-         *
          * Old messages from this device remain in the sender organization under its old modem, which is marked DEAD.
          * DEAD modems are be automatically hidden, but can still be accessed.
          */
@@ -223,7 +221,6 @@ message TransferModemsRequest {
          * Gateways and external devices are connected to the current organization.
          * Moving either a gateway or connected external device to another organization without moving the other can
          * cause a number of issues.
-         *
          * Deprecated since 0.46.
          * To allow gateways to be transferred without their external devices must now be done using `gateway_transfer_mode`
          */

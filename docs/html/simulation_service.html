@@ -3125,11 +3125,8 @@ Only available when include_verification_code was set to true. </p></td>
                   <td></td>
                   <td><p>If set, look up the modem in multiple organizations, instead of in the given or default organization.
 This can be used to find a modem if you do not know in which organization it is.
-
 Since this is a selection object, an empty selection searches in all accessible organizations, but
-the organizations can be limited using the fields in the OrganizationSelection.
-
-This replaces the child_organizations option, allowing search in all accessible organizations. </p></td>
+the organizations can be limited using the fields in the OrganizationSelection. </p></td>
                 </tr>
               
                 <tr>
@@ -3259,7 +3256,7 @@ DEPRECATED: use the in_organizations flag instead. </p></td>
         
       
         <h3 id="hiber.modem.ListModemsGrouped.Request">ListModemsGrouped.Request</h3>
-        <p></p>
+        <p>The usage of ListModemsRequest and ListModemsRequest.Response in the Response.Group was intentionally</p><p>chosen to simplify pagination withing a group, since the response contains the request</p><p>(which will be updated with the group it is in) and pagination to select the next page using the</p><p>list method.</p>
 
         
           <table class="field-table">
@@ -3274,12 +3271,7 @@ DEPRECATED: use the in_organizations flag instead. </p></td>
                   <td></td>
                   <td><p>The modems you want to display in the groups.
 This is a ListModemsRequest that is used to fetch the modems for each group, with the added limitation
-that the modems must be in the group.
-
-The usage of ListModemsRequest and ListModemsRequest.Response in the Response.Group was intentionally
-chosen to simplify pagination withing a group, since the response contains the request
-(which will be updated with the group it is in) and pagination to select the next page using the
-list method. </p></td>
+that the modems must be in the group. </p></td>
                 </tr>
               
                 <tr>
@@ -3287,7 +3279,6 @@ list method. </p></td>
                   <td><a href="#hiber.modem.ListModemsRequest">ListModemsRequest</a></td>
                   <td></td>
                   <td><p>Select the parents for the groups to display.
-
 Anything selected here that cannot have any connected modems (i.e. a direct modem) wil be omitted
 unless allow_any_group_parent is set to true.
 Only gateways will have connected devices, so unless allow_any_group_parent is true,
@@ -3313,7 +3304,7 @@ type is replaced with GATEWAY. This may change in the future if more grouping op
         
       
         <h3 id="hiber.modem.ListModemsGrouped.Response">ListModemsGrouped.Response</h3>
-        <p></p>
+        <p>The usage of ListModemsRequest and ListModemsRequest.Response in the Response.Group was intentionally</p><p>chosen to simplify pagination withing a group, since the response contains the request</p><p>(which will be updated with the group it is in) and pagination to select the next page using the</p><p>list method.</p>
 
         
           <table class="field-table">
@@ -3328,12 +3319,7 @@ type is replaced with GATEWAY. This may change in the future if more grouping op
                   <td>repeated</td>
                   <td><p>The groups, based on a parent (typically a gateway unless allow_any_group_parent was set).
 This is a ListModemsRequest.Response, with the selection updated with its parent and includes
-the group parent in the group_parents field.
-
-The usage of ListModemsRequest and ListModemsRequest.Response in the Response.Group was intentionally
-chosen to simplify pagination withing a group, since the response contains the request
-(which will be updated with the group it is in) and pagination to select the next page using the
-list method. </p></td>
+the group parent in the group_parents field. </p></td>
                 </tr>
               
                 <tr>
@@ -4455,7 +4441,6 @@ Uses the OK, WARNING, ERROR format. </p></td>
                   <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
                   <td></td>
                   <td><p>Flattened results of all successful body parsers.
-
 This is a convenience to access the fields from body_parsed, but if any fields are present in
 multiple body_parsed results, it is not defined which field will be used in this Struct.
 This may change in the future. </p></td>
@@ -4693,7 +4678,7 @@ and excluding [HIBERBAND] will filter out the message, even though it also has D
                   <td>activated_in</td>
                   <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
@@ -4830,6 +4815,11 @@ create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. </p></td
                 </tr>
               
                 <tr>
+                  <td>activated_in</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
                   <td>health</td>
                   <td><p>true</p></td>
                 </tr>
@@ -4852,7 +4842,7 @@ create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. </p></td
         
       
         <h3 id="hiber.modem.ModemSelection.Peripherals">ModemSelection.Peripherals</h3>
-        <p>Filter to (de)select modems based on their peripherals.</p>
+        <p>Filter to (de)select modems based on their peripherals.</p><p>For example:</p><p>- include { 'bluetooth' -> [ ] }</p><p>returns all modems that have any version of bluetooth,</p><p>- include { 'bluetooth' -> [ '4.0', '5.0' ] }</p><p>will only return modems that have bluetooth version 4.0 _or_ 5.0,</p><p>- include { 'bluetooth' -> [ '' ] }</p><p>would only select bluetooth peripherals that don't have any version set,</p><p>- include { 'bluetooth' -> [ ], 'LoRaWAN' -> [ ] }</p><p>will only select modems that have both bluetooth (any version) _and_ LoRaWAN (any version),</p><p>- include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ ] }</p><p>will return an empty list since exclude will take precedence, and</p><p>- include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ '3.0' ] }</p><p>returns modems that have bluetooth, but not version 3.0.</p><p>- exclude { 'bluetooth' -> [ ] }</p><p>returns only modems that do not have any version of bluetooth,</p><p>- exclude { 'bluetooth' -> [ '4.0', '5.0' ] }</p><p>returns modems that might have bluetooth as long as it's not versions 4.0 or 5.0,</p><p>- exclude { 'bluetooth' -> [ '' ] }</p><p>returns modems that might have bluetooth as long as it's version is set to a specific value,</p><p>- exclude { 'bluetooth' -> [ ], 'LoRaWAN' -> [ ] }</p><p>returns modems that don't have bluetooth and/or LoRaWAN.</p><p>- include { 'bluetooth' -> [ ] }, exclude { bluetooth' -> [ ] }</p><p>will return an empty list, since exclusion takes precedence, and</p><p>- include { 'bluetooth' -> [ ] }, exclude { bluetooth' -> [ '3.0' ] }</p><p>returns only modems that have bluetooth, but not version 3.0</p>
 
         
           <table class="field-table">
@@ -4868,21 +4858,7 @@ create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. </p></td
                   <td><p>Filter to only include modems with all of the given set of peripherals.
 Peripherals are stored as a name-value pair (e.g. bluetooth, 4.0 / bluetooth, BLE).
 To select for multiple versions of a peripheral,
-add the name of the peripheral as a map-key and add a repeated list of versions as the map-value.
-
-For example:
-- include { &#39;bluetooth&#39; -&gt; [ ] }
-    returns all modems that have any version of bluetooth,
-- include { &#39;bluetooth&#39; -&gt; [ &#39;4.0&#39;, &#39;5.0&#39; ] }
-    will only return modems that have bluetooth version 4.0 _or_ 5.0,
-- include { &#39;bluetooth&#39; -&gt; [ &#39;&#39; ] }
-    would only select bluetooth peripherals that don&#39;t have any version set,
-- include { &#39;bluetooth&#39; -&gt; [ ], &#39;LoRaWAN&#39; -&gt; [ ] }
-    will only select modems that have both bluetooth (any version) _and_ LoRaWAN (any version),
-- include { &#39;bluetooth&#39; -&gt; [ ] }, exclude { &#39;bluetooth&#39; -&gt; [ ] }
-    will return an empty list since exclude will take precedence, and
-- include { &#39;bluetooth&#39; -&gt; [ ] }, exclude { &#39;bluetooth&#39; -&gt; [ &#39;3.0&#39; ] }
-    returns modems that have bluetooth, but not version 3.0. </p></td>
+add the name of the peripheral as a map-key and add a repeated list of versions as the map-value. </p></td>
                 </tr>
               
                 <tr>
@@ -4892,21 +4868,7 @@ For example:
                   <td><p>Filter to exclude modems with any of the given set of peripherals.
 Peripherals are stored as a name-value pair (e.g. bluetooth, 4.0 / bluetooth, BLE).
 To select for multiple versions of a peripheral,
-add the name of the peripheral as a map-key and add a repeated list of versions as the map-value.
-
-For example:
-- exclude { &#39;bluetooth&#39; -&gt; [ ] }
-    returns only modems that do not have any version of bluetooth,
-- exclude { &#39;bluetooth&#39; -&gt; [ &#39;4.0&#39;, &#39;5.0&#39; ] }
-    returns modems that might have bluetooth as long as it&#39;s not versions 4.0 or 5.0,
-- exclude { &#39;bluetooth&#39; -&gt; [ &#39;&#39; ] }
-    returns modems that might have bluetooth as long as it&#39;s version is set to a specific value,
-- exclude { &#39;bluetooth&#39; -&gt; [ ], &#39;LoRaWAN&#39; -&gt; [ ] }
-    returns modems that don&#39;t have bluetooth and/or LoRaWAN.
-- include { &#39;bluetooth&#39; -&gt; [ ] }, exclude { bluetooth&#39; -&gt; [ ] }
-    will return an empty list, since exclusion takes precedence, and
-- include { &#39;bluetooth&#39; -&gt; [ ] }, exclude { bluetooth&#39; -&gt; [ &#39;3.0&#39; ] }
-    returns only modems that have bluetooth, but not version 3.0 </p></td>
+add the name of the peripheral as a map-key and add a repeated list of versions as the map-value. </p></td>
                 </tr>
               
             </tbody>

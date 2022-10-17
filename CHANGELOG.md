@@ -2,6 +2,25 @@
 
 #### Upcoming Changes
 
+### 0.125 (2022-10-17)
+
+##### EasypulseService
+
+- Added more options for sorting:
+  - `HEALTH_ASC_ALPHABETICAL`: Health sorted alphabetically by health level name.
+  - `HEALTH_DESC_ALPHABETICAL`: Health sorted alphabetically by health level name, descending order.
+  - `LIFECYCLE_ASC`: Sort modem on its lifecycle.
+  - `LIFECYCLE_DESC`: Sort modem on its lifecycle in reverse order.
+  - `LIFECYCLE_ASC_ALPHABETICAL`: lifecycle sorted alphabetically by lifecycle name.
+  - `LIFECYCLE_DESC_ALPHABETICAL`: lifecycle sorted alphabetically by lifecycle name, descending order.
+- Added `lifecycle` to `Asset` to match the one from `ModemService`.
+
+##### EventService
+
+- Deprecate the `ModemActivatedEvent`. It will be removed in the future.
+  - Since the modem lifecycle (which will replace status) no longer contains an ACTIVE state, this event is no longer
+    relevant.
+
 ### 0.124 (2022-10-10)
 
 ##### Permissions

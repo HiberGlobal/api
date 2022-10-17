@@ -47,48 +47,6 @@
 - Enums
   - [AssignmentType](#assignmenttype)
 
-- Referenced messages from [modem_message_body_parser.proto](#referenced-messages-from-modem_message_body_parserproto)
-  - [hiber.modem.message.bodyparser.AssignModemMessageBodyParsers](#hibermodemmessagebodyparserassignmodemmessagebodyparsers)
-  - [hiber.modem.message.bodyparser.AssignModemMessageBodyParsers.Request](#hibermodemmessagebodyparserassignmodemmessagebodyparsersrequest)
-  - [hiber.modem.message.bodyparser.AssignModemMessageBodyParsers.Response](#hibermodemmessagebodyparserassignmodemmessagebodyparsersresponse)
-  - [hiber.modem.message.bodyparser.AssignedModemMessageBodyParser](#hibermodemmessagebodyparserassignedmodemmessagebodyparser)
-  - [hiber.modem.message.bodyparser.CreateSimpleModemMessageBodyParserRequest](#hibermodemmessagebodyparsercreatesimplemodemmessagebodyparserrequest)
-  - [hiber.modem.message.bodyparser.DeleteModemMessageBodyParserRequest](#hibermodemmessagebodyparserdeletemodemmessagebodyparserrequest)
-  - [hiber.modem.message.bodyparser.DeleteModemMessageBodyParserRequest.Response](#hibermodemmessagebodyparserdeletemodemmessagebodyparserrequestresponse)
-  - [hiber.modem.message.bodyparser.ListModemMessageBodyParsersRequest](#hibermodemmessagebodyparserlistmodemmessagebodyparsersrequest)
-  - [hiber.modem.message.bodyparser.ListModemMessageBodyParsersRequest.Response](#hibermodemmessagebodyparserlistmodemmessagebodyparsersrequestresponse)
-  - [hiber.modem.message.bodyparser.MakeModemMessageBodyParserAvailableToChildOrganizationRequest](#hibermodemmessagebodyparsermakemodemmessagebodyparseravailabletochildorganizationrequest)
-  - [hiber.modem.message.bodyparser.MakeModemMessageBodyParserUnavailableToChildOrganizationRequest](#hibermodemmessagebodyparsermakemodemmessagebodyparserunavailabletochildorganizationrequest)
-  - [hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser)
-  - [hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations](#hibermodemmessagebodyparsermodemmessagebodyparseravailabletochildorganizations)
-  - [hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields)
-  - [hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafieldslocationfields)
-  - [hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection)
-  - [hiber.modem.message.bodyparser.RenameModemMessageBodyParserRequest](#hibermodemmessagebodyparserrenamemodemmessagebodyparserrequest)
-  - [hiber.modem.message.bodyparser.RetryModemMessageBodyParsing](#hibermodemmessagebodyparserretrymodemmessagebodyparsing)
-  - [hiber.modem.message.bodyparser.RetryModemMessageBodyParsing.Request](#hibermodemmessagebodyparserretrymodemmessagebodyparsingrequest)
-  - [hiber.modem.message.bodyparser.RetryModemMessageBodyParsing.Response](#hibermodemmessagebodyparserretrymodemmessagebodyparsingresponse)
-  - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser)
-  - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.DelimitedSize](#hibermodemmessagebodyparsersimplemodemmessagebodyparserdelimitedsize)
-  - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfield)
-  - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Bytes](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldbytes)
-  - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Float](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldfloat)
-  - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Integer](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldinteger)
-  - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.String](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldstring)
-  - [hiber.modem.message.bodyparser.TestModemMessageBodyParserRequest](#hibermodemmessagebodyparsertestmodemmessagebodyparserrequest)
-  - [hiber.modem.message.bodyparser.TestModemMessageBodyParserRequest.Response](#hibermodemmessagebodyparsertestmodemmessagebodyparserrequestresponse)
-  - [hiber.modem.message.bodyparser.UnassignModemMessageBodyParsers](#hibermodemmessagebodyparserunassignmodemmessagebodyparsers)
-  - [hiber.modem.message.bodyparser.UnassignModemMessageBodyParsers.Request](#hibermodemmessagebodyparserunassignmodemmessagebodyparsersrequest)
-  - [hiber.modem.message.bodyparser.UnassignModemMessageBodyParsers.Response](#hibermodemmessagebodyparserunassignmodemmessagebodyparsersresponse)
-  - [hiber.modem.message.bodyparser.UpdateChildOrganizationAvailabilityRequest](#hibermodemmessagebodyparserupdatechildorganizationavailabilityrequest)
-  - [hiber.modem.message.bodyparser.UpdateSimpleModemMessageBodyParserRequest](#hibermodemmessagebodyparserupdatesimplemodemmessagebodyparserrequest)
-  - [hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequest)
-  - [hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafields)
-  - [hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest](#hibermodemmessagebodyparseruploadmodemmessagebodyparserrequest)
-
-    - [hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing)
-    - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian](#hibermodemmessagebodyparsersimplemodemmessagebodyparserendian)
-
 - Referenced messages from [modem.proto](#referenced-messages-from-modemproto)
   - [hiber.modem.Modem](#hibermodemmodem)
   - [hiber.modem.ModemSelection](#hibermodemmodemselection)
@@ -157,6 +115,48 @@
   - [hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Response](#hibermodemalarmupdatemodemalarmupdatecheckresponse)
 
     - [hiber.modem.alarm.ModemAlarm.TriggerCondition](#hibermodemalarmmodemalarmtriggercondition)
+
+- Referenced messages from [modem_message_body_parser.proto](#referenced-messages-from-modem_message_body_parserproto)
+  - [hiber.modem.message.bodyparser.AssignModemMessageBodyParsers](#hibermodemmessagebodyparserassignmodemmessagebodyparsers)
+  - [hiber.modem.message.bodyparser.AssignModemMessageBodyParsers.Request](#hibermodemmessagebodyparserassignmodemmessagebodyparsersrequest)
+  - [hiber.modem.message.bodyparser.AssignModemMessageBodyParsers.Response](#hibermodemmessagebodyparserassignmodemmessagebodyparsersresponse)
+  - [hiber.modem.message.bodyparser.AssignedModemMessageBodyParser](#hibermodemmessagebodyparserassignedmodemmessagebodyparser)
+  - [hiber.modem.message.bodyparser.CreateSimpleModemMessageBodyParserRequest](#hibermodemmessagebodyparsercreatesimplemodemmessagebodyparserrequest)
+  - [hiber.modem.message.bodyparser.DeleteModemMessageBodyParserRequest](#hibermodemmessagebodyparserdeletemodemmessagebodyparserrequest)
+  - [hiber.modem.message.bodyparser.DeleteModemMessageBodyParserRequest.Response](#hibermodemmessagebodyparserdeletemodemmessagebodyparserrequestresponse)
+  - [hiber.modem.message.bodyparser.ListModemMessageBodyParsersRequest](#hibermodemmessagebodyparserlistmodemmessagebodyparsersrequest)
+  - [hiber.modem.message.bodyparser.ListModemMessageBodyParsersRequest.Response](#hibermodemmessagebodyparserlistmodemmessagebodyparsersrequestresponse)
+  - [hiber.modem.message.bodyparser.MakeModemMessageBodyParserAvailableToChildOrganizationRequest](#hibermodemmessagebodyparsermakemodemmessagebodyparseravailabletochildorganizationrequest)
+  - [hiber.modem.message.bodyparser.MakeModemMessageBodyParserUnavailableToChildOrganizationRequest](#hibermodemmessagebodyparsermakemodemmessagebodyparserunavailabletochildorganizationrequest)
+  - [hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser)
+  - [hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations](#hibermodemmessagebodyparsermodemmessagebodyparseravailabletochildorganizations)
+  - [hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields)
+  - [hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafieldslocationfields)
+  - [hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection)
+  - [hiber.modem.message.bodyparser.RenameModemMessageBodyParserRequest](#hibermodemmessagebodyparserrenamemodemmessagebodyparserrequest)
+  - [hiber.modem.message.bodyparser.RetryModemMessageBodyParsing](#hibermodemmessagebodyparserretrymodemmessagebodyparsing)
+  - [hiber.modem.message.bodyparser.RetryModemMessageBodyParsing.Request](#hibermodemmessagebodyparserretrymodemmessagebodyparsingrequest)
+  - [hiber.modem.message.bodyparser.RetryModemMessageBodyParsing.Response](#hibermodemmessagebodyparserretrymodemmessagebodyparsingresponse)
+  - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser)
+  - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.DelimitedSize](#hibermodemmessagebodyparsersimplemodemmessagebodyparserdelimitedsize)
+  - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfield)
+  - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Bytes](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldbytes)
+  - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Float](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldfloat)
+  - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Integer](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldinteger)
+  - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.String](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldstring)
+  - [hiber.modem.message.bodyparser.TestModemMessageBodyParserRequest](#hibermodemmessagebodyparsertestmodemmessagebodyparserrequest)
+  - [hiber.modem.message.bodyparser.TestModemMessageBodyParserRequest.Response](#hibermodemmessagebodyparsertestmodemmessagebodyparserrequestresponse)
+  - [hiber.modem.message.bodyparser.UnassignModemMessageBodyParsers](#hibermodemmessagebodyparserunassignmodemmessagebodyparsers)
+  - [hiber.modem.message.bodyparser.UnassignModemMessageBodyParsers.Request](#hibermodemmessagebodyparserunassignmodemmessagebodyparsersrequest)
+  - [hiber.modem.message.bodyparser.UnassignModemMessageBodyParsers.Response](#hibermodemmessagebodyparserunassignmodemmessagebodyparsersresponse)
+  - [hiber.modem.message.bodyparser.UpdateChildOrganizationAvailabilityRequest](#hibermodemmessagebodyparserupdatechildorganizationavailabilityrequest)
+  - [hiber.modem.message.bodyparser.UpdateSimpleModemMessageBodyParserRequest](#hibermodemmessagebodyparserupdatesimplemodemmessagebodyparserrequest)
+  - [hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequest)
+  - [hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafields)
+  - [hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest](#hibermodemmessagebodyparseruploadmodemmessagebodyparserrequest)
+
+    - [hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing)
+    - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian](#hibermodemmessagebodyparsersimplemodemmessagebodyparserendian)
 
 - Referenced messages from [tag.proto](#referenced-messages-from-tagproto)
   - [hiber.tag.Tag](#hibertagtag)
@@ -610,439 +610,6 @@ the tag.
 | ASSIGNS_MODEM_TO_TAG | Assignment that assigns a modem to a tag. | 4 |
 | ASSIGNS_MESSAGE_BODY_PARSER_TO_TAG | Assignment that assigns a message body parser to a tag, effectively assigning it to all modems with that tag. | 5 |
 | ASSIGNS_ALARM_TO_TAG | Assignment that assigns a modem alarm to a tag, effectively assigning it to all modems with that tag. | 6 |
-
-
-
-## Referenced messages from modem_message_body_parser.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
-
-#### This section was generated from [modem_message_body_parser.proto](https://github.com/HiberGlobal/api/blob/master/modem_message_body_parser.proto).
-
-
-### hiber.modem.message.bodyparser.AssignModemMessageBodyParsers
-
-Add direct assignments.
-If an overlapping assignment using a rule exists, it is shadowed by the direct assignment.
-
-Simplified version of assign.AssignDirectly.
-
-
-### hiber.modem.message.bodyparser.AssignModemMessageBodyParsers.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| assign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | none |
-| to_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | none |
-
-### hiber.modem.message.bodyparser.AssignModemMessageBodyParsers.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| created | [repeated hiber.modem.message.bodyparser.AssignedModemMessageBodyParser](#hibermodemmessagebodyparserassignedmodemmessagebodyparser) | none |
-| request | [ hiber.modem.message.bodyparser.AssignModemMessageBodyParsers.Request](#hibermodemmessagebodyparserassignmodemmessagebodyparsersrequest) | none |
-
-### hiber.modem.message.bodyparser.AssignedModemMessageBodyParser
-
-Directly assigned modem message parser to a modem.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| parser_identifier | [ string](#string) | none |
-| modem_number | [ string](#string) | none |
-
-### hiber.modem.message.bodyparser.CreateSimpleModemMessageBodyParserRequest
-
-Create a simple modem message parser, which generates a .ksy specification.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) | none |
-
-### hiber.modem.message.bodyparser.DeleteModemMessageBodyParserRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | A selection of parsers to be deleted. |
-
-### hiber.modem.message.bodyparser.DeleteModemMessageBodyParserRequest.Response
-
-
-
-
-### hiber.modem.message.bodyparser.ListModemMessageBodyParsersRequest
-
-List the parser your organizations has access to. This may include inherited parsers.
-
-If include_content is not set, this call may omit parser specifications, like the ksy, since those are
-typically larger multi-line strings.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
-| exclude_content | [ bool](#bool) | Whether to omit the content in the resulting ModemMessageBodyParsers. |
-
-### hiber.modem.message.bodyparser.ListModemMessageBodyParsersRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| parsers | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
-| request | [ hiber.modem.message.bodyparser.ListModemMessageBodyParsersRequest](#hibermodemmessagebodyparserlistmodemmessagebodyparsersrequest) | none |
-
-### hiber.modem.message.bodyparser.MakeModemMessageBodyParserAvailableToChildOrganizationRequest
-
-Make this parser available to a specific child organizations.
-
-This will
-- when the organization is on the exclude list, remove it
-- when the includeAll flag is false, add it to the include list (if not already present)
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| identifier | [ string](#string) | The identifier of the parser that should be updated. |
-| available_to | [repeated string](#string) | The child organization(s) that the parser should be available to. |
-
-### hiber.modem.message.bodyparser.MakeModemMessageBodyParserUnavailableToChildOrganizationRequest
-
-Make this parser unavailable to a specific child organizations.
-
-This will
-- when the organization is on the include list, remove it
-- when the includeAll flag is true, add it to the exclude list (if not already present)
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| identifier | [ string](#string) | The identifier of the parser that should be updated. |
-| unavailable_to | [repeated string](#string) | The child organization(s) that the parser should be unavailable to. |
-
-### hiber.modem.message.bodyparser.ModemMessageBodyParser
-
-Modem message body parser. This defines a parsing strategy for the body of a message.
-A parser can be defined in two ways: using a .ksy (Kaitai struct https://kaitai.io/) file or using the simple parser.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifier | [ string](#string) | The globally (across organizations) unique identifier for this parser. |
-| organization | [ string](#string) | The organization that created the parser. |
-| name | [ string](#string) | The name for this parser. |
-| content_ksy | [ string](#string) | The content of this parsers script. If simple_parser is set, this content is generated from that definition. This field may be omitted by the list call to save data. |
-| simple_parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) | The simple parser this .ksy was generated from, if it was generated from a simple parser. This field may be omitted on demand to save data in the list call. |
-| data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Fields in the parsed result that contain data. Data fields are cached for efficient retrieval and allow all kinds of processing. |
-| data_fields_deprecated | [repeated string](#string) | none |
-| metadata_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields) | Fields in the parsed result that contain metadata, and special things like a location. |
-| available_to_child_organizations | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations](#hibermodemmessagebodyparsermodemmessagebodyparseravailabletochildorganizations) | If set, this parser is available to your child organizations, as a Provided parser. |
-| post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | The list of post-processing steps applied to the result of this parser. |
-
-### hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations
-
-A modem message body parser with this object is available to child organizations.
-This means the child organization can use it, but not update or delete it.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | none |
-
-### hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields
-
-Fields in the parsed result that match common things that can be processed by the system,
-like a location or battery percentage.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| location_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafieldslocationfields) | Specify a pair of fields in the message body that contain location data, which will update the modem location and the map. |
-| message_metadata_fields | [repeated string](#string) | Custom metadata fields, which will be added to the message metadata json. |
-| modem_metadata_fields | [repeated string](#string) | Custom metadata fields, which will be added to the modem metadata json. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_time_field | [ string](#string) | Field that contains the time (epoch seconds) to use for the values extracted from the message. If not set, sent time is used. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_offset_field | [ string](#string) | Field that contains the time offset (second before sent time) to use for the values extracted from the message. If not set, sent time is used. |
-
-### hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| latitude | [ string](#string) | none |
-| longitude | [ string](#string) | none |
-
-### hiber.modem.message.bodyparser.ModemMessageBodyParserSelection
-
-Selection object for parsers. Used to select which parser to list, assign, etc.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifiers | [repeated string](#string) | Filter parsers by their identifiers. |
-| search | [ string](#string) | Find parsers by searching for this text in the name, content_ksy, data fields or simple parser definition. |
-| only_simple | [ bool](#bool) | Only return simple parsers, created using SimpleModemMessageBodyParser. |
-| only_ksy_file | [ bool](#bool) | Only return parsers created from an uploaded .ksy file. |
-| only_owned_parsers | [ bool](#bool) | Exclude parsers that are not owned by your organization (those that you did not create yourself). |
-| owner_organizations | [repeated string](#string) | Only return parsers that were created by the given parent organizations. |
-| has_data_fields | [repeated string](#string) | Only return parsers that have one of the given data fields This only works when the fields are marked explicitly using the data fields option. |
-
-### hiber.modem.message.bodyparser.RenameModemMessageBodyParserRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| identifier | [ string](#string) | The identifier of the parser that should be updated. |
-| name | [ string](#string) | The new name for this parser. |
-
-### hiber.modem.message.bodyparser.RetryModemMessageBodyParsing
-
-Retry a message, parsing it with all the currently assigned parsers that are in the given selection.
-If the message was previously parsed by any of those parsers, the previous result is replaced.
-
-
-### hiber.modem.message.bodyparser.RetryModemMessageBodyParsing.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| modem_message_ids | [repeated uint64](#uint64) | The messages to parse. |
-| parser_selection | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | A selection of parsers to apply, if they are assigned. |
-
-### hiber.modem.message.bodyparser.RetryModemMessageBodyParsing.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| parsed_messages | [repeated hiber.modem.ModemMessage.ParsedBody](#hibermodemmodemmessageparsedbody) | none |
-
-### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser
-
-Simple modem message body parser. This can be used a convenient way to create a .ksy parser.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| name | [ string](#string) | Parser name. When this structure is used as a custom type inside a parser, this name is a reduced to a value containing only lowercase letters, numbers and underscores, like field names. |
-| documentation | [ string](#string) | A short, single line description of the field. |
-| fields | [repeated hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfield) | The fields in this object. |
-| default_endian | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian](#hibermodemmessagebodyparsersimplemodemmessagebodyparserendian) | Sets a default endianness for this parser's fields and any fields in custom types. |
-| default_text_encoding | [ string](#string) | Sets a default string encoding for this parser's fields and any fields in custom types. |
-| custom_types | [repeated hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) | A list of custom types used for custom types fields. Each is effectively a simple parser, and can have its own custom types again, which can only be used within that parser structure. The parser name is used for custom type fields. |
-
-### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.DelimitedSize
-
-Delimited size definition, used for Bytes and Text.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **size**.size_bytes | [ int32](#int32) | Specifies the number of bytes in this field. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **size**.end_of_stream | [ bool](#bool) | Specifies that this field parses all bytes until the end of the stream. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **size**.field_name | [ string](#string) | Specifies the number of bytes in this field using the value of an Integer field. This integer field must be parsed before this field is parsed. |
-| terminator | [ bytes](#bytes) | Specify a terminator that marks the point the field terminates, optionally, and we should continue to the next field. This is typically a single byte (i.e. 0x00). This can be combined with a size to limit the amounts of bytes that are parsed. |
-
-### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| name | [ string](#string) | Field name. This is a reduced to a value containing only lowercase letters, numbers and underscores. |
-| documentation | [ string](#string) | A short, single line description of the field. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.integer | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Integer](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldinteger) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.float | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Float](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldfloat) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.bytes | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Bytes](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldbytes) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.string | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.String](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldstring) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.magic | [ bytes](#bytes) | Specify an expected magic sequence (some bytes that are always the same). |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.custom_type | [ string](#string) | Specify a custom type name. |
-
-### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Bytes
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| size | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.DelimitedSize](#hibermodemmessagebodyparsersimplemodemmessagebodyparserdelimitedsize) | none |
-
-### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Float
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| size_bytes | [ int32](#int32) | Specifies the size of this floating point number in bytes. |
-| endian | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian](#hibermodemmessagebodyparsersimplemodemmessagebodyparserendian) | Specifies endian encoding for this field. This can be omitted if default endianness specified. |
-
-### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Integer
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| size_bytes | [ int32](#int32) | Specifies the size of this integer in bytes. |
-| signed | [ bool](#bool) | Specifies whether this integer is signed or unsigned. |
-| endian | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian](#hibermodemmessagebodyparsersimplemodemmessagebodyparserendian) | Specifies endian encoding for this field. This can be omitted if default endianness specified. |
-
-### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.String
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| size | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.DelimitedSize](#hibermodemmessagebodyparsersimplemodemmessagebodyparserdelimitedsize) | none |
-| encoding | [ string](#string) | Specifies encoding for the string. This can be omitted if default encoding specified. |
-
-### hiber.modem.message.bodyparser.TestModemMessageBodyParserRequest
-
-Test a parsers on a message.
-
-This method provides a number of options and can be used in multiple ways:
-- Test a real message or an uploaded message body.
-- Test using an existing parser, an ksy definition or a simple parser definition.
-
-This can be used to test a parser with a modem's past messages, before assigning it,
-or while developing a parser to validate it with an expected body.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **parser**.identifier | [ string](#string) | The identifier of the parser you want to test. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **parser**.content_ksy | [ string](#string) | A ksy definition you want to test. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **parser**.simple_parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) | A simple parser definition you want to test. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.parse_bytes | [ hiber.BytesOrHex](#hiberbytesorhex) | A byte array (message body) to parse. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.modem_message_id | [ uint64](#uint64) | The id of an existing message, testing the parser on its body. |
-
-### hiber.modem.message.bodyparser.TestModemMessageBodyParserRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **result**.parsed | [ google.protobuf.Struct](#googleprotobufstruct) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **result**.error | [ string](#string) | none |
-
-### hiber.modem.message.bodyparser.UnassignModemMessageBodyParsers
-
-Remove a direct assignment.
-If an overlapping assignment using a rule exists, it is not affected, except that it is longer shadowed.
-
-Simplified version of assign.UnassignDirectly.
-
-
-### hiber.modem.message.bodyparser.UnassignModemMessageBodyParsers.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| unassign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | none |
-| from_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | none |
-
-### hiber.modem.message.bodyparser.UnassignModemMessageBodyParsers.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| removed_direct_assignments | [repeated hiber.modem.message.bodyparser.AssignedModemMessageBodyParser](#hibermodemmessagebodyparserassignedmodemmessagebodyparser) | none |
-| request | [ hiber.modem.message.bodyparser.UnassignModemMessageBodyParsers.Request](#hibermodemmessagebodyparserunassignmodemmessagebodyparsersrequest) | none |
-
-### hiber.modem.message.bodyparser.UpdateChildOrganizationAvailabilityRequest
-
-Update the child availability for a parser.
-Parsers can be made available to child organizations, which means that they can be viewed in,
-and assigned to modems in, child organizations.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| identifier | [ string](#string) | The identifier of the parser that should be updated. |
-| available_to_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | The new child organization availability filter for this parser. |
-
-### hiber.modem.message.bodyparser.UpdateSimpleModemMessageBodyParserRequest
-
-Update a simple modem message parser, updating the generated .ksy specification.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| identifier | [ string](#string) | The identifier of the parser that should be updated. |
-| parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) | none |
-
-### hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest
-
-Upload an updated body parser from a .ksy file, replacing the previous file.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| identifier | [ string](#string) | The identifier of the parser that should be updated. |
-| content_ksy | [ string](#string) | The new ksy definition for this parser. |
-| add_data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Add fields to the data fields list. |
-| remove_data_fields | [repeated string](#string) | Remove fields from the data fields list. |
-| metadata_fields | [ hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
-| add_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | Add a post-processing step to the result of this parser. |
-| remove_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | Remove a post-processing step to the result of this parser. |
-
-### hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| update_location_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafieldslocationfields) | Update the location fields. |
-| add_message_metadata_fields | [repeated string](#string) | Add fields to the message metadata fields list. |
-| remove_message_metadata_fields | [repeated string](#string) | Remove fields from the message metadata fields list. |
-| replace_message_metadata_fields | [repeated string](#string) | Replace the message metadata fields list. |
-| add_modem_metadata_fields | [repeated string](#string) | Add fields to the modem metadata fields list. |
-| remove_modem_metadata_fields | [repeated string](#string) | Remove fields from the modem metadata fields list. |
-| replace_modem_metadata_fields | [repeated string](#string) | Replace the modem metadata fields list. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_time_field | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the custom field to extract to measured_at time. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_offset_field | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the custom field to extract to measured_at offset from the sent_at time in seconds. |
-
-### hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest
-
-Upload a new body parser from a .ksy file.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| name | [ string](#string) | A descriptive name for this parser. |
-| content_ksy | [ string](#string) | The ksy definition for this parser. |
-| data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Fields in the parsed result that contain data. This can be useful to track which fields could be plotted, etc. |
-| metadata_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
-| post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | none |
-
-
-### Enums
-#### hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing
-The type of post-processing to be applied to the result of this parser.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| NOTHING | none | 0 |
-| EASYPULSE | none | 1 |
-
-#### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| DEFAULT | none | 0 |
-| LITTLE_ENDIAN | none | 1 |
-| BIG_ENDIAN | none | 2 |
 
 
 
@@ -1515,9 +1082,7 @@ The delta check also adds a few additional error message variables:
 | ----- | ---- | ----------- |
 | path | [ string](#string) | Select the field(s) that this check is applied to, using a json path. |
 | ignore_field_not_found | [ bool](#bool) | Whether to ignore this check if the field is not found. This can be useful if your path selects multiple values in an array, like my_array[*].value, and not all entries have the field, or when fields are omitted if they have a default value. |
-| unit | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | The unit that this alarm check is using. The field's values will automatically be converted into this unit before the check is applied.
-
-Note: unit is not currently available in the alarm_parameters. |
+| unit | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | The unit that this alarm check is using. The field's values will automatically be converted into this unit before the check is applied. Note: unit is not currently available in the alarm_parameters. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.equals | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.EqualsCheck](#hibermodemalarmmodemalarmcheckfieldcheckequalscheck) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.allowed | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.AllowedCheck](#hibermodemalarmmodemalarmcheckfieldcheckallowedcheck) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.blocked | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedCheck](#hibermodemalarmmodemalarmcheckfieldcheckblockedcheck) | none |
@@ -1847,6 +1412,439 @@ Condition determining when an alarm is triggered if it has multiple checks.
 | DEFAULT | Defaults to the current value when updating, or to ANY_CHECK_FAILED when creating. | 0 |
 | ANY_CHECK_FAILED | Trigger the alarm when any of the checks fail. This is useful when providing a single device health alarm, that checks, for example, battery, operating temperature, etc. and should trigger when any of those are outside the expected range. | 1 |
 | ALL_CHECKS_FAILED | Trigger the alarm only when all checks fail. This is useful when creating a combined alarm, where several data points factor into the decisions to trigger the alarm, for example, combining a check on the current value with a delta check on the historical values, to trigger only if the value is high for a longer period. | 2 |
+
+
+
+## Referenced messages from modem_message_body_parser.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [modem_message_body_parser.proto](https://github.com/HiberGlobal/api/blob/master/modem_message_body_parser.proto).
+
+
+### hiber.modem.message.bodyparser.AssignModemMessageBodyParsers
+
+Add direct assignments.
+If an overlapping assignment using a rule exists, it is shadowed by the direct assignment.
+
+Simplified version of assign.AssignDirectly.
+
+
+### hiber.modem.message.bodyparser.AssignModemMessageBodyParsers.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| assign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | none |
+| to_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | none |
+
+### hiber.modem.message.bodyparser.AssignModemMessageBodyParsers.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| created | [repeated hiber.modem.message.bodyparser.AssignedModemMessageBodyParser](#hibermodemmessagebodyparserassignedmodemmessagebodyparser) | none |
+| request | [ hiber.modem.message.bodyparser.AssignModemMessageBodyParsers.Request](#hibermodemmessagebodyparserassignmodemmessagebodyparsersrequest) | none |
+
+### hiber.modem.message.bodyparser.AssignedModemMessageBodyParser
+
+Directly assigned modem message parser to a modem.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| parser_identifier | [ string](#string) | none |
+| modem_number | [ string](#string) | none |
+
+### hiber.modem.message.bodyparser.CreateSimpleModemMessageBodyParserRequest
+
+Create a simple modem message parser, which generates a .ksy specification.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) | none |
+
+### hiber.modem.message.bodyparser.DeleteModemMessageBodyParserRequest
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| selection | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | A selection of parsers to be deleted. |
+
+### hiber.modem.message.bodyparser.DeleteModemMessageBodyParserRequest.Response
+
+
+
+
+### hiber.modem.message.bodyparser.ListModemMessageBodyParsersRequest
+
+List the parser your organizations has access to. This may include inherited parsers.
+
+If include_content is not set, this call may omit parser specifications, like the ksy, since those are
+typically larger multi-line strings.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| selection | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | none |
+| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| exclude_content | [ bool](#bool) | Whether to omit the content in the resulting ModemMessageBodyParsers. |
+
+### hiber.modem.message.bodyparser.ListModemMessageBodyParsersRequest.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| parsers | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) | none |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| request | [ hiber.modem.message.bodyparser.ListModemMessageBodyParsersRequest](#hibermodemmessagebodyparserlistmodemmessagebodyparsersrequest) | none |
+
+### hiber.modem.message.bodyparser.MakeModemMessageBodyParserAvailableToChildOrganizationRequest
+
+Make this parser available to a specific child organizations.
+
+This will
+- when the organization is on the exclude list, remove it
+- when the includeAll flag is false, add it to the include list (if not already present)
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| identifier | [ string](#string) | The identifier of the parser that should be updated. |
+| available_to | [repeated string](#string) | The child organization(s) that the parser should be available to. |
+
+### hiber.modem.message.bodyparser.MakeModemMessageBodyParserUnavailableToChildOrganizationRequest
+
+Make this parser unavailable to a specific child organizations.
+
+This will
+- when the organization is on the include list, remove it
+- when the includeAll flag is true, add it to the exclude list (if not already present)
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| identifier | [ string](#string) | The identifier of the parser that should be updated. |
+| unavailable_to | [repeated string](#string) | The child organization(s) that the parser should be unavailable to. |
+
+### hiber.modem.message.bodyparser.ModemMessageBodyParser
+
+Modem message body parser. This defines a parsing strategy for the body of a message.
+A parser can be defined in two ways: using a .ksy (Kaitai struct https://kaitai.io/) file or using the simple parser.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifier | [ string](#string) | The globally (across organizations) unique identifier for this parser. |
+| organization | [ string](#string) | The organization that created the parser. |
+| name | [ string](#string) | The name for this parser. |
+| content_ksy | [ string](#string) | The content of this parsers script. If simple_parser is set, this content is generated from that definition. This field may be omitted by the list call to save data. |
+| simple_parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) | The simple parser this .ksy was generated from, if it was generated from a simple parser. This field may be omitted on demand to save data in the list call. |
+| data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Fields in the parsed result that contain data. Data fields are cached for efficient retrieval and allow all kinds of processing. |
+| data_fields_deprecated | [repeated string](#string) | none |
+| metadata_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields) | Fields in the parsed result that contain metadata, and special things like a location. |
+| available_to_child_organizations | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations](#hibermodemmessagebodyparsermodemmessagebodyparseravailabletochildorganizations) | If set, this parser is available to your child organizations, as a Provided parser. |
+| post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | The list of post-processing steps applied to the result of this parser. |
+
+### hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations
+
+A modem message body parser with this object is available to child organizations.
+This means the child organization can use it, but not update or delete it.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | none |
+
+### hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields
+
+Fields in the parsed result that match common things that can be processed by the system,
+like a location or battery percentage.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| location_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafieldslocationfields) | Specify a pair of fields in the message body that contain location data, which will update the modem location and the map. |
+| message_metadata_fields | [repeated string](#string) | Custom metadata fields, which will be added to the message metadata json. |
+| modem_metadata_fields | [repeated string](#string) | Custom metadata fields, which will be added to the modem metadata json. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_time_field | [ string](#string) | Field that contains the time (epoch seconds) to use for the values extracted from the message. If not set, sent time is used. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_offset_field | [ string](#string) | Field that contains the time offset (second before sent time) to use for the values extracted from the message. If not set, sent time is used. |
+
+### hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| latitude | [ string](#string) | none |
+| longitude | [ string](#string) | none |
+
+### hiber.modem.message.bodyparser.ModemMessageBodyParserSelection
+
+Selection object for parsers. Used to select which parser to list, assign, etc.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifiers | [repeated string](#string) | Filter parsers by their identifiers. |
+| search | [ string](#string) | Find parsers by searching for this text in the name, content_ksy, data fields or simple parser definition. |
+| only_simple | [ bool](#bool) | Only return simple parsers, created using SimpleModemMessageBodyParser. |
+| only_ksy_file | [ bool](#bool) | Only return parsers created from an uploaded .ksy file. |
+| only_owned_parsers | [ bool](#bool) | Exclude parsers that are not owned by your organization (those that you did not create yourself). |
+| owner_organizations | [repeated string](#string) | Only return parsers that were created by the given parent organizations. |
+| has_data_fields | [repeated string](#string) | Only return parsers that have one of the given data fields This only works when the fields are marked explicitly using the data fields option. |
+
+### hiber.modem.message.bodyparser.RenameModemMessageBodyParserRequest
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| identifier | [ string](#string) | The identifier of the parser that should be updated. |
+| name | [ string](#string) | The new name for this parser. |
+
+### hiber.modem.message.bodyparser.RetryModemMessageBodyParsing
+
+Retry a message, parsing it with all the currently assigned parsers that are in the given selection.
+If the message was previously parsed by any of those parsers, the previous result is replaced.
+
+
+### hiber.modem.message.bodyparser.RetryModemMessageBodyParsing.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| modem_message_ids | [repeated uint64](#uint64) | The messages to parse. |
+| parser_selection | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | A selection of parsers to apply, if they are assigned. |
+
+### hiber.modem.message.bodyparser.RetryModemMessageBodyParsing.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| parsed_messages | [repeated hiber.modem.ModemMessage.ParsedBody](#hibermodemmodemmessageparsedbody) | none |
+
+### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser
+
+Simple modem message body parser. This can be used a convenient way to create a .ksy parser.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| name | [ string](#string) | Parser name. When this structure is used as a custom type inside a parser, this name is a reduced to a value containing only lowercase letters, numbers and underscores, like field names. |
+| documentation | [ string](#string) | A short, single line description of the field. |
+| fields | [repeated hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfield) | The fields in this object. |
+| default_endian | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian](#hibermodemmessagebodyparsersimplemodemmessagebodyparserendian) | Sets a default endianness for this parser's fields and any fields in custom types. |
+| default_text_encoding | [ string](#string) | Sets a default string encoding for this parser's fields and any fields in custom types. |
+| custom_types | [repeated hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) | A list of custom types used for custom types fields. Each is effectively a simple parser, and can have its own custom types again, which can only be used within that parser structure. The parser name is used for custom type fields. |
+
+### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.DelimitedSize
+
+Delimited size definition, used for Bytes and Text.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **size**.size_bytes | [ int32](#int32) | Specifies the number of bytes in this field. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **size**.end_of_stream | [ bool](#bool) | Specifies that this field parses all bytes until the end of the stream. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **size**.field_name | [ string](#string) | Specifies the number of bytes in this field using the value of an Integer field. This integer field must be parsed before this field is parsed. |
+| terminator | [ bytes](#bytes) | Specify a terminator that marks the point the field terminates, optionally, and we should continue to the next field. This is typically a single byte (i.e. 0x00). This can be combined with a size to limit the amounts of bytes that are parsed. |
+
+### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| name | [ string](#string) | Field name. This is a reduced to a value containing only lowercase letters, numbers and underscores. |
+| documentation | [ string](#string) | A short, single line description of the field. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.integer | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Integer](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldinteger) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.float | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Float](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldfloat) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.bytes | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Bytes](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldbytes) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.string | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.String](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldstring) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.magic | [ bytes](#bytes) | Specify an expected magic sequence (some bytes that are always the same). |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.custom_type | [ string](#string) | Specify a custom type name. |
+
+### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Bytes
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| size | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.DelimitedSize](#hibermodemmessagebodyparsersimplemodemmessagebodyparserdelimitedsize) | none |
+
+### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Float
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| size_bytes | [ int32](#int32) | Specifies the size of this floating point number in bytes. |
+| endian | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian](#hibermodemmessagebodyparsersimplemodemmessagebodyparserendian) | Specifies endian encoding for this field. This can be omitted if default endianness specified. |
+
+### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Integer
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| size_bytes | [ int32](#int32) | Specifies the size of this integer in bytes. |
+| signed | [ bool](#bool) | Specifies whether this integer is signed or unsigned. |
+| endian | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian](#hibermodemmessagebodyparsersimplemodemmessagebodyparserendian) | Specifies endian encoding for this field. This can be omitted if default endianness specified. |
+
+### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.String
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| size | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.DelimitedSize](#hibermodemmessagebodyparsersimplemodemmessagebodyparserdelimitedsize) | none |
+| encoding | [ string](#string) | Specifies encoding for the string. This can be omitted if default encoding specified. |
+
+### hiber.modem.message.bodyparser.TestModemMessageBodyParserRequest
+
+Test a parsers on a message.
+
+This method provides a number of options and can be used in multiple ways:
+- Test a real message or an uploaded message body.
+- Test using an existing parser, an ksy definition or a simple parser definition.
+
+This can be used to test a parser with a modem's past messages, before assigning it,
+or while developing a parser to validate it with an expected body.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **parser**.identifier | [ string](#string) | The identifier of the parser you want to test. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **parser**.content_ksy | [ string](#string) | A ksy definition you want to test. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **parser**.simple_parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) | A simple parser definition you want to test. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.parse_bytes | [ hiber.BytesOrHex](#hiberbytesorhex) | A byte array (message body) to parse. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.modem_message_id | [ uint64](#uint64) | The id of an existing message, testing the parser on its body. |
+
+### hiber.modem.message.bodyparser.TestModemMessageBodyParserRequest.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **result**.parsed | [ google.protobuf.Struct](#googleprotobufstruct) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **result**.error | [ string](#string) | none |
+
+### hiber.modem.message.bodyparser.UnassignModemMessageBodyParsers
+
+Remove a direct assignment.
+If an overlapping assignment using a rule exists, it is not affected, except that it is longer shadowed.
+
+Simplified version of assign.UnassignDirectly.
+
+
+### hiber.modem.message.bodyparser.UnassignModemMessageBodyParsers.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| unassign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | none |
+| from_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | none |
+
+### hiber.modem.message.bodyparser.UnassignModemMessageBodyParsers.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| removed_direct_assignments | [repeated hiber.modem.message.bodyparser.AssignedModemMessageBodyParser](#hibermodemmessagebodyparserassignedmodemmessagebodyparser) | none |
+| request | [ hiber.modem.message.bodyparser.UnassignModemMessageBodyParsers.Request](#hibermodemmessagebodyparserunassignmodemmessagebodyparsersrequest) | none |
+
+### hiber.modem.message.bodyparser.UpdateChildOrganizationAvailabilityRequest
+
+Update the child availability for a parser.
+Parsers can be made available to child organizations, which means that they can be viewed in,
+and assigned to modems in, child organizations.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| identifier | [ string](#string) | The identifier of the parser that should be updated. |
+| available_to_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | The new child organization availability filter for this parser. |
+
+### hiber.modem.message.bodyparser.UpdateSimpleModemMessageBodyParserRequest
+
+Update a simple modem message parser, updating the generated .ksy specification.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| identifier | [ string](#string) | The identifier of the parser that should be updated. |
+| parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) | none |
+
+### hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest
+
+Upload an updated body parser from a .ksy file, replacing the previous file.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| identifier | [ string](#string) | The identifier of the parser that should be updated. |
+| content_ksy | [ string](#string) | The new ksy definition for this parser. |
+| add_data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Add fields to the data fields list. |
+| remove_data_fields | [repeated string](#string) | Remove fields from the data fields list. |
+| metadata_fields | [ hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
+| add_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | Add a post-processing step to the result of this parser. |
+| remove_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | Remove a post-processing step to the result of this parser. |
+
+### hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| update_location_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafieldslocationfields) | Update the location fields. |
+| add_message_metadata_fields | [repeated string](#string) | Add fields to the message metadata fields list. |
+| remove_message_metadata_fields | [repeated string](#string) | Remove fields from the message metadata fields list. |
+| replace_message_metadata_fields | [repeated string](#string) | Replace the message metadata fields list. |
+| add_modem_metadata_fields | [repeated string](#string) | Add fields to the modem metadata fields list. |
+| remove_modem_metadata_fields | [repeated string](#string) | Remove fields from the modem metadata fields list. |
+| replace_modem_metadata_fields | [repeated string](#string) | Replace the modem metadata fields list. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_time_field | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the custom field to extract to measured_at time. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_offset_field | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the custom field to extract to measured_at offset from the sent_at time in seconds. |
+
+### hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest
+
+Upload a new body parser from a .ksy file.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| name | [ string](#string) | A descriptive name for this parser. |
+| content_ksy | [ string](#string) | The ksy definition for this parser. |
+| data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Fields in the parsed result that contain data. This can be useful to track which fields could be plotted, etc. |
+| metadata_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
+| post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | none |
+
+
+### Enums
+#### hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing
+The type of post-processing to be applied to the result of this parser.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| NOTHING | none | 0 |
+| EASYPULSE | none | 1 |
+
+#### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| DEFAULT | none | 0 |
+| LITTLE_ENDIAN | none | 1 |
+| BIG_ENDIAN | none | 2 |
 
 
 

@@ -75,6 +75,22 @@ a controlled amount of groups.
 - Enums
   - [TileMapRequest.Density](#tilemaprequestdensity)
 
+- Referenced messages from [health.proto](#referenced-messages-from-healthproto)
+  - [hiber.health.HealthLevel](#hiberhealthhealthlevel)
+  - [hiber.health.HealthLevelSelection](#hiberhealthhealthlevelselection)
+
+
+- Referenced messages from [modem.proto](#referenced-messages-from-modemproto)
+  - [hiber.modem.Modem](#hibermodemmodem)
+  - [hiber.modem.ModemSelection](#hibermodemmodemselection)
+
+    - [hiber.modem.ListModemsRequest.Sort](#hibermodemlistmodemsrequestsort)
+    - [hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle)
+    - [hiber.modem.Modem.Peripherals.HiberAntenna](#hibermodemmodemperipheralshiberantenna)
+    - [hiber.modem.Modem.Transfer.Status](#hibermodemmodemtransferstatus)
+    - [hiber.modem.Modem.Type](#hibermodemmodemtype)
+    - [hiber.modem.ModemMessage.Source](#hibermodemmodemmessagesource)
+
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
   - [hiber.Avatar](#hiberavatar)
@@ -281,6 +297,249 @@ Ramer–Douglas–Peucker algorithm.
 | SPARSE | Fills a tile with 4x4 icons. | 2 |
 | VERY_SPARSE | Fills a tile with 2x2 icons. | 3 |
 | SINGLE | Fills a tile with 1 icon. | 4 |
+
+
+
+## Referenced messages from health.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [health.proto](https://github.com/HiberGlobal/api/blob/master/health.proto).
+
+
+### hiber.health.HealthLevel
+
+A health level in an organization.
+Health can be customized depending on your need.
+
+The default health levels are:
+- OK (green): no problems detected
+- WARNING (orange): unresolvable problems detected, for example delayed or skipped messages
+- ERROR (red): significant problems detected (that typically can be resolved),
+  for example inactivity or invalid messages (resolved on a successful message)
+
+Health levels can be customized to as many as you need for your operations, for example:
+- INTERVENTION
+- DEFECT
+- BATTERY
+- HIGH
+- LOW
+
+Health levels are ordered by severity (low to high),
+and of all things affecting a modem's health,
+only the most severe level will be returned when retrieving a modem.
+
+Health can be assigned using modems alarms, which specify the health level they will cause on a modem (and for how
+long, if it does not resolve automatically).
+
+Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems),
+which can happen when a device manufacturer has provided alarms to your device (e.g. a low battery alarm).
+By default, any unknown health levels map to the level that is marked catch-all.
+
+Health level have a set of named colors, represented by a map where the key is the name of the color
+and the value is a string that represents a valid CSS3 color.
+Simple examples are: green, red, orange, grey, #FF00FF for fuchsia, etc (Keep in mind that CSS3 allows for many
+ways to define colors, see https://www.w3.org/TR/2003/WD-css3-color-20030214/).
+
+All the following definitions also mean "red":
+ - rgb(255, 0, 0)
+ - rgb(100%, 0, 0)
+ - rgba(100%, 0%, 0%, 100%)
+ - hsl(0, 100%, 50%)
+ - hsla(0, 100%, 50%, 1)
+
+The client is responsible for rendering the correct color from the CSS3 color-space and for setting the colors and
+their names. There is no verification on missing named colors, so the client must set sensible defaults when colors
+are missing.
+
+To assist with sorting, health levels have a numeric severity equal to their index in the sorted list of health
+levels (starting at 1). This means higher numbers denote a more severe health.
+Since these values are noting more than a list index, they should not be cached, compared to another organization or
+compared to values retrieved from the API at another time.
+
+For example, an organization using the default health would have:
+- Ok: severity 1
+- Warning: severity 2
+- Error: severity 3
+
+That organization could then add a new health level in between Ok and Warning, meaning the severity of Warning and
+Error will change:
+- Ok, severity 1
+- ItsComplicated, severity 2
+- Warning, severity 3
+- Error, severity 4
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| level | [ string](#string) | The name of this health level. Levels are identified by their name. The API does support renaming, where the rename is propagated to all the relevant parts of the system. |
+| color | [ string](#string) | Default color for the health level, as a string that represents a valid CSS3 color. DEPRECATED: Maps to the color named "text" in color_data. |
+| color_data | [map hiber.health.HealthLevel.ColorDataEntry](#hiberhealthhealthlevelcolordataentry) | Map of named colors, where key is the name and the value is a valid CSS3 color definition. |
+| severity | [ int64](#int64) | A unique numeric value equal to the index of this health level in the list of health levels sorted by ascending severity (starting at 1). This means higher numbers denote a more severe health. This value cannot be used when creating or updating. To change the severity for a health level, reorder all health levels. |
+| catch_all | [ bool](#bool) | Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems), which can happen when a device manufacturer has provided alarms for your device (e.g. a low battery alarm). By default, unknown health levels map to the level of the highest severity, unless another level is marked as catch-all. |
+
+### hiber.health.HealthLevelSelection
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| search | [ string](#string) | Search for the given string in the levels and colors. |
+| levels | [repeated string](#string) | Filter by exact levels. |
+
+
+### Enums
+
+
+## Referenced messages from modem.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [modem.proto](https://github.com/HiberGlobal/api/blob/master/modem.proto).
+
+
+### hiber.modem.Modem
+
+Modem data, including location and last message (if available).
+Location, last message and firmware version can be updated by messages, the rest is typically either set
+when the modem is registered into the system or when a subscription is authorized.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| number | [ string](#string) | An 8-character hexadecimal string |
+| organization | [ string](#string) | none |
+| name | [ string](#string) | An optional descriptor given to the modem |
+| location | [ hiber.Location](#hiberlocation) | none |
+| last_message_id | [ uint64](#uint64) | none |
+| last_message_received_at | [ hiber.Timestamp](#hibertimestamp) | Time the server has received the last message. |
+| last_message_sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the modem has sent the last message. |
+| last_message_body | [ hiber.BytesOrHex](#hiberbytesorhex) | The body of the last message. |
+| inactivity | [ hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
+| health | [ hiber.Health](#hiberhealth) | Deprecated health based on the number of error and warning events this modem has received in the past 30 days Uses the OK, WARNING, ERROR format. |
+| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
+| lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | none |
+| active_subscription | [ hiber.modem.Modem.ActiveSubscription](#hibermodemmodemactivesubscription) | additional information |
+| technical | [ hiber.modem.Modem.TechnicalData](#hibermodemmodemtechnicaldata) | none |
+| peripherals | [ hiber.modem.Modem.Peripherals](#hibermodemmodemperipherals) | none |
+| in_transfer | [ hiber.modem.Modem.Transfer](#hibermodemmodemtransfer) | none |
+| notes | [ string](#string) | Notes field that can be used to add additional information to a modem. |
+| secure_notes | [ string](#string) | Secure notes field that can be used to add additional information to a modem, with limited accessibility. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
+| is_gateway | [ bool](#bool) | [DEPRECATED] Whether the modem is a gateway, it has been configured as a gateway and has connected devices. Use `type` instead. |
+| is_device_connected_to_gateway | [ bool](#bool) | [DEPRECATED] Whether the modem is connected to a modem configured as a gateway. Use `type` instead. |
+| connected_to_gateway | [ string](#string) | [DEPRECATED] The modem number that this modem is connected to, if any. Use `connected_device_info.connected_to_gateway` instead. |
+| external_device_ids | [repeated string](#string) | [DEPRECATED] External device ids, if any. Use `connected_device_info.external_device_ids` instead. |
+| type | [ hiber.modem.Modem.Type](#hibermodemmodemtype) | The type of modem. Used mainly to differentiate in the UI or to sort on. |
+| gateway_info | [ hiber.modem.Modem.GatewayInfo](#hibermodemmodemgatewayinfo) | Additional information when this modem is a gateway. |
+| connected_device_info | [ hiber.modem.Modem.ConnectedDeviceInfo](#hibermodemmodemconnecteddeviceinfo) | Additional information when this modem is a connected device. |
+| metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
+| time_zone | [ string](#string) | The timezone configured for the modem. |
+| transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
+
+### hiber.modem.ModemSelection
+
+Selection object for modems.
+Filter modems by modem id, (child)organization, tags, activation status and time, service type and last message time.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| modems | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
+| free_text_search | [ string](#string) | none |
+| only_active | [ bool](#bool) | Use lifecycle filter instead. |
+| activated_in | [ hiber.TimeRange](#hibertimerange) | none |
+| with_last_message_in | [ hiber.TimeRange](#hibertimerange) | none |
+| with_service_type | [repeated hiber.organization.subscription.ServiceType](#hiberorganizationsubscriptionservicetype) | none |
+| health | [repeated hiber.Health](#hiberhealth) | Deprecated health that uses the OK, WARNING, ERROR format. |
+| health_levels | [repeated string](#string) | Filter modems by health level. |
+| lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
+| transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) | none |
+| include_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Only include modems that have a type listed in types. In other words, when providing multiple types, this is an "OR" relationship. |
+| exclude_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Exclude modems that have a type listed in types. |
+| only_gateways | [ bool](#bool) | [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
+| only_has_external_device_ids | [ bool](#bool) | [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
+| connected_to_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
+| external_device_ids | [repeated string](#string) | none |
+| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ hiber.modem.ModemSelection.Peripherals](#hibermodemmodemselectionperipherals) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.only_without_peripheral | [ bool](#bool) | When set to true, only modems that do not have any peripheral will be included in the result. |
+
+
+### Enums
+#### hiber.modem.ListModemsRequest.Sort
+Sorting options for the results.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| LAST_MESSAGE_RECEIVED | Sorts messages in descending time order. | 0 |
+| LAST_MESSAGE_RECEIVED_INVERTED | Sorts messages in ascending time order. | 1 |
+| MODEM_NUMBER_ASC | Sort numerically on the number of the modem, in ascending order. | 2 |
+| MODEM_NUMBER_DESC | Sort numerically on the number of the modem, in descending order. | 3 |
+| STATUS_ASC | Sort modem on its Status. | 4 |
+| STATUS_DESC | Sort modem on its Status in reverse order. | 5 |
+| STATUS_ASC_ALPHABETICAL | Status sorted alphabetically by Status name. | 14 |
+| STATUS_DESC_ALPHABETICAL | Status sorted alphabetically by Status name, descending order. | 15 |
+| MODEM_NAME_ASC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in ascending order. | 6 |
+| MODEM_NAME_DESC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in descending order. | 7 |
+| ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the modem, in ascending order. | 8 |
+| ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the modem, in descending order. | 9 |
+| HEALTH | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 10 |
+| HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 11 |
+| HEALTH_ASC_ALPHABETICAL | Health sorted alphabetically by health level name. | 12 |
+| HEALTH_DESC_ALPHABETICAL | Health sorted alphabetically by health level name, descending order. | 13 |
+
+#### hiber.modem.Modem.Lifecycle
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| ACCEPTANCE_TESTING | Modem is deployed, but not active yet. Invisible for customer. | 0 |
+| INSTALLED | Modem is active and sending messages. See health for more details on its health, based on the past messages. | 1 |
+| PAUSED | none | 6 |
+| DISABLED | none | 5 |
+| DECOMMISSIONED | none | 4 |
+| DAMAGED | Kept for backwards compatibility. Internally mapped to decommissioned | 2 |
+| LOST | Kept for backwards compatibility. Internally mapped to decommissioned | 3 |
+
+#### hiber.modem.Modem.Peripherals.HiberAntenna
+A Hiber antenna is required for the modem to function.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| DEFAULT | none | 0 |
+| HIBER_PANDA | none | 1 |
+| HIBER_GRIZZLY | none | 2 |
+| HIBER_BLACK | none | 3 |
+| CUSTOM | none | 4 |
+
+#### hiber.modem.Modem.Transfer.Status
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| NONE | none | 0 |
+| INBOUND | Modem has been shipped or transferred to you and is inbound. When you mark the transfer as received, the modems are added to your organization. If you encounter any issues, you can mark modems for return using the ModemTransferReturnService. | 1 |
+| OUTBOUND | Modem has been shipped or transferred by you and is outbound. When the transfer is received, the modems are removed from your organization, though the recipient may still return them later. | 2 |
+| RETURNING | You shipped this modem to another organization, but they are returning it. When you mark the transfer as received, the modems are added back to your organization. | 3 |
+
+#### hiber.modem.Modem.Type
+The effective type of this modem.
+Type can depend on the hardware itself as well as network topology.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| OTHER | A device of which the specific type is not known | 0 |
+| DIRECT | A devices that directly connects to the satellite | 1 |
+| GATEWAY | A device that can receive messages from sensors in the field and relay them (directly) to the satellite. Typically a LoRaWAN hub. Note that gateways also send messages themselves (e.g. a daily heartbeat). | 2 |
+| CONNECTED_DEVICE | A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. | 3 |
+
+#### hiber.modem.ModemMessage.Source
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| HIBERBAND | A real message from a modem or gateway, sent over Hiberband to the server. | 0 |
+| DIRECT_TO_API | A real message from a modem or gateway, sent directly to the API using a persistent connection. | 1 |
+| TEST | A test message sent to the testing API. | 2 |
+| SIMULATION | A simulated message, generated by the server. | 3 |
 
 
 

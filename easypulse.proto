@@ -82,6 +82,8 @@ message Easypulse {
         /* Health level based on the modem alarm and some always-present alarms. */
         health.HealthLevel health_level = 8;
 
+        Lifecycle lifecycle = 34;
+
         /* Tags (or groups, when used in Mission Control) this asset is in. */
         repeated hiber.tag.Tag tags = 9;
 
@@ -150,6 +152,20 @@ message Easypulse {
             BytesOrHex body = 4;
         }
 
+        enum Lifecycle {
+            /* Modem is deployed, but not active yet. Invisible for customer. */
+            ACCEPTANCE_TESTING = 0;
+
+            /* Modem is active and sending messages.
+             * See health for more details on its health, based on the past messages.
+             */
+            INSTALLED = 1;
+
+            PAUSED = 6;
+            DISABLED = 5;
+            DECOMMISSIONED = 4;
+        }
+
         reserved 11, 12, 13, 14, 17;
     }
 
@@ -215,6 +231,19 @@ message Easypulse {
                 HEALTH = 14;
                 /* Health sorted from most to least severe (i.e. ERROR, WARNING, OK). */
                 HEALTH_DESC = 15;
+                /* Health sorted alphabetically by health level name. */
+                HEALTH_ASC_ALPHABETICAL = 16;
+                /* Health sorted alphabetically by health level name, descending order. */
+                HEALTH_DESC_ALPHABETICAL = 17;
+
+                /* Sort modem on its Status. */
+                LIFECYCLE_ASC = 18;
+                /* Sort modem on its Status in reverse order. */
+                LIFECYCLE_DESC = 19;
+                /* Status sorted alphabetically by Status name. */
+                LIFECYCLE_ASC_ALPHABETICAL = 20;
+                /* Status sorted alphabetically by Status name, descending order. */
+                LIFECYCLE_DESC_ALPHABETICAL = 21;
             }
         }
 

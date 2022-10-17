@@ -279,7 +279,34 @@ message ModemSelection {
         repeated string transfers_identifiers = 1;
         reserved 2, 3;
     }
-    /* Filter to (de)select modems based on their peripherals. */
+    /* Filter to (de)select modems based on their peripherals.
+     *
+     * For example:
+     * - include { 'bluetooth' -> [ ] }
+     *     returns all modems that have any version of bluetooth,
+     * - include { 'bluetooth' -> [ '4.0', '5.0' ] }
+     *     will only return modems that have bluetooth version 4.0 _or_ 5.0,
+     * - include { 'bluetooth' -> [ '' ] }
+     *     would only select bluetooth peripherals that don't have any version set,
+     * - include { 'bluetooth' -> [ ], 'LoRaWAN' -> [ ] }
+     *     will only select modems that have both bluetooth (any version) _and_ LoRaWAN (any version),
+     * - include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ ] }
+     *     will return an empty list since exclude will take precedence, and
+     * - include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ '3.0' ] }
+     *     returns modems that have bluetooth, but not version 3.0.
+     * - exclude { 'bluetooth' -> [ ] }
+     *     returns only modems that do not have any version of bluetooth,
+     * - exclude { 'bluetooth' -> [ '4.0', '5.0' ] }
+     *     returns modems that might have bluetooth as long as it's not versions 4.0 or 5.0,
+     * - exclude { 'bluetooth' -> [ '' ] }
+     *     returns modems that might have bluetooth as long as it's version is set to a specific value,
+     * - exclude { 'bluetooth' -> [ ], 'LoRaWAN' -> [ ] }
+     *     returns modems that don't have bluetooth and/or LoRaWAN.
+     * - include { 'bluetooth' -> [ ] }, exclude { bluetooth' -> [ ] }
+     *     will return an empty list, since exclusion takes precedence, and
+     * - include { 'bluetooth' -> [ ] }, exclude { bluetooth' -> [ '3.0' ] }
+     *     returns only modems that have bluetooth, but not version 3.0
+     */
     message Peripherals {
         message OneOfValues {
             repeated string value = 1;
@@ -289,20 +316,6 @@ message ModemSelection {
          * Peripherals are stored as a name-value pair (e.g. bluetooth, 4.0 / bluetooth, BLE).
          * To select for multiple versions of a peripheral,
          * add the name of the peripheral as a map-key and add a repeated list of versions as the map-value.
-         *
-         * For example:
-         * - include { 'bluetooth' -> [ ] }
-         *     returns all modems that have any version of bluetooth,
-         * - include { 'bluetooth' -> [ '4.0', '5.0' ] }
-         *     will only return modems that have bluetooth version 4.0 _or_ 5.0,
-         * - include { 'bluetooth' -> [ '' ] }
-         *     would only select bluetooth peripherals that don't have any version set,
-         * - include { 'bluetooth' -> [ ], 'LoRaWAN' -> [ ] }
-         *     will only select modems that have both bluetooth (any version) _and_ LoRaWAN (any version),
-         * - include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ ] }
-         *     will return an empty list since exclude will take precedence, and
-         * - include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ '3.0' ] }
-         *     returns modems that have bluetooth, but not version 3.0.
          */
         map<string, OneOfValues> include_and = 1;
 
@@ -310,31 +323,16 @@ message ModemSelection {
          * Peripherals are stored as a name-value pair (e.g. bluetooth, 4.0 / bluetooth, BLE).
          * To select for multiple versions of a peripheral,
          * add the name of the peripheral as a map-key and add a repeated list of versions as the map-value.
-         *
-         * For example:
-         * - exclude { 'bluetooth' -> [ ] }
-         *     returns only modems that do not have any version of bluetooth,
-         * - exclude { 'bluetooth' -> [ '4.0', '5.0' ] }
-         *     returns modems that might have bluetooth as long as it's not versions 4.0 or 5.0,
-         * - exclude { 'bluetooth' -> [ '' ] }
-         *     returns modems that might have bluetooth as long as it's version is set to a specific value,
-         * - exclude { 'bluetooth' -> [ ], 'LoRaWAN' -> [ ] }
-         *     returns modems that don't have bluetooth and/or LoRaWAN.
-         * - include { 'bluetooth' -> [ ] }, exclude { bluetooth' -> [ ] }
-         *     will return an empty list, since exclusion takes precedence, and
-         * - include { 'bluetooth' -> [ ] }, exclude { bluetooth' -> [ '3.0' ] }
-         *     returns only modems that have bluetooth, but not version 3.0
          */
         map<string, OneOfValues> exclude = 2;
     }
-
 
     Filter.Modems modems = 1;
     string free_text_search = 8;
 
     /* Use lifecycle filter instead. */
     bool only_active = 4 [deprecated = true];
-    TimeRange activated_in = 5;
+    TimeRange activated_in = 5 [deprecated = true];
     TimeRange with_last_message_in = 7;
     repeated hiber.organization.subscription.ServiceType with_service_type = 6;
 
@@ -477,7 +475,6 @@ message ModemMessage {
     google.protobuf.Struct metadata = 15;
 
     /* Flattened results of all successful body parsers.
-     *
      * This is a convenience to access the fields from body_parsed, but if any fields are present in
      * multiple body_parsed results, it is not defined which field will be used in this Struct.
      * This may change in the future.
@@ -527,17 +524,15 @@ message ModemMessageSelection {
 }
 
 message GetModemRequest {
+    /* This replaces the child_organizations option, allowing search in all accessible organizations. */
     oneof where {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
 
         /* If set, look up the modem in multiple organizations, instead of in the given or default organization.
          * This can be used to find a modem if you do not know in which organization it is.
-         *
          * Since this is a selection object, an empty selection searches in all accessible organizations, but
          * the organizations can be limited using the fields in the OrganizationSelection.
-         *
-         * This replaces the child_organizations option, allowing search in all accessible organizations.
          */
         organization.OrganizationSelection in_organizations = 3;
     }
@@ -651,20 +646,19 @@ message ListModemsRequest {
  * Pagination is applied to modems in a group, not to the groups themselves.
  */
 message ListModemsGrouped {
+    /* The usage of ListModemsRequest and ListModemsRequest.Response in the Response.Group was intentionally
+     * chosen to simplify pagination withing a group, since the response contains the request
+     * (which will be updated with the group it is in) and pagination to select the next page using the
+     * list method.
+     */
     message Request {
         /* The modems you want to display in the groups.
          * This is a ListModemsRequest that is used to fetch the modems for each group, with the added limitation
          * that the modems must be in the group.
-         *
-         * The usage of ListModemsRequest and ListModemsRequest.Response in the Response.Group was intentionally
-         * chosen to simplify pagination withing a group, since the response contains the request
-         * (which will be updated with the group it is in) and pagination to select the next page using the
-         * list method.
          */
         ListModemsRequest group_content = 1;
 
         /* Select the parents for the groups to display.
-         *
          * Anything selected here that cannot have any connected modems (i.e. a direct modem) wil be omitted
          * unless allow_any_group_parent is set to true.
          * Only gateways will have connected devices, so unless allow_any_group_parent is true,
@@ -681,15 +675,15 @@ message ListModemsGrouped {
         bool allow_any_group_parent = 3;
     }
 
+    /* The usage of ListModemsRequest and ListModemsRequest.Response in the Response.Group was intentionally
+     * chosen to simplify pagination withing a group, since the response contains the request
+     * (which will be updated with the group it is in) and pagination to select the next page using the
+     * list method.
+     */
     message Response {
         /* The groups, based on a parent (typically a gateway unless allow_any_group_parent was set).
          * This is a ListModemsRequest.Response, with the selection updated with its parent and includes
          * the group parent in the group_parents field.
-         *
-         * The usage of ListModemsRequest and ListModemsRequest.Response in the Response.Group was intentionally
-         * chosen to simplify pagination withing a group, since the response contains the request
-         * (which will be updated with the group it is in) and pagination to select the next page using the
-         * list method.
          */
         repeated ListModemsRequest.Response groups = 1;
         Request request = 2;

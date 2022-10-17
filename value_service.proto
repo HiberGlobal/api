@@ -118,11 +118,8 @@ message AggregatedValues {
     /* The time range that was aggregated. */
     TimeRange time_range = 1;
 
-    /* The aggregated values for the requested fields.
-     *
-     * Timestamp is only set if the aggregation can return an exact data point:
-     * - if the aggregation would return an exact point: LAST, MAXIMUM, MINIMUM.
-     * - if the aggregation is applied to a single value, for a single field.
+    /* The aggregated values for the requested fields, where timestamp is only set if the aggregation can return an
+     * exact data point (i.e. LAST, MAXIMUM, MINIMUM aggregation, or a single value).
      */
     repeated ValueContext values = 2;
 
@@ -139,13 +136,11 @@ message AggregatedValues {
 
         /* The aggregations to use for the fields, resulting in a single value for each field.
          * When an aggregation is not specified for a field, the default aggregation for that field type is used.
-         *
          * Fields specified here must have been specified in the selection.
          */
         map<string, ValueAggregation> aggregations = 3;
 
         /* Transform the values for a field into a derived value.
-         *
          * Fields specified here must have been specified in the selection.
          */
         map<string, ValueTransformation> transform_fields = 4;

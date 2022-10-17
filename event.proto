@@ -89,7 +89,7 @@ message Event {
         ModemEvent.ModemCreatedEvent modem_created = 55;
         ModemEvent.ModemUpdatedEvent modem_updated = 39;
         ModemEvent.ModemLocationUpdatedEvent modem_location_updated = 2;
-        ModemEvent.ModemActivatedEvent modem_activated = 36;
+        ModemEvent.ModemActivatedEvent modem_activated = 36 [deprecated = true];
 
         ModemEvent.MessageEvent.ModemMessageReceivedEvent modem_message_received = 4;
         ModemEvent.MessageEvent.ModemMessageBodyReceivedEvent modem_message_body_received = 44;
@@ -211,6 +211,8 @@ message Event {
          * - any test message, on an environment that only has simulated modems (dev.hiber.global)
          */
         message ModemActivatedEvent {
+            option deprecated = true;
+
             string organization = 1;
             string modem_number = 2;
 
@@ -863,7 +865,6 @@ message BundledEvent {
 
     /* Indicates that the amount is an approximation, and not an exact value.
      * Some events will be approximated to avoid a large number of events affecting the request time.
-     *
      * Deprecated in  favour of using the oneof_amount field that is either an ExactAmount or ApproximatedAmount
      */
     bool deprecated_approximated_amount = 6 [deprecated = true];
@@ -985,7 +986,6 @@ message EventStreamRequest {
 
     /* Include events from child organizations, if requested.
      * This is only available for streaming, listing events can only be listed per organization.
-     *
      * Keep in mind that filtering events using the selection is limited.
      * Filtering on tags or publishers, for example, can only apply to the parent organization.
      */
@@ -1041,7 +1041,6 @@ message EventConfiguration {
         /* Align the period to given time.
          * For example, an hourly period sends can be aligned to 0:00 to send every whole hour.
          * A weekly period can be aligned to send at a specific time on Monday by aligning to a timestamp on a Monday.
-         *
          * If a textual time zone is configured in this timestamp, it is used as well and should shift with changes
          * like daylight saving time automatically.
          */

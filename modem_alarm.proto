@@ -319,7 +319,6 @@ message ModemAlarm {
 
             /* The unit that this alarm check is using.
              * The field's values will automatically be converted into this unit before the check is applied.
-             *
              * Note: unit is not currently available in the alarm_parameters.
              */
             field.Field.Numeric.Unit unit = 9;

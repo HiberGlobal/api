@@ -338,69 +338,6 @@
         
           
           <li>
-            <a href="#tag.proto">tag.proto</a>
-            <ul>
-              
-                <li>
-                  <a href="#hiber.tag.CreateTagRequest"><span class="badge">M</span>CreateTagRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.tag.DeleteTagRequest"><span class="badge">M</span>DeleteTagRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.tag.DeleteTagRequest.Response"><span class="badge">M</span>DeleteTagRequest.Response</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.tag.ListTagsRequest"><span class="badge">M</span>ListTagsRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.tag.ListTagsRequest.Response"><span class="badge">M</span>ListTagsRequest.Response</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.tag.ListTagsRequest.Response.TagModemCountEntry"><span class="badge">M</span>ListTagsRequest.Response.TagModemCountEntry</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.tag.ListTagsRequest.Response.TagWebhookCountEntry"><span class="badge">M</span>ListTagsRequest.Response.TagWebhookCountEntry</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.tag.Tag"><span class="badge">M</span>Tag</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.tag.Tag.Label"><span class="badge">M</span>Tag.Label</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.tag.TagSelection"><span class="badge">M</span>TagSelection</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.tag.UpdateTagRequest"><span class="badge">M</span>UpdateTagRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.tag.UpdateTagsForItem"><span class="badge">M</span>UpdateTagsForItem</a>
-                </li>
-              
-              
-              
-              
-                <li>
-                  <a href="#hiber.tag.TagService"><span class="badge">S</span>TagService</a>
-                </li>
-              
-            </ul>
-          </li>
-        
-          
-          <li>
             <a href="#base.proto">base.proto</a>
             <ul>
               
@@ -566,6 +503,69 @@
                 </li>
               
               
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#tag.proto">tag.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#hiber.tag.CreateTagRequest"><span class="badge">M</span>CreateTagRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.tag.DeleteTagRequest"><span class="badge">M</span>DeleteTagRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.tag.DeleteTagRequest.Response"><span class="badge">M</span>DeleteTagRequest.Response</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.tag.ListTagsRequest"><span class="badge">M</span>ListTagsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.tag.ListTagsRequest.Response"><span class="badge">M</span>ListTagsRequest.Response</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.tag.ListTagsRequest.Response.TagModemCountEntry"><span class="badge">M</span>ListTagsRequest.Response.TagModemCountEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.tag.ListTagsRequest.Response.TagWebhookCountEntry"><span class="badge">M</span>ListTagsRequest.Response.TagWebhookCountEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.tag.Tag"><span class="badge">M</span>Tag</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.tag.Tag.Label"><span class="badge">M</span>Tag.Label</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.tag.TagSelection"><span class="badge">M</span>TagSelection</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.tag.UpdateTagRequest"><span class="badge">M</span>UpdateTagRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.tag.UpdateTagsForItem"><span class="badge">M</span>UpdateTagsForItem</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#hiber.tag.TagService"><span class="badge">S</span>TagService</a>
+                </li>
               
             </ul>
           </li>
@@ -1613,7 +1613,7 @@ If the failure percentage is higher, within the warning period, the health is sw
         
       
         <h3 id="hiber.webhook.Webhook">Webhook</h3>
-        <p></p>
+        <p>Webhook publisher that sends events to a webhook.</p><p>When the webhook call fails, it enters cooldown, so as not to overload a failing server</p><p>or spend unnecessary time on an incorrectly configured webhook.</p><p>When the first call after the cooldown time has passed fails again, the cooldown is increased as follows:</p><p>1m, 2m, 5m, 10m, 15m, 30m, 1h, 3h, 6h, 12h, 24h.</p><p>To disable the cooldown, use EnableWebhookRequest to re-enable it.</p>
 
         
           <table class="field-table">
@@ -1689,12 +1689,7 @@ If the failure percentage is higher, within the warning period, the health is sw
                   <td>in_cooldown_until</td>
                   <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
                   <td></td>
-                  <td><p>When the webhook call fails, it enters cooldown, so as not to overload a failing server
-or spend unnecessary time on an incorrectly configured webhook.
-When the first call after the cooldown time has passed fails again, the cooldown is increased as follows:
-1m, 2m, 5m, 10m, 15m, 30m, 1h, 3h, 6h, 12h, 24h
-
-To disable the cooldown, use EnableWebhookRequest to re-enable it. </p></td>
+                  <td><p>The time the cooldown ends. </p></td>
                 </tr>
               
             </tbody>
@@ -2349,464 +2344,6 @@ https://github.com/danharper/hmac-examples </p></td>
                 <td>Delete</td>
                 <td><a href="#hiber.webhook.DeleteWebhookRequest">DeleteWebhookRequest</a></td>
                 <td><a href="#hiber.webhook.DeleteWebhookRequest.Response">DeleteWebhookRequest.Response</a></td>
-                <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-
-        
-    
-      
-      <div class="file-heading">
-        <h2 id="tag.proto">tag.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-      
-        <h3 id="hiber.tag.CreateTagRequest">CreateTagRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>create</td>
-                  <td><a href="#hiber.tag.Tag.Label">Tag.Label</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.tag.DeleteTagRequest">DeleteTagRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>id</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.tag.DeleteTagRequest.Response">DeleteTagRequest.Response</h3>
-        <p></p>
-
-        
-
-        
-      
-        <h3 id="hiber.tag.ListTagsRequest">ListTagsRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>selection</td>
-                  <td><a href="#hiber.tag.TagSelection">TagSelection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modem_count</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>webhook_count</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.tag.ListTagsRequest.Response">ListTagsRequest.Response</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>tags</td>
-                  <td><a href="#hiber.tag.Tag">Tag</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>request</td>
-                  <td><a href="#hiber.tag.ListTagsRequest">ListTagsRequest</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tag_modem_count</td>
-                  <td><a href="#hiber.tag.ListTagsRequest.Response.TagModemCountEntry">ListTagsRequest.Response.TagModemCountEntry</a></td>
-                  <td>repeated</td>
-                  <td><p>map&lt;tag-id, count&gt; </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tag_webhook_count</td>
-                  <td><a href="#hiber.tag.ListTagsRequest.Response.TagWebhookCountEntry">ListTagsRequest.Response.TagWebhookCountEntry</a></td>
-                  <td>repeated</td>
-                  <td><p>map&lt;webhook-id, count&gt; </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.tag.ListTagsRequest.Response.TagModemCountEntry">ListTagsRequest.Response.TagModemCountEntry</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>key</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.tag.ListTagsRequest.Response.TagWebhookCountEntry">ListTagsRequest.Response.TagWebhookCountEntry</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>key</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.tag.Tag">Tag</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>id</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>label</td>
-                  <td><a href="#hiber.tag.Tag.Label">Tag.Label</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.tag.Tag.Label">Tag.Label</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>type</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.tag.TagSelection">TagSelection</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>search</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>names</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>filter</td>
-                  <td><a href="#hiber.Filter.Tags">hiber.Filter.Tags</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>types</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.tag.UpdateTagRequest">UpdateTagRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>id</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>update</td>
-                  <td><a href="#hiber.tag.Tag.Label">Tag.Label</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.tag.UpdateTagsForItem">UpdateTagsForItem</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>tag_ids_to_add</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tag_ids_to_remove</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>new_tags_to_add</td>
-                  <td><a href="#hiber.tag.Tag.Label">Tag.Label</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-
-      
-
-      
-
-      
-        <h3 id="hiber.tag.TagService">TagService</h3>
-        <p>Tag management api calls. You can already get tags for objects when you get their data, and even create new tags</p><p>when updating them, so these calls are meant for easier tag management if you need it.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>List</td>
-                <td><a href="#hiber.tag.ListTagsRequest">ListTagsRequest</a></td>
-                <td><a href="#hiber.tag.ListTagsRequest.Response">ListTagsRequest.Response</a></td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>Create</td>
-                <td><a href="#hiber.tag.CreateTagRequest">CreateTagRequest</a></td>
-                <td><a href="#hiber.tag.Tag">Tag</a></td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>Update</td>
-                <td><a href="#hiber.tag.UpdateTagRequest">UpdateTagRequest</a></td>
-                <td><a href="#hiber.tag.Tag">Tag</a></td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>Delete</td>
-                <td><a href="#hiber.tag.DeleteTagRequest">DeleteTagRequest</a></td>
-                <td><a href="#hiber.tag.DeleteTagRequest.Response">DeleteTagRequest.Response</a></td>
                 <td><p></p></td>
               </tr>
             
@@ -4665,6 +4202,464 @@ For example, unbundled events are likely to return an approximated total, but no
       
 
       
+    
+      
+      <div class="file-heading">
+        <h2 id="tag.proto">tag.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="hiber.tag.CreateTagRequest">CreateTagRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>create</td>
+                  <td><a href="#hiber.tag.Tag.Label">Tag.Label</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.tag.DeleteTagRequest">DeleteTagRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.tag.DeleteTagRequest.Response">DeleteTagRequest.Response</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.tag.ListTagsRequest">ListTagsRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>selection</td>
+                  <td><a href="#hiber.tag.TagSelection">TagSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>modem_count</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>webhook_count</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.tag.ListTagsRequest.Response">ListTagsRequest.Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#hiber.tag.Tag">Tag</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#hiber.tag.ListTagsRequest">ListTagsRequest</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tag_modem_count</td>
+                  <td><a href="#hiber.tag.ListTagsRequest.Response.TagModemCountEntry">ListTagsRequest.Response.TagModemCountEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>map&lt;tag-id, count&gt; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tag_webhook_count</td>
+                  <td><a href="#hiber.tag.ListTagsRequest.Response.TagWebhookCountEntry">ListTagsRequest.Response.TagWebhookCountEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>map&lt;webhook-id, count&gt; </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.tag.ListTagsRequest.Response.TagModemCountEntry">ListTagsRequest.Response.TagModemCountEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.tag.ListTagsRequest.Response.TagWebhookCountEntry">ListTagsRequest.Response.TagWebhookCountEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.tag.Tag">Tag</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>label</td>
+                  <td><a href="#hiber.tag.Tag.Label">Tag.Label</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.tag.Tag.Label">Tag.Label</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.tag.TagSelection">TagSelection</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>search</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>names</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>filter</td>
+                  <td><a href="#hiber.Filter.Tags">hiber.Filter.Tags</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>types</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.tag.UpdateTagRequest">UpdateTagRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>update</td>
+                  <td><a href="#hiber.tag.Tag.Label">Tag.Label</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.tag.UpdateTagsForItem">UpdateTagsForItem</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tag_ids_to_add</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tag_ids_to_remove</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>new_tags_to_add</td>
+                  <td><a href="#hiber.tag.Tag.Label">Tag.Label</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="hiber.tag.TagService">TagService</h3>
+        <p>Tag management api calls. You can already get tags for objects when you get their data, and even create new tags</p><p>when updating them, so these calls are meant for easier tag management if you need it.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>List</td>
+                <td><a href="#hiber.tag.ListTagsRequest">ListTagsRequest</a></td>
+                <td><a href="#hiber.tag.ListTagsRequest.Response">ListTagsRequest.Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Create</td>
+                <td><a href="#hiber.tag.CreateTagRequest">CreateTagRequest</a></td>
+                <td><a href="#hiber.tag.Tag">Tag</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Update</td>
+                <td><a href="#hiber.tag.UpdateTagRequest">UpdateTagRequest</a></td>
+                <td><a href="#hiber.tag.Tag">Tag</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Delete</td>
+                <td><a href="#hiber.tag.DeleteTagRequest">DeleteTagRequest</a></td>
+                <td><a href="#hiber.tag.DeleteTagRequest.Response">DeleteTagRequest.Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
     
 
     <h2 id="scalar-value-types">Scalar Value Types</h2>

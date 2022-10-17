@@ -100,7 +100,6 @@ message StatusRequest {
 
     /* Whether to include a detailed list of modems with a non-OK status, with the given request.
      * Note that organization should match this request's organization or be omitted.
-     *
      * Only used when include_modems is true.
      */
     UnhealthyModems.Request include_modems_request = 4;
@@ -110,7 +109,6 @@ message StatusRequest {
 
     /* Whether to include a detailed list of publishers with a non-OK status, with the given request.
      * Note that organization should match this request's organization or be omitted.
-     *
      * Only used when include_publishers is true.
      */
     UnhealthyPublishers.Request include_publishers_request = 5;

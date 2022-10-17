@@ -32,6 +32,17 @@ Messages are parsed to a number of values (depending on the parser), which can b
 - Enums
   - [ListValues.Sort](#listvaluessort)
 
+- Referenced messages from [modem.proto](#referenced-messages-from-modemproto)
+  - [hiber.modem.Modem](#hibermodemmodem)
+  - [hiber.modem.ModemSelection](#hibermodemmodemselection)
+
+    - [hiber.modem.ListModemsRequest.Sort](#hibermodemlistmodemsrequestsort)
+    - [hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle)
+    - [hiber.modem.Modem.Peripherals.HiberAntenna](#hibermodemmodemperipheralshiberantenna)
+    - [hiber.modem.Modem.Transfer.Status](#hibermodemmodemtransferstatus)
+    - [hiber.modem.Modem.Type](#hibermodemmodemtype)
+    - [hiber.modem.ModemMessage.Source](#hibermodemmodemmessagesource)
+
 - Referenced messages from [value.proto](#referenced-messages-from-valueproto)
   - [hiber.value.Value](#hibervaluevalue)
   - [hiber.value.Value.Enum](#hibervaluevalueenum)
@@ -64,17 +75,6 @@ Messages are parsed to a number of values (depending on the parser), which can b
     - [hiber.value.Value.Type](#hibervaluevaluetype)
     - [hiber.value.ValueAggregation](#hibervaluevalueaggregation)
     - [hiber.value.ValueTransformation](#hibervaluevaluetransformation)
-
-- Referenced messages from [modem.proto](#referenced-messages-from-modemproto)
-  - [hiber.modem.Modem](#hibermodemmodem)
-  - [hiber.modem.ModemSelection](#hibermodemmodemselection)
-
-    - [hiber.modem.ListModemsRequest.Sort](#hibermodemlistmodemsrequestsort)
-    - [hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle)
-    - [hiber.modem.Modem.Peripherals.HiberAntenna](#hibermodemmodemperipheralshiberantenna)
-    - [hiber.modem.Modem.Transfer.Status](#hibermodemmodemtransferstatus)
-    - [hiber.modem.Modem.Type](#hibermodemmodemtype)
-    - [hiber.modem.ModemMessage.Source](#hibermodemmodemmessagesource)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -147,9 +147,7 @@ Aggregate values for a (set of) modem(s), filtering by field and time.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | time_range | [ hiber.TimeRange](#hibertimerange) | The time range that was aggregated. |
-| values | [repeated ValueContext](#valuecontext) | The aggregated values for the requested fields.
-
-Timestamp is only set if the aggregation can return an exact data point: - if the aggregation would return an exact point: LAST, MAXIMUM, MINIMUM. - if the aggregation is applied to a single value, for a single field. |
+| values | [repeated ValueContext](#valuecontext) | The aggregated values for the requested fields, where timestamp is only set if the aggregation can return an exact data point (i.e. LAST, MAXIMUM, MINIMUM aggregation, or a single value). |
 | location | [ hiber.Location](#hiberlocation) | The last location in the time range. |
 
 ### AggregatedValues.Request
@@ -160,12 +158,8 @@ Request aggregated values, reducing the selected time range to a single value pe
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | selection | [ ValueSelection](#valueselection) | The values to return. |
-| aggregations | [map AggregatedValues.Request.AggregationsEntry](#aggregatedvaluesrequestaggregationsentry) | The aggregations to use for the fields, resulting in a single value for each field. When an aggregation is not specified for a field, the default aggregation for that field type is used.
-
-Fields specified here must have been specified in the selection. |
-| transform_fields | [map AggregatedValues.Request.TransformFieldsEntry](#aggregatedvaluesrequesttransformfieldsentry) | Transform the values for a field into a derived value.
-
-Fields specified here must have been specified in the selection. |
+| aggregations | [map AggregatedValues.Request.AggregationsEntry](#aggregatedvaluesrequestaggregationsentry) | The aggregations to use for the fields, resulting in a single value for each field. When an aggregation is not specified for a field, the default aggregation for that field type is used. Fields specified here must have been specified in the selection. |
+| transform_fields | [map AggregatedValues.Request.TransformFieldsEntry](#aggregatedvaluesrequesttransformfieldsentry) | Transform the values for a field into a derived value. Fields specified here must have been specified in the selection. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **optional_partition**.partition | [ AggregatedValues.Request.Partition](#aggregatedvaluesrequestpartition) | Partition the time range and apply aggregation to each part. |
 
 ### AggregatedValues.Request.AggregationsEntry
@@ -310,6 +304,159 @@ How to sort the values.
 | ---- | ----------- | ------ |
 | TIME_ASCENDING | none | 0 |
 | TIME_DESCENDING | none | 1 |
+
+
+
+## Referenced messages from modem.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [modem.proto](https://github.com/HiberGlobal/api/blob/master/modem.proto).
+
+
+### hiber.modem.Modem
+
+Modem data, including location and last message (if available).
+Location, last message and firmware version can be updated by messages, the rest is typically either set
+when the modem is registered into the system or when a subscription is authorized.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| number | [ string](#string) | An 8-character hexadecimal string |
+| organization | [ string](#string) | none |
+| name | [ string](#string) | An optional descriptor given to the modem |
+| location | [ hiber.Location](#hiberlocation) | none |
+| last_message_id | [ uint64](#uint64) | none |
+| last_message_received_at | [ hiber.Timestamp](#hibertimestamp) | Time the server has received the last message. |
+| last_message_sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the modem has sent the last message. |
+| last_message_body | [ hiber.BytesOrHex](#hiberbytesorhex) | The body of the last message. |
+| inactivity | [ hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
+| health | [ hiber.Health](#hiberhealth) | Deprecated health based on the number of error and warning events this modem has received in the past 30 days Uses the OK, WARNING, ERROR format. |
+| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
+| lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | none |
+| active_subscription | [ hiber.modem.Modem.ActiveSubscription](#hibermodemmodemactivesubscription) | additional information |
+| technical | [ hiber.modem.Modem.TechnicalData](#hibermodemmodemtechnicaldata) | none |
+| peripherals | [ hiber.modem.Modem.Peripherals](#hibermodemmodemperipherals) | none |
+| in_transfer | [ hiber.modem.Modem.Transfer](#hibermodemmodemtransfer) | none |
+| notes | [ string](#string) | Notes field that can be used to add additional information to a modem. |
+| secure_notes | [ string](#string) | Secure notes field that can be used to add additional information to a modem, with limited accessibility. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
+| is_gateway | [ bool](#bool) | [DEPRECATED] Whether the modem is a gateway, it has been configured as a gateway and has connected devices. Use `type` instead. |
+| is_device_connected_to_gateway | [ bool](#bool) | [DEPRECATED] Whether the modem is connected to a modem configured as a gateway. Use `type` instead. |
+| connected_to_gateway | [ string](#string) | [DEPRECATED] The modem number that this modem is connected to, if any. Use `connected_device_info.connected_to_gateway` instead. |
+| external_device_ids | [repeated string](#string) | [DEPRECATED] External device ids, if any. Use `connected_device_info.external_device_ids` instead. |
+| type | [ hiber.modem.Modem.Type](#hibermodemmodemtype) | The type of modem. Used mainly to differentiate in the UI or to sort on. |
+| gateway_info | [ hiber.modem.Modem.GatewayInfo](#hibermodemmodemgatewayinfo) | Additional information when this modem is a gateway. |
+| connected_device_info | [ hiber.modem.Modem.ConnectedDeviceInfo](#hibermodemmodemconnecteddeviceinfo) | Additional information when this modem is a connected device. |
+| metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
+| time_zone | [ string](#string) | The timezone configured for the modem. |
+| transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
+
+### hiber.modem.ModemSelection
+
+Selection object for modems.
+Filter modems by modem id, (child)organization, tags, activation status and time, service type and last message time.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| modems | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
+| free_text_search | [ string](#string) | none |
+| only_active | [ bool](#bool) | Use lifecycle filter instead. |
+| activated_in | [ hiber.TimeRange](#hibertimerange) | none |
+| with_last_message_in | [ hiber.TimeRange](#hibertimerange) | none |
+| with_service_type | [repeated hiber.organization.subscription.ServiceType](#hiberorganizationsubscriptionservicetype) | none |
+| health | [repeated hiber.Health](#hiberhealth) | Deprecated health that uses the OK, WARNING, ERROR format. |
+| health_levels | [repeated string](#string) | Filter modems by health level. |
+| lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
+| transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) | none |
+| include_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Only include modems that have a type listed in types. In other words, when providing multiple types, this is an "OR" relationship. |
+| exclude_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Exclude modems that have a type listed in types. |
+| only_gateways | [ bool](#bool) | [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
+| only_has_external_device_ids | [ bool](#bool) | [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
+| connected_to_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
+| external_device_ids | [repeated string](#string) | none |
+| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ hiber.modem.ModemSelection.Peripherals](#hibermodemmodemselectionperipherals) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.only_without_peripheral | [ bool](#bool) | When set to true, only modems that do not have any peripheral will be included in the result. |
+
+
+### Enums
+#### hiber.modem.ListModemsRequest.Sort
+Sorting options for the results.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| LAST_MESSAGE_RECEIVED | Sorts messages in descending time order. | 0 |
+| LAST_MESSAGE_RECEIVED_INVERTED | Sorts messages in ascending time order. | 1 |
+| MODEM_NUMBER_ASC | Sort numerically on the number of the modem, in ascending order. | 2 |
+| MODEM_NUMBER_DESC | Sort numerically on the number of the modem, in descending order. | 3 |
+| STATUS_ASC | Sort modem on its Status. | 4 |
+| STATUS_DESC | Sort modem on its Status in reverse order. | 5 |
+| STATUS_ASC_ALPHABETICAL | Status sorted alphabetically by Status name. | 14 |
+| STATUS_DESC_ALPHABETICAL | Status sorted alphabetically by Status name, descending order. | 15 |
+| MODEM_NAME_ASC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in ascending order. | 6 |
+| MODEM_NAME_DESC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in descending order. | 7 |
+| ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the modem, in ascending order. | 8 |
+| ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the modem, in descending order. | 9 |
+| HEALTH | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 10 |
+| HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 11 |
+| HEALTH_ASC_ALPHABETICAL | Health sorted alphabetically by health level name. | 12 |
+| HEALTH_DESC_ALPHABETICAL | Health sorted alphabetically by health level name, descending order. | 13 |
+
+#### hiber.modem.Modem.Lifecycle
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| ACCEPTANCE_TESTING | Modem is deployed, but not active yet. Invisible for customer. | 0 |
+| INSTALLED | Modem is active and sending messages. See health for more details on its health, based on the past messages. | 1 |
+| PAUSED | none | 6 |
+| DISABLED | none | 5 |
+| DECOMMISSIONED | none | 4 |
+| DAMAGED | Kept for backwards compatibility. Internally mapped to decommissioned | 2 |
+| LOST | Kept for backwards compatibility. Internally mapped to decommissioned | 3 |
+
+#### hiber.modem.Modem.Peripherals.HiberAntenna
+A Hiber antenna is required for the modem to function.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| DEFAULT | none | 0 |
+| HIBER_PANDA | none | 1 |
+| HIBER_GRIZZLY | none | 2 |
+| HIBER_BLACK | none | 3 |
+| CUSTOM | none | 4 |
+
+#### hiber.modem.Modem.Transfer.Status
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| NONE | none | 0 |
+| INBOUND | Modem has been shipped or transferred to you and is inbound. When you mark the transfer as received, the modems are added to your organization. If you encounter any issues, you can mark modems for return using the ModemTransferReturnService. | 1 |
+| OUTBOUND | Modem has been shipped or transferred by you and is outbound. When the transfer is received, the modems are removed from your organization, though the recipient may still return them later. | 2 |
+| RETURNING | You shipped this modem to another organization, but they are returning it. When you mark the transfer as received, the modems are added back to your organization. | 3 |
+
+#### hiber.modem.Modem.Type
+The effective type of this modem.
+Type can depend on the hardware itself as well as network topology.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| OTHER | A device of which the specific type is not known | 0 |
+| DIRECT | A devices that directly connects to the satellite | 1 |
+| GATEWAY | A device that can receive messages from sensors in the field and relay them (directly) to the satellite. Typically a LoRaWAN hub. Note that gateways also send messages themselves (e.g. a daily heartbeat). | 2 |
+| CONNECTED_DEVICE | A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. | 3 |
+
+#### hiber.modem.ModemMessage.Source
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| HIBERBAND | A real message from a modem or gateway, sent over Hiberband to the server. | 0 |
+| DIRECT_TO_API | A real message from a modem or gateway, sent directly to the API using a persistent connection. | 1 |
+| TEST | A test message sent to the testing API. | 2 |
+| SIMULATION | A simulated message, generated by the server. | 3 |
 
 
 
@@ -488,13 +635,11 @@ The value is a volume value, converted to your preferred volume unit.
 
 ### Enums
 #### hiber.value.Value.Numeric.BatteryLevel.Unit
-
+other units will be added here later, like voltage
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| PERCENT | Battery level as a percentage (technically not a unit).
-
-other units will be added here later, like voltage | 0 |
+| PERCENT | Battery level as a percentage (technically not a unit). | 0 |
 
 #### hiber.value.Value.Numeric.Distance.Unit
 
@@ -668,159 +813,6 @@ Transform the values into a derived value.
 | ---- | ----------- | ------ |
 | DURATION | Instead of returning the value, return the amount of time a value was active. Aggregation (if applicable) is applied afterwards on the duration value. | 0 |
 | DELTA | Instead of returning the value, return the difference between the value and the previous value. Aggregation (if applicable) is applied before the delta is calculated. | 1 |
-
-
-
-## Referenced messages from modem.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
-
-#### This section was generated from [modem.proto](https://github.com/HiberGlobal/api/blob/master/modem.proto).
-
-
-### hiber.modem.Modem
-
-Modem data, including location and last message (if available).
-Location, last message and firmware version can be updated by messages, the rest is typically either set
-when the modem is registered into the system or when a subscription is authorized.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| number | [ string](#string) | An 8-character hexadecimal string |
-| organization | [ string](#string) | none |
-| name | [ string](#string) | An optional descriptor given to the modem |
-| location | [ hiber.Location](#hiberlocation) | none |
-| last_message_id | [ uint64](#uint64) | none |
-| last_message_received_at | [ hiber.Timestamp](#hibertimestamp) | Time the server has received the last message. |
-| last_message_sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the modem has sent the last message. |
-| last_message_body | [ hiber.BytesOrHex](#hiberbytesorhex) | The body of the last message. |
-| inactivity | [ hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
-| health | [ hiber.Health](#hiberhealth) | Deprecated health based on the number of error and warning events this modem has received in the past 30 days Uses the OK, WARNING, ERROR format. |
-| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
-| lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | none |
-| active_subscription | [ hiber.modem.Modem.ActiveSubscription](#hibermodemmodemactivesubscription) | additional information |
-| technical | [ hiber.modem.Modem.TechnicalData](#hibermodemmodemtechnicaldata) | none |
-| peripherals | [ hiber.modem.Modem.Peripherals](#hibermodemmodemperipherals) | none |
-| in_transfer | [ hiber.modem.Modem.Transfer](#hibermodemmodemtransfer) | none |
-| notes | [ string](#string) | Notes field that can be used to add additional information to a modem. |
-| secure_notes | [ string](#string) | Secure notes field that can be used to add additional information to a modem, with limited accessibility. |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| is_gateway | [ bool](#bool) | [DEPRECATED] Whether the modem is a gateway, it has been configured as a gateway and has connected devices. Use `type` instead. |
-| is_device_connected_to_gateway | [ bool](#bool) | [DEPRECATED] Whether the modem is connected to a modem configured as a gateway. Use `type` instead. |
-| connected_to_gateway | [ string](#string) | [DEPRECATED] The modem number that this modem is connected to, if any. Use `connected_device_info.connected_to_gateway` instead. |
-| external_device_ids | [repeated string](#string) | [DEPRECATED] External device ids, if any. Use `connected_device_info.external_device_ids` instead. |
-| type | [ hiber.modem.Modem.Type](#hibermodemmodemtype) | The type of modem. Used mainly to differentiate in the UI or to sort on. |
-| gateway_info | [ hiber.modem.Modem.GatewayInfo](#hibermodemmodemgatewayinfo) | Additional information when this modem is a gateway. |
-| connected_device_info | [ hiber.modem.Modem.ConnectedDeviceInfo](#hibermodemmodemconnecteddeviceinfo) | Additional information when this modem is a connected device. |
-| metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
-| time_zone | [ string](#string) | The timezone configured for the modem. |
-| transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
-
-### hiber.modem.ModemSelection
-
-Selection object for modems.
-Filter modems by modem id, (child)organization, tags, activation status and time, service type and last message time.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| modems | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
-| free_text_search | [ string](#string) | none |
-| only_active | [ bool](#bool) | Use lifecycle filter instead. |
-| activated_in | [ hiber.TimeRange](#hibertimerange) | none |
-| with_last_message_in | [ hiber.TimeRange](#hibertimerange) | none |
-| with_service_type | [repeated hiber.organization.subscription.ServiceType](#hiberorganizationsubscriptionservicetype) | none |
-| health | [repeated hiber.Health](#hiberhealth) | Deprecated health that uses the OK, WARNING, ERROR format. |
-| health_levels | [repeated string](#string) | Filter modems by health level. |
-| lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
-| transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) | none |
-| include_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Only include modems that have a type listed in types. In other words, when providing multiple types, this is an "OR" relationship. |
-| exclude_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Exclude modems that have a type listed in types. |
-| only_gateways | [ bool](#bool) | [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
-| only_has_external_device_ids | [ bool](#bool) | [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
-| connected_to_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
-| external_device_ids | [repeated string](#string) | none |
-| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ hiber.modem.ModemSelection.Peripherals](#hibermodemmodemselectionperipherals) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.only_without_peripheral | [ bool](#bool) | When set to true, only modems that do not have any peripheral will be included in the result. |
-
-
-### Enums
-#### hiber.modem.ListModemsRequest.Sort
-Sorting options for the results.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| LAST_MESSAGE_RECEIVED | Sorts messages in descending time order. | 0 |
-| LAST_MESSAGE_RECEIVED_INVERTED | Sorts messages in ascending time order. | 1 |
-| MODEM_NUMBER_ASC | Sort numerically on the number of the modem, in ascending order. | 2 |
-| MODEM_NUMBER_DESC | Sort numerically on the number of the modem, in descending order. | 3 |
-| STATUS_ASC | Sort modem on its Status. | 4 |
-| STATUS_DESC | Sort modem on its Status in reverse order. | 5 |
-| STATUS_ASC_ALPHABETICAL | Status sorted alphabetically by Status name. | 14 |
-| STATUS_DESC_ALPHABETICAL | Status sorted alphabetically by Status name, descending order. | 15 |
-| MODEM_NAME_ASC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in ascending order. | 6 |
-| MODEM_NAME_DESC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in descending order. | 7 |
-| ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the modem, in ascending order. | 8 |
-| ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the modem, in descending order. | 9 |
-| HEALTH | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 10 |
-| HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 11 |
-| HEALTH_ASC_ALPHABETICAL | Health sorted alphabetically by health level name. | 12 |
-| HEALTH_DESC_ALPHABETICAL | Health sorted alphabetically by health level name, descending order. | 13 |
-
-#### hiber.modem.Modem.Lifecycle
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| ACCEPTANCE_TESTING | Modem is deployed, but not active yet. Invisible for customer. | 0 |
-| INSTALLED | Modem is active and sending messages. See health for more details on its health, based on the past messages. | 1 |
-| PAUSED | none | 6 |
-| DISABLED | none | 5 |
-| DECOMMISSIONED | none | 4 |
-| DAMAGED | Kept for backwards compatibility. Internally mapped to decommissioned | 2 |
-| LOST | Kept for backwards compatibility. Internally mapped to decommissioned | 3 |
-
-#### hiber.modem.Modem.Peripherals.HiberAntenna
-A Hiber antenna is required for the modem to function.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| DEFAULT | none | 0 |
-| HIBER_PANDA | none | 1 |
-| HIBER_GRIZZLY | none | 2 |
-| HIBER_BLACK | none | 3 |
-| CUSTOM | none | 4 |
-
-#### hiber.modem.Modem.Transfer.Status
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| NONE | none | 0 |
-| INBOUND | Modem has been shipped or transferred to you and is inbound. When you mark the transfer as received, the modems are added to your organization. If you encounter any issues, you can mark modems for return using the ModemTransferReturnService. | 1 |
-| OUTBOUND | Modem has been shipped or transferred by you and is outbound. When the transfer is received, the modems are removed from your organization, though the recipient may still return them later. | 2 |
-| RETURNING | You shipped this modem to another organization, but they are returning it. When you mark the transfer as received, the modems are added back to your organization. | 3 |
-
-#### hiber.modem.Modem.Type
-The effective type of this modem.
-Type can depend on the hardware itself as well as network topology.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| OTHER | A device of which the specific type is not known | 0 |
-| DIRECT | A devices that directly connects to the satellite | 1 |
-| GATEWAY | A device that can receive messages from sensors in the field and relay them (directly) to the satellite. Typically a LoRaWAN hub. Note that gateways also send messages themselves (e.g. a daily heartbeat). | 2 |
-| CONNECTED_DEVICE | A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. | 3 |
-
-#### hiber.modem.ModemMessage.Source
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| HIBERBAND | A real message from a modem or gateway, sent over Hiberband to the server. | 0 |
-| DIRECT_TO_API | A real message from a modem or gateway, sent directly to the API using a persistent connection. | 1 |
-| TEST | A test message sent to the testing API. | 2 |
-| SIMULATION | A simulated message, generated by the server. | 3 |
 
 
 

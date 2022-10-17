@@ -73,6 +73,47 @@ used to identify them.
   - [Modem.Type](#modemtype)
   - [ModemMessage.Source](#modemmessagesource)
 
+- Referenced messages from [health.proto](#referenced-messages-from-healthproto)
+  - [hiber.health.HealthLevel](#hiberhealthhealthlevel)
+  - [hiber.health.HealthLevelSelection](#hiberhealthhealthlevelselection)
+
+
+- Referenced messages from [organization.proto](#referenced-messages-from-organizationproto)
+  - [hiber.organization.CreateOrganizationRequest](#hiberorganizationcreateorganizationrequest)
+  - [hiber.organization.DeleteOrganizationConfirmationRequest](#hiberorganizationdeleteorganizationconfirmationrequest)
+  - [hiber.organization.DeleteOrganizationConfirmationRequest.Response](#hiberorganizationdeleteorganizationconfirmationrequestresponse)
+  - [hiber.organization.DeleteOrganizationRequest](#hiberorganizationdeleteorganizationrequest)
+  - [hiber.organization.DeleteOrganizationRequest.Response](#hiberorganizationdeleteorganizationrequestresponse)
+  - [hiber.organization.GetOrganizationAvatar](#hiberorganizationgetorganizationavatar)
+  - [hiber.organization.GetOrganizationAvatar.Request](#hiberorganizationgetorganizationavatarrequest)
+  - [hiber.organization.GetOrganizationAvatar.Response](#hiberorganizationgetorganizationavatarresponse)
+  - [hiber.organization.GetOrganizationAvatar.Response.AvatarsEntry](#hiberorganizationgetorganizationavatarresponseavatarsentry)
+  - [hiber.organization.GetOrganizationRequest](#hiberorganizationgetorganizationrequest)
+  - [hiber.organization.ListChildOrganizationsRequest](#hiberorganizationlistchildorganizationsrequest)
+  - [hiber.organization.ListChildOrganizationsRequest.Response](#hiberorganizationlistchildorganizationsrequestresponse)
+  - [hiber.organization.Organization](#hiberorganizationorganization)
+  - [hiber.organization.Organization.Address](#hiberorganizationorganizationaddress)
+  - [hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact)
+  - [hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection)
+  - [hiber.organization.OrganizationTree](#hiberorganizationorganizationtree)
+  - [hiber.organization.OrganizationTreeRequest](#hiberorganizationorganizationtreerequest)
+  - [hiber.organization.OrganizationTreeRequest.Response](#hiberorganizationorganizationtreerequestresponse)
+  - [hiber.organization.UpdateOrganizationRequest](#hiberorganizationupdateorganizationrequest)
+  - [hiber.organization.ValidateOrganizationCreationTokenRequest](#hiberorganizationvalidateorganizationcreationtokenrequest)
+  - [hiber.organization.ValidateOrganizationCreationTokenRequest.Response](#hiberorganizationvalidateorganizationcreationtokenrequestresponse)
+
+    - [hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature)
+
+
+  - Enums
+    - [hiber.organization.subscription.ServiceType](#hiberorganizationsubscriptionservicetype)
+
+- Referenced messages from [tag.proto](#referenced-messages-from-tagproto)
+  - [hiber.tag.Tag](#hibertagtag)
+  - [hiber.tag.Tag.Label](#hibertagtaglabel)
+  - [hiber.tag.TagSelection](#hibertagtagselection)
+
+
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
   - [hiber.Avatar](#hiberavatar)
@@ -267,11 +308,7 @@ when you want to connect a device to the API using just the API calls in the Tes
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **where**.organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **where**.in_organizations | [ hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) | If set, look up the modem in multiple organizations, instead of in the given or default organization. This can be used to find a modem if you do not know in which organization it is.
-
-Since this is a selection object, an empty selection searches in all accessible organizations, but the organizations can be limited using the fields in the OrganizationSelection.
-
-This replaces the child_organizations option, allowing search in all accessible organizations. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **where**.in_organizations | [ hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) | If set, look up the modem in multiple organizations, instead of in the given or default organization. This can be used to find a modem if you do not know in which organization it is. Since this is a selection object, an empty selection searches in all accessible organizations, but the organizations can be limited using the fields in the OrganizationSelection. |
 | modem_number | [ string](#string) | The modem to get. |
 | child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Look for the modem in child organizations. DEPRECATED: use the in_organizations flag instead. |
 
@@ -303,27 +340,27 @@ Pagination is applied to modems in a group, not to the groups themselves.
 
 ### ListModemsGrouped.Request
 
-
+The usage of ListModemsRequest and ListModemsRequest.Response in the Response.Group was intentionally
+chosen to simplify pagination withing a group, since the response contains the request
+(which will be updated with the group it is in) and pagination to select the next page using the
+list method.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| group_content | [ ListModemsRequest](#listmodemsrequest) | The modems you want to display in the groups. This is a ListModemsRequest that is used to fetch the modems for each group, with the added limitation that the modems must be in the group.
-
-The usage of ListModemsRequest and ListModemsRequest.Response in the Response.Group was intentionally chosen to simplify pagination withing a group, since the response contains the request (which will be updated with the group it is in) and pagination to select the next page using the list method. |
-| groups | [ ListModemsRequest](#listmodemsrequest) | Select the parents for the groups to display.
-
-Anything selected here that cannot have any connected modems (i.e. a direct modem) wil be omitted unless allow_any_group_parent is set to true. Only gateways will have connected devices, so unless allow_any_group_parent is true, type is replaced with GATEWAY. This may change in the future if more grouping options are introduced. |
+| group_content | [ ListModemsRequest](#listmodemsrequest) | The modems you want to display in the groups. This is a ListModemsRequest that is used to fetch the modems for each group, with the added limitation that the modems must be in the group. |
+| groups | [ ListModemsRequest](#listmodemsrequest) | Select the parents for the groups to display. Anything selected here that cannot have any connected modems (i.e. a direct modem) wil be omitted unless allow_any_group_parent is set to true. Only gateways will have connected devices, so unless allow_any_group_parent is true, type is replaced with GATEWAY. This may change in the future if more grouping options are introduced. |
 | allow_any_group_parent | [ bool](#bool) | Set to true to allow group request to return modems that can never be the parent of a group. - If this flag is false, the modems for the groups are automatically filtered on being a parent of a group. Note that the group may still be empty, i.e. when a gateway has no connected devices. - If this flag is true, the group parents can include modems which cannot be a parent and for which the group can only be empty. |
 
 ### ListModemsGrouped.Response
 
-
+The usage of ListModemsRequest and ListModemsRequest.Response in the Response.Group was intentionally
+chosen to simplify pagination withing a group, since the response contains the request
+(which will be updated with the group it is in) and pagination to select the next page using the
+list method.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| groups | [repeated ListModemsRequest.Response](#listmodemsrequestresponse) | The groups, based on a parent (typically a gateway unless allow_any_group_parent was set). This is a ListModemsRequest.Response, with the selection updated with its parent and includes the group parent in the group_parents field.
-
-The usage of ListModemsRequest and ListModemsRequest.Response in the Response.Group was intentionally chosen to simplify pagination withing a group, since the response contains the request (which will be updated with the group it is in) and pagination to select the next page using the list method. |
+| groups | [repeated ListModemsRequest.Response](#listmodemsrequestresponse) | The groups, based on a parent (typically a gateway unless allow_any_group_parent was set). This is a ListModemsRequest.Response, with the selection updated with its parent and includes the group parent in the group_parents field. |
 | request | [ ListModemsGrouped.Request](#listmodemsgroupedrequest) | none |
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
 | sorted_by | [repeated ListModemsRequest.Sort](#listmodemsrequestsort) | none |
@@ -559,9 +596,7 @@ data and message body. (Your message body is, of course, still encrypted if you'
 | is_gateway_message | [ bool](#bool) | Whether this message contains other messages. |
 | via_gateway_message | [ uint64](#uint64) | The gateway message this message was sent in. |
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Message metadata, defined by the modem or gateway. |
-| body_fields | [ google.protobuf.Struct](#googleprotobufstruct) | Flattened results of all successful body parsers.
-
-This is a convenience to access the fields from body_parsed, but if any fields are present in multiple body_parsed results, it is not defined which field will be used in this Struct. This may change in the future. |
+| body_fields | [ google.protobuf.Struct](#googleprotobufstruct) | Flattened results of all successful body parsers. This is a convenience to access the fields from body_parsed, but if any fields are present in multiple body_parsed results, it is not defined which field will be used in this Struct. This may change in the future. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | The tags of the modem that sent the message. |
 | tag_names | [repeated string](#string) | The names of the tags of the modem that sent the message. |
 
@@ -631,14 +666,36 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 
 Filter to (de)select modems based on their peripherals.
 
+For example:
+- include { 'bluetooth' -> [ ] }
+    returns all modems that have any version of bluetooth,
+- include { 'bluetooth' -> [ '4.0', '5.0' ] }
+    will only return modems that have bluetooth version 4.0 _or_ 5.0,
+- include { 'bluetooth' -> [ '' ] }
+    would only select bluetooth peripherals that don't have any version set,
+- include { 'bluetooth' -> [ ], 'LoRaWAN' -> [ ] }
+    will only select modems that have both bluetooth (any version) _and_ LoRaWAN (any version),
+- include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ ] }
+    will return an empty list since exclude will take precedence, and
+- include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ '3.0' ] }
+    returns modems that have bluetooth, but not version 3.0.
+- exclude { 'bluetooth' -> [ ] }
+    returns only modems that do not have any version of bluetooth,
+- exclude { 'bluetooth' -> [ '4.0', '5.0' ] }
+    returns modems that might have bluetooth as long as it's not versions 4.0 or 5.0,
+- exclude { 'bluetooth' -> [ '' ] }
+    returns modems that might have bluetooth as long as it's version is set to a specific value,
+- exclude { 'bluetooth' -> [ ], 'LoRaWAN' -> [ ] }
+    returns modems that don't have bluetooth and/or LoRaWAN.
+- include { 'bluetooth' -> [ ] }, exclude { bluetooth' -> [ ] }
+    will return an empty list, since exclusion takes precedence, and
+- include { 'bluetooth' -> [ ] }, exclude { bluetooth' -> [ '3.0' ] }
+    returns only modems that have bluetooth, but not version 3.0
+
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include_and | [map ModemSelection.Peripherals.IncludeAndEntry](#modemselectionperipheralsincludeandentry) | Filter to only include modems with all of the given set of peripherals. Peripherals are stored as a name-value pair (e.g. bluetooth, 4.0 / bluetooth, BLE). To select for multiple versions of a peripheral, add the name of the peripheral as a map-key and add a repeated list of versions as the map-value.
-
-For example: - include { 'bluetooth' -> [ ] } returns all modems that have any version of bluetooth, - include { 'bluetooth' -> [ '4.0', '5.0' ] } will only return modems that have bluetooth version 4.0 _or_ 5.0, - include { 'bluetooth' -> [ '' ] } would only select bluetooth peripherals that don't have any version set, - include { 'bluetooth' -> [ ], 'LoRaWAN' -> [ ] } will only select modems that have both bluetooth (any version) _and_ LoRaWAN (any version), - include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ ] } will return an empty list since exclude will take precedence, and - include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ '3.0' ] } returns modems that have bluetooth, but not version 3.0. |
-| exclude | [map ModemSelection.Peripherals.ExcludeEntry](#modemselectionperipheralsexcludeentry) | Filter to exclude modems with any of the given set of peripherals. Peripherals are stored as a name-value pair (e.g. bluetooth, 4.0 / bluetooth, BLE). To select for multiple versions of a peripheral, add the name of the peripheral as a map-key and add a repeated list of versions as the map-value.
-
-For example: - exclude { 'bluetooth' -> [ ] } returns only modems that do not have any version of bluetooth, - exclude { 'bluetooth' -> [ '4.0', '5.0' ] } returns modems that might have bluetooth as long as it's not versions 4.0 or 5.0, - exclude { 'bluetooth' -> [ '' ] } returns modems that might have bluetooth as long as it's version is set to a specific value, - exclude { 'bluetooth' -> [ ], 'LoRaWAN' -> [ ] } returns modems that don't have bluetooth and/or LoRaWAN. - include { 'bluetooth' -> [ ] }, exclude { bluetooth' -> [ ] } will return an empty list, since exclusion takes precedence, and - include { 'bluetooth' -> [ ] }, exclude { bluetooth' -> [ '3.0' ] } returns only modems that have bluetooth, but not version 3.0 |
+| include_and | [map ModemSelection.Peripherals.IncludeAndEntry](#modemselectionperipheralsincludeandentry) | Filter to only include modems with all of the given set of peripherals. Peripherals are stored as a name-value pair (e.g. bluetooth, 4.0 / bluetooth, BLE). To select for multiple versions of a peripheral, add the name of the peripheral as a map-key and add a repeated list of versions as the map-value. |
+| exclude | [map ModemSelection.Peripherals.ExcludeEntry](#modemselectionperipheralsexcludeentry) | Filter to exclude modems with any of the given set of peripherals. Peripherals are stored as a name-value pair (e.g. bluetooth, 4.0 / bluetooth, BLE). To select for multiple versions of a peripheral, add the name of the peripheral as a map-key and add a repeated list of versions as the map-value. |
 
 ### ModemSelection.Peripherals.ExcludeEntry
 
@@ -886,6 +943,409 @@ Type can depend on the hardware itself as well as network topology.
 | TEST | A test message sent to the testing API. | 2 |
 | SIMULATION | A simulated message, generated by the server. | 3 |
 
+
+
+## Referenced messages from health.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [health.proto](https://github.com/HiberGlobal/api/blob/master/health.proto).
+
+
+### hiber.health.HealthLevel
+
+A health level in an organization.
+Health can be customized depending on your need.
+
+The default health levels are:
+- OK (green): no problems detected
+- WARNING (orange): unresolvable problems detected, for example delayed or skipped messages
+- ERROR (red): significant problems detected (that typically can be resolved),
+  for example inactivity or invalid messages (resolved on a successful message)
+
+Health levels can be customized to as many as you need for your operations, for example:
+- INTERVENTION
+- DEFECT
+- BATTERY
+- HIGH
+- LOW
+
+Health levels are ordered by severity (low to high),
+and of all things affecting a modem's health,
+only the most severe level will be returned when retrieving a modem.
+
+Health can be assigned using modems alarms, which specify the health level they will cause on a modem (and for how
+long, if it does not resolve automatically).
+
+Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems),
+which can happen when a device manufacturer has provided alarms to your device (e.g. a low battery alarm).
+By default, any unknown health levels map to the level that is marked catch-all.
+
+Health level have a set of named colors, represented by a map where the key is the name of the color
+and the value is a string that represents a valid CSS3 color.
+Simple examples are: green, red, orange, grey, #FF00FF for fuchsia, etc (Keep in mind that CSS3 allows for many
+ways to define colors, see https://www.w3.org/TR/2003/WD-css3-color-20030214/).
+
+All the following definitions also mean "red":
+ - rgb(255, 0, 0)
+ - rgb(100%, 0, 0)
+ - rgba(100%, 0%, 0%, 100%)
+ - hsl(0, 100%, 50%)
+ - hsla(0, 100%, 50%, 1)
+
+The client is responsible for rendering the correct color from the CSS3 color-space and for setting the colors and
+their names. There is no verification on missing named colors, so the client must set sensible defaults when colors
+are missing.
+
+To assist with sorting, health levels have a numeric severity equal to their index in the sorted list of health
+levels (starting at 1). This means higher numbers denote a more severe health.
+Since these values are noting more than a list index, they should not be cached, compared to another organization or
+compared to values retrieved from the API at another time.
+
+For example, an organization using the default health would have:
+- Ok: severity 1
+- Warning: severity 2
+- Error: severity 3
+
+That organization could then add a new health level in between Ok and Warning, meaning the severity of Warning and
+Error will change:
+- Ok, severity 1
+- ItsComplicated, severity 2
+- Warning, severity 3
+- Error, severity 4
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| level | [ string](#string) | The name of this health level. Levels are identified by their name. The API does support renaming, where the rename is propagated to all the relevant parts of the system. |
+| color | [ string](#string) | Default color for the health level, as a string that represents a valid CSS3 color. DEPRECATED: Maps to the color named "text" in color_data. |
+| color_data | [map hiber.health.HealthLevel.ColorDataEntry](#hiberhealthhealthlevelcolordataentry) | Map of named colors, where key is the name and the value is a valid CSS3 color definition. |
+| severity | [ int64](#int64) | A unique numeric value equal to the index of this health level in the list of health levels sorted by ascending severity (starting at 1). This means higher numbers denote a more severe health. This value cannot be used when creating or updating. To change the severity for a health level, reorder all health levels. |
+| catch_all | [ bool](#bool) | Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems), which can happen when a device manufacturer has provided alarms for your device (e.g. a low battery alarm). By default, unknown health levels map to the level of the highest severity, unless another level is marked as catch-all. |
+
+### hiber.health.HealthLevelSelection
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| search | [ string](#string) | Search for the given string in the levels and colors. |
+| levels | [repeated string](#string) | Filter by exact levels. |
+
+
+### Enums
+
+
+## Referenced messages from organization.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [organization.proto](https://github.com/HiberGlobal/api/blob/master/organization.proto).
+
+
+### hiber.organization.CreateOrganizationRequest
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| parent_organization | [ string](#string) | Pick the organization to use as parent. If unset, your default organization is used. If you have no organization, an organization_creation_token is required. |
+| new_organization | [ string](#string) | The name for the new organization. Lowercase, letters, numbers, dashes and underscores only. Required. Used as an identifier for the organization. |
+| display_name | [ string](#string) | The name to display for your organization (i.e. capitalized, with spaces, etc.). Default to the name above. |
+| avatar | [ hiber.Avatar](#hiberavatar) | The avatar image representing this organisation. Usually the logo. |
+| is_business | [ bool](#bool) | Whether this organization is created for a business. |
+| vat_number | [ string](#string) | Whether this organization is created for a business, provide a VAT number. |
+| address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | Postal address for your organization. |
+| billing_name | [ string](#string) | Billing information for your organization. Optional, but required if you want active modems. |
+| billing_address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | Billing address for your organization. Optional, but required if you want active modems. |
+| contact | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) | Contact information for your organization. Required. |
+| organization_creation_token | [ string](#string) | A token that allows you to create an organization without having an organization. |
+
+### hiber.organization.DeleteOrganizationConfirmationRequest
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| parent_organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| organization_to_delete | [ string](#string) | The organization to delete. Required. |
+| deletion_token | [ string](#string) | The deletion_token for deletion |
+
+### hiber.organization.DeleteOrganizationConfirmationRequest.Response
+
+
+
+
+### hiber.organization.DeleteOrganizationRequest
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| parent_organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| organization_to_delete | [ string](#string) | The organization to delete. Required. |
+
+### hiber.organization.DeleteOrganizationRequest.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization_to_delete | [ string](#string) | none |
+| deletion_token | [ string](#string) | Token to use with DeleteOrganizationConfirmationRequest. |
+| organizations_to_be_deleted | [ hiber.organization.OrganizationTree](#hiberorganizationorganizationtree) | The organizations that will be deleted. |
+
+### hiber.organization.GetOrganizationAvatar
+
+
+
+
+### hiber.organization.GetOrganizationAvatar.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organizations | [repeated string](#string) | The slug for this organization, used to identify organizations |
+| pagination | [ hiber.Pagination](#hiberpagination) | none |
+
+### hiber.organization.GetOrganizationAvatar.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| avatars | [map hiber.organization.GetOrganizationAvatar.Response.AvatarsEntry](#hiberorganizationgetorganizationavatarresponseavatarsentry) | Avatars, indexed by organization slug |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+
+### hiber.organization.GetOrganizationAvatar.Response.AvatarsEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) | none |
+| value | [ hiber.Avatar](#hiberavatar) | none |
+
+### hiber.organization.GetOrganizationRequest
+
+Get your current organization's data
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to get the details for. If unset, your default organization is used. |
+
+### hiber.organization.ListChildOrganizationsRequest
+
+List the child organizations for the given organization
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| selection | [ hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) | none |
+| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| include_details | [ bool](#bool) | none |
+
+### hiber.organization.ListChildOrganizationsRequest.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| child_organizations | [repeated hiber.organization.Organization](#hiberorganizationorganization) | none |
+| request | [ hiber.organization.ListChildOrganizationsRequest](#hiberorganizationlistchildorganizationsrequest) | none |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+
+### hiber.organization.Organization
+
+Organization data. An Organization can have many linked users, but the organization is the owner
+of any modems and related data.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | The slug for this organization, used to identify organizations |
+| display_name | [ string](#string) | The name of the organization to display to the end-user |
+| address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | none |
+| contact | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) | none |
+| vat_number | [ string](#string) | none |
+| billing_name | [ string](#string) | none |
+| billing_address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | none |
+| contract_signature_date | [ hiber.Timestamp](#hibertimestamp) | none |
+| created_at | [ hiber.Timestamp](#hibertimestamp) | none |
+| updated_at | [ hiber.Timestamp](#hibertimestamp) | none |
+| features | [repeated hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature) | none |
+
+### hiber.organization.Organization.Address
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| lines | [repeated string](#string) | none |
+| zip_code | [ string](#string) | none |
+| city | [ string](#string) | none |
+| state | [ string](#string) | none |
+| country | [ string](#string) | none |
+
+### hiber.organization.Organization.Contact
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| name | [ string](#string) | none |
+| email | [ string](#string) | none |
+| phone | [ string](#string) | none |
+
+### hiber.organization.OrganizationSelection
+
+Selection object for child organizations.
+User for child organization list and tree.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organizations | [ hiber.Filter.Organizations](#hiberfilterorganizations) | none |
+| search | [ string](#string) | none |
+
+### hiber.organization.OrganizationTree
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ hiber.organization.Organization](#hiberorganizationorganization) | none |
+| children | [repeated hiber.organization.OrganizationTree](#hiberorganizationorganizationtree) | none |
+
+### hiber.organization.OrganizationTreeRequest
+
+Get your current organization's organization tree.
+The organization tree contains your current organization as the root of the tree, with all child organizations ordered below it.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate) for this call, overriding your default organization |
+| selection | [ hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) | none |
+
+### hiber.organization.OrganizationTreeRequest.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| request | [ hiber.organization.OrganizationTreeRequest](#hiberorganizationorganizationtreerequest) | none |
+| tree | [ hiber.organization.OrganizationTree](#hiberorganizationorganizationtree) | none |
+
+### hiber.organization.UpdateOrganizationRequest
+
+Update organization data.
+All fields are effectively optional, though address, billing_address, contact and features are assumed to be complete objects,
+not partial updates.
+Note that the organization field specifies the organization, it is not used to update the current organization identifier.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | none |
+| display_name | [ string](#string) | none |
+| vat_number | [ string](#string) | none |
+| address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | none |
+| billing_name | [ string](#string) | none |
+| billing_address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | none |
+| contact | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) | none |
+| avatar | [ hiber.Avatar](#hiberavatar) | none |
+
+### hiber.organization.ValidateOrganizationCreationTokenRequest
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization_creation_token | [ string](#string) | A token that allows you to create an organization without having an organization. |
+
+### hiber.organization.ValidateOrganizationCreationTokenRequest.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| valid | [ bool](#bool) | none |
+
+
+### Enums
+#### hiber.organization.Organization.Feature
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| UNKNOWN | none | 0 |
+| HIBER | The default Hiber set of features including Mission Control and the API | 1 |
+| HILO | A limited set of features corresponding to the HiberHilo product. | 2 |
+| EASYPULSE | A set of additional features to allow advanced tracking on the map. | 3 |
+| EASYPULSE_SCORECARD | Used for an easypulse scorecard feature that we will introduce at a later point. | 7 |
+| MODEM_CREATION | Required to manually create modems using the ModemService. | 4 |
+| EARLY_ACCESS | Used for organizations that get early access to features. | 5 |
+| EXPERIMENTAL | Used for organizations that get access to experimental features. e.g. feature work in progress. | 6 |
+| BI_TOOLING_BETA | Integrate BI tooling in the Mission Control interface. | 8 |
+| SINARMAS_SPECIFIC | none | 9 |
+
+
+
+## Referenced messages from subscription.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [subscription.proto](https://github.com/HiberGlobal/api/blob/master/subscription.proto).
+
+
+
+### Enums
+#### hiber.organization.subscription.ServiceType
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| ONCE_PER_DAY | none | 0 |
+| ONCE_PER_6_HOURS | none | 1 |
+| ONCE_PER_HOUR | none | 2 |
+
+
+
+## Referenced messages from tag.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [tag.proto](https://github.com/HiberGlobal/api/blob/master/tag.proto).
+
+
+### hiber.tag.Tag
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| id | [ int64](#int64) | none |
+| label | [ hiber.tag.Tag.Label](#hibertagtaglabel) | none |
+
+### hiber.tag.Tag.Label
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| name | [ string](#string) | none |
+| type | [ string](#string) | none |
+
+### hiber.tag.TagSelection
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| search | [repeated string](#string) | none |
+| names | [repeated string](#string) | none |
+| filter | [ hiber.Filter.Tags](#hiberfiltertags) | none |
+| types | [repeated string](#string) | none |
+
+
+### Enums
 
 
 ## Referenced messages from base.proto

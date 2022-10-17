@@ -199,16 +199,17 @@ message CreateOrganizationRequest {
 message DeleteOrganizationRequest {
     message Response {
         string organization_to_delete = 1;
+
         /* Token to use with DeleteOrganizationConfirmationRequest. */
         string deletion_token = 2;
+
         /* The organizations that will be deleted. */
         OrganizationTree organizations_to_be_deleted = 3;
-        /* The modems that will be moved to the parent organization. */
-        repeated string modems = 4;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string parent_organization = 1;
+
     /* The organization to delete. Required. */
     string organization_to_delete = 2;
 }

@@ -423,7 +423,14 @@
 
 ### Webhook
 
+Webhook publisher that sends events to a webhook.
 
+When the webhook call fails, it enters cooldown, so as not to overload a failing server
+or spend unnecessary time on an incorrectly configured webhook.
+When the first call after the cooldown time has passed fails again, the cooldown is increased as follows:
+1m, 2m, 5m, 10m, 15m, 30m, 1h, 3h, 6h, 12h, 24h.
+
+To disable the cooldown, use EnableWebhookRequest to re-enable it.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -436,9 +443,7 @@
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
 | health | [ hiber.Health](#hiberhealth) | none |
 | health_config | [ Webhook.HealthConfig](#webhookhealthconfig) | none |
-| in_cooldown_until | [ hiber.Timestamp](#hibertimestamp) | When the webhook call fails, it enters cooldown, so as not to overload a failing server or spend unnecessary time on an incorrectly configured webhook. When the first call after the cooldown time has passed fails again, the cooldown is increased as follows: 1m, 2m, 5m, 10m, 15m, 30m, 1h, 3h, 6h, 12h, 24h
-
-To disable the cooldown, use EnableWebhookRequest to re-enable it. |
+| in_cooldown_until | [ hiber.Timestamp](#hibertimestamp) | The time the cooldown ends. |
 
 ### Webhook.HealthConfig
 

@@ -55,10 +55,10 @@ message Value {
          * Not included in the UnitPreferences, since it cannot be converted.
          */
         message BatteryLevel {
+            // other units will be added here later, like voltage
             enum Unit {
                 /* Battery level as a percentage (technically not a unit). */
                 PERCENT = 0;
-                // other units will be added here later, like voltage
             }
 
             double value = 1;

@@ -516,13 +516,11 @@ The value is a volume value, converted to your preferred volume unit.
 
 ### Enums
 #### hiber.value.Value.Numeric.BatteryLevel.Unit
-
+other units will be added here later, like voltage
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| PERCENT | Battery level as a percentage (technically not a unit).
-
-other units will be added here later, like voltage | 0 |
+| PERCENT | Battery level as a percentage (technically not a unit). | 0 |
 
 #### hiber.value.Value.Numeric.Distance.Unit
 
