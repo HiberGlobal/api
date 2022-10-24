@@ -1,0 +1,148 @@
+syntax = "proto3";
+
+package hiber.device;
+
+import "google/protobuf/struct.proto";
+
+import "base.proto";
+import "health.proto";
+import "modem.proto";
+import "tag.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.device";
+option java_outer_classname = "DeviceApi";
+option go_package = "hiber";
+
+/* Information about a device.
+ * A device is anything in the Hiber network that can send data to our systems.
+ * They have a unique device number in our system, used to identify them.
+ */
+message Device {
+    /* An 8-character hexadecimal string, formatted for human readability. System ignores spaces. */
+    string number = 1;
+    /* The organization that owns this device */
+    string organization = 2;
+
+    /* A descriptor given to the device, defaults to it's number. */
+    string name = 3;
+
+    hiber.Location location = 4;
+
+    /* The amount of time since the last message from this modem was received on the server. */
+    optional hiber.Duration inactivity = 5;
+
+    /* Health level based on the modem alarm and some always-present alarms. */
+    health.HealthLevel health_level = 6;
+
+    /* The current lifecycle the modem is in. */
+    hiber.modem.Modem.Lifecycle lifecycle = 7;
+
+    // additional information
+    map<string, string> peripherals = 8;
+
+    /* Notes field that can be used to add additional information to a modem. */
+    string notes = 9;
+
+    /* Secure notes field that can be used to add additional information to a modem, with limited accessibility. */
+    optional string secure_notes = 10;
+
+    repeated hiber.tag.Tag tags = 11;
+
+    /* Optional information about what other devices this devices is linked to.*/
+    optional Links link = 12;
+
+    /* Modem metadata, typically extracted from messages. */
+    google.protobuf.Struct metadata = 13;
+
+    /* The timezone configured for the modem. */
+    optional string time_zone = 14;
+
+    /* The transmission interval for this modem, if configured. */
+    optional hiber.Duration transmission_interval = 15;
+
+    /* Collection of data about the devices it is connected to. */
+    message Links {
+        /* Other identifiers for this devices. Could include data like its MAC-address or otherwise unique identifier. */
+        repeated string identifiers = 1;
+
+        /* The device directly downstream from this device.
+         * Usually a gateway of some sorts. This device sends its data directly to its parent.
+         * The parent will relay the data to our systems. */
+        optional string parent = 2;
+
+//        /* The devices that are directly upstream form this device if any.
+//         * The upstream devices use this device to relay messages for them. */
+//        TODO(WEB-6273) Implement list of children
+//        repeated string children = 3;
+    }
+}
+
+/* Selection object for devices.
+ * Filter devices by device number, tags, etc.
+ */
+message DeviceSelection {
+    string free_text_search = 1;
+
+    Filter.Modems modems = 2;
+    Filter.ModemIdentifiers identifiers = 3;
+    Filter.HealthLevels health_level = 4;
+    ModemFilter.Lifecycles lifecycles = 5;
+    Filter.Modems with_parents = 6;
+    Filter.Properties peripherals = 7;
+
+    hiber.tag.TagSelection filter_by_tags = 8;
+
+    TimeRange with_last_message_in = 9;
+}
+
+/* Sorting options for the results. */
+enum Sort {
+    /* Sort alphabetically on the name of the device.
+    * De default name of the device is its HEX number, in ascending order. */
+    DEVICE_NAME_ASC = 0;
+    /* Sort alphabetically on the name of the device.
+     * De default name of the device is its HEX number, in descending order. */
+    DEVICE_NAME_DESC = 1;
+
+    /* Sort numerically on the number of the device, in ascending order. */
+    DEVICE_NUMBER_ASC = 2;
+    /* Sort numerically on the number of the device, in descending order. */
+    DEVICE_NUMBER_DESC = 3;
+
+    /* Sort devices on most recent activity first (e.g. newest message received). */
+    ACTIVITY = 4;
+    /* Sort devices on least recent activity first (e.g. longest no message received). */
+    INACTIVITY = 5;
+
+    /* Sort device on its lifecycle state. */
+    LIFECYCLE_ASC = 6;
+    /* Sort device on its lifecycle state in reverse order. */
+    LIFECYCLE_DESC = 7;
+    /* Sort device on lifecycle name, alphabetically. */
+    LIFECYCLE_ALPHABETICAL_ASC = 8;
+    /* Sort device on lifecycle name, alphabetically in reverse order. */
+    LIFECYCLE_ALPHABETICAL_DESC = 9;
+
+    /* Sort alphabetically on the name of the organization that owns the device, in ascending order. */
+    ORGANIZATION_ASC = 10;
+    /* Sort alphabetically on the name of the organization that owns the device, in descending order. */
+    ORGANIZATION_DESC = 11;
+
+    /* Health sorted from least to most severe (i.e. OK, WARNING, ERROR). */
+    HEALTH_ASC = 12;
+    /* Health sorted from most to least severe (i.e. ERROR, WARNING, OK). */
+    HEALTH_DESC = 13;
+    /* Health sorted alphabetically by health level name. */
+    HEALTH_ALPHABETICAL_ASC = 14;
+    /* Health sorted alphabetically by health level name, descending order. */
+    HEALTH_ALPHABETICAL_DESC = 15;
+}
+
+
+message ModemFilter {
+    message Lifecycles {
+        repeated hiber.modem.Modem.Lifecycle include = 1;
+        repeated hiber.modem.Modem.Lifecycle exclude = 2;
+    }
+}

@@ -318,6 +318,14 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.Filter.HealthLevels"><span class="badge">M</span>Filter.HealthLevels</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.Filter.ModemIdentifiers"><span class="badge">M</span>Filter.ModemIdentifiers</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.Filter.Modems"><span class="badge">M</span>Filter.Modems</a>
                 </li>
               
@@ -331,6 +339,10 @@
               
                 <li>
                   <a href="#hiber.Filter.Organizations"><span class="badge">M</span>Filter.Organizations</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.Filter.Properties"><span class="badge">M</span>Filter.Properties</a>
                 </li>
               
                 <li>
@@ -367,6 +379,22 @@
               
                 <li>
                   <a href="#hiber.LocationSelection"><span class="badge">M</span>LocationSelection</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.MapFilter"><span class="badge">M</span>MapFilter</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.MapFilter.ExcludeEntry"><span class="badge">M</span>MapFilter.ExcludeEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.MapFilter.IncludeAndEntry"><span class="badge">M</span>MapFilter.IncludeAndEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.MapFilter.OneOfValues"><span class="badge">M</span>MapFilter.OneOfValues</a>
                 </li>
               
                 <li>
@@ -2279,6 +2307,68 @@ When set to true at a later point, earlier values are not encrypted retro-active
 
         
       
+        <h3 id="hiber.Filter.HealthLevels">Filter.HealthLevels</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>include</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>exclude</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.Filter.ModemIdentifiers">Filter.ModemIdentifiers</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>include</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>exclude</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="hiber.Filter.Modems">Filter.Modems</h3>
         <p></p>
 
@@ -2402,6 +2492,37 @@ Exclude takes precedence over include. </p></td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.Filter.Properties">Filter.Properties</h3>
+        <p>Filter result on specific properties encoded in map-value pairs.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>properties</td>
+                  <td><a href="#hiber.MapFilter">MapFilter</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>include_only_empty</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>When set to true, match only empty property-sets. </p></td>
                 </tr>
               
             </tbody>
@@ -2709,6 +2830,123 @@ Exclude takes precedence over include. </p></td>
                   <td><a href="#hiber.Shape">Shape</a></td>
                   <td>repeated</td>
                   <td><p>Polygon shapes, each defined by a list of locations, which draw a shape on the map. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.MapFilter">MapFilter</h3>
+        <p>Some properties are stored as a name-value pair (e.g. bluetooth: 4.0, bluetooth: BLE).</p><p>This filter allows selecting a range of values for a specific name.</p><p>One could imagine wanting to include "all devices with bluetooth 4.0 or 4.1".</p><p>To select for multiple versions of a property,</p><p>add the name of the property as a map-key and add a repeated list of versions as the map-value.</p><p>For example:</p><p>- include { 'bluetooth' -> [ ] }</p><p>returns all items that have any version of bluetooth,</p><p>- include { 'bluetooth' -> [ '4.0', '5.0' ] }</p><p>will only return items that have bluetooth version 4.0 _or_ 5.0 (inclusive or),</p><p>- include { 'bluetooth' -> [ '' ] }</p><p>would only select bluetooth peripherals that don't have any version set,</p><p>- include { 'bluetooth' -> [ ], 'LoRaWAN' -> [ ] }</p><p>will only select items that have both bluetooth (any version) _and_ LoRaWAN (any version),</p><p>- include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ ] }</p><p>will return an empty list since exclude will take precedence, and</p><p>- include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ '3.0' ] }</p><p>returns only items that have bluetooth, but not version 3.0.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>include_and</td>
+                  <td><a href="#hiber.MapFilter.IncludeAndEntry">MapFilter.IncludeAndEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Filter to only include items with all of the given set of properties. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>exclude</td>
+                  <td><a href="#hiber.MapFilter.ExcludeEntry">MapFilter.ExcludeEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Filter to exclude items with any of the given set of properties. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.MapFilter.ExcludeEntry">MapFilter.ExcludeEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#hiber.MapFilter.OneOfValues">MapFilter.OneOfValues</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.MapFilter.IncludeAndEntry">MapFilter.IncludeAndEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#hiber.MapFilter.OneOfValues">MapFilter.OneOfValues</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.MapFilter.OneOfValues">MapFilter.OneOfValues</h3>
+        <p>Technical solution to make map<k, v> into a map<k, repeated v>,</p><p>which is not possible in protobuf without trickery.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>

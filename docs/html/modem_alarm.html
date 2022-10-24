@@ -466,6 +466,14 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.Filter.HealthLevels"><span class="badge">M</span>Filter.HealthLevels</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.Filter.ModemIdentifiers"><span class="badge">M</span>Filter.ModemIdentifiers</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.Filter.Modems"><span class="badge">M</span>Filter.Modems</a>
                 </li>
               
@@ -479,6 +487,10 @@
               
                 <li>
                   <a href="#hiber.Filter.Organizations"><span class="badge">M</span>Filter.Organizations</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.Filter.Properties"><span class="badge">M</span>Filter.Properties</a>
                 </li>
               
                 <li>
@@ -515,6 +527,22 @@
               
                 <li>
                   <a href="#hiber.LocationSelection"><span class="badge">M</span>LocationSelection</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.MapFilter"><span class="badge">M</span>MapFilter</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.MapFilter.ExcludeEntry"><span class="badge">M</span>MapFilter.ExcludeEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.MapFilter.IncludeAndEntry"><span class="badge">M</span>MapFilter.IncludeAndEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.MapFilter.OneOfValues"><span class="badge">M</span>MapFilter.OneOfValues</a>
                 </li>
               
                 <li>
@@ -1102,7 +1130,7 @@ See ModemAlarm.health_level_after_resolved for more information. </p></td>
                   <td>created</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm">ModemAlarm</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The created modem alarm. </p></td>
                 </tr>
               
             </tbody>
@@ -1113,7 +1141,7 @@ See ModemAlarm.health_level_after_resolved for more information. </p></td>
         
       
         <h3 id="hiber.modem.alarm.DeleteModemAlarm">DeleteModemAlarm</h3>
-        <p></p>
+        <p>Delete an alarm.</p>
 
         
 
@@ -1140,7 +1168,7 @@ See ModemAlarm.health_level_after_resolved for more information. </p></td>
                   <td>identifier</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Identifier of the modem alarm to delete. </p></td>
                 </tr>
               
             </tbody>
@@ -1158,7 +1186,7 @@ See ModemAlarm.health_level_after_resolved for more information. </p></td>
         
       
         <h3 id="hiber.modem.alarm.ListModemAlarms">ListModemAlarms</h3>
-        <p></p>
+        <p>List modem alarms in an organization.</p>
 
         
 
@@ -1185,14 +1213,14 @@ See ModemAlarm.health_level_after_resolved for more information. </p></td>
                   <td>selection</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarmSelection">ModemAlarmSelection</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Selection criteria for listing modem alarms. </p></td>
                 </tr>
               
                 <tr>
                   <td>pagination</td>
                   <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Pagination for the returned alarms. </p></td>
                 </tr>
               
                 <tr>
@@ -1225,21 +1253,21 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td>modem_alarms</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm">ModemAlarm</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>A list of modem alarms. </p></td>
                 </tr>
               
                 <tr>
                   <td>pagination</td>
                   <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>A pagination object, which can be used to go through the alarms. </p></td>
                 </tr>
               
                 <tr>
                   <td>request</td>
                   <td><a href="#hiber.modem.alarm.ListModemAlarms.Request">ListModemAlarms.Request</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The request made to list the given alarms. </p></td>
                 </tr>
               
             </tbody>
@@ -1332,7 +1360,7 @@ This will
         
       
         <h3 id="hiber.modem.alarm.ModemAlarm">ModemAlarm</h3>
-        <p>Alarm for a modem, monitoring message data, location or activity.</p><p>An alarm is a collection of checks that validate the correctness of a modem. For example, an alarm might</p><p>check that the modem is in a given location, or that a field in its messages is between certain values.</p><p>Health for an alarm event is determined by taking the most severe health level from the health_levels configured</p><p>on the failing checks, using this default for any checks that do not have a health_level configured.</p><p>This can be changed on assignment with the default_health_level parameter, to fit the needs of the organization.</p><p>Note, when an alarm is inherited the health levels may not match yours. If the health level matches one of</p><p>your health levels, that level is used. Otherwise, the catch-all health level is used.</p><p>See the health definition for more information on the catch all health level (typically the most severe).</p><p>Note that the health level displayed here is the result of the steps above.</p><p>When assigned to a (set of) modem(s), an alarm can be customized using its parameters.</p><p>Parameters are based on the check fields, and are also used in the check error message template.</p><p>For the alarm parameters, check parameters are prefixed with the check identifier.</p><p>For example: An alarm with check A (field "healthy" equals 1) and check B (field "state" oneof ["OK", "ACTIVE"])</p><p>would have the following parameters:</p><p>{</p><p>"A": {</p><p>"expected": 1,</p><p>"field.path": "healthy",</p><p>"field.equals.expected": 1</p><p>},</p><p>"B": {</p><p>"expected": ["OK", "ACTIVE"],</p><p>"field.path": "state",</p><p>"field.oneof.expected": ["OK", "ACTIVE"]</p><p>}</p><p>}</p>
+        <p>Alarm for a modem, monitoring message data, location or activity.</p><p>An alarm is a collection of checks that validate the correctness of a modem. For example, an alarm might</p><p>check that the modem is in a given location, or that a field in its messages is between certain values.</p><p>Health for an alarm event is determined by taking the most severe health level from the health_levels configured</p><p>on the failing checks, using this default for any checks that do not have a health_level configured.</p><p>This can be changed on assignment with the default_health_level parameter, to fit the needs of the organization.</p><p>Note, when an alarm is inherited the health levels may not match yours. If the health level matches one of</p><p>your health levels, that level is used. Otherwise, the catch-all health level is used.</p><p>See the health definition for more information on the catch-all health level (typically the most severe).</p><p>Note that the health level displayed here is the result of the steps above.</p><p>When assigned to a (set of) modem(s), an alarm can be customized using its parameters.</p><p>Parameters are based on the check fields, and are also used in the check error message template.</p><p>For the alarm parameters, check parameters are prefixed with the check identifier.</p><p>For example: An alarm with check A (field "healthy" equals 1) and check B (field "state" oneof ["OK", "ACTIVE"])</p><p>would have the following parameters:</p><p>{</p><p>"A": {</p><p>"expected": 1,</p><p>"field.path": "healthy",</p><p>"field.equals.expected": 1</p><p>},</p><p>"B": {</p><p>"expected": ["OK", "ACTIVE"],</p><p>"field.path": "state",</p><p>"field.oneof.expected": ["OK", "ACTIVE"]</p><p>}</p><p>}</p>
 
         
           <table class="field-table">
@@ -1407,7 +1435,7 @@ Only the owner organization is able to edit the alarm. </p></td>
                   <td></td>
                   <td><p>Allow the alarm to cause a health level for the modem even after it has been resolved.
 By configuring this, you can specify the modem health should be affected for a longer period.
-For example, when using an inactivity check, this would could be used to configure modem health ERROR while
+For example, when using an inactivity check, this could be used to configure modem health ERROR while
 inactive, lowering to INVESTIGATE for a day after a new message comes in. </p></td>
                 </tr>
               
@@ -1434,7 +1462,7 @@ This field displays all the parameters that can be set for the alarm on assignme
         
       
         <h3 id="hiber.modem.alarm.ModemAlarm.Check">ModemAlarm.Check</h3>
-        <p>A check is a specification of how things should be, i.e. "a value should be within this range".</p><p>When it fails, it produces an event with:</p><p>- a custom health level, or the default defined in the alarm</p><p>- an error message, define from a template in the check</p><p>The error message template is a string with parameters for the relevant data.</p><p>The parameters are included as {parameter}, which gets replaced with the value.</p><p>The supported parameters are different per check, but the parameters below are always supported:</p><p>- modem: the modem number.</p><p>- message: the id of the message, if any.</p><p>- expected: a shortcut for the expected value(s), depending on the check:</p><p>- equals check: expected value</p><p>- oneof check: expected values as [a, b, c]</p><p>- threshold check: expected range as minimum..maximum</p><p>- location check: expected area as [(bottom left), (top right)], and shape as [(point), (point), ..., (point)]</p><p>- actual: the invalid actual value(s) for this check.</p><p>The checks below define other available parameters.</p><p>For example (using some parameters for specific checks):</p><p>- "Your device {modem} has left its designated area! It is now at {actual}."</p><p>- "Your device battery is at {actual}%, which is below the recommended minimum of {field.threshold.minimum}%."</p><p>- "Your device battery is draining faster than expected: {actual}% over the past {field.delta.period}."</p><p>- "Your device temperature has exceeded {value.threshold.maximum} degrees: {actual}."</p><p>- "Your device reported an unhealthy state {actual}. Healthy states are: {expected}."</p><p>- "Your device reported an unhealthy state {actual}. Healthy states are: {field.oneof.expected}."</p><p>- "Your device reported an unhealthy state {actual}. Please set it back to {expected}."</p><p>- "Your device reported an unhealthy state {actual}. Please set it back to {field.equals.expected}."</p><p>- "Unexpected value {actual} for field {field.path}!"</p><p>Numeric values can be formatted with an extra postfix on the parameters</p><p>- Round numeric values by adding ":.2f" (for 2 decimals). For example: "{actual:.3f}" (rounds to 3 decimals)</p><p>- Always sign numeric values (when rounded) by prefixing the format with a plus. For example: `{actual:+.3f}`</p><p>- This is applied to numeric fields and fields that can be numeric, like `{actual}` and `{expected}`.</p>
+        <p>A check is a specification of how things should be, i.e. "a value should be within this range".</p><p>When it fails, it produces an event with:</p><p>- a custom health level, or the default defined in the alarm</p><p>- an error message, define from a template in the check</p><p>The error message template is a string with parameters for the relevant data.</p><p>The parameters are included as {parameter}, which gets replaced with the value.</p><p>The supported parameters are different per check, but the parameters below are always supported:</p><p>- modem:name: the modem name.</p><p>- modem:number: the modem number.</p><p>- message: the id of the message, if any.</p><p>- expected: a shortcut for the expected value(s), depending on the check:</p><p>- inactivity check: expected duration</p><p>- location check: expected area as [(bottom left), (top right)], and shape as [(point), (point), ..., (point)]</p><p>- equals/minimum/maximum check: expected value</p><p>- oneof check (allowed/blocked): expected values as [a, b, c]</p><p>- threshold/delta check: expected range as minimum..maximum, extended with duration for delta check</p><p>- actual: the invalid actual value(s) for this check.</p><p>The checks below define other available parameters.</p><p>For example (using some parameters for specific checks):</p><p>- "Your device {modem} has left its designated area! It is now at {actual}."</p><p>- "Your device battery is at {actual}%, which is below the recommended minimum of {field.threshold.minimum}%."</p><p>- "Your device battery is draining faster than expected: {actual}% over the past {field.delta.period}."</p><p>- "Your device temperature has exceeded {value.threshold.maximum} degrees: {actual}."</p><p>- "Your device reported an unhealthy state {actual}. Healthy states are: {expected}."</p><p>- "Your device reported an unhealthy state {actual}. Healthy states are: {field.oneof.expected}."</p><p>- "Your device reported an unhealthy state {actual}. Please set it back to {expected}."</p><p>- "Your device reported an unhealthy state {actual}. Please set it back to {field.equals.expected}."</p><p>- "Unexpected value {actual} for field {field.path}!"</p><p>Numeric values can be formatted with an extra postfix on the parameters</p><p>- Round numeric values by adding ":.2f" (for 2 decimals). For example: "{actual:.3f}" (rounds to 3 decimals)</p><p>- Always sign numeric values (when rounded) by prefixing the format with a plus. For example: `{actual:+.3f}`</p><p>- This is applied to numeric fields and fields that can be numeric, like `{actual}` and `{expected}`.</p>
 
         
           <table class="field-table">
@@ -1478,28 +1506,28 @@ If not set, the alarm default is used. </p></td>
                   <td>location</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm.Check.LocationCheck">ModemAlarm.Check.LocationCheck</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Check whether the device is in a given location. </p></td>
                 </tr>
               
                 <tr>
                   <td>field</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck">ModemAlarm.Check.FieldCheck</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Check that a message body field has a specified value. </p></td>
                 </tr>
               
                 <tr>
                   <td>inactivity</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm.Check.InactivityCheck">ModemAlarm.Check.InactivityCheck</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Check whether the device exceeds inactivity limits. </p></td>
                 </tr>
               
                 <tr>
                   <td>delay</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm.Check.DelayCheck">ModemAlarm.Check.DelayCheck</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Check whether a message delay exceeds delay limits. </p></td>
                 </tr>
               
             </tbody>
@@ -1534,7 +1562,7 @@ If not set, the alarm default is used. </p></td>
         
       
         <h3 id="hiber.modem.alarm.ModemAlarm.Check.FieldCheck">ModemAlarm.Check.FieldCheck</h3>
-        <p>A check that evaluates each new message, and checks selected field(s) in the parsed body.</p><p>When multiple fields are selected, the checks are applied to all of them individually.</p><p>See the Json Path documentation at https://goessner.net/articles/JsonPath/ for details on json path.</p><p>We currently do not allow filter expressions.</p><p>Simple examples selecting a field:</p><p>- $.my_field: a field in the root of the parsed object</p><p>- $.my_obj.my_field: a field in a deeper structure</p><p>- $.my_array[x].my_field: the field my_field of the element at index x is selected</p><p>Complex use cases are also possible, but they require a bit more understanding of json path logic:</p><p>- $.my_array.length(): the length of my_array is selected. Combine with an equals or threshold check,</p><p>to require that an array has a certain length.</p><p>- $.my_array..my_field: the array of my_field values (for all objects in my_array) is selected</p><p>- $.my_array[*].my_field: the array of my_field values (for all objects in my_array) is selected</p><p>Note that this for the examples above, if they return an array, the entire array is used as the value</p><p>in the comparison for equals and oneof.</p><p>A check of this type has the following parameters (matches the fields):</p><p>- field.path: replace the path for this field</p><p>- field.ignoreFieldNotFound: replace the value for ignore_field_not_found</p><p>For the equals check:</p><p>- field.equals.expected: iff this is an equals check, replace the expected value</p><p>For the oneof check:</p><p>- field.oneof.expected: iff this is a oneof check, replace the expected values</p><p>For the threshold check:</p><p>- field.threshold.expected: iff this is a threshold check, replace the expected range</p><p>- field.threshold.minimum: iff this is a threshold check, replace the expected minimum</p><p>- field.threshold.maximum: iff this is a threshold check, replace the expected maximum</p><p>For the delta check:</p><p>- field.delta.period:</p><p>- field.delta.threshold.expected: iff this is a delta check, replace the expected range</p><p>- field.delta.threshold.minimum: iff this is a delta check, replace the expected minimum</p><p>- field.delta.threshold.maximum: iff this is a delta check, replace the expected maximum</p><p>All of the parameters above can be used in the error message template.</p><p>The delta check also adds a few additional error message variables:</p><p>- {field.delta.previous}: the previous value for the field</p><p>- {field.delta.difference} (also {actual}): the difference between previous and current value for the field</p><p>- {field.delta.current}: the current value for the field</p>
+        <p>A check that evaluates each new message, and checks selected field(s) in the parsed body.</p><p>When multiple fields are selected, the checks are applied to all of them individually.</p><p>See the Json Path documentation at https://goessner.net/articles/JsonPath/ for details on json path.</p><p>We currently do not allow filter expressions.</p><p>Simple examples selecting a field:</p><p>- $.my_field: a field in the root of the parsed object</p><p>- $.my_obj.my_field: a field in a deeper structure</p><p>- $.my_array[x].my_field: the field my_field of the element at index x is selected</p><p>Complex use cases are also possible, but they require a bit more understanding of json path logic:</p><p>- $.my_array.length(): the length of my_array is selected. Combine with an equals or threshold check,</p><p>to require that an array has a certain length.</p><p>- $.my_array..my_field: the array of my_field values (for all objects in my_array) is selected</p><p>- $.my_array[*].my_field: the array of my_field values (for all objects in my_array) is selected</p><p>Note that for the examples above, if they return an array, the entire array is used as the value</p><p>in the comparison for equals and oneof.</p><p>A check of this type has the following parameters (matches the fields):</p><p>- field.path: replace the path for this field</p><p>- field.ignoreFieldNotFound: replace the value for ignore_field_not_found</p><p>For the equals check:</p><p>- field.equals.expected: iff this is an equals check, replace the expected value</p><p>For the allowed check:</p><p>- field.allowed.allowed: iff this is an allowed check, replace the expected values</p><p>For the blocked check:</p><p>- field.blocked.blocked: iff this is a blocked check, replace the expected values</p><p>For the threshold check:</p><p>- field.threshold.expected: iff this is a threshold check, replace the expected range</p><p>- field.threshold.minimum: iff this is a threshold check, replace the expected minimum</p><p>- field.threshold.maximum: iff this is a threshold check, replace the expected maximum</p><p>For the delta check:</p><p>- field.delta.period: iff this is a delta check, replace the expected duration</p><p>- field.delta.threshold.expected: iff this is a delta check, replace the expected range</p><p>- field.delta.threshold.minimum: iff this is a delta check, replace the expected minimum</p><p>- field.delta.threshold.maximum: iff this is a delta check, replace the expected maximum</p><p>All of the parameters above can be used in the error message template.</p><p>The delta check also adds a few additional error message variables:</p><p>- {field.delta.previous}: the previous value for the field</p><p>- {field.delta.difference} (also {actual}): the difference between previous and current value for the field</p><p>- {field.delta.current}: the current value for the field</p>
 
         
           <table class="field-table">
@@ -1572,49 +1600,49 @@ Note: unit is not currently available in the alarm_parameters. </p></td>
                   <td>equals</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.EqualsCheck">ModemAlarm.Check.FieldCheck.EqualsCheck</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Check that a field equals a value. </p></td>
                 </tr>
               
                 <tr>
                   <td>allowed</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.AllowedCheck">ModemAlarm.Check.FieldCheck.AllowedCheck</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Check that a field equals one of a set of values. </p></td>
                 </tr>
               
                 <tr>
                   <td>blocked</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedCheck">ModemAlarm.Check.FieldCheck.BlockedCheck</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Check that a field does not equal one of a set of values. </p></td>
                 </tr>
               
                 <tr>
                   <td>minimum</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.MinimumCheck">ModemAlarm.Check.FieldCheck.MinimumCheck</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Chech that a field is higher than the given value. </p></td>
                 </tr>
               
                 <tr>
                   <td>maximum</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.MaximumCheck">ModemAlarm.Check.FieldCheck.MaximumCheck</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Check that a field is lower than the given value. </p></td>
                 </tr>
               
                 <tr>
                   <td>threshold</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.ThresholdCheck">ModemAlarm.Check.FieldCheck.ThresholdCheck</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Check that a field is within a given numeric range. </p></td>
                 </tr>
               
                 <tr>
                   <td>delta</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm.Check.FieldCheck.DeltaCheck">ModemAlarm.Check.FieldCheck.DeltaCheck</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Check that a field&#39;s difference in value over a given period is within a specified numeric range. </p></td>
                 </tr>
               
             </tbody>
@@ -1662,7 +1690,7 @@ Note: unit is not currently available in the alarm_parameters. </p></td>
                   <td>blocked</td>
                   <td><a href="#google.protobuf.Value">google.protobuf.Value</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>The list of blocked values; the field should not match any of them. </p></td>
                 </tr>
               
             </tbody>
@@ -1735,7 +1763,7 @@ be available to unencrypted values due to performance issues. </p></td>
                   <td>expected</td>
                   <td><a href="#google.protobuf.Value">google.protobuf.Value</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The expected value a field should have. </p></td>
                 </tr>
               
             </tbody>
@@ -1908,7 +1936,7 @@ be available to unencrypted values due to performance issues. </p></td>
         
       
         <h3 id="hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved">ModemAlarm.HealthLevelAfterResolved</h3>
-        <p>Allow the alarm to cause a health level for the modem even after a new message has come in.</p><p>Typically, an alarm event only affects the modem health while it is from the last message from that modem.</p><p>By configuring this, you can specify the modem health should be affected for a longer period.</p><p>For example, when using an inactivity check, this would could be used to configure modem health ERROR while</p><p>inactive, lowering to INVESTIGATE for a day after a new message comes in.</p>
+        <p>Allow the alarm to cause a health level for the modem even after a new message has come in.</p><p>Typically, an alarm event only affects the modem health while it is from the last message from that modem.</p><p>By configuring this, you can specify the modem health should be affected for a longer period.</p><p>For example, when using an inactivity check, this could be used to configure modem health ERROR while</p><p>inactive, lowering to INVESTIGATE for a day after a new message comes in.</p>
 
         
           <table class="field-table">
@@ -1939,7 +1967,7 @@ be available to unencrypted values due to performance issues. </p></td>
         
       
         <h3 id="hiber.modem.alarm.ModemAlarmSelection">ModemAlarmSelection</h3>
-        <p></p>
+        <p>Selection criteria for listing modem alarms in an organization. If no options are provided, all modem alarms</p><p>are valid.</p><p>If values are provided both for identifiers and search, then only alarms are selected that match both criteria.</p>
 
         
           <table class="field-table">
@@ -1952,7 +1980,7 @@ be available to unencrypted values due to performance issues. </p></td>
                   <td>identifiers</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>Selects alarms by the given list of alarm identifiers. </p></td>
                 </tr>
               
                 <tr>
@@ -1973,7 +2001,9 @@ be available to unencrypted values due to performance issues. </p></td>
                   <td>only_owned_alarms</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Only list owned alarms. Alarms are considered owned if your current organization created them, and thus would
+be able to delete them. Alarms can also be inherited from parent organizations, in which case they are owned
+by that parent organization. </p></td>
                 </tr>
               
             </tbody>
@@ -1984,7 +2014,7 @@ be available to unencrypted values due to performance issues. </p></td>
         
       
         <h3 id="hiber.modem.alarm.TestModemAlarmTestParameters">TestModemAlarmTestParameters</h3>
-        <p></p>
+        <p>Test a set of parameters on a modem alarm, to see the result when they are applied during assignment.</p>
 
         
 
@@ -2011,14 +2041,14 @@ be available to unencrypted values due to performance issues. </p></td>
                   <td>alarm_identifier</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The identifier of the alarm on which to test parameters. </p></td>
                 </tr>
               
                 <tr>
                   <td>parameters</td>
                   <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The parameters of the alarm that are changed. </p></td>
                 </tr>
               
             </tbody>
@@ -2312,14 +2342,14 @@ be available to unencrypted values due to performance issues. </p></td>
                   <td>alarm_identifier</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The identifier of the alarm to which the check is added. </p></td>
                 </tr>
               
                 <tr>
                   <td>check</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm.Check">ModemAlarm.Check</a></td>
                   <td></td>
-                  <td><p>The check to add to the Modem Alarm. Identifier must be unique within the alarm. </p></td>
+                  <td><p>The check to add to the Modem Alarm. Identifier of the check must be unique within the alarm. </p></td>
                 </tr>
               
             </tbody>
@@ -2354,7 +2384,7 @@ be available to unencrypted values due to performance issues. </p></td>
         
       
         <h3 id="hiber.modem.alarm.UpdateModemAlarmAvailability">UpdateModemAlarmAvailability</h3>
-        <p></p>
+        <p>Update the modem alarm availability, specifying for which (child) organizations an alarm is available.</p>
 
         
 
@@ -2381,7 +2411,7 @@ be available to unencrypted values due to performance issues. </p></td>
                   <td>alarm_identifier</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The identifier of the alarm for which to update the modem availability. </p></td>
                 </tr>
               
                 <tr>
@@ -2424,7 +2454,7 @@ Replaces the original value! </p></td>
         
       
         <h3 id="hiber.modem.alarm.UpdateModemAlarmRemoveCheck">UpdateModemAlarmRemoveCheck</h3>
-        <p></p>
+        <p>Remove a check from an alarm.</p>
 
         
 
@@ -2451,14 +2481,14 @@ Replaces the original value! </p></td>
                   <td>alarm_identifier</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The identifier of the alarm from which to remove the check. </p></td>
                 </tr>
               
                 <tr>
                   <td>check_identifier</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The identifier of the check to remove. </p></td>
                 </tr>
               
             </tbody>
@@ -2493,7 +2523,7 @@ Replaces the original value! </p></td>
         
       
         <h3 id="hiber.modem.alarm.UpdateModemAlarmUpdateCheck">UpdateModemAlarmUpdateCheck</h3>
-        <p></p>
+        <p>Update a check of an alarm.</p><p>Only the values of a check can be updated, e.g., it is not possible to change an inactivity check to a location</p><p>check.</p>
 
         
 
@@ -2520,21 +2550,21 @@ Replaces the original value! </p></td>
                   <td>alarm_identifier</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The identifier of the alarm of which to update the check. </p></td>
                 </tr>
               
                 <tr>
                   <td>check_identifier</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The identifier of the check to update. </p></td>
                 </tr>
               
                 <tr>
                   <td>update_check</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm.Check">ModemAlarm.Check</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The new values for the check of this alarm. </p></td>
                 </tr>
               
                 <tr>
@@ -3186,6 +3216,68 @@ historical values, to trigger only if the value is high for a longer period.</p>
 
         
       
+        <h3 id="hiber.Filter.HealthLevels">Filter.HealthLevels</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>include</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>exclude</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.Filter.ModemIdentifiers">Filter.ModemIdentifiers</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>include</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>exclude</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="hiber.Filter.Modems">Filter.Modems</h3>
         <p></p>
 
@@ -3309,6 +3401,37 @@ Exclude takes precedence over include. </p></td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.Filter.Properties">Filter.Properties</h3>
+        <p>Filter result on specific properties encoded in map-value pairs.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>properties</td>
+                  <td><a href="#hiber.MapFilter">MapFilter</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>include_only_empty</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>When set to true, match only empty property-sets. </p></td>
                 </tr>
               
             </tbody>
@@ -3616,6 +3739,123 @@ Exclude takes precedence over include. </p></td>
                   <td><a href="#hiber.Shape">Shape</a></td>
                   <td>repeated</td>
                   <td><p>Polygon shapes, each defined by a list of locations, which draw a shape on the map. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.MapFilter">MapFilter</h3>
+        <p>Some properties are stored as a name-value pair (e.g. bluetooth: 4.0, bluetooth: BLE).</p><p>This filter allows selecting a range of values for a specific name.</p><p>One could imagine wanting to include "all devices with bluetooth 4.0 or 4.1".</p><p>To select for multiple versions of a property,</p><p>add the name of the property as a map-key and add a repeated list of versions as the map-value.</p><p>For example:</p><p>- include { 'bluetooth' -> [ ] }</p><p>returns all items that have any version of bluetooth,</p><p>- include { 'bluetooth' -> [ '4.0', '5.0' ] }</p><p>will only return items that have bluetooth version 4.0 _or_ 5.0 (inclusive or),</p><p>- include { 'bluetooth' -> [ '' ] }</p><p>would only select bluetooth peripherals that don't have any version set,</p><p>- include { 'bluetooth' -> [ ], 'LoRaWAN' -> [ ] }</p><p>will only select items that have both bluetooth (any version) _and_ LoRaWAN (any version),</p><p>- include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ ] }</p><p>will return an empty list since exclude will take precedence, and</p><p>- include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ '3.0' ] }</p><p>returns only items that have bluetooth, but not version 3.0.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>include_and</td>
+                  <td><a href="#hiber.MapFilter.IncludeAndEntry">MapFilter.IncludeAndEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Filter to only include items with all of the given set of properties. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>exclude</td>
+                  <td><a href="#hiber.MapFilter.ExcludeEntry">MapFilter.ExcludeEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Filter to exclude items with any of the given set of properties. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.MapFilter.ExcludeEntry">MapFilter.ExcludeEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#hiber.MapFilter.OneOfValues">MapFilter.OneOfValues</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.MapFilter.IncludeAndEntry">MapFilter.IncludeAndEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#hiber.MapFilter.OneOfValues">MapFilter.OneOfValues</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.MapFilter.OneOfValues">MapFilter.OneOfValues</h3>
+        <p>Technical solution to make map<k, v> into a map<k, repeated v>,</p><p>which is not possible in protobuf without trickery.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>

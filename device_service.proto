@@ -1,0 +1,142 @@
+/* Device management.
+ *
+ * Devices are anything capable of sending messages to the system.
+ * They have a unique device (previously modem) number, used to identify them.
+ */
+syntax = "proto3";
+
+package hiber.device;
+
+import "base.proto";
+import "device.proto";
+import "modem.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.device";
+option java_outer_classname = "DeviceServiceApi";
+option go_package = "hiber";
+
+/* At the core of the Hiber system, devices are the network nodes that send information and user data.
+ * This service contains calls to list and manage devices.
+ */
+service DeviceService {
+    /* List the devices in your organization, and, optionally, its child organizations. */
+    rpc List (ListDevice.Request) returns (ListDevice.Response);
+
+    /* Update a device. */
+    rpc Update(UpdateDevice.Request) returns (UpdateDevice.Response);
+}
+
+message UpdateDevice {
+
+    hiber.device.DeviceSelection selection = 1;
+
+    /* Change the name for the selected devices.
+     * To prevent confusion, the selection can only effectively target 1 device when changing the name.
+     * Unless you specifically set `allow_bulk_rename`.
+     * You'd be left with multiple devices with the same name (technically allowed),
+     * but probably something you don't want.
+     */
+    optional string name = 2;
+    /* Allow a rename that results in multiple devices with the same name.
+     * Could be useful if you have different sites with devices that fulfill
+     * a similar job but are located at different sites.
+     * It is advised to make sure those devices have different tags/groups.
+     */
+    bool allow_bulk_rename = 3;
+
+    /* Change the notes for the selected devices. */
+    optional string notes = 4;
+    /* Allow changing notes in bulk if the notes are different.
+     * Must set this explicitly to prevent accidental loss of notes.
+     */
+    bool allow_bulk_notes = 5;
+
+    /* Change the notes for the selected devices. */
+    optional string secure_notes = 6;
+    /* Allow changing notes in bulk if the notes are different.
+     * Must set this explicitly to prevent accidental loss of notes.
+     */
+    bool allow_bulk_secure_notes = 7;
+
+    /* Updates the devices peripherals, by adding, removing or replacing. */
+    optional UpdatePeripherals peripherals = 8;
+    /* Set the timezone the device is located in. */
+    optional string time_zone = 9;
+    /* Update the lifecycle for this device. */
+    optional hiber.modem.Modem.Lifecycle lifecycle = 10;
+    /* Sets the interval this devices is transmitting on.
+     * Mainly useful for devices that have a regular interval for transmissions. */
+    optional Duration transmission_interval = 11;
+
+    /* When updating peripherals, you can choose to add and delete peripherals,
+     * or to do a wholesome replace of all peripherals.
+     */
+    message UpdatePeripherals {
+        message Partial {
+            /* Removes peripherals by name in this list. Leaves other peripherals untouched. */
+            repeated string remove_peripherals = 1;
+            /* Adds peripherals by name-value from this mapping. Leaves other peripherals untouched. */
+            map<string, string> add_peripherals = 2;
+        }
+        message Replace {
+            /* Replaces the entire set of peripherals. All peripherals not named in this map will be removed. */
+            map<string, string> replace_peripherals = 1;
+        }
+        oneof replace {
+            Partial partial_update = 1;
+            Replace full_replace = 2;
+        }
+    }
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        /* Multiple different updates can be made.
+         * Every update contains a device selection (historically modem selection)
+         * which targets the devices that should be updated.
+         */
+        repeated UpdateDevice devices = 2;
+    }
+    message Response {
+        repeated Device devices = 1;
+        Request request = 2;
+    }
+}
+
+message ListDevice {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* Select which devices to return. Uses ModemSelection, which is the historical name for device. */
+        hiber.device.DeviceSelection selection = 2;
+
+        /* Paginate through results. */
+        Pagination pagination = 3;
+
+        /* Sort the devices with the given sort options. */
+        repeated hiber.device.Sort sort_by = 4;
+
+        /* Filter devices by location. */
+        LocationSelection location_selection = 5;
+
+        /* Set this to true to populate the parents field in the response.
+         * This will be populated with missing parents (e.g. gateways) for the the devices on this page.
+         * Any parent that is on the current page is not included in this list to avoid duplicate data.
+         */
+        bool include_missing_parents = 6;
+    }
+    message Response {
+        repeated Device devices = 1;
+        ListDevice.Request request = 2;
+        Pagination.Result pagination = 3;
+        repeated Sort sorted_by = 4;
+
+        /* This will be populated with missing parents (e.g. gateways) for the the devices on this page.
+         * Any parent that is on the current page is not included in this list to avoid duplicate data.
+         * Only set when include_missing_parents is true in the request.
+         */
+        repeated Device parents = 5;
+    }
+}

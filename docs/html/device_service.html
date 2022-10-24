@@ -175,66 +175,58 @@
         
           
           <li>
-            <a href="#modem_message_downlink.proto">modem_message_downlink.proto</a>
+            <a href="#device_service.proto">device_service.proto</a>
             <ul>
               
                 <li>
-                  <a href="#hiber.modem.downlink.CreateDownlinkMessages"><span class="badge">M</span>CreateDownlinkMessages</a>
+                  <a href="#hiber.device.ListDevice"><span class="badge">M</span>ListDevice</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.downlink.CreateDownlinkMessages.Request"><span class="badge">M</span>CreateDownlinkMessages.Request</a>
+                  <a href="#hiber.device.ListDevice.Request"><span class="badge">M</span>ListDevice.Request</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.downlink.CreateDownlinkMessages.Response"><span class="badge">M</span>CreateDownlinkMessages.Response</a>
+                  <a href="#hiber.device.ListDevice.Response"><span class="badge">M</span>ListDevice.Response</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.downlink.ListDownlinkMessages"><span class="badge">M</span>ListDownlinkMessages</a>
+                  <a href="#hiber.device.UpdateDevice"><span class="badge">M</span>UpdateDevice</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.downlink.ListDownlinkMessages.Request"><span class="badge">M</span>ListDownlinkMessages.Request</a>
+                  <a href="#hiber.device.UpdateDevice.Request"><span class="badge">M</span>UpdateDevice.Request</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.downlink.ListDownlinkMessages.Response"><span class="badge">M</span>ListDownlinkMessages.Response</a>
+                  <a href="#hiber.device.UpdateDevice.Response"><span class="badge">M</span>UpdateDevice.Response</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.downlink.ModemDownlinkMessage"><span class="badge">M</span>ModemDownlinkMessage</a>
+                  <a href="#hiber.device.UpdateDevice.UpdatePeripherals"><span class="badge">M</span>UpdateDevice.UpdatePeripherals</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.downlink.ModemDownlinkMessageSelection"><span class="badge">M</span>ModemDownlinkMessageSelection</a>
+                  <a href="#hiber.device.UpdateDevice.UpdatePeripherals.Partial"><span class="badge">M</span>UpdateDevice.UpdatePeripherals.Partial</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.downlink.UpdateDownlinkMessagesStatus"><span class="badge">M</span>UpdateDownlinkMessagesStatus</a>
+                  <a href="#hiber.device.UpdateDevice.UpdatePeripherals.Partial.AddPeripheralsEntry"><span class="badge">M</span>UpdateDevice.UpdatePeripherals.Partial.AddPeripheralsEntry</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.downlink.UpdateDownlinkMessagesStatus.Request"><span class="badge">M</span>UpdateDownlinkMessagesStatus.Request</a>
+                  <a href="#hiber.device.UpdateDevice.UpdatePeripherals.Replace"><span class="badge">M</span>UpdateDevice.UpdatePeripherals.Replace</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.downlink.UpdateDownlinkMessagesStatus.Response"><span class="badge">M</span>UpdateDownlinkMessagesStatus.Response</a>
-                </li>
-              
-              
-                <li>
-                  <a href="#hiber.modem.downlink.ListDownlinkMessages.Sort"><span class="badge">E</span>ListDownlinkMessages.Sort</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.downlink.ModemDownlinkMessage.Status"><span class="badge">E</span>ModemDownlinkMessage.Status</a>
+                  <a href="#hiber.device.UpdateDevice.UpdatePeripherals.Replace.ReplacePeripheralsEntry"><span class="badge">M</span>UpdateDevice.UpdatePeripherals.Replace.ReplacePeripheralsEntry</a>
                 </li>
               
               
               
+              
                 <li>
-                  <a href="#hiber.modem.downlink.ModemDownlinkMessageService"><span class="badge">S</span>ModemDownlinkMessageService</a>
+                  <a href="#hiber.device.DeviceService"><span class="badge">S</span>DeviceService</a>
                 </li>
               
             </ul>
@@ -432,6 +424,45 @@
               
                 <li>
                   <a href="#hiber.UnitOfMeasurement"><span class="badge">E</span>UnitOfMeasurement</a>
+                </li>
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#device.proto">device.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#hiber.device.Device"><span class="badge">M</span>Device</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.device.Device.Links"><span class="badge">M</span>Device.Links</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.device.Device.PeripheralsEntry"><span class="badge">M</span>Device.PeripheralsEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.device.DeviceSelection"><span class="badge">M</span>DeviceSelection</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.device.ModemFilter"><span class="badge">M</span>ModemFilter</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.device.ModemFilter.Lifecycles"><span class="badge">M</span>ModemFilter.Lifecycles</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#hiber.device.Sort"><span class="badge">E</span>Sort</a>
                 </li>
               
               
@@ -689,82 +720,19 @@
     
       
       <div class="file-heading">
-        <h2 id="modem_message_downlink.proto">modem_message_downlink.proto</h2><a href="#title">Top</a>
+        <h2 id="device_service.proto">device_service.proto</h2><a href="#title">Top</a>
       </div>
-      <p></p>
+      <p>Device management.</p><p>Devices are anything capable of sending messages to the system.</p><p>They have a unique device (previously modem) number, used to identify them.</p>
 
       
-        <h3 id="hiber.modem.downlink.CreateDownlinkMessages">CreateDownlinkMessages</h3>
+        <h3 id="hiber.device.ListDevice">ListDevice</h3>
         <p></p>
 
         
 
         
       
-        <h3 id="hiber.modem.downlink.CreateDownlinkMessages.Request">CreateDownlinkMessages.Request</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>messages</td>
-                  <td><a href="#hiber.modem.downlink.ModemDownlinkMessage">ModemDownlinkMessage</a></td>
-                  <td>repeated</td>
-                  <td><p>Downlink messages to send.
-All ModemDownlinkMessage fields are optional except for modem_number and content. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.downlink.CreateDownlinkMessages.Response">CreateDownlinkMessages.Response</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>messages</td>
-                  <td><a href="#hiber.modem.downlink.ModemDownlinkMessage">ModemDownlinkMessage</a></td>
-                  <td>repeated</td>
-                  <td><p>The created messages. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.downlink.ListDownlinkMessages">ListDownlinkMessages</h3>
-        <p></p>
-
-        
-
-        
-      
-        <h3 id="hiber.modem.downlink.ListDownlinkMessages.Request">ListDownlinkMessages.Request</h3>
+        <h3 id="hiber.device.ListDevice.Request">ListDevice.Request</h3>
         <p></p>
 
         
@@ -783,23 +751,39 @@ All ModemDownlinkMessage fields are optional except for modem_number and content
               
                 <tr>
                   <td>selection</td>
-                  <td><a href="#hiber.modem.downlink.ModemDownlinkMessageSelection">ModemDownlinkMessageSelection</a></td>
+                  <td><a href="#hiber.device.DeviceSelection">DeviceSelection</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Select which devices to return. Uses ModemSelection, which is the historical name for device. </p></td>
                 </tr>
               
                 <tr>
                   <td>pagination</td>
                   <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Paginate through results. </p></td>
                 </tr>
               
                 <tr>
-                  <td>sort</td>
-                  <td><a href="#hiber.modem.downlink.ListDownlinkMessages.Sort">ListDownlinkMessages.Sort</a></td>
+                  <td>sort_by</td>
+                  <td><a href="#hiber.device.Sort">Sort</a></td>
+                  <td>repeated</td>
+                  <td><p>Sort the devices with the given sort options. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location_selection</td>
+                  <td><a href="#hiber.LocationSelection">hiber.LocationSelection</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Filter devices by location. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>include_missing_parents</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Set this to true to populate the parents field in the response.
+This will be populated with missing parents (e.g. gateways) for the the devices on this page.
+Any parent that is on the current page is not included in this list to avoid duplicate data. </p></td>
                 </tr>
               
             </tbody>
@@ -809,7 +793,7 @@ All ModemDownlinkMessage fields are optional except for modem_number and content
 
         
       
-        <h3 id="hiber.modem.downlink.ListDownlinkMessages.Response">ListDownlinkMessages.Response</h3>
+        <h3 id="hiber.device.ListDevice.Response">ListDevice.Response</h3>
         <p></p>
 
         
@@ -820,9 +804,16 @@ All ModemDownlinkMessage fields are optional except for modem_number and content
             <tbody>
               
                 <tr>
-                  <td>messages</td>
-                  <td><a href="#hiber.modem.downlink.ModemDownlinkMessage">ModemDownlinkMessage</a></td>
+                  <td>devices</td>
+                  <td><a href="#hiber.device.Device">Device</a></td>
                   <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#hiber.device.ListDevice.Request">ListDevice.Request</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -834,158 +825,123 @@ All ModemDownlinkMessage fields are optional except for modem_number and content
                 </tr>
               
                 <tr>
-                  <td>request</td>
-                  <td><a href="#hiber.modem.downlink.ListDownlinkMessages.Request">ListDownlinkMessages.Request</a></td>
+                  <td>sorted_by</td>
+                  <td><a href="#hiber.device.Sort">Sort</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>parents</td>
+                  <td><a href="#hiber.device.Device">Device</a></td>
+                  <td>repeated</td>
+                  <td><p>This will be populated with missing parents (e.g. gateways) for the the devices on this page.
+Any parent that is on the current page is not included in this list to avoid duplicate data.
+Only set when include_missing_parents is true in the request. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.device.UpdateDevice">UpdateDevice</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>selection</td>
+                  <td><a href="#hiber.device.DeviceSelection">DeviceSelection</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
               
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.downlink.ModemDownlinkMessage">ModemDownlinkMessage</h3>
-        <p>A message to send to a device.</p><p>This is typically used to update device configuration or trigger certain message types.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
                 <tr>
-                  <td>identifier</td>
+                  <td>name</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Identifier for this downlink message.
-Unique within the organization.
-Can be set manually or, if omitted on creation, automatically generated. </p></td>
+                  <td>optional</td>
+                  <td><p>Change the name for the selected devices.
+To prevent confusion, the selection can only effectively target 1 device when changing the name.
+Unless you specifically set `allow_bulk_rename`.
+You&#39;d be left with multiple devices with the same name (technically allowed),
+but probably something you don&#39;t want. </p></td>
                 </tr>
               
                 <tr>
-                  <td>modem_number</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>The modem number of the device this message should be sent to. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>body</td>
-                  <td><a href="#hiber.BytesOrHex">hiber.BytesOrHex</a></td>
-                  <td></td>
-                  <td><p>The binary body of the message. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>metadata</td>
-                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
-                  <td></td>
-                  <td><p>Any metadata for the message, like fPort for LoRaWAN. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#hiber.modem.downlink.ModemDownlinkMessage.Status">ModemDownlinkMessage.Status</a></td>
-                  <td></td>
-                  <td><p>The status of this message. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>created_at</td>
-                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td></td>
-                  <td><p>When this downlink message was created. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sent_at</td>
-                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td></td>
-                  <td><p>When this downlink message was sent to the device. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>acknowledged_at</td>
-                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td></td>
-                  <td><p>When this downlink message was acknowledged by the device. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>acknowledgement_required</td>
+                  <td>allow_bulk_rename</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Whether acknowledgement is required, determining when this messages is considered completed. </p></td>
+                  <td><p>Allow a rename that results in multiple devices with the same name.
+Could be useful if you have different sites with devices that fulfill
+a similar job but are located at different sites.
+It is advised to make sure those devices have different tags/groups. </p></td>
                 </tr>
               
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.downlink.ModemDownlinkMessageSelection">ModemDownlinkMessageSelection</h3>
-        <p>Selection object to select ModemDownlinkMessages.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
                 <tr>
-                  <td>search</td>
+                  <td>notes</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Search downlink messages by identifier, modem number, modem tags or metadata </p></td>
+                  <td>optional</td>
+                  <td><p>Change the notes for the selected devices. </p></td>
                 </tr>
               
                 <tr>
-                  <td>identifiers</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>Select downlink messages by identifier(s). </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modems</td>
-                  <td><a href="#hiber.modem.ModemSelection">hiber.modem.ModemSelection</a></td>
-                  <td></td>
-                  <td><p>Select modems to list downlink messages for. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>include_status</td>
-                  <td><a href="#hiber.modem.downlink.ModemDownlinkMessage.Status">ModemDownlinkMessage.Status</a></td>
-                  <td>repeated</td>
-                  <td><p>Select downlink messages that have one of the given statuses. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>exclude_status</td>
-                  <td><a href="#hiber.modem.downlink.ModemDownlinkMessage.Status">ModemDownlinkMessage.Status</a></td>
-                  <td>repeated</td>
-                  <td><p>Select downlink messages that have none of the given statuses. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>time_range</td>
-                  <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
-                  <td></td>
-                  <td><p>Select downlink messages that were created or updated withing the time range. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>include_completed</td>
+                  <td>allow_bulk_notes</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Whether to include downlink messages that have already been sent and acknowledged (if required). </p></td>
+                  <td><p>Allow changing notes in bulk if the notes are different.
+Must set this explicitly to prevent accidental loss of notes. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>secure_notes</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Change the notes for the selected devices. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>allow_bulk_secure_notes</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Allow changing notes in bulk if the notes are different.
+Must set this explicitly to prevent accidental loss of notes. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>peripherals</td>
+                  <td><a href="#hiber.device.UpdateDevice.UpdatePeripherals">UpdateDevice.UpdatePeripherals</a></td>
+                  <td>optional</td>
+                  <td><p>Updates the devices peripherals, by adding, removing or replacing. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time_zone</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Set the timezone the device is located in. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lifecycle</td>
+                  <td><a href="#hiber.modem.Modem.Lifecycle">hiber.modem.Modem.Lifecycle</a></td>
+                  <td>optional</td>
+                  <td><p>Update the lifecycle for this device. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>transmission_interval</td>
+                  <td><a href="#hiber.Duration">hiber.Duration</a></td>
+                  <td>optional</td>
+                  <td><p>Sets the interval this devices is transmitting on.
+Mainly useful for devices that have a regular interval for transmissions. </p></td>
                 </tr>
               
             </tbody>
@@ -995,14 +951,7 @@ Can be set manually or, if omitted on creation, automatically generated. </p></t
 
         
       
-        <h3 id="hiber.modem.downlink.UpdateDownlinkMessagesStatus">UpdateDownlinkMessagesStatus</h3>
-        <p></p>
-
-        
-
-        
-      
-        <h3 id="hiber.modem.downlink.UpdateDownlinkMessagesStatus.Request">UpdateDownlinkMessagesStatus.Request</h3>
+        <h3 id="hiber.device.UpdateDevice.Request">UpdateDevice.Request</h3>
         <p></p>
 
         
@@ -1020,25 +969,12 @@ Can be set manually or, if omitted on creation, automatically generated. </p></t
                 </tr>
               
                 <tr>
-                  <td>selection</td>
-                  <td><a href="#hiber.modem.downlink.ModemDownlinkMessageSelection">ModemDownlinkMessageSelection</a></td>
-                  <td></td>
-                  <td><p>The downlink messages to update. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>update_status</td>
-                  <td><a href="#hiber.modem.downlink.ModemDownlinkMessage.Status">ModemDownlinkMessage.Status</a></td>
-                  <td></td>
-                  <td><p>The new status for the selected messages. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pagination</td>
-                  <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
-                  <td></td>
-                  <td><p>Pagination for the downlink messages listed in the response.
-(All selected messages are updated, regardless of pagination). </p></td>
+                  <td>devices</td>
+                  <td><a href="#hiber.device.UpdateDevice">UpdateDevice</a></td>
+                  <td>repeated</td>
+                  <td><p>Multiple different updates can be made.
+Every update contains a device selection (historically modem selection)
+which targets the devices that should be updated. </p></td>
                 </tr>
               
             </tbody>
@@ -1048,7 +984,7 @@ Can be set manually or, if omitted on creation, automatically generated. </p></t
 
         
       
-        <h3 id="hiber.modem.downlink.UpdateDownlinkMessagesStatus.Response">UpdateDownlinkMessagesStatus.Response</h3>
+        <h3 id="hiber.device.UpdateDevice.Response">UpdateDevice.Response</h3>
         <p></p>
 
         
@@ -1059,22 +995,163 @@ Can be set manually or, if omitted on creation, automatically generated. </p></t
             <tbody>
               
                 <tr>
-                  <td>messages</td>
-                  <td><a href="#hiber.modem.downlink.ModemDownlinkMessage">ModemDownlinkMessage</a></td>
+                  <td>devices</td>
+                  <td><a href="#hiber.device.Device">Device</a></td>
                   <td>repeated</td>
-                  <td><p>The updated messages. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pagination</td>
-                  <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
-                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>request</td>
-                  <td><a href="#hiber.modem.downlink.UpdateDownlinkMessagesStatus.Request">UpdateDownlinkMessagesStatus.Request</a></td>
+                  <td><a href="#hiber.device.UpdateDevice.Request">UpdateDevice.Request</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.device.UpdateDevice.UpdatePeripherals">UpdateDevice.UpdatePeripherals</h3>
+        <p>When updating peripherals, you can choose to add and delete peripherals,</p><p>or to do a wholesome replace of all peripherals.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>partial_update</td>
+                  <td><a href="#hiber.device.UpdateDevice.UpdatePeripherals.Partial">UpdateDevice.UpdatePeripherals.Partial</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>full_replace</td>
+                  <td><a href="#hiber.device.UpdateDevice.UpdatePeripherals.Replace">UpdateDevice.UpdatePeripherals.Replace</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.device.UpdateDevice.UpdatePeripherals.Partial">UpdateDevice.UpdatePeripherals.Partial</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>remove_peripherals</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Removes peripherals by name in this list. Leaves other peripherals untouched. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>add_peripherals</td>
+                  <td><a href="#hiber.device.UpdateDevice.UpdatePeripherals.Partial.AddPeripheralsEntry">UpdateDevice.UpdatePeripherals.Partial.AddPeripheralsEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Adds peripherals by name-value from this mapping. Leaves other peripherals untouched. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.device.UpdateDevice.UpdatePeripherals.Partial.AddPeripheralsEntry">UpdateDevice.UpdatePeripherals.Partial.AddPeripheralsEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.device.UpdateDevice.UpdatePeripherals.Replace">UpdateDevice.UpdatePeripherals.Replace</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>replace_peripherals</td>
+                  <td><a href="#hiber.device.UpdateDevice.UpdatePeripherals.Replace.ReplacePeripheralsEntry">UpdateDevice.UpdatePeripherals.Replace.ReplacePeripheralsEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Replaces the entire set of peripherals. All peripherals not named in this map will be removed. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.device.UpdateDevice.UpdatePeripherals.Replace.ReplacePeripheralsEntry">UpdateDevice.UpdatePeripherals.Replace.ReplacePeripheralsEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1088,82 +1165,12 @@ Can be set manually or, if omitted on creation, automatically generated. </p></t
       
 
       
-        <h3 id="hiber.modem.downlink.ListDownlinkMessages.Sort">ListDownlinkMessages.Sort</h3>
-        <p></p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>DEFAULT</td>
-                <td>0</td>
-                <td><p>Sort by last change, last changed first.</p></td>
-              </tr>
-            
-              <tr>
-                <td>CREATED_OLDEST_FIRST</td>
-                <td>1</td>
-                <td><p>Sort by created time, oldest first.</p></td>
-              </tr>
-            
-              <tr>
-                <td>CREATED_NEWEST_FIRST</td>
-                <td>2</td>
-                <td><p>Sort by created time, newest first.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEM_NUMBER</td>
-                <td>3</td>
-                <td><p>Sort numerically on the number of the modem.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEM_NUMBER_INVERTED</td>
-                <td>4</td>
-                <td><p>Sort numerically on the number of the modem, inverted.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-        <h3 id="hiber.modem.downlink.ModemDownlinkMessage.Status">ModemDownlinkMessage.Status</h3>
-        <p></p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>CREATED</td>
-                <td>0</td>
-                <td><p>Message was created but not sent to the device.</p></td>
-              </tr>
-            
-              <tr>
-                <td>SENT</td>
-                <td>1</td>
-                <td><p>Message was sent to the device, but not acknowledged.</p></td>
-              </tr>
-            
-              <tr>
-                <td>ACKNOWLEDGED</td>
-                <td>2</td>
-                <td><p>Message was sent to the device, and acknowledged.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
 
       
 
       
-        <h3 id="hiber.modem.downlink.ModemDownlinkMessageService">ModemDownlinkMessageService</h3>
-        <p></p>
+        <h3 id="hiber.device.DeviceService">DeviceService</h3>
+        <p>At the core of the Hiber system, devices are the network nodes that send information and user data.</p><p>This service contains calls to list and manage devices.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -1172,23 +1179,16 @@ Can be set manually or, if omitted on creation, automatically generated. </p></t
             
               <tr>
                 <td>List</td>
-                <td><a href="#hiber.modem.downlink.ListDownlinkMessages.Request">ListDownlinkMessages.Request</a></td>
-                <td><a href="#hiber.modem.downlink.ListDownlinkMessages.Response">ListDownlinkMessages.Response</a></td>
-                <td><p></p></td>
+                <td><a href="#hiber.device.ListDevice.Request">ListDevice.Request</a></td>
+                <td><a href="#hiber.device.ListDevice.Response">ListDevice.Response</a></td>
+                <td><p>List the devices in your organization, and, optionally, its child organizations.</p></td>
               </tr>
             
               <tr>
-                <td>Create</td>
-                <td><a href="#hiber.modem.downlink.CreateDownlinkMessages.Request">CreateDownlinkMessages.Request</a></td>
-                <td><a href="#hiber.modem.downlink.CreateDownlinkMessages.Response">CreateDownlinkMessages.Response</a></td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>UpdateStatus</td>
-                <td><a href="#hiber.modem.downlink.UpdateDownlinkMessagesStatus.Request">UpdateDownlinkMessagesStatus.Request</a></td>
-                <td><a href="#hiber.modem.downlink.UpdateDownlinkMessagesStatus.Response">UpdateDownlinkMessagesStatus.Response</a></td>
-                <td><p></p></td>
+                <td>Update</td>
+                <td><a href="#hiber.device.UpdateDevice.Request">UpdateDevice.Request</a></td>
+                <td><a href="#hiber.device.UpdateDevice.Response">UpdateDevice.Response</a></td>
+                <td><p>Update a device.</p></td>
               </tr>
             
           </tbody>
@@ -3247,6 +3247,433 @@ For example, unbundled events are likely to return an approximated total, but no
                 <td>FLOW_CUBIC_METERS_PER_HOUR</td>
                 <td>39</td>
                 <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="device.proto">device.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="hiber.device.Device">Device</h3>
+        <p>Information about a device.</p><p>A device is anything in the Hiber network that can send data to our systems.</p><p>They have a unique device number in our system, used to identify them.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>An 8-character hexadecimal string, formatted for human readability. System ignores spaces. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The organization that owns this device </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>A descriptor given to the device, defaults to it&#39;s number. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location</td>
+                  <td><a href="#hiber.Location">hiber.Location</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>inactivity</td>
+                  <td><a href="#hiber.Duration">hiber.Duration</a></td>
+                  <td>optional</td>
+                  <td><p>The amount of time since the last message from this modem was received on the server. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>health_level</td>
+                  <td><a href="#hiber.health.HealthLevel">hiber.health.HealthLevel</a></td>
+                  <td></td>
+                  <td><p>Health level based on the modem alarm and some always-present alarms. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lifecycle</td>
+                  <td><a href="#hiber.modem.Modem.Lifecycle">hiber.modem.Modem.Lifecycle</a></td>
+                  <td></td>
+                  <td><p>The current lifecycle the modem is in. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>peripherals</td>
+                  <td><a href="#hiber.device.Device.PeripheralsEntry">Device.PeripheralsEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>additional information </p></td>
+                </tr>
+              
+                <tr>
+                  <td>notes</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Notes field that can be used to add additional information to a modem. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>secure_notes</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Secure notes field that can be used to add additional information to a modem, with limited accessibility. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>link</td>
+                  <td><a href="#hiber.device.Device.Links">Device.Links</a></td>
+                  <td>optional</td>
+                  <td><p>Optional information about what other devices this devices is linked to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>Modem metadata, typically extracted from messages. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time_zone</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>The timezone configured for the modem. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>transmission_interval</td>
+                  <td><a href="#hiber.Duration">hiber.Duration</a></td>
+                  <td>optional</td>
+                  <td><p>The transmission interval for this modem, if configured. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.device.Device.Links">Device.Links</h3>
+        <p>Collection of data about the devices it is connected to.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Other identifiers for this devices. Could include data like its MAC-address or otherwise unique identifier. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>parent</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>The device directly downstream from this device.
+Usually a gateway of some sorts. This device sends its data directly to its parent.
+The parent will relay the data to our systems. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.device.Device.PeripheralsEntry">Device.PeripheralsEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.device.DeviceSelection">DeviceSelection</h3>
+        <p>Selection object for devices.</p><p>Filter devices by device number, tags, etc.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>free_text_search</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>modems</td>
+                  <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>identifiers</td>
+                  <td><a href="#hiber.Filter.ModemIdentifiers">hiber.Filter.ModemIdentifiers</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>health_level</td>
+                  <td><a href="#hiber.Filter.HealthLevels">hiber.Filter.HealthLevels</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lifecycles</td>
+                  <td><a href="#hiber.device.ModemFilter.Lifecycles">ModemFilter.Lifecycles</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>with_parents</td>
+                  <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>peripherals</td>
+                  <td><a href="#hiber.Filter.Properties">hiber.Filter.Properties</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>filter_by_tags</td>
+                  <td><a href="#hiber.tag.TagSelection">hiber.tag.TagSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>with_last_message_in</td>
+                  <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.device.ModemFilter">ModemFilter</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.device.ModemFilter.Lifecycles">ModemFilter.Lifecycles</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>include</td>
+                  <td><a href="#hiber.modem.Modem.Lifecycle">hiber.modem.Modem.Lifecycle</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>exclude</td>
+                  <td><a href="#hiber.modem.Modem.Lifecycle">hiber.modem.Modem.Lifecycle</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="hiber.device.Sort">Sort</h3>
+        <p>Sorting options for the results.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>DEVICE_NAME_ASC</td>
+                <td>0</td>
+                <td><p>Sort alphabetically on the name of the device.
+De default name of the device is its HEX number, in ascending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>DEVICE_NAME_DESC</td>
+                <td>1</td>
+                <td><p>Sort alphabetically on the name of the device.
+De default name of the device is its HEX number, in descending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>DEVICE_NUMBER_ASC</td>
+                <td>2</td>
+                <td><p>Sort numerically on the number of the device, in ascending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>DEVICE_NUMBER_DESC</td>
+                <td>3</td>
+                <td><p>Sort numerically on the number of the device, in descending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ACTIVITY</td>
+                <td>4</td>
+                <td><p>Sort devices on most recent activity first (e.g. newest message received).</p></td>
+              </tr>
+            
+              <tr>
+                <td>INACTIVITY</td>
+                <td>5</td>
+                <td><p>Sort devices on least recent activity first (e.g. longest no message received).</p></td>
+              </tr>
+            
+              <tr>
+                <td>LIFECYCLE_ASC</td>
+                <td>6</td>
+                <td><p>Sort device on its lifecycle state.</p></td>
+              </tr>
+            
+              <tr>
+                <td>LIFECYCLE_DESC</td>
+                <td>7</td>
+                <td><p>Sort device on its lifecycle state in reverse order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>LIFECYCLE_ALPHABETICAL_ASC</td>
+                <td>8</td>
+                <td><p>Sort device on lifecycle name, alphabetically.</p></td>
+              </tr>
+            
+              <tr>
+                <td>LIFECYCLE_ALPHABETICAL_DESC</td>
+                <td>9</td>
+                <td><p>Sort device on lifecycle name, alphabetically in reverse order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ORGANIZATION_ASC</td>
+                <td>10</td>
+                <td><p>Sort alphabetically on the name of the organization that owns the device, in ascending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ORGANIZATION_DESC</td>
+                <td>11</td>
+                <td><p>Sort alphabetically on the name of the organization that owns the device, in descending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>HEALTH_ASC</td>
+                <td>12</td>
+                <td><p>Health sorted from least to most severe (i.e. OK, WARNING, ERROR).</p></td>
+              </tr>
+            
+              <tr>
+                <td>HEALTH_DESC</td>
+                <td>13</td>
+                <td><p>Health sorted from most to least severe (i.e. ERROR, WARNING, OK).</p></td>
+              </tr>
+            
+              <tr>
+                <td>HEALTH_ALPHABETICAL_ASC</td>
+                <td>14</td>
+                <td><p>Health sorted alphabetically by health level name.</p></td>
+              </tr>
+            
+              <tr>
+                <td>HEALTH_ALPHABETICAL_DESC</td>
+                <td>15</td>
+                <td><p>Health sorted alphabetically by health level name, descending order.</p></td>
               </tr>
             
           </tbody>

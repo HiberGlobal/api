@@ -74,7 +74,7 @@ service ModemAlarmService {
  *
  * Note, when an alarm is inherited the health levels may not match yours. If the health level matches one of
  * your health levels, that level is used. Otherwise, the catch-all health level is used.
- * See the health definition for more information on the catch all health level (typically the most severe).
+ * See the health definition for more information on the catch-all health level (typically the most severe).
  * Note that the health level displayed here is the result of the steps above.
  *
  * When assigned to a (set of) modem(s), an alarm can be customized using its parameters.
@@ -101,7 +101,6 @@ message ModemAlarm {
      * This identifier is globally unique, since the alarm can be shared to child organizations.
      */
     string identifier = 1;
-
     /* Short name for this alarm (optional). */
     string name = 9;
 
@@ -148,7 +147,7 @@ message ModemAlarm {
 
     /* Allow the alarm to cause a health level for the modem even after it has been resolved.
      * By configuring this, you can specify the modem health should be affected for a longer period.
-     * For example, when using an inactivity check, this would could be used to configure modem health ERROR while
+     * For example, when using an inactivity check, this could be used to configure modem health ERROR while
      * inactive, lowering to INVESTIGATE for a day after a new message comes in.
      */
     HealthLevelAfterResolved health_level_after_resolved = 8;
@@ -170,13 +169,15 @@ message ModemAlarm {
      * The parameters are included as {parameter}, which gets replaced with the value.
      *
      * The supported parameters are different per check, but the parameters below are always supported:
-     * - modem: the modem number.
+     * - modem:name: the modem name.
+     * - modem:number: the modem number.
      * - message: the id of the message, if any.
      * - expected: a shortcut for the expected value(s), depending on the check:
-     *   - equals check: expected value
-     *   - oneof check: expected values as [a, b, c]
-     *   - threshold check: expected range as minimum..maximum
+     *   - inactivity check: expected duration
      *   - location check: expected area as [(bottom left), (top right)], and shape as [(point), (point), ..., (point)]
+     *   - equals/minimum/maximum check: expected value
+     *   - oneof check (allowed/blocked): expected values as [a, b, c]
+     *   - threshold/delta check: expected range as minimum..maximum, extended with duration for delta check
      * - actual: the invalid actual value(s) for this check.
      *
      * The checks below define other available parameters.
@@ -216,9 +217,13 @@ message ModemAlarm {
         string error_message_template = 3;
 
         oneof check {
+            /* Check whether the device is in a given location. */
             LocationCheck location = 4;
+            /* Check that a message body field has a specified value. */
             FieldCheck field = 5;
+            /* Check whether the device exceeds inactivity limits. */
             InactivityCheck inactivity = 6;
+            /* Check whether a message delay exceeds delay limits. */
             DelayCheck delay = 7;
         }
 
@@ -276,7 +281,7 @@ message ModemAlarm {
          * - $.my_array..my_field: the array of my_field values (for all objects in my_array) is selected
          * - $.my_array[*].my_field: the array of my_field values (for all objects in my_array) is selected
          *
-         * Note that this for the examples above, if they return an array, the entire array is used as the value
+         * Note that for the examples above, if they return an array, the entire array is used as the value
          * in the comparison for equals and oneof.
          *
          * A check of this type has the following parameters (matches the fields):
@@ -286,16 +291,19 @@ message ModemAlarm {
          * For the equals check:
          * - field.equals.expected: iff this is an equals check, replace the expected value
          *
-         * For the oneof check:
-         * - field.oneof.expected: iff this is a oneof check, replace the expected values
+         * For the allowed check:
+         * - field.allowed.allowed: iff this is an allowed check, replace the expected values
          *
+         * For the blocked check:
+         * - field.blocked.blocked: iff this is a blocked check, replace the expected values
+
          * For the threshold check:
          * - field.threshold.expected: iff this is a threshold check, replace the expected range
          * - field.threshold.minimum: iff this is a threshold check, replace the expected minimum
          * - field.threshold.maximum: iff this is a threshold check, replace the expected maximum
          *
          * For the delta check:
-         * - field.delta.period:
+         * - field.delta.period: iff this is a delta check, replace the expected duration
          * - field.delta.threshold.expected: iff this is a delta check, replace the expected range
          * - field.delta.threshold.minimum: iff this is a delta check, replace the expected minimum
          * - field.delta.threshold.maximum: iff this is a delta check, replace the expected maximum
@@ -324,17 +332,25 @@ message ModemAlarm {
             field.Field.Numeric.Unit unit = 9;
 
             oneof check {
+                /* Check that a field equals a value. */
                 EqualsCheck equals = 3;
+                /* Check that a field equals one of a set of values. */
                 AllowedCheck allowed = 4;
+                /* Check that a field does not equal one of a set of values. */
                 BlockedCheck blocked = 10;
+                /* Chech that a field is higher than the given value. */
                 MinimumCheck minimum = 7;
+                /* Check that a field is lower than the given value. */
                 MaximumCheck maximum = 8;
+                /* Check that a field is within a given numeric range. */
                 ThresholdCheck threshold = 5;
+                /* Check that a field's difference in value over a given period is within a specified numeric range. */
                 DeltaCheck delta = 6;
             }
 
             /* Check that the field is equal to the given value. */
             message EqualsCheck {
+                /* The expected value a field should have. */
                 google.protobuf.Value expected = 1;
             }
 
@@ -346,6 +362,7 @@ message ModemAlarm {
 
             /* Check that the field is not in a set of blocked values. */
             message BlockedCheck {
+                /* The list of blocked values; the field should not match any of them. */
                 repeated google.protobuf.Value blocked = 1;
             }
 
@@ -401,7 +418,7 @@ message ModemAlarm {
      * Typically, an alarm event only affects the modem health while it is from the last message from that modem.
      * By configuring this, you can specify the modem health should be affected for a longer period.
      *
-     * For example, when using an inactivity check, this would could be used to configure modem health ERROR while
+     * For example, when using an inactivity check, this could be used to configure modem health ERROR while
      * inactive, lowering to INVESTIGATE for a day after a new message comes in.
      */
     message HealthLevelAfterResolved {
@@ -413,7 +430,14 @@ message ModemAlarm {
     }
 }
 
+/*
+ * Selection criteria for listing modem alarms in an organization. If no options are provided, all modem alarms
+ * are valid.
+ *
+ * If values are provided both for identifiers and search, then only alarms are selected that match both criteria.
+ */
 message ModemAlarmSelection {
+    /* Selects alarms by the given list of alarm identifiers. */
     repeated string identifiers = 1;
 
     /* Search for the given string in identifier, description, fields and values. */
@@ -422,15 +446,24 @@ message ModemAlarmSelection {
     /* Only return alarms that were created by the given organizations. */
     repeated string owner_organizations = 3;
 
+    /* Only list owned alarms. Alarms are considered owned if your current organization created them, and thus would
+     * be able to delete them. Alarms can also be inherited from parent organizations, in which case they are owned
+     * by that parent organization.
+     */
     bool only_owned_alarms = 4;
 }
 
+/*
+ * List modem alarms in an organization.
+ */
 message ListModemAlarms {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
 
+        /* Selection criteria for listing modem alarms. */
         ModemAlarmSelection selection = 2;
+        /* Pagination for the returned alarms. */
         Pagination pagination = 3;
 
         /* Apply your UnitPreferences to the alarm checks.
@@ -440,8 +473,11 @@ message ListModemAlarms {
         bool apply_unit_preferences = 4;
     }
     message Response {
+        /* A list of modem alarms. */
         repeated ModemAlarm modem_alarms = 1;
+        /* A pagination object, which can be used to go through the alarms. */
         Pagination.Result pagination = 2;
+        /* The request made to list the given alarms. */
         Request request = 3;
     }
 }
@@ -479,6 +515,7 @@ message CreateModemAlarm {
         ModemAlarm.HealthLevelAfterResolved health_level_after_resolved = 6;
     }
     message Response {
+        /* The created modem alarm. */
         ModemAlarm created = 1;
     }
 }
@@ -536,9 +573,10 @@ message UpdateModemAlarmAddCheck {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
+        /* The identifier of the alarm to which the check is added. */
         string alarm_identifier = 2;
 
-        /* The check to add to the Modem Alarm. Identifier must be unique within the alarm. */
+        /* The check to add to the Modem Alarm. Identifier of the check must be unique within the alarm. */
         ModemAlarm.Check check = 3;
     }
     message Response {
@@ -546,12 +584,20 @@ message UpdateModemAlarmAddCheck {
     }
 }
 
+/* Update a check of an alarm.
+ *
+ * Only the values of a check can be updated, e.g., it is not possible to change an inactivity check to a location
+ * check.
+*/
 message UpdateModemAlarmUpdateCheck {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
+        /* The identifier of the alarm of which to update the check. */
         string alarm_identifier = 2;
+        /* The identifier of the check to update. */
         string check_identifier = 3;
+        /* The new values for the check of this alarm. */
         ModemAlarm.Check update_check = 4;
 
         /* Use parameters to update the check, as it would be when they were added when the alarm was assigned. */
@@ -567,11 +613,14 @@ message UpdateModemAlarmUpdateCheck {
     }
 }
 
+/* Remove a check from an alarm. */
 message UpdateModemAlarmRemoveCheck {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
+        /* The identifier of the alarm from which to remove the check. */
         string alarm_identifier = 2;
+        /* The identifier of the check to remove. */
         string check_identifier = 3;
     }
     message Response {
@@ -579,21 +628,26 @@ message UpdateModemAlarmRemoveCheck {
     }
 }
 
+/* Delete an alarm. */
 message DeleteModemAlarm {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
+        /* Identifier of the modem alarm to delete. */
         string identifier = 2;
     }
     message Response {
     }
 }
 
+/* Test a set of parameters on a modem alarm, to see the result when they are applied during assignment. */
 message TestModemAlarmTestParameters {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
+        /* The identifier of the alarm on which to test parameters. */
         string alarm_identifier = 2;
+        /* The parameters of the alarm that are changed. */
         google.protobuf.Struct parameters = 3;
     }
     message Response {
@@ -601,10 +655,12 @@ message TestModemAlarmTestParameters {
     }
 }
 
+/* Update the modem alarm availability, specifying for which (child) organizations an alarm is available. */
 message UpdateModemAlarmAvailability {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
+        /* The identifier of the alarm for which to update the modem availability. */
         string alarm_identifier = 2;
 
         /* The new set of child organizations that this rule applies to.

@@ -1,46 +1,45 @@
-# value.proto
+# device.proto
 
 
 
-#### This file was generated from [value.proto](https://github.com/HiberGlobal/api/blob/master/value.proto).
+#### This file was generated from [device.proto](https://github.com/HiberGlobal/api/blob/master/device.proto).
 
 ## Table of Contents
 
 
 
 - Messages
-  - [Value](#value)
-  - [Value.Enum](#valueenum)
-  - [Value.Numeric](#valuenumeric)
-  - [Value.Numeric.BatteryLevel](#valuenumericbatterylevel)
-  - [Value.Numeric.Distance](#valuenumericdistance)
-  - [Value.Numeric.Flow](#valuenumericflow)
-  - [Value.Numeric.FuelEfficiency](#valuenumericfuelefficiency)
-  - [Value.Numeric.Mass](#valuenumericmass)
-  - [Value.Numeric.Percentage](#valuenumericpercentage)
-  - [Value.Numeric.Pressure](#valuenumericpressure)
-  - [Value.Numeric.Speed](#valuenumericspeed)
-  - [Value.Numeric.Temperature](#valuenumerictemperature)
-  - [Value.Numeric.Voltage](#valuenumericvoltage)
-  - [Value.Numeric.Volume](#valuenumericvolume)
+  - [Device](#device)
+  - [Device.Links](#devicelinks)
+  - [Device.PeripheralsEntry](#deviceperipheralsentry)
+  - [DeviceSelection](#deviceselection)
+  - [ModemFilter](#modemfilter)
+  - [ModemFilter.Lifecycles](#modemfilterlifecycles)
 
 - Enums
-  - [Value.Numeric.BatteryLevel.Unit](#valuenumericbatterylevelunit)
-  - [Value.Numeric.Distance.Unit](#valuenumericdistanceunit)
-  - [Value.Numeric.DurationUnit](#valuenumericdurationunit)
-  - [Value.Numeric.Flow.Unit](#valuenumericflowunit)
-  - [Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit)
-  - [Value.Numeric.Mass.Unit](#valuenumericmassunit)
-  - [Value.Numeric.Percentage.Unit](#valuenumericpercentageunit)
-  - [Value.Numeric.Pressure.Unit](#valuenumericpressureunit)
-  - [Value.Numeric.Speed.Unit](#valuenumericspeedunit)
-  - [Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit)
-  - [Value.Numeric.Type](#valuenumerictype)
-  - [Value.Numeric.Voltage.Unit](#valuenumericvoltageunit)
-  - [Value.Numeric.Volume.Unit](#valuenumericvolumeunit)
-  - [Value.Type](#valuetype)
-  - [ValueAggregation](#valueaggregation)
-  - [ValueTransformation](#valuetransformation)
+  - [Sort](#sort)
+
+- Referenced messages from [health.proto](#referenced-messages-from-healthproto)
+  - [hiber.health.HealthLevel](#hiberhealthhealthlevel)
+  - [hiber.health.HealthLevelSelection](#hiberhealthhealthlevelselection)
+
+
+- Referenced messages from [modem.proto](#referenced-messages-from-modemproto)
+  - [hiber.modem.Modem](#hibermodemmodem)
+  - [hiber.modem.ModemSelection](#hibermodemmodemselection)
+
+    - [hiber.modem.ListModemsRequest.Sort](#hibermodemlistmodemsrequestsort)
+    - [hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle)
+    - [hiber.modem.Modem.Peripherals.HiberAntenna](#hibermodemmodemperipheralshiberantenna)
+    - [hiber.modem.Modem.Transfer.Status](#hibermodemmodemtransferstatus)
+    - [hiber.modem.Modem.Type](#hibermodemmodemtype)
+    - [hiber.modem.ModemMessage.Source](#hibermodemmodemmessagesource)
+
+- Referenced messages from [tag.proto](#referenced-messages-from-tagproto)
+  - [hiber.tag.Tag](#hibertagtag)
+  - [hiber.tag.Tag.Label](#hibertagtaglabel)
+  - [hiber.tag.TagSelection](#hibertagtagselection)
+
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -96,353 +95,386 @@
 
 ## Messages
 
-### Value
+### Device
+
+Information about a device.
+A device is anything in the Hiber network that can send data to our systems.
+They have a unique device number in our system, used to identify them.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| number | [ string](#string) | An 8-character hexadecimal string, formatted for human readability. System ignores spaces. |
+| organization | [ string](#string) | The organization that owns this device |
+| name | [ string](#string) | A descriptor given to the device, defaults to it's number. |
+| location | [ hiber.Location](#hiberlocation) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_inactivity**.inactivity | [optional hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
+| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
+| lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | The current lifecycle the modem is in. |
+| peripherals | [map Device.PeripheralsEntry](#deviceperipheralsentry) | additional information |
+| notes | [ string](#string) | Notes field that can be used to add additional information to a modem. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_secure_notes**.secure_notes | [optional string](#string) | Secure notes field that can be used to add additional information to a modem, with limited accessibility. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_link**.link | [optional Device.Links](#devicelinks) | Optional information about what other devices this devices is linked to. |
+| metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_time_zone**.time_zone | [optional string](#string) | The timezone configured for the modem. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_transmission_interval**.transmission_interval | [optional hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
+
+### Device.Links
+
+Collection of data about the devices it is connected to.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifiers | [repeated string](#string) | Other identifiers for this devices. Could include data like its MAC-address or otherwise unique identifier. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_parent**.parent | [optional string](#string) | The device directly downstream from this device. Usually a gateway of some sorts. This device sends its data directly to its parent. The parent will relay the data to our systems. |
+
+### Device.PeripheralsEntry
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| type | [ Value.Type](#valuetype) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.numeric | [ Value.Numeric](#valuenumeric) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.text | [ string](#string) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.enum | [ Value.Enum](#valueenum) | none |
+| key | [ string](#string) | none |
+| value | [ string](#string) | none |
 
-### Value.Enum
+### DeviceSelection
 
-If this value is an enum, this specifies the value, display name and color for this enum value.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| value | [ string](#string) | The enum value. This might be a cryptic value, see the display_name and description for more information. |
-| display_name | [ string](#string) | User-facing name for this value. |
-| description | [ string](#string) | More details for this enum value. |
-| color | [ string](#string) | (Optional) color for this enum value. |
-| priority | [ int32](#int32) | Priority of the value, typically used for ordering. |
-
-### Value.Numeric
-
-If the value is numeric, this specifies the unit, value, etc.
+Selection object for devices.
+Filter devices by device number, tags, etc.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| type | [ Value.Numeric.Type](#valuenumerictype) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.battery_level | [ Value.Numeric.BatteryLevel](#valuenumericbatterylevel) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.distance | [ Value.Numeric.Distance](#valuenumericdistance) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.duration | [ hiber.Duration](#hiberduration) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.fuel_efficiency | [ Value.Numeric.FuelEfficiency](#valuenumericfuelefficiency) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.percentage | [ Value.Numeric.Percentage](#valuenumericpercentage) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.pressure | [ Value.Numeric.Pressure](#valuenumericpressure) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.speed | [ Value.Numeric.Speed](#valuenumericspeed) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.temperature | [ Value.Numeric.Temperature](#valuenumerictemperature) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.voltage | [ Value.Numeric.Voltage](#valuenumericvoltage) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.volume | [ Value.Numeric.Volume](#valuenumericvolume) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.mass | [ Value.Numeric.Mass](#valuenumericmass) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.flow | [ Value.Numeric.Flow](#valuenumericflow) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.unknown | [ double](#double) | none |
+| free_text_search | [ string](#string) | none |
+| modems | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
+| identifiers | [ hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) | none |
+| health_level | [ hiber.Filter.HealthLevels](#hiberfilterhealthlevels) | none |
+| lifecycles | [ ModemFilter.Lifecycles](#modemfilterlifecycles) | none |
+| with_parents | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
+| peripherals | [ hiber.Filter.Properties](#hiberfilterproperties) | none |
+| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
+| with_last_message_in | [ hiber.TimeRange](#hibertimerange) | none |
 
-### Value.Numeric.BatteryLevel
+### ModemFilter
 
-Special case for battery level, since it can be provided in many units.
-Not included in the UnitPreferences, since it cannot be converted.
 
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.BatteryLevel.Unit](#valuenumericbatterylevelunit) | none |
-| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.BatteryLevel.Unit](#valuenumericbatterylevelunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
-### Value.Numeric.Distance
 
-The value is a distance value, converted to your preferred distance unit.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.Distance.Unit](#valuenumericdistanceunit) | none |
-| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Distance.Unit](#valuenumericdistanceunit) | The original unit, iff this value was converted from another unit because of user preferences. |
-
-### Value.Numeric.Flow
+### ModemFilter.Lifecycles
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) | none |
-| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) | The original unit, iff this value was converted from another unit because of user preferences. |
-
-### Value.Numeric.FuelEfficiency
-
-The value is a distance value, converted to your preferred distance unit.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit) | none |
-| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit) | The original unit, iff this value was converted from another unit because of user preferences. |
-
-### Value.Numeric.Mass
-
-The value is a volume value, converted to your preferred volume unit.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.Mass.Unit](#valuenumericmassunit) | none |
-| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Mass.Unit](#valuenumericmassunit) | The original unit, iff this value was converted from another unit because of user preferences. |
-
-### Value.Numeric.Percentage
-
-The value is a percentage.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| value | [ float](#float) | none |
-| unit | [ Value.Numeric.Percentage.Unit](#valuenumericpercentageunit) | none |
-| textual | [ string](#string) | Textual representation with % symbol, rounded based on the user preferences and field config. |
-
-### Value.Numeric.Pressure
-
-The value is a pressure value, converted to your preferred pressure unit.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) | none |
-| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
-
-### Value.Numeric.Speed
-
-The value is a speed value, converted to your preferred speed unit.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.Speed.Unit](#valuenumericspeedunit) | none |
-| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Speed.Unit](#valuenumericspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
-
-### Value.Numeric.Temperature
-
-The value is a temperature, converted to your preferred temperature unit.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit) | none |
-| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
-
-### Value.Numeric.Voltage
-
-The value is a voltage, converted to your preferred voltage unit.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.Voltage.Unit](#valuenumericvoltageunit) | none |
-| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Voltage.Unit](#valuenumericvoltageunit) | The original unit, iff this value was converted from another unit because of user preferences. |
-
-### Value.Numeric.Volume
-
-The value is a volume value, converted to your preferred volume unit.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.Volume.Unit](#valuenumericvolumeunit) | none |
-| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Volume.Unit](#valuenumericvolumeunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| include | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | none |
+| exclude | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | none |
 
 
 ## Enums
-### Value.Numeric.BatteryLevel.Unit
-other units will be added here later, like voltage
+### Sort
+Sorting options for the results.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| PERCENT | Battery level as a percentage (technically not a unit). | 0 |
+| DEVICE_NAME_ASC | Sort alphabetically on the name of the device. De default name of the device is its HEX number, in ascending order. | 0 |
+| DEVICE_NAME_DESC | Sort alphabetically on the name of the device. De default name of the device is its HEX number, in descending order. | 1 |
+| DEVICE_NUMBER_ASC | Sort numerically on the number of the device, in ascending order. | 2 |
+| DEVICE_NUMBER_DESC | Sort numerically on the number of the device, in descending order. | 3 |
+| ACTIVITY | Sort devices on most recent activity first (e.g. newest message received). | 4 |
+| INACTIVITY | Sort devices on least recent activity first (e.g. longest no message received). | 5 |
+| LIFECYCLE_ASC | Sort device on its lifecycle state. | 6 |
+| LIFECYCLE_DESC | Sort device on its lifecycle state in reverse order. | 7 |
+| LIFECYCLE_ALPHABETICAL_ASC | Sort device on lifecycle name, alphabetically. | 8 |
+| LIFECYCLE_ALPHABETICAL_DESC | Sort device on lifecycle name, alphabetically in reverse order. | 9 |
+| ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the device, in ascending order. | 10 |
+| ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the device, in descending order. | 11 |
+| HEALTH_ASC | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 12 |
+| HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 13 |
+| HEALTH_ALPHABETICAL_ASC | Health sorted alphabetically by health level name. | 14 |
+| HEALTH_ALPHABETICAL_DESC | Health sorted alphabetically by health level name, descending order. | 15 |
 
-### Value.Numeric.Distance.Unit
+
+
+## Referenced messages from health.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [health.proto](https://github.com/HiberGlobal/api/blob/master/health.proto).
+
+
+### hiber.health.HealthLevel
+
+A health level in an organization.
+Health can be customized depending on your need.
+
+The default health levels are:
+- OK (green): no problems detected
+- WARNING (orange): unresolvable problems detected, for example delayed or skipped messages
+- ERROR (red): significant problems detected (that typically can be resolved),
+  for example inactivity or invalid messages (resolved on a successful message)
+
+Health levels can be customized to as many as you need for your operations, for example:
+- INTERVENTION
+- DEFECT
+- BATTERY
+- HIGH
+- LOW
+
+Health levels are ordered by severity (low to high),
+and of all things affecting a modem's health,
+only the most severe level will be returned when retrieving a modem.
+
+Health can be assigned using modems alarms, which specify the health level they will cause on a modem (and for how
+long, if it does not resolve automatically).
+
+Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems),
+which can happen when a device manufacturer has provided alarms to your device (e.g. a low battery alarm).
+By default, any unknown health levels map to the level that is marked catch-all.
+
+Health level have a set of named colors, represented by a map where the key is the name of the color
+and the value is a string that represents a valid CSS3 color.
+Simple examples are: green, red, orange, grey, #FF00FF for fuchsia, etc (Keep in mind that CSS3 allows for many
+ways to define colors, see https://www.w3.org/TR/2003/WD-css3-color-20030214/).
+
+All the following definitions also mean "red":
+ - rgb(255, 0, 0)
+ - rgb(100%, 0, 0)
+ - rgba(100%, 0%, 0%, 100%)
+ - hsl(0, 100%, 50%)
+ - hsla(0, 100%, 50%, 1)
+
+The client is responsible for rendering the correct color from the CSS3 color-space and for setting the colors and
+their names. There is no verification on missing named colors, so the client must set sensible defaults when colors
+are missing.
+
+To assist with sorting, health levels have a numeric severity equal to their index in the sorted list of health
+levels (starting at 1). This means higher numbers denote a more severe health.
+Since these values are noting more than a list index, they should not be cached, compared to another organization or
+compared to values retrieved from the API at another time.
+
+For example, an organization using the default health would have:
+- Ok: severity 1
+- Warning: severity 2
+- Error: severity 3
+
+That organization could then add a new health level in between Ok and Warning, meaning the severity of Warning and
+Error will change:
+- Ok, severity 1
+- ItsComplicated, severity 2
+- Warning, severity 3
+- Error, severity 4
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| level | [ string](#string) | The name of this health level. Levels are identified by their name. The API does support renaming, where the rename is propagated to all the relevant parts of the system. |
+| color | [ string](#string) | Default color for the health level, as a string that represents a valid CSS3 color. DEPRECATED: Maps to the color named "text" in color_data. |
+| color_data | [map hiber.health.HealthLevel.ColorDataEntry](#hiberhealthhealthlevelcolordataentry) | Map of named colors, where key is the name and the value is a valid CSS3 color definition. |
+| severity | [ int64](#int64) | A unique numeric value equal to the index of this health level in the list of health levels sorted by ascending severity (starting at 1). This means higher numbers denote a more severe health. This value cannot be used when creating or updating. To change the severity for a health level, reorder all health levels. |
+| catch_all | [ bool](#bool) | Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems), which can happen when a device manufacturer has provided alarms for your device (e.g. a low battery alarm). By default, unknown health levels map to the level of the highest severity, unless another level is marked as catch-all. |
+
+### hiber.health.HealthLevelSelection
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| search | [ string](#string) | Search for the given string in the levels and colors. |
+| levels | [repeated string](#string) | Filter by exact levels. |
+
+
+### Enums
+
+
+## Referenced messages from modem.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [modem.proto](https://github.com/HiberGlobal/api/blob/master/modem.proto).
+
+
+### hiber.modem.Modem
+
+Modem data, including location and last message (if available).
+Location, last message and firmware version can be updated by messages, the rest is typically either set
+when the modem is registered into the system or when a subscription is authorized.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| number | [ string](#string) | An 8-character hexadecimal string |
+| organization | [ string](#string) | none |
+| name | [ string](#string) | An optional descriptor given to the modem |
+| location | [ hiber.Location](#hiberlocation) | none |
+| last_message_id | [ uint64](#uint64) | none |
+| last_message_received_at | [ hiber.Timestamp](#hibertimestamp) | Time the server has received the last message. |
+| last_message_sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the modem has sent the last message. |
+| last_message_body | [ hiber.BytesOrHex](#hiberbytesorhex) | The body of the last message. |
+| inactivity | [ hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
+| health | [ hiber.Health](#hiberhealth) | Deprecated health based on the number of error and warning events this modem has received in the past 30 days Uses the OK, WARNING, ERROR format. |
+| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
+| lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | none |
+| active_subscription | [ hiber.modem.Modem.ActiveSubscription](#hibermodemmodemactivesubscription) | additional information |
+| technical | [ hiber.modem.Modem.TechnicalData](#hibermodemmodemtechnicaldata) | none |
+| peripherals | [ hiber.modem.Modem.Peripherals](#hibermodemmodemperipherals) | none |
+| in_transfer | [ hiber.modem.Modem.Transfer](#hibermodemmodemtransfer) | none |
+| notes | [ string](#string) | Notes field that can be used to add additional information to a modem. |
+| secure_notes | [ string](#string) | Secure notes field that can be used to add additional information to a modem, with limited accessibility. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
+| is_gateway | [ bool](#bool) | [DEPRECATED] Whether the modem is a gateway, it has been configured as a gateway and has connected devices. Use `type` instead. |
+| is_device_connected_to_gateway | [ bool](#bool) | [DEPRECATED] Whether the modem is connected to a modem configured as a gateway. Use `type` instead. |
+| connected_to_gateway | [ string](#string) | [DEPRECATED] The modem number that this modem is connected to, if any. Use `connected_device_info.connected_to_gateway` instead. |
+| external_device_ids | [repeated string](#string) | [DEPRECATED] External device ids, if any. Use `connected_device_info.external_device_ids` instead. |
+| type | [ hiber.modem.Modem.Type](#hibermodemmodemtype) | The type of modem. Used mainly to differentiate in the UI or to sort on. |
+| gateway_info | [ hiber.modem.Modem.GatewayInfo](#hibermodemmodemgatewayinfo) | Additional information when this modem is a gateway. |
+| connected_device_info | [ hiber.modem.Modem.ConnectedDeviceInfo](#hibermodemmodemconnecteddeviceinfo) | Additional information when this modem is a connected device. |
+| metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
+| time_zone | [ string](#string) | The timezone configured for the modem. |
+| transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
+
+### hiber.modem.ModemSelection
+
+Selection object for modems.
+Filter modems by modem id, (child)organization, tags, activation status and time, service type and last message time.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| modems | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
+| free_text_search | [ string](#string) | none |
+| only_active | [ bool](#bool) | Use lifecycle filter instead. |
+| activated_in | [ hiber.TimeRange](#hibertimerange) | none |
+| with_last_message_in | [ hiber.TimeRange](#hibertimerange) | none |
+| with_service_type | [repeated hiber.organization.subscription.ServiceType](#hiberorganizationsubscriptionservicetype) | none |
+| health | [repeated hiber.Health](#hiberhealth) | Deprecated health that uses the OK, WARNING, ERROR format. |
+| health_levels | [repeated string](#string) | Filter modems by health level. |
+| lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
+| transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) | none |
+| include_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Only include modems that have a type listed in types. In other words, when providing multiple types, this is an "OR" relationship. |
+| exclude_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Exclude modems that have a type listed in types. |
+| only_gateways | [ bool](#bool) | [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
+| only_has_external_device_ids | [ bool](#bool) | [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
+| connected_to_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
+| external_device_ids | [repeated string](#string) | none |
+| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ hiber.modem.ModemSelection.Peripherals](#hibermodemmodemselectionperipherals) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.only_without_peripheral | [ bool](#bool) | When set to true, only modems that do not have any peripheral will be included in the result. |
+
+
+### Enums
+#### hiber.modem.ListModemsRequest.Sort
+Sorting options for the results.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| LAST_MESSAGE_RECEIVED | Sorts messages in descending time order. | 0 |
+| LAST_MESSAGE_RECEIVED_INVERTED | Sorts messages in ascending time order. | 1 |
+| MODEM_NUMBER_ASC | Sort numerically on the number of the modem, in ascending order. | 2 |
+| MODEM_NUMBER_DESC | Sort numerically on the number of the modem, in descending order. | 3 |
+| STATUS_ASC | Sort modem on its Status. | 4 |
+| STATUS_DESC | Sort modem on its Status in reverse order. | 5 |
+| STATUS_ASC_ALPHABETICAL | Status sorted alphabetically by Status name. | 14 |
+| STATUS_DESC_ALPHABETICAL | Status sorted alphabetically by Status name, descending order. | 15 |
+| MODEM_NAME_ASC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in ascending order. | 6 |
+| MODEM_NAME_DESC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in descending order. | 7 |
+| ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the modem, in ascending order. | 8 |
+| ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the modem, in descending order. | 9 |
+| HEALTH | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 10 |
+| HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 11 |
+| HEALTH_ASC_ALPHABETICAL | Health sorted alphabetically by health level name. | 12 |
+| HEALTH_DESC_ALPHABETICAL | Health sorted alphabetically by health level name, descending order. | 13 |
+
+#### hiber.modem.Modem.Lifecycle
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| METER | none | 0 |
-| MILLIMETER | none | 1 |
-| CENTIMETER | none | 2 |
-| KILOMETER | none | 3 |
-| YARD | none | 5 |
-| MILE | none | 4 |
-| FOOT | none | 6 |
-| INCH | none | 7 |
-| NAUTICAL_MILE | This is a special case unit and may not be auto-converted to your UnitPreference. | 8 |
+| ACCEPTANCE_TESTING | Modem is deployed, but not active yet. Invisible for customer. | 0 |
+| INSTALLED | Modem is active and sending messages. See health for more details on its health, based on the past messages. | 1 |
+| PAUSED | none | 6 |
+| DISABLED | none | 5 |
+| DECOMMISSIONED | none | 4 |
+| DAMAGED | Kept for backwards compatibility. Internally mapped to decommissioned | 2 |
+| LOST | Kept for backwards compatibility. Internally mapped to decommissioned | 3 |
 
-### Value.Numeric.DurationUnit
-The duration enum is not wrapped in Duration, since duration is always returned as a normalize Duration.
-This unit is still used for fields, however.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| MILLISECONDS | none | 0 |
-| SECONDS | none | 1 |
-| MINUTES | none | 2 |
-| HOURS | none | 3 |
-| DAYS | none | 4 |
-| WEEKS | none | 5 |
-
-### Value.Numeric.Flow.Unit
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| CUBIC_METER_PER_HOUR | none | 0 |
-
-### Value.Numeric.FuelEfficiency.Unit
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| LITER_PER_100_KILOMETER | none | 0 |
-| KILOMETER_PER_LITER | none | 1 |
-| KILOMETER_PER_GALLON | none | 2 |
-| KILOMETER_PER_IMPERIAL_GALLON | none | 3 |
-| MILE_PER_GALLON | none | 4 |
-| MILE_PER_IMPERIAL_GALLON | none | 5 |
-| MILE_PER_LITER | none | 6 |
-
-### Value.Numeric.Mass.Unit
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| KILOGRAMS | none | 0 |
-| POUNDS | none | 1 |
-
-### Value.Numeric.Percentage.Unit
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| PERCENT | Technically not a unit, but for consistency, we've added it here. | 0 |
-
-### Value.Numeric.Pressure.Unit
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| BAR | none | 0 |
-| PSI | none | 1 |
-| K_PA | none | 2 |
-
-### Value.Numeric.Speed.Unit
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| KILOMETERS_PER_HOUR | none | 0 |
-| KNOTS | This is a special case unit and may not be auto-converted to your UnitPreference. | 1 |
-| METERS_PER_SECOND | none | 2 |
-| MILES_PER_HOUR | none | 3 |
-
-### Value.Numeric.Temperature.Unit
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| KELVIN | none | 0 |
-| DEGREES_CELSIUS | none | 1 |
-| DEGREES_FAHRENHEIT | none | 2 |
-
-### Value.Numeric.Type
-The type of numeric value that is represented.
-Supported types will automatically convert to the preferred unit (based on the user settings).
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| TYPE_UNKNOWN | none | 0 |
-| PERCENTAGE | none | 1 |
-| TEMPERATURE | none | 2 |
-| DISTANCE | none | 3 |
-| PRESSURE | none | 4 |
-| VOLTAGE | none | 5 |
-| SPEED | none | 6 |
-| VOLUME | none | 7 |
-| DURATION | none | 8 |
-| FUEL_EFFICIENCY | none | 9 |
-| MASS | none | 10 |
-| BATTERY_LEVEL | none | 11 |
-| FLOW | none | 12 |
-
-### Value.Numeric.Voltage.Unit
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| MILLIVOLT | none | 0 |
-
-### Value.Numeric.Volume.Unit
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| LITER | none | 0 |
-| GALLON_US | none | 1 |
-| GALLON_IMPERIAL | none | 2 |
-| CUBIC_METER | none | 3 |
-| CUBIC_FEET | none | 4 |
-
-### Value.Type
-The type of value that is represented.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| OTHER | none | 0 |
-| NUMERIC | This field contains numeric values, with an optional unit of measurement defined below. | 1 |
-| TEXT | This field contains text to be displayed. | 2 |
-| ENUM | This field switches between several predefined values. Typically used for status fields. | 3 |
-
-### ValueAggregation
-Get the values for the selected field.
-
-There are a few limitations here:
-- text fields can only use the LAST aggregation.
-- enum fields support a subset of aggregations:
-  - DEFAULT and LAST return the last value.
-  - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order.
-  - AVERAGE and SUM are not supported.
-
-- enum duration
-
-An enum example:
-Field "status" with this timeline: 00:00 OK, 00:10 FAILED, 00:20 OK, 00:25 FAILED, 00:40 OK
-- aggregation DEFAULT or LAST: OK, since it's OK at the end of the time range.
-- aggregation SUM: OK: 35m, FAILED: 25m
+#### hiber.modem.Modem.Peripherals.HiberAntenna
+A Hiber antenna is required for the modem to function.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | DEFAULT | none | 0 |
-| AVERAGE | Return the average value. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 1 |
-| SUM | Return the sum all values. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 2 |
-| LAST | Just take the last value. | 3 |
-| MINIMUM | Return the lowest value. For enum fields, the order of values is used to determine the MINIMUM. Not supported for textual fields. When used with these fields, LAST is used instead. | 4 |
-| MAXIMUM | Return the highest value. For enum fields, the order of values is used to determine the MAXIMUM. Not supported for textual fields. When used with these fields, LAST is used instead. | 5 |
+| HIBER_PANDA | none | 1 |
+| HIBER_GRIZZLY | none | 2 |
+| HIBER_BLACK | none | 3 |
+| CUSTOM | none | 4 |
 
-### ValueTransformation
-Transform the values into a derived value.
+#### hiber.modem.Modem.Transfer.Status
+
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| DURATION | Instead of returning the value, return the amount of time a value was active. Aggregation (if applicable) is applied afterwards on the duration value. | 0 |
-| DELTA | Instead of returning the value, return the difference between the value and the previous value. Aggregation (if applicable) is applied before the delta is calculated. | 1 |
+| NONE | none | 0 |
+| INBOUND | Modem has been shipped or transferred to you and is inbound. When you mark the transfer as received, the modems are added to your organization. If you encounter any issues, you can mark modems for return using the ModemTransferReturnService. | 1 |
+| OUTBOUND | Modem has been shipped or transferred by you and is outbound. When the transfer is received, the modems are removed from your organization, though the recipient may still return them later. | 2 |
+| RETURNING | You shipped this modem to another organization, but they are returning it. When you mark the transfer as received, the modems are added back to your organization. | 3 |
 
+#### hiber.modem.Modem.Type
+The effective type of this modem.
+Type can depend on the hardware itself as well as network topology.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| OTHER | A device of which the specific type is not known | 0 |
+| DIRECT | A devices that directly connects to the satellite | 1 |
+| GATEWAY | A device that can receive messages from sensors in the field and relay them (directly) to the satellite. Typically a LoRaWAN hub. Note that gateways also send messages themselves (e.g. a daily heartbeat). | 2 |
+| CONNECTED_DEVICE | A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. | 3 |
+
+#### hiber.modem.ModemMessage.Source
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| HIBERBAND | A real message from a modem or gateway, sent over Hiberband to the server. | 0 |
+| DIRECT_TO_API | A real message from a modem or gateway, sent directly to the API using a persistent connection. | 1 |
+| TEST | A test message sent to the testing API. | 2 |
+| SIMULATION | A simulated message, generated by the server. | 3 |
+
+
+
+## Referenced messages from tag.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [tag.proto](https://github.com/HiberGlobal/api/blob/master/tag.proto).
+
+
+### hiber.tag.Tag
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| id | [ int64](#int64) | none |
+| label | [ hiber.tag.Tag.Label](#hibertagtaglabel) | none |
+
+### hiber.tag.Tag.Label
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| name | [ string](#string) | none |
+| type | [ string](#string) | none |
+
+### hiber.tag.TagSelection
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| search | [repeated string](#string) | none |
+| names | [repeated string](#string) | none |
+| filter | [ hiber.Filter.Tags](#hiberfiltertags) | none |
+| types | [repeated string](#string) | none |
+
+
+### Enums
 
 
 ## Referenced messages from base.proto

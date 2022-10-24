@@ -178,10 +178,13 @@
   - [hiber.Filter.Events](#hiberfilterevents)
   - [hiber.Filter.Events.Update](#hiberfiltereventsupdate)
   - [hiber.Filter.FieldEnumValues](#hiberfilterfieldenumvalues)
+  - [hiber.Filter.HealthLevels](#hiberfilterhealthlevels)
+  - [hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers)
   - [hiber.Filter.Modems](#hiberfiltermodems)
   - [hiber.Filter.Modems.Update](#hiberfiltermodemsupdate)
   - [hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions)
   - [hiber.Filter.Organizations](#hiberfilterorganizations)
+  - [hiber.Filter.Properties](#hiberfilterproperties)
   - [hiber.Filter.Publishers](#hiberfilterpublishers)
   - [hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions)
   - [hiber.Filter.Tags](#hiberfiltertags)
@@ -191,6 +194,10 @@
   - [hiber.Filter.Webhooks](#hiberfilterwebhooks)
   - [hiber.Location](#hiberlocation)
   - [hiber.LocationSelection](#hiberlocationselection)
+  - [hiber.MapFilter](#hibermapfilter)
+  - [hiber.MapFilter.ExcludeEntry](#hibermapfilterexcludeentry)
+  - [hiber.MapFilter.IncludeAndEntry](#hibermapfilterincludeandentry)
+  - [hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues)
   - [hiber.NamedFile](#hibernamedfile)
   - [hiber.Pagination](#hiberpagination)
   - [hiber.Pagination.Result](#hiberpaginationresult)
@@ -849,11 +856,11 @@ This is a shortcut for creating an alarm and then adding checks, and as such can
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| created | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | none |
+| created | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | The created modem alarm. |
 
 ### hiber.modem.alarm.DeleteModemAlarm
 
-
+Delete an alarm.
 
 
 ### hiber.modem.alarm.DeleteModemAlarm.Request
@@ -863,7 +870,7 @@ This is a shortcut for creating an alarm and then adding checks, and as such can
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| identifier | [ string](#string) | none |
+| identifier | [ string](#string) | Identifier of the modem alarm to delete. |
 
 ### hiber.modem.alarm.DeleteModemAlarm.Response
 
@@ -872,7 +879,7 @@ This is a shortcut for creating an alarm and then adding checks, and as such can
 
 ### hiber.modem.alarm.ListModemAlarms
 
-
+List modem alarms in an organization.
 
 
 ### hiber.modem.alarm.ListModemAlarms.Request
@@ -882,8 +889,8 @@ This is a shortcut for creating an alarm and then adding checks, and as such can
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| selection | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) | Selection criteria for listing modem alarms. |
+| pagination | [ hiber.Pagination](#hiberpagination) | Pagination for the returned alarms. |
 | apply_unit_preferences | [ bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
 
 ### hiber.modem.alarm.ListModemAlarms.Response
@@ -892,9 +899,9 @@ This is a shortcut for creating an alarm and then adding checks, and as such can
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modem_alarms | [repeated hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
-| request | [ hiber.modem.alarm.ListModemAlarms.Request](#hibermodemalarmlistmodemalarmsrequest) | none |
+| modem_alarms | [repeated hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | A list of modem alarms. |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | A pagination object, which can be used to go through the alarms. |
+| request | [ hiber.modem.alarm.ListModemAlarms.Request](#hibermodemalarmlistmodemalarmsrequest) | The request made to list the given alarms. |
 
 ### hiber.modem.alarm.MakeModemAlarmAvailableToChildOrganizationRequest
 
@@ -929,7 +936,7 @@ This can be changed on assignment with the default_health_level parameter, to fi
 
 Note, when an alarm is inherited the health levels may not match yours. If the health level matches one of
 your health levels, that level is used. Otherwise, the catch-all health level is used.
-See the health definition for more information on the catch all health level (typically the most severe).
+See the health definition for more information on the catch-all health level (typically the most severe).
 Note that the health level displayed here is the result of the steps above.
 
 When assigned to a (set of) modem(s), an alarm can be customized using its parameters.
@@ -961,7 +968,7 @@ would have the following parameters:
 | available_to_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Availability to child organizations. This alarm can be shared to child organizations, so it can be assigned to their modems, either directly or automatically over all selected child organizations. Only the owner organization is able to edit the alarm. |
 | trigger_condition | [ hiber.modem.alarm.ModemAlarm.TriggerCondition](#hibermodemalarmmodemalarmtriggercondition) | Condition determining when an alarm is triggered if it has multiple checks. |
 | default_health_level | [ string](#string) | The default health level for checks in this alarm, if they have no health_level configured. |
-| health_level_after_resolved | [ hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved](#hibermodemalarmmodemalarmhealthlevelafterresolved) | Allow the alarm to cause a health level for the modem even after it has been resolved. By configuring this, you can specify the modem health should be affected for a longer period. For example, when using an inactivity check, this would could be used to configure modem health ERROR while inactive, lowering to INVESTIGATE for a day after a new message comes in. |
+| health_level_after_resolved | [ hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved](#hibermodemalarmmodemalarmhealthlevelafterresolved) | Allow the alarm to cause a health level for the modem even after it has been resolved. By configuring this, you can specify the modem health should be affected for a longer period. For example, when using an inactivity check, this could be used to configure modem health ERROR while inactive, lowering to INVESTIGATE for a day after a new message comes in. |
 | checks | [repeated hiber.modem.alarm.ModemAlarm.Check](#hibermodemalarmmodemalarmcheck) | The checks in this alarm, that validate the state of the modem. |
 | alarm_parameters | [ google.protobuf.Struct](#googleprotobufstruct) | Parameters for this alarm. This field displays all the parameters that can be set for the alarm on assignment, with their current value. |
 
@@ -976,13 +983,15 @@ The error message template is a string with parameters for the relevant data.
 The parameters are included as {parameter}, which gets replaced with the value.
 
 The supported parameters are different per check, but the parameters below are always supported:
-- modem: the modem number.
+- modem:name: the modem name.
+- modem:number: the modem number.
 - message: the id of the message, if any.
 - expected: a shortcut for the expected value(s), depending on the check:
-  - equals check: expected value
-  - oneof check: expected values as [a, b, c]
-  - threshold check: expected range as minimum..maximum
+  - inactivity check: expected duration
   - location check: expected area as [(bottom left), (top right)], and shape as [(point), (point), ..., (point)]
+  - equals/minimum/maximum check: expected value
+  - oneof check (allowed/blocked): expected values as [a, b, c]
+  - threshold/delta check: expected range as minimum..maximum, extended with duration for delta check
 - actual: the invalid actual value(s) for this check.
 
 The checks below define other available parameters.
@@ -1009,10 +1018,10 @@ Numeric values can be formatted with an extra postfix on the parameters
 | description | [ string](#string) | Longer description for this check (optional). |
 | health_level | [ string](#string) | The health level that this check would cause for a modem, when it fails. If not set, the alarm default is used. |
 | error_message_template | [ string](#string) | The error message template for this check, with parameters that will be filled in based on the check. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.location | [ hiber.modem.alarm.ModemAlarm.Check.LocationCheck](#hibermodemalarmmodemalarmchecklocationcheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.field | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck](#hibermodemalarmmodemalarmcheckfieldcheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.inactivity | [ hiber.modem.alarm.ModemAlarm.Check.InactivityCheck](#hibermodemalarmmodemalarmcheckinactivitycheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.delay | [ hiber.modem.alarm.ModemAlarm.Check.DelayCheck](#hibermodemalarmmodemalarmcheckdelaycheck) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.location | [ hiber.modem.alarm.ModemAlarm.Check.LocationCheck](#hibermodemalarmmodemalarmchecklocationcheck) | Check whether the device is in a given location. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.field | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck](#hibermodemalarmmodemalarmcheckfieldcheck) | Check that a message body field has a specified value. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.inactivity | [ hiber.modem.alarm.ModemAlarm.Check.InactivityCheck](#hibermodemalarmmodemalarmcheckinactivitycheck) | Check whether the device exceeds inactivity limits. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.delay | [ hiber.modem.alarm.ModemAlarm.Check.DelayCheck](#hibermodemalarmmodemalarmcheckdelaycheck) | Check whether a message delay exceeds delay limits. |
 
 ### hiber.modem.alarm.ModemAlarm.Check.DelayCheck
 
@@ -1047,7 +1056,7 @@ to require that an array has a certain length.
 - $.my_array..my_field: the array of my_field values (for all objects in my_array) is selected
 - $.my_array[*].my_field: the array of my_field values (for all objects in my_array) is selected
 
-Note that this for the examples above, if they return an array, the entire array is used as the value
+Note that for the examples above, if they return an array, the entire array is used as the value
 in the comparison for equals and oneof.
 
 A check of this type has the following parameters (matches the fields):
@@ -1057,8 +1066,11 @@ A check of this type has the following parameters (matches the fields):
 For the equals check:
 - field.equals.expected: iff this is an equals check, replace the expected value
 
-For the oneof check:
-- field.oneof.expected: iff this is a oneof check, replace the expected values
+For the allowed check:
+- field.allowed.allowed: iff this is an allowed check, replace the expected values
+
+For the blocked check:
+- field.blocked.blocked: iff this is a blocked check, replace the expected values
 
 For the threshold check:
 - field.threshold.expected: iff this is a threshold check, replace the expected range
@@ -1066,7 +1078,7 @@ For the threshold check:
 - field.threshold.maximum: iff this is a threshold check, replace the expected maximum
 
 For the delta check:
-- field.delta.period:
+- field.delta.period: iff this is a delta check, replace the expected duration
 - field.delta.threshold.expected: iff this is a delta check, replace the expected range
 - field.delta.threshold.minimum: iff this is a delta check, replace the expected minimum
 - field.delta.threshold.maximum: iff this is a delta check, replace the expected maximum
@@ -1083,13 +1095,13 @@ The delta check also adds a few additional error message variables:
 | path | [ string](#string) | Select the field(s) that this check is applied to, using a json path. |
 | ignore_field_not_found | [ bool](#bool) | Whether to ignore this check if the field is not found. This can be useful if your path selects multiple values in an array, like my_array[*].value, and not all entries have the field, or when fields are omitted if they have a default value. |
 | unit | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | The unit that this alarm check is using. The field's values will automatically be converted into this unit before the check is applied. Note: unit is not currently available in the alarm_parameters. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.equals | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.EqualsCheck](#hibermodemalarmmodemalarmcheckfieldcheckequalscheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.allowed | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.AllowedCheck](#hibermodemalarmmodemalarmcheckfieldcheckallowedcheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.blocked | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedCheck](#hibermodemalarmmodemalarmcheckfieldcheckblockedcheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.minimum | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.MinimumCheck](#hibermodemalarmmodemalarmcheckfieldcheckminimumcheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.maximum | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.MaximumCheck](#hibermodemalarmmodemalarmcheckfieldcheckmaximumcheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.threshold | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.ThresholdCheck](#hibermodemalarmmodemalarmcheckfieldcheckthresholdcheck) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.delta | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.DeltaCheck](#hibermodemalarmmodemalarmcheckfieldcheckdeltacheck) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.equals | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.EqualsCheck](#hibermodemalarmmodemalarmcheckfieldcheckequalscheck) | Check that a field equals a value. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.allowed | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.AllowedCheck](#hibermodemalarmmodemalarmcheckfieldcheckallowedcheck) | Check that a field equals one of a set of values. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.blocked | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedCheck](#hibermodemalarmmodemalarmcheckfieldcheckblockedcheck) | Check that a field does not equal one of a set of values. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.minimum | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.MinimumCheck](#hibermodemalarmmodemalarmcheckfieldcheckminimumcheck) | Chech that a field is higher than the given value. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.maximum | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.MaximumCheck](#hibermodemalarmmodemalarmcheckfieldcheckmaximumcheck) | Check that a field is lower than the given value. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.threshold | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.ThresholdCheck](#hibermodemalarmmodemalarmcheckfieldcheckthresholdcheck) | Check that a field is within a given numeric range. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.delta | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.DeltaCheck](#hibermodemalarmmodemalarmcheckfieldcheckdeltacheck) | Check that a field's difference in value over a given period is within a specified numeric range. |
 
 ### hiber.modem.alarm.ModemAlarm.Check.FieldCheck.AllowedCheck
 
@@ -1105,7 +1117,7 @@ Check that the field is not in a set of blocked values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| blocked | [repeated google.protobuf.Value](#googleprotobufvalue) | none |
+| blocked | [repeated google.protobuf.Value](#googleprotobufvalue) | The list of blocked values; the field should not match any of them. |
 
 ### hiber.modem.alarm.ModemAlarm.Check.FieldCheck.DeltaCheck
 
@@ -1124,7 +1136,7 @@ Check that the field is equal to the given value.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| expected | [ google.protobuf.Value](#googleprotobufvalue) | none |
+| expected | [ google.protobuf.Value](#googleprotobufvalue) | The expected value a field should have. |
 
 ### hiber.modem.alarm.ModemAlarm.Check.FieldCheck.MaximumCheck
 
@@ -1183,7 +1195,7 @@ Allow the alarm to cause a health level for the modem even after a new message h
 Typically, an alarm event only affects the modem health while it is from the last message from that modem.
 By configuring this, you can specify the modem health should be affected for a longer period.
 
-For example, when using an inactivity check, this would could be used to configure modem health ERROR while
+For example, when using an inactivity check, this could be used to configure modem health ERROR while
 inactive, lowering to INVESTIGATE for a day after a new message comes in.
 
 | Field | Type | Description |
@@ -1193,18 +1205,21 @@ inactive, lowering to INVESTIGATE for a day after a new message comes in.
 
 ### hiber.modem.alarm.ModemAlarmSelection
 
+Selection criteria for listing modem alarms in an organization. If no options are provided, all modem alarms
+are valid.
 
+If values are provided both for identifiers and search, then only alarms are selected that match both criteria.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| identifiers | [repeated string](#string) | none |
+| identifiers | [repeated string](#string) | Selects alarms by the given list of alarm identifiers. |
 | search | [ string](#string) | Search for the given string in identifier, description, fields and values. |
 | owner_organizations | [repeated string](#string) | Only return alarms that were created by the given organizations. |
-| only_owned_alarms | [ bool](#bool) | none |
+| only_owned_alarms | [ bool](#bool) | Only list owned alarms. Alarms are considered owned if your current organization created them, and thus would be able to delete them. Alarms can also be inherited from parent organizations, in which case they are owned by that parent organization. |
 
 ### hiber.modem.alarm.TestModemAlarmTestParameters
 
-
+Test a set of parameters on a modem alarm, to see the result when they are applied during assignment.
 
 
 ### hiber.modem.alarm.TestModemAlarmTestParameters.Request
@@ -1214,8 +1229,8 @@ inactive, lowering to INVESTIGATE for a day after a new message comes in.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| alarm_identifier | [ string](#string) | none |
-| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | none |
+| alarm_identifier | [ string](#string) | The identifier of the alarm on which to test parameters. |
+| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | The parameters of the alarm that are changed. |
 
 ### hiber.modem.alarm.TestModemAlarmTestParameters.Response
 
@@ -1310,8 +1325,8 @@ Add a check to the alarm, iff you are the owner or can impersonate the owner org
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| alarm_identifier | [ string](#string) | none |
-| check | [ hiber.modem.alarm.ModemAlarm.Check](#hibermodemalarmmodemalarmcheck) | The check to add to the Modem Alarm. Identifier must be unique within the alarm. |
+| alarm_identifier | [ string](#string) | The identifier of the alarm to which the check is added. |
+| check | [ hiber.modem.alarm.ModemAlarm.Check](#hibermodemalarmmodemalarmcheck) | The check to add to the Modem Alarm. Identifier of the check must be unique within the alarm. |
 
 ### hiber.modem.alarm.UpdateModemAlarmAddCheck.Response
 
@@ -1323,7 +1338,7 @@ Add a check to the alarm, iff you are the owner or can impersonate the owner org
 
 ### hiber.modem.alarm.UpdateModemAlarmAvailability
 
-
+Update the modem alarm availability, specifying for which (child) organizations an alarm is available.
 
 
 ### hiber.modem.alarm.UpdateModemAlarmAvailability.Request
@@ -1333,7 +1348,7 @@ Add a check to the alarm, iff you are the owner or can impersonate the owner org
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| alarm_identifier | [ string](#string) | none |
+| alarm_identifier | [ string](#string) | The identifier of the alarm for which to update the modem availability. |
 | replace_apply_to_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | The new set of child organizations that this rule applies to. Replaces the original value! |
 
 ### hiber.modem.alarm.UpdateModemAlarmAvailability.Response
@@ -1346,7 +1361,7 @@ Add a check to the alarm, iff you are the owner or can impersonate the owner org
 
 ### hiber.modem.alarm.UpdateModemAlarmRemoveCheck
 
-
+Remove a check from an alarm.
 
 
 ### hiber.modem.alarm.UpdateModemAlarmRemoveCheck.Request
@@ -1356,8 +1371,8 @@ Add a check to the alarm, iff you are the owner or can impersonate the owner org
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| alarm_identifier | [ string](#string) | none |
-| check_identifier | [ string](#string) | none |
+| alarm_identifier | [ string](#string) | The identifier of the alarm from which to remove the check. |
+| check_identifier | [ string](#string) | The identifier of the check to remove. |
 
 ### hiber.modem.alarm.UpdateModemAlarmRemoveCheck.Response
 
@@ -1369,7 +1384,10 @@ Add a check to the alarm, iff you are the owner or can impersonate the owner org
 
 ### hiber.modem.alarm.UpdateModemAlarmUpdateCheck
 
+Update a check of an alarm.
 
+Only the values of a check can be updated, e.g., it is not possible to change an inactivity check to a location
+check.
 
 
 ### hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Request
@@ -1379,9 +1397,9 @@ Add a check to the alarm, iff you are the owner or can impersonate the owner org
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| alarm_identifier | [ string](#string) | none |
-| check_identifier | [ string](#string) | none |
-| update_check | [ hiber.modem.alarm.ModemAlarm.Check](#hibermodemalarmmodemalarmcheck) | none |
+| alarm_identifier | [ string](#string) | The identifier of the alarm of which to update the check. |
+| check_identifier | [ string](#string) | The identifier of the check to update. |
+| update_check | [ hiber.modem.alarm.ModemAlarm.Check](#hibermodemalarmmodemalarmcheck) | The new values for the check of this alarm. |
 | update_using_parameters | [map hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry](#hibermodemalarmupdatemodemalarmupdatecheckrequestupdateusingparametersentry) | Use parameters to update the check, as it would be when they were added when the alarm was assigned. |
 | test_parameters_only | [ bool](#bool) | If set, the update is not actually saved, but only applied and returned. This is a convenience to easily test parameters for a check similar to TestModemAlarmTestParameters. |
 
@@ -2045,6 +2063,24 @@ Update object to update a Filter.Events field.
 | include | [repeated string](#string) | none |
 | exclude | [repeated string](#string) | none |
 
+### hiber.Filter.HealthLevels
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| include | [repeated string](#string) | none |
+| exclude | [repeated string](#string) | none |
+
+### hiber.Filter.ModemIdentifiers
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| include | [repeated string](#string) | none |
+| exclude | [repeated string](#string) | none |
+
 ### hiber.Filter.Modems
 
 
@@ -2081,6 +2117,15 @@ Update object to update a Filter.Modems field.
 | ----- | ---- | ----------- |
 | include | [repeated string](#string) | none |
 | exclude | [repeated string](#string) | none |
+
+### hiber.Filter.Properties
+
+Filter result on specific properties encoded in map-value pairs.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **selection**.properties | [ hiber.MapFilter](#hibermapfilter) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **selection**.include_only_empty | [ bool](#bool) | When set to true, match only empty property-sets. |
 
 ### hiber.Filter.Publishers
 
@@ -2170,6 +2215,61 @@ for example
 | ----- | ---- | ----------- |
 | areas | [repeated hiber.Area](#hiberarea) | Rectangular areas, each defined by two locations, normalized to bottom-left and top-right points. |
 | shapes | [repeated hiber.Shape](#hibershape) | Polygon shapes, each defined by a list of locations, which draw a shape on the map. |
+
+### hiber.MapFilter
+
+Some properties are stored as a name-value pair (e.g. bluetooth: 4.0, bluetooth: BLE).
+This filter allows selecting a range of values for a specific name.
+One could imagine wanting to include "all devices with bluetooth 4.0 or 4.1".
+
+To select for multiple versions of a property,
+add the name of the property as a map-key and add a repeated list of versions as the map-value.
+
+For example:
+- include { 'bluetooth' -> [ ] }
+    returns all items that have any version of bluetooth,
+- include { 'bluetooth' -> [ '4.0', '5.0' ] }
+    will only return items that have bluetooth version 4.0 _or_ 5.0 (inclusive or),
+- include { 'bluetooth' -> [ '' ] }
+    would only select bluetooth peripherals that don't have any version set,
+- include { 'bluetooth' -> [ ], 'LoRaWAN' -> [ ] }
+    will only select items that have both bluetooth (any version) _and_ LoRaWAN (any version),
+- include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ ] }
+    will return an empty list since exclude will take precedence, and
+- include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ '3.0' ] }
+    returns only items that have bluetooth, but not version 3.0.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| include_and | [map hiber.MapFilter.IncludeAndEntry](#hibermapfilterincludeandentry) | Filter to only include items with all of the given set of properties. |
+| exclude | [map hiber.MapFilter.ExcludeEntry](#hibermapfilterexcludeentry) | Filter to exclude items with any of the given set of properties. |
+
+### hiber.MapFilter.ExcludeEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) | none |
+| value | [ hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues) | none |
+
+### hiber.MapFilter.IncludeAndEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) | none |
+| value | [ hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues) | none |
+
+### hiber.MapFilter.OneOfValues
+
+Technical solution to make map<k, v> into a map<k, repeated v>,
+which is not possible in protobuf without trickery.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [repeated string](#string) | none |
 
 ### hiber.NamedFile
 

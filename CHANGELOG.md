@@ -2,6 +2,12 @@
 
 #### Upcoming Changes
 
+### 0.126 (2022-10-24)
+
+##### DeviceService
+
+- Added a new device service to make updates to devices easier.
+
 ### 0.125 (2022-10-17)
 
 ##### EasypulseService

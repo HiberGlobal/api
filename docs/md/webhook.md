@@ -70,10 +70,13 @@
   - [hiber.Filter.Events](#hiberfilterevents)
   - [hiber.Filter.Events.Update](#hiberfiltereventsupdate)
   - [hiber.Filter.FieldEnumValues](#hiberfilterfieldenumvalues)
+  - [hiber.Filter.HealthLevels](#hiberfilterhealthlevels)
+  - [hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers)
   - [hiber.Filter.Modems](#hiberfiltermodems)
   - [hiber.Filter.Modems.Update](#hiberfiltermodemsupdate)
   - [hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions)
   - [hiber.Filter.Organizations](#hiberfilterorganizations)
+  - [hiber.Filter.Properties](#hiberfilterproperties)
   - [hiber.Filter.Publishers](#hiberfilterpublishers)
   - [hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions)
   - [hiber.Filter.Tags](#hiberfiltertags)
@@ -83,6 +86,10 @@
   - [hiber.Filter.Webhooks](#hiberfilterwebhooks)
   - [hiber.Location](#hiberlocation)
   - [hiber.LocationSelection](#hiberlocationselection)
+  - [hiber.MapFilter](#hibermapfilter)
+  - [hiber.MapFilter.ExcludeEntry](#hibermapfilterexcludeentry)
+  - [hiber.MapFilter.IncludeAndEntry](#hibermapfilterincludeandentry)
+  - [hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues)
   - [hiber.NamedFile](#hibernamedfile)
   - [hiber.Pagination](#hiberpagination)
   - [hiber.Pagination.Result](#hiberpaginationresult)
@@ -781,6 +788,24 @@ Update object to update a Filter.Events field.
 | include | [repeated string](#string) | none |
 | exclude | [repeated string](#string) | none |
 
+### hiber.Filter.HealthLevels
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| include | [repeated string](#string) | none |
+| exclude | [repeated string](#string) | none |
+
+### hiber.Filter.ModemIdentifiers
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| include | [repeated string](#string) | none |
+| exclude | [repeated string](#string) | none |
+
 ### hiber.Filter.Modems
 
 
@@ -817,6 +842,15 @@ Update object to update a Filter.Modems field.
 | ----- | ---- | ----------- |
 | include | [repeated string](#string) | none |
 | exclude | [repeated string](#string) | none |
+
+### hiber.Filter.Properties
+
+Filter result on specific properties encoded in map-value pairs.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **selection**.properties | [ hiber.MapFilter](#hibermapfilter) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **selection**.include_only_empty | [ bool](#bool) | When set to true, match only empty property-sets. |
 
 ### hiber.Filter.Publishers
 
@@ -906,6 +940,61 @@ for example
 | ----- | ---- | ----------- |
 | areas | [repeated hiber.Area](#hiberarea) | Rectangular areas, each defined by two locations, normalized to bottom-left and top-right points. |
 | shapes | [repeated hiber.Shape](#hibershape) | Polygon shapes, each defined by a list of locations, which draw a shape on the map. |
+
+### hiber.MapFilter
+
+Some properties are stored as a name-value pair (e.g. bluetooth: 4.0, bluetooth: BLE).
+This filter allows selecting a range of values for a specific name.
+One could imagine wanting to include "all devices with bluetooth 4.0 or 4.1".
+
+To select for multiple versions of a property,
+add the name of the property as a map-key and add a repeated list of versions as the map-value.
+
+For example:
+- include { 'bluetooth' -> [ ] }
+    returns all items that have any version of bluetooth,
+- include { 'bluetooth' -> [ '4.0', '5.0' ] }
+    will only return items that have bluetooth version 4.0 _or_ 5.0 (inclusive or),
+- include { 'bluetooth' -> [ '' ] }
+    would only select bluetooth peripherals that don't have any version set,
+- include { 'bluetooth' -> [ ], 'LoRaWAN' -> [ ] }
+    will only select items that have both bluetooth (any version) _and_ LoRaWAN (any version),
+- include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ ] }
+    will return an empty list since exclude will take precedence, and
+- include { 'bluetooth' -> [ ] }, exclude { 'bluetooth' -> [ '3.0' ] }
+    returns only items that have bluetooth, but not version 3.0.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| include_and | [map hiber.MapFilter.IncludeAndEntry](#hibermapfilterincludeandentry) | Filter to only include items with all of the given set of properties. |
+| exclude | [map hiber.MapFilter.ExcludeEntry](#hibermapfilterexcludeentry) | Filter to exclude items with any of the given set of properties. |
+
+### hiber.MapFilter.ExcludeEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) | none |
+| value | [ hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues) | none |
+
+### hiber.MapFilter.IncludeAndEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) | none |
+| value | [ hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues) | none |
+
+### hiber.MapFilter.OneOfValues
+
+Technical solution to make map<k, v> into a map<k, repeated v>,
+which is not possible in protobuf without trickery.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [repeated string](#string) | none |
 
 ### hiber.NamedFile
 
