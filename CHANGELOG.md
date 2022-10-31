@@ -2,6 +2,8 @@
 
 #### Upcoming Changes
 
+### 0.127 (2022-10-31)
+
 ### 0.126 (2022-10-24)
 
 ##### DeviceService

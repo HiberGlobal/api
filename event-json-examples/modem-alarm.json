@@ -10,59 +10,56 @@
     "errorMessages": {
       "example-check-id": "Expected battery to be within 20..100%, but it is now at 15%!"
     },
+    "tags": [{
+      "id": "1",
+      "label": {
+        "name": "example-tag",
+        "type": "group"
+      }
+    }, {
+      "id": "2",
+      "label": {
+        "name": "example-tag-2",
+        "type": "group"
+      }
+    }],
+    "title": "Expected battery to be within 20..100%, but it is now at 15%!",
+    "description": "In organization your-organization modem AAAA AAAA has failed the following checks:\n\n- example-check-id: Expected battery to be within 20..100%, but it is now at 15%!\n\nThe error messages were produced by alarm example-identifier: example",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z"
+    },
     "healthLevel": {
       "level": "Error",
       "color": "red",
+      "catchAll": true,
       "colorData": {
         "fill": "red",
         "text": "red"
       },
-      "catchAll": true,
       "severity": "3"
-    },
-    "tags": [
-      {
-        "id": "1",
-        "label": {
-          "name": "example-tag",
-          "type": "group"
-        }
-      },
-      {
-        "id": "2",
-        "label": {
-          "name": "example-tag-2",
-          "type": "group"
-        }
-      }
-    ],
-    "title": "Expected battery to be within 20..100%, but it is now at 15%!",
-    "description": "Modem AAAA AAAA has failed the following checks:\n\n- example-check-id: Expected battery to be within 20..100%, but it is now at 15%!\n\nThe error messages were produced by alarm example-identifier: example",
-    "time": {
-      "timestamp": "2020-06-01T05:15:25.355Z",
-      "textual": "2020-06-01T05:15:25.355Z"
     }
   },
-  "title": "Expected battery to be within 20..100%, but it is now at 15%!",
-  "description": "Modem AAAA AAAA has failed the following checks:\n\n- example-check-id: Expected battery to be within 20..100%, but it is now at 15%!\n\nThe error messages were produced by alarm example-identifier: example",
-  "modem": {
-    "number": "AAAA AAAA",
-    "name": "AAAA AAAA",
-    "identifier": "00 11 22 33 AA BB CC DD"
-  },
+  "type": "MODEM_ALARM",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
     "textual": "2020-06-01T05:15:25.355Z"
   },
-  "type": "MODEM_ALARM",
   "healthLevel": {
     "level": "Error",
     "color": "red",
+    "catchAll": true,
     "colorData": {
       "fill": "red",
       "text": "red"
     },
-    "catchAll": true,
     "severity": "3"
+  },
+  "title": "Expected battery to be within 20..100%, but it is now at 15%!",
+  "description": "In organization your-organization modem AAAA AAAA has failed the following checks:\n\n- example-check-id: Expected battery to be within 20..100%, but it is now at 15%!\n\nThe error messages were produced by alarm example-identifier: example",
+  "modem": {
+    "number": "AAAA AAAA",
+    "name": "AAAA AAAA",
+    "identifier": "00 11 22 33 AA BB CC DD"
   }
 }
