@@ -2,6 +2,13 @@
 
 #### Upcoming Changes
 
+### 0.128 (2022-11-07)
+
+#### ValueService
+
+- Add `MODEM_VALUES` permission to Permissions.
+  - Let ValueServices use this permission instead of the `MODEM_MESSAGES` permission.
+
 ### 0.127 (2022-10-31)
 
 ### 0.126 (2022-10-24)

@@ -270,6 +270,7 @@ Requesting user-related events explicitly if you cannot access the users will re
 | MODEMS_MESSAGE_BODY_PARSERS | Manage and assign message body parsers. Includes MODEMS permission. | 43 |
 | MODEMS_SECURE_NOTES | Show and update secure notes. Includes MODEMS permission. | 42 |
 | MODEMS_ALARMS | Manage and assign message alerts. Includes MODEMS permission. | 44 |
+| MODEM_VALUES | Read modem values. | 17 |
 | MODEM_MESSAGES | Read modem messages. | 15 |
 | MODEM_MESSAGES_SEND_TEST_MESSAGES | Send modem messages using the TestingService. Does not include MODEMS or MESSAGES permission. | 16 |
 | MODEM_MESSAGES_SEND_REAL_MESSAGES | Send modem messages using real message sources (i.e. gateway). Does not include MODEMS or MESSAGES permission. | 41 |

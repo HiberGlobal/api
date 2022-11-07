@@ -45,6 +45,8 @@ enum OrganizationPermission {
     /* Manage and assign message alerts. Includes MODEMS permission. */
     MODEMS_ALARMS = 44;
 
+    /* Read modem values. */
+    MODEM_VALUES = 17;
     /* Read modem messages. */
     MODEM_MESSAGES = 15;
     /* Send modem messages using the TestingService. Does not include MODEMS or MESSAGES permission. */
@@ -99,7 +101,7 @@ enum OrganizationPermission {
     /* Create, access and download exports. */
     EXPORT = 49;
 
-    reserved 40, 37;
+    reserved 14, 40, 37;
 }
 
 /* UserPermissions are generally used to limit what a token can do to its user.
