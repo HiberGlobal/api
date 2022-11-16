@@ -1,6 +1,15 @@
 # Changelog Hiber API
 
-#### Upcoming Changes
+### 0.129 (2022-11-14)
+
+##### EasypulseService
+
+- Fix a bug where the Easypulse.Fields call could report incorrect fields, because it assumed all modems were using the
+  new parser format.
+
+##### OrganizationService
+
+- Add `database_info` field to prepare for separate databases for organizations.
 
 ### 0.128 (2022-11-07)
 

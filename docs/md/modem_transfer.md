@@ -790,6 +790,7 @@ of any modems and related data.
 | created_at | [ hiber.Timestamp](#hibertimestamp) | none |
 | updated_at | [ hiber.Timestamp](#hibertimestamp) | none |
 | features | [repeated hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature) | none |
+| database_info | [ string](#string) | none |
 
 ### hiber.organization.Organization.Address
 

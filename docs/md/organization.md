@@ -281,6 +281,7 @@ of any modems and related data.
 | created_at | [ hiber.Timestamp](#hibertimestamp) | none |
 | updated_at | [ hiber.Timestamp](#hibertimestamp) | none |
 | features | [repeated Organization.Feature](#organizationfeature) | none |
+| database_info | [ string](#string) | none |
 
 ### Organization.Address
 
