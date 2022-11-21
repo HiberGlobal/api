@@ -1,5 +1,25 @@
 # Changelog Hiber API
 
+### 0.130 (2022-11-21)
+
+##### EventService
+
+- Renamed the deprecated `ModemEvent.ModemActivatedEvent` to `ModemEvent.ModemInstalledEvent` to reflect the new
+  lifecycles.
+  - Renamed `Event.modem_activated` to `Event.modem_installed`.
+  - Removed deprecation flag from `ModemEvent.ModemActivatedEvent`.
+  - Changed when the event is produced:
+    - `ModemEvent.ModemActivatedEvent` was produced by the first real message from the modem.
+    - Now, `ModemEvent.ModemInstalledEvent` is produced when the lifecycle is changed to `INSTALLED`.
+      - Because of this `message_id` and `sent_at`, were removed from `ModemEvent.ModemInstalledEvent`.
+#### Unit values
+- Added support for rotation speed
+  - Currently only one unit, which is revolutions per minute (RPM)
+#### UnitPreferences
+
+- Add optional fields to UnitPreferences for each unit
+- Deprecate old oneof unit fields (with a separate boolean for each unit indicating whether that unit has a preference set)
+
 ### 0.129 (2022-11-14)
 
 ##### EasypulseService

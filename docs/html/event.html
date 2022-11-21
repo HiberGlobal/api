@@ -303,11 +303,11 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.event.Event.ModemEvent.ModemActivatedEvent"><span class="badge">M</span>Event.ModemEvent.ModemActivatedEvent</a>
+                  <a href="#hiber.event.Event.ModemEvent.ModemCreatedEvent"><span class="badge">M</span>Event.ModemEvent.ModemCreatedEvent</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.event.Event.ModemEvent.ModemCreatedEvent"><span class="badge">M</span>Event.ModemEvent.ModemCreatedEvent</a>
+                  <a href="#hiber.event.Event.ModemEvent.ModemInstalledEvent"><span class="badge">M</span>Event.ModemEvent.ModemInstalledEvent</a>
                 </li>
               
                 <li>
@@ -2763,10 +2763,10 @@ Not every event affects health, so this field might be empty. </p></td>
                 </tr>
               
                 <tr>
-                  <td>modem_activated</td>
-                  <td><a href="#hiber.event.Event.ModemEvent.ModemActivatedEvent">Event.ModemEvent.ModemActivatedEvent</a></td>
+                  <td>modem_installed</td>
+                  <td><a href="#hiber.event.Event.ModemEvent.ModemInstalledEvent">Event.ModemEvent.ModemInstalledEvent</a></td>
                   <td></td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
+                  <td><p> </p></td>
                 </tr>
               
                 <tr>
@@ -3079,11 +3079,6 @@ Not every event affects health, so this field might be empty. </p></td>
               
                 <tr>
                   <td>is_warning</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-                <tr>
-                  <td>modem_activated</td>
                   <td><p>true</p></td>
                 </tr>
               
@@ -4448,86 +4443,6 @@ This could be, for example:
 
         
       
-        <h3 id="hiber.event.Event.ModemEvent.ModemActivatedEvent">Event.ModemEvent.ModemActivatedEvent</h3>
-        <p>When the first _real_ message for a modem comes in, the modem is considered to be activated.</p><p>A _real_ message is:</p><p>- a message received through a modem, on an environment that has real modems (hiber.cloud)</p><p>- any test message, on an environment that only has simulated modems (dev.hiber.global)</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modem_number</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modem_external_device_id</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>External device id for this modem (e.g. a MAC address). </p></td>
-                </tr>
-              
-                <tr>
-                  <td>message_id</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>The id of the mesasge that activated this modem. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>time</td>
-                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td></td>
-                  <td><p>The time this modem was activated in the system. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sent_at</td>
-                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td></td>
-                  <td><p>The time this modem sent the message that activated it. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tags</td>
-                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="hiber.event.Event.ModemEvent.ModemCreatedEvent">Event.ModemEvent.ModemCreatedEvent</h3>
         <p></p>
 
@@ -4564,6 +4479,72 @@ This could be, for example:
                   <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.event.Event.ModemEvent.ModemInstalledEvent">Event.ModemEvent.ModemInstalledEvent</h3>
+        <p>When the modem is marked as installed.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>modem_number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>modem_external_device_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>External device id for this modem (e.g. a MAC address). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td></td>
+                  <td><p>The time this modem was installed. </p></td>
                 </tr>
               
                 <tr>
@@ -9156,7 +9137,7 @@ temperature, the check value will be converted to celsius instead. </p></td>
         
       
         <h3 id="hiber.Filter.ChildOrganizations">Filter.ChildOrganizations</h3>
-        <p>Specify which organizations to get data from. By default, data is only retrieved for the current organization, but</p><p>using ChildOrganizations we can specify to include a number of, or all, sub-organizations.</p><p>Note: ChildOrganization differs from other filters in that it defaults to not allowing anything, where the</p><p>other filters default to allowing everything</p>
+        <p>Specify which organizations to get data from. By default, data is only retrieved for the current organization,</p><p>but using ChildOrganizations we can specify to include a number of, or all, sub-organizations.</p><p>Note: ChildOrganization differs from other filters in that it defaults to not allowing anything, where the</p><p>other filters default to allowing everything</p>
 
         
           <table class="field-table">
@@ -10946,6 +10927,12 @@ For example, unbundled events are likely to return an approximated total, but no
               <tr>
                 <td>FLOW_CUBIC_METERS_PER_HOUR</td>
                 <td>39</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>REVOLUTIONS_PER_MINUTE</td>
+                <td>44</td>
                 <td><p></p></td>
               </tr>
             
@@ -14841,7 +14828,7 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td>hiber_antenna</td>
                   <td><a href="#hiber.modem.Modem.Peripherals.HiberAntenna">Modem.Peripherals.HiberAntenna</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
@@ -14868,6 +14855,27 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>hiber_antenna</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -16867,6 +16875,31 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
             
               <tr>
                 <td>MessageCount</td>
+                <td><p>true</p></td>
+              </tr>
+            
+              <tr>
+                <td>Rename</td>
+                <td><p>true</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateNotes</td>
+                <td><p>true</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateSecureNotes</td>
+                <td><p>true</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateStatus</td>
+                <td><p>true</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdatePeripherals</td>
                 <td><p>true</p></td>
               </tr>
             

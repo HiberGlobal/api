@@ -954,6 +954,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.value.Value.Numeric.RotationSpeed"><span class="badge">M</span>Value.Numeric.RotationSpeed</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.value.Value.Numeric.Speed"><span class="badge">M</span>Value.Numeric.Speed</a>
                 </li>
               
@@ -1000,6 +1004,10 @@
               
                 <li>
                   <a href="#hiber.value.Value.Numeric.Pressure.Unit"><span class="badge">E</span>Value.Numeric.Pressure.Unit</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.value.Value.Numeric.RotationSpeed.Unit"><span class="badge">E</span>Value.Numeric.RotationSpeed.Unit</a>
                 </li>
               
                 <li>
@@ -2139,7 +2147,7 @@ When set to true at a later point, earlier values are not encrypted retro-active
         
       
         <h3 id="hiber.Filter.ChildOrganizations">Filter.ChildOrganizations</h3>
-        <p>Specify which organizations to get data from. By default, data is only retrieved for the current organization, but</p><p>using ChildOrganizations we can specify to include a number of, or all, sub-organizations.</p><p>Note: ChildOrganization differs from other filters in that it defaults to not allowing anything, where the</p><p>other filters default to allowing everything</p>
+        <p>Specify which organizations to get data from. By default, data is only retrieved for the current organization,</p><p>but using ChildOrganizations we can specify to include a number of, or all, sub-organizations.</p><p>Note: ChildOrganization differs from other filters in that it defaults to not allowing anything, where the</p><p>other filters default to allowing everything</p>
 
         
           <table class="field-table">
@@ -3932,6 +3940,12 @@ For example, unbundled events are likely to return an approximated total, but no
                 <td><p></p></td>
               </tr>
             
+              <tr>
+                <td>REVOLUTIONS_PER_MINUTE</td>
+                <td>44</td>
+                <td><p></p></td>
+              </tr>
+            
           </tbody>
         </table>
       
@@ -4275,6 +4289,13 @@ unit, from the original unit specified in this field. </p></td>
                 <tr>
                   <td>mass</td>
                   <td><a href="#hiber.value.Value.Numeric.Mass.Unit">hiber.value.Value.Numeric.Mass.Unit</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>rotation_speed</td>
+                  <td><a href="#hiber.value.Value.Numeric.RotationSpeed.Unit">hiber.value.Value.Numeric.RotationSpeed.Unit</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -5469,7 +5490,7 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td>hiber_antenna</td>
                   <td><a href="#hiber.modem.Modem.Peripherals.HiberAntenna">Modem.Peripherals.HiberAntenna</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
@@ -5496,6 +5517,27 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>hiber_antenna</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7498,6 +7540,31 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                 <td><p>true</p></td>
               </tr>
             
+              <tr>
+                <td>Rename</td>
+                <td><p>true</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateNotes</td>
+                <td><p>true</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateSecureNotes</td>
+                <td><p>true</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateStatus</td>
+                <td><p>true</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdatePeripherals</td>
+                <td><p>true</p></td>
+              </tr>
+            
             </tbody>
           </table>
           
@@ -9381,6 +9448,13 @@ This can also be used without an existing parser by uploading a .ksy file or spe
                 </tr>
               
                 <tr>
+                  <td>rotation_speed</td>
+                  <td><a href="#hiber.value.Value.Numeric.RotationSpeed">Value.Numeric.RotationSpeed</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>unknown</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
@@ -9691,6 +9765,51 @@ This can also be used without an existing parser by uploading a .ksy file or spe
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.value.Value.Numeric.Pressure.Unit">Value.Numeric.Pressure.Unit</a></td>
+                  <td></td>
+                  <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.value.Value.Numeric.RotationSpeed">Value.Numeric.RotationSpeed</h3>
+        <p>The value for rotation speed. The only value is revolutions per minute (RPM), therefore it is not included in</p><p>unit preferences.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>unit</td>
+                  <td><a href="#hiber.value.Value.Numeric.RotationSpeed.Unit">Value.Numeric.RotationSpeed.Unit</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>textual</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>converted_from</td>
+                  <td><a href="#hiber.value.Value.Numeric.RotationSpeed.Unit">Value.Numeric.RotationSpeed.Unit</a></td>
                   <td></td>
                   <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
                 </tr>
@@ -10152,6 +10271,23 @@ This can also be used without an existing parser by uploading a .ksy file or spe
           </tbody>
         </table>
       
+        <h3 id="hiber.value.Value.Numeric.RotationSpeed.Unit">Value.Numeric.RotationSpeed.Unit</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>REVOLUTIONS_PER_MINUTE</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
         <h3 id="hiber.value.Value.Numeric.Speed.Unit">Value.Numeric.Speed.Unit</h3>
         <p></p>
         <table class="enum-table">
@@ -10299,6 +10435,12 @@ This can also be used without an existing parser by uploading a .ksy file or spe
               <tr>
                 <td>FLOW</td>
                 <td>12</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ROTATION_SPEED</td>
+                <td>13</td>
                 <td><p></p></td>
               </tr>
             

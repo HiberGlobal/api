@@ -30,10 +30,7 @@ message UnitPreferences {
     }
 
     /* Optional distance preference for the current user. */
-    oneof distance {
-        DistancePreference distance_preference = 1;
-        bool no_distance_preference = 11;
-    }
+    optional DistancePreference distance_preference = 1;
 
     /* User preferences for mass values. */
     message FlowPreference {
@@ -44,10 +41,7 @@ message UnitPreferences {
     }
 
     /* Optional mass preference for the current user. */
-    oneof flow {
-        FlowPreference flow_preference = 10;
-        bool no_flow_preference = 20;
-    }
+    optional FlowPreference flow_preference = 10;
 
     /* User preferences for fuel efficiency values. */
     message FuelEfficiencyPreference {
@@ -58,10 +52,7 @@ message UnitPreferences {
     }
 
     /* Optional fuel efficiency preference for the current user. */
-    oneof fuel_efficiency {
-        FuelEfficiencyPreference fuel_efficiency_preference = 2;
-        bool no_fuel_efficiency_preference = 12;
-    }
+    optional FuelEfficiencyPreference fuel_efficiency_preference = 2;
 
     /* User preferences for mass values. */
     message MassPreference {
@@ -73,23 +64,16 @@ message UnitPreferences {
     }
 
     /* Optional mass preference for the current user. */
-    oneof mass {
-        MassPreference mass_preference = 9;
-        bool no_mass_preference = 19;
-    }
+    optional MassPreference mass_preference = 9;
 
     /* User preferences for percentage values. */
     message PercentagePreference {
-
         /* Optional formatting options for values (rounding, etc). */
         field.Field.Numeric.Format format = 1;
     }
 
     /* Optional percentage preference for the current user. */
-    oneof percentage {
-        PercentagePreference percentage_preference = 3;
-        bool no_percentage_preference = 13;
-    }
+    optional PercentagePreference percentage_preference = 3;
 
     /* User preferences for pressure values. */
     message PressurePreference {
@@ -100,10 +84,7 @@ message UnitPreferences {
     }
 
     /* Optional pressure preference for the current user. */
-    oneof pressure {
-        PressurePreference pressure_preference = 4;
-        bool no_pressure_preference = 14;
-    }
+    optional PressurePreference pressure_preference = 4;
 
     /* User preferences for speed values. */
     message SpeedPreference {
@@ -115,10 +96,7 @@ message UnitPreferences {
     }
 
     /* Optional speed preference for the current user. */
-    oneof speed {
-        SpeedPreference speed_preference = 5;
-        bool no_speed_preference = 15;
-    }
+    optional SpeedPreference speed_preference = 5;
 
     /* User preferences for temperature values. */
     message TemperaturePreference {
@@ -129,10 +107,7 @@ message UnitPreferences {
     }
 
     /* Optional temperature preference for the current user. */
-    oneof temperature {
-        TemperaturePreference temperature_preference = 6;
-        bool no_temperature_preference = 16;
-    }
+    optional TemperaturePreference temperature_preference = 6;
 
     /* User preferences for voltage values. */
     message VoltagePreference {
@@ -143,10 +118,7 @@ message UnitPreferences {
     }
 
     /* Optional voltage preference for the current user. */
-    oneof voltage {
-        VoltagePreference voltage_preference = 7;
-        bool no_voltage_preference = 17;
-    }
+    optional VoltagePreference voltage_preference = 7;
 
     /* User preferences for volume values. */
     message VolumePreference {
@@ -158,10 +130,17 @@ message UnitPreferences {
     }
 
     /* Optional volume preference for the current user. */
-    oneof volume {
-        VolumePreference volume_preference = 8;
-        bool no_volume_preference = 18;
+    optional VolumePreference volume_preference = 8;
+
+    /* User preferences for rotation speed values. */
+    message RotationSpeedPreference {
+        value.Value.Numeric.RotationSpeed.Unit unit = 1;
+
+        /* Optional formatting options for values (rounding, etc). */
+        field.Field.Numeric.Format format = 2;
     }
+
+    optional RotationSpeedPreference rotation_speed_preference = 21;
 
     message Request {
         /* Update or remove the distance preference. */
@@ -223,9 +202,20 @@ message UnitPreferences {
             VolumePreference update_volume_preference = 8;
             bool remove_volume_preference = 18;
         }
+
+        /* Update or remove the rotation speed preference. */
+        oneof rotation_speed {
+            RotationSpeedPreference update_rotation_speed_preference = 21;
+            bool remove_rotation_speed_preference = 31;
+        }
     }
 
     message Response {
         UnitPreferences preferences = 1;
     }
+
+    reserved 11, 20, 12, 19, 13, 14, 15, 16, 17, 18;
+    reserved "no_distance_preference", "no_fuel_efficiency_preference", "no_percentage_preference",
+        "no_pressure_preference", "no_speed_preference", "no_temperature_preference", "no_voltage_preference",
+        "no_volume_preference", "no_mass_preference", "no_flow_preference";
 }

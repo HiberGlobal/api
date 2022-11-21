@@ -41,8 +41,8 @@
   - [Event.ModemEvent.MessageEvent.ModemMessageBodyReceivedEvent](#eventmodemeventmessageeventmodemmessagebodyreceivedevent)
   - [Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent](#eventmodemeventmessageeventmodemmessagecannotbeparsedevent)
   - [Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent](#eventmodemeventmessageeventmodemmessagereceivedevent)
-  - [Event.ModemEvent.ModemActivatedEvent](#eventmodemeventmodemactivatedevent)
   - [Event.ModemEvent.ModemCreatedEvent](#eventmodemeventmodemcreatedevent)
+  - [Event.ModemEvent.ModemInstalledEvent](#eventmodemeventmodeminstalledevent)
   - [Event.ModemEvent.ModemLocationUpdatedEvent](#eventmodemeventmodemlocationupdatedevent)
   - [Event.ModemEvent.ModemUpdatedEvent](#eventmodemeventmodemupdatedevent)
   - [Event.ModemEvent.ModemUpdatedEvent.PeripheralsEntry](#eventmodemeventmodemupdatedeventperipheralsentry)
@@ -614,7 +614,7 @@ the contained object.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_created | [ Event.ModemEvent.ModemCreatedEvent](#eventmodemeventmodemcreatedevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_updated | [ Event.ModemEvent.ModemUpdatedEvent](#eventmodemeventmodemupdatedevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_location_updated | [ Event.ModemEvent.ModemLocationUpdatedEvent](#eventmodemeventmodemlocationupdatedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_activated | [ Event.ModemEvent.ModemActivatedEvent](#eventmodemeventmodemactivatedevent) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_installed | [ Event.ModemEvent.ModemInstalledEvent](#eventmodemeventmodeminstalledevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_message_received | [ Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent](#eventmodemeventmessageeventmodemmessagereceivedevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_message_body_received | [ Event.ModemEvent.MessageEvent.ModemMessageBodyReceivedEvent](#eventmodemeventmessageeventmodemmessagebodyreceivedevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_message_body_parsed | [ Event.ModemEvent.MessageEvent.ModemMessageBodyParsedEvent](#eventmodemeventmessageeventmodemmessagebodyparsedevent) | none |
@@ -981,25 +981,6 @@ a ParsedBody for each of them.
 | description | [ string](#string) | none |
 | time | [ hiber.Timestamp](#hibertimestamp) | none |
 
-### Event.ModemEvent.ModemActivatedEvent
-
-When the first _real_ message for a modem comes in, the modem is considered to be activated.
-A _real_ message is:
-- a message received through a modem, on an environment that has real modems (hiber.cloud)
-- any test message, on an environment that only has simulated modems (dev.hiber.global)
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| modem_number | [ string](#string) | none |
-| modem_external_device_id | [ string](#string) | External device id for this modem (e.g. a MAC address). |
-| message_id | [ uint64](#uint64) | The id of the mesasge that activated this modem. |
-| time | [ hiber.Timestamp](#hibertimestamp) | The time this modem was activated in the system. |
-| sent_at | [ hiber.Timestamp](#hibertimestamp) | The time this modem sent the message that activated it. |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-
 ### Event.ModemEvent.ModemCreatedEvent
 
 
@@ -1010,6 +991,20 @@ A _real_ message is:
 | modem_number | [ string](#string) | none |
 | modem_external_device_id | [ string](#string) | External device id for this modem (e.g. a MAC address). |
 | time | [ hiber.Timestamp](#hibertimestamp) | none |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
+| title | [ string](#string) | none |
+| description | [ string](#string) | none |
+
+### Event.ModemEvent.ModemInstalledEvent
+
+When the modem is marked as installed.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | none |
+| modem_number | [ string](#string) | none |
+| modem_external_device_id | [ string](#string) | External device id for this modem (e.g. a MAC address). |
+| time | [ hiber.Timestamp](#hibertimestamp) | The time this modem was installed. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
 | title | [ string](#string) | none |
 | description | [ string](#string) | none |
@@ -5405,8 +5400,8 @@ When combined with include, exclude takes precedence when determining whether an
 
 ### hiber.Filter.ChildOrganizations
 
-Specify which organizations to get data from. By default, data is only retrieved for the current organization, but
-using ChildOrganizations we can specify to include a number of, or all, sub-organizations.
+Specify which organizations to get data from. By default, data is only retrieved for the current organization,
+but using ChildOrganizations we can specify to include a number of, or all, sub-organizations.
 
 Note: ChildOrganization differs from other filters in that it defaults to not allowing anything, where the
 other filters default to allowing everything
@@ -5951,6 +5946,7 @@ Unit of measurement for a numeric value.
 | MASS_KILOGRAMS | none | 37 |
 | MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
+| REVOLUTIONS_PER_MINUTE | none | 44 |
 
 ## Scalar Value Types
 

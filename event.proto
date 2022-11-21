@@ -89,7 +89,7 @@ message Event {
         ModemEvent.ModemCreatedEvent modem_created = 55;
         ModemEvent.ModemUpdatedEvent modem_updated = 39;
         ModemEvent.ModemLocationUpdatedEvent modem_location_updated = 2;
-        ModemEvent.ModemActivatedEvent modem_activated = 36 [deprecated = true];
+        ModemEvent.ModemInstalledEvent modem_installed = 36;
 
         ModemEvent.MessageEvent.ModemMessageReceivedEvent modem_message_received = 4;
         ModemEvent.MessageEvent.ModemMessageBodyReceivedEvent modem_message_body_received = 44;
@@ -205,28 +205,16 @@ message Event {
             string description = 7;
         }
 
-        /* When the first _real_ message for a modem comes in, the modem is considered to be activated.
-         * A _real_ message is:
-         * - a message received through a modem, on an environment that has real modems (hiber.cloud)
-         * - any test message, on an environment that only has simulated modems (dev.hiber.global)
-         */
-        message ModemActivatedEvent {
-            option deprecated = true;
-
+        /* When the modem is marked as installed. */
+        message ModemInstalledEvent {
             string organization = 1;
             string modem_number = 2;
 
             /* External device id for this modem (e.g. a MAC address). */
             string modem_external_device_id = 11;
 
-            /* The id of the mesasge that activated this modem. */
-            uint64 message_id = 3;
-
-            /* The time this modem was activated in the system. */
+            /* The time this modem was installed. */
             Timestamp time = 4;
-
-            /* The time this modem sent the message that activated it. */
-            Timestamp sent_at = 10;
 
             repeated tag.Tag tags = 7;
             string title = 8;

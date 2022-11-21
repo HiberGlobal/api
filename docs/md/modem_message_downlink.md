@@ -504,8 +504,8 @@ When combined with include, exclude takes precedence when determining whether an
 
 ### hiber.Filter.ChildOrganizations
 
-Specify which organizations to get data from. By default, data is only retrieved for the current organization, but
-using ChildOrganizations we can specify to include a number of, or all, sub-organizations.
+Specify which organizations to get data from. By default, data is only retrieved for the current organization,
+but using ChildOrganizations we can specify to include a number of, or all, sub-organizations.
 
 Note: ChildOrganization differs from other filters in that it defaults to not allowing anything, where the
 other filters default to allowing everything
@@ -1050,6 +1050,7 @@ Unit of measurement for a numeric value.
 | MASS_KILOGRAMS | none | 37 |
 | MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
+| REVOLUTIONS_PER_MINUTE | none | 44 |
 
 ## Scalar Value Types
 

@@ -19,6 +19,7 @@
   - [Value.Numeric.Mass](#valuenumericmass)
   - [Value.Numeric.Percentage](#valuenumericpercentage)
   - [Value.Numeric.Pressure](#valuenumericpressure)
+  - [Value.Numeric.RotationSpeed](#valuenumericrotationspeed)
   - [Value.Numeric.Speed](#valuenumericspeed)
   - [Value.Numeric.Temperature](#valuenumerictemperature)
   - [Value.Numeric.Voltage](#valuenumericvoltage)
@@ -33,6 +34,7 @@
   - [Value.Numeric.Mass.Unit](#valuenumericmassunit)
   - [Value.Numeric.Percentage.Unit](#valuenumericpercentageunit)
   - [Value.Numeric.Pressure.Unit](#valuenumericpressureunit)
+  - [Value.Numeric.RotationSpeed.Unit](#valuenumericrotationspeedunit)
   - [Value.Numeric.Speed.Unit](#valuenumericspeedunit)
   - [Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit)
   - [Value.Numeric.Type](#valuenumerictype)
@@ -138,6 +140,7 @@ If the value is numeric, this specifies the unit, value, etc.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.volume | [ Value.Numeric.Volume](#valuenumericvolume) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.mass | [ Value.Numeric.Mass](#valuenumericmass) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.flow | [ Value.Numeric.Flow](#valuenumericflow) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rotation_speed | [ Value.Numeric.RotationSpeed](#valuenumericrotationspeed) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.unknown | [ double](#double) | none |
 
 ### Value.Numeric.BatteryLevel
@@ -216,6 +219,18 @@ The value is a pressure value, converted to your preferred pressure unit.
 | unit | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) | none |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### Value.Numeric.RotationSpeed
+
+The value for rotation speed. The only value is revolutions per minute (RPM), therefore it is not included in
+unit preferences.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ Value.Numeric.RotationSpeed.Unit](#valuenumericrotationspeedunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ Value.Numeric.RotationSpeed.Unit](#valuenumericrotationspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### Value.Numeric.Speed
 
@@ -342,6 +357,13 @@ This unit is still used for fields, however.
 | PSI | none | 1 |
 | K_PA | none | 2 |
 
+### Value.Numeric.RotationSpeed.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| REVOLUTIONS_PER_MINUTE | none | 0 |
+
 ### Value.Numeric.Speed.Unit
 
 
@@ -380,6 +402,7 @@ Supported types will automatically convert to the preferred unit (based on the u
 | MASS | none | 10 |
 | BATTERY_LEVEL | none | 11 |
 | FLOW | none | 12 |
+| ROTATION_SPEED | none | 13 |
 
 ### Value.Numeric.Voltage.Unit
 
@@ -553,8 +576,8 @@ When combined with include, exclude takes precedence when determining whether an
 
 ### hiber.Filter.ChildOrganizations
 
-Specify which organizations to get data from. By default, data is only retrieved for the current organization, but
-using ChildOrganizations we can specify to include a number of, or all, sub-organizations.
+Specify which organizations to get data from. By default, data is only retrieved for the current organization,
+but using ChildOrganizations we can specify to include a number of, or all, sub-organizations.
 
 Note: ChildOrganization differs from other filters in that it defaults to not allowing anything, where the
 other filters default to allowing everything
@@ -1099,6 +1122,7 @@ Unit of measurement for a numeric value.
 | MASS_KILOGRAMS | none | 37 |
 | MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
+| REVOLUTIONS_PER_MINUTE | none | 44 |
 
 ## Scalar Value Types
 

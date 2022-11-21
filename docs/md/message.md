@@ -72,6 +72,7 @@ Message management.
   - [hiber.value.Value.Numeric.Mass](#hibervaluevaluenumericmass)
   - [hiber.value.Value.Numeric.Percentage](#hibervaluevaluenumericpercentage)
   - [hiber.value.Value.Numeric.Pressure](#hibervaluevaluenumericpressure)
+  - [hiber.value.Value.Numeric.RotationSpeed](#hibervaluevaluenumericrotationspeed)
   - [hiber.value.Value.Numeric.Speed](#hibervaluevaluenumericspeed)
   - [hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature)
   - [hiber.value.Value.Numeric.Voltage](#hibervaluevaluenumericvoltage)
@@ -85,6 +86,7 @@ Message management.
     - [hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit)
     - [hiber.value.Value.Numeric.Percentage.Unit](#hibervaluevaluenumericpercentageunit)
     - [hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit)
+    - [hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit)
     - [hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit)
     - [hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit)
     - [hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype)
@@ -483,6 +485,7 @@ Formatting options for the field.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.voltage | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.volume | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.mass | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) | none |
 
 
 ### Enums
@@ -746,6 +749,7 @@ If the value is numeric, this specifies the unit, value, etc.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.volume | [ hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.mass | [ hiber.value.Value.Numeric.Mass](#hibervaluevaluenumericmass) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.flow | [ hiber.value.Value.Numeric.Flow](#hibervaluevaluenumericflow) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed](#hibervaluevaluenumericrotationspeed) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.unknown | [ double](#double) | none |
 
 ### hiber.value.Value.Numeric.BatteryLevel
@@ -824,6 +828,18 @@ The value is a pressure value, converted to your preferred pressure unit.
 | unit | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) | none |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.RotationSpeed
+
+The value for rotation speed. The only value is revolutions per minute (RPM), therefore it is not included in
+unit preferences.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### hiber.value.Value.Numeric.Speed
 
@@ -950,6 +966,13 @@ This unit is still used for fields, however.
 | PSI | none | 1 |
 | K_PA | none | 2 |
 
+#### hiber.value.Value.Numeric.RotationSpeed.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| REVOLUTIONS_PER_MINUTE | none | 0 |
+
 #### hiber.value.Value.Numeric.Speed.Unit
 
 
@@ -988,6 +1011,7 @@ Supported types will automatically convert to the preferred unit (based on the u
 | MASS | none | 10 |
 | BATTERY_LEVEL | none | 11 |
 | FLOW | none | 12 |
+| ROTATION_SPEED | none | 13 |
 
 #### hiber.value.Value.Numeric.Voltage.Unit
 
@@ -1161,8 +1185,8 @@ When combined with include, exclude takes precedence when determining whether an
 
 ### hiber.Filter.ChildOrganizations
 
-Specify which organizations to get data from. By default, data is only retrieved for the current organization, but
-using ChildOrganizations we can specify to include a number of, or all, sub-organizations.
+Specify which organizations to get data from. By default, data is only retrieved for the current organization,
+but using ChildOrganizations we can specify to include a number of, or all, sub-organizations.
 
 Note: ChildOrganization differs from other filters in that it defaults to not allowing anything, where the
 other filters default to allowing everything
@@ -1707,6 +1731,7 @@ Unit of measurement for a numeric value.
 | MASS_KILOGRAMS | none | 37 |
 | MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
+| REVOLUTIONS_PER_MINUTE | none | 44 |
 
 ## Scalar Value Types
 

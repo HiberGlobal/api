@@ -49,22 +49,32 @@ service ModemService {
     };
 
     /* Change the name of a modem to the given value. */
-    rpc Rename (RenameModemRequest) returns (Modem);
+    rpc Rename (RenameModemRequest) returns (Modem) {
+        option deprecated = true;
+    };
 
     /* Add, remove and create new tags for the selected modems. */
     rpc UpdateTags (UpdateModemTagsRequest) returns (UpdateModemTagsRequest.Response);
 
     /* Change the notes for the selected modems to the given value. */
-    rpc UpdateNotes (UpdateModemNotesRequest) returns (UpdateModemNotesRequest.Response);
+    rpc UpdateNotes (UpdateModemNotesRequest) returns (UpdateModemNotesRequest.Response) {
+        option deprecated = true;
+    };
 
     /* Change the secure notes for the selected modems to the given value, if you have permission. */
-    rpc UpdateSecureNotes (UpdateModemSecureNotesRequest) returns (UpdateModemSecureNotesRequest.Response);
+    rpc UpdateSecureNotes (UpdateModemSecureNotesRequest) returns (UpdateModemSecureNotesRequest.Response) {
+        option deprecated = true;
+    };
 
     /* Change the status of the selected modems to the given value. */
-    rpc UpdateStatus (UpdateModemLifecycleRequest) returns (UpdateModemLifecycleRequest.Response);
+    rpc UpdateStatus (UpdateModemLifecycleRequest) returns (UpdateModemLifecycleRequest.Response) {
+        option deprecated = true;
+    };
 
     /* Add and remove peripherals for the selected modems. */
-    rpc UpdatePeripherals (UpdatePeripheralsRequest) returns (UpdatePeripheralsRequest.Response);
+    rpc UpdatePeripherals (UpdatePeripheralsRequest) returns (UpdatePeripheralsRequest.Response) {
+        option deprecated = true;
+    };
 
     /* Count the modems in your organization by health. */
     rpc HealthCount (ModemHealthCount.Request) returns (ModemHealthCount.Response);
@@ -223,6 +233,7 @@ message Modem {
         /* A Hiber antenna is required for the modem to function.
          */
         enum HiberAntenna {
+            option deprecated = true;
             DEFAULT = 0;
             HIBER_PANDA = 1;
             HIBER_GRIZZLY = 2;
@@ -230,7 +241,7 @@ message Modem {
             CUSTOM = 4;
         }
 
-        HiberAntenna hiber_antenna = 1;
+        HiberAntenna hiber_antenna = 1 [deprecated = true];
         bool gps = 2;
         map<string, string> peripherals = 3;
         string custom_antenna = 4;

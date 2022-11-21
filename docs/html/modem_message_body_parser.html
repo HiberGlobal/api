@@ -2758,7 +2758,7 @@ This can also be used without an existing parser by uploading a .ksy file or spe
         
       
         <h3 id="hiber.Filter.ChildOrganizations">Filter.ChildOrganizations</h3>
-        <p>Specify which organizations to get data from. By default, data is only retrieved for the current organization, but</p><p>using ChildOrganizations we can specify to include a number of, or all, sub-organizations.</p><p>Note: ChildOrganization differs from other filters in that it defaults to not allowing anything, where the</p><p>other filters default to allowing everything</p>
+        <p>Specify which organizations to get data from. By default, data is only retrieved for the current organization,</p><p>but using ChildOrganizations we can specify to include a number of, or all, sub-organizations.</p><p>Note: ChildOrganization differs from other filters in that it defaults to not allowing anything, where the</p><p>other filters default to allowing everything</p>
 
         
           <table class="field-table">
@@ -4551,6 +4551,12 @@ For example, unbundled events are likely to return an approximated total, but no
                 <td><p></p></td>
               </tr>
             
+              <tr>
+                <td>REVOLUTIONS_PER_MINUTE</td>
+                <td>44</td>
+                <td><p></p></td>
+              </tr>
+            
           </tbody>
         </table>
       
@@ -4894,6 +4900,13 @@ unit, from the original unit specified in this field. </p></td>
                 <tr>
                   <td>mass</td>
                   <td><a href="#hiber.value.Value.Numeric.Mass.Unit">hiber.value.Value.Numeric.Mass.Unit</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>rotation_speed</td>
+                  <td><a href="#hiber.value.Value.Numeric.RotationSpeed.Unit">hiber.value.Value.Numeric.RotationSpeed.Unit</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -6088,7 +6101,7 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td>hiber_antenna</td>
                   <td><a href="#hiber.modem.Modem.Peripherals.HiberAntenna">Modem.Peripherals.HiberAntenna</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
@@ -6115,6 +6128,27 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>hiber_antenna</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -8114,6 +8148,31 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
             
               <tr>
                 <td>MessageCount</td>
+                <td><p>true</p></td>
+              </tr>
+            
+              <tr>
+                <td>Rename</td>
+                <td><p>true</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateNotes</td>
+                <td><p>true</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateSecureNotes</td>
+                <td><p>true</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateStatus</td>
+                <td><p>true</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdatePeripherals</td>
                 <td><p>true</p></td>
               </tr>
             

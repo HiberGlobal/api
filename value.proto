@@ -49,6 +49,7 @@ message Value {
             MASS = 10;
             BATTERY_LEVEL = 11;
             FLOW = 12;
+            ROTATION_SPEED = 13;
         }
 
         /* Special case for battery level, since it can be provided in many units.
@@ -59,6 +60,24 @@ message Value {
             enum Unit {
                 /* Battery level as a percentage (technically not a unit). */
                 PERCENT = 0;
+            }
+
+            double value = 1;
+            Unit unit = 2;
+
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
+            string textual = 3;
+
+            /* The original unit, iff this value was converted from another unit because of user preferences. */
+            Unit converted_from = 4;
+        }
+
+        /* The value for rotation speed. The only value is revolutions per minute (RPM), therefore it is not included in
+         * unit preferences.
+         */
+        message RotationSpeed {
+            enum Unit {
+                REVOLUTIONS_PER_MINUTE = 0;
             }
 
             double value = 1;
@@ -282,6 +301,7 @@ message Value {
             Volume volume = 10;
             Mass mass = 12;
             Flow flow = 13;
+            RotationSpeed rotation_speed = 16;
             double unknown = 15;
         }
     }

@@ -47,8 +47,8 @@
   - [hiber.event.Event.ModemEvent.MessageEvent.ModemMessageBodyReceivedEvent](#hibereventeventmodemeventmessageeventmodemmessagebodyreceivedevent)
   - [hiber.event.Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent](#hibereventeventmodemeventmessageeventmodemmessagecannotbeparsedevent)
   - [hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent](#hibereventeventmodemeventmessageeventmodemmessagereceivedevent)
-  - [hiber.event.Event.ModemEvent.ModemActivatedEvent](#hibereventeventmodemeventmodemactivatedevent)
   - [hiber.event.Event.ModemEvent.ModemCreatedEvent](#hibereventeventmodemeventmodemcreatedevent)
+  - [hiber.event.Event.ModemEvent.ModemInstalledEvent](#hibereventeventmodemeventmodeminstalledevent)
   - [hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent](#hibereventeventmodemeventmodemlocationupdatedevent)
   - [hiber.event.Event.ModemEvent.ModemUpdatedEvent](#hibereventeventmodemeventmodemupdatedevent)
   - [hiber.event.Event.ModemEvent.ModemUpdatedEvent.PeripheralsEntry](#hibereventeventmodemeventmodemupdatedeventperipheralsentry)
@@ -226,7 +226,7 @@ the contained object.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_created | [ hiber.event.Event.ModemEvent.ModemCreatedEvent](#hibereventeventmodemeventmodemcreatedevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_updated | [ hiber.event.Event.ModemEvent.ModemUpdatedEvent](#hibereventeventmodemeventmodemupdatedevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_location_updated | [ hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent](#hibereventeventmodemeventmodemlocationupdatedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_activated | [ hiber.event.Event.ModemEvent.ModemActivatedEvent](#hibereventeventmodemeventmodemactivatedevent) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_installed | [ hiber.event.Event.ModemEvent.ModemInstalledEvent](#hibereventeventmodemeventmodeminstalledevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_message_received | [ hiber.event.Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent](#hibereventeventmodemeventmessageeventmodemmessagereceivedevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_message_body_received | [ hiber.event.Event.ModemEvent.MessageEvent.ModemMessageBodyReceivedEvent](#hibereventeventmodemeventmessageeventmodemmessagebodyreceivedevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_message_body_parsed | [ hiber.event.Event.ModemEvent.MessageEvent.ModemMessageBodyParsedEvent](#hibereventeventmodemeventmessageeventmodemmessagebodyparsedevent) | none |
@@ -593,25 +593,6 @@ a ParsedBody for each of them.
 | description | [ string](#string) | none |
 | time | [ hiber.Timestamp](#hibertimestamp) | none |
 
-### hiber.event.Event.ModemEvent.ModemActivatedEvent
-
-When the first _real_ message for a modem comes in, the modem is considered to be activated.
-A _real_ message is:
-- a message received through a modem, on an environment that has real modems (hiber.cloud)
-- any test message, on an environment that only has simulated modems (dev.hiber.global)
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| modem_number | [ string](#string) | none |
-| modem_external_device_id | [ string](#string) | External device id for this modem (e.g. a MAC address). |
-| message_id | [ uint64](#uint64) | The id of the mesasge that activated this modem. |
-| time | [ hiber.Timestamp](#hibertimestamp) | The time this modem was activated in the system. |
-| sent_at | [ hiber.Timestamp](#hibertimestamp) | The time this modem sent the message that activated it. |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-
 ### hiber.event.Event.ModemEvent.ModemCreatedEvent
 
 
@@ -622,6 +603,20 @@ A _real_ message is:
 | modem_number | [ string](#string) | none |
 | modem_external_device_id | [ string](#string) | External device id for this modem (e.g. a MAC address). |
 | time | [ hiber.Timestamp](#hibertimestamp) | none |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
+| title | [ string](#string) | none |
+| description | [ string](#string) | none |
+
+### hiber.event.Event.ModemEvent.ModemInstalledEvent
+
+When the modem is marked as installed.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | none |
+| modem_number | [ string](#string) | none |
+| modem_external_device_id | [ string](#string) | External device id for this modem (e.g. a MAC address). |
+| time | [ hiber.Timestamp](#hibertimestamp) | The time this modem was installed. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
 | title | [ string](#string) | none |
 | description | [ string](#string) | none |
