@@ -48,13 +48,13 @@ message ValueContext {
     Timestamp time = 3;
 
     oneof value_type {
-        /* The value at this time. */
+        /* The value at this time, if no ValueTransformation was specified for this field. */
         Value value = 4;
 
-        /* The value at this time. */
-        ValueDurations duration = 5;
+        /* The output of the DURATION ValueTransformation, if it was specified for this field. */
+        ValueDurations value_durations = 5;
 
-        /* The value at this time. */
+        /* The output of the DELTA ValueTransformation, if it was specified for this field. */
         ValueDelta delta = 6;
     }
 

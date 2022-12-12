@@ -261,9 +261,9 @@ A Value at a time, for a given modem and field.
 | modem | [ string](#string) | none |
 | field | [ string](#string) | none |
 | time | [ hiber.Timestamp](#hibertimestamp) | The time for this value. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value_type**.value | [ Value](#value) | The value at this time. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value_type**.duration | [ ValueContext.ValueDurations](#valuecontextvaluedurations) | The value at this time. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value_type**.delta | [ ValueContext.ValueDelta](#valuecontextvaluedelta) | The value at this time. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value_type**.value | [ Value](#value) | The value at this time, if no ValueTransformation was specified for this field. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value_type**.value_durations | [ ValueContext.ValueDurations](#valuecontextvaluedurations) | The output of the DURATION ValueTransformation, if it was specified for this field. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value_type**.delta | [ ValueContext.ValueDelta](#valuecontextvaluedelta) | The output of the DELTA ValueTransformation, if it was specified for this field. |
 
 ### ValueContext.ValueDelta
 

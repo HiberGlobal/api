@@ -1,5 +1,13 @@
 # Changelog Hiber API
 
+### 0.133 (2022-12-12)
+
+##### ValueService
+
+- Cleared up some things in `ValueContext`:
+  - Renamed `duration` to `value_durations`.
+  - Fixed the documentation inside the `oneof value_type`.
+
 ### 0.132 (2022-12-05)
 
 
