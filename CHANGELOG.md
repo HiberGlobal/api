@@ -1,5 +1,9 @@
 # Changelog Hiber API
 
+### 0.134 (2022-12-19)
+
+
+
 ### 0.133 (2022-12-12)
 
 ##### ValueService
