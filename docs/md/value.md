@@ -19,6 +19,7 @@
   - [Value.Numeric.Mass](#valuenumericmass)
   - [Value.Numeric.Percentage](#valuenumericpercentage)
   - [Value.Numeric.Pressure](#valuenumericpressure)
+  - [Value.Numeric.Rate](#valuenumericrate)
   - [Value.Numeric.RotationSpeed](#valuenumericrotationspeed)
   - [Value.Numeric.Speed](#valuenumericspeed)
   - [Value.Numeric.Temperature](#valuenumerictemperature)
@@ -34,6 +35,7 @@
   - [Value.Numeric.Mass.Unit](#valuenumericmassunit)
   - [Value.Numeric.Percentage.Unit](#valuenumericpercentageunit)
   - [Value.Numeric.Pressure.Unit](#valuenumericpressureunit)
+  - [Value.Numeric.Rate.Unit](#valuenumericrateunit)
   - [Value.Numeric.RotationSpeed.Unit](#valuenumericrotationspeedunit)
   - [Value.Numeric.Speed.Unit](#valuenumericspeedunit)
   - [Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit)
@@ -141,6 +143,7 @@ If the value is numeric, this specifies the unit, value, etc.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.mass | [ Value.Numeric.Mass](#valuenumericmass) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.flow | [ Value.Numeric.Flow](#valuenumericflow) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rotation_speed | [ Value.Numeric.RotationSpeed](#valuenumericrotationspeed) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rate | [ Value.Numeric.Rate](#valuenumericrate) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.unknown | [ double](#double) | none |
 
 ### Value.Numeric.BatteryLevel
@@ -219,6 +222,17 @@ The value is a pressure value, converted to your preferred pressure unit.
 | unit | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) | none |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### Value.Numeric.Rate
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ uint32](#uint32) | none |
+| unit | [ Value.Numeric.Rate.Unit](#valuenumericrateunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ Value.Numeric.Rate.Unit](#valuenumericrateunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### Value.Numeric.RotationSpeed
 
@@ -357,6 +371,13 @@ This unit is still used for fields, however.
 | PSI | none | 1 |
 | K_PA | none | 2 |
 
+### Value.Numeric.Rate.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| ITEMS_PER_24_HOURS | The amount of items counted in a 24 hour window. | 0 |
+
 ### Value.Numeric.RotationSpeed.Unit
 
 
@@ -403,6 +424,7 @@ Supported types will automatically convert to the preferred unit (based on the u
 | BATTERY_LEVEL | none | 11 |
 | FLOW | none | 12 |
 | ROTATION_SPEED | none | 13 |
+| RATE | none | 14 |
 
 ### Value.Numeric.Voltage.Unit
 
@@ -1046,7 +1068,6 @@ api event stream and publishers.
 | MODEM_TRANSFER_CANCELLED | none | 19 |
 | MODEM_TRANSFER_NOT_RECEIVED | none | 20 |
 | MODEM_TRANSFER_RETURN_TRANSFER_STARTED | none | 21 |
-| MODEM_CLAIMED | none | 22 |
 | PUBLISHER_CREATED | none | 1 |
 | PUBLISHER_UPDATED | none | 2 |
 | PUBLISHER_DELETED | none | 3 |
@@ -1123,6 +1144,7 @@ Unit of measurement for a numeric value.
 | MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
 | REVOLUTIONS_PER_MINUTE | none | 44 |
+| ITEMS_PER_24_HOURS | none | 45 |
 
 ## Scalar Value Types
 

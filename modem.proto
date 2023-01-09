@@ -14,6 +14,7 @@ import "health.proto";
 import "organization.proto";
 import "subscription.proto";
 import "tag.proto";
+import "value.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.modem";
@@ -170,6 +171,9 @@ message Modem {
 
     /* The transmission interval for this modem, if configured. */
     Duration transmission_interval = 33;
+    /* The expected transmission rate for this modem. */
+    optional hiber.value.Value.Numeric.Rate expected_transmission_rate = 34;
+
 
     /* Additional information when this modem is a gateway. */
     message GatewayInfo {
@@ -248,14 +252,24 @@ message Modem {
     }
 
     enum Lifecycle {
-        /* Modem is deployed, but not active yet. Invisible for customer. */
+        /* Device is deployed, but not active yet. Invisible for customer. */
         ACCEPTANCE_TESTING = 0;
-        /* Modem is active and sending messages.
+        /* Device is active and sending messages.
          * See health for more details on its health, based on the past messages.
          */
         INSTALLED = 1;
+        /* Device is paused and not sending messages. This should be of a temporary nature.
+         * (e.g. a change to the installation is being made)
+         */
         PAUSED = 6;
+        /* Device is disabled and not sending messages. Invisible for customer.
+         * This could be either temporary or become permanent.
+         * Used for cases where devices is being serviced and customer
+         * should not be burdened with the health of this device.
+         */
         DISABLED = 5;
+        /* Device is (going to be) removed from installation and will not return to installed status again.
+         */
         DECOMMISSIONED = 4;
 
         /* Kept for backwards compatibility. Internally mapped to decommissioned */

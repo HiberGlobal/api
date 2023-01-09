@@ -8,6 +8,7 @@ import "base.proto";
 import "health.proto";
 import "modem.proto";
 import "tag.proto";
+import "value.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.device";
@@ -32,8 +33,8 @@ message Device {
     /* The amount of time since the last message from this modem was received on the server. */
     optional hiber.Duration inactivity = 5;
 
-    /* Health level based on the modem alarm and some always-present alarms. */
-    health.HealthLevel health_level = 6;
+    /* Health based on the modem alarm and some always-present alarms. */
+    health.HealthLevel health = 6;
 
     /* The current lifecycle the modem is in. */
     hiber.modem.Modem.Lifecycle lifecycle = 7;
@@ -60,6 +61,9 @@ message Device {
 
     /* The transmission interval for this modem, if configured. */
     optional hiber.Duration transmission_interval = 15;
+
+    /* The expected transmission rate for this device. */
+    optional hiber.value.Value.Numeric.Rate expected_transmission_rate = 16;
 
     /* Collection of data about the devices it is connected to. */
     message Links {

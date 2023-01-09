@@ -132,6 +132,7 @@
   - [hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations](#hibermodemmessagebodyparsermodemmessagebodyparseravailabletochildorganizations)
   - [hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields)
   - [hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafieldslocationfields)
+  - [hiber.modem.message.bodyparser.ModemMessageBodyParser.RequireMessageMetadataEntry](#hibermodemmessagebodyparsermodemmessagebodyparserrequiremessagemetadataentry)
   - [hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection)
   - [hiber.modem.message.bodyparser.RenameModemMessageBodyParserRequest](#hibermodemmessagebodyparserrenamemodemmessagebodyparserrequest)
   - [hiber.modem.message.bodyparser.RetryModemMessageBodyParsing](#hibermodemmessagebodyparserretrymodemmessagebodyparsing)
@@ -152,8 +153,10 @@
   - [hiber.modem.message.bodyparser.UpdateChildOrganizationAvailabilityRequest](#hibermodemmessagebodyparserupdatechildorganizationavailabilityrequest)
   - [hiber.modem.message.bodyparser.UpdateSimpleModemMessageBodyParserRequest](#hibermodemmessagebodyparserupdatesimplemodemmessagebodyparserrequest)
   - [hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequest)
+  - [hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestaddrequiremessagemetadataentry)
   - [hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafields)
   - [hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest](#hibermodemmessagebodyparseruploadmodemmessagebodyparserrequest)
+  - [hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest.RequireMessageMetadataEntry](#hibermodemmessagebodyparseruploadmodemmessagebodyparserrequestrequiremessagemetadataentry)
 
     - [hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing)
     - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian](#hibermodemmessagebodyparsersimplemodemmessagebodyparserendian)
@@ -664,6 +667,7 @@ when the modem is registered into the system or when a subscription is authorize
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
 | time_zone | [ string](#string) | The timezone configured for the modem. |
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_transmission_rate**.expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
 
 ### hiber.modem.ModemSelection
 
@@ -721,11 +725,11 @@ Sorting options for the results.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| ACCEPTANCE_TESTING | Modem is deployed, but not active yet. Invisible for customer. | 0 |
-| INSTALLED | Modem is active and sending messages. See health for more details on its health, based on the past messages. | 1 |
-| PAUSED | none | 6 |
-| DISABLED | none | 5 |
-| DECOMMISSIONED | none | 4 |
+| ACCEPTANCE_TESTING | Device is deployed, but not active yet. Invisible for customer. | 0 |
+| INSTALLED | Device is active and sending messages. See health for more details on its health, based on the past messages. | 1 |
+| PAUSED | Device is paused and not sending messages. This should be of a temporary nature. (e.g. a change to the installation is being made) | 6 |
+| DISABLED | Device is disabled and not sending messages. Invisible for customer. This could be either temporary or become permanent. Used for cases where devices is being serviced and customer should not be burdened with the health of this device. | 5 |
+| DECOMMISSIONED | Device is (going to be) removed from installation and will not return to installed status again. | 4 |
 | DAMAGED | Kept for backwards compatibility. Internally mapped to decommissioned | 2 |
 | LOST | Kept for backwards compatibility. Internally mapped to decommissioned | 3 |
 
@@ -1568,6 +1572,7 @@ A parser can be defined in two ways: using a .ksy (Kaitai struct https://kaitai.
 | metadata_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields) | Fields in the parsed result that contain metadata, and special things like a location. |
 | available_to_child_organizations | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations](#hibermodemmessagebodyparsermodemmessagebodyparseravailabletochildorganizations) | If set, this parser is available to your child organizations, as a Provided parser. |
 | post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | The list of post-processing steps applied to the result of this parser. |
+| require_message_metadata | [map hiber.modem.message.bodyparser.ModemMessageBodyParser.RequireMessageMetadataEntry](#hibermodemmessagebodyparsermodemmessagebodyparserrequiremessagemetadataentry) | In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. |
 
 ### hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations
 
@@ -1599,6 +1604,15 @@ like a location or battery percentage.
 | ----- | ---- | ----------- |
 | latitude | [ string](#string) | none |
 | longitude | [ string](#string) | none |
+
+### hiber.modem.message.bodyparser.ModemMessageBodyParser.RequireMessageMetadataEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) | none |
+| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
 
 ### hiber.modem.message.bodyparser.ModemMessageBodyParserSelection
 
@@ -1815,6 +1829,17 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 | metadata_fields | [ hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
 | add_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | Add a post-processing step to the result of this parser. |
 | remove_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | Remove a post-processing step to the result of this parser. |
+| add_require_message_metadata | [map hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestaddrequiremessagemetadataentry) | In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. |
+| remove_require_message_metadata | [repeated string](#string) | Remove a requirement for the metadata. Remove by listing the json-path here. |
+
+### hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) | none |
+| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
 
 ### hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields
 
@@ -1844,6 +1869,16 @@ Upload a new body parser from a .ksy file.
 | data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Fields in the parsed result that contain data. This can be useful to track which fields could be plotted, etc. |
 | metadata_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
 | post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | none |
+| require_message_metadata | [map hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest.RequireMessageMetadataEntry](#hibermodemmessagebodyparseruploadmodemmessagebodyparserrequestrequiremessagemetadataentry) | In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. |
+
+### hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest.RequireMessageMetadataEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) | none |
+| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
 
 
 ### Enums
@@ -1853,7 +1888,6 @@ The type of post-processing to be applied to the result of this parser.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | NOTHING | none | 0 |
-| EASYPULSE | none | 1 |
 
 #### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian
 
@@ -2484,7 +2518,6 @@ api event stream and publishers.
 | MODEM_TRANSFER_CANCELLED | none | 19 |
 | MODEM_TRANSFER_NOT_RECEIVED | none | 20 |
 | MODEM_TRANSFER_RETURN_TRANSFER_STARTED | none | 21 |
-| MODEM_CLAIMED | none | 22 |
 | PUBLISHER_CREATED | none | 1 |
 | PUBLISHER_UPDATED | none | 2 |
 | PUBLISHER_DELETED | none | 3 |
@@ -2561,6 +2594,7 @@ Unit of measurement for a numeric value.
 | MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
 | REVOLUTIONS_PER_MINUTE | none | 44 |
+| ITEMS_PER_24_HOURS | none | 45 |
 
 ## Scalar Value Types
 

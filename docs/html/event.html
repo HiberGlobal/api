@@ -259,14 +259,6 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.event.Event.ModemEvent.ClaimEvent"><span class="badge">M</span>Event.ModemEvent.ClaimEvent</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent"><span class="badge">M</span>Event.ModemEvent.ClaimEvent.ModemClaimedEvent</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.event.Event.ModemEvent.MessageBodyParserEvent"><span class="badge">M</span>Event.ModemEvent.MessageBodyParserEvent</a>
                 </li>
               
@@ -1711,49 +1703,6 @@
         
           
           <li>
-            <a href="#modem_claim.proto">modem_claim.proto</a>
-            <ul>
-              
-                <li>
-                  <a href="#hiber.modem.ClaimModemRequest"><span class="badge">M</span>ClaimModemRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.ClaimModemRequest.ClaimModem"><span class="badge">M</span>ClaimModemRequest.ClaimModem</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.ClaimModemRequest.Response"><span class="badge">M</span>ClaimModemRequest.Response</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.ListModemClaimsRequest"><span class="badge">M</span>ListModemClaimsRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.ListModemClaimsRequest.Response"><span class="badge">M</span>ListModemClaimsRequest.Response</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.ModemClaim"><span class="badge">M</span>ModemClaim</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.ModemClaimSelection"><span class="badge">M</span>ModemClaimSelection</a>
-                </li>
-              
-              
-              
-              
-                <li>
-                  <a href="#hiber.modem.ModemClaimService"><span class="badge">S</span>ModemClaimService</a>
-                </li>
-              
-            </ul>
-          </li>
-        
-          
-          <li>
             <a href="#modem_message_body_parser.proto">modem_message_body_parser.proto</a>
             <ul>
               
@@ -1815,6 +1764,10 @@
               
                 <li>
                   <a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields"><span class="badge">M</span>ModemMessageBodyParser.MetadataFields.LocationFields</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.RequireMessageMetadataEntry"><span class="badge">M</span>ModemMessageBodyParser.RequireMessageMetadataEntry</a>
                 </li>
               
                 <li>
@@ -1898,11 +1851,19 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry"><span class="badge">M</span>UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields"><span class="badge">M</span>UpdateUploadedModemMessageBodyParserRequest.MetadataFields</a>
                 </li>
               
                 <li>
                   <a href="#hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest"><span class="badge">M</span>UploadModemMessageBodyParserRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest.RequireMessageMetadataEntry"><span class="badge">M</span>UploadModemMessageBodyParserRequest.RequireMessageMetadataEntry</a>
                 </li>
               
               
@@ -2109,6 +2070,10 @@
               
                 <li>
                   <a href="#hiber.organization.Organization.Contact"><span class="badge">M</span>Organization.Contact</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.organization.Organization.Defaults"><span class="badge">M</span>Organization.Defaults</a>
                 </li>
               
                 <li>
@@ -2926,13 +2891,6 @@ Not every event affects health, so this field might be empty. </p></td>
                 <tr>
                   <td>modem_transfer_return_transfer_started</td>
                   <td><a href="#hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent">Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modem_claimed_event</td>
-                  <td><a href="#hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent">Event.ModemEvent.ClaimEvent.ModemClaimedEvent</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -3795,86 +3753,6 @@ for the modem (and organization). </p></td>
                   <td>update_health_level_after_resolved</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved">hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved</a></td>
                   <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.event.Event.ModemEvent.ClaimEvent">Event.ModemEvent.ClaimEvent</h3>
-        <p></p>
-
-        
-
-        
-      
-        <h3 id="hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent">Event.ModemEvent.ClaimEvent.ModemClaimedEvent</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modem_number</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modem_external_device_id</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>External device id for this modem (e.g. a MAC address). </p></td>
-                </tr>
-              
-                <tr>
-                  <td>claim</td>
-                  <td><a href="#hiber.modem.ModemClaim">hiber.modem.ModemClaim</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>time</td>
-                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tags</td>
-                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
-                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -10525,12 +10403,6 @@ For example, unbundled events are likely to return an approximated total, but no
               </tr>
             
               <tr>
-                <td>MODEM_CLAIMED</td>
-                <td>22</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
                 <td>PUBLISHER_CREATED</td>
                 <td>1</td>
                 <td><p></p></td>
@@ -10933,6 +10805,12 @@ For example, unbundled events are likely to return an approximated total, but no
               <tr>
                 <td>REVOLUTIONS_PER_MINUTE</td>
                 <td>44</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ITEMS_PER_24_HOURS</td>
+                <td>45</td>
                 <td><p></p></td>
               </tr>
             
@@ -14671,6 +14549,13 @@ Used mainly to differentiate in the UI or to sort on. </p></td>
                   <td><p>The transmission interval for this modem, if configured. </p></td>
                 </tr>
               
+                <tr>
+                  <td>expected_transmission_rate</td>
+                  <td><a href="#hiber.value.Value.Numeric.Rate">hiber.value.Value.Numeric.Rate</a></td>
+                  <td>optional</td>
+                  <td><p>The expected transmission rate for this modem. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -16552,32 +16437,36 @@ values were different. Set this to true to apply it anyway. </p></td>
               <tr>
                 <td>ACCEPTANCE_TESTING</td>
                 <td>0</td>
-                <td><p>Modem is deployed, but not active yet. Invisible for customer.</p></td>
+                <td><p>Device is deployed, but not active yet. Invisible for customer.</p></td>
               </tr>
             
               <tr>
                 <td>INSTALLED</td>
                 <td>1</td>
-                <td><p>Modem is active and sending messages.
+                <td><p>Device is active and sending messages.
 See health for more details on its health, based on the past messages.</p></td>
               </tr>
             
               <tr>
                 <td>PAUSED</td>
                 <td>6</td>
-                <td><p></p></td>
+                <td><p>Device is paused and not sending messages. This should be of a temporary nature.
+(e.g. a change to the installation is being made)</p></td>
               </tr>
             
               <tr>
                 <td>DISABLED</td>
                 <td>5</td>
-                <td><p></p></td>
+                <td><p>Device is disabled and not sending messages. Invisible for customer.
+This could be either temporary or become permanent.
+Used for cases where devices is being serviced and customer
+should not be burdened with the health of this device.</p></td>
               </tr>
             
               <tr>
                 <td>DECOMMISSIONED</td>
                 <td>4</td>
-                <td><p></p></td>
+                <td><p>Device is (going to be) removed from installation and will not return to installed status again.</p></td>
               </tr>
             
               <tr>
@@ -18808,291 +18697,6 @@ historical values, to trigger only if the value is high for a longer period.</p>
     
       
       <div class="file-heading">
-        <h2 id="modem_claim.proto">modem_claim.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-      
-        <h3 id="hiber.modem.ClaimModemRequest">ClaimModemRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>claims</td>
-                  <td><a href="#hiber.modem.ClaimModemRequest.ClaimModem">ClaimModemRequest.ClaimModem</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.ClaimModemRequest.ClaimModem">ClaimModemRequest.ClaimModem</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>modem_number</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>verifier</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.ClaimModemRequest.Response">ClaimModemRequest.Response</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>request</td>
-                  <td><a href="#hiber.modem.ClaimModemRequest">ClaimModemRequest</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>claims</td>
-                  <td><a href="#hiber.modem.ModemClaim">ModemClaim</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.ListModemClaimsRequest">ListModemClaimsRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>selection</td>
-                  <td><a href="#hiber.modem.ModemClaimSelection">ModemClaimSelection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pagination</td>
-                  <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.ListModemClaimsRequest.Response">ListModemClaimsRequest.Response</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>claims</td>
-                  <td><a href="#hiber.modem.ModemClaim">ModemClaim</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>request</td>
-                  <td><a href="#hiber.modem.ListModemClaimsRequest">ListModemClaimsRequest</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pagination</td>
-                  <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.ModemClaim">ModemClaim</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>modem_number</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>created_at</td>
-                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>claiming_organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tags</td>
-                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
-                  <td>repeated</td>
-                  <td><p>Tags the modem had when it was claimed. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.ModemClaimSelection">ModemClaimSelection</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>modems</td>
-                  <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>time_range</td>
-                  <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-
-      
-
-      
-
-      
-        <h3 id="hiber.modem.ModemClaimService">ModemClaimService</h3>
-        <p>Claim a modem that you have in your possession, but was not marked as inbound for you.</p><p>This is only possible for a modem that has not been activated.</p><p>This process is instantaneous, but the previous owner can reject the claim afterwards.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>Claim</td>
-                <td><a href="#hiber.modem.ClaimModemRequest">ClaimModemRequest</a></td>
-                <td><a href="#hiber.modem.ClaimModemRequest.Response">ClaimModemRequest.Response</a></td>
-                <td><p>Claim a number of modems.</p></td>
-              </tr>
-            
-              <tr>
-                <td>ListClaims</td>
-                <td><a href="#hiber.modem.ListModemClaimsRequest">ListModemClaimsRequest</a></td>
-                <td><a href="#hiber.modem.ListModemClaimsRequest.Response">ListModemClaimsRequest.Response</a></td>
-                <td><p>List modems that have been claimed. They are no longer part if your organization.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-
-        
-    
-      
-      <div class="file-heading">
         <h2 id="modem_message_body_parser.proto">modem_message_body_parser.proto</h2><a href="#title">Top</a>
       </div>
       <p>Modem message body parsers management.</p><p>Modem message body parsers (short: parsers) are small scripts defined using the Kaitai Struct specification</p><p>to parse binary data.</p><p>Parsers are assigned to modems to parse the body of their messages dynamically.</p><p>Parsers can be written manually as a .ksy file and uploaded through the API, or the simplified API implementation</p><p>can be used to create a parser.</p><p>For more information on Kaitai Struct, see [http://kaitai.io/](http://kaitai.io/),</p><p>where you can find documentation, examples and a web IDE.</p>
@@ -19517,6 +19121,16 @@ Data fields are cached for efficient retrieval and allow all kinds of processing
                   <td><p>The list of post-processing steps applied to the result of this parser. </p></td>
                 </tr>
               
+                <tr>
+                  <td>require_message_metadata</td>
+                  <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.RequireMessageMetadataEntry">ModemMessageBodyParser.RequireMessageMetadataEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>In order to use this parser on a message,
+the metadata on the message must match the given requirement here.
+The key of the map is the json-path to look for in the message metadata,
+the value of the map is the json to expect at that json-path. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -19644,6 +19258,37 @@ from the message. If not set, sent time is used. </p></td>
                 <tr>
                   <td>longitude</td>
                   <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.modem.message.bodyparser.ModemMessageBodyParser.RequireMessageMetadataEntry">ModemMessageBodyParser.RequireMessageMetadataEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#google.protobuf.Value">google.protobuf.Value</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -20446,6 +20091,54 @@ This can be combined with a size to limit the amounts of bytes that are parsed. 
                   <td><p>Remove a post-processing step to the result of this parser. </p></td>
                 </tr>
               
+                <tr>
+                  <td>add_require_message_metadata</td>
+                  <td><a href="#hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry">UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>In order to use this parser on a message,
+the metadata on the message must match the given requirement here.
+The key of the map is the json-path to look for in the message metadata,
+the value of the map is the json to expect at that json-path. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remove_require_message_metadata</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Remove a requirement for the metadata. Remove by listing the json-path here. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry">UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#google.protobuf.Value">google.protobuf.Value</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -20586,6 +20279,47 @@ This can be useful to track which fields could be plotted, etc. </p></td>
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>require_message_metadata</td>
+                  <td><a href="#hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest.RequireMessageMetadataEntry">UploadModemMessageBodyParserRequest.RequireMessageMetadataEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>In order to use this parser on a message,
+the metadata on the message must match the given requirement here.
+The key of the map is the json-path to look for in the message metadata,
+the value of the map is the json to expect at that json-path. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest.RequireMessageMetadataEntry">UploadModemMessageBodyParserRequest.RequireMessageMetadataEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#google.protobuf.Value">google.protobuf.Value</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -20606,12 +20340,6 @@ This can be useful to track which fields could be plotted, etc. </p></td>
               <tr>
                 <td>NOTHING</td>
                 <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>EASYPULSE</td>
-                <td>1</td>
                 <td><p></p></td>
               </tr>
             
@@ -22559,6 +22287,13 @@ Used as an identifier for the organization. </p></td>
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>defaults</td>
+                  <td><a href="#hiber.organization.Organization.Defaults">Organization.Defaults</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -22647,6 +22382,30 @@ Used as an identifier for the organization. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.organization.Organization.Defaults">Organization.Defaults</h3>
+        <p>Default settings for this organization.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>expected_device_transmission_rate</td>
+                  <td><a href="#hiber.value.Value.Numeric.Rate">hiber.value.Value.Numeric.Rate</a></td>
+                  <td>optional</td>
+                  <td><p>The default expected transmission interval for devices in this organization. </p></td>
                 </tr>
               
             </tbody>
@@ -22930,18 +22689,6 @@ Used as an identifier for the organization. </p></td>
               </tr>
             
               <tr>
-                <td>EASYPULSE</td>
-                <td>3</td>
-                <td><p>A set of additional features to allow advanced tracking on the map.</p></td>
-              </tr>
-            
-              <tr>
-                <td>EASYPULSE_SCORECARD</td>
-                <td>7</td>
-                <td><p>Used for an easypulse scorecard feature that we will introduce at a later point.</p></td>
-              </tr>
-            
-              <tr>
                 <td>MODEM_CREATION</td>
                 <td>4</td>
                 <td><p>Required to manually create modems using the ModemService.</p></td>
@@ -22963,12 +22710,6 @@ Used as an identifier for the organization. </p></td>
                 <td>BI_TOOLING_BETA</td>
                 <td>8</td>
                 <td><p>Integrate BI tooling in the Mission Control interface.</p></td>
-              </tr>
-            
-              <tr>
-                <td>SINARMAS_SPECIFIC</td>
-                <td>9</td>
-                <td><p></p></td>
               </tr>
             
           </tbody>

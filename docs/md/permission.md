@@ -53,7 +53,6 @@ Requesting user-related events explicitly if you cannot access the users will re
 | MODEM_TRANSFERS | See modem transfers, inbound and outbound modems. Includes modems permission. | 20 |
 | MODEM_TRANSFERS_SEND | Transfer modems to another organization, cancel open transfers and send return transfers. Includes modems_transfers permission. | 21 |
 | MODEM_TRANSFERS_PROCESS | Mark transfers as received, prepare modems for return. This does not include actually sending the return transfer. Includes modems_transfers permission. | 22 |
-| MODEM_CLAIM | Claiming modems. | 25 |
 | USERS | List all users, see their names and email addresses. | 30 |
 | USERS_MANAGE | Approve or create new users, remove users from the organization. Includes users permission. | 31 |
 | PUBLISHERS | Manage publishers: webhooks, MQTT integration and custom email publishers. | 35 |

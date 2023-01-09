@@ -27,6 +27,7 @@ message Field {
                 value.Value.Numeric.Volume.Unit volume = 10;
                 value.Value.Numeric.Mass.Unit mass = 11;
                 value.Value.Numeric.RotationSpeed.Unit rotation_speed = 13;
+                value.Value.Numeric.Rate.Unit rate = 14;
             }
         }
 

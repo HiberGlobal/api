@@ -278,7 +278,6 @@ Requesting user-related events explicitly if you cannot access the users will re
 | MODEM_TRANSFERS | See modem transfers, inbound and outbound modems. Includes modems permission. | 20 |
 | MODEM_TRANSFERS_SEND | Transfer modems to another organization, cancel open transfers and send return transfers. Includes modems_transfers permission. | 21 |
 | MODEM_TRANSFERS_PROCESS | Mark transfers as received, prepare modems for return. This does not include actually sending the return transfer. Includes modems_transfers permission. | 22 |
-| MODEM_CLAIM | Claiming modems. | 25 |
 | USERS | List all users, see their names and email addresses. | 30 |
 | USERS_MANAGE | Approve or create new users, remove users from the organization. Includes users permission. | 31 |
 | PUBLISHERS | Manage publishers: webhooks, MQTT integration and custom email publishers. | 35 |
@@ -891,7 +890,6 @@ api event stream and publishers.
 | MODEM_TRANSFER_CANCELLED | none | 19 |
 | MODEM_TRANSFER_NOT_RECEIVED | none | 20 |
 | MODEM_TRANSFER_RETURN_TRANSFER_STARTED | none | 21 |
-| MODEM_CLAIMED | none | 22 |
 | PUBLISHER_CREATED | none | 1 |
 | PUBLISHER_UPDATED | none | 2 |
 | PUBLISHER_DELETED | none | 3 |
@@ -968,6 +966,7 @@ Unit of measurement for a numeric value.
 | MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
 | REVOLUTIONS_PER_MINUTE | none | 44 |
+| ITEMS_PER_24_HOURS | none | 45 |
 
 ## Scalar Value Types
 

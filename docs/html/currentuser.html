@@ -541,6 +541,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.organization.Organization.Defaults"><span class="badge">M</span>Organization.Defaults</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.organization.OrganizationSelection"><span class="badge">M</span>OrganizationSelection</a>
                 </li>
               
@@ -2922,12 +2926,6 @@ For example, unbundled events are likely to return an approximated total, but no
               </tr>
             
               <tr>
-                <td>MODEM_CLAIMED</td>
-                <td>22</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
                 <td>PUBLISHER_CREATED</td>
                 <td>1</td>
                 <td><p></p></td>
@@ -3330,6 +3328,12 @@ For example, unbundled events are likely to return an approximated total, but no
               <tr>
                 <td>REVOLUTIONS_PER_MINUTE</td>
                 <td>44</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ITEMS_PER_24_HOURS</td>
+                <td>45</td>
                 <td><p></p></td>
               </tr>
             
@@ -3859,6 +3863,13 @@ Used as an identifier for the organization. </p></td>
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>defaults</td>
+                  <td><a href="#hiber.organization.Organization.Defaults">Organization.Defaults</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -3947,6 +3958,30 @@ Used as an identifier for the organization. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.organization.Organization.Defaults">Organization.Defaults</h3>
+        <p>Default settings for this organization.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>expected_device_transmission_rate</td>
+                  <td><a href="#hiber.value.Value.Numeric.Rate">hiber.value.Value.Numeric.Rate</a></td>
+                  <td>optional</td>
+                  <td><p>The default expected transmission interval for devices in this organization. </p></td>
                 </tr>
               
             </tbody>
@@ -4230,18 +4265,6 @@ Used as an identifier for the organization. </p></td>
               </tr>
             
               <tr>
-                <td>EASYPULSE</td>
-                <td>3</td>
-                <td><p>A set of additional features to allow advanced tracking on the map.</p></td>
-              </tr>
-            
-              <tr>
-                <td>EASYPULSE_SCORECARD</td>
-                <td>7</td>
-                <td><p>Used for an easypulse scorecard feature that we will introduce at a later point.</p></td>
-              </tr>
-            
-              <tr>
                 <td>MODEM_CREATION</td>
                 <td>4</td>
                 <td><p>Required to manually create modems using the ModemService.</p></td>
@@ -4263,12 +4286,6 @@ Used as an identifier for the organization. </p></td>
                 <td>BI_TOOLING_BETA</td>
                 <td>8</td>
                 <td><p>Integrate BI tooling in the Mission Control interface.</p></td>
-              </tr>
-            
-              <tr>
-                <td>SINARMAS_SPECIFIC</td>
-                <td>9</td>
-                <td><p></p></td>
               </tr>
             
           </tbody>

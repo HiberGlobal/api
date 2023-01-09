@@ -219,6 +219,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.value.Value.Numeric.Rate"><span class="badge">M</span>Value.Numeric.Rate</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.value.Value.Numeric.RotationSpeed"><span class="badge">M</span>Value.Numeric.RotationSpeed</a>
                 </li>
               
@@ -269,6 +273,10 @@
               
                 <li>
                   <a href="#hiber.value.Value.Numeric.Pressure.Unit"><span class="badge">E</span>Value.Numeric.Pressure.Unit</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.value.Value.Numeric.Rate.Unit"><span class="badge">E</span>Value.Numeric.Rate.Unit</a>
                 </li>
               
                 <li>
@@ -729,6 +737,13 @@
                 </tr>
               
                 <tr>
+                  <td>rate</td>
+                  <td><a href="#hiber.value.Value.Numeric.Rate">Value.Numeric.Rate</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>unknown</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
@@ -1039,6 +1054,51 @@
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.value.Value.Numeric.Pressure.Unit">Value.Numeric.Pressure.Unit</a></td>
+                  <td></td>
+                  <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.value.Value.Numeric.Rate">Value.Numeric.Rate</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>unit</td>
+                  <td><a href="#hiber.value.Value.Numeric.Rate.Unit">Value.Numeric.Rate.Unit</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>textual</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>converted_from</td>
+                  <td><a href="#hiber.value.Value.Numeric.Rate.Unit">Value.Numeric.Rate.Unit</a></td>
                   <td></td>
                   <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
                 </tr>
@@ -1545,6 +1605,23 @@
           </tbody>
         </table>
       
+        <h3 id="hiber.value.Value.Numeric.Rate.Unit">Value.Numeric.Rate.Unit</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ITEMS_PER_24_HOURS</td>
+                <td>0</td>
+                <td><p>The amount of items counted in a 24 hour window.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
         <h3 id="hiber.value.Value.Numeric.RotationSpeed.Unit">Value.Numeric.RotationSpeed.Unit</h3>
         <p></p>
         <table class="enum-table">
@@ -1715,6 +1792,12 @@
               <tr>
                 <td>ROTATION_SPEED</td>
                 <td>13</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>RATE</td>
+                <td>14</td>
                 <td><p></p></td>
               </tr>
             
@@ -3545,12 +3628,6 @@ For example, unbundled events are likely to return an approximated total, but no
               </tr>
             
               <tr>
-                <td>MODEM_CLAIMED</td>
-                <td>22</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
                 <td>PUBLISHER_CREATED</td>
                 <td>1</td>
                 <td><p></p></td>
@@ -3953,6 +4030,12 @@ For example, unbundled events are likely to return an approximated total, but no
               <tr>
                 <td>REVOLUTIONS_PER_MINUTE</td>
                 <td>44</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ITEMS_PER_24_HOURS</td>
+                <td>45</td>
                 <td><p></p></td>
               </tr>
             

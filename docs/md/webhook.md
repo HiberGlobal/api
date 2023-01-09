@@ -1209,7 +1209,6 @@ api event stream and publishers.
 | MODEM_TRANSFER_CANCELLED | none | 19 |
 | MODEM_TRANSFER_NOT_RECEIVED | none | 20 |
 | MODEM_TRANSFER_RETURN_TRANSFER_STARTED | none | 21 |
-| MODEM_CLAIMED | none | 22 |
 | PUBLISHER_CREATED | none | 1 |
 | PUBLISHER_UPDATED | none | 2 |
 | PUBLISHER_DELETED | none | 3 |
@@ -1286,6 +1285,7 @@ Unit of measurement for a numeric value.
 | MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
 | REVOLUTIONS_PER_MINUTE | none | 44 |
+| ITEMS_PER_24_HOURS | none | 45 |
 
 ## Scalar Value Types
 

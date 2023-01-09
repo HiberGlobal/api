@@ -50,6 +50,7 @@ message Value {
             BATTERY_LEVEL = 11;
             FLOW = 12;
             ROTATION_SPEED = 13;
+            RATE = 14;
         }
 
         /* Special case for battery level, since it can be provided in many units.
@@ -275,6 +276,21 @@ message Value {
             Unit converted_from = 4;
         }
 
+        message Rate {
+            enum Unit {
+                /* The amount of items counted in a 24 hour window. */
+                ITEMS_PER_24_HOURS = 0;
+            }
+
+            uint32 value = 1;
+            Unit unit = 2;
+
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
+            string textual = 3;
+            /* The original unit, iff this value was converted from another unit because of user preferences. */
+            Unit converted_from = 4;
+        }
+
         /* The duration enum is not wrapped in Duration, since duration is always returned as a normalize Duration.
          * This unit is still used for fields, however.
          */
@@ -302,6 +318,8 @@ message Value {
             Mass mass = 12;
             Flow flow = 13;
             RotationSpeed rotation_speed = 16;
+            Rate rate = 17;
+
             double unknown = 15;
         }
     }

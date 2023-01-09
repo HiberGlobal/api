@@ -13,8 +13,13 @@ option go_package = "hiber";
 /* Claim a modem that you have in your possession, but was not marked as inbound for you.
  * This is only possible for a modem that has not been activated.
  * This process is instantaneous, but the previous owner can reject the claim afterwards.
+ *
+ * This service is deprecated and will be removed in the future. In some cases, it may be disabled before it is removed.
+ * // TODO(2023-01-31) remove this service from the API before this date
  */
 service ModemClaimService {
+    option deprecated = true;
+
     /* Claim a number of modems. */
     rpc Claim (ClaimModemRequest) returns (ClaimModemRequest.Response);
 
@@ -23,6 +28,8 @@ service ModemClaimService {
 }
 
 message ModemClaim {
+    option deprecated = true;
+
     string modem_number = 1;
     Timestamp created_at = 5;
     string claiming_organization = 7;
@@ -32,17 +39,25 @@ message ModemClaim {
 }
 
 message ModemClaimSelection {
+    option deprecated = true;
+
     Filter.Modems modems = 1;
     TimeRange time_range = 3;
     reserved 2, 4, 5, 6;
 }
 
 message ClaimModemRequest {
+    option deprecated = true;
+
     message ClaimModem {
+        option deprecated = true;
+
         string modem_number = 1;
         string verifier = 2;
     }
     message Response {
+        option deprecated = true;
+
         ClaimModemRequest request = 1;
         repeated ModemClaim claims = 2;
     }
@@ -53,7 +68,11 @@ message ClaimModemRequest {
 }
 
 message ListModemClaimsRequest {
+    option deprecated = true;
+
     message Response {
+        option deprecated = true;
+
         repeated ModemClaim claims = 1;
         ListModemClaimsRequest request = 2;
         Pagination.Result pagination = 3;

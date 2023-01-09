@@ -123,8 +123,13 @@ message AggregatedValues {
      */
     repeated ValueContext values = 2;
 
-    /* The last location in the time range. */
-    Location location = 3;
+    /* The last location in the time range.
+     * Deprecated: only set if a single modem is selected.
+     */
+    Location location = 3 [deprecated = true];
+
+    /* The last know location, in the time range, for each given modem. */
+    map<string, Location> locations = 4;
 
     /* Request aggregated values, reducing the selected time range to a single value per field. */
     message Request {

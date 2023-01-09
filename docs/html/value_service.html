@@ -183,6 +183,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.value.AggregatedValues.LocationsEntry"><span class="badge">M</span>AggregatedValues.LocationsEntry</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.value.AggregatedValues.Request"><span class="badge">M</span>AggregatedValues.Request</a>
                 </li>
               
@@ -740,6 +744,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.value.Value.Numeric.Rate"><span class="badge">M</span>Value.Numeric.Rate</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.value.Value.Numeric.RotationSpeed"><span class="badge">M</span>Value.Numeric.RotationSpeed</a>
                 </li>
               
@@ -790,6 +798,10 @@
               
                 <li>
                   <a href="#hiber.value.Value.Numeric.Pressure.Unit"><span class="badge">E</span>Value.Numeric.Pressure.Unit</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.value.Value.Numeric.Rate.Unit"><span class="badge">E</span>Value.Numeric.Rate.Unit</a>
                 </li>
               
                 <li>
@@ -874,7 +886,67 @@ exact data point (i.e. LAST, MAXIMUM, MINIMUM aggregation, or a single value). <
                   <td>location</td>
                   <td><a href="#hiber.Location">hiber.Location</a></td>
                   <td></td>
-                  <td><p>The last location in the time range. </p></td>
+                  <td><p><strong>Deprecated.</strong> The last location in the time range.
+Deprecated: only set if a single modem is selected. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>locations</td>
+                  <td><a href="#hiber.value.AggregatedValues.LocationsEntry">AggregatedValues.LocationsEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>The last know location, in the time range, for each given modem. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>location</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
+        <h3 id="hiber.value.AggregatedValues.LocationsEntry">AggregatedValues.LocationsEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#hiber.Location">hiber.Location</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -3129,12 +3201,6 @@ For example, unbundled events are likely to return an approximated total, but no
               </tr>
             
               <tr>
-                <td>MODEM_CLAIMED</td>
-                <td>22</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
                 <td>PUBLISHER_CREATED</td>
                 <td>1</td>
                 <td><p></p></td>
@@ -3537,6 +3603,12 @@ For example, unbundled events are likely to return an approximated total, but no
               <tr>
                 <td>REVOLUTIONS_PER_MINUTE</td>
                 <td>44</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ITEMS_PER_24_HOURS</td>
+                <td>45</td>
                 <td><p></p></td>
               </tr>
             
@@ -4508,6 +4580,13 @@ Used mainly to differentiate in the UI or to sort on. </p></td>
                   <td><a href="#hiber.Duration">hiber.Duration</a></td>
                   <td></td>
                   <td><p>The transmission interval for this modem, if configured. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expected_transmission_rate</td>
+                  <td><a href="#hiber.value.Value.Numeric.Rate">hiber.value.Value.Numeric.Rate</a></td>
+                  <td>optional</td>
+                  <td><p>The expected transmission rate for this modem. </p></td>
                 </tr>
               
             </tbody>
@@ -6391,32 +6470,36 @@ values were different. Set this to true to apply it anyway. </p></td>
               <tr>
                 <td>ACCEPTANCE_TESTING</td>
                 <td>0</td>
-                <td><p>Modem is deployed, but not active yet. Invisible for customer.</p></td>
+                <td><p>Device is deployed, but not active yet. Invisible for customer.</p></td>
               </tr>
             
               <tr>
                 <td>INSTALLED</td>
                 <td>1</td>
-                <td><p>Modem is active and sending messages.
+                <td><p>Device is active and sending messages.
 See health for more details on its health, based on the past messages.</p></td>
               </tr>
             
               <tr>
                 <td>PAUSED</td>
                 <td>6</td>
-                <td><p></p></td>
+                <td><p>Device is paused and not sending messages. This should be of a temporary nature.
+(e.g. a change to the installation is being made)</p></td>
               </tr>
             
               <tr>
                 <td>DISABLED</td>
                 <td>5</td>
-                <td><p></p></td>
+                <td><p>Device is disabled and not sending messages. Invisible for customer.
+This could be either temporary or become permanent.
+Used for cases where devices is being serviced and customer
+should not be burdened with the health of this device.</p></td>
               </tr>
             
               <tr>
                 <td>DECOMMISSIONED</td>
                 <td>4</td>
-                <td><p></p></td>
+                <td><p>Device is (going to be) removed from installation and will not return to installed status again.</p></td>
               </tr>
             
               <tr>
@@ -6960,6 +7043,13 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                 </tr>
               
                 <tr>
+                  <td>rate</td>
+                  <td><a href="#hiber.value.Value.Numeric.Rate">Value.Numeric.Rate</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>unknown</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
@@ -7270,6 +7360,51 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.value.Value.Numeric.Pressure.Unit">Value.Numeric.Pressure.Unit</a></td>
+                  <td></td>
+                  <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.value.Value.Numeric.Rate">Value.Numeric.Rate</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>unit</td>
+                  <td><a href="#hiber.value.Value.Numeric.Rate.Unit">Value.Numeric.Rate.Unit</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>textual</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>converted_from</td>
+                  <td><a href="#hiber.value.Value.Numeric.Rate.Unit">Value.Numeric.Rate.Unit</a></td>
                   <td></td>
                   <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
                 </tr>
@@ -7776,6 +7911,23 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
           </tbody>
         </table>
       
+        <h3 id="hiber.value.Value.Numeric.Rate.Unit">Value.Numeric.Rate.Unit</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ITEMS_PER_24_HOURS</td>
+                <td>0</td>
+                <td><p>The amount of items counted in a 24 hour window.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
         <h3 id="hiber.value.Value.Numeric.RotationSpeed.Unit">Value.Numeric.RotationSpeed.Unit</h3>
         <p></p>
         <table class="enum-table">
@@ -7946,6 +8098,12 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
               <tr>
                 <td>ROTATION_SPEED</td>
                 <td>13</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>RATE</td>
+                <td>14</td>
                 <td><p></p></td>
               </tr>
             

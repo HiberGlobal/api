@@ -282,14 +282,6 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.event.Event.ModemEvent.ClaimEvent"><span class="badge">M</span>Event.ModemEvent.ClaimEvent</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent"><span class="badge">M</span>Event.ModemEvent.ClaimEvent.ModemClaimedEvent</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.event.Event.ModemEvent.MessageBodyParserEvent"><span class="badge">M</span>Event.ModemEvent.MessageBodyParserEvent</a>
                 </li>
               
@@ -1401,13 +1393,6 @@ Not every event affects health, so this field might be empty. </p></td>
                 </tr>
               
                 <tr>
-                  <td>modem_claimed_event</td>
-                  <td><a href="#hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent">Event.ModemEvent.ClaimEvent.ModemClaimedEvent</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
                   <td>token_expiry_warning</td>
                   <td><a href="#hiber.event.Event.TokenEvent.TokenExpiryWarningEvent">Event.TokenEvent.TokenExpiryWarningEvent</a></td>
                   <td></td>
@@ -2265,86 +2250,6 @@ for the modem (and organization). </p></td>
                   <td>update_health_level_after_resolved</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved">hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved</a></td>
                   <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.event.Event.ModemEvent.ClaimEvent">Event.ModemEvent.ClaimEvent</h3>
-        <p></p>
-
-        
-
-        
-      
-        <h3 id="hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent">Event.ModemEvent.ClaimEvent.ModemClaimedEvent</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modem_number</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modem_external_device_id</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>External device id for this modem (e.g. a MAC address). </p></td>
-                </tr>
-              
-                <tr>
-                  <td>claim</td>
-                  <td><a href="#hiber.modem.ModemClaim">hiber.modem.ModemClaim</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>time</td>
-                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tags</td>
-                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
-                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -6904,6 +6809,13 @@ Used mainly to differentiate in the UI or to sort on. </p></td>
                   <td><p>The transmission interval for this modem, if configured. </p></td>
                 </tr>
               
+                <tr>
+                  <td>expected_transmission_rate</td>
+                  <td><a href="#hiber.value.Value.Numeric.Rate">hiber.value.Value.Numeric.Rate</a></td>
+                  <td>optional</td>
+                  <td><p>The expected transmission rate for this modem. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -8785,32 +8697,36 @@ values were different. Set this to true to apply it anyway. </p></td>
               <tr>
                 <td>ACCEPTANCE_TESTING</td>
                 <td>0</td>
-                <td><p>Modem is deployed, but not active yet. Invisible for customer.</p></td>
+                <td><p>Device is deployed, but not active yet. Invisible for customer.</p></td>
               </tr>
             
               <tr>
                 <td>INSTALLED</td>
                 <td>1</td>
-                <td><p>Modem is active and sending messages.
+                <td><p>Device is active and sending messages.
 See health for more details on its health, based on the past messages.</p></td>
               </tr>
             
               <tr>
                 <td>PAUSED</td>
                 <td>6</td>
-                <td><p></p></td>
+                <td><p>Device is paused and not sending messages. This should be of a temporary nature.
+(e.g. a change to the installation is being made)</p></td>
               </tr>
             
               <tr>
                 <td>DISABLED</td>
                 <td>5</td>
-                <td><p></p></td>
+                <td><p>Device is disabled and not sending messages. Invisible for customer.
+This could be either temporary or become permanent.
+Used for cases where devices is being serviced and customer
+should not be burdened with the health of this device.</p></td>
               </tr>
             
               <tr>
                 <td>DECOMMISSIONED</td>
                 <td>4</td>
-                <td><p></p></td>
+                <td><p>Device is (going to be) removed from installation and will not return to installed status again.</p></td>
               </tr>
             
               <tr>

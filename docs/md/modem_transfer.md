@@ -67,6 +67,7 @@
   - [hiber.organization.Organization](#hiberorganizationorganization)
   - [hiber.organization.Organization.Address](#hiberorganizationorganizationaddress)
   - [hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact)
+  - [hiber.organization.Organization.Defaults](#hiberorganizationorganizationdefaults)
   - [hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection)
   - [hiber.organization.OrganizationTree](#hiberorganizationorganizationtree)
   - [hiber.organization.OrganizationTreeRequest](#hiberorganizationorganizationtreerequest)
@@ -543,6 +544,7 @@ when the modem is registered into the system or when a subscription is authorize
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
 | time_zone | [ string](#string) | The timezone configured for the modem. |
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_transmission_rate**.expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
 
 ### hiber.modem.ModemSelection
 
@@ -600,11 +602,11 @@ Sorting options for the results.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| ACCEPTANCE_TESTING | Modem is deployed, but not active yet. Invisible for customer. | 0 |
-| INSTALLED | Modem is active and sending messages. See health for more details on its health, based on the past messages. | 1 |
-| PAUSED | none | 6 |
-| DISABLED | none | 5 |
-| DECOMMISSIONED | none | 4 |
+| ACCEPTANCE_TESTING | Device is deployed, but not active yet. Invisible for customer. | 0 |
+| INSTALLED | Device is active and sending messages. See health for more details on its health, based on the past messages. | 1 |
+| PAUSED | Device is paused and not sending messages. This should be of a temporary nature. (e.g. a change to the installation is being made) | 6 |
+| DISABLED | Device is disabled and not sending messages. Invisible for customer. This could be either temporary or become permanent. Used for cases where devices is being serviced and customer should not be burdened with the health of this device. | 5 |
+| DECOMMISSIONED | Device is (going to be) removed from installation and will not return to installed status again. | 4 |
 | DAMAGED | Kept for backwards compatibility. Internally mapped to decommissioned | 2 |
 | LOST | Kept for backwards compatibility. Internally mapped to decommissioned | 3 |
 
@@ -791,6 +793,7 @@ of any modems and related data.
 | updated_at | [ hiber.Timestamp](#hibertimestamp) | none |
 | features | [repeated hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature) | none |
 | database_info | [ string](#string) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_defaults**.defaults | [optional hiber.organization.Organization.Defaults](#hiberorganizationorganizationdefaults) | none |
 
 ### hiber.organization.Organization.Address
 
@@ -813,6 +816,14 @@ of any modems and related data.
 | name | [ string](#string) | none |
 | email | [ string](#string) | none |
 | phone | [ string](#string) | none |
+
+### hiber.organization.Organization.Defaults
+
+Default settings for this organization.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_device_transmission_rate**.expected_device_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The default expected transmission interval for devices in this organization. |
 
 ### hiber.organization.OrganizationSelection
 
@@ -896,13 +907,10 @@ Note that the organization field specifies the organization, it is not used to u
 | UNKNOWN | none | 0 |
 | HIBER | The default Hiber set of features including Mission Control and the API | 1 |
 | HILO | A limited set of features corresponding to the HiberHilo product. | 2 |
-| EASYPULSE | A set of additional features to allow advanced tracking on the map. | 3 |
-| EASYPULSE_SCORECARD | Used for an easypulse scorecard feature that we will introduce at a later point. | 7 |
 | MODEM_CREATION | Required to manually create modems using the ModemService. | 4 |
 | EARLY_ACCESS | Used for organizations that get early access to features. | 5 |
 | EXPERIMENTAL | Used for organizations that get access to experimental features. e.g. feature work in progress. | 6 |
 | BI_TOOLING_BETA | Integrate BI tooling in the Mission Control interface. | 8 |
-| SINARMAS_SPECIFIC | none | 9 |
 
 
 
@@ -1524,7 +1532,6 @@ api event stream and publishers.
 | MODEM_TRANSFER_CANCELLED | none | 19 |
 | MODEM_TRANSFER_NOT_RECEIVED | none | 20 |
 | MODEM_TRANSFER_RETURN_TRANSFER_STARTED | none | 21 |
-| MODEM_CLAIMED | none | 22 |
 | PUBLISHER_CREATED | none | 1 |
 | PUBLISHER_UPDATED | none | 2 |
 | PUBLISHER_DELETED | none | 3 |
@@ -1601,6 +1608,7 @@ Unit of measurement for a numeric value.
 | MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
 | REVOLUTIONS_PER_MINUTE | none | 44 |
+| ITEMS_PER_24_HOURS | none | 45 |
 
 ## Scalar Value Types
 

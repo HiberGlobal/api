@@ -10,6 +10,7 @@ package hiber.device;
 import "base.proto";
 import "device.proto";
 import "modem.proto";
+import "value.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.device";
@@ -27,6 +28,12 @@ service DeviceService {
     rpc Update(UpdateDevice.Request) returns (UpdateDevice.Response);
 }
 
+/* Update request for devices.
+ * When updating a device, all optional fields will be handled as follows:
+ * - when not set (omitted), nothing will change
+ * - when set to default value (i.e. empty object), setting will be cleared
+ * - when set to anything containing actual value, settings will be updated to those values.
+ */
 message UpdateDevice {
 
     hiber.device.DeviceSelection selection = 1;
@@ -61,13 +68,24 @@ message UpdateDevice {
 
     /* Updates the devices peripherals, by adding, removing or replacing. */
     optional UpdatePeripherals peripherals = 8;
+
     /* Set the timezone the device is located in. */
     optional string time_zone = 9;
+
     /* Update the lifecycle for this device. */
     optional hiber.modem.Modem.Lifecycle lifecycle = 10;
+
     /* Sets the interval this devices is transmitting on.
      * Mainly useful for devices that have a regular interval for transmissions. */
     optional Duration transmission_interval = 11;
+
+    /* Update the expected transmission rate.
+     * Expected transmission rate differs from transmission interval in that the device might be sending every hour,
+     * but we might just expect a transmission every six hours because network unreliability.
+     * This can help with reaching SLA goals, where if we want to have 1 message per day as per the SLA,
+     * the device sends every hour to make sure we meet the SLA.
+     */
+    optional hiber.value.Value.Numeric.Rate expected_transmission_rate = 14;
 
     /* When updating peripherals, you can choose to add and delete peripherals,
      * or to do a wholesome replace of all peripherals.

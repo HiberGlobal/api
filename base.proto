@@ -267,8 +267,6 @@ enum EventType {
     MODEM_TRANSFER_NOT_RECEIVED = 20;
     MODEM_TRANSFER_RETURN_TRANSFER_STARTED = 21;
 
-    MODEM_CLAIMED = 22;
-
     PUBLISHER_CREATED = 1;
     PUBLISHER_UPDATED = 2;
     PUBLISHER_DELETED = 3;
@@ -291,7 +289,7 @@ enum EventType {
     EXPORT_READY = 66;
     EXPORT_FAILED = 67;
 
-    reserved 6, 7, 13, 14, 16, 23, 24, 27, 28, 29, 30;
+    reserved 6, 7, 13, 14, 16, 22 to 24, 27, 28, 29, 30;
 }
 
 /* Filters used in many api calls to filter the data sources, results, etc.
@@ -576,6 +574,8 @@ enum UnitOfMeasurement {
     FLOW_CUBIC_METERS_PER_HOUR = 39;
 
     REVOLUTIONS_PER_MINUTE = 44;
+
+    ITEMS_PER_24_HOURS = 45;
 
     reserved 13;
 }

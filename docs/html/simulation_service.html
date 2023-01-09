@@ -2701,12 +2701,6 @@ For example, unbundled events are likely to return an approximated total, but no
               </tr>
             
               <tr>
-                <td>MODEM_CLAIMED</td>
-                <td>22</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
                 <td>PUBLISHER_CREATED</td>
                 <td>1</td>
                 <td><p></p></td>
@@ -3109,6 +3103,12 @@ For example, unbundled events are likely to return an approximated total, but no
               <tr>
                 <td>REVOLUTIONS_PER_MINUTE</td>
                 <td>44</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ITEMS_PER_24_HOURS</td>
+                <td>45</td>
                 <td><p></p></td>
               </tr>
             
@@ -4080,6 +4080,13 @@ Used mainly to differentiate in the UI or to sort on. </p></td>
                   <td><a href="#hiber.Duration">hiber.Duration</a></td>
                   <td></td>
                   <td><p>The transmission interval for this modem, if configured. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expected_transmission_rate</td>
+                  <td><a href="#hiber.value.Value.Numeric.Rate">hiber.value.Value.Numeric.Rate</a></td>
+                  <td>optional</td>
+                  <td><p>The expected transmission rate for this modem. </p></td>
                 </tr>
               
             </tbody>
@@ -5963,32 +5970,36 @@ values were different. Set this to true to apply it anyway. </p></td>
               <tr>
                 <td>ACCEPTANCE_TESTING</td>
                 <td>0</td>
-                <td><p>Modem is deployed, but not active yet. Invisible for customer.</p></td>
+                <td><p>Device is deployed, but not active yet. Invisible for customer.</p></td>
               </tr>
             
               <tr>
                 <td>INSTALLED</td>
                 <td>1</td>
-                <td><p>Modem is active and sending messages.
+                <td><p>Device is active and sending messages.
 See health for more details on its health, based on the past messages.</p></td>
               </tr>
             
               <tr>
                 <td>PAUSED</td>
                 <td>6</td>
-                <td><p></p></td>
+                <td><p>Device is paused and not sending messages. This should be of a temporary nature.
+(e.g. a change to the installation is being made)</p></td>
               </tr>
             
               <tr>
                 <td>DISABLED</td>
                 <td>5</td>
-                <td><p></p></td>
+                <td><p>Device is disabled and not sending messages. Invisible for customer.
+This could be either temporary or become permanent.
+Used for cases where devices is being serviced and customer
+should not be burdened with the health of this device.</p></td>
               </tr>
             
               <tr>
                 <td>DECOMMISSIONED</td>
                 <td>4</td>
-                <td><p></p></td>
+                <td><p>Device is (going to be) removed from installation and will not return to installed status again.</p></td>
               </tr>
             
               <tr>

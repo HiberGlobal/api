@@ -3,6 +3,7 @@ syntax = "proto3";
 package hiber.organization;
 
 import "base.proto";
+import "value.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.organization";
@@ -41,6 +42,11 @@ message Organization {
         string email = 2;
         string phone = 3;
     }
+    /* Default settings for this organization. */
+    message Defaults {
+        /* The default expected transmission interval for devices in this organization.  */
+        optional hiber.value.Value.Numeric.Rate expected_device_transmission_rate = 1;
+    }
 
     enum Feature {
         UNKNOWN = 0;
@@ -50,12 +56,6 @@ message Organization {
 
         /* A limited set of features corresponding to the HiberHilo product. */
         HILO = 2;
-
-        /* A set of additional features to allow advanced tracking on the map. */
-        EASYPULSE = 3;
-
-        /* Used for an easypulse scorecard feature that we will introduce at a later point. */
-        EASYPULSE_SCORECARD = 7;
 
         /* Required to manually create modems using the ModemService. */
         MODEM_CREATION = 4;
@@ -69,7 +69,7 @@ message Organization {
         /* Integrate BI tooling in the Mission Control interface. */
         BI_TOOLING_BETA = 8;
 
-        SINARMAS_SPECIFIC = 9;
+        reserved 3, 7, 9;
     }
 
     /* The slug for this organization, used to identify organizations */
@@ -91,6 +91,9 @@ message Organization {
     repeated Feature features = 11;
 
     string database_info = 12;
+
+    optional Defaults defaults = 13;
+
 }
 
 /* Selection object for child organizations.

@@ -116,7 +116,8 @@ message ModemMessageBodyParser {
     /* The type of post-processing to be applied to the result of this parser. */
     enum PostProcessing {
         NOTHING = 0;
-        EASYPULSE = 1;
+
+        reserved 1;
     }
 
     /* The globally (across organizations) unique identifier for this parser. */
@@ -153,6 +154,12 @@ message ModemMessageBodyParser {
 
     /* The list of post-processing steps applied to the result of this parser. */
     repeated PostProcessing post_processing = 13;
+
+    /* In order to use this parser on a message,
+     * the metadata on the message must match the given requirement here.
+     * The key of the map is the json-path to look for in the message metadata,
+     * the value of the map is the json to expect at that json-path. */
+    map<string, google.protobuf.Value> require_message_metadata = 14;
 
     reserved 1, 5, 12;
 }
@@ -334,6 +341,12 @@ message UploadModemMessageBodyParserRequest {
 
     repeated ModemMessageBodyParser.PostProcessing post_processing = 6;
 
+    /* In order to use this parser on a message,
+     * the metadata on the message must match the given requirement here.
+     * The key of the map is the json-path to look for in the message metadata,
+     * the value of the map is the json to expect at that json-path. */
+    map<string, google.protobuf.Value> require_message_metadata = 7;
+
     reserved 4;
 }
 
@@ -392,6 +405,14 @@ message UpdateUploadedModemMessageBodyParserRequest {
     repeated ModemMessageBodyParser.PostProcessing add_post_processing = 8;
     /* Remove a post-processing step to the result of this parser. */
     repeated ModemMessageBodyParser.PostProcessing remove_post_processing = 9;
+
+    /* In order to use this parser on a message,
+     * the metadata on the message must match the given requirement here.
+     * The key of the map is the json-path to look for in the message metadata,
+     * the value of the map is the json to expect at that json-path. */
+    map<string, google.protobuf.Value> add_require_message_metadata = 11;
+    /* Remove a requirement for the metadata. Remove by listing the json-path here. */
+    repeated string remove_require_message_metadata = 12;
 
     reserved 2, 5;
 }

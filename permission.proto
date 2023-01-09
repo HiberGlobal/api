@@ -67,9 +67,6 @@ enum OrganizationPermission {
      */
     MODEM_TRANSFERS_PROCESS = 22;
 
-    /* Claiming modems. */
-    MODEM_CLAIM = 25;
-
     /* List all users, see their names and email addresses. */
     USERS = 30;
     /* Approve or create new users, remove users from the organization. Includes users permission. */
@@ -101,7 +98,7 @@ enum OrganizationPermission {
     /* Create, access and download exports. */
     EXPORT = 49;
 
-    reserved 14, 40, 37;
+    reserved 14, 25, 40, 37;
 }
 
 /* UserPermissions are generally used to limit what a token can do to its user.

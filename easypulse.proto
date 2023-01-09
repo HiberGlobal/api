@@ -1,11 +1,6 @@
-/* Easypulse specific view and services.
- *
- * This file contains specific views and services for the easypulse feature set.
- * This feature set is only available to organizations with the easypulse feature enabled.
- *
- * For Easypulse, we've introduced the concept of an Asset, which is a modem with some assumptions about the type of
- * data it sends. Additionally, aggregations can be requested of Asset history when requesting Assets, allowing for a
- * somewhat customized Asset model.
+/* The easypulse service has been discontinued.
+ * It is no longer supported, and will return an error when used.
+ * TODO(2023-01-10) remove the proto file
  */
 syntax = "proto3";
 
@@ -24,6 +19,8 @@ option go_package = "hiber";
 
 /* Service to list and manage Assets. */
 service EasypulseService {
+    option deprecated = true;
+
     /* List the Easypulse Assets in your organization.
      * Optionally, aggregated historical data can be added to the returned Assets, with a given name.
      *
@@ -47,6 +44,7 @@ service EasypulseService {
 }
 
 message Easypulse {
+    option deprecated = true;
 
     /* Asset in your organization.
      * An asset is a view of a modem, with assumptions about message data fields handled in the API.
@@ -55,6 +53,8 @@ message Easypulse {
      * fuel level average over the past month, or total run time in the past week).
      */
     message Asset {
+        option deprecated = true;
+
         /* The organization the asset is in. */
         string organization = 1;
 
@@ -174,6 +174,8 @@ message Easypulse {
      * - When updating Assets, it is used to determine which Assets are updated
      */
     message AssetSelection {
+        option deprecated = true;
+
         /* Search for assets by name, modem number, tag or notes. */
         string search = 1;
 
@@ -193,9 +195,12 @@ message Easypulse {
      * Fails when your organizations does not have the Easypulse feature.
      */
     message ListAssets {
+        option deprecated = true;
 
         /* Request to list Assets in your organization. */
         message Request {
+            option deprecated = true;
+
             /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
             string organization = 1;
 
@@ -249,6 +254,8 @@ message Easypulse {
 
         /* Response with a list of Assets */
         message Response {
+            option deprecated = true;
+
             /* The selected Assets. */
             repeated Asset assets = 1;
 
@@ -263,7 +270,11 @@ message Easypulse {
     /* List the fields for the easypulse organization, to be used with the value service, for example.
      */
     message Fields {
+        option deprecated = true;
+
         message EasypulseField {
+            option deprecated = true;
+
             field.Field field = 1;
             value.ValueAggregation default_aggregation = 2;
             optional value.ValueTransformation default_transformation = 3;
@@ -302,6 +313,8 @@ message Easypulse {
         PTOEngagement pto_engagement = 9;
 
         message Request {
+            option deprecated = true;
+
             /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
             string organization = 1;
 
@@ -317,6 +330,8 @@ message Easypulse {
         }
 
         message Response {
+            option deprecated = true;
+
             Fields fields = 1;
             Request request = 2;
         }
@@ -547,6 +562,8 @@ message Easypulse {
 
     /* Target values for a modem. */
     message TargetValues {
+        option deprecated = true;
+
         /* The organization the asset is in. */
         string organization = 1;
 
@@ -615,7 +632,11 @@ message Easypulse {
         }
 
         message List {
+            option deprecated = true;
+
             message Request {
+                option deprecated = true;
+
                 /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
                 string organization = 1;
 
@@ -635,6 +656,8 @@ message Easypulse {
             }
 
             message Response {
+                option deprecated = true;
+
                 /* The selected Assets. */
                 repeated TargetValues asset_target_values = 1;
 
@@ -647,7 +670,10 @@ message Easypulse {
         }
 
         message Update {
+            option deprecated = true;
             message Request {
+                option deprecated = true;
+
                 /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
                 string organization = 1;
 
@@ -687,6 +713,8 @@ message Easypulse {
 
     /* A tell tale is an indicator of a part of the system. */
     message TellTale {
+        option deprecated = true;
+
         Indicator indicator = 1;
         string name = 2;
         string label = 3;
@@ -694,6 +722,8 @@ message Easypulse {
         value.Value.Enum enum_value = 5;
 
         message Indicator {
+            option deprecated = true;
+
             State state = 1;
             string color = 2;
             string label = 3;

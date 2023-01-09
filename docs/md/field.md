@@ -29,6 +29,7 @@
   - [hiber.value.Value.Numeric.Mass](#hibervaluevaluenumericmass)
   - [hiber.value.Value.Numeric.Percentage](#hibervaluevaluenumericpercentage)
   - [hiber.value.Value.Numeric.Pressure](#hibervaluevaluenumericpressure)
+  - [hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate)
   - [hiber.value.Value.Numeric.RotationSpeed](#hibervaluevaluenumericrotationspeed)
   - [hiber.value.Value.Numeric.Speed](#hibervaluevaluenumericspeed)
   - [hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature)
@@ -43,6 +44,7 @@
     - [hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit)
     - [hiber.value.Value.Numeric.Percentage.Unit](#hibervaluevaluenumericpercentageunit)
     - [hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit)
+    - [hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit)
     - [hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit)
     - [hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit)
     - [hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit)
@@ -174,6 +176,7 @@ Formatting options for the field.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.volume | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.mass | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rate | [ hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit) | none |
 
 
 ## Enums
@@ -245,6 +248,7 @@ If the value is numeric, this specifies the unit, value, etc.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.mass | [ hiber.value.Value.Numeric.Mass](#hibervaluevaluenumericmass) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.flow | [ hiber.value.Value.Numeric.Flow](#hibervaluevaluenumericflow) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed](#hibervaluevaluenumericrotationspeed) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rate | [ hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.unknown | [ double](#double) | none |
 
 ### hiber.value.Value.Numeric.BatteryLevel
@@ -323,6 +327,17 @@ The value is a pressure value, converted to your preferred pressure unit.
 | unit | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) | none |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Rate
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ uint32](#uint32) | none |
+| unit | [ hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### hiber.value.Value.Numeric.RotationSpeed
 
@@ -461,6 +476,13 @@ This unit is still used for fields, however.
 | PSI | none | 1 |
 | K_PA | none | 2 |
 
+#### hiber.value.Value.Numeric.Rate.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| ITEMS_PER_24_HOURS | The amount of items counted in a 24 hour window. | 0 |
+
 #### hiber.value.Value.Numeric.RotationSpeed.Unit
 
 
@@ -507,6 +529,7 @@ Supported types will automatically convert to the preferred unit (based on the u
 | BATTERY_LEVEL | none | 11 |
 | FLOW | none | 12 |
 | ROTATION_SPEED | none | 13 |
+| RATE | none | 14 |
 
 #### hiber.value.Value.Numeric.Voltage.Unit
 
@@ -1150,7 +1173,6 @@ api event stream and publishers.
 | MODEM_TRANSFER_CANCELLED | none | 19 |
 | MODEM_TRANSFER_NOT_RECEIVED | none | 20 |
 | MODEM_TRANSFER_RETURN_TRANSFER_STARTED | none | 21 |
-| MODEM_CLAIMED | none | 22 |
 | PUBLISHER_CREATED | none | 1 |
 | PUBLISHER_UPDATED | none | 2 |
 | PUBLISHER_DELETED | none | 3 |
@@ -1227,6 +1249,7 @@ Unit of measurement for a numeric value.
 | MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
 | REVOLUTIONS_PER_MINUTE | none | 44 |
+| ITEMS_PER_24_HOURS | none | 45 |
 
 ## Scalar Value Types
 

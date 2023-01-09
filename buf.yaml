@@ -49,4 +49,4 @@ lint:
       - value_service.proto
       - webhook.proto
       # The sort enum is unique in its own right and doesn't need a suffix.
-      - device_service.proto
+      - device.proto

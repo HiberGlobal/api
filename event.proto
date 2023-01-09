@@ -11,7 +11,6 @@ import "health.proto";
 import "integration_mqtt.proto";
 import "modem.proto";
 import "modem_alarm.proto";
-import "modem_claim.proto";
 import "modem_message_body_parser.proto";
 import "modem_transfer.proto";
 import "organization.proto";
@@ -119,7 +118,6 @@ message Event {
         ModemTransferEvent.ModemTransferReceivedEvent modem_transfer_received = 17;
         ModemTransferEvent.ModemTransferNotReceivedEvent modem_transfer_not_received = 18;
         ModemTransferEvent.ModemTransferReturnTransferStartedEvent modem_transfer_return_transfer_started = 19;
-        ModemEvent.ClaimEvent.ModemClaimedEvent modem_claimed_event = 20;
 
         TokenEvent.TokenExpiryWarningEvent token_expiry_warning = 23;
         TokenEvent.TokenExpiredEvent token_expired = 24;
@@ -142,7 +140,7 @@ message Event {
         ExportEvent.ExportReadyEvent export_ready = 66;
         ExportEvent.ExportFailedEvent export_failed = 67;
     }
-    reserved 3, 6, 11 to 14, 21, 22, 26 to 29, 49 to 53, 60 to 64;
+    reserved 3, 6, 11 to 14, 20, 21, 22, 26 to 29, 49 to 53, 60 to 64;
 
     message ModemEvent {
         message ModemCreatedEvent {
@@ -453,22 +451,6 @@ message Event {
                 string title = 3;
                 string description = 4;
                 Timestamp time = 5;
-            }
-        }
-
-        message ClaimEvent {
-            message ModemClaimedEvent {
-                string organization = 1;
-                string modem_number = 2;
-
-                /* External device id for this modem (e.g. a MAC address). */
-                string modem_external_device_id = 8;
-
-                modem.ModemClaim claim = 3;
-                Timestamp time = 4;
-                string title = 5;
-                string description = 6;
-                repeated tag.Tag tags = 7;
             }
         }
     }

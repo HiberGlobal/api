@@ -1,5 +1,27 @@
 # Changelog Hiber API
 
+### 0.135 (2023-01-02)
+
+##### ModemMessageBodyParserService
+
+- Added possibility to define a filter on modem message metadata.
+  The parser will only be applied to a message if the metadata matches.
+##### ValueService
+
+- Fixed a bug where modem data was merged together when requesting data for multiple modems.
+- Fixed a bug where the modem field was never set.
+##### ModemClaimService
+
+- Removed the modem claim service.
+  - The proto is left in place to not break build immediately, but the service itself wil no longer be supported.
+##### EasypulseService
+
+- Removed the Easypulse service.
+
+##### OrganizationService
+
+- Removed the Easypulse-related organization features.
+
 ### 0.134 (2022-12-19)
 
 

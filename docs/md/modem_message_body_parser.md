@@ -35,6 +35,7 @@ where you can find documentation, examples and a web IDE.
   - [ModemMessageBodyParser.AvailableToChildOrganizations](#modemmessagebodyparseravailabletochildorganizations)
   - [ModemMessageBodyParser.MetadataFields](#modemmessagebodyparsermetadatafields)
   - [ModemMessageBodyParser.MetadataFields.LocationFields](#modemmessagebodyparsermetadatafieldslocationfields)
+  - [ModemMessageBodyParser.RequireMessageMetadataEntry](#modemmessagebodyparserrequiremessagemetadataentry)
   - [ModemMessageBodyParserSelection](#modemmessagebodyparserselection)
   - [RenameModemMessageBodyParserRequest](#renamemodemmessagebodyparserrequest)
   - [RetryModemMessageBodyParsing](#retrymodemmessagebodyparsing)
@@ -55,8 +56,10 @@ where you can find documentation, examples and a web IDE.
   - [UpdateChildOrganizationAvailabilityRequest](#updatechildorganizationavailabilityrequest)
   - [UpdateSimpleModemMessageBodyParserRequest](#updatesimplemodemmessagebodyparserrequest)
   - [UpdateUploadedModemMessageBodyParserRequest](#updateuploadedmodemmessagebodyparserrequest)
+  - [UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry](#updateuploadedmodemmessagebodyparserrequestaddrequiremessagemetadataentry)
   - [UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#updateuploadedmodemmessagebodyparserrequestmetadatafields)
   - [UploadModemMessageBodyParserRequest](#uploadmodemmessagebodyparserrequest)
+  - [UploadModemMessageBodyParserRequest.RequireMessageMetadataEntry](#uploadmodemmessagebodyparserrequestrequiremessagemetadataentry)
 
 - Enums
   - [ModemMessageBodyParser.PostProcessing](#modemmessagebodyparserpostprocessing)
@@ -354,6 +357,7 @@ A parser can be defined in two ways: using a .ksy (Kaitai struct https://kaitai.
 | metadata_fields | [ ModemMessageBodyParser.MetadataFields](#modemmessagebodyparsermetadatafields) | Fields in the parsed result that contain metadata, and special things like a location. |
 | available_to_child_organizations | [ ModemMessageBodyParser.AvailableToChildOrganizations](#modemmessagebodyparseravailabletochildorganizations) | If set, this parser is available to your child organizations, as a Provided parser. |
 | post_processing | [repeated ModemMessageBodyParser.PostProcessing](#modemmessagebodyparserpostprocessing) | The list of post-processing steps applied to the result of this parser. |
+| require_message_metadata | [map ModemMessageBodyParser.RequireMessageMetadataEntry](#modemmessagebodyparserrequiremessagemetadataentry) | In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. |
 
 ### ModemMessageBodyParser.AvailableToChildOrganizations
 
@@ -385,6 +389,15 @@ like a location or battery percentage.
 | ----- | ---- | ----------- |
 | latitude | [ string](#string) | none |
 | longitude | [ string](#string) | none |
+
+### ModemMessageBodyParser.RequireMessageMetadataEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) | none |
+| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
 
 ### ModemMessageBodyParserSelection
 
@@ -601,6 +614,17 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 | metadata_fields | [ UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#updateuploadedmodemmessagebodyparserrequestmetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
 | add_post_processing | [repeated ModemMessageBodyParser.PostProcessing](#modemmessagebodyparserpostprocessing) | Add a post-processing step to the result of this parser. |
 | remove_post_processing | [repeated ModemMessageBodyParser.PostProcessing](#modemmessagebodyparserpostprocessing) | Remove a post-processing step to the result of this parser. |
+| add_require_message_metadata | [map UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry](#updateuploadedmodemmessagebodyparserrequestaddrequiremessagemetadataentry) | In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. |
+| remove_require_message_metadata | [repeated string](#string) | Remove a requirement for the metadata. Remove by listing the json-path here. |
+
+### UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) | none |
+| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
 
 ### UpdateUploadedModemMessageBodyParserRequest.MetadataFields
 
@@ -630,6 +654,16 @@ Upload a new body parser from a .ksy file.
 | data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Fields in the parsed result that contain data. This can be useful to track which fields could be plotted, etc. |
 | metadata_fields | [ ModemMessageBodyParser.MetadataFields](#modemmessagebodyparsermetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
 | post_processing | [repeated ModemMessageBodyParser.PostProcessing](#modemmessagebodyparserpostprocessing) | none |
+| require_message_metadata | [map UploadModemMessageBodyParserRequest.RequireMessageMetadataEntry](#uploadmodemmessagebodyparserrequestrequiremessagemetadataentry) | In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. |
+
+### UploadModemMessageBodyParserRequest.RequireMessageMetadataEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) | none |
+| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
 
 
 ## Enums
@@ -639,7 +673,6 @@ The type of post-processing to be applied to the result of this parser.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | NOTHING | none | 0 |
-| EASYPULSE | none | 1 |
 
 ### SimpleModemMessageBodyParser.Endian
 
@@ -726,6 +759,7 @@ Formatting options for the field.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.volume | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.mass | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rate | [ hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit) | none |
 
 
 ### Enums
@@ -791,6 +825,7 @@ when the modem is registered into the system or when a subscription is authorize
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
 | time_zone | [ string](#string) | The timezone configured for the modem. |
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_transmission_rate**.expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
 
 ### hiber.modem.ModemSelection
 
@@ -848,11 +883,11 @@ Sorting options for the results.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| ACCEPTANCE_TESTING | Modem is deployed, but not active yet. Invisible for customer. | 0 |
-| INSTALLED | Modem is active and sending messages. See health for more details on its health, based on the past messages. | 1 |
-| PAUSED | none | 6 |
-| DISABLED | none | 5 |
-| DECOMMISSIONED | none | 4 |
+| ACCEPTANCE_TESTING | Device is deployed, but not active yet. Invisible for customer. | 0 |
+| INSTALLED | Device is active and sending messages. See health for more details on its health, based on the past messages. | 1 |
+| PAUSED | Device is paused and not sending messages. This should be of a temporary nature. (e.g. a change to the installation is being made) | 6 |
+| DISABLED | Device is disabled and not sending messages. Invisible for customer. This could be either temporary or become permanent. Used for cases where devices is being serviced and customer should not be burdened with the health of this device. | 5 |
+| DECOMMISSIONED | Device is (going to be) removed from installation and will not return to installed status again. | 4 |
 | DAMAGED | Kept for backwards compatibility. Internally mapped to decommissioned | 2 |
 | LOST | Kept for backwards compatibility. Internally mapped to decommissioned | 3 |
 
@@ -1478,7 +1513,6 @@ api event stream and publishers.
 | MODEM_TRANSFER_CANCELLED | none | 19 |
 | MODEM_TRANSFER_NOT_RECEIVED | none | 20 |
 | MODEM_TRANSFER_RETURN_TRANSFER_STARTED | none | 21 |
-| MODEM_CLAIMED | none | 22 |
 | PUBLISHER_CREATED | none | 1 |
 | PUBLISHER_UPDATED | none | 2 |
 | PUBLISHER_DELETED | none | 3 |
@@ -1555,6 +1589,7 @@ Unit of measurement for a numeric value.
 | MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
 | REVOLUTIONS_PER_MINUTE | none | 44 |
+| ITEMS_PER_24_HOURS | none | 45 |
 
 ## Scalar Value Types
 

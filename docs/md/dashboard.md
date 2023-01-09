@@ -36,8 +36,6 @@
   - [hiber.event.Event.ModemEvent.AlarmEvent.ModemAlarmEvent.ErrorMessagesEntry](#hibereventeventmodemeventalarmeventmodemalarmeventerrormessagesentry)
   - [hiber.event.Event.ModemEvent.AlarmEvent.UpdatedEvent](#hibereventeventmodemeventalarmeventupdatedevent)
   - [hiber.event.Event.ModemEvent.AlarmEvent.UpdatedEvent.Update](#hibereventeventmodemeventalarmeventupdatedeventupdate)
-  - [hiber.event.Event.ModemEvent.ClaimEvent](#hibereventeventmodemeventclaimevent)
-  - [hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent](#hibereventeventmodemeventclaimeventmodemclaimedevent)
   - [hiber.event.Event.ModemEvent.MessageBodyParserEvent](#hibereventeventmodemeventmessagebodyparserevent)
   - [hiber.event.Event.ModemEvent.MessageBodyParserEvent.CreatedEvent](#hibereventeventmodemeventmessagebodyparsereventcreatedevent)
   - [hiber.event.Event.ModemEvent.MessageBodyParserEvent.DeletedEvent](#hibereventeventmodemeventmessagebodyparsereventdeletedevent)
@@ -250,7 +248,6 @@ the contained object.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_transfer_received | [ hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent](#hibereventeventmodemtransfereventmodemtransferreceivedevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_transfer_not_received | [ hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent](#hibereventeventmodemtransfereventmodemtransfernotreceivedevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_transfer_return_transfer_started | [ hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent](#hibereventeventmodemtransfereventmodemtransferreturntransferstartedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_claimed_event | [ hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent](#hibereventeventmodemeventclaimeventmodemclaimedevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.token_expiry_warning | [ hiber.event.Event.TokenEvent.TokenExpiryWarningEvent](#hibereventeventtokeneventtokenexpirywarningevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.token_expired | [ hiber.event.Event.TokenEvent.TokenExpiredEvent](#hibereventeventtokeneventtokenexpiredevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.token_created | [ hiber.event.Event.TokenEvent.TokenCreatedEvent](#hibereventeventtokeneventtokencreatedevent) | none |
@@ -441,26 +438,6 @@ The modem data for this event, if it is related to a single modem.
 | checks | [ google.protobuf.Struct](#googleprotobufstruct) | none |
 | update_default_health_level | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
 | update_health_level_after_resolved | [ hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved](#hibermodemalarmmodemalarmhealthlevelafterresolved) | none |
-
-### hiber.event.Event.ModemEvent.ClaimEvent
-
-
-
-
-### hiber.event.Event.ModemEvent.ClaimEvent.ModemClaimedEvent
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| modem_number | [ string](#string) | none |
-| modem_external_device_id | [ string](#string) | External device id for this modem (e.g. a MAC address). |
-| claim | [ hiber.modem.ModemClaim](#hibermodemmodemclaim) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
 
 ### hiber.event.Event.ModemEvent.MessageBodyParserEvent
 
@@ -1375,6 +1352,7 @@ when the modem is registered into the system or when a subscription is authorize
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
 | time_zone | [ string](#string) | The timezone configured for the modem. |
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_transmission_rate**.expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
 
 ### hiber.modem.ModemSelection
 
@@ -1432,11 +1410,11 @@ Sorting options for the results.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| ACCEPTANCE_TESTING | Modem is deployed, but not active yet. Invisible for customer. | 0 |
-| INSTALLED | Modem is active and sending messages. See health for more details on its health, based on the past messages. | 1 |
-| PAUSED | none | 6 |
-| DISABLED | none | 5 |
-| DECOMMISSIONED | none | 4 |
+| ACCEPTANCE_TESTING | Device is deployed, but not active yet. Invisible for customer. | 0 |
+| INSTALLED | Device is active and sending messages. See health for more details on its health, based on the past messages. | 1 |
+| PAUSED | Device is paused and not sending messages. This should be of a temporary nature. (e.g. a change to the installation is being made) | 6 |
+| DISABLED | Device is disabled and not sending messages. Invisible for customer. This could be either temporary or become permanent. Used for cases where devices is being serviced and customer should not be burdened with the health of this device. | 5 |
+| DECOMMISSIONED | Device is (going to be) removed from installation and will not return to installed status again. | 4 |
 | DAMAGED | Kept for backwards compatibility. Internally mapped to decommissioned | 2 |
 | LOST | Kept for backwards compatibility. Internally mapped to decommissioned | 3 |
 

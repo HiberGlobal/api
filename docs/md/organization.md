@@ -25,6 +25,7 @@
   - [Organization](#organization)
   - [Organization.Address](#organizationaddress)
   - [Organization.Contact](#organizationcontact)
+  - [Organization.Defaults](#organizationdefaults)
   - [OrganizationSelection](#organizationselection)
   - [OrganizationTree](#organizationtree)
   - [OrganizationTreeRequest](#organizationtreerequest)
@@ -35,6 +36,43 @@
 
 - Enums
   - [Organization.Feature](#organizationfeature)
+
+- Referenced messages from [value.proto](#referenced-messages-from-valueproto)
+  - [hiber.value.Value](#hibervaluevalue)
+  - [hiber.value.Value.Enum](#hibervaluevalueenum)
+  - [hiber.value.Value.Numeric](#hibervaluevaluenumeric)
+  - [hiber.value.Value.Numeric.BatteryLevel](#hibervaluevaluenumericbatterylevel)
+  - [hiber.value.Value.Numeric.Distance](#hibervaluevaluenumericdistance)
+  - [hiber.value.Value.Numeric.Flow](#hibervaluevaluenumericflow)
+  - [hiber.value.Value.Numeric.FuelEfficiency](#hibervaluevaluenumericfuelefficiency)
+  - [hiber.value.Value.Numeric.Mass](#hibervaluevaluenumericmass)
+  - [hiber.value.Value.Numeric.Percentage](#hibervaluevaluenumericpercentage)
+  - [hiber.value.Value.Numeric.Pressure](#hibervaluevaluenumericpressure)
+  - [hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate)
+  - [hiber.value.Value.Numeric.RotationSpeed](#hibervaluevaluenumericrotationspeed)
+  - [hiber.value.Value.Numeric.Speed](#hibervaluevaluenumericspeed)
+  - [hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature)
+  - [hiber.value.Value.Numeric.Voltage](#hibervaluevaluenumericvoltage)
+  - [hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume)
+  - Enums
+    - [hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit)
+    - [hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit)
+    - [hiber.value.Value.Numeric.DurationUnit](#hibervaluevaluenumericdurationunit)
+    - [hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit)
+    - [hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit)
+    - [hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit)
+    - [hiber.value.Value.Numeric.Percentage.Unit](#hibervaluevaluenumericpercentageunit)
+    - [hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit)
+    - [hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit)
+    - [hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit)
+    - [hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit)
+    - [hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit)
+    - [hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype)
+    - [hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit)
+    - [hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit)
+    - [hiber.value.Value.Type](#hibervaluevaluetype)
+    - [hiber.value.ValueAggregation](#hibervaluevalueaggregation)
+    - [hiber.value.ValueTransformation](#hibervaluevaluetransformation)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -282,6 +320,7 @@ of any modems and related data.
 | updated_at | [ hiber.Timestamp](#hibertimestamp) | none |
 | features | [repeated Organization.Feature](#organizationfeature) | none |
 | database_info | [ string](#string) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_defaults**.defaults | [optional Organization.Defaults](#organizationdefaults) | none |
 
 ### Organization.Address
 
@@ -304,6 +343,14 @@ of any modems and related data.
 | name | [ string](#string) | none |
 | email | [ string](#string) | none |
 | phone | [ string](#string) | none |
+
+### Organization.Defaults
+
+Default settings for this organization.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_device_transmission_rate**.expected_device_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The default expected transmission interval for devices in this organization. |
 
 ### OrganizationSelection
 
@@ -387,13 +434,407 @@ Note that the organization field specifies the organization, it is not used to u
 | UNKNOWN | none | 0 |
 | HIBER | The default Hiber set of features including Mission Control and the API | 1 |
 | HILO | A limited set of features corresponding to the HiberHilo product. | 2 |
-| EASYPULSE | A set of additional features to allow advanced tracking on the map. | 3 |
-| EASYPULSE_SCORECARD | Used for an easypulse scorecard feature that we will introduce at a later point. | 7 |
 | MODEM_CREATION | Required to manually create modems using the ModemService. | 4 |
 | EARLY_ACCESS | Used for organizations that get early access to features. | 5 |
 | EXPERIMENTAL | Used for organizations that get access to experimental features. e.g. feature work in progress. | 6 |
 | BI_TOOLING_BETA | Integrate BI tooling in the Mission Control interface. | 8 |
-| SINARMAS_SPECIFIC | none | 9 |
+
+
+
+## Referenced messages from value.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [value.proto](https://github.com/HiberGlobal/api/blob/master/value.proto).
+
+
+### hiber.value.Value
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| type | [ hiber.value.Value.Type](#hibervaluevaluetype) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.numeric | [ hiber.value.Value.Numeric](#hibervaluevaluenumeric) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.text | [ string](#string) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.enum | [ hiber.value.Value.Enum](#hibervaluevalueenum) | none |
+
+### hiber.value.Value.Enum
+
+If this value is an enum, this specifies the value, display name and color for this enum value.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ string](#string) | The enum value. This might be a cryptic value, see the display_name and description for more information. |
+| display_name | [ string](#string) | User-facing name for this value. |
+| description | [ string](#string) | More details for this enum value. |
+| color | [ string](#string) | (Optional) color for this enum value. |
+| priority | [ int32](#int32) | Priority of the value, typically used for ordering. |
+
+### hiber.value.Value.Numeric
+
+If the value is numeric, this specifies the unit, value, etc.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| type | [ hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.battery_level | [ hiber.value.Value.Numeric.BatteryLevel](#hibervaluevaluenumericbatterylevel) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.distance | [ hiber.value.Value.Numeric.Distance](#hibervaluevaluenumericdistance) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.duration | [ hiber.Duration](#hiberduration) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.fuel_efficiency | [ hiber.value.Value.Numeric.FuelEfficiency](#hibervaluevaluenumericfuelefficiency) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.percentage | [ hiber.value.Value.Numeric.Percentage](#hibervaluevaluenumericpercentage) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.pressure | [ hiber.value.Value.Numeric.Pressure](#hibervaluevaluenumericpressure) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.speed | [ hiber.value.Value.Numeric.Speed](#hibervaluevaluenumericspeed) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.temperature | [ hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.voltage | [ hiber.value.Value.Numeric.Voltage](#hibervaluevaluenumericvoltage) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.volume | [ hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.mass | [ hiber.value.Value.Numeric.Mass](#hibervaluevaluenumericmass) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.flow | [ hiber.value.Value.Numeric.Flow](#hibervaluevaluenumericflow) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed](#hibervaluevaluenumericrotationspeed) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rate | [ hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.unknown | [ double](#double) | none |
+
+### hiber.value.Value.Numeric.BatteryLevel
+
+Special case for battery level, since it can be provided in many units.
+Not included in the UnitPreferences, since it cannot be converted.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Distance
+
+The value is a distance value, converted to your preferred distance unit.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Flow
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.FuelEfficiency
+
+The value is a distance value, converted to your preferred distance unit.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Mass
+
+The value is a volume value, converted to your preferred volume unit.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Percentage
+
+The value is a percentage.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ float](#float) | none |
+| unit | [ hiber.value.Value.Numeric.Percentage.Unit](#hibervaluevaluenumericpercentageunit) | none |
+| textual | [ string](#string) | Textual representation with % symbol, rounded based on the user preferences and field config. |
+
+### hiber.value.Value.Numeric.Pressure
+
+The value is a pressure value, converted to your preferred pressure unit.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Rate
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ uint32](#uint32) | none |
+| unit | [ hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.RotationSpeed
+
+The value for rotation speed. The only value is revolutions per minute (RPM), therefore it is not included in
+unit preferences.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Speed
+
+The value is a speed value, converted to your preferred speed unit.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Temperature
+
+The value is a temperature, converted to your preferred temperature unit.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Voltage
+
+The value is a voltage, converted to your preferred voltage unit.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Volume
+
+The value is a volume value, converted to your preferred volume unit.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+
+### Enums
+#### hiber.value.Value.Numeric.BatteryLevel.Unit
+other units will be added here later, like voltage
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| PERCENT | Battery level as a percentage (technically not a unit). | 0 |
+
+#### hiber.value.Value.Numeric.Distance.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| METER | none | 0 |
+| MILLIMETER | none | 1 |
+| CENTIMETER | none | 2 |
+| KILOMETER | none | 3 |
+| YARD | none | 5 |
+| MILE | none | 4 |
+| FOOT | none | 6 |
+| INCH | none | 7 |
+| NAUTICAL_MILE | This is a special case unit and may not be auto-converted to your UnitPreference. | 8 |
+
+#### hiber.value.Value.Numeric.DurationUnit
+The duration enum is not wrapped in Duration, since duration is always returned as a normalize Duration.
+This unit is still used for fields, however.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| MILLISECONDS | none | 0 |
+| SECONDS | none | 1 |
+| MINUTES | none | 2 |
+| HOURS | none | 3 |
+| DAYS | none | 4 |
+| WEEKS | none | 5 |
+
+#### hiber.value.Value.Numeric.Flow.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| CUBIC_METER_PER_HOUR | none | 0 |
+
+#### hiber.value.Value.Numeric.FuelEfficiency.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| LITER_PER_100_KILOMETER | none | 0 |
+| KILOMETER_PER_LITER | none | 1 |
+| KILOMETER_PER_GALLON | none | 2 |
+| KILOMETER_PER_IMPERIAL_GALLON | none | 3 |
+| MILE_PER_GALLON | none | 4 |
+| MILE_PER_IMPERIAL_GALLON | none | 5 |
+| MILE_PER_LITER | none | 6 |
+
+#### hiber.value.Value.Numeric.Mass.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| KILOGRAMS | none | 0 |
+| POUNDS | none | 1 |
+
+#### hiber.value.Value.Numeric.Percentage.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| PERCENT | Technically not a unit, but for consistency, we've added it here. | 0 |
+
+#### hiber.value.Value.Numeric.Pressure.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| BAR | none | 0 |
+| PSI | none | 1 |
+| K_PA | none | 2 |
+
+#### hiber.value.Value.Numeric.Rate.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| ITEMS_PER_24_HOURS | The amount of items counted in a 24 hour window. | 0 |
+
+#### hiber.value.Value.Numeric.RotationSpeed.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| REVOLUTIONS_PER_MINUTE | none | 0 |
+
+#### hiber.value.Value.Numeric.Speed.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| KILOMETERS_PER_HOUR | none | 0 |
+| KNOTS | This is a special case unit and may not be auto-converted to your UnitPreference. | 1 |
+| METERS_PER_SECOND | none | 2 |
+| MILES_PER_HOUR | none | 3 |
+
+#### hiber.value.Value.Numeric.Temperature.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| KELVIN | none | 0 |
+| DEGREES_CELSIUS | none | 1 |
+| DEGREES_FAHRENHEIT | none | 2 |
+
+#### hiber.value.Value.Numeric.Type
+The type of numeric value that is represented.
+Supported types will automatically convert to the preferred unit (based on the user settings).
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| TYPE_UNKNOWN | none | 0 |
+| PERCENTAGE | none | 1 |
+| TEMPERATURE | none | 2 |
+| DISTANCE | none | 3 |
+| PRESSURE | none | 4 |
+| VOLTAGE | none | 5 |
+| SPEED | none | 6 |
+| VOLUME | none | 7 |
+| DURATION | none | 8 |
+| FUEL_EFFICIENCY | none | 9 |
+| MASS | none | 10 |
+| BATTERY_LEVEL | none | 11 |
+| FLOW | none | 12 |
+| ROTATION_SPEED | none | 13 |
+| RATE | none | 14 |
+
+#### hiber.value.Value.Numeric.Voltage.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| MILLIVOLT | none | 0 |
+
+#### hiber.value.Value.Numeric.Volume.Unit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| LITER | none | 0 |
+| GALLON_US | none | 1 |
+| GALLON_IMPERIAL | none | 2 |
+| CUBIC_METER | none | 3 |
+| CUBIC_FEET | none | 4 |
+
+#### hiber.value.Value.Type
+The type of value that is represented.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| OTHER | none | 0 |
+| NUMERIC | This field contains numeric values, with an optional unit of measurement defined below. | 1 |
+| TEXT | This field contains text to be displayed. | 2 |
+| ENUM | This field switches between several predefined values. Typically used for status fields. | 3 |
+
+#### hiber.value.ValueAggregation
+Get the values for the selected field.
+
+There are a few limitations here:
+- text fields can only use the LAST aggregation.
+- enum fields support a subset of aggregations:
+  - DEFAULT and LAST return the last value.
+  - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order.
+  - AVERAGE and SUM are not supported.
+
+- enum duration
+
+An enum example:
+Field "status" with this timeline: 00:00 OK, 00:10 FAILED, 00:20 OK, 00:25 FAILED, 00:40 OK
+- aggregation DEFAULT or LAST: OK, since it's OK at the end of the time range.
+- aggregation SUM: OK: 35m, FAILED: 25m
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| DEFAULT | none | 0 |
+| AVERAGE | Return the average value. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 1 |
+| SUM | Return the sum all values. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 2 |
+| LAST | Just take the last value. | 3 |
+| MINIMUM | Return the lowest value. For enum fields, the order of values is used to determine the MINIMUM. Not supported for textual fields. When used with these fields, LAST is used instead. | 4 |
+| MAXIMUM | Return the highest value. For enum fields, the order of values is used to determine the MAXIMUM. Not supported for textual fields. When used with these fields, LAST is used instead. | 5 |
+
+#### hiber.value.ValueTransformation
+Transform the values into a derived value.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| DURATION | Instead of returning the value, return the amount of time a value was active. Aggregation (if applicable) is applied afterwards on the duration value. | 0 |
+| DELTA | Instead of returning the value, return the difference between the value and the previous value. Aggregation (if applicable) is applied before the delta is calculated. | 1 |
 
 
 
@@ -975,7 +1416,6 @@ api event stream and publishers.
 | MODEM_TRANSFER_CANCELLED | none | 19 |
 | MODEM_TRANSFER_NOT_RECEIVED | none | 20 |
 | MODEM_TRANSFER_RETURN_TRANSFER_STARTED | none | 21 |
-| MODEM_CLAIMED | none | 22 |
 | PUBLISHER_CREATED | none | 1 |
 | PUBLISHER_UPDATED | none | 2 |
 | PUBLISHER_DELETED | none | 3 |
@@ -1052,6 +1492,7 @@ Unit of measurement for a numeric value.
 | MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
 | REVOLUTIONS_PER_MINUTE | none | 44 |
+| ITEMS_PER_24_HOURS | none | 45 |
 
 ## Scalar Value Types
 
