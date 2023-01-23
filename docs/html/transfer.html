@@ -175,20 +175,20 @@
         
           
           <li>
-            <a href="#permission.proto">permission.proto</a>
+            <a href="#transfer.proto">transfer.proto</a>
             <ul>
               
-              
                 <li>
-                  <a href="#hiber.OrganizationPermission"><span class="badge">E</span>OrganizationPermission</a>
+                  <a href="#hiber.transfer.Transfer"><span class="badge">M</span>Transfer</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.SupportPermission"><span class="badge">E</span>SupportPermission</a>
+                  <a href="#hiber.transfer.Transfer.Devices"><span class="badge">M</span>Transfer.Devices</a>
                 </li>
               
+              
                 <li>
-                  <a href="#hiber.UserPermission"><span class="badge">E</span>UserPermission</a>
+                  <a href="#hiber.transfer.Transfer.Type"><span class="badge">E</span>Transfer.Type</a>
                 </li>
               
               
@@ -203,15 +203,105 @@
     
       
       <div class="file-heading">
-        <h2 id="permission.proto">permission.proto</h2><a href="#title">Top</a>
+        <h2 id="transfer.proto">transfer.proto</h2><a href="#title">Top</a>
       </div>
-      <p>Permissions limit what a user can do through the API.</p>
+      <p>Service to transfer data from one organization to another.</p><p>To transfer data to another organization, you must have access to both organizations,</p><p>and must have the TRANSFERS permissions in the sender organization.</p>
 
+      
+        <h3 id="hiber.transfer.Transfer">Transfer</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The identifier for the transfer. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sender_organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The organization that sent the transfer. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>recipient_organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The organization that received the transfer. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>comment</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Optional comment for the transfer (i.e. reason, tracking information, etc). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created_at</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#hiber.transfer.Transfer.Type">Transfer.Type</a></td>
+                  <td></td>
+                  <td><p>The type of data transferred to the recipient organization. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>devices</td>
+                  <td><a href="#hiber.transfer.Transfer.Devices">Transfer.Devices</a></td>
+                  <td></td>
+                  <td><p>The devices that were transferred from the sender to the recipient organization. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.transfer.Transfer.Devices">Transfer.Devices</h3>
+        <p>The devices that were transferred from the sender to the recipient organization.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>numbers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>The numbers of the devices that were transferred from the sender to the recipient organization. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
 
       
-        <h3 id="hiber.OrganizationPermission">OrganizationPermission</h3>
-        <p>OrganizationPermissions limit what a user can do in an Organization.</p><p>By default, everyone who has access to an organization, can access:</p><p>- organization data</p><p>- dashboard (including the map, and message count for the past days, and any events they have access to)</p><p>- tags</p><p>- deleting tags, but only if they are allowed to update the modems and webhooks the tag is assigned to</p><p>Events are filtered by permission, i.e. if you cannot access the users, you would not see user-related events.</p><p>Requesting user-related events explicitly if you cannot access the users will return an error.</p>
+        <h3 id="hiber.transfer.Transfer.Type">Transfer.Type</h3>
+        <p>The type of data transferred to the recipient organization.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -219,230 +309,9 @@
           <tbody>
             
               <tr>
-                <td>PERMISSION_DEFAULT</td>
+                <td>DEVICES</td>
                 <td>0</td>
                 <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>ORGANIZATION_CREATE</td>
-                <td>1</td>
-                <td><p>Create a new child organization.</p></td>
-              </tr>
-            
-              <tr>
-                <td>ORGANIZATION_UPDATE</td>
-                <td>2</td>
-                <td><p>Update the organizations data, such as billing information, address, and contact.</p></td>
-              </tr>
-            
-              <tr>
-                <td>ORGANIZATION_DELETE</td>
-                <td>3</td>
-                <td><p>Delete child organizations.
-You cannot delete your own organization. To delete your organization, contact support.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEMS</td>
-                <td>10</td>
-                <td><p>List modems, see their details and health</p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEMS_CREATE</td>
-                <td>50</td>
-                <td><p>Create new modems. Includes MODEMS permission.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEMS_UPDATE</td>
-                <td>11</td>
-                <td><p>Update modems, such as their peripherals, display name and tags. Includes MODEMS permission.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEMS_LICENSE_KEYS</td>
-                <td>12</td>
-                <td><p>Show and regenerate license keys. Includes MODEMS permission.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEMS_MESSAGE_BODY_PARSERS</td>
-                <td>43</td>
-                <td><p>Manage and assign message body parsers. Includes MODEMS permission.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEMS_SECURE_NOTES</td>
-                <td>42</td>
-                <td><p>Show and update secure notes. Includes MODEMS permission.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEMS_ALARMS</td>
-                <td>44</td>
-                <td><p>Manage and assign message alerts. Includes MODEMS permission.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEM_VALUES</td>
-                <td>17</td>
-                <td><p>Read modem values.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEM_MESSAGES</td>
-                <td>15</td>
-                <td><p>Read modem messages.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEM_MESSAGES_SEND_TEST_MESSAGES</td>
-                <td>16</td>
-                <td><p>Send modem messages using the TestingService. Does not include MODEMS or MESSAGES permission.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEM_MESSAGES_SEND_REAL_MESSAGES</td>
-                <td>41</td>
-                <td><p>Send modem messages using real message sources (i.e. gateway). Does not include MODEMS or MESSAGES permission.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEM_DOWNLINK_MESSAGES</td>
-                <td>51</td>
-                <td><p>Send modem downlink messages.</p></td>
-              </tr>
-            
-              <tr>
-                <td>TRANSFERS</td>
-                <td>20</td>
-                <td><p>See the transfers to/from other organizations.</p></td>
-              </tr>
-            
-              <tr>
-                <td>TRANSFERS_SEND</td>
-                <td>21</td>
-                <td><p>Transfer devices to another organization.</p></td>
-              </tr>
-            
-              <tr>
-                <td>USERS</td>
-                <td>30</td>
-                <td><p>List all users, see their names and email addresses.</p></td>
-              </tr>
-            
-              <tr>
-                <td>USERS_MANAGE</td>
-                <td>31</td>
-                <td><p>Approve or create new users, remove users from the organization. Includes users permission.</p></td>
-              </tr>
-            
-              <tr>
-                <td>PUBLISHERS</td>
-                <td>35</td>
-                <td><p>Manage publishers: webhooks, MQTT integration and custom email publishers.</p></td>
-              </tr>
-            
-              <tr>
-                <td>TOKENS</td>
-                <td>36</td>
-                <td><p>Manage tokens.</p></td>
-              </tr>
-            
-              <tr>
-                <td>CERTIFICATES</td>
-                <td>38</td>
-                <td><p>Read and use uploaded certificates (i.e. for publishers).</p></td>
-              </tr>
-            
-              <tr>
-                <td>CERTIFICATES_MANAGE</td>
-                <td>39</td>
-                <td><p>Upload certificates, and update or delete uploaded certificates.</p></td>
-              </tr>
-            
-              <tr>
-                <td>ASSIGNMENTS</td>
-                <td>45</td>
-                <td><p>Manage assignments using the assignment services and individual calls on, for example, ModemService.</p></td>
-              </tr>
-            
-              <tr>
-                <td>SIMULATION_MANAGE</td>
-                <td>46</td>
-                <td><p>Manage simulations, like modem message simulation.</p></td>
-              </tr>
-            
-              <tr>
-                <td>HEALTH_MANAGE</td>
-                <td>47</td>
-                <td><p>Manage custom health levels.</p></td>
-              </tr>
-            
-              <tr>
-                <td>LOCATIONS_MANAGE</td>
-                <td>48</td>
-                <td><p>Manage saved locations using the OrganizationLocationService.</p></td>
-              </tr>
-            
-              <tr>
-                <td>EXPORT</td>
-                <td>49</td>
-                <td><p>Create, access and download exports.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-        <h3 id="hiber.SupportPermission">SupportPermission</h3>
-        <p>SupportPermissions are used for features typically reserved for customer support, or that behave differently</p><p>when used by a customer support operator.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>CUSTOMER_SUPPORT</td>
-                <td>0</td>
-                <td><p>Allow Customer Support functions.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-        <h3 id="hiber.UserPermission">UserPermission</h3>
-        <p>UserPermissions are generally used to limit what a token can do to its user.</p><p>By default, a user has all UserPermissions, which apply only to himself.</p><p>When creating a token, however, the token typically does not need permission to affect the user at all.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>READ</td>
-                <td>0</td>
-                <td><p>Read your name, email, linked organizations and mission-control settings.</p></td>
-              </tr>
-            
-              <tr>
-                <td>UPDATE</td>
-                <td>1</td>
-                <td><p>Update your personal information, mission-control settings and default organization. Includes read permission.</p></td>
-              </tr>
-            
-              <tr>
-                <td>REQUEST_ACCESS</td>
-                <td>2</td>
-                <td><p>Request access to an organization and cancel open requests. Does not include read permission.</p></td>
-              </tr>
-            
-              <tr>
-                <td>DELETE</td>
-                <td>3</td>
-                <td><p>Delete your user account permanently. Includes read permission.</p></td>
               </tr>
             
           </tbody>

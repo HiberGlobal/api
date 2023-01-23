@@ -1,0 +1,49 @@
+/* Service to transfer data from one organization to another.
+ *
+ * To transfer data to another organization, you must have access to both organizations,
+ * and must have the TRANSFERS permissions in the sender organization.
+ */
+syntax = "proto3";
+
+import "base.proto";
+
+package hiber.transfer;
+
+option java_multiple_files = true;
+option java_package = "global.hiber.api.grpc.transfer";
+option go_package = "hiber";
+
+message Transfer {
+    /* The type of data transferred to the recipient organization. */
+    enum Type {
+        DEVICES = 0;
+    }
+
+    /* The identifier for the transfer. */
+    string identifier = 1;
+
+    /* The organization that sent the transfer. */
+    string sender_organization = 2;
+
+    /* The organization that received the transfer. */
+    string recipient_organization = 3;
+
+    /* Optional comment for the transfer (i.e. reason, tracking information, etc). */
+    string comment = 4;
+
+    Timestamp created_at = 5;
+
+    /* The type of data transferred to the recipient organization. */
+    Type type = 6;
+
+    oneof typed {
+        /* The devices that were transferred from the sender to the recipient organization. */
+        Devices devices = 7;
+    }
+
+    /* The devices that were transferred from the sender to the recipient organization. */
+    message Devices {
+        /* The numbers of the devices that were transferred from the sender to the recipient organization. */
+        repeated string numbers = 1;
+    }
+}

@@ -1041,11 +1041,7 @@ api event stream and publishers.
 | MODEM_ALARM_DELETED | none | 59 |
 | ASSIGNED | none | 63 |
 | UNASSIGNED | none | 64 |
-| MODEM_TRANSFER_STARTED | none | 17 |
-| MODEM_TRANSFER_RECEIVED | none | 18 |
-| MODEM_TRANSFER_CANCELLED | none | 19 |
-| MODEM_TRANSFER_NOT_RECEIVED | none | 20 |
-| MODEM_TRANSFER_RETURN_TRANSFER_STARTED | none | 21 |
+| TRANSFER | none | 18 |
 | PUBLISHER_CREATED | none | 1 |
 | PUBLISHER_UPDATED | none | 2 |
 | PUBLISHER_DELETED | none | 3 |

@@ -56,16 +56,11 @@ enum OrganizationPermission {
     /* Send modem downlink messages. */
     MODEM_DOWNLINK_MESSAGES = 51;
 
-    /* See modem transfers, inbound and outbound modems. Includes modems permission. */
-    MODEM_TRANSFERS = 20;
-    /* Transfer modems to another organization, cancel open transfers and send return transfers.
-     * Includes modems_transfers permission.
-     */
-    MODEM_TRANSFERS_SEND = 21;
-    /* Mark transfers as received, prepare modems for return. This does not include actually sending the return transfer.
-     * Includes modems_transfers permission.
-     */
-    MODEM_TRANSFERS_PROCESS = 22;
+    /* See the transfers to/from other organizations. */
+    TRANSFERS = 20;
+
+    /* Transfer devices to another organization. */
+    TRANSFERS_SEND = 21;
 
     /* List all users, see their names and email addresses. */
     USERS = 30;
@@ -98,7 +93,7 @@ enum OrganizationPermission {
     /* Create, access and download exports. */
     EXPORT = 49;
 
-    reserved 14, 25, 40, 37;
+    reserved 14, 22, 25, 40, 37;
 }
 
 /* UserPermissions are generally used to limit what a token can do to its user.

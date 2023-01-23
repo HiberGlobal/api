@@ -17,6 +17,8 @@ option go_package = "hiber";
  * company to handing them over to a third party for installation.
  */
 service ModemTransferService {
+    option deprecated = true;
+
     /* Transfer modems to a different organization.
      * As a result, the modem will get the outbound status for you, and the inbound status for the recipient.
      * Note: this call can automatically generate a child organization for the recipient if it has no organization.
@@ -44,6 +46,8 @@ service ModemTransferService {
 }
 
 service ModemTransferReturnService {
+    option deprecated = true;
+
     /* If any problems are detected with the modems within the return period, mark them using this method.
      * Modems marked using this method can be returned in one transfer, as long as they are returned to the same
      * organization.
@@ -63,6 +67,8 @@ service ModemTransferReturnService {
 }
 
 message ModemTransfer {
+    option deprecated = true;
+
     enum Type {
         TRANSFER = 0;
         RETURN = 1;
@@ -93,6 +99,8 @@ message ModemTransfer {
 }
 
 message ModemTransferReturnLine {
+    option deprecated = true;
+
     enum Reason {
         OTHER = 0;
         INVALID_RECIPIENT = 1;
@@ -113,6 +121,8 @@ message ModemTransferReturnLine {
 }
 
 message ModemTransferSelection {
+    option deprecated = true;
+
     repeated string identifiers = 1;
     ModemSelection modems = 2;
     repeated string senders = 3;
@@ -134,6 +144,8 @@ message ModemTransferSelection {
 }
 
 message TransferModemsRequest {
+    option deprecated = true;
+
     /* What to do with external devices on transferring a gateway.
      * This mode is evaluated twice: once when the transfer is created and once when the transfer is finalised.
      * When creating, a double check is done on whether or not your transfer contains gateways or external devices.
@@ -178,6 +190,8 @@ message TransferModemsRequest {
     }
 
     message Response {
+        option deprecated = true;
+
         TransferModemsRequest request = 1;
         ModemTransfer transfer = 2;
 
@@ -199,11 +213,13 @@ message TransferModemsRequest {
      */
     ModemSelection selection = 2;
 
-    /* Existing organization to send the modems to. */
-    string recipient_organization = 3;
+    oneof recipient {
+        /* Existing organization to send the modems to. */
+        string recipient_organization = 3;
 
-    /* Create a new organization to transfer the modems to. */
-    hiber.organization.CreateOrganizationRequest create_recipient = 4;
+        /* Create a new organization to transfer the modems to. */
+        hiber.organization.CreateOrganizationRequest create_recipient = 4;
+    }
 
     /* Optional tracking information, like package tracking codes */
     string tracking_information = 5;
@@ -238,6 +254,8 @@ message TransferModemsRequest {
 }
 
 message ListModemTransfersRequest {
+    option deprecated = true;
+
     message Response {
         ListModemTransfersRequest request = 1;
         repeated ModemTransfer transfers = 2;
@@ -251,6 +269,8 @@ message ListModemTransfersRequest {
 }
 
 message CancelModemTransferRequest {
+    option deprecated = true;
+
     message Response {
         CancelModemTransferRequest request = 1;
         repeated ModemTransfer cancelled = 2;
@@ -262,6 +282,8 @@ message CancelModemTransferRequest {
 }
 
 message ReceivedModemTransferRequest {
+    option deprecated = true;
+
     message Response {
         ReceivedModemTransferRequest request = 1;
         repeated ModemTransfer received = 2;
@@ -273,6 +295,8 @@ message ReceivedModemTransferRequest {
 }
 
 message NotReceivedModemTransferRequest {
+    option deprecated = true;
+
     message Response {
         NotReceivedModemTransferRequest request = 1;
         repeated ModemTransfer not_received = 2;
@@ -284,6 +308,8 @@ message NotReceivedModemTransferRequest {
 }
 
 message PrepareModemForReturnRequest {
+    option deprecated = true;
+
     message Response {
         PrepareModemForReturnRequest request = 1;
         reserved 2;
@@ -314,6 +340,8 @@ message PrepareModemForReturnRequest {
 }
 
 message DeleteModemTransferReturnLinesRequest {
+    option deprecated = true;
+
     message Response {
     }
 
@@ -323,6 +351,8 @@ message DeleteModemTransferReturnLinesRequest {
 }
 
 message ListModemTransferReturnLinesRequest {
+    option deprecated = true;
+
     message Response {
         ListModemTransferReturnLinesRequest request = 1;
         repeated ModemTransferReturnLine lines = 2;
@@ -336,6 +366,8 @@ message ListModemTransferReturnLinesRequest {
 }
 
 message SendReturnRequest {
+    option deprecated = true;
+
     message Response {
         SendReturnRequest request = 1;
         ModemTransfer return_transfer = 2;

@@ -37,8 +37,6 @@
 
 - Referenced messages from [organization.proto](#referenced-messages-from-organizationproto)
   - [hiber.organization.CreateOrganizationRequest](#hiberorganizationcreateorganizationrequest)
-  - [hiber.organization.DeleteOrganizationConfirmationRequest](#hiberorganizationdeleteorganizationconfirmationrequest)
-  - [hiber.organization.DeleteOrganizationConfirmationRequest.Response](#hiberorganizationdeleteorganizationconfirmationrequestresponse)
   - [hiber.organization.DeleteOrganizationRequest](#hiberorganizationdeleteorganizationrequest)
   - [hiber.organization.DeleteOrganizationRequest.Response](#hiberorganizationdeleteorganizationrequestresponse)
   - [hiber.organization.GetOrganizationAvatar](#hiberorganizationgetorganizationavatar)
@@ -396,21 +394,6 @@ so not all messages listed here are referenced.)
 | contact | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) | Contact information for your organization. Required. |
 | organization_creation_token | [ string](#string) | A token that allows you to create an organization without having an organization. |
 
-### hiber.organization.DeleteOrganizationConfirmationRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| parent_organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| organization_to_delete | [ string](#string) | The organization to delete. Required. |
-| deletion_token | [ string](#string) | The deletion_token for deletion |
-
-### hiber.organization.DeleteOrganizationConfirmationRequest.Response
-
-
-
-
 ### hiber.organization.DeleteOrganizationRequest
 
 
@@ -427,8 +410,7 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization_to_delete | [ string](#string) | none |
-| deletion_token | [ string](#string) | Token to use with DeleteOrganizationConfirmationRequest. |
-| organizations_to_be_deleted | [ hiber.organization.OrganizationTree](#hiberorganizationorganizationtree) | The organizations that will be deleted. |
+| organizations_deleted | [ hiber.organization.OrganizationTree](#hiberorganizationorganizationtree) | The organizations that were deleted. |
 
 ### hiber.organization.GetOrganizationAvatar
 
@@ -1204,11 +1186,7 @@ api event stream and publishers.
 | MODEM_ALARM_DELETED | none | 59 |
 | ASSIGNED | none | 63 |
 | UNASSIGNED | none | 64 |
-| MODEM_TRANSFER_STARTED | none | 17 |
-| MODEM_TRANSFER_RECEIVED | none | 18 |
-| MODEM_TRANSFER_CANCELLED | none | 19 |
-| MODEM_TRANSFER_NOT_RECEIVED | none | 20 |
-| MODEM_TRANSFER_RETURN_TRANSFER_STARTED | none | 21 |
+| TRANSFER | none | 18 |
 | PUBLISHER_CREATED | none | 1 |
 | PUBLISHER_UPDATED | none | 2 |
 | PUBLISHER_DELETED | none | 3 |

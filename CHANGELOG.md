@@ -1,19 +1,61 @@
 # Changelog Hiber API
 
+### 0.137 (2023-01-23)
+
+- Removed all satellite-related leftovers:
+  - Removed `satellite.proto` which contained the unused `SatelliteService`.
+  - Removed `GroundStation` and `Satellite` from `map.proto`.
+    - Removed `include_ground_stations` and `include_satellites` from `TileMapRequest`.
+    - Removed `ground_stations` and `satellites` from `TileMapRequest.Response`.
+  - Removed `ground_stations` and `satellites` from `StatusRequest.Response`.
+- Removed `subscription.proto` and `ModemSelection.with_service_type`.
+
+### 0.136 (2023-01-16)
+
+##### AssignmentService
+
+- Limited (un)assigning parsers to the owners of those parsers.
+  - Inherited parsers can now only be (un)assigned by their owners, impersonated into the child organization.
+
+##### ModemTransferService
+
+- Deprecated the ModemTransferService to be replaced by the much simpler TransferService.
+  - Reimplemented the ModemTransferService with the TransferService where possible.
+    - Some new limitation apply to the ModemTransferService because of this:
+      - transfers are always marked as received immediately
+      - returns are no longer supported
+
+##### TransferService
+
+- Introduced the TransferService as simple reimplementation of the transfer logic.
+  - Instead of marking received / not received, etc, a transfer is now automatic.
+    - Transfers are only allowed if you have access to the recipient organization.
+
+#### Events
+
+- Message export ready event will now contain modem tags in the description.
+
+##### OrganizationService
+
+- Removed the confirmation flow for organization delete.
+
 ### 0.135 (2023-01-02)
 
 ##### ModemMessageBodyParserService
 
 - Added possibility to define a filter on modem message metadata.
   The parser will only be applied to a message if the metadata matches.
+
 ##### ValueService
 
 - Fixed a bug where modem data was merged together when requesting data for multiple modems.
 - Fixed a bug where the modem field was never set.
+
 ##### ModemClaimService
 
 - Removed the modem claim service.
   - The proto is left in place to not break build immediately, but the service itself wil no longer be supported.
+
 ##### EasypulseService
 
 - Removed the Easypulse service.

@@ -17,6 +17,7 @@ import "organization.proto";
 import "publisher.proto";
 import "tag.proto";
 import "token.proto";
+import "transfer.proto";
 import "webhook.proto";
 
 option java_multiple_files = false;
@@ -113,11 +114,7 @@ message Event {
         UserEvent.UserAccessRequestEvent user_access_request = 10;
         UserEvent.UserValidationUpdatedEvent user_validation_updated = 54;
 
-        ModemTransferEvent.ModemTransferStartedEvent modem_transfer_started = 15;
-        ModemTransferEvent.ModemTransferCancelledEvent modem_transfer_cancelled = 16;
-        ModemTransferEvent.ModemTransferReceivedEvent modem_transfer_received = 17;
-        ModemTransferEvent.ModemTransferNotReceivedEvent modem_transfer_not_received = 18;
-        ModemTransferEvent.ModemTransferReturnTransferStartedEvent modem_transfer_return_transfer_started = 19;
+        TransferEvent transfer = 17;
 
         TokenEvent.TokenExpiryWarningEvent token_expiry_warning = 23;
         TokenEvent.TokenExpiredEvent token_expired = 24;
@@ -140,7 +137,7 @@ message Event {
         ExportEvent.ExportReadyEvent export_ready = 66;
         ExportEvent.ExportFailedEvent export_failed = 67;
     }
-    reserved 3, 6, 11 to 14, 20, 21, 22, 26 to 29, 49 to 53, 60 to 64;
+    reserved 3, 6, 11 to 16, 18 to 22, 26 to 29, 49 to 53, 60 to 64;
 
     message ModemEvent {
         message ModemCreatedEvent {
@@ -164,7 +161,6 @@ message Event {
             string modem_external_device_id = 20;
 
             UpdateClearableString display_name = 10;
-            modem.Modem.Peripherals.HiberAntenna antenna = 11;
             UpdateClearableString custom_antenna = 12;
             UpdateBoolean gps = 13;
             Location location = 14;
@@ -177,6 +173,8 @@ message Event {
             repeated tag.Tag tags = 5;
             string title = 6;
             string description = 7;
+
+            reserved 11;
         }
 
         /* When a message comes in, the modem's location is updated automatically. This event is generated whenever the
@@ -455,8 +453,42 @@ message Event {
         }
     }
 
+    message TransferEvent {
+        string organization = 2;
+        Timestamp time = 3;
+
+        repeated tag.Tag tags = 4;
+
+        string title = 5;
+        string description = 6;
+
+        transfer.Transfer transfer = 7;
+
+        /* Deprecated, here to be backwards compatible with ModemTransferEvents. */
+        modem.ModemTransfer deprecated_transfer = 1 [deprecated = true];
+        message DeprecatedTransfer {
+            // TODO(2023-03-01) remove before this date
+            option deprecated = true;
+
+            string identifier = 1;
+            repeated string modem_numbers = 2;
+            string sender_organization = 5;
+            string recipient_organization = 6;
+            string comment = 9;
+            Timestamp time = 10;
+            repeated hiber.tag.Tag tags = 15;
+
+            reserved 3, 4, 7, 8, 11 to 14;
+        }
+    }
+
     message ModemTransferEvent {
+        // TODO(2023-02-01) remove before this date
+        option deprecated = true;
+
         message ModemTransferStartedEvent {
+            option deprecated = true;
+
             modem.ModemTransfer transfer = 1;
             string organization = 2;
             Timestamp time = 3;
@@ -466,6 +498,8 @@ message Event {
         }
 
         message ModemTransferCancelledEvent {
+            option deprecated = true;
+
             modem.ModemTransfer transfer = 1;
             string organization = 2;
             Timestamp time = 3;
@@ -475,6 +509,8 @@ message Event {
         }
 
         message ModemTransferReceivedEvent {
+            option deprecated = true;
+
             modem.ModemTransfer transfer = 1;
             string organization = 2;
             Timestamp time = 3;
@@ -484,6 +520,8 @@ message Event {
         }
 
         message ModemTransferNotReceivedEvent {
+            option deprecated = true;
+
             modem.ModemTransfer transfer = 1;
             string organization = 2;
             Timestamp time = 3;
@@ -496,6 +534,8 @@ message Event {
         }
 
         message ModemTransferReturnTransferStartedEvent {
+            option deprecated = true;
+
             modem.ModemTransfer return_transfer = 1;
             modem.ModemTransfer original_transfer = 2;
             repeated modem.ModemTransferReturnLine return_lines = 3;

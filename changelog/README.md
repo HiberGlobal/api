@@ -5,7 +5,7 @@ merge conflicts on releases with the changelog file. On a release, all files in 
 format, will be added to the `CHANGELOG.md` file in the parent directory in lexicographical order.
 The format of the filename should be:
 ```
-WEB-<DESCRIPTIVE_NAME>.md
+<DESCRIPTIVE_NAME>.md
 ```
 where `<DESCRIPTIVE_NAME>` can be anything that describes the change. A typical format
 would be to use `WEB-<TICKET_NUMBER>-<DESCRIPTION>` where `<TICKET_NUMBER>` is the Jira ticket number that this change

@@ -76,12 +76,6 @@ message StatusRequest {
     message Response {
         StatusRequest request = 1;
 
-        /* Status of the satellite network. */
-        NetworkStatus satellites = 2;
-
-        /* Status of the ground station network. */
-        NetworkStatus ground_stations = 3;
-
         /* Areas of the globe that have a non-OK status, i.e. regions where coverage is hindered by external forces. */
         repeated AreaStatus global_areas = 4;
 
@@ -90,6 +84,8 @@ message StatusRequest {
 
         /* Status for the server. Generally only used when the server is in read-only mode for maintenance. */
         NetworkStatus server = 6;
+
+        reserved 2, 3;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */

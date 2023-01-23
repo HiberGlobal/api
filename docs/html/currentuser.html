@@ -485,14 +485,6 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.organization.DeleteOrganizationConfirmationRequest"><span class="badge">M</span>DeleteOrganizationConfirmationRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.organization.DeleteOrganizationConfirmationRequest.Response"><span class="badge">M</span>DeleteOrganizationConfirmationRequest.Response</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.organization.DeleteOrganizationRequest"><span class="badge">M</span>DeleteOrganizationRequest</a>
                 </li>
               
@@ -2896,32 +2888,8 @@ For example, unbundled events are likely to return an approximated total, but no
               </tr>
             
               <tr>
-                <td>MODEM_TRANSFER_STARTED</td>
-                <td>17</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEM_TRANSFER_RECEIVED</td>
+                <td>TRANSFER</td>
                 <td>18</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEM_TRANSFER_CANCELLED</td>
-                <td>19</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEM_TRANSFER_NOT_RECEIVED</td>
-                <td>20</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEM_TRANSFER_RETURN_TRANSFER_STARTED</td>
-                <td>21</td>
                 <td><p></p></td>
               </tr>
             
@@ -3448,51 +3416,6 @@ Used as an identifier for the organization. </p></td>
 
         
       
-        <h3 id="hiber.organization.DeleteOrganizationConfirmationRequest">DeleteOrganizationConfirmationRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>parent_organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>organization_to_delete</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>The organization to delete. Required. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>deletion_token</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>The deletion_token for deletion </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.organization.DeleteOrganizationConfirmationRequest.Response">DeleteOrganizationConfirmationRequest.Response</h3>
-        <p></p>
-
-        
-
-        
-      
         <h3 id="hiber.organization.DeleteOrganizationRequest">DeleteOrganizationRequest</h3>
         <p></p>
 
@@ -3542,17 +3465,10 @@ Used as an identifier for the organization. </p></td>
                 </tr>
               
                 <tr>
-                  <td>deletion_token</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Token to use with DeleteOrganizationConfirmationRequest. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>organizations_to_be_deleted</td>
+                  <td>organizations_deleted</td>
                   <td><a href="#hiber.organization.OrganizationTree">OrganizationTree</a></td>
                   <td></td>
-                  <td><p>The organizations that will be deleted. </p></td>
+                  <td><p>The organizations that were deleted. </p></td>
                 </tr>
               
             </tbody>
@@ -4328,13 +4244,6 @@ Used as an identifier for the organization. </p></td>
                 <td>Delete</td>
                 <td><a href="#hiber.organization.DeleteOrganizationRequest">DeleteOrganizationRequest</a></td>
                 <td><a href="#hiber.organization.DeleteOrganizationRequest.Response">DeleteOrganizationRequest.Response</a></td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>DeleteConfirmation</td>
-                <td><a href="#hiber.organization.DeleteOrganizationConfirmationRequest">DeleteOrganizationConfirmationRequest</a></td>
-                <td><a href="#hiber.organization.DeleteOrganizationConfirmationRequest.Response">DeleteOrganizationConfirmationRequest.Response</a></td>
                 <td><p></p></td>
               </tr>
             

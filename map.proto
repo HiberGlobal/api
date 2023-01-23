@@ -71,14 +71,6 @@ service MapService {
     rpc LocationHistory (LocationHistory.Request) returns (LocationHistory.Response);
 }
 
-/* The location of ground stations that receive the data sent from the satellite(s).
- * Currently, ground station is just a marker on the map.
- */
-message GroundStation {
-    Location location = 1;
-    string name = 2;
-}
-
 message TileCoordinate {
     int32 x = 1;
     int32 y = 2;
@@ -115,10 +107,10 @@ message MapTileItem {
 
 message TileMapRequest {
     message Response {
-        repeated GroundStation ground_stations = 1;
         repeated MapTileItem map_items = 2;
         TileMapRequest request = 4;
-        repeated Satellite satellites = 5;
+
+        reserved 1, 3, 5;
     }
 
     enum Density {
@@ -146,12 +138,6 @@ message TileMapRequest {
     /* Selection to filter the modems on the map. */
     modem.ModemSelection modem_selection = 4;
 
-    /* Whether to fill the "satellites" field in the Response. */
-    bool include_satellites = 5;
-
-    /* Whether to fill the "ground_stations" field in the Response. */
-    bool include_ground_stations = 6;
-
     /* The icon density on the map. */
     Density density = 7;
 
@@ -162,17 +148,8 @@ message TileMapRequest {
         /* Whether to include the health for groups. */
         bool include_health = 9;
     }
-}
 
-message Satellite {
-    message Position {
-        Timestamp time = 1;
-        Location location = 2;
-    }
-
-    int32 id = 1;
-    string name = 2;
-    repeated Position positions = 3;
+    reserved 5, 6;
 }
 
 /* List the location history for a modem.

@@ -11,8 +11,6 @@
 
 - Messages
   - [CreateOrganizationRequest](#createorganizationrequest)
-  - [DeleteOrganizationConfirmationRequest](#deleteorganizationconfirmationrequest)
-  - [DeleteOrganizationConfirmationRequest.Response](#deleteorganizationconfirmationrequestresponse)
   - [DeleteOrganizationRequest](#deleteorganizationrequest)
   - [DeleteOrganizationRequest.Response](#deleteorganizationrequestresponse)
   - [GetOrganizationAvatar](#getorganizationavatar)
@@ -155,12 +153,6 @@ sub-organizations later.
 
 
 
-### DeleteConfirmation
-> **rpc** DeleteConfirmation([DeleteOrganizationConfirmationRequest](#deleteorganizationconfirmationrequest))
-    [DeleteOrganizationConfirmationRequest.Response](#deleteorganizationconfirmationrequestresponse)
-
-
-
 ### Tree
 > **rpc** Tree([OrganizationTreeRequest](#organizationtreerequest))
     [OrganizationTreeRequest.Response](#organizationtreerequestresponse)
@@ -206,21 +198,6 @@ sub-organizations later.
 | contact | [ Organization.Contact](#organizationcontact) | Contact information for your organization. Required. |
 | organization_creation_token | [ string](#string) | A token that allows you to create an organization without having an organization. |
 
-### DeleteOrganizationConfirmationRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| parent_organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| organization_to_delete | [ string](#string) | The organization to delete. Required. |
-| deletion_token | [ string](#string) | The deletion_token for deletion |
-
-### DeleteOrganizationConfirmationRequest.Response
-
-
-
-
 ### DeleteOrganizationRequest
 
 
@@ -237,8 +214,7 @@ sub-organizations later.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization_to_delete | [ string](#string) | none |
-| deletion_token | [ string](#string) | Token to use with DeleteOrganizationConfirmationRequest. |
-| organizations_to_be_deleted | [ OrganizationTree](#organizationtree) | The organizations that will be deleted. |
+| organizations_deleted | [ OrganizationTree](#organizationtree) | The organizations that were deleted. |
 
 ### GetOrganizationAvatar
 
@@ -1411,11 +1387,7 @@ api event stream and publishers.
 | MODEM_ALARM_DELETED | none | 59 |
 | ASSIGNED | none | 63 |
 | UNASSIGNED | none | 64 |
-| MODEM_TRANSFER_STARTED | none | 17 |
-| MODEM_TRANSFER_RECEIVED | none | 18 |
-| MODEM_TRANSFER_CANCELLED | none | 19 |
-| MODEM_TRANSFER_NOT_RECEIVED | none | 20 |
-| MODEM_TRANSFER_RETURN_TRANSFER_STARTED | none | 21 |
+| TRANSFER | none | 18 |
 | PUBLISHER_CREATED | none | 1 |
 | PUBLISHER_UPDATED | none | 2 |
 | PUBLISHER_DELETED | none | 3 |

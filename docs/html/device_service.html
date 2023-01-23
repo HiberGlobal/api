@@ -544,10 +544,6 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.Modem.ActiveSubscription"><span class="badge">M</span>Modem.ActiveSubscription</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.modem.Modem.ConnectedDeviceInfo"><span class="badge">M</span>Modem.ConnectedDeviceInfo</a>
                 </li>
               
@@ -565,10 +561,6 @@
               
                 <li>
                   <a href="#hiber.modem.Modem.TechnicalData"><span class="badge">M</span>Modem.TechnicalData</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.Modem.Transfer"><span class="badge">M</span>Modem.Transfer</a>
                 </li>
               
                 <li>
@@ -686,14 +678,6 @@
               
                 <li>
                   <a href="#hiber.modem.Modem.Lifecycle"><span class="badge">E</span>Modem.Lifecycle</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.Modem.Peripherals.HiberAntenna"><span class="badge">E</span>Modem.Peripherals.HiberAntenna</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.Modem.Transfer.Status"><span class="badge">E</span>Modem.Transfer.Status</a>
                 </li>
               
                 <li>
@@ -2972,32 +2956,8 @@ For example, unbundled events are likely to return an approximated total, but no
               </tr>
             
               <tr>
-                <td>MODEM_TRANSFER_STARTED</td>
-                <td>17</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEM_TRANSFER_RECEIVED</td>
+                <td>TRANSFER</td>
                 <td>18</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEM_TRANSFER_CANCELLED</td>
-                <td>19</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEM_TRANSFER_NOT_RECEIVED</td>
-                <td>20</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>MODEM_TRANSFER_RETURN_TRANSFER_STARTED</td>
-                <td>21</td>
                 <td><p></p></td>
               </tr>
             
@@ -4368,24 +4328,6 @@ the group parent in the group_parents field. </p></td>
                 </tr>
               
                 <tr>
-                  <td>include_inbound_modems</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Whether to include inbound modems in the results.
-Inbound modems are modems that are in a transfer that has been sent *to* your organization, but that has not
-been marked as received yet. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>include_outbound_modems</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Whether to include outbound modems in the results.
-Inbound modems are modems that are in a transfer that has been sent *from* your organization, but that has not
-been marked as received yet. </p></td>
-                </tr>
-              
-                <tr>
                   <td>child_organizations</td>
                   <td><a href="#hiber.Filter.ChildOrganizations">hiber.Filter.ChildOrganizations</a></td>
                   <td></td>
@@ -4694,29 +4636,15 @@ Uses the OK, WARNING, ERROR format. </p></td>
                 </tr>
               
                 <tr>
-                  <td>active_subscription</td>
-                  <td><a href="#hiber.modem.Modem.ActiveSubscription">Modem.ActiveSubscription</a></td>
+                  <td>technical</td>
+                  <td><a href="#hiber.modem.Modem.TechnicalData">Modem.TechnicalData</a></td>
                   <td></td>
                   <td><p>additional information </p></td>
                 </tr>
               
                 <tr>
-                  <td>technical</td>
-                  <td><a href="#hiber.modem.Modem.TechnicalData">Modem.TechnicalData</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
                   <td>peripherals</td>
                   <td><a href="#hiber.modem.Modem.Peripherals">Modem.Peripherals</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>in_transfer</td>
-                  <td><a href="#hiber.modem.Modem.Transfer">Modem.Transfer</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -4872,44 +4800,6 @@ Used mainly to differentiate in the UI or to sort on. </p></td>
 
         
       
-        <h3 id="hiber.modem.Modem.ActiveSubscription">Modem.ActiveSubscription</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>type</td>
-                  <td><a href="#hiber.organization.subscription.ServiceType">hiber.organization.subscription.ServiceType</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>start_date</td>
-                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>end_date</td>
-                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="hiber.modem.Modem.ConnectedDeviceInfo">Modem.ConnectedDeviceInfo</h3>
         <p>Additional information when this modem is a connected device.</p>
 
@@ -4978,13 +4868,6 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
             <tbody>
               
                 <tr>
-                  <td>hiber_antenna</td>
-                  <td><a href="#hiber.modem.Modem.Peripherals.HiberAntenna">Modem.Peripherals.HiberAntenna</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
                   <td>gps</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -5008,27 +4891,6 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>hiber_antenna</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -5075,20 +4937,6 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
             <tbody>
               
                 <tr>
-                  <td>hardware_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>firmware_version_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
                   <td>hardware_production_batch</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -5097,37 +4945,6 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
               
                 <tr>
                   <td>manufacturer</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.Modem.Transfer">Modem.Transfer</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#hiber.modem.Modem.Transfer.Status">Modem.Transfer.Status</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>identifier</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
@@ -5692,13 +5509,6 @@ and excluding [HIBERBAND] will filter out the message, even though it also has D
                   <td>with_last_message_in</td>
                   <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
                   <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>with_service_type</td>
-                  <td><a href="#hiber.organization.subscription.ServiceType">hiber.organization.subscription.ServiceType</a></td>
-                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -6440,13 +6250,6 @@ values were different. Set this to true to apply it anyway. </p></td>
                 </tr>
               
                 <tr>
-                  <td>hiber_antenna</td>
-                  <td><a href="#hiber.modem.Modem.Peripherals.HiberAntenna">Modem.Peripherals.HiberAntenna</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
                   <td>gps</td>
                   <td><a href="#hiber.UpdateBoolean">hiber.UpdateBoolean</a></td>
                   <td></td>
@@ -6752,87 +6555,6 @@ should not be burdened with the health of this device.</p></td>
           </tbody>
         </table>
       
-        <h3 id="hiber.modem.Modem.Peripherals.HiberAntenna">Modem.Peripherals.HiberAntenna</h3>
-        <p>A Hiber antenna is required for the modem to function.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>DEFAULT</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>HIBER_PANDA</td>
-                <td>1</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>HIBER_GRIZZLY</td>
-                <td>2</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>HIBER_BLACK</td>
-                <td>3</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>CUSTOM</td>
-                <td>4</td>
-                <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-        <h3 id="hiber.modem.Modem.Transfer.Status">Modem.Transfer.Status</h3>
-        <p></p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>NONE</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>INBOUND</td>
-                <td>1</td>
-                <td><p>Modem has been shipped or transferred to you and is inbound.
-When you mark the transfer as received, the modems are added to your organization.
-If you encounter any issues, you can mark modems for return using the ModemTransferReturnService.</p></td>
-              </tr>
-            
-              <tr>
-                <td>OUTBOUND</td>
-                <td>2</td>
-                <td><p>Modem has been shipped or transferred by you and is outbound.
-When the transfer is received, the modems are removed from your organization, though the recipient may
-still return them later.</p></td>
-              </tr>
-            
-              <tr>
-                <td>RETURNING</td>
-                <td>3</td>
-                <td><p>You shipped this modem to another organization, but they are returning it.
-When you mark the transfer as received, the modems are added back to your organization.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
         <h3 id="hiber.modem.Modem.Type">Modem.Type</h3>
         <p>The effective type of this modem.</p><p>Type can depend on the hardware itself as well as network topology.</p>
         <table class="enum-table">
@@ -6848,9 +6570,9 @@ When you mark the transfer as received, the modems are added back to your organi
               </tr>
             
               <tr>
-                <td>DIRECT</td>
+                <td>DEVICE</td>
                 <td>1</td>
-                <td><p>A devices that directly connects to the satellite</p></td>
+                <td><p>A device that is not currently connected to a gateway.</p></td>
               </tr>
             
               <tr>

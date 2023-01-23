@@ -12,7 +12,6 @@ import "google/protobuf/struct.proto";
 import "base.proto";
 import "health.proto";
 import "organization.proto";
-import "subscription.proto";
 import "tag.proto";
 import "value.proto";
 
@@ -119,10 +118,8 @@ message Modem {
     Lifecycle lifecycle = 12;
 
     // additional information
-    ActiveSubscription active_subscription = 6;
     TechnicalData technical = 7;
     Peripherals peripherals = 11;
-    Transfer in_transfer = 13;
 
     /* Notes field that can be used to add additional information to a modem. */
     string notes = 17;
@@ -193,62 +190,20 @@ message Modem {
     }
 
     message TechnicalData {
-        string hardware_name = 2;
-        string firmware_version_name = 3;
         string hardware_production_batch = 6;
         string manufacturer = 7;
-        reserved 1, 4, 5;
-    }
-
-    message ActiveSubscription {
-        hiber.organization.subscription.ServiceType type = 3;
-        Timestamp start_date = 4;
-        Timestamp end_date = 5;
-        reserved 1, 2;
-    }
-
-    message Transfer {
-        enum Status {
-            NONE = 0;
-            /* Modem has been shipped or transferred to you and is inbound.
-             * When you mark the transfer as received, the modems are added to your organization.
-             * If you encounter any issues, you can mark modems for return using the ModemTransferReturnService.
-             */
-            INBOUND = 1;
-            /* Modem has been shipped or transferred by you and is outbound.
-             * When the transfer is received, the modems are removed from your organization, though the recipient may
-             * still return them later.
-             */
-            OUTBOUND = 2;
-            /* You shipped this modem to another organization, but they are returning it.
-             * When you mark the transfer as received, the modems are added back to your organization.
-             */
-            RETURNING = 3;
-        }
-
-        Status status = 1;
-        string identifier = 2;
+        reserved 1, 2, 3, 4, 5;
     }
 
     /* Peripherals attached to the modem, including antenna, whether it has a gps antenna and an
      * open field for peripherals like battery, sensors, etc.
      */
     message Peripherals {
-        /* A Hiber antenna is required for the modem to function.
-         */
-        enum HiberAntenna {
-            option deprecated = true;
-            DEFAULT = 0;
-            HIBER_PANDA = 1;
-            HIBER_GRIZZLY = 2;
-            HIBER_BLACK = 3;
-            CUSTOM = 4;
-        }
-
-        HiberAntenna hiber_antenna = 1 [deprecated = true];
         bool gps = 2;
         map<string, string> peripherals = 3;
         string custom_antenna = 4;
+
+        reserved 1;
     }
 
     enum Lifecycle {
@@ -284,16 +239,21 @@ message Modem {
     enum Type {
         /* A device of which the specific type is not known */
         OTHER = 0;
-        /* A devices that directly connects to the satellite */
-        DIRECT = 1;
+
+        /* A device that is not currently connected to a gateway. */
+        DEVICE = 1;
+
         /* A device that can receive messages from sensors in the field and relay them (directly) to the satellite.
          * Typically a LoRaWAN hub.
          * Note that gateways also send messages themselves (e.g. a daily heartbeat).
          */
         GATEWAY = 2;
+
         /* A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. */
         CONNECTED_DEVICE = 3;
     }
+
+    reserved 6, 13;
 }
 
 /* Selection object for modems.
@@ -359,7 +319,6 @@ message ModemSelection {
     bool only_active = 4 [deprecated = true];
     TimeRange activated_in = 5 [deprecated = true];
     TimeRange with_last_message_in = 7;
-    repeated hiber.organization.subscription.ServiceType with_service_type = 6;
 
     /* Deprecated health that uses the OK, WARNING, ERROR format. */
     repeated Health health = 9 [deprecated = true];
@@ -404,7 +363,7 @@ message ModemSelection {
         bool only_without_peripheral = 21;
     }
 
-    reserved 3, 17;
+    reserved 3, 6, 17;
 }
 
 /* Decrypted modem message. Messages are received encrypted and decrypted asynchronously, which adds the location
@@ -638,18 +597,6 @@ message ListModemsRequest {
     /* Sort the modem with the given sort options. */
     repeated Sort sort_by = 4 [packed = false];
 
-    /* Whether to include inbound modems in the results.
-     * Inbound modems are modems that are in a transfer that has been sent *to* your organization, but that has not
-     * been marked as received yet.
-     */
-    bool include_inbound_modems = 6;
-
-    /* Whether to include outbound modems in the results.
-     * Inbound modems are modems that are in a transfer that has been sent *from* your organization, but that has not
-     * been marked as received yet.
-     */
-    bool include_outbound_modems = 7;
-
     /* Include modems from the selected child organizations.
      * DEPRECATED: this option will be removed in the future!
      */
@@ -664,7 +611,7 @@ message ListModemsRequest {
      */
     bool include_missing_group_parents = 10;
 
-    reserved 5;
+    reserved 5 to 7;
 }
 
 /* Lists all modems the given criteria, grouped by gateway.
@@ -917,7 +864,6 @@ message UpdatePeripheralsRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     ModemSelection selection = 2;
-    Modem.Peripherals.HiberAntenna hiber_antenna = 3;
     UpdateBoolean gps = 4;
     Location hardcoded_gps_location = 5;
     map<string, string> add_peripherals = 6;
@@ -928,6 +874,8 @@ message UpdatePeripheralsRequest {
     UpdateClearableString time_zone = 11;
     Duration update_transmission_interval = 12;
     bool remove_transmission_interval = 13;
+
+    reserved 3;
 }
 
 message ModemHealthCount {

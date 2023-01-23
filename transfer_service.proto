@@ -1,0 +1,91 @@
+/* Service to transfer data from one organization to another.
+ *
+ * To transfer data to another organization, you must have access to both organizations,
+ * and must have the TRANSFERS permissions in the sender organization.
+ */
+syntax = "proto3";
+
+package hiber.transfer;
+
+import "base.proto";
+import "device.proto";
+import "organization.proto";
+import "transfer.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.transfer";
+option java_outer_classname = "TransferApi";
+option go_package = "hiber";
+
+service TransferService {
+    rpc Transfer (PerformTransfer.Request) returns (PerformTransfer.Response);
+    rpc History (TransferHistory.Request) returns (TransferHistory.Response);
+}
+
+message PerformTransfer {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* The organization to receive the transfer. */
+        oneof recipient_organization_or_create {
+            /* Existing organization to receive the transfer.
+             * You must have access to the recipient organization to transfer data to it.
+             */
+            string recipient_organization = 2;
+
+            /* Create a new organization to receive the transfer. */
+            organization.CreateOrganizationRequest new_organization = 3;
+        }
+
+        /* Optional comment for the transfer (i.e. reason, tracking information, etc). */
+        optional string comment = 4;
+
+        oneof type {
+            /* Transfer a number of selected devices to the recipient organization. */
+            device.DeviceSelection devices = 5;
+        }
+    }
+
+    message Response {
+        Transfer transfer = 1;
+        Request request = 2;
+    }
+}
+
+message TransferHistory {
+    message Request {
+        message TransferSelection {
+            /* Search transfers by identifier, organizations, device, etc. */
+            string search = 1;
+
+            /* Select transfers by transfer identifier. */
+            repeated string identifiers = 2;
+
+            /* Select transfers that were performed within this time. */
+            TimeRange time_range = 3;
+
+            oneof selection {
+                /* Select device transfers with specific devices. */
+                device.DeviceSelection devices = 6;
+            }
+
+            /* Only show transfer that your organization received. */
+            bool received_only = 7;
+
+            /* Only show transfer that your organization sent. */
+            bool sent_only = 8;
+        }
+
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        TransferSelection selection = 2;
+        Pagination pagination = 3;
+    }
+    message Response {
+        repeated Transfer transfer_history = 1;
+        Request request = 2;
+        Pagination.Result pagination = 3;
+    }
+}
+

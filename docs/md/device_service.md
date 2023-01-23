@@ -43,8 +43,6 @@ They have a unique device (previously modem) number, used to identify them.
 
     - [hiber.modem.ListModemsRequest.Sort](#hibermodemlistmodemsrequestsort)
     - [hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle)
-    - [hiber.modem.Modem.Peripherals.HiberAntenna](#hibermodemmodemperipheralshiberantenna)
-    - [hiber.modem.Modem.Transfer.Status](#hibermodemmodemtransferstatus)
     - [hiber.modem.Modem.Type](#hibermodemmodemtype)
     - [hiber.modem.ModemMessage.Source](#hibermodemmodemmessagesource)
 
@@ -411,10 +409,8 @@ when the modem is registered into the system or when a subscription is authorize
 | health | [ hiber.Health](#hiberhealth) | Deprecated health based on the number of error and warning events this modem has received in the past 30 days Uses the OK, WARNING, ERROR format. |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
 | lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | none |
-| active_subscription | [ hiber.modem.Modem.ActiveSubscription](#hibermodemmodemactivesubscription) | additional information |
-| technical | [ hiber.modem.Modem.TechnicalData](#hibermodemmodemtechnicaldata) | none |
+| technical | [ hiber.modem.Modem.TechnicalData](#hibermodemmodemtechnicaldata) | additional information |
 | peripherals | [ hiber.modem.Modem.Peripherals](#hibermodemmodemperipherals) | none |
-| in_transfer | [ hiber.modem.Modem.Transfer](#hibermodemmodemtransfer) | none |
 | notes | [ string](#string) | Notes field that can be used to add additional information to a modem. |
 | secure_notes | [ string](#string) | Secure notes field that can be used to add additional information to a modem, with limited accessibility. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
@@ -442,7 +438,6 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 | only_active | [ bool](#bool) | Use lifecycle filter instead. |
 | activated_in | [ hiber.TimeRange](#hibertimerange) | none |
 | with_last_message_in | [ hiber.TimeRange](#hibertimerange) | none |
-| with_service_type | [repeated hiber.organization.subscription.ServiceType](#hiberorganizationsubscriptionservicetype) | none |
 | health | [repeated hiber.Health](#hiberhealth) | Deprecated health that uses the OK, WARNING, ERROR format. |
 | health_levels | [repeated string](#string) | Filter modems by health level. |
 | lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
@@ -494,27 +489,6 @@ Sorting options for the results.
 | DAMAGED | Kept for backwards compatibility. Internally mapped to decommissioned | 2 |
 | LOST | Kept for backwards compatibility. Internally mapped to decommissioned | 3 |
 
-#### hiber.modem.Modem.Peripherals.HiberAntenna
-A Hiber antenna is required for the modem to function.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| DEFAULT | none | 0 |
-| HIBER_PANDA | none | 1 |
-| HIBER_GRIZZLY | none | 2 |
-| HIBER_BLACK | none | 3 |
-| CUSTOM | none | 4 |
-
-#### hiber.modem.Modem.Transfer.Status
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| NONE | none | 0 |
-| INBOUND | Modem has been shipped or transferred to you and is inbound. When you mark the transfer as received, the modems are added to your organization. If you encounter any issues, you can mark modems for return using the ModemTransferReturnService. | 1 |
-| OUTBOUND | Modem has been shipped or transferred by you and is outbound. When the transfer is received, the modems are removed from your organization, though the recipient may still return them later. | 2 |
-| RETURNING | You shipped this modem to another organization, but they are returning it. When you mark the transfer as received, the modems are added back to your organization. | 3 |
-
 #### hiber.modem.Modem.Type
 The effective type of this modem.
 Type can depend on the hardware itself as well as network topology.
@@ -522,7 +496,7 @@ Type can depend on the hardware itself as well as network topology.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | OTHER | A device of which the specific type is not known | 0 |
-| DIRECT | A devices that directly connects to the satellite | 1 |
+| DEVICE | A device that is not currently connected to a gateway. | 1 |
 | GATEWAY | A device that can receive messages from sensors in the field and relay them (directly) to the satellite. Typically a LoRaWAN hub. Note that gateways also send messages themselves (e.g. a daily heartbeat). | 2 |
 | CONNECTED_DEVICE | A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. | 3 |
 
@@ -1508,11 +1482,7 @@ api event stream and publishers.
 | MODEM_ALARM_DELETED | none | 59 |
 | ASSIGNED | none | 63 |
 | UNASSIGNED | none | 64 |
-| MODEM_TRANSFER_STARTED | none | 17 |
-| MODEM_TRANSFER_RECEIVED | none | 18 |
-| MODEM_TRANSFER_CANCELLED | none | 19 |
-| MODEM_TRANSFER_NOT_RECEIVED | none | 20 |
-| MODEM_TRANSFER_RETURN_TRANSFER_STARTED | none | 21 |
+| TRANSFER | none | 18 |
 | PUBLISHER_CREATED | none | 1 |
 | PUBLISHER_UPDATED | none | 2 |
 | PUBLISHER_DELETED | none | 3 |

@@ -191,8 +191,6 @@ Service to get the status of the hiber network
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | request | [ StatusRequest](#statusrequest) | none |
-| satellites | [ NetworkStatus](#networkstatus) | Status of the satellite network. |
-| ground_stations | [ NetworkStatus](#networkstatus) | Status of the ground station network. |
 | global_areas | [repeated AreaStatus](#areastatus) | Areas of the globe that have a non-OK status, i.e. regions where coverage is hindered by external forces. |
 | organization | [ OrganizationStatus](#organizationstatus) | Status for your organization, i.e. whether you have modems that are having trouble, or failed publishers. |
 | server | [ NetworkStatus](#networkstatus) | Status for the server. Generally only used when the server is in read-only mode for maintenance. |
@@ -955,11 +953,7 @@ api event stream and publishers.
 | MODEM_ALARM_DELETED | none | 59 |
 | ASSIGNED | none | 63 |
 | UNASSIGNED | none | 64 |
-| MODEM_TRANSFER_STARTED | none | 17 |
-| MODEM_TRANSFER_RECEIVED | none | 18 |
-| MODEM_TRANSFER_CANCELLED | none | 19 |
-| MODEM_TRANSFER_NOT_RECEIVED | none | 20 |
-| MODEM_TRANSFER_RETURN_TRANSFER_STARTED | none | 21 |
+| TRANSFER | none | 18 |
 | PUBLISHER_CREATED | none | 1 |
 | PUBLISHER_UPDATED | none | 2 |
 | PUBLISHER_DELETED | none | 3 |

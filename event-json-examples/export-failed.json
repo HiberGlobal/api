@@ -35,14 +35,14 @@
       "error": "No messages found in time range."
     },
     "title": "Export example-identifier of messages for modem AAAA AAAA has failed.",
-    "description": "The export example-identifier of messages for modem AAAA AAAA from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z has failed:\n\nNo messages found in time range.",
+    "description": "The export example-identifier of messages for modem AAAA AAAA from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z has failed:\n\nNo messages found in time range.\n\ngroup: example-tag, example-tag-2\nrequested by: user-identifier for your-organization",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
       "textual": "2020-06-01T05:15:25.355Z"
     }
   },
   "title": "Export example-identifier of messages for modem AAAA AAAA has failed.",
-  "description": "The export example-identifier of messages for modem AAAA AAAA from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z has failed:\n\nNo messages found in time range.",
+  "description": "The export example-identifier of messages for modem AAAA AAAA from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z has failed:\n\nNo messages found in time range.\n\ngroup: example-tag, example-tag-2\nrequested by: user-identifier for your-organization",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
     "textual": "2020-06-01T05:15:25.355Z"

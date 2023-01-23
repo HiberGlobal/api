@@ -18,7 +18,6 @@ service OrganizationService {
     rpc Get (GetOrganizationRequest) returns (Organization);
     rpc Update (UpdateOrganizationRequest) returns (Organization);
     rpc Delete (DeleteOrganizationRequest) returns (DeleteOrganizationRequest.Response);
-    rpc DeleteConfirmation (DeleteOrganizationConfirmationRequest) returns (DeleteOrganizationConfirmationRequest.Response);
     rpc Tree (OrganizationTreeRequest) returns (OrganizationTreeRequest.Response);
     rpc ListChildOrganizations (ListChildOrganizationsRequest) returns (ListChildOrganizationsRequest.Response);
     rpc ValidateCreationToken (ValidateOrganizationCreationTokenRequest) returns (ValidateOrganizationCreationTokenRequest.Response);
@@ -205,11 +204,10 @@ message DeleteOrganizationRequest {
     message Response {
         string organization_to_delete = 1;
 
-        /* Token to use with DeleteOrganizationConfirmationRequest. */
-        string deletion_token = 2;
+        /* The organizations that were deleted. */
+        OrganizationTree organizations_deleted = 3;
 
-        /* The organizations that will be deleted. */
-        OrganizationTree organizations_to_be_deleted = 3;
+        reserved 2;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
@@ -217,18 +215,6 @@ message DeleteOrganizationRequest {
 
     /* The organization to delete. Required. */
     string organization_to_delete = 2;
-}
-
-message DeleteOrganizationConfirmationRequest {
-    message Response {
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string parent_organization = 1;
-    /* The organization to delete. Required. */
-    string organization_to_delete = 3;
-    /* The deletion_token for deletion */
-    string deletion_token = 2;
 }
 
 message ValidateOrganizationCreationTokenRequest {

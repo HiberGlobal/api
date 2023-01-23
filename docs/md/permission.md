@@ -50,9 +50,8 @@ Requesting user-related events explicitly if you cannot access the users will re
 | MODEM_MESSAGES_SEND_TEST_MESSAGES | Send modem messages using the TestingService. Does not include MODEMS or MESSAGES permission. | 16 |
 | MODEM_MESSAGES_SEND_REAL_MESSAGES | Send modem messages using real message sources (i.e. gateway). Does not include MODEMS or MESSAGES permission. | 41 |
 | MODEM_DOWNLINK_MESSAGES | Send modem downlink messages. | 51 |
-| MODEM_TRANSFERS | See modem transfers, inbound and outbound modems. Includes modems permission. | 20 |
-| MODEM_TRANSFERS_SEND | Transfer modems to another organization, cancel open transfers and send return transfers. Includes modems_transfers permission. | 21 |
-| MODEM_TRANSFERS_PROCESS | Mark transfers as received, prepare modems for return. This does not include actually sending the return transfer. Includes modems_transfers permission. | 22 |
+| TRANSFERS | See the transfers to/from other organizations. | 20 |
+| TRANSFERS_SEND | Transfer devices to another organization. | 21 |
 | USERS | List all users, see their names and email addresses. | 30 |
 | USERS_MANAGE | Approve or create new users, remove users from the organization. Includes users permission. | 31 |
 | PUBLISHERS | Manage publishers: webhooks, MQTT integration and custom email publishers. | 35 |

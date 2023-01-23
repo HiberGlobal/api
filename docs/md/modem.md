@@ -30,13 +30,11 @@ used to identify them.
   - [MessageCountRequest.Response](#messagecountrequestresponse)
   - [MessageCountRequest.Response.MessageCount](#messagecountrequestresponsemessagecount)
   - [Modem](#modem)
-  - [Modem.ActiveSubscription](#modemactivesubscription)
   - [Modem.ConnectedDeviceInfo](#modemconnecteddeviceinfo)
   - [Modem.GatewayInfo](#modemgatewayinfo)
   - [Modem.Peripherals](#modemperipherals)
   - [Modem.Peripherals.PeripheralsEntry](#modemperipheralsperipheralsentry)
   - [Modem.TechnicalData](#modemtechnicaldata)
-  - [Modem.Transfer](#modemtransfer)
   - [ModemHealthCount](#modemhealthcount)
   - [ModemHealthCount.HealthCount](#modemhealthcounthealthcount)
   - [ModemHealthCount.HealthCountGroupedPerTag](#modemhealthcounthealthcountgroupedpertag)
@@ -68,8 +66,6 @@ used to identify them.
 - Enums
   - [ListModemsRequest.Sort](#listmodemsrequestsort)
   - [Modem.Lifecycle](#modemlifecycle)
-  - [Modem.Peripherals.HiberAntenna](#modemperipheralshiberantenna)
-  - [Modem.Transfer.Status](#modemtransferstatus)
   - [Modem.Type](#modemtype)
   - [ModemMessage.Source](#modemmessagesource)
 
@@ -80,8 +76,6 @@ used to identify them.
 
 - Referenced messages from [organization.proto](#referenced-messages-from-organizationproto)
   - [hiber.organization.CreateOrganizationRequest](#hiberorganizationcreateorganizationrequest)
-  - [hiber.organization.DeleteOrganizationConfirmationRequest](#hiberorganizationdeleteorganizationconfirmationrequest)
-  - [hiber.organization.DeleteOrganizationConfirmationRequest.Response](#hiberorganizationdeleteorganizationconfirmationrequestresponse)
   - [hiber.organization.DeleteOrganizationRequest](#hiberorganizationdeleteorganizationrequest)
   - [hiber.organization.DeleteOrganizationRequest.Response](#hiberorganizationdeleteorganizationrequestresponse)
   - [hiber.organization.GetOrganizationAvatar](#hiberorganizationgetorganizationavatar)
@@ -104,10 +98,6 @@ used to identify them.
   - [hiber.organization.ValidateOrganizationCreationTokenRequest.Response](#hiberorganizationvalidateorganizationcreationtokenrequestresponse)
 
     - [hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature)
-
-
-  - Enums
-    - [hiber.organization.subscription.ServiceType](#hiberorganizationsubscriptionservicetype)
 
 - Referenced messages from [tag.proto](#referenced-messages-from-tagproto)
   - [hiber.tag.Tag](#hibertagtag)
@@ -420,8 +410,6 @@ list method.
 | selection | [ ModemSelection](#modemselection) | Select which modems to return. |
 | pagination | [ hiber.Pagination](#hiberpagination) | Paginate through results. |
 | sort_by | [repeated ListModemsRequest.Sort](#listmodemsrequestsort) | Sort the modem with the given sort options. |
-| include_inbound_modems | [ bool](#bool) | Whether to include inbound modems in the results. Inbound modems are modems that are in a transfer that has been sent *to* your organization, but that has not been marked as received yet. |
-| include_outbound_modems | [ bool](#bool) | Whether to include outbound modems in the results. Inbound modems are modems that are in a transfer that has been sent *from* your organization, but that has not been marked as received yet. |
 | child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Include modems from the selected child organizations. DEPRECATED: this option will be removed in the future! |
 | location_selection | [ hiber.LocationSelection](#hiberlocationselection) | Filter modems by location. |
 | include_missing_group_parents | [ bool](#bool) | Set this to true to populate the group_parents field in the response. This will be populated with missing group parents (i.e. gateways) for the the modems on this page. Any group parent that is on the current page is not included in this list to avoid duplicate data. |
@@ -487,10 +475,8 @@ when the modem is registered into the system or when a subscription is authorize
 | health | [ hiber.Health](#hiberhealth) | Deprecated health based on the number of error and warning events this modem has received in the past 30 days Uses the OK, WARNING, ERROR format. |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
 | lifecycle | [ Modem.Lifecycle](#modemlifecycle) | none |
-| active_subscription | [ Modem.ActiveSubscription](#modemactivesubscription) | additional information |
-| technical | [ Modem.TechnicalData](#modemtechnicaldata) | none |
+| technical | [ Modem.TechnicalData](#modemtechnicaldata) | additional information |
 | peripherals | [ Modem.Peripherals](#modemperipherals) | none |
-| in_transfer | [ Modem.Transfer](#modemtransfer) | none |
 | notes | [ string](#string) | Notes field that can be used to add additional information to a modem. |
 | secure_notes | [ string](#string) | Secure notes field that can be used to add additional information to a modem, with limited accessibility. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
@@ -505,16 +491,6 @@ when the modem is registered into the system or when a subscription is authorize
 | time_zone | [ string](#string) | The timezone configured for the modem. |
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_transmission_rate**.expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
-
-### Modem.ActiveSubscription
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| type | [ hiber.organization.subscription.ServiceType](#hiberorganizationsubscriptionservicetype) | none |
-| start_date | [ hiber.Timestamp](#hibertimestamp) | none |
-| end_date | [ hiber.Timestamp](#hibertimestamp) | none |
 
 ### Modem.ConnectedDeviceInfo
 
@@ -540,7 +516,6 @@ open field for peripherals like battery, sensors, etc.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| hiber_antenna | [ Modem.Peripherals.HiberAntenna](#modemperipheralshiberantenna) | none |
 | gps | [ bool](#bool) | none |
 | peripherals | [map Modem.Peripherals.PeripheralsEntry](#modemperipheralsperipheralsentry) | none |
 | custom_antenna | [ string](#string) | none |
@@ -560,19 +535,8 @@ open field for peripherals like battery, sensors, etc.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| hardware_name | [ string](#string) | none |
-| firmware_version_name | [ string](#string) | none |
 | hardware_production_batch | [ string](#string) | none |
 | manufacturer | [ string](#string) | none |
-
-### Modem.Transfer
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| status | [ Modem.Transfer.Status](#modemtransferstatus) | none |
-| identifier | [ string](#string) | none |
 
 ### ModemHealthCount
 
@@ -693,7 +657,6 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 | only_active | [ bool](#bool) | Use lifecycle filter instead. |
 | activated_in | [ hiber.TimeRange](#hibertimerange) | none |
 | with_last_message_in | [ hiber.TimeRange](#hibertimerange) | none |
-| with_service_type | [repeated hiber.organization.subscription.ServiceType](#hiberorganizationsubscriptionservicetype) | none |
 | health | [repeated hiber.Health](#hiberhealth) | Deprecated health that uses the OK, WARNING, ERROR format. |
 | health_levels | [repeated string](#string) | Filter modems by health level. |
 | lifecycles | [repeated Modem.Lifecycle](#modemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
@@ -880,7 +843,6 @@ For example:
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | selection | [ ModemSelection](#modemselection) | none |
-| hiber_antenna | [ Modem.Peripherals.HiberAntenna](#modemperipheralshiberantenna) | none |
 | gps | [ hiber.UpdateBoolean](#hiberupdateboolean) | none |
 | hardcoded_gps_location | [ hiber.Location](#hiberlocation) | none |
 | add_peripherals | [map UpdatePeripheralsRequest.AddPeripheralsEntry](#updateperipheralsrequestaddperipheralsentry) | none |
@@ -947,27 +909,6 @@ Sorting options for the results.
 | DAMAGED | Kept for backwards compatibility. Internally mapped to decommissioned | 2 |
 | LOST | Kept for backwards compatibility. Internally mapped to decommissioned | 3 |
 
-### Modem.Peripherals.HiberAntenna
-A Hiber antenna is required for the modem to function.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| DEFAULT | none | 0 |
-| HIBER_PANDA | none | 1 |
-| HIBER_GRIZZLY | none | 2 |
-| HIBER_BLACK | none | 3 |
-| CUSTOM | none | 4 |
-
-### Modem.Transfer.Status
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| NONE | none | 0 |
-| INBOUND | Modem has been shipped or transferred to you and is inbound. When you mark the transfer as received, the modems are added to your organization. If you encounter any issues, you can mark modems for return using the ModemTransferReturnService. | 1 |
-| OUTBOUND | Modem has been shipped or transferred by you and is outbound. When the transfer is received, the modems are removed from your organization, though the recipient may still return them later. | 2 |
-| RETURNING | You shipped this modem to another organization, but they are returning it. When you mark the transfer as received, the modems are added back to your organization. | 3 |
-
 ### Modem.Type
 The effective type of this modem.
 Type can depend on the hardware itself as well as network topology.
@@ -975,7 +916,7 @@ Type can depend on the hardware itself as well as network topology.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | OTHER | A device of which the specific type is not known | 0 |
-| DIRECT | A devices that directly connects to the satellite | 1 |
+| DEVICE | A device that is not currently connected to a gateway. | 1 |
 | GATEWAY | A device that can receive messages from sensors in the field and relay them (directly) to the satellite. Typically a LoRaWAN hub. Note that gateways also send messages themselves (e.g. a daily heartbeat). | 2 |
 | CONNECTED_DEVICE | A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. | 3 |
 
@@ -1106,21 +1047,6 @@ so not all messages listed here are referenced.)
 | contact | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) | Contact information for your organization. Required. |
 | organization_creation_token | [ string](#string) | A token that allows you to create an organization without having an organization. |
 
-### hiber.organization.DeleteOrganizationConfirmationRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| parent_organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| organization_to_delete | [ string](#string) | The organization to delete. Required. |
-| deletion_token | [ string](#string) | The deletion_token for deletion |
-
-### hiber.organization.DeleteOrganizationConfirmationRequest.Response
-
-
-
-
 ### hiber.organization.DeleteOrganizationRequest
 
 
@@ -1137,8 +1063,7 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization_to_delete | [ string](#string) | none |
-| deletion_token | [ string](#string) | Token to use with DeleteOrganizationConfirmationRequest. |
-| organizations_to_be_deleted | [ hiber.organization.OrganizationTree](#hiberorganizationorganizationtree) | The organizations that will be deleted. |
+| organizations_deleted | [ hiber.organization.OrganizationTree](#hiberorganizationorganizationtree) | The organizations that were deleted. |
 
 ### hiber.organization.GetOrganizationAvatar
 
@@ -1338,26 +1263,6 @@ Note that the organization field specifies the organization, it is not used to u
 | EARLY_ACCESS | Used for organizations that get early access to features. | 5 |
 | EXPERIMENTAL | Used for organizations that get access to experimental features. e.g. feature work in progress. | 6 |
 | BI_TOOLING_BETA | Integrate BI tooling in the Mission Control interface. | 8 |
-
-
-
-## Referenced messages from subscription.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
-
-#### This section was generated from [subscription.proto](https://github.com/HiberGlobal/api/blob/master/subscription.proto).
-
-
-
-### Enums
-#### hiber.organization.subscription.ServiceType
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| ONCE_PER_DAY | none | 0 |
-| ONCE_PER_6_HOURS | none | 1 |
-| ONCE_PER_HOUR | none | 2 |
 
 
 
@@ -2371,11 +2276,7 @@ api event stream and publishers.
 | MODEM_ALARM_DELETED | none | 59 |
 | ASSIGNED | none | 63 |
 | UNASSIGNED | none | 64 |
-| MODEM_TRANSFER_STARTED | none | 17 |
-| MODEM_TRANSFER_RECEIVED | none | 18 |
-| MODEM_TRANSFER_CANCELLED | none | 19 |
-| MODEM_TRANSFER_NOT_RECEIVED | none | 20 |
-| MODEM_TRANSFER_RETURN_TRANSFER_STARTED | none | 21 |
+| TRANSFER | none | 18 |
 | PUBLISHER_CREATED | none | 1 |
 | PUBLISHER_UPDATED | none | 2 |
 | PUBLISHER_DELETED | none | 3 |
