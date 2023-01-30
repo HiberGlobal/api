@@ -4,7 +4,8 @@
     "modemNumber": "AAAA AAAA",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
-      "textual": "2020-06-01T05:15:25.355Z"
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
     },
     "tags": [
       {
@@ -36,7 +37,8 @@
   },
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
-    "textual": "2020-06-01T05:15:25.355Z"
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
   },
   "type": "MODEM_ACTIVATED"
 }

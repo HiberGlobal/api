@@ -6,14 +6,16 @@
     "description": "An email invitation to join your-organization has been sent to invited-user@example.com.",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
-      "textual": "2020-06-01T05:15:25.355Z"
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
     }
   },
   "title": "invited-user@example.com has been invited to your organization.",
   "description": "An email invitation to join your-organization has been sent to invited-user@example.com.",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
-    "textual": "2020-06-01T05:15:25.355Z"
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
   },
   "type": "USER_INVITED"
 }

@@ -1,5 +1,22 @@
 # Changelog Hiber API
 
+### 0.138 (2023-01-30)
+
+##### ModemAlarmService
+
+- Removed `available_to_child_organizations` from `ModemAlarm`.
+  - Inheritance was not really used, so we opted to remove it.
+  - Removed `UpdateAvailability`, `MakeAvailableToChildOrganization` and `MakeUnavailableToChildOrganization` calls.
+  - Removed `only_owned_alarms` and `owner_organizations` from `ModemAlarmSelection`.
+
+##### Units
+
+- Added new unit *barrels per day* (`bbl/d`) for usage in all calls/responses that use `flow` values.
+
+##### base.proto
+
+- We now always set the `time_zone` in `Timestamp`, typically "UTC".
+
 ### 0.137 (2023-01-23)
 
 - Removed all satellite-related leftovers:

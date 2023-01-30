@@ -4,7 +4,8 @@
     "modemNumber": "AAAA AAAA",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
-      "textual": "2020-06-01T05:15:25.355Z"
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
     },
     "tags": [
       {
@@ -22,7 +23,6 @@
         }
       }
     ],
-
     "title": "Modem AAAA AAAA was updated.",
     "description": "Modem AAAA AAAA was updated:\n\n- Display name was changed from 'AAAA AAAA' to 'custom-name'.\n\n- The peripherals were changed.\n\n- The notes were changed to:\nmy-updated-notes\n\ngroup: example-tag, example-tag-2",
     "displayName": {
@@ -49,7 +49,8 @@
   },
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
-    "textual": "2020-06-01T05:15:25.355Z"
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
   },
   "type": "MODEM_UPDATED"
 }

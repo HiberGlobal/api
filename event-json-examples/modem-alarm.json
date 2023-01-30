@@ -27,7 +27,8 @@
     "description": "In organization your-organization modem AAAA AAAA has failed the following checks:\n\n- example-check-id: Expected battery to be within 20..100%, but it is now at 15%!\n\nThe error messages were produced by alarm example-identifier: example\n\ngroup: example-tag, example-tag-2",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
-      "textual": "2020-06-01T05:15:25.355Z"
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
     },
     "healthLevel": {
       "level": "Error",
@@ -43,7 +44,8 @@
   "type": "MODEM_ALARM",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
-    "textual": "2020-06-01T05:15:25.355Z"
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
   },
   "healthLevel": {
     "level": "Error",

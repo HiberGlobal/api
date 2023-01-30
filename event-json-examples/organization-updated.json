@@ -26,14 +26,16 @@
     "description": "Organization data for your-organization was updated:\n\n- Display name was changed from 'Your Organization' to 'new-Your Organization'.\n\n- VatNumber was changed from 'your-vat-number' to 'new-vat-number'.\n\n- Address was changed.\n\n- Contact was changed to 'your-name'.",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
-      "textual": "2020-06-01T05:15:25.355Z"
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
     }
   },
   "title": "Organization data for your-organization was updated.",
   "description": "Organization data for your-organization was updated:\n\n- Display name was changed from 'Your Organization' to 'new-Your Organization'.\n\n- VatNumber was changed from 'your-vat-number' to 'new-vat-number'.\n\n- Address was changed.\n\n- Contact was changed to 'your-name'.",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
-    "textual": "2020-06-01T05:15:25.355Z"
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
   },
   "type": "ORGANIZATION_UPDATED"
 }

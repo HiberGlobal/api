@@ -31,8 +31,6 @@ advanced use cases, like assigning to a tag.
   - [ListModemAlarms](#listmodemalarms)
   - [ListModemAlarms.Request](#listmodemalarmsrequest)
   - [ListModemAlarms.Response](#listmodemalarmsresponse)
-  - [MakeModemAlarmAvailableToChildOrganizationRequest](#makemodemalarmavailabletochildorganizationrequest)
-  - [MakeModemAlarmUnavailableToChildOrganizationRequest](#makemodemalarmunavailabletochildorganizationrequest)
   - [ModemAlarm](#modemalarm)
   - [ModemAlarm.Check](#modemalarmcheck)
   - [ModemAlarm.Check.DelayCheck](#modemalarmcheckdelaycheck)
@@ -61,9 +59,6 @@ advanced use cases, like assigning to a tag.
   - [UpdateModemAlarmAddCheck](#updatemodemalarmaddcheck)
   - [UpdateModemAlarmAddCheck.Request](#updatemodemalarmaddcheckrequest)
   - [UpdateModemAlarmAddCheck.Response](#updatemodemalarmaddcheckresponse)
-  - [UpdateModemAlarmAvailability](#updatemodemalarmavailability)
-  - [UpdateModemAlarmAvailability.Request](#updatemodemalarmavailabilityrequest)
-  - [UpdateModemAlarmAvailability.Response](#updatemodemalarmavailabilityresponse)
   - [UpdateModemAlarmRemoveCheck](#updatemodemalarmremovecheck)
   - [UpdateModemAlarmRemoveCheck.Request](#updatemodemalarmremovecheckrequest)
   - [UpdateModemAlarmRemoveCheck.Response](#updatemodemalarmremovecheckresponse)
@@ -196,24 +191,6 @@ Remove a check from a modem alarm, if you are the owner.
     [TestModemAlarmTestParameters.Response](#testmodemalarmtestparametersresponse)
 
 Test a set of parameters on a modem alarm, to see the result when they are applied during assignment.
-
-### UpdateAvailability
-> **rpc** UpdateAvailability([UpdateModemAlarmAvailability.Request](#updatemodemalarmavailabilityrequest))
-    [UpdateModemAlarmAvailability.Response](#updatemodemalarmavailabilityresponse)
-
-Make a modem alarm (un)available to (a selection of) child organizations.
-
-### MakeAvailableToChildOrganization
-> **rpc** MakeAvailableToChildOrganization([MakeModemAlarmAvailableToChildOrganizationRequest](#makemodemalarmavailabletochildorganizationrequest))
-    [ModemAlarm](#modemalarm)
-
-Make a modem alarm available to a child organization.
-
-### MakeUnavailableToChildOrganization
-> **rpc** MakeUnavailableToChildOrganization([MakeModemAlarmUnavailableToChildOrganizationRequest](#makemodemalarmunavailabletochildorganizationrequest))
-    [ModemAlarm](#modemalarm)
-
-Make a modem alarm unavailable to a child organization.
 
 ### Assign
 > **rpc** Assign([AssignModemAlarms.Request](#assignmodemalarmsrequest))
@@ -353,26 +330,6 @@ List modem alarms in an organization.
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | A pagination object, which can be used to go through the alarms. |
 | request | [ ListModemAlarms.Request](#listmodemalarmsrequest) | The request made to list the given alarms. |
 
-### MakeModemAlarmAvailableToChildOrganizationRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| identifier | [ string](#string) | The identifier of the alarm that should be updated. |
-| available_to | [repeated string](#string) | The child organization(s) that the alarm should be available to. This will - when the organization is on the exclude list, remove it - when the includeAll flag is false, add it to the include list (if not already present) |
-
-### MakeModemAlarmUnavailableToChildOrganizationRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| identifier | [ string](#string) | The identifier of the alarm that should be updated. |
-| unavailable_to | [repeated string](#string) | The child organization(s) that the alarm should be unavailable to. This will - when the organization is on the include list, remove it - when the includeAll flag is true, add it to the exclude list (if not already present) |
-
 ### ModemAlarm
 
 Alarm for a modem, monitoring message data, location or activity.
@@ -410,12 +367,11 @@ would have the following parameters:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| identifier | [ string](#string) | The identifier for this alarm. This identifier is globally unique, since the alarm can be shared to child organizations. |
+| identifier | [ string](#string) | The identifier for this alarm. This identifier is globally unique. |
 | name | [ string](#string) | Short name for this alarm (optional). |
 | description | [ string](#string) | Longer description for this alarm (optional). |
 | created_at | [ hiber.Timestamp](#hibertimestamp) | When this alarm was created. |
 | updated_at | [ hiber.Timestamp](#hibertimestamp) | When this alarm was last updated. |
-| available_to_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Availability to child organizations. This alarm can be shared to child organizations, so it can be assigned to their modems, either directly or automatically over all selected child organizations. Only the owner organization is able to edit the alarm. |
 | trigger_condition | [ ModemAlarm.TriggerCondition](#modemalarmtriggercondition) | Condition determining when an alarm is triggered if it has multiple checks. |
 | default_health_level | [ string](#string) | The default health level for checks in this alarm, if they have no health_level configured. |
 | health_level_after_resolved | [ ModemAlarm.HealthLevelAfterResolved](#modemalarmhealthlevelafterresolved) | Allow the alarm to cause a health level for the modem even after it has been resolved. By configuring this, you can specify the modem health should be affected for a longer period. For example, when using an inactivity check, this could be used to configure modem health ERROR while inactive, lowering to INVESTIGATE for a day after a new message comes in. |
@@ -664,8 +620,6 @@ If values are provided both for identifiers and search, then only alarms are sel
 | ----- | ---- | ----------- |
 | identifiers | [repeated string](#string) | Selects alarms by the given list of alarm identifiers. |
 | search | [ string](#string) | Search for the given string in identifier, description, fields and values. |
-| owner_organizations | [repeated string](#string) | Only return alarms that were created by the given organizations. |
-| only_owned_alarms | [ bool](#bool) | Only list owned alarms. Alarms are considered owned if your current organization created them, and thus would be able to delete them. Alarms can also be inherited from parent organizations, in which case they are owned by that parent organization. |
 
 ### TestModemAlarmTestParameters
 
@@ -779,29 +733,6 @@ Add a check to the alarm, iff you are the owner or can impersonate the owner org
 | check | [ ModemAlarm.Check](#modemalarmcheck) | The check to add to the Modem Alarm. Identifier of the check must be unique within the alarm. |
 
 ### UpdateModemAlarmAddCheck.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| updated | [ ModemAlarm](#modemalarm) | none |
-
-### UpdateModemAlarmAvailability
-
-Update the modem alarm availability, specifying for which (child) organizations an alarm is available.
-
-
-### UpdateModemAlarmAvailability.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| alarm_identifier | [ string](#string) | The identifier of the alarm for which to update the modem availability. |
-| replace_apply_to_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | The new set of child organizations that this rule applies to. Replaces the original value! |
-
-### UpdateModemAlarmAvailability.Response
 
 
 
@@ -1758,6 +1689,7 @@ Unit of measurement for a numeric value.
 | MASS_KILOGRAMS | none | 37 |
 | MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
+| FLOW_BARRELS_PER_DAY | none | 46 |
 | REVOLUTIONS_PER_MINUTE | none | 44 |
 | ITEMS_PER_24_HOURS | none | 45 |
 

@@ -85,14 +85,16 @@
     "description": "Webhook at https://example.com/my-webhook (id 10001) has failed:\n\nthe request timed out\n\ngroup: example-tag, example-tag-2",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
-      "textual": "2020-06-01T05:15:25.355Z"
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
     }
   },
   "title": "Webhook at https://example.com/my-webhook (id 10001) has failed!",
   "description": "Webhook at https://example.com/my-webhook (id 10001) has failed:\n\nthe request timed out\n\ngroup: example-tag, example-tag-2",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
-    "textual": "2020-06-01T05:15:25.355Z"
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
   },
   "type": "PUBLISHER_FAILED",
   "healthLevel": {

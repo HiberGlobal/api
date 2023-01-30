@@ -6,14 +6,16 @@
     "description": "Organization your-organization-2 under your-organization was deleted.\n\nAll data was deleted. It can be recovered by contacting Hiber support until 2020-07-01.",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
-      "textual": "2020-06-01T05:15:25.355Z"
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
     }
   },
   "title": "Organization your-organization-2 was deleted.",
   "description": "Organization your-organization-2 under your-organization was deleted.\n\nAll data was deleted. It can be recovered by contacting Hiber support until 2020-07-01.",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
-    "textual": "2020-06-01T05:15:25.355Z"
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
   },
   "type": "ORGANIZATION_DELETED"
 }

@@ -590,6 +590,7 @@ This unit is still used for fields, however.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | CUBIC_METER_PER_HOUR | none | 0 |
+| BARRELS_PER_DAY | none | 1 |
 
 #### hiber.value.Value.Numeric.FuelEfficiency.Unit
 

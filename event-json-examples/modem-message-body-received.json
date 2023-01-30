@@ -6,7 +6,8 @@
     "messageId": "10001",
     "sentAt": {
       "timestamp": "2020-06-01T05:15:25.355Z",
-      "textual": "2020-06-01T05:15:25.355Z"
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
     },
     "body": {
       "bytes": "ZXhhbXBsZQ==",
@@ -33,7 +34,8 @@
     "description": "A new message from modem AAAA AAAA was received. It was sent at 2020-06-01 05:15:25Z.\n\nThe body (hex) was: 6578616D706C65\n\ngroup: example-tag, example-tag-2",
     "time": {
       "timestamp": "2020-06-01T06:15:25.355Z",
-      "textual": "2020-06-01T06:15:25.355Z"
+      "textual": "2020-06-01T06:15:25.355Z",
+      "timeZone": "UTC"
     }
   },
   "title": "New message from modem AAAA AAAA was received. It was sent at 2020-06-01 05:15:25Z.",
@@ -45,7 +47,8 @@
   },
   "time": {
     "timestamp": "2020-06-01T06:15:25.355Z",
-    "textual": "2020-06-01T06:15:25.355Z"
+    "textual": "2020-06-01T06:15:25.355Z",
+    "timeZone": "UTC"
   },
   "type": "MODEM_MESSAGE_BODY_RECEIVED"
 }

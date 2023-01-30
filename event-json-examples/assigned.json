@@ -16,15 +16,15 @@
           "example-threshold-check": {
             "field.threshold.minimum": 30.0
           }
-        },
-        "ownerOrganization": "your-organization"
+        }
       }
     },
     "title": "example-identifier was assigned to AAAA AAAA.",
     "description": "Any new message from modem AAAA AAAA will now be validated using alarm 'example alarm name' (example-identifier): example",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
-      "textual": "2020-06-01T05:15:25.355Z"
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
     }
   },
   "title": "example-identifier was assigned to AAAA AAAA.",
@@ -36,7 +36,8 @@
   },
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
-    "textual": "2020-06-01T05:15:25.355Z"
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
   },
   "type": "ASSIGNED"
 }

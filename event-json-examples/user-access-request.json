@@ -4,7 +4,8 @@
     "user": "user-identifier",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
-      "textual": "2020-06-01T05:15:25.355Z"
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
     },
     "title": "User user-identifier has requested access to your organization.",
     "description": "User user-identifier has requested access to your organization.\n\nCheck the access requests for more details on this user."
@@ -13,7 +14,8 @@
   "description": "User user-identifier has requested access to your organization.\n\nCheck the access requests for more details on this user.",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
-    "textual": "2020-06-01T05:15:25.355Z"
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
   },
   "type": "USER_ACCESS_REQUEST"
 }

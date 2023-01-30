@@ -429,10 +429,11 @@ message Event {
                 message Update {
                     UpdateClearableString description = 1;
                     string trigger_condition = 2;
-                    Filter.ChildOrganizations.Update available_to_child_organizations = 3;
                     google.protobuf.Struct checks = 4;
                     UpdateClearableString update_default_health_level = 5;
                     modem.alarm.ModemAlarm.HealthLevelAfterResolved update_health_level_after_resolved = 6;
+
+                    reserved 3;
                 }
 
                 string organization = 1;

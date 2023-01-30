@@ -1520,14 +1520,6 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.alarm.MakeModemAlarmAvailableToChildOrganizationRequest"><span class="badge">M</span>MakeModemAlarmAvailableToChildOrganizationRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.alarm.MakeModemAlarmUnavailableToChildOrganizationRequest"><span class="badge">M</span>MakeModemAlarmUnavailableToChildOrganizationRequest</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.modem.alarm.ModemAlarm"><span class="badge">M</span>ModemAlarm</a>
                 </li>
               
@@ -1637,18 +1629,6 @@
               
                 <li>
                   <a href="#hiber.modem.alarm.UpdateModemAlarmAddCheck.Response"><span class="badge">M</span>UpdateModemAlarmAddCheck.Response</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.alarm.UpdateModemAlarmAvailability"><span class="badge">M</span>UpdateModemAlarmAvailability</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.alarm.UpdateModemAlarmAvailability.Request"><span class="badge">M</span>UpdateModemAlarmAvailability.Request</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.alarm.UpdateModemAlarmAvailability.Response"><span class="badge">M</span>UpdateModemAlarmAvailability.Response</a>
                 </li>
               
                 <li>
@@ -3703,13 +3683,6 @@ for the modem (and organization). </p></td>
                 <tr>
                   <td>trigger_condition</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>available_to_child_organizations</td>
-                  <td><a href="#hiber.Filter.ChildOrganizations.Update">hiber.Filter.ChildOrganizations.Update</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -7721,13 +7694,6 @@ Overrides unbundled_events in EventSelection message. </p></td>
                   <td><p> </p></td>
                 </tr>
               
-                <tr>
-                  <td>owner_organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
             </tbody>
           </table>
 
@@ -7898,7 +7864,7 @@ Overrides unbundled_events in EventSelection message. </p></td>
                   <td>include_child_organizations</td>
                   <td><a href="#hiber.Filter.ChildOrganizations">hiber.Filter.ChildOrganizations</a></td>
                   <td></td>
-                  <td><p>Whether to include alarms and modems from child organizations in this list (and which organizations). </p></td>
+                  <td><p>Whether to include modems from child organizations in this list (and which organizations). </p></td>
                 </tr>
               
                 <tr>
@@ -10900,6 +10866,12 @@ For example, unbundled events are likely to return an approximated total, but no
               <tr>
                 <td>FLOW_CUBIC_METERS_PER_HOUR</td>
                 <td>39</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>FLOW_BARRELS_PER_DAY</td>
+                <td>46</td>
                 <td><p></p></td>
               </tr>
             
@@ -17047,88 +17019,6 @@ temperature, the check value will be converted to celsius instead. </p></td>
 
         
       
-        <h3 id="hiber.modem.alarm.MakeModemAlarmAvailableToChildOrganizationRequest">MakeModemAlarmAvailableToChildOrganizationRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>identifier</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>The identifier of the alarm that should be updated. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>available_to</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>The child organization(s) that the alarm should be available to.
-This will
-- when the organization is on the exclude list, remove it
-- when the includeAll flag is false, add it to the include list (if not already present) </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.alarm.MakeModemAlarmUnavailableToChildOrganizationRequest">MakeModemAlarmUnavailableToChildOrganizationRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>identifier</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>The identifier of the alarm that should be updated. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>unavailable_to</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>The child organization(s) that the alarm should be unavailable to.
-This will
-- when the organization is on the include list, remove it
-- when the includeAll flag is true, add it to the exclude list (if not already present) </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="hiber.modem.alarm.ModemAlarm">ModemAlarm</h3>
         <p>Alarm for a modem, monitoring message data, location or activity.</p><p>An alarm is a collection of checks that validate the correctness of a modem. For example, an alarm might</p><p>check that the modem is in a given location, or that a field in its messages is between certain values.</p><p>Health for an alarm event is determined by taking the most severe health level from the health_levels configured</p><p>on the failing checks, using this default for any checks that do not have a health_level configured.</p><p>This can be changed on assignment with the default_health_level parameter, to fit the needs of the organization.</p><p>Note, when an alarm is inherited the health levels may not match yours. If the health level matches one of</p><p>your health levels, that level is used. Otherwise, the catch-all health level is used.</p><p>See the health definition for more information on the catch-all health level (typically the most severe).</p><p>Note that the health level displayed here is the result of the steps above.</p><p>When assigned to a (set of) modem(s), an alarm can be customized using its parameters.</p><p>Parameters are based on the check fields, and are also used in the check error message template.</p><p>For the alarm parameters, check parameters are prefixed with the check identifier.</p><p>For example: An alarm with check A (field "healthy" equals 1) and check B (field "state" oneof ["OK", "ACTIVE"])</p><p>would have the following parameters:</p><p>{</p><p>"A": {</p><p>"expected": 1,</p><p>"field.path": "healthy",</p><p>"field.equals.expected": 1</p><p>},</p><p>"B": {</p><p>"expected": ["OK", "ACTIVE"],</p><p>"field.path": "state",</p><p>"field.oneof.expected": ["OK", "ACTIVE"]</p><p>}</p><p>}</p>
 
@@ -17144,7 +17034,7 @@ This will
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>The identifier for this alarm.
-This identifier is globally unique, since the alarm can be shared to child organizations. </p></td>
+This identifier is globally unique. </p></td>
                 </tr>
               
                 <tr>
@@ -17173,16 +17063,6 @@ This identifier is globally unique, since the alarm can be shared to child organ
                   <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
                   <td></td>
                   <td><p>When this alarm was last updated. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>available_to_child_organizations</td>
-                  <td><a href="#hiber.Filter.ChildOrganizations">hiber.Filter.ChildOrganizations</a></td>
-                  <td></td>
-                  <td><p>Availability to child organizations.
-This alarm can be shared to child organizations, so it can be assigned to their modems, either directly or
-automatically over all selected child organizations.
-Only the owner organization is able to edit the alarm. </p></td>
                 </tr>
               
                 <tr>
@@ -17760,22 +17640,6 @@ be available to unencrypted values due to performance issues. </p></td>
                   <td><p>Search for the given string in identifier, description, fields and values. </p></td>
                 </tr>
               
-                <tr>
-                  <td>owner_organizations</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>Only return alarms that were created by the given organizations. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>only_owned_alarms</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Only list owned alarms. Alarms are considered owned if your current organization created them, and thus would
-be able to delete them. Alarms can also be inherited from parent organizations, in which case they are owned
-by that parent organization. </p></td>
-                </tr>
-              
             </tbody>
           </table>
 
@@ -18153,76 +18017,6 @@ by that parent organization. </p></td>
 
         
       
-        <h3 id="hiber.modem.alarm.UpdateModemAlarmAvailability">UpdateModemAlarmAvailability</h3>
-        <p>Update the modem alarm availability, specifying for which (child) organizations an alarm is available.</p>
-
-        
-
-        
-      
-        <h3 id="hiber.modem.alarm.UpdateModemAlarmAvailability.Request">UpdateModemAlarmAvailability.Request</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>alarm_identifier</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>The identifier of the alarm for which to update the modem availability. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>replace_apply_to_child_organizations</td>
-                  <td><a href="#hiber.Filter.ChildOrganizations">hiber.Filter.ChildOrganizations</a></td>
-                  <td></td>
-                  <td><p>The new set of child organizations that this rule applies to.
-Replaces the original value! </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.alarm.UpdateModemAlarmAvailability.Response">UpdateModemAlarmAvailability.Response</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>updated</td>
-                  <td><a href="#hiber.modem.alarm.ModemAlarm">ModemAlarm</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="hiber.modem.alarm.UpdateModemAlarmRemoveCheck">UpdateModemAlarmRemoveCheck</h3>
         <p>Remove a check from an alarm.</p>
 
@@ -18516,27 +18310,6 @@ historical values, to trigger only if the value is high for a longer period.</p>
                 <td><a href="#hiber.modem.alarm.TestModemAlarmTestParameters.Request">TestModemAlarmTestParameters.Request</a></td>
                 <td><a href="#hiber.modem.alarm.TestModemAlarmTestParameters.Response">TestModemAlarmTestParameters.Response</a></td>
                 <td><p>Test a set of parameters on a modem alarm, to see the result when they are applied during assignment.</p></td>
-              </tr>
-            
-              <tr>
-                <td>UpdateAvailability</td>
-                <td><a href="#hiber.modem.alarm.UpdateModemAlarmAvailability.Request">UpdateModemAlarmAvailability.Request</a></td>
-                <td><a href="#hiber.modem.alarm.UpdateModemAlarmAvailability.Response">UpdateModemAlarmAvailability.Response</a></td>
-                <td><p>Make a modem alarm (un)available to (a selection of) child organizations.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MakeAvailableToChildOrganization</td>
-                <td><a href="#hiber.modem.alarm.MakeModemAlarmAvailableToChildOrganizationRequest">MakeModemAlarmAvailableToChildOrganizationRequest</a></td>
-                <td><a href="#hiber.modem.alarm.ModemAlarm">ModemAlarm</a></td>
-                <td><p>Make a modem alarm available to a child organization.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MakeUnavailableToChildOrganization</td>
-                <td><a href="#hiber.modem.alarm.MakeModemAlarmUnavailableToChildOrganizationRequest">MakeModemAlarmUnavailableToChildOrganizationRequest</a></td>
-                <td><a href="#hiber.modem.alarm.ModemAlarm">ModemAlarm</a></td>
-                <td><p>Make a modem alarm unavailable to a child organization.</p></td>
               </tr>
             
               <tr>

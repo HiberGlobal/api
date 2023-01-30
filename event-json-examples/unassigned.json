@@ -6,15 +6,15 @@
       "toModem": "AAAA AAAA",
       "assignParser": {
         "identifier": "example-identifier",
-        "name": "example",
-        "ownerOrganization": "your-organization"
+        "name": "example"
       }
     },
     "title": "Assignment of example-identifier to AAAA AAAA was removed.",
     "description": "Assignment of example-identifier to AAAA AAAA was removed.",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
-      "textual": "2020-06-01T05:15:25.355Z"
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
     }
   },
   "title": "Assignment of example-identifier to AAAA AAAA was removed.",
@@ -26,7 +26,8 @@
   },
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
-    "textual": "2020-06-01T05:15:25.355Z"
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
   },
   "type": "UNASSIGNED"
 }

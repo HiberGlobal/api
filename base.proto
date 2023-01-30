@@ -568,6 +568,7 @@ enum UnitOfMeasurement {
     MASS_POUNDS = 38;
 
     FLOW_CUBIC_METERS_PER_HOUR = 39;
+    FLOW_BARRELS_PER_DAY = 46;
 
     REVOLUTIONS_PER_MINUTE = 44;
 

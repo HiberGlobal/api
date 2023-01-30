@@ -78,7 +78,8 @@ message Assignment {
         string name = 5;
         string description = 2;
         google.protobuf.Struct parameters = 3;
-        string owner_organization = 4;
+
+        reserved 4;
     }
 
     message ModemMessageBodyParserAssignment {
@@ -319,7 +320,7 @@ message ListAlarmAssignments {
         AssignmentSelection selection = 2;
         Pagination pagination = 3;
 
-        /* Whether to include alarms and modems from child organizations in this list (and which organizations). */
+        /* Whether to include modems from child organizations in this list (and which organizations). */
         Filter.ChildOrganizations include_child_organizations = 4;
 
         /* Whether to include alarms that are in the selection and have no assignments. */

@@ -47,15 +47,6 @@ service ModemAlarmService {
     /* Test a set of parameters on a modem alarm, to see the result when they are applied during assignment. */
     rpc TestParameters (TestModemAlarmTestParameters.Request) returns (TestModemAlarmTestParameters.Response);
 
-    /* Make a modem alarm (un)available to (a selection of) child organizations. */
-    rpc UpdateAvailability (UpdateModemAlarmAvailability.Request) returns (UpdateModemAlarmAvailability.Response);
-
-    /* Make a modem alarm available to a child organization. */
-    rpc MakeAvailableToChildOrganization (MakeModemAlarmAvailableToChildOrganizationRequest) returns (ModemAlarm);
-
-    /* Make a modem alarm unavailable to a child organization. */
-    rpc MakeUnavailableToChildOrganization (MakeModemAlarmUnavailableToChildOrganizationRequest) returns (ModemAlarm);
-
     /* Assign a modem alarm to a modem. */
     rpc Assign (AssignModemAlarms.Request) returns (AssignModemAlarms.Response);
 
@@ -98,7 +89,7 @@ service ModemAlarmService {
  */
 message ModemAlarm {
     /* The identifier for this alarm.
-     * This identifier is globally unique, since the alarm can be shared to child organizations.
+     * This identifier is globally unique.
      */
     string identifier = 1;
     /* Short name for this alarm (optional). */
@@ -112,13 +103,6 @@ message ModemAlarm {
 
     /* When this alarm was last updated. */
     Timestamp updated_at = 11;
-
-    /* Availability to child organizations.
-     * This alarm can be shared to child organizations, so it can be assigned to their modems, either directly or
-     * automatically over all selected child organizations.
-     * Only the owner organization is able to edit the alarm.
-     */
-    Filter.ChildOrganizations available_to_child_organizations = 3;
 
     /* Condition determining when an alarm is triggered if it has multiple checks. */
     enum TriggerCondition {
@@ -428,6 +412,8 @@ message ModemAlarm {
         /* The amount of time that this health level would be active. */
         Duration period = 2;
     }
+
+    reserved 3;
 }
 
 /*
@@ -443,14 +429,7 @@ message ModemAlarmSelection {
     /* Search for the given string in identifier, description, fields and values. */
     string search = 2;
 
-    /* Only return alarms that were created by the given organizations. */
-    repeated string owner_organizations = 3;
-
-    /* Only list owned alarms. Alarms are considered owned if your current organization created them, and thus would
-     * be able to delete them. Alarms can also be inherited from parent organizations, in which case they are owned
-     * by that parent organization.
-     */
-    bool only_owned_alarms = 4;
+    reserved 3, 4;
 }
 
 /*
@@ -653,54 +632,6 @@ message TestModemAlarmTestParameters {
     message Response {
         ModemAlarm result = 1;
     }
-}
-
-/* Update the modem alarm availability, specifying for which (child) organizations an alarm is available. */
-message UpdateModemAlarmAvailability {
-    message Request {
-        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
-        /* The identifier of the alarm for which to update the modem availability. */
-        string alarm_identifier = 2;
-
-        /* The new set of child organizations that this rule applies to.
-         * Replaces the original value!
-         */
-        Filter.ChildOrganizations replace_apply_to_child_organizations = 3;
-    }
-    message Response {
-        ModemAlarm updated = 1;
-    }
-}
-
-message MakeModemAlarmAvailableToChildOrganizationRequest {
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-
-    /* The identifier of the alarm that should be updated. */
-    string identifier = 2;
-
-    /* The child organization(s) that the alarm should be available to.
-     * This will
-     * - when the organization is on the exclude list, remove it
-     * - when the includeAll flag is false, add it to the include list (if not already present)
-     */
-    repeated string available_to = 3;
-}
-
-message MakeModemAlarmUnavailableToChildOrganizationRequest {
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-
-    /* The identifier of the alarm that should be updated. */
-    string identifier = 2;
-
-    /* The child organization(s) that the alarm should be unavailable to.
-     * This will
-     * - when the organization is on the include list, remove it
-     * - when the includeAll flag is true, add it to the exclude list (if not already present)
-     */
-    repeated string unavailable_to = 3;
 }
 
 /* Directly assigned modem alarm to a modem. */

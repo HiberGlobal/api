@@ -9,7 +9,8 @@
     },
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
-      "textual": "2020-06-01T05:15:25.355Z"
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
     },
     "tags": [
       {
@@ -33,7 +34,8 @@
     "modemExternalDeviceId": "00 11 22 33 AA BB CC DD",
     "updatedAt": {
       "timestamp": "2020-06-01T05:15:25.355Z",
-      "textual": "2020-06-01T05:15:25.355Z"
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
     }
   },
   "title": "Modem AAAA AAAA is now at [21.222,31.33299].",
@@ -45,7 +47,8 @@
   },
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
-    "textual": "2020-06-01T05:15:25.355Z"
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
   },
   "type": "MODEM_LOCATION_UPDATED"
 }

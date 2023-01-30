@@ -265,6 +265,7 @@ message Value {
         message Flow {
             enum Unit {
                 CUBIC_METER_PER_HOUR = 0;
+                BARRELS_PER_DAY = 1;
             }
 
             double value = 1;

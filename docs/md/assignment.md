@@ -71,8 +71,6 @@
   - [hiber.modem.alarm.ListModemAlarms](#hibermodemalarmlistmodemalarms)
   - [hiber.modem.alarm.ListModemAlarms.Request](#hibermodemalarmlistmodemalarmsrequest)
   - [hiber.modem.alarm.ListModemAlarms.Response](#hibermodemalarmlistmodemalarmsresponse)
-  - [hiber.modem.alarm.MakeModemAlarmAvailableToChildOrganizationRequest](#hibermodemalarmmakemodemalarmavailabletochildorganizationrequest)
-  - [hiber.modem.alarm.MakeModemAlarmUnavailableToChildOrganizationRequest](#hibermodemalarmmakemodemalarmunavailabletochildorganizationrequest)
   - [hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm)
   - [hiber.modem.alarm.ModemAlarm.Check](#hibermodemalarmmodemalarmcheck)
   - [hiber.modem.alarm.ModemAlarm.Check.DelayCheck](#hibermodemalarmmodemalarmcheckdelaycheck)
@@ -101,9 +99,6 @@
   - [hiber.modem.alarm.UpdateModemAlarmAddCheck](#hibermodemalarmupdatemodemalarmaddcheck)
   - [hiber.modem.alarm.UpdateModemAlarmAddCheck.Request](#hibermodemalarmupdatemodemalarmaddcheckrequest)
   - [hiber.modem.alarm.UpdateModemAlarmAddCheck.Response](#hibermodemalarmupdatemodemalarmaddcheckresponse)
-  - [hiber.modem.alarm.UpdateModemAlarmAvailability](#hibermodemalarmupdatemodemalarmavailability)
-  - [hiber.modem.alarm.UpdateModemAlarmAvailability.Request](#hibermodemalarmupdatemodemalarmavailabilityrequest)
-  - [hiber.modem.alarm.UpdateModemAlarmAvailability.Response](#hibermodemalarmupdatemodemalarmavailabilityresponse)
   - [hiber.modem.alarm.UpdateModemAlarmRemoveCheck](#hibermodemalarmupdatemodemalarmremovecheck)
   - [hiber.modem.alarm.UpdateModemAlarmRemoveCheck.Request](#hibermodemalarmupdatemodemalarmremovecheckrequest)
   - [hiber.modem.alarm.UpdateModemAlarmRemoveCheck.Response](#hibermodemalarmupdatemodemalarmremovecheckresponse)
@@ -327,7 +322,6 @@ An assignment assigning one thing to another.
 | name | [ string](#string) | none |
 | description | [ string](#string) | none |
 | parameters | [ google.protobuf.Struct](#googleprotobufstruct) | none |
-| owner_organization | [ string](#string) | none |
 
 ### Assignment.ModemMessageBodyParserAssignment
 
@@ -374,7 +368,7 @@ An assignment assigning one thing to another.
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | selection | [ AssignmentSelection](#assignmentselection) | none |
 | pagination | [ hiber.Pagination](#hiberpagination) | none |
-| include_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Whether to include alarms and modems from child organizations in this list (and which organizations). |
+| include_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Whether to include modems from child organizations in this list (and which organizations). |
 | include_alarms_without_assignments | [ bool](#bool) | Whether to include alarms that are in the selection and have no assignments. |
 | apply_unit_preferences | [ bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
 
@@ -881,26 +875,6 @@ List modem alarms in an organization.
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | A pagination object, which can be used to go through the alarms. |
 | request | [ hiber.modem.alarm.ListModemAlarms.Request](#hibermodemalarmlistmodemalarmsrequest) | The request made to list the given alarms. |
 
-### hiber.modem.alarm.MakeModemAlarmAvailableToChildOrganizationRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| identifier | [ string](#string) | The identifier of the alarm that should be updated. |
-| available_to | [repeated string](#string) | The child organization(s) that the alarm should be available to. This will - when the organization is on the exclude list, remove it - when the includeAll flag is false, add it to the include list (if not already present) |
-
-### hiber.modem.alarm.MakeModemAlarmUnavailableToChildOrganizationRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| identifier | [ string](#string) | The identifier of the alarm that should be updated. |
-| unavailable_to | [repeated string](#string) | The child organization(s) that the alarm should be unavailable to. This will - when the organization is on the include list, remove it - when the includeAll flag is true, add it to the exclude list (if not already present) |
-
 ### hiber.modem.alarm.ModemAlarm
 
 Alarm for a modem, monitoring message data, location or activity.
@@ -938,12 +912,11 @@ would have the following parameters:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| identifier | [ string](#string) | The identifier for this alarm. This identifier is globally unique, since the alarm can be shared to child organizations. |
+| identifier | [ string](#string) | The identifier for this alarm. This identifier is globally unique. |
 | name | [ string](#string) | Short name for this alarm (optional). |
 | description | [ string](#string) | Longer description for this alarm (optional). |
 | created_at | [ hiber.Timestamp](#hibertimestamp) | When this alarm was created. |
 | updated_at | [ hiber.Timestamp](#hibertimestamp) | When this alarm was last updated. |
-| available_to_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Availability to child organizations. This alarm can be shared to child organizations, so it can be assigned to their modems, either directly or automatically over all selected child organizations. Only the owner organization is able to edit the alarm. |
 | trigger_condition | [ hiber.modem.alarm.ModemAlarm.TriggerCondition](#hibermodemalarmmodemalarmtriggercondition) | Condition determining when an alarm is triggered if it has multiple checks. |
 | default_health_level | [ string](#string) | The default health level for checks in this alarm, if they have no health_level configured. |
 | health_level_after_resolved | [ hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved](#hibermodemalarmmodemalarmhealthlevelafterresolved) | Allow the alarm to cause a health level for the modem even after it has been resolved. By configuring this, you can specify the modem health should be affected for a longer period. For example, when using an inactivity check, this could be used to configure modem health ERROR while inactive, lowering to INVESTIGATE for a day after a new message comes in. |
@@ -1192,8 +1165,6 @@ If values are provided both for identifiers and search, then only alarms are sel
 | ----- | ---- | ----------- |
 | identifiers | [repeated string](#string) | Selects alarms by the given list of alarm identifiers. |
 | search | [ string](#string) | Search for the given string in identifier, description, fields and values. |
-| owner_organizations | [repeated string](#string) | Only return alarms that were created by the given organizations. |
-| only_owned_alarms | [ bool](#bool) | Only list owned alarms. Alarms are considered owned if your current organization created them, and thus would be able to delete them. Alarms can also be inherited from parent organizations, in which case they are owned by that parent organization. |
 
 ### hiber.modem.alarm.TestModemAlarmTestParameters
 
@@ -1307,29 +1278,6 @@ Add a check to the alarm, iff you are the owner or can impersonate the owner org
 | check | [ hiber.modem.alarm.ModemAlarm.Check](#hibermodemalarmmodemalarmcheck) | The check to add to the Modem Alarm. Identifier of the check must be unique within the alarm. |
 
 ### hiber.modem.alarm.UpdateModemAlarmAddCheck.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| updated | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | none |
-
-### hiber.modem.alarm.UpdateModemAlarmAvailability
-
-Update the modem alarm availability, specifying for which (child) organizations an alarm is available.
-
-
-### hiber.modem.alarm.UpdateModemAlarmAvailability.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| alarm_identifier | [ string](#string) | The identifier of the alarm for which to update the modem availability. |
-| replace_apply_to_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | The new set of child organizations that this rule applies to. Replaces the original value! |
-
-### hiber.modem.alarm.UpdateModemAlarmAvailability.Response
 
 
 
@@ -2563,6 +2511,7 @@ Unit of measurement for a numeric value.
 | MASS_KILOGRAMS | none | 37 |
 | MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
+| FLOW_BARRELS_PER_DAY | none | 46 |
 | REVOLUTIONS_PER_MINUTE | none | 44 |
 | ITEMS_PER_24_HOURS | none | 45 |
 

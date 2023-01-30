@@ -6,14 +6,16 @@
     "description": "User validation for organization your-organization has changed to allow e-mail addresses with the following pattern:\n\n.*@my-domain.com",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
-      "textual": "2020-06-01T05:15:25.355Z"
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
     }
   },
   "title": "User validation has been updated.",
   "description": "User validation for organization your-organization has changed to allow e-mail addresses with the following pattern:\n\n.*@my-domain.com",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
-    "textual": "2020-06-01T05:15:25.355Z"
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
   },
   "type": "USER_VALIDATION_UPDATED"
 }

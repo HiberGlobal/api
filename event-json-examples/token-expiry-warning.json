@@ -9,7 +9,8 @@
       "organization": "your-organization",
       "expiresAt": {
         "timestamp": "2020-06-04T05:15:25.355Z",
-        "textual": "2020-06-04T05:15:25.355Z"
+        "textual": "2020-06-04T05:15:25.355Z",
+        "timeZone": "UTC"
       },
       "userPermissions": [
         "READ"
@@ -25,7 +26,8 @@
     "description": "Token your-token (id 1) will expire in 14 days.",
     "time": {
       "timestamp": "2020-05-21T05:15:25.355Z",
-      "textual": "2020-05-21T05:15:25.355Z"
+      "textual": "2020-05-21T05:15:25.355Z",
+      "timeZone": "UTC"
     },
     "healthLevel": {
       "level": "Warning",
@@ -41,7 +43,8 @@
   "description": "Token your-token (id 1) will expire in 14 days.",
   "time": {
     "timestamp": "2020-05-21T05:15:25.355Z",
-    "textual": "2020-05-21T05:15:25.355Z"
+    "textual": "2020-05-21T05:15:25.355Z",
+    "timeZone": "UTC"
   },
   "type": "TOKEN_EXPIRY_WARNING",
   "healthLevel": {

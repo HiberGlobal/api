@@ -11,14 +11,16 @@
     "description": "The event configuration for your-organization was updated:\n\n- The message summary period was updated from PT24H to PT12H.",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
-      "textual": "2020-06-01T05:15:25.355Z"
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
     }
   },
   "title": "Event configuration was updated.",
   "description": "The event configuration for your-organization was updated:\n\n- The message summary period was updated from PT24H to PT12H.",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
-    "textual": "2020-06-01T05:15:25.355Z"
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
   },
   "type": "ORGANIZATION_EVENT_CONFIGURATION_UPDATED"
 }

@@ -430,7 +430,6 @@ The modem data for this event, if it is related to a single modem.
 | ----- | ---- | ----------- |
 | description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
 | trigger_condition | [ string](#string) | none |
-| available_to_child_organizations | [ hiber.Filter.ChildOrganizations.Update](#hiberfilterchildorganizationsupdate) | none |
 | checks | [ google.protobuf.Struct](#googleprotobufstruct) | none |
 | update_default_health_level | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
 | update_health_level_after_resolved | [ hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved](#hibermodemalarmmodemalarmhealthlevelafterresolved) | none |

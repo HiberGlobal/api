@@ -1546,6 +1546,7 @@ This unit is still used for fields, however.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | CUBIC_METER_PER_HOUR | none | 0 |
+| BARRELS_PER_DAY | none | 1 |
 
 #### hiber.value.Value.Numeric.FuelEfficiency.Unit
 
@@ -2352,6 +2353,7 @@ Unit of measurement for a numeric value.
 | MASS_KILOGRAMS | none | 37 |
 | MASS_POUNDS | none | 38 |
 | FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
+| FLOW_BARRELS_PER_DAY | none | 46 |
 | REVOLUTIONS_PER_MINUTE | none | 44 |
 | ITEMS_PER_24_HOURS | none | 45 |
 

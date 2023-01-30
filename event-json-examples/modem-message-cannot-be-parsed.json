@@ -6,7 +6,8 @@
     "modemMessageId": "10001",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
-      "textual": "2020-06-01T05:15:25.355Z"
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
     },
     "reason": "Parsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.\n\n",
     "healthLevel": {
@@ -50,7 +51,8 @@
   },
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
-    "textual": "2020-06-01T05:15:25.355Z"
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
   },
   "type": "MODEM_MESSAGE_CANNOT_BE_PARSED",
   "healthLevel": {
