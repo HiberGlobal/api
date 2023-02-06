@@ -226,11 +226,6 @@ message Modem {
         /* Device is (going to be) removed from installation and will not return to installed status again.
          */
         DECOMMISSIONED = 4;
-
-        /* Kept for backwards compatibility. Internally mapped to decommissioned */
-        DAMAGED = 2 [deprecated = true];
-        /* Kept for backwards compatibility. Internally mapped to decommissioned */
-        LOST = 3 [deprecated = true];
     }
 
     /* The effective type of this modem.

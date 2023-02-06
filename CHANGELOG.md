@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.139 (2023-02-06)
+
+##### ModemService
+
+- Removed deprecated lifecycle values `LOST` and `DAMAGED` from `Modem.Lifecycle`.
+
 ### 0.138 (2023-01-30)
 
 ##### ModemAlarmService
