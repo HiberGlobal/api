@@ -85,7 +85,7 @@ This is only possible for a modem that has not been activated.
 This process is instantaneous, but the previous owner can reject the claim afterwards.
 
 This service is deprecated and will be removed in the future. In some cases, it may be disabled before it is removed.
-// TODO(2023-01-31) remove this service from the API before this date
+// TODO(2023-03-01) remove this service from the API before this date
 
 ### Claim
 > **rpc** Claim([ClaimModemRequest](#claimmodemrequest))

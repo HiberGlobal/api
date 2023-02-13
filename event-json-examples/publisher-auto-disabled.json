@@ -8,20 +8,20 @@
         "id": "1",
         "label": {
           "name": "example-tag",
-          "type": "group"
+          "type": "well"
         }
       },
       {
         "id": "2",
         "label": {
           "name": "example-tag-2",
-          "type": "group"
+          "type": "well"
         }
       }
     ],
 
     "title": "Webhook (id 10001) has been disabled automatically.",
-    "description": "Webhook (id 10001) has been disabled automatically, because it was failing continuously.\n\ngroup: example-tag, example-tag-2",
+    "description": "Webhook (id 10001) has been disabled automatically, because it was failing continuously.\n\nwell: example-tag, example-tag-2",
     "time": {
       "timestamp": "2020-06-01T06:15:25.355Z",
       "textual": "2020-06-01T06:15:25.355Z",
@@ -39,7 +39,7 @@
     }
   },
   "title": "Webhook (id 10001) has been disabled automatically.",
-  "description": "Webhook (id 10001) has been disabled automatically, because it was failing continuously.\n\ngroup: example-tag, example-tag-2",
+  "description": "Webhook (id 10001) has been disabled automatically, because it was failing continuously.\n\nwell: example-tag, example-tag-2",
   "time": {
     "timestamp": "2020-06-01T06:15:25.355Z",
     "textual": "2020-06-01T06:15:25.355Z",

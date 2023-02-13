@@ -12,7 +12,7 @@
       }
     },
     "title": "Modem Message Body Parser example-identifier was updated.",
-    "description": "Modem Message Body Parser example-identifier was updated:\n\n- The name was changed from example-old to example.",
+    "description": "Modem Message Body Parser example-identifier was updated:\n\n- The name was changed from example-old to example.\n\n- The metadata fields were updated.\n\n- The modem metadata fields were updated.\n\n- The require metadata fields were updated.",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
       "textual": "2020-06-01T05:15:25.355Z",
@@ -26,5 +26,5 @@
     "timeZone": "UTC"
   },
   "title": "Modem Message Body Parser example-identifier was updated.",
-  "description": "Modem Message Body Parser example-identifier was updated:\n\n- The name was changed from example-old to example."
+  "description": "Modem Message Body Parser example-identifier was updated:\n\n- The name was changed from example-old to example.\n\n- The metadata fields were updated.\n\n- The modem metadata fields were updated.\n\n- The require metadata fields were updated."
 }

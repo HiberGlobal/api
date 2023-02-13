@@ -1,5 +1,18 @@
 # Changelog Hiber API
 
+### 0.140 (2023-02-13)
+
+##### ModemMessageBodyParserService
+
+- Removed deprecated field `data_fields_deprecated`
+- Added field `metadata_fields.require_message_metadata` to replace `require_message_metadata`
+- Deprecated field `require_message_metadata`
+
+##### EventService
+
+- Changed the title and description for `ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent` 
+  to reflect that this is a configuration issue that hiber support should solve.
+
 ### 0.139 (2023-02-06)
 
 ##### ModemService

@@ -1739,6 +1739,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.RequireMessageMetadataEntry"><span class="badge">M</span>ModemMessageBodyParser.MetadataFields.RequireMessageMetadataEntry</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.RequireMessageMetadataEntry"><span class="badge">M</span>ModemMessageBodyParser.RequireMessageMetadataEntry</a>
                 </li>
               
@@ -1823,11 +1827,15 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry"><span class="badge">M</span>UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry</a>
+                  <a href="#hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields"><span class="badge">M</span>UpdateUploadedModemMessageBodyParserRequest.MetadataFields</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields"><span class="badge">M</span>UpdateUploadedModemMessageBodyParserRequest.MetadataFields</a>
+                  <a href="#hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields.AddRequireMessageMetadataEntry"><span class="badge">M</span>UpdateUploadedModemMessageBodyParserRequest.MetadataFields.AddRequireMessageMetadataEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields.ReplaceRequireMessageMetadataEntry"><span class="badge">M</span>UpdateUploadedModemMessageBodyParserRequest.MetadataFields.ReplaceRequireMessageMetadataEntry</a>
                 </li>
               
                 <li>
@@ -18718,13 +18726,6 @@ Data fields are cached for efficient retrieval and allow all kinds of processing
                 </tr>
               
                 <tr>
-                  <td>data_fields_deprecated</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
                   <td>metadata_fields</td>
                   <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields">ModemMessageBodyParser.MetadataFields</a></td>
                   <td></td>
@@ -18742,17 +18743,18 @@ Data fields are cached for efficient retrieval and allow all kinds of processing
                   <td>post_processing</td>
                   <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing">ModemMessageBodyParser.PostProcessing</a></td>
                   <td>repeated</td>
-                  <td><p>The list of post-processing steps applied to the result of this parser. </p></td>
+                  <td><p><strong>Deprecated.</strong> The list of post-processing steps applied to the result of this parser. </p></td>
                 </tr>
               
                 <tr>
                   <td>require_message_metadata</td>
                   <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.RequireMessageMetadataEntry">ModemMessageBodyParser.RequireMessageMetadataEntry</a></td>
                   <td>repeated</td>
-                  <td><p>In order to use this parser on a message,
+                  <td><p><strong>Deprecated.</strong> In order to use this parser on a message,
 the metadata on the message must match the given requirement here.
 The key of the map is the json-path to look for in the message metadata,
-the value of the map is the json to expect at that json-path. </p></td>
+the value of the map is the json to expect at that json-path.
+Deprecated: use metadata_fields.require_message_metadata </p></td>
                 </tr>
               
             </tbody>
@@ -18772,7 +18774,12 @@ the value of the map is the json to expect at that json-path. </p></td>
               <tbody>
               
                 <tr>
-                  <td>data_fields_deprecated</td>
+                  <td>post_processing</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>require_message_metadata</td>
                   <td><p>true</p></td>
                 </tr>
               
@@ -18855,6 +18862,16 @@ If not set, sent time is used. </p></td>
 from the message. If not set, sent time is used. </p></td>
                 </tr>
               
+                <tr>
+                  <td>require_message_metadata</td>
+                  <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.RequireMessageMetadataEntry">ModemMessageBodyParser.MetadataFields.RequireMessageMetadataEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>In order to use this parser on a message,
+the metadata on the message must match the given requirement here.
+The key of the map is the json-path to look for in the message metadata,
+the value of the map is the json to expect at that json-path. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -18882,6 +18899,37 @@ from the message. If not set, sent time is used. </p></td>
                 <tr>
                   <td>longitude</td>
                   <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.RequireMessageMetadataEntry">ModemMessageBodyParser.MetadataFields.RequireMessageMetadataEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#google.protobuf.Value">google.protobuf.Value</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -19674,9 +19722,16 @@ This can be combined with a size to limit the amounts of bytes that are parsed. 
                 </tr>
               
                 <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>If set, changes the name of the parser. </p></td>
+                </tr>
+              
+                <tr>
                   <td>content_ksy</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>The new ksy definition for this parser. </p></td>
                 </tr>
               
@@ -19697,7 +19752,7 @@ This can be combined with a size to limit the amounts of bytes that are parsed. 
                 <tr>
                   <td>metadata_fields</td>
                   <td><a href="#hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields">UpdateUploadedModemMessageBodyParserRequest.MetadataFields</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Fields in the parsed result that match special things that can be processed by the system, like a location. </p></td>
                 </tr>
               
@@ -19705,67 +19760,45 @@ This can be combined with a size to limit the amounts of bytes that are parsed. 
                   <td>add_post_processing</td>
                   <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing">ModemMessageBodyParser.PostProcessing</a></td>
                   <td>repeated</td>
-                  <td><p>Add a post-processing step to the result of this parser. </p></td>
+                  <td><p><strong>Deprecated.</strong> Add a post-processing step to the result of this parser. </p></td>
                 </tr>
               
                 <tr>
                   <td>remove_post_processing</td>
                   <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing">ModemMessageBodyParser.PostProcessing</a></td>
                   <td>repeated</td>
-                  <td><p>Remove a post-processing step to the result of this parser. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>add_require_message_metadata</td>
-                  <td><a href="#hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry">UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry</a></td>
-                  <td>repeated</td>
-                  <td><p>In order to use this parser on a message,
-the metadata on the message must match the given requirement here.
-The key of the map is the json-path to look for in the message metadata,
-the value of the map is the json to expect at that json-path. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>remove_require_message_metadata</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>Remove a requirement for the metadata. Remove by listing the json-path here. </p></td>
+                  <td><p><strong>Deprecated.</strong> Remove a post-processing step to the result of this parser. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
           
-
-        
-      
-        <h3 id="hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry">UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
               
                 <tr>
-                  <td>key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>add_post_processing</td>
+                  <td><p>true</p></td>
                 </tr>
               
                 <tr>
-                  <td>value</td>
-                  <td><a href="#google.protobuf.Value">google.protobuf.Value</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>remove_post_processing</td>
+                  <td><p>true</p></td>
                 </tr>
               
-            </tbody>
-          </table>
-
+              </tbody>
+            </table>
+            
           
 
         
@@ -19841,6 +19874,92 @@ the value of the map is the json to expect at that json-path. </p></td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
                   <td></td>
                   <td><p>Update the custom field to extract to measured_at offset from the sent_at time in seconds. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>add_require_message_metadata</td>
+                  <td><a href="#hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields.AddRequireMessageMetadataEntry">UpdateUploadedModemMessageBodyParserRequest.MetadataFields.AddRequireMessageMetadataEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>In order to use this parser on a message,
+the metadata on the message must match the given requirement here.
+The key of the map is the json-path to look for in the message metadata,
+the value of the map is the json to expect at that json-path. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remove_require_message_metadata</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Remove a requirement for the metadata. Remove by listing the json-path here. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>replace_require_message_metadata</td>
+                  <td><a href="#hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields.ReplaceRequireMessageMetadataEntry">UpdateUploadedModemMessageBodyParserRequest.MetadataFields.ReplaceRequireMessageMetadataEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Replaces the entire configuration for required message metadata. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields.AddRequireMessageMetadataEntry">UpdateUploadedModemMessageBodyParserRequest.MetadataFields.AddRequireMessageMetadataEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#google.protobuf.Value">google.protobuf.Value</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields.ReplaceRequireMessageMetadataEntry">UpdateUploadedModemMessageBodyParserRequest.MetadataFields.ReplaceRequireMessageMetadataEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#google.protobuf.Value">google.protobuf.Value</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>

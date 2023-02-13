@@ -33,14 +33,14 @@
           "id": "1",
           "label": {
             "name": "example-tag",
-            "type": "group"
+            "type": "well"
           }
         },
         {
           "id": "2",
           "label": {
             "name": "example-tag-2",
-            "type": "group"
+            "type": "well"
           }
         }
       ],
@@ -69,20 +69,20 @@
         "id": "1",
         "label": {
           "name": "example-tag",
-          "type": "group"
+          "type": "well"
         }
       },
       {
         "id": "2",
         "label": {
           "name": "example-tag-2",
-          "type": "group"
+          "type": "well"
         }
       }
     ],
 
     "title": "Webhook at https://example.com/my-webhook (id 10001) has failed!",
-    "description": "Webhook at https://example.com/my-webhook (id 10001) has failed:\n\nthe request timed out\n\ngroup: example-tag, example-tag-2",
+    "description": "Webhook at https://example.com/my-webhook (id 10001) has failed:\n\nthe request timed out\n\nwell: example-tag, example-tag-2",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
       "textual": "2020-06-01T05:15:25.355Z",
@@ -90,7 +90,7 @@
     }
   },
   "title": "Webhook at https://example.com/my-webhook (id 10001) has failed!",
-  "description": "Webhook at https://example.com/my-webhook (id 10001) has failed:\n\nthe request timed out\n\ngroup: example-tag, example-tag-2",
+  "description": "Webhook at https://example.com/my-webhook (id 10001) has failed:\n\nthe request timed out\n\nwell: example-tag, example-tag-2",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
     "textual": "2020-06-01T05:15:25.355Z",

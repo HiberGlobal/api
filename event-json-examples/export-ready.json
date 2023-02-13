@@ -64,7 +64,7 @@
       }
     },
     "title": "Export example-identifier of messages for modem AAAA AAAA is ready.",
-    "description": "The export example-identifier of messages for modem AAAA AAAA from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z is ready to download:\n\n- export: https://example.com/export/3cr28rtrtcb23t12noex12etc1.json\n\ngroup: example-tag, example-tag-2\nRequested by: user-identifier for your-organization",
+    "description": "The export example-identifier of messages for modem AAAA AAAA from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z is ready to download:\n\n- export: https://example.com/export/3cr28rtrtcb23t12noex12etc1.json\n\nwell: example-tag, example-tag-2\nRequested by: user-identifier for your-organization",
     "time": {
       "timestamp": "2020-05-22T05:15:25.355Z",
       "textual": "2020-05-22T05:15:25.355Z",
@@ -72,7 +72,7 @@
     }
   },
   "title": "Export example-identifier of messages for modem AAAA AAAA is ready.",
-  "description": "The export example-identifier of messages for modem AAAA AAAA from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z is ready to download:\n\n- export: https://example.com/export/3cr28rtrtcb23t12noex12etc1.json\n\ngroup: example-tag, example-tag-2\nRequested by: user-identifier for your-organization",
+  "description": "The export example-identifier of messages for modem AAAA AAAA from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z is ready to download:\n\n- export: https://example.com/export/3cr28rtrtcb23t12noex12etc1.json\n\nwell: example-tag, example-tag-2\nRequested by: user-identifier for your-organization",
   "time": {
     "timestamp": "2020-05-22T05:15:25.355Z",
     "textual": "2020-05-22T05:15:25.355Z",

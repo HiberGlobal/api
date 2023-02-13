@@ -5,7 +5,14 @@
       "name": "example",
       "contentKsy": "example",
       "identifier": "example-identifier",
+      "organization": "your-organization",
       "metadataFields": {
+        "requireMessageMetadata": {
+          "$.fPort": 10.0
+        }
+      },
+      "requireMessageMetadata": {
+        "$.fPort": 10.0
       }
     },
     "title": "Modem Message Body Parser example (example-identifier) was created.",

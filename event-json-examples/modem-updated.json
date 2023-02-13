@@ -12,19 +12,19 @@
         "id": "1",
         "label": {
           "name": "example-tag",
-          "type": "group"
+          "type": "well"
         }
       },
       {
         "id": "2",
         "label": {
           "name": "example-tag-2",
-          "type": "group"
+          "type": "well"
         }
       }
     ],
     "title": "Modem AAAA AAAA was updated.",
-    "description": "Modem AAAA AAAA was updated:\n\n- Display name was changed from 'AAAA AAAA' to 'custom-name'.\n\n- The peripherals were changed.\n\n- The notes were changed to:\nmy-updated-notes\n\ngroup: example-tag, example-tag-2",
+    "description": "Modem AAAA AAAA was updated:\n\n- Display name was changed from 'AAAA AAAA' to 'custom-name'.\n\n- The peripherals were changed.\n\n- The notes were changed to:\nmy-updated-notes\n\nwell: example-tag, example-tag-2",
     "displayName": {
       "updated": true,
       "value": "custom-name"
@@ -41,7 +41,7 @@
     "modemExternalDeviceId": "00 11 22 33 AA BB CC DD"
   },
   "title": "Modem AAAA AAAA was updated.",
-  "description": "Modem AAAA AAAA was updated:\n\n- Display name was changed from 'AAAA AAAA' to 'custom-name'.\n\n- The peripherals were changed.\n\n- The notes were changed to:\nmy-updated-notes\n\ngroup: example-tag, example-tag-2",
+  "description": "Modem AAAA AAAA was updated:\n\n- Display name was changed from 'AAAA AAAA' to 'custom-name'.\n\n- The peripherals were changed.\n\n- The notes were changed to:\nmy-updated-notes\n\nwell: example-tag, example-tag-2",
   "modem": {
     "number": "AAAA AAAA",
     "name": "AAAA AAAA",

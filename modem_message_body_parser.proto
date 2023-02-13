@@ -111,6 +111,12 @@ message ModemMessageBodyParser {
              */
             string measured_at_offset_field = 5;
         }
+
+        /* In order to use this parser on a message,
+         * the metadata on the message must match the given requirement here.
+         * The key of the map is the json-path to look for in the message metadata,
+         * the value of the map is the json to expect at that json-path. */
+        map<string, google.protobuf.Value> require_message_metadata = 6;
     }
 
     /* The type of post-processing to be applied to the result of this parser. */
@@ -144,7 +150,6 @@ message ModemMessageBodyParser {
      * Data fields are cached for efficient retrieval and allow all kinds of processing.
      */
     repeated field.Field data_fields = 11;
-    repeated string data_fields_deprecated = 9 [deprecated = true];
 
     /* Fields in the parsed result that contain metadata, and special things like a location. */
     MetadataFields metadata_fields = 10;
@@ -153,15 +158,17 @@ message ModemMessageBodyParser {
     AvailableToChildOrganizations available_to_child_organizations = 6;
 
     /* The list of post-processing steps applied to the result of this parser. */
-    repeated PostProcessing post_processing = 13;
+    repeated PostProcessing post_processing = 13 [deprecated = true];
 
     /* In order to use this parser on a message,
      * the metadata on the message must match the given requirement here.
      * The key of the map is the json-path to look for in the message metadata,
-     * the value of the map is the json to expect at that json-path. */
-    map<string, google.protobuf.Value> require_message_metadata = 14;
+     * the value of the map is the json to expect at that json-path.
+     * Deprecated: use metadata_fields.require_message_metadata
+     */
+    map<string, google.protobuf.Value> require_message_metadata = 14 [deprecated = true];
 
-    reserved 1, 5, 12;
+    reserved 1, 5, 9, 12;
 }
 
 /* Simple modem message body parser. This can be used a convenient way to create a .ksy parser. */
@@ -381,6 +388,17 @@ message UpdateUploadedModemMessageBodyParserRequest {
             /* Update the custom field to extract to measured_at offset from the sent_at time in seconds. */
             UpdateClearableString measured_at_offset_field = 9;
         }
+
+        /* In order to use this parser on a message,
+         * the metadata on the message must match the given requirement here.
+         * The key of the map is the json-path to look for in the message metadata,
+         * the value of the map is the json to expect at that json-path. */
+        map<string, google.protobuf.Value> add_require_message_metadata = 10;
+        /* Remove a requirement for the metadata. Remove by listing the json-path here. */
+        repeated string remove_require_message_metadata = 11;
+        /* Replaces the entire configuration for required message metadata. */
+        map<string, google.protobuf.Value> replace_require_message_metadata = 12;
+
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
@@ -389,8 +407,11 @@ message UpdateUploadedModemMessageBodyParserRequest {
     /* The identifier of the parser that should be updated. */
     string identifier = 4;
 
+    /* If set, changes the name of the parser. */
+    optional string name = 13;
+
     /* The new ksy definition for this parser. */
-    string content_ksy = 3;
+    optional string content_ksy = 3;
 
     /* Add fields to the data fields list. */
     repeated field.Field add_data_fields = 7;
@@ -399,22 +420,14 @@ message UpdateUploadedModemMessageBodyParserRequest {
     repeated string remove_data_fields = 6;
 
     /* Fields in the parsed result that match special things that can be processed by the system, like a location. */
-    MetadataFields metadata_fields = 10;
+    optional MetadataFields metadata_fields = 10;
 
     /* Add a post-processing step to the result of this parser. */
-    repeated ModemMessageBodyParser.PostProcessing add_post_processing = 8;
+    repeated ModemMessageBodyParser.PostProcessing add_post_processing = 8 [deprecated = true];
     /* Remove a post-processing step to the result of this parser. */
-    repeated ModemMessageBodyParser.PostProcessing remove_post_processing = 9;
+    repeated ModemMessageBodyParser.PostProcessing remove_post_processing = 9 [deprecated = true];
 
-    /* In order to use this parser on a message,
-     * the metadata on the message must match the given requirement here.
-     * The key of the map is the json-path to look for in the message metadata,
-     * the value of the map is the json to expect at that json-path. */
-    map<string, google.protobuf.Value> add_require_message_metadata = 11;
-    /* Remove a requirement for the metadata. Remove by listing the json-path here. */
-    repeated string remove_require_message_metadata = 12;
-
-    reserved 2, 5;
+    reserved 2, 5, 11, 12;
 }
 
 /* Create a simple modem message parser, which generates a .ksy specification. */

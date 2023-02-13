@@ -35,6 +35,7 @@ where you can find documentation, examples and a web IDE.
   - [ModemMessageBodyParser.AvailableToChildOrganizations](#modemmessagebodyparseravailabletochildorganizations)
   - [ModemMessageBodyParser.MetadataFields](#modemmessagebodyparsermetadatafields)
   - [ModemMessageBodyParser.MetadataFields.LocationFields](#modemmessagebodyparsermetadatafieldslocationfields)
+  - [ModemMessageBodyParser.MetadataFields.RequireMessageMetadataEntry](#modemmessagebodyparsermetadatafieldsrequiremessagemetadataentry)
   - [ModemMessageBodyParser.RequireMessageMetadataEntry](#modemmessagebodyparserrequiremessagemetadataentry)
   - [ModemMessageBodyParserSelection](#modemmessagebodyparserselection)
   - [RenameModemMessageBodyParserRequest](#renamemodemmessagebodyparserrequest)
@@ -56,8 +57,9 @@ where you can find documentation, examples and a web IDE.
   - [UpdateChildOrganizationAvailabilityRequest](#updatechildorganizationavailabilityrequest)
   - [UpdateSimpleModemMessageBodyParserRequest](#updatesimplemodemmessagebodyparserrequest)
   - [UpdateUploadedModemMessageBodyParserRequest](#updateuploadedmodemmessagebodyparserrequest)
-  - [UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry](#updateuploadedmodemmessagebodyparserrequestaddrequiremessagemetadataentry)
   - [UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#updateuploadedmodemmessagebodyparserrequestmetadatafields)
+  - [UpdateUploadedModemMessageBodyParserRequest.MetadataFields.AddRequireMessageMetadataEntry](#updateuploadedmodemmessagebodyparserrequestmetadatafieldsaddrequiremessagemetadataentry)
+  - [UpdateUploadedModemMessageBodyParserRequest.MetadataFields.ReplaceRequireMessageMetadataEntry](#updateuploadedmodemmessagebodyparserrequestmetadatafieldsreplacerequiremessagemetadataentry)
   - [UploadModemMessageBodyParserRequest](#uploadmodemmessagebodyparserrequest)
   - [UploadModemMessageBodyParserRequest.RequireMessageMetadataEntry](#uploadmodemmessagebodyparserrequestrequiremessagemetadataentry)
 
@@ -351,11 +353,10 @@ A parser can be defined in two ways: using a .ksy (Kaitai struct https://kaitai.
 | content_ksy | [ string](#string) | The content of this parsers script. If simple_parser is set, this content is generated from that definition. This field may be omitted by the list call to save data. |
 | simple_parser | [ SimpleModemMessageBodyParser](#simplemodemmessagebodyparser) | The simple parser this .ksy was generated from, if it was generated from a simple parser. This field may be omitted on demand to save data in the list call. |
 | data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Fields in the parsed result that contain data. Data fields are cached for efficient retrieval and allow all kinds of processing. |
-| data_fields_deprecated | [repeated string](#string) | none |
 | metadata_fields | [ ModemMessageBodyParser.MetadataFields](#modemmessagebodyparsermetadatafields) | Fields in the parsed result that contain metadata, and special things like a location. |
 | available_to_child_organizations | [ ModemMessageBodyParser.AvailableToChildOrganizations](#modemmessagebodyparseravailabletochildorganizations) | If set, this parser is available to your child organizations, as a Provided parser. |
 | post_processing | [repeated ModemMessageBodyParser.PostProcessing](#modemmessagebodyparserpostprocessing) | The list of post-processing steps applied to the result of this parser. |
-| require_message_metadata | [map ModemMessageBodyParser.RequireMessageMetadataEntry](#modemmessagebodyparserrequiremessagemetadataentry) | In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. |
+| require_message_metadata | [map ModemMessageBodyParser.RequireMessageMetadataEntry](#modemmessagebodyparserrequiremessagemetadataentry) | In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. Deprecated: use metadata_fields.require_message_metadata |
 
 ### ModemMessageBodyParser.AvailableToChildOrganizations
 
@@ -378,6 +379,7 @@ like a location or battery percentage.
 | modem_metadata_fields | [repeated string](#string) | Custom metadata fields, which will be added to the modem metadata json. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_time_field | [ string](#string) | Field that contains the time (epoch seconds) to use for the values extracted from the message. If not set, sent time is used. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_offset_field | [ string](#string) | Field that contains the time offset (second before sent time) to use for the values extracted from the message. If not set, sent time is used. |
+| require_message_metadata | [map ModemMessageBodyParser.MetadataFields.RequireMessageMetadataEntry](#modemmessagebodyparsermetadatafieldsrequiremessagemetadataentry) | In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. |
 
 ### ModemMessageBodyParser.MetadataFields.LocationFields
 
@@ -387,6 +389,15 @@ like a location or battery percentage.
 | ----- | ---- | ----------- |
 | latitude | [ string](#string) | none |
 | longitude | [ string](#string) | none |
+
+### ModemMessageBodyParser.MetadataFields.RequireMessageMetadataEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) | none |
+| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
 
 ### ModemMessageBodyParser.RequireMessageMetadataEntry
 
@@ -606,23 +617,13 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifier of the parser that should be updated. |
-| content_ksy | [ string](#string) | The new ksy definition for this parser. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_name**.name | [optional string](#string) | If set, changes the name of the parser. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_content_ksy**.content_ksy | [optional string](#string) | The new ksy definition for this parser. |
 | add_data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Add fields to the data fields list. |
 | remove_data_fields | [repeated string](#string) | Remove fields from the data fields list. |
-| metadata_fields | [ UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#updateuploadedmodemmessagebodyparserrequestmetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_metadata_fields**.metadata_fields | [optional UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#updateuploadedmodemmessagebodyparserrequestmetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
 | add_post_processing | [repeated ModemMessageBodyParser.PostProcessing](#modemmessagebodyparserpostprocessing) | Add a post-processing step to the result of this parser. |
 | remove_post_processing | [repeated ModemMessageBodyParser.PostProcessing](#modemmessagebodyparserpostprocessing) | Remove a post-processing step to the result of this parser. |
-| add_require_message_metadata | [map UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry](#updateuploadedmodemmessagebodyparserrequestaddrequiremessagemetadataentry) | In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. |
-| remove_require_message_metadata | [repeated string](#string) | Remove a requirement for the metadata. Remove by listing the json-path here. |
-
-### UpdateUploadedModemMessageBodyParserRequest.AddRequireMessageMetadataEntry
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
 
 ### UpdateUploadedModemMessageBodyParserRequest.MetadataFields
 
@@ -639,6 +640,27 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 | replace_modem_metadata_fields | [repeated string](#string) | Replace the modem metadata fields list. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_time_field | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the custom field to extract to measured_at time. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_offset_field | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the custom field to extract to measured_at offset from the sent_at time in seconds. |
+| add_require_message_metadata | [map UpdateUploadedModemMessageBodyParserRequest.MetadataFields.AddRequireMessageMetadataEntry](#updateuploadedmodemmessagebodyparserrequestmetadatafieldsaddrequiremessagemetadataentry) | In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. |
+| remove_require_message_metadata | [repeated string](#string) | Remove a requirement for the metadata. Remove by listing the json-path here. |
+| replace_require_message_metadata | [map UpdateUploadedModemMessageBodyParserRequest.MetadataFields.ReplaceRequireMessageMetadataEntry](#updateuploadedmodemmessagebodyparserrequestmetadatafieldsreplacerequiremessagemetadataentry) | Replaces the entire configuration for required message metadata. |
+
+### UpdateUploadedModemMessageBodyParserRequest.MetadataFields.AddRequireMessageMetadataEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) | none |
+| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
+
+### UpdateUploadedModemMessageBodyParserRequest.MetadataFields.ReplaceRequireMessageMetadataEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) | none |
+| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
 
 ### UploadModemMessageBodyParserRequest
 

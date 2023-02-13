@@ -26,24 +26,24 @@
         "id": "1",
         "label": {
           "name": "example-tag",
-          "type": "group"
+          "type": "well"
         }
       },
       {
         "id": "2",
         "label": {
           "name": "example-tag-2",
-          "type": "group"
+          "type": "well"
         }
       }
     ],
 
-    "title": "Message received from modem AAAA AAAA cannot be parsed!",
-    "description": "Message received from modem AAAA AAAA cannot be parsed!\n\nThis can be caused by multiple things:\n- invalid configuration in the modem or the stored modem parameters in the system;\n- the message body could not be parsed by any of the assigned parsers.\n\nSee the message below for more information:\n\nParsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.\n\ngroup: example-tag, example-tag-2",
+    "title": "Processing for AAAA AAAA appears to be misconfigured! Please contact customer support if this is not resolved.",
+    "description": "Processing for AAAA AAAA appears to be misconfigured! Please contact customer support if this is not resolved.\n\nThis can mean that:\n- the device is sending invalid messages\n- the processing is configured incorrectly (i.e. for a different type of device)\n\nSee the message below for more information:\n\nParsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.\n\nwell: example-tag, example-tag-2",
     "modemExternalDeviceId": "00 11 22 33 AA BB CC DD"
   },
-  "title": "Message received from modem AAAA AAAA cannot be parsed!",
-  "description": "Message received from modem AAAA AAAA cannot be parsed!\n\nThis can be caused by multiple things:\n- invalid configuration in the modem or the stored modem parameters in the system;\n- the message body could not be parsed by any of the assigned parsers.\n\nSee the message below for more information:\n\nParsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.\n\ngroup: example-tag, example-tag-2",
+  "title": "Processing for AAAA AAAA appears to be misconfigured! Please contact customer support if this is not resolved.",
+  "description": "Processing for AAAA AAAA appears to be misconfigured! Please contact customer support if this is not resolved.\n\nThis can mean that:\n- the device is sending invalid messages\n- the processing is configured incorrectly (i.e. for a different type of device)\n\nSee the message below for more information:\n\nParsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.\n\nwell: example-tag, example-tag-2",
   "modem": {
     "number": "AAAA AAAA",
     "name": "AAAA AAAA",

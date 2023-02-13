@@ -19,20 +19,20 @@
         "id": "1",
         "label": {
           "name": "example-tag",
-          "type": "group"
+          "type": "well"
         }
       },
       {
         "id": "2",
         "label": {
           "name": "example-tag-2",
-          "type": "group"
+          "type": "well"
         }
       }
     ],
 
     "title": "A message from modem AAAA AAAA was parsed by body parser example-identifier.",
-    "description": "A message from modem AAAA AAAA was parsed by body parser example-identifier:\n\n{\"text\": \"example\"}\n\ngroup: example-tag, example-tag-2",
+    "description": "A message from modem AAAA AAAA was parsed by body parser example-identifier:\n\n{\"text\": \"example\"}\n\nwell: example-tag, example-tag-2",
     "time": {
       "timestamp": "2020-06-01T07:15:25.355Z",
       "textual": "2020-06-01T07:15:25.355Z",
@@ -40,7 +40,7 @@
     }
   },
   "title": "A message from modem AAAA AAAA was parsed by body parser example-identifier.",
-  "description": "A message from modem AAAA AAAA was parsed by body parser example-identifier:\n\n{\"text\": \"example\"}\n\ngroup: example-tag, example-tag-2",
+  "description": "A message from modem AAAA AAAA was parsed by body parser example-identifier:\n\n{\"text\": \"example\"}\n\nwell: example-tag, example-tag-2",
   "modem": {
     "number": "AAAA AAAA",
     "name": "AAAA AAAA",

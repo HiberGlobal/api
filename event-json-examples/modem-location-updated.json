@@ -17,20 +17,20 @@
         "id": "1",
         "label": {
           "name": "example-tag",
-          "type": "group"
+          "type": "well"
         }
       },
       {
         "id": "2",
         "label": {
           "name": "example-tag-2",
-          "type": "group"
+          "type": "well"
         }
       }
     ],
 
     "title": "Modem AAAA AAAA is now at [21.222,31.33299].",
-    "description": "The message from modem AAAA AAAA, received at 2020-06-01 05:15:25Z, changed the modem location from [20.222,30.33299] to [21.222,31.33299].\n\ngroup: example-tag, example-tag-2",
+    "description": "The message from modem AAAA AAAA, received at 2020-06-01 05:15:25Z, changed the modem location from [20.222,30.33299] to [21.222,31.33299].\n\nwell: example-tag, example-tag-2",
     "modemExternalDeviceId": "00 11 22 33 AA BB CC DD",
     "updatedAt": {
       "timestamp": "2020-06-01T05:15:25.355Z",
@@ -39,7 +39,7 @@
     }
   },
   "title": "Modem AAAA AAAA is now at [21.222,31.33299].",
-  "description": "The message from modem AAAA AAAA, received at 2020-06-01 05:15:25Z, changed the modem location from [20.222,30.33299] to [21.222,31.33299].\n\ngroup: example-tag, example-tag-2",
+  "description": "The message from modem AAAA AAAA, received at 2020-06-01 05:15:25Z, changed the modem location from [20.222,30.33299] to [21.222,31.33299].\n\nwell: example-tag, example-tag-2",
   "modem": {
     "number": "AAAA AAAA",
     "name": "AAAA AAAA",
