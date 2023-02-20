@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.141 (2023-02-20)
+
+##### ModemService
+
+- Fixed bug where text search would be case sensitive for modem tags.
+
 ### 0.140 (2023-02-13)
 
 ##### ModemMessageBodyParserService
