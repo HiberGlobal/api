@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.142 (2023-02-27)
+
+##### ModemService
+
+- Transmission interval can only be changed when you have the CUSTOMER_SUPPORT support permission.
+
 ### 0.141 (2023-02-20)
 
 ##### ModemService
