@@ -11,9 +11,9 @@
         "timeZone": "UTC"
       },
       "triggerCondition": "ANY_CHECK_FAILED",
-      "defaultHealthLevel": "Error",
+      "defaultHealthLevel": "Alarm",
       "healthLevelAfterResolved": {
-        "healthLevel": "Warning",
+        "healthLevel": "Build up",
         "period": {
           "duration": "3600s",
           "textual": "1h"

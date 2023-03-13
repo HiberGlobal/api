@@ -338,30 +338,6 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.event.Event.ModemTransferEvent"><span class="badge">M</span>Event.ModemTransferEvent</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent"><span class="badge">M</span>Event.ModemTransferEvent.ModemTransferCancelledEvent</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent"><span class="badge">M</span>Event.ModemTransferEvent.ModemTransferNotReceivedEvent</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent"><span class="badge">M</span>Event.ModemTransferEvent.ModemTransferReceivedEvent</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent"><span class="badge">M</span>Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent"><span class="badge">M</span>Event.ModemTransferEvent.ModemTransferStartedEvent</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.event.Event.OrganizationEvent"><span class="badge">M</span>Event.OrganizationEvent</a>
                 </li>
               
@@ -451,10 +427,6 @@
               
                 <li>
                   <a href="#hiber.event.Event.TransferEvent"><span class="badge">M</span>Event.TransferEvent</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.event.Event.TransferEvent.DeprecatedTransfer"><span class="badge">M</span>Event.TransferEvent.DeprecatedTransfer</a>
                 </li>
               
                 <li>
@@ -3140,336 +3112,6 @@ This could be, for example:
 
         
       
-        <h3 id="hiber.event.Event.ModemTransferEvent">Event.ModemTransferEvent</h3>
-        <p></p>
-
-        
-
-        
-      
-        <h3 id="hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent">Event.ModemTransferEvent.ModemTransferCancelledEvent</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>transfer</td>
-                  <td><a href="#hiber.modem.ModemTransfer">hiber.modem.ModemTransfer</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>time</td>
-                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tags</td>
-                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent">Event.ModemTransferEvent.ModemTransferNotReceivedEvent</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>transfer</td>
-                  <td><a href="#hiber.modem.ModemTransfer">hiber.modem.ModemTransfer</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>time</td>
-                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tags</td>
-                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>health_level</td>
-                  <td><a href="#hiber.health.HealthLevel">hiber.health.HealthLevel</a></td>
-                  <td></td>
-                  <td><p>The health level caused for the modem (and organization) by this event. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent">Event.ModemTransferEvent.ModemTransferReceivedEvent</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>transfer</td>
-                  <td><a href="#hiber.modem.ModemTransfer">hiber.modem.ModemTransfer</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>time</td>
-                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tags</td>
-                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent">Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>return_transfer</td>
-                  <td><a href="#hiber.modem.ModemTransfer">hiber.modem.ModemTransfer</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>original_transfer</td>
-                  <td><a href="#hiber.modem.ModemTransfer">hiber.modem.ModemTransfer</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>return_lines</td>
-                  <td><a href="#hiber.modem.ModemTransferReturnLine">hiber.modem.ModemTransferReturnLine</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>time</td>
-                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tags</td>
-                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>health_level</td>
-                  <td><a href="#hiber.health.HealthLevel">hiber.health.HealthLevel</a></td>
-                  <td></td>
-                  <td><p>The health level caused for the modem (and organization) by this event. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent">Event.ModemTransferEvent.ModemTransferStartedEvent</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>transfer</td>
-                  <td><a href="#hiber.modem.ModemTransfer">hiber.modem.ModemTransfer</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>time</td>
-                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tags</td>
-                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="hiber.event.Event.OrganizationEvent">Event.OrganizationEvent</h3>
         <p></p>
 
@@ -4720,72 +4362,6 @@ This could be, for example:
               </tbody>
             </table>
             
-          
-
-        
-      
-        <h3 id="hiber.event.Event.TransferEvent.DeprecatedTransfer">Event.TransferEvent.DeprecatedTransfer</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>identifier</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modem_numbers</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sender_organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>recipient_organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>comment</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>time</td>
-                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tags</td>
-                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
           
 
         
@@ -6749,14 +6325,6 @@ Only set when include_missing_group_parents is true in the request. </p></td>
                 </tr>
               
                 <tr>
-                  <td>health</td>
-                  <td><a href="#hiber.Health">hiber.Health</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong> Deprecated health based on the number of error and warning events this modem has received in the past 30 days
-Uses the OK, WARNING, ERROR format. </p></td>
-                </tr>
-              
-                <tr>
                   <td>health_level</td>
                   <td><a href="#hiber.health.HealthLevel">hiber.health.HealthLevel</a></td>
                   <td></td>
@@ -6902,11 +6470,6 @@ Used mainly to differentiate in the UI or to sort on. </p></td>
                 </tr>
               </thead>
               <tbody>
-              
-                <tr>
-                  <td>health</td>
-                  <td><p>true</p></td>
-                </tr>
               
                 <tr>
                   <td>is_gateway</td>
@@ -7123,38 +6686,9 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td><p>The number of modems matching the modem selection with this health level </p></td>
                 </tr>
               
-                <tr>
-                  <td>health</td>
-                  <td><a href="#hiber.Health">hiber.Health</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong> Deprecated health based on the number of error and warning events this modem has received in the past 30 days
-Uses the OK, WARNING, ERROR format. </p></td>
-                </tr>
-              
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>health</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -7648,13 +7182,6 @@ and excluding [HIBERBAND] will filter out the message, even though it also has D
                 </tr>
               
                 <tr>
-                  <td>health</td>
-                  <td><a href="#hiber.Health">hiber.Health</a></td>
-                  <td>repeated</td>
-                  <td><p><strong>Deprecated.</strong> Deprecated health that uses the OK, WARNING, ERROR format. </p></td>
-                </tr>
-              
-                <tr>
                   <td>health_levels</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
@@ -7768,11 +7295,6 @@ create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. </p></td
               
                 <tr>
                   <td>activated_in</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-                <tr>
-                  <td>health</td>
                   <td><p>true</p></td>
                 </tr>
               

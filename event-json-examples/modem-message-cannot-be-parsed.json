@@ -11,7 +11,7 @@
     },
     "reason": "Parsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.\n\n",
     "healthLevel": {
-      "level": "Error",
+      "level": "Alarm",
       "color": "red",
       "colorData": {
         "fill": "red",
@@ -56,7 +56,7 @@
   },
   "type": "MODEM_MESSAGE_CANNOT_BE_PARSED",
   "healthLevel": {
-    "level": "Error",
+    "level": "Alarm",
     "color": "red",
     "colorData": {
       "fill": "red",

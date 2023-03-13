@@ -28,7 +28,7 @@
       "timeZone": "UTC"
     },
     "healthLevel": {
-      "level": "Error",
+      "level": "Alarm",
       "color": "red",
       "colorData": {
         "fill": "red",
@@ -47,7 +47,7 @@
   },
   "type": "PUBLISHER_AUTO_DISABLED",
   "healthLevel": {
-    "level": "Error",
+    "level": "Alarm",
     "color": "red",
     "colorData": {
       "fill": "red",

@@ -107,11 +107,6 @@ message Modem {
     /* The amount of time since the last message from this modem was received on the server. */
     Duration inactivity = 30;
 
-    /* Deprecated health based on the number of error and warning events this modem has received in the past 30 days
-     * Uses the OK, WARNING, ERROR format.
-     */
-    Health health = 9 [deprecated = true];
-
     /* Health level based on the modem alarm and some always-present alarms. */
     health.HealthLevel health_level = 28;
 
@@ -248,7 +243,7 @@ message Modem {
         CONNECTED_DEVICE = 3;
     }
 
-    reserved 6, 13;
+    reserved 6, 9, 13;
 }
 
 /* Selection object for modems.
@@ -315,9 +310,6 @@ message ModemSelection {
     TimeRange activated_in = 5 [deprecated = true];
     TimeRange with_last_message_in = 7;
 
-    /* Deprecated health that uses the OK, WARNING, ERROR format. */
-    repeated Health health = 9 [deprecated = true];
-
     /* Filter modems by health level. */
     repeated string health_levels = 18;
 
@@ -358,7 +350,7 @@ message ModemSelection {
         bool only_without_peripheral = 21;
     }
 
-    reserved 3, 6, 17;
+    reserved 3, 6, 9, 17;
 }
 
 /* Decrypted modem message. Messages are received encrypted and decrypted asynchronously, which adds the location
@@ -895,10 +887,7 @@ message ModemHealthCount {
         /* The number of modems matching the modem selection with this health level */
         uint32 count = 2;
 
-        /* Deprecated health based on the number of error and warning events this modem has received in the past 30 days
-         * Uses the OK, WARNING, ERROR format.
-         */
-        Health health = 3 [deprecated = true];
+        reserved 3;
     }
 
     message HealthCountGroupedPerTag {

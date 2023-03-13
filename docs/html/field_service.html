@@ -5171,14 +5171,6 @@ Only set when include_missing_group_parents is true in the request. </p></td>
                 </tr>
               
                 <tr>
-                  <td>health</td>
-                  <td><a href="#hiber.Health">hiber.Health</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong> Deprecated health based on the number of error and warning events this modem has received in the past 30 days
-Uses the OK, WARNING, ERROR format. </p></td>
-                </tr>
-              
-                <tr>
                   <td>health_level</td>
                   <td><a href="#hiber.health.HealthLevel">hiber.health.HealthLevel</a></td>
                   <td></td>
@@ -5324,11 +5316,6 @@ Used mainly to differentiate in the UI or to sort on. </p></td>
                 </tr>
               </thead>
               <tbody>
-              
-                <tr>
-                  <td>health</td>
-                  <td><p>true</p></td>
-                </tr>
               
                 <tr>
                   <td>is_gateway</td>
@@ -5545,38 +5532,9 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td><p>The number of modems matching the modem selection with this health level </p></td>
                 </tr>
               
-                <tr>
-                  <td>health</td>
-                  <td><a href="#hiber.Health">hiber.Health</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong> Deprecated health based on the number of error and warning events this modem has received in the past 30 days
-Uses the OK, WARNING, ERROR format. </p></td>
-                </tr>
-              
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>health</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -6070,13 +6028,6 @@ and excluding [HIBERBAND] will filter out the message, even though it also has D
                 </tr>
               
                 <tr>
-                  <td>health</td>
-                  <td><a href="#hiber.Health">hiber.Health</a></td>
-                  <td>repeated</td>
-                  <td><p><strong>Deprecated.</strong> Deprecated health that uses the OK, WARNING, ERROR format. </p></td>
-                </tr>
-              
-                <tr>
                   <td>health_levels</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
@@ -6190,11 +6141,6 @@ create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. </p></td
               
                 <tr>
                   <td>activated_in</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-                <tr>
-                  <td>health</td>
                   <td><p>true</p></td>
                 </tr>
               

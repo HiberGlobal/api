@@ -1,5 +1,21 @@
 # Changelog Hiber API
 
+### 0.143 (2023-03-13)
+
+##### EmailNotificationPreferencesService
+
+- Email notifications for devices that are not installed are no longer sent unless you are a customer support user.
+
+##### ValueService
+
+- Added `downsampled` command (with `DownsampledValues`) to algorithmically downsample the selected values to a number of points.
+  - Use `points` or `pagination.size` to specify the amount of points. If not specified, default pagination size is used.
+    - Note that when both `points` (i.e. 1000) and `pagination.size` (i.e. 100) are given, the points are paginated.
+
+##### MQTTService
+
+- Enabled retry mechanism for MQTT publishers.
+
 ### 0.142 (2023-02-27)
 
 ##### ModemService

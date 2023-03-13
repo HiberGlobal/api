@@ -56,7 +56,7 @@
       "createdBy": "example-identifier"
     },
     "healthLevel": {
-      "level": "Warning",
+      "level": "Build up",
       "color": "orange",
       "colorData": {
         "fill": "orange",
@@ -98,7 +98,7 @@
   },
   "type": "PUBLISHER_FAILED",
   "healthLevel": {
-    "level": "Warning",
+    "level": "Build up",
     "color": "orange",
     "colorData": {
       "fill": "orange",

@@ -30,7 +30,7 @@
       "timeZone": "UTC"
     },
     "healthLevel": {
-      "level": "Warning",
+      "level": "Build up",
       "color": "orange",
       "colorData": {
         "fill": "orange",
@@ -48,7 +48,7 @@
   },
   "type": "TOKEN_EXPIRY_WARNING",
   "healthLevel": {
-    "level": "Warning",
+    "level": "Build up",
     "color": "orange",
     "colorData": {
       "fill": "orange",

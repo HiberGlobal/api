@@ -20,6 +20,9 @@ Messages are parsed to a number of values (depending on the parser), which can b
   - [AggregatedValues.Request.Partition](#aggregatedvaluesrequestpartition)
   - [AggregatedValues.Request.TransformFieldsEntry](#aggregatedvaluesrequesttransformfieldsentry)
   - [AggregatedValues.Response](#aggregatedvaluesresponse)
+  - [DownsampledValues](#downsampledvalues)
+  - [DownsampledValues.Request](#downsampledvaluesrequest)
+  - [DownsampledValues.Response](#downsampledvaluesresponse)
   - [ListValues](#listvalues)
   - [ListValues.Request](#listvaluesrequest)
   - [ListValues.Request.TransformFieldsEntry](#listvaluesrequesttransformfieldsentry)
@@ -147,6 +150,12 @@ Messages are parsed to a number of values (depending on the parser), which can b
 
 
 
+### Downsampled
+> **rpc** Downsampled([DownsampledValues.Request](#downsampledvaluesrequest))
+    [DownsampledValues.Response](#downsampledvaluesresponse)
+
+
+
 
 ## Messages
 
@@ -226,6 +235,33 @@ For example:
 | aggregated_values | [repeated AggregatedValues](#aggregatedvalues) | none |
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
 | request | [ AggregatedValues.Request](#aggregatedvaluesrequest) | none |
+
+### DownsampledValues
+
+Downsampled values for a (set of) modem(s), filtering by field and time.
+
+
+### DownsampledValues.Request
+
+Request downsampled values, reducing the selected time range to a single value per field.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| selection | [ ValueSelection](#valueselection) | The values to downsample. When multiple modems are given, the data is downsampled separately and merged together in the response, sorted by time. |
+| points | [ uint32](#uint32) | Downsample the values to the given amount of data points. |
+| pagination | [ hiber.Pagination](#hiberpagination) | Paginate the downsampled values, if needed. |
+| sort | [ ListValues.Sort](#listvaluessort) | How to sort the downsampled values. |
+
+### DownsampledValues.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| downsampled_values | [repeated ValueContext](#valuecontext) | none |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| request | [ DownsampledValues.Request](#downsampledvaluesrequest) | none |
 
 ### ListValues
 
@@ -351,7 +387,6 @@ when the modem is registered into the system or when a subscription is authorize
 | last_message_sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the modem has sent the last message. |
 | last_message_body | [ hiber.BytesOrHex](#hiberbytesorhex) | The body of the last message. |
 | inactivity | [ hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
-| health | [ hiber.Health](#hiberhealth) | Deprecated health based on the number of error and warning events this modem has received in the past 30 days Uses the OK, WARNING, ERROR format. |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
 | lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | none |
 | technical | [ hiber.modem.Modem.TechnicalData](#hibermodemmodemtechnicaldata) | additional information |
@@ -383,7 +418,6 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 | only_active | [ bool](#bool) | Use lifecycle filter instead. |
 | activated_in | [ hiber.TimeRange](#hibertimerange) | none |
 | with_last_message_in | [ hiber.TimeRange](#hibertimerange) | none |
-| health | [repeated hiber.Health](#hiberhealth) | Deprecated health that uses the OK, WARNING, ERROR format. |
 | health_levels | [repeated string](#string) | Filter modems by health level. |
 | lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
 | transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) | none |

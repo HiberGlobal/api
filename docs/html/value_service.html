@@ -207,6 +207,18 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.value.DownsampledValues"><span class="badge">M</span>DownsampledValues</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.value.DownsampledValues.Request"><span class="badge">M</span>DownsampledValues.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.value.DownsampledValues.Response"><span class="badge">M</span>DownsampledValues.Response</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.value.ListValues"><span class="badge">M</span>ListValues</a>
                 </li>
               
@@ -1148,6 +1160,105 @@ This is especially useful when the amount of partitions exceeds your pagination 
 
         
       
+        <h3 id="hiber.value.DownsampledValues">DownsampledValues</h3>
+        <p>Downsampled values for a (set of) modem(s), filtering by field and time.</p>
+
+        
+
+        
+      
+        <h3 id="hiber.value.DownsampledValues.Request">DownsampledValues.Request</h3>
+        <p>Request downsampled values, reducing the selected time range to a single value per field.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>selection</td>
+                  <td><a href="#hiber.value.ValueSelection">ValueSelection</a></td>
+                  <td></td>
+                  <td><p>The values to downsample.
+When multiple modems are given, the data is downsampled separately and merged together in the response,
+sorted by time. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>points</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Downsample the values to the given amount of data points. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
+                  <td></td>
+                  <td><p>Paginate the downsampled values, if needed. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#hiber.value.ListValues.Sort">ListValues.Sort</a></td>
+                  <td></td>
+                  <td><p>How to sort the downsampled values. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.value.DownsampledValues.Response">DownsampledValues.Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>downsampled_values</td>
+                  <td><a href="#hiber.value.ValueContext">ValueContext</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#hiber.value.DownsampledValues.Request">DownsampledValues.Request</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="hiber.value.ListValues">ListValues</h3>
         <p>List values for a (set of) modem(s), filtering by field and time.</p>
 
@@ -1529,6 +1640,13 @@ Fields specified here must have been specified in the selection. </p></td>
                 <td>Aggregated</td>
                 <td><a href="#hiber.value.AggregatedValues.Request">AggregatedValues.Request</a></td>
                 <td><a href="#hiber.value.AggregatedValues.Response">AggregatedValues.Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Downsampled</td>
+                <td><a href="#hiber.value.DownsampledValues.Request">DownsampledValues.Request</a></td>
+                <td><a href="#hiber.value.DownsampledValues.Response">DownsampledValues.Response</a></td>
                 <td><p></p></td>
               </tr>
             
@@ -4385,14 +4503,6 @@ Only set when include_missing_group_parents is true in the request. </p></td>
                 </tr>
               
                 <tr>
-                  <td>health</td>
-                  <td><a href="#hiber.Health">hiber.Health</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong> Deprecated health based on the number of error and warning events this modem has received in the past 30 days
-Uses the OK, WARNING, ERROR format. </p></td>
-                </tr>
-              
-                <tr>
                   <td>health_level</td>
                   <td><a href="#hiber.health.HealthLevel">hiber.health.HealthLevel</a></td>
                   <td></td>
@@ -4538,11 +4648,6 @@ Used mainly to differentiate in the UI or to sort on. </p></td>
                 </tr>
               </thead>
               <tbody>
-              
-                <tr>
-                  <td>health</td>
-                  <td><p>true</p></td>
-                </tr>
               
                 <tr>
                   <td>is_gateway</td>
@@ -4759,38 +4864,9 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td><p>The number of modems matching the modem selection with this health level </p></td>
                 </tr>
               
-                <tr>
-                  <td>health</td>
-                  <td><a href="#hiber.Health">hiber.Health</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong> Deprecated health based on the number of error and warning events this modem has received in the past 30 days
-Uses the OK, WARNING, ERROR format. </p></td>
-                </tr>
-              
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>health</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -5284,13 +5360,6 @@ and excluding [HIBERBAND] will filter out the message, even though it also has D
                 </tr>
               
                 <tr>
-                  <td>health</td>
-                  <td><a href="#hiber.Health">hiber.Health</a></td>
-                  <td>repeated</td>
-                  <td><p><strong>Deprecated.</strong> Deprecated health that uses the OK, WARNING, ERROR format. </p></td>
-                </tr>
-              
-                <tr>
                   <td>health_levels</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
@@ -5404,11 +5473,6 @@ create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. </p></td
               
                 <tr>
                   <td>activated_in</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-                <tr>
-                  <td>health</td>
                   <td><p>true</p></td>
                 </tr>
               

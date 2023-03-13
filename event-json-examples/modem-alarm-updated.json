@@ -10,7 +10,7 @@
       "triggerCondition": "ALL",
       "updateDefaultHealthLevel": {
         "updated": true,
-        "value": "Warning"
+        "value": "Build up"
       },
       "updateHealthLevelAfterResolved": {
         "healthLevel": "INSPECT",
@@ -21,7 +21,7 @@
       }
     },
     "title": "Modem alarm example (example-identifier) was updated.",
-    "description": "Modem alarm example (example-identifier) was updated:\n\n- Description was changed from 'example' to 'updated-example'.\n\n- Trigger condition was updated.\n\n- Default health level was changed from 'Error' to 'Warning'.\n\n- Health level (after resolved) was changed from 'Warning' to 'INSPECT'.\n\n- Period for health level after resolved was changed from 'PT1H' to 'PT48H'.",
+    "description": "Modem alarm example (example-identifier) was updated:\n\n- Description was changed from 'example' to 'updated-example'.\n\n- Trigger condition was updated.\n\n- Default health level was changed from 'Alarm' to 'Build up'.\n\n- Health level (after resolved) was changed from 'Build up' to 'INSPECT'.\n\n- Period for health level after resolved was changed from 'PT1H' to 'PT48H'.",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
       "textual": "2020-06-01T05:15:25.355Z",
@@ -29,7 +29,7 @@
     }
   },
   "title": "Modem alarm example (example-identifier) was updated.",
-  "description": "Modem alarm example (example-identifier) was updated:\n\n- Description was changed from 'example' to 'updated-example'.\n\n- Trigger condition was updated.\n\n- Default health level was changed from 'Error' to 'Warning'.\n\n- Health level (after resolved) was changed from 'Warning' to 'INSPECT'.\n\n- Period for health level after resolved was changed from 'PT1H' to 'PT48H'.",
+  "description": "Modem alarm example (example-identifier) was updated:\n\n- Description was changed from 'example' to 'updated-example'.\n\n- Trigger condition was updated.\n\n- Default health level was changed from 'Alarm' to 'Build up'.\n\n- Health level (after resolved) was changed from 'Build up' to 'INSPECT'.\n\n- Period for health level after resolved was changed from 'PT1H' to 'PT48H'.",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
     "textual": "2020-06-01T05:15:25.355Z",

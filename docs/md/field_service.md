@@ -549,7 +549,6 @@ when the modem is registered into the system or when a subscription is authorize
 | last_message_sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the modem has sent the last message. |
 | last_message_body | [ hiber.BytesOrHex](#hiberbytesorhex) | The body of the last message. |
 | inactivity | [ hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
-| health | [ hiber.Health](#hiberhealth) | Deprecated health based on the number of error and warning events this modem has received in the past 30 days Uses the OK, WARNING, ERROR format. |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
 | lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | none |
 | technical | [ hiber.modem.Modem.TechnicalData](#hibermodemmodemtechnicaldata) | additional information |
@@ -581,7 +580,6 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 | only_active | [ bool](#bool) | Use lifecycle filter instead. |
 | activated_in | [ hiber.TimeRange](#hibertimerange) | none |
 | with_last_message_in | [ hiber.TimeRange](#hibertimerange) | none |
-| health | [repeated hiber.Health](#hiberhealth) | Deprecated health that uses the OK, WARNING, ERROR format. |
 | health_levels | [repeated string](#string) | Filter modems by health level. |
 | lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
 | transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) | none |

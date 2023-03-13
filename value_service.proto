@@ -19,6 +19,7 @@ option go_package = "hiber";
 service ValueService {
     rpc List (ListValues.Request) returns (ListValues.Response);
     rpc Aggregated (AggregatedValues.Request) returns (AggregatedValues.Response);
+    rpc Downsampled (DownsampledValues.Request) returns (DownsampledValues.Response);
 }
 
 /* Select the values to return. */
@@ -186,6 +187,36 @@ message AggregatedValues {
 
     message Response {
         repeated AggregatedValues aggregated_values = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}
+
+/* Downsampled values for a (set of) modem(s), filtering by field and time. */
+message DownsampledValues {
+    /* Request downsampled values, reducing the selected time range to a single value per field. */
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* The values to downsample.
+         * When multiple modems are given, the data is downsampled separately and merged together in the response,
+         * sorted by time.
+         */
+        ValueSelection selection = 2;
+
+        /* Downsample the values to the given amount of data points. */
+        uint32 points = 3;
+
+        /* Paginate the downsampled values, if needed. */
+        Pagination pagination = 4;
+
+        /* How to sort the downsampled values. */
+        ListValues.Sort sort = 5;
+    }
+
+    message Response {
+        repeated ValueContext downsampled_values = 1;
         Pagination.Result pagination = 2;
         Request request = 3;
     }

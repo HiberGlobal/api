@@ -50,12 +50,6 @@
   - [hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent](#hibereventeventmodemeventmodemlocationupdatedevent)
   - [hiber.event.Event.ModemEvent.ModemUpdatedEvent](#hibereventeventmodemeventmodemupdatedevent)
   - [hiber.event.Event.ModemEvent.ModemUpdatedEvent.PeripheralsEntry](#hibereventeventmodemeventmodemupdatedeventperipheralsentry)
-  - [hiber.event.Event.ModemTransferEvent](#hibereventeventmodemtransferevent)
-  - [hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent](#hibereventeventmodemtransfereventmodemtransfercancelledevent)
-  - [hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent](#hibereventeventmodemtransfereventmodemtransfernotreceivedevent)
-  - [hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent](#hibereventeventmodemtransfereventmodemtransferreceivedevent)
-  - [hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent](#hibereventeventmodemtransfereventmodemtransferreturntransferstartedevent)
-  - [hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent](#hibereventeventmodemtransfereventmodemtransferstartedevent)
   - [hiber.event.Event.OrganizationEvent](#hibereventeventorganizationevent)
   - [hiber.event.Event.OrganizationEvent.EventConfigurationUpdated](#hibereventeventorganizationeventeventconfigurationupdated)
   - [hiber.event.Event.OrganizationEvent.EventConfigurationUpdated.ModemMessageSummaryUpdate](#hibereventeventorganizationeventeventconfigurationupdatedmodemmessagesummaryupdate)
@@ -79,7 +73,6 @@
   - [hiber.event.Event.TokenEvent.TokenExpiredEvent](#hibereventeventtokeneventtokenexpiredevent)
   - [hiber.event.Event.TokenEvent.TokenExpiryWarningEvent](#hibereventeventtokeneventtokenexpirywarningevent)
   - [hiber.event.Event.TransferEvent](#hibereventeventtransferevent)
-  - [hiber.event.Event.TransferEvent.DeprecatedTransfer](#hibereventeventtransfereventdeprecatedtransfer)
   - [hiber.event.Event.UserEvent](#hibereventeventuserevent)
   - [hiber.event.Event.UserEvent.UserAccessRequestEvent](#hibereventeventusereventuseraccessrequestevent)
   - [hiber.event.Event.UserEvent.UserAddedEvent](#hibereventeventusereventuseraddedevent)
@@ -641,80 +634,6 @@ modem's location is updated
 | key | [ string](#string) | none |
 | value | [ string](#string) | none |
 
-### hiber.event.Event.ModemTransferEvent
-
-
-
-
-### hiber.event.Event.ModemTransferEvent.ModemTransferCancelledEvent
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| transfer | [ hiber.modem.ModemTransfer](#hibermodemmodemtransfer) | none |
-| organization | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-
-### hiber.event.Event.ModemTransferEvent.ModemTransferNotReceivedEvent
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| transfer | [ hiber.modem.ModemTransfer](#hibermodemmodemtransfer) | none |
-| organization | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | The health level caused for the modem (and organization) by this event. |
-
-### hiber.event.Event.ModemTransferEvent.ModemTransferReceivedEvent
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| transfer | [ hiber.modem.ModemTransfer](#hibermodemmodemtransfer) | none |
-| organization | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-
-### hiber.event.Event.ModemTransferEvent.ModemTransferReturnTransferStartedEvent
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| return_transfer | [ hiber.modem.ModemTransfer](#hibermodemmodemtransfer) | none |
-| original_transfer | [ hiber.modem.ModemTransfer](#hibermodemmodemtransfer) | none |
-| return_lines | [repeated hiber.modem.ModemTransferReturnLine](#hibermodemmodemtransferreturnline) | none |
-| organization | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | The health level caused for the modem (and organization) by this event. |
-
-### hiber.event.Event.ModemTransferEvent.ModemTransferStartedEvent
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| transfer | [ hiber.modem.ModemTransfer](#hibermodemmodemtransfer) | none |
-| organization | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-
 ### hiber.event.Event.OrganizationEvent
 
 
@@ -992,20 +911,6 @@ This event is disabled by default.
 | description | [ string](#string) | none |
 | transfer | [ hiber.transfer.Transfer](#hibertransfertransfer) | none |
 | deprecated_transfer | [ hiber.modem.ModemTransfer](#hibermodemmodemtransfer) | Deprecated, here to be backwards compatible with ModemTransferEvents. |
-
-### hiber.event.Event.TransferEvent.DeprecatedTransfer
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifier | [ string](#string) | none |
-| modem_numbers | [repeated string](#string) | none |
-| sender_organization | [ string](#string) | none |
-| recipient_organization | [ string](#string) | none |
-| comment | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
 
 ### hiber.event.Event.UserEvent
 
@@ -1354,7 +1259,6 @@ when the modem is registered into the system or when a subscription is authorize
 | last_message_sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the modem has sent the last message. |
 | last_message_body | [ hiber.BytesOrHex](#hiberbytesorhex) | The body of the last message. |
 | inactivity | [ hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
-| health | [ hiber.Health](#hiberhealth) | Deprecated health based on the number of error and warning events this modem has received in the past 30 days Uses the OK, WARNING, ERROR format. |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
 | lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | none |
 | technical | [ hiber.modem.Modem.TechnicalData](#hibermodemmodemtechnicaldata) | additional information |
@@ -1386,7 +1290,6 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 | only_active | [ bool](#bool) | Use lifecycle filter instead. |
 | activated_in | [ hiber.TimeRange](#hibertimerange) | none |
 | with_last_message_in | [ hiber.TimeRange](#hibertimerange) | none |
-| health | [repeated hiber.Health](#hiberhealth) | Deprecated health that uses the OK, WARNING, ERROR format. |
 | health_levels | [repeated string](#string) | Filter modems by health level. |
 | lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
 | transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) | none |
