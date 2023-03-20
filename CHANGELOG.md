@@ -1,5 +1,18 @@
 # Changelog Hiber API
 
+### 0.144 (2023-03-20)
+
+##### AlarmService
+
+- Fix a bug where `search` did not search on `name`.
+
+##### HealthService
+
+- Changed the default health levels:
+  - "Error" to "Alarm"
+  - "Warning" to "Build up"
+  - "Ok" to "Healthy"
+
 ### 0.143 (2023-03-13)
 
 ##### EmailNotificationPreferencesService
