@@ -1,9 +1,0 @@
-------------------------------------------------------------
-/home/wbouvy/hiber/ms-code/cli/customer/proto
-
-------------------------------------------------------------
-:proto Project Dependency Updates (report to plain text file)
-------------------------------------------------------------
-
-Gradle release-candidate updates:
- - Gradle: [7.6 -> 8.0.2]
