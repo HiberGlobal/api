@@ -909,12 +909,12 @@
                 </tr>
               
                 <tr>
-                  <td>include_missing_parents</td>
+                  <td>include_missing_gateways</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Set this to true to populate the parents field in the response.
-This will be populated with missing parents (e.g. gateways) for the the devices on this page.
-Any parent that is on the current page is not included in this list to avoid duplicate data. </p></td>
+                  <td><p>Set this to true to populate the gateways field in the response.
+This will be populated with missing gateways for the the devices on this page.
+Any gateway that is on the current page is not included in this list to avoid duplicate data. </p></td>
                 </tr>
               
             </tbody>
@@ -963,12 +963,12 @@ Any parent that is on the current page is not included in this list to avoid dup
                 </tr>
               
                 <tr>
-                  <td>parents</td>
+                  <td>gateways</td>
                   <td><a href="#hiber.device.Device">Device</a></td>
                   <td>repeated</td>
-                  <td><p>This will be populated with missing parents (e.g. gateways) for the the devices on this page.
-Any parent that is on the current page is not included in this list to avoid duplicate data.
-Only set when include_missing_parents is true in the request. </p></td>
+                  <td><p>This will be populated with missing gateways for the the devices on this page.
+Any gateway that is on the current page is not included in this list to avoid duplicate data.
+Only set when include_missing_gateways is true in the request. </p></td>
                 </tr>
               
             </tbody>
@@ -3541,12 +3541,11 @@ For example, unbundled events are likely to return an approximated total, but no
                 </tr>
               
                 <tr>
-                  <td>parent</td>
+                  <td>gateway</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>The device directly downstream from this device.
-Usually a gateway of some sorts. This device sends its data directly to its parent.
-The parent will relay the data to our systems. </p></td>
+                  <td><p>The gateway directly upstream from this device (in the direction of Mission Control).
+This device sends its data directly to its gateway, which in turn relays it to Mission Control. </p></td>
                 </tr>
               
             </tbody>
@@ -3633,7 +3632,7 @@ The parent will relay the data to our systems. </p></td>
                 </tr>
               
                 <tr>
-                  <td>with_parents</td>
+                  <td>with_gateways</td>
                   <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
                   <td></td>
                   <td><p> </p></td>

@@ -139,11 +139,11 @@ message ListDevice {
         /* Filter devices by location. */
         LocationSelection location_selection = 5;
 
-        /* Set this to true to populate the parents field in the response.
-         * This will be populated with missing parents (e.g. gateways) for the the devices on this page.
-         * Any parent that is on the current page is not included in this list to avoid duplicate data.
+        /* Set this to true to populate the gateways field in the response.
+         * This will be populated with missing gateways for the the devices on this page.
+         * Any gateway that is on the current page is not included in this list to avoid duplicate data.
          */
-        bool include_missing_parents = 6;
+        bool include_missing_gateways = 6;
     }
     message Response {
         repeated Device devices = 1;
@@ -151,10 +151,10 @@ message ListDevice {
         Pagination.Result pagination = 3;
         repeated Sort sorted_by = 4;
 
-        /* This will be populated with missing parents (e.g. gateways) for the the devices on this page.
-         * Any parent that is on the current page is not included in this list to avoid duplicate data.
-         * Only set when include_missing_parents is true in the request.
+        /* This will be populated with missing gateways for the the devices on this page.
+         * Any gateway that is on the current page is not included in this list to avoid duplicate data.
+         * Only set when include_missing_gateways is true in the request.
          */
-        repeated Device parents = 5;
+        repeated Device gateways = 5;
     }
 }

@@ -171,7 +171,7 @@ Update a device.
 | pagination | [ hiber.Pagination](#hiberpagination) | Paginate through results. |
 | sort_by | [repeated Sort](#sort) | Sort the devices with the given sort options. |
 | location_selection | [ hiber.LocationSelection](#hiberlocationselection) | Filter devices by location. |
-| include_missing_parents | [ bool](#bool) | Set this to true to populate the parents field in the response. This will be populated with missing parents (e.g. gateways) for the the devices on this page. Any parent that is on the current page is not included in this list to avoid duplicate data. |
+| include_missing_gateways | [ bool](#bool) | Set this to true to populate the gateways field in the response. This will be populated with missing gateways for the the devices on this page. Any gateway that is on the current page is not included in this list to avoid duplicate data. |
 
 ### ListDevice.Response
 
@@ -183,7 +183,7 @@ Update a device.
 | request | [ ListDevice.Request](#listdevicerequest) | none |
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
 | sorted_by | [repeated Sort](#sort) | none |
-| parents | [repeated Device](#device) | This will be populated with missing parents (e.g. gateways) for the the devices on this page. Any parent that is on the current page is not included in this list to avoid duplicate data. Only set when include_missing_parents is true in the request. |
+| gateways | [repeated Device](#device) | This will be populated with missing gateways for the the devices on this page. Any gateway that is on the current page is not included in this list to avoid duplicate data. Only set when include_missing_gateways is true in the request. |
 
 ### UpdateDevice
 
@@ -314,7 +314,7 @@ Collection of data about the devices it is connected to.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifiers | [repeated string](#string) | Other identifiers for this devices. Could include data like its MAC-address or otherwise unique identifier. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_parent**.parent | [optional string](#string) | The device directly downstream from this device. Usually a gateway of some sorts. This device sends its data directly to its parent. The parent will relay the data to our systems. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_gateway**.gateway | [optional string](#string) | The gateway directly upstream from this device (in the direction of Mission Control). This device sends its data directly to its gateway, which in turn relays it to Mission Control. |
 
 ### hiber.device.Device.PeripheralsEntry
 
@@ -337,7 +337,7 @@ Filter devices by device number, tags, etc.
 | identifiers | [ hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) | none |
 | health_level | [ hiber.Filter.HealthLevels](#hiberfilterhealthlevels) | none |
 | lifecycles | [ hiber.device.ModemFilter.Lifecycles](#hiberdevicemodemfilterlifecycles) | none |
-| with_parents | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
+| with_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
 | peripherals | [ hiber.Filter.Properties](#hiberfilterproperties) | none |
 | filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
 | with_last_message_in | [ hiber.TimeRange](#hibertimerange) | none |

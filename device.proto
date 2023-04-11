@@ -70,10 +70,9 @@ message Device {
         /* Other identifiers for this devices. Could include data like its MAC-address or otherwise unique identifier. */
         repeated string identifiers = 1;
 
-        /* The device directly downstream from this device.
-         * Usually a gateway of some sorts. This device sends its data directly to its parent.
-         * The parent will relay the data to our systems. */
-        optional string parent = 2;
+        /* The gateway directly upstream from this device (in the direction of Mission Control).
+         * This device sends its data directly to its gateway, which in turn relays it to Mission Control. */
+        optional string gateway = 2;
 
 //        /* The devices that are directly upstream form this device if any.
 //         * The upstream devices use this device to relay messages for them. */
@@ -92,7 +91,7 @@ message DeviceSelection {
     Filter.ModemIdentifiers identifiers = 3;
     Filter.HealthLevels health_level = 4;
     ModemFilter.Lifecycles lifecycles = 5;
-    Filter.Modems with_parents = 6;
+    Filter.Modems with_gateways = 6;
     Filter.Properties peripherals = 7;
 
     hiber.tag.TagSelection filter_by_tags = 8;

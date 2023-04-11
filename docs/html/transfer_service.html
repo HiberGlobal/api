@@ -3061,12 +3061,11 @@ For example, unbundled events are likely to return an approximated total, but no
                 </tr>
               
                 <tr>
-                  <td>parent</td>
+                  <td>gateway</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>The device directly downstream from this device.
-Usually a gateway of some sorts. This device sends its data directly to its parent.
-The parent will relay the data to our systems. </p></td>
+                  <td><p>The gateway directly upstream from this device (in the direction of Mission Control).
+This device sends its data directly to its gateway, which in turn relays it to Mission Control. </p></td>
                 </tr>
               
             </tbody>
@@ -3153,7 +3152,7 @@ The parent will relay the data to our systems. </p></td>
                 </tr>
               
                 <tr>
-                  <td>with_parents</td>
+                  <td>with_gateways</td>
                   <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
                   <td></td>
                   <td><p> </p></td>
