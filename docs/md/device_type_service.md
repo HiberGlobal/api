@@ -1,68 +1,26 @@
-# transfer_service.proto
+# device_type_service.proto
 
-Service to transfer data from one organization to another.
+Device Types.
 
-To transfer data to another organization, you must have access to both organizations,
-and must have the TRANSFERS permissions in the sender organization.
-
-#### This file was generated from [transfer_service.proto](https://github.com/HiberGlobal/api/blob/master/transfer_service.proto).
+#### This file was generated from [device_type_service.proto](https://github.com/HiberGlobal/api/blob/master/device_type_service.proto).
 
 ## Table of Contents
 
 - Services
-  - [TransferService](#transferservice)
+  - [DeviceTypeService](#devicetypeservice)
 
 - Messages
-  - [PerformTransfer](#performtransfer)
-  - [PerformTransfer.Request](#performtransferrequest)
-  - [PerformTransfer.Response](#performtransferresponse)
-  - [TransferHistory](#transferhistory)
-  - [TransferHistory.Request](#transferhistoryrequest)
-  - [TransferHistory.Request.TransferSelection](#transferhistoryrequesttransferselection)
-  - [TransferHistory.Response](#transferhistoryresponse)
+  - [ListDeviceTypes](#listdevicetypes)
+  - [ListDeviceTypes.Request](#listdevicetypesrequest)
+  - [ListDeviceTypes.Response](#listdevicetypesresponse)
 
 - Enums
+  - [ListDeviceTypes.Sort](#listdevicetypessort)
 
-- Referenced messages from [device.proto](#referenced-messages-from-deviceproto)
-  - [hiber.device.Device](#hiberdevicedevice)
-  - [hiber.device.Device.Links](#hiberdevicedevicelinks)
-  - [hiber.device.Device.PeripheralsEntry](#hiberdevicedeviceperipheralsentry)
-  - [hiber.device.DeviceSelection](#hiberdevicedeviceselection)
-  - [hiber.device.ModemFilter](#hiberdevicemodemfilter)
-  - [hiber.device.ModemFilter.Lifecycles](#hiberdevicemodemfilterlifecycles)
-  - Enums
-    - [hiber.device.Sort](#hiberdevicesort)
+- Referenced messages from [device_type.proto](#referenced-messages-from-device_typeproto)
+  - [hiber.device.type.DeviceType](#hiberdevicetypedevicetype)
+  - [hiber.device.type.DeviceTypeSelection](#hiberdevicetypedevicetypeselection)
 
-- Referenced messages from [organization.proto](#referenced-messages-from-organizationproto)
-  - [hiber.organization.CreateOrganizationRequest](#hiberorganizationcreateorganizationrequest)
-  - [hiber.organization.DeleteOrganizationRequest](#hiberorganizationdeleteorganizationrequest)
-  - [hiber.organization.DeleteOrganizationRequest.Response](#hiberorganizationdeleteorganizationrequestresponse)
-  - [hiber.organization.GetOrganizationAvatar](#hiberorganizationgetorganizationavatar)
-  - [hiber.organization.GetOrganizationAvatar.Request](#hiberorganizationgetorganizationavatarrequest)
-  - [hiber.organization.GetOrganizationAvatar.Response](#hiberorganizationgetorganizationavatarresponse)
-  - [hiber.organization.GetOrganizationAvatar.Response.AvatarsEntry](#hiberorganizationgetorganizationavatarresponseavatarsentry)
-  - [hiber.organization.GetOrganizationRequest](#hiberorganizationgetorganizationrequest)
-  - [hiber.organization.ListChildOrganizationsRequest](#hiberorganizationlistchildorganizationsrequest)
-  - [hiber.organization.ListChildOrganizationsRequest.Response](#hiberorganizationlistchildorganizationsrequestresponse)
-  - [hiber.organization.Organization](#hiberorganizationorganization)
-  - [hiber.organization.Organization.Address](#hiberorganizationorganizationaddress)
-  - [hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact)
-  - [hiber.organization.Organization.Defaults](#hiberorganizationorganizationdefaults)
-  - [hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection)
-  - [hiber.organization.OrganizationTree](#hiberorganizationorganizationtree)
-  - [hiber.organization.OrganizationTreeRequest](#hiberorganizationorganizationtreerequest)
-  - [hiber.organization.OrganizationTreeRequest.Response](#hiberorganizationorganizationtreerequestresponse)
-  - [hiber.organization.UpdateOrganizationRequest](#hiberorganizationupdateorganizationrequest)
-  - [hiber.organization.ValidateOrganizationCreationTokenRequest](#hiberorganizationvalidateorganizationcreationtokenrequest)
-  - [hiber.organization.ValidateOrganizationCreationTokenRequest.Response](#hiberorganizationvalidateorganizationcreationtokenrequestresponse)
-
-    - [hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature)
-
-- Referenced messages from [transfer.proto](#referenced-messages-from-transferproto)
-  - [hiber.transfer.Transfer](#hibertransfertransfer)
-  - [hiber.transfer.Transfer.Devices](#hibertransfertransferdevices)
-
-    - [hiber.transfer.Transfer.Type](#hibertransfertransfertype)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -117,482 +75,88 @@ and must have the TRANSFERS permissions in the sender organization.
 - [Scalar Value Types](#scalar-value-types)
 
 
-## TransferService
+## DeviceTypeService
 
 
-### Transfer
-> **rpc** Transfer([PerformTransfer.Request](#performtransferrequest))
-    [PerformTransfer.Response](#performtransferresponse)
-
-
-
-### History
-> **rpc** History([TransferHistory.Request](#transferhistoryrequest))
-    [TransferHistory.Response](#transferhistoryresponse)
+### List
+> **rpc** List([ListDeviceTypes.Request](#listdevicetypesrequest))
+    [ListDeviceTypes.Response](#listdevicetypesresponse)
 
 
 
 
 ## Messages
 
-### PerformTransfer
+### ListDeviceTypes
 
 
 
 
-### PerformTransfer.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **recipient_organization_or_create**.recipient_organization | [ string](#string) | Existing organization to receive the transfer. You must have access to the recipient organization to transfer data to it. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **recipient_organization_or_create**.new_organization | [ hiber.organization.CreateOrganizationRequest](#hiberorganizationcreateorganizationrequest) | Create a new organization to receive the transfer. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_comment**.comment | [optional string](#string) | Optional comment for the transfer (i.e. reason, tracking information, etc). |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.devices | [ hiber.device.DeviceSelection](#hiberdevicedeviceselection) | Transfer a number of selected devices to the recipient organization. |
-
-### PerformTransfer.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| transfer | [ Transfer](#transfer) | none |
-| request | [ PerformTransfer.Request](#performtransferrequest) | none |
-
-### TransferHistory
-
-
-
-
-### TransferHistory.Request
+### ListDeviceTypes.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ TransferHistory.Request.TransferSelection](#transferhistoryrequesttransferselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| selection | [ DeviceTypeSelection](#devicetypeselection) | Select which device types to return. |
+| pagination | [ hiber.Pagination](#hiberpagination) | Paginate through results. |
+| sort_by | [repeated ListDeviceTypes.Sort](#listdevicetypessort) | Sort the devices with the given sort options. |
 
-### TransferHistory.Request.TransferSelection
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| search | [ string](#string) | Search transfers by identifier, organizations, device, etc. |
-| identifiers | [repeated string](#string) | Select transfers by transfer identifier. |
-| time_range | [ hiber.TimeRange](#hibertimerange) | Select transfers that were performed within this time. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **selection**.devices | [ hiber.device.DeviceSelection](#hiberdevicedeviceselection) | Select device transfers with specific devices. |
-| received_only | [ bool](#bool) | Only show transfer that your organization received. |
-| sent_only | [ bool](#bool) | Only show transfer that your organization sent. |
-
-### TransferHistory.Response
+### ListDeviceTypes.Response
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| transfer_history | [repeated Transfer](#transfer) | none |
-| request | [ TransferHistory.Request](#transferhistoryrequest) | none |
+| device_types | [repeated DeviceType](#devicetype) | none |
+| request | [ ListDeviceTypes.Request](#listdevicetypesrequest) | none |
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
 
 
 ## Enums
+### ListDeviceTypes.Sort
 
-
-## Referenced messages from device.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
-
-#### This section was generated from [device.proto](https://github.com/HiberGlobal/api/blob/master/device.proto).
-
-
-### hiber.device.Device
-
-Information about a device.
-A device is anything in the Hiber network that can send data to our systems.
-They have a unique device number in our system, used to identify them.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| number | [ string](#string) | An 8-character hexadecimal string, formatted for human readability. System ignores spaces. |
-| organization | [ string](#string) | The organization that owns this device |
-| name | [ string](#string) | A descriptor given to the device, defaults to it's number. |
-| location | [ hiber.Location](#hiberlocation) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_inactivity**.inactivity | [optional hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
-| health | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health based on the modem alarm and some always-present alarms. |
-| lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | The current lifecycle the modem is in. |
-| peripherals | [map hiber.device.Device.PeripheralsEntry](#hiberdevicedeviceperipheralsentry) | additional information |
-| notes | [ string](#string) | Notes field that can be used to add additional information to a modem. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_secure_notes**.secure_notes | [optional string](#string) | Secure notes field that can be used to add additional information to a modem, with limited accessibility. |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_link**.link | [optional hiber.device.Device.Links](#hiberdevicedevicelinks) | Optional information about what other devices this devices is linked to. |
-| metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_time_zone**.time_zone | [optional string](#string) | The timezone configured for the modem. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_transmission_interval**.transmission_interval | [optional hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_transmission_rate**.expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this device. |
-| type | [ string](#string) | The DeviceType for this device. See DeviceType for more information. |
-
-### hiber.device.Device.Links
-
-Collection of data about the devices it is connected to.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifiers | [repeated string](#string) | Other identifiers for this devices. Could include data like its MAC-address or otherwise unique identifier. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_gateway**.gateway | [optional string](#string) | The gateway directly upstream from this device (in the direction of Mission Control). This device sends its data directly to its gateway, which in turn relays it to Mission Control. |
-
-### hiber.device.Device.PeripheralsEntry
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ string](#string) | none |
-
-### hiber.device.DeviceSelection
-
-Selection object for devices.
-Filter devices by device number, tags, etc.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| free_text_search | [ string](#string) | none |
-| modems | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
-| identifiers | [ hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) | none |
-| health_level | [ hiber.Filter.HealthLevels](#hiberfilterhealthlevels) | none |
-| lifecycles | [ hiber.device.ModemFilter.Lifecycles](#hiberdevicemodemfilterlifecycles) | none |
-| with_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
-| peripherals | [ hiber.Filter.Properties](#hiberfilterproperties) | none |
-| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
-| with_last_message_in | [ hiber.TimeRange](#hibertimerange) | none |
-
-### hiber.device.ModemFilter
-
-
-
-
-### hiber.device.ModemFilter.Lifecycles
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| include | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | none |
-| exclude | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | none |
-
-
-### Enums
-#### hiber.device.Sort
-Sorting options for the results.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| DEVICE_NAME_ASC | Sort alphabetically on the name of the device. De default name of the device is its HEX number, in ascending order. | 0 |
-| DEVICE_NAME_DESC | Sort alphabetically on the name of the device. De default name of the device is its HEX number, in descending order. | 1 |
-| DEVICE_NUMBER_ASC | Sort numerically on the number of the device, in ascending order. | 2 |
-| DEVICE_NUMBER_DESC | Sort numerically on the number of the device, in descending order. | 3 |
-| ACTIVITY | Sort devices on most recent activity first (e.g. newest message received). | 4 |
-| INACTIVITY | Sort devices on least recent activity first (e.g. longest no message received). | 5 |
-| LIFECYCLE_ASC | Sort device on its lifecycle state. | 6 |
-| LIFECYCLE_DESC | Sort device on its lifecycle state in reverse order. | 7 |
-| LIFECYCLE_ALPHABETICAL_ASC | Sort device on lifecycle name, alphabetically. | 8 |
-| LIFECYCLE_ALPHABETICAL_DESC | Sort device on lifecycle name, alphabetically in reverse order. | 9 |
-| ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the device, in ascending order. | 10 |
-| ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the device, in descending order. | 11 |
-| HEALTH_ASC | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 12 |
-| HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 13 |
-| HEALTH_ALPHABETICAL_ASC | Health sorted alphabetically by health level name. | 14 |
-| HEALTH_ALPHABETICAL_DESC | Health sorted alphabetically by health level name, descending order. | 15 |
+| IDENTIFIER_ASC | none | 0 |
+| IDENTIFIER_DESC | none | 1 |
+| BRAND_ASC | none | 2 |
+| BRAND_DESC | none | 3 |
 
 
 
-## Referenced messages from organization.proto
+## Referenced messages from device_type.proto
 (Note that these are included because there is a proto dependency on the file,
 so not all messages listed here are referenced.)
 
-#### This section was generated from [organization.proto](https://github.com/HiberGlobal/api/blob/master/organization.proto).
+#### This section was generated from [device_type.proto](https://github.com/HiberGlobal/api/blob/master/device_type.proto).
 
 
-### hiber.organization.CreateOrganizationRequest
+### hiber.device.type.DeviceType
 
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| parent_organization | [ string](#string) | Pick the organization to use as parent. If unset, your default organization is used. If you have no organization, an organization_creation_token is required. |
-| new_organization | [ string](#string) | The name for the new organization. Lowercase, letters, numbers, dashes and underscores only. Required. Used as an identifier for the organization. |
-| display_name | [ string](#string) | The name to display for your organization (i.e. capitalized, with spaces, etc.). Default to the name above. |
-| avatar | [ hiber.Avatar](#hiberavatar) | The avatar image representing this organisation. Usually the logo. |
-| is_business | [ bool](#bool) | Whether this organization is created for a business. |
-| vat_number | [ string](#string) | Whether this organization is created for a business, provide a VAT number. |
-| address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | Postal address for your organization. |
-| billing_name | [ string](#string) | Billing information for your organization. Optional, but required if you want active modems. |
-| billing_address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | Billing address for your organization. Optional, but required if you want active modems. |
-| contact | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) | Contact information for your organization. Required. |
-| organization_creation_token | [ string](#string) | A token that allows you to create an organization without having an organization. |
-
-### hiber.organization.DeleteOrganizationRequest
-
-
+Preconfigured device type.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| parent_organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| organization_to_delete | [ string](#string) | The organization to delete. Required. |
+| identifier | [ string](#string) | none |
+| brand | [ string](#string) | none |
+| application | [ string](#string) | none |
+| category | [ string](#string) | none |
+| version | [ string](#string) | none |
+| description | [ string](#string) | none |
 
-### hiber.organization.DeleteOrganizationRequest.Response
+### hiber.device.type.DeviceTypeSelection
 
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization_to_delete | [ string](#string) | none |
-| organizations_deleted | [ hiber.organization.OrganizationTree](#hiberorganizationorganizationtree) | The organizations that were deleted. |
-
-### hiber.organization.GetOrganizationAvatar
-
-
-
-
-### hiber.organization.GetOrganizationAvatar.Request
-
-
+Selection object for device types.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organizations | [repeated string](#string) | The slug for this organization, used to identify organizations |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
-
-### hiber.organization.GetOrganizationAvatar.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| avatars | [map hiber.organization.GetOrganizationAvatar.Response.AvatarsEntry](#hiberorganizationgetorganizationavatarresponseavatarsentry) | Avatars, indexed by organization slug |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
-
-### hiber.organization.GetOrganizationAvatar.Response.AvatarsEntry
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ hiber.Avatar](#hiberavatar) | none |
-
-### hiber.organization.GetOrganizationRequest
-
-Get your current organization's data
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to get the details for. If unset, your default organization is used. |
-
-### hiber.organization.ListChildOrganizationsRequest
-
-List the child organizations for the given organization
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
-| include_details | [ bool](#bool) | none |
-
-### hiber.organization.ListChildOrganizationsRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| child_organizations | [repeated hiber.organization.Organization](#hiberorganizationorganization) | none |
-| request | [ hiber.organization.ListChildOrganizationsRequest](#hiberorganizationlistchildorganizationsrequest) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
-
-### hiber.organization.Organization
-
-Organization data. An Organization can have many linked users, but the organization is the owner
-of any modems and related data.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | The slug for this organization, used to identify organizations |
-| display_name | [ string](#string) | The name of the organization to display to the end-user |
-| address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | none |
-| contact | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) | none |
-| vat_number | [ string](#string) | none |
-| billing_name | [ string](#string) | none |
-| billing_address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | none |
-| contract_signature_date | [ hiber.Timestamp](#hibertimestamp) | none |
-| created_at | [ hiber.Timestamp](#hibertimestamp) | none |
-| updated_at | [ hiber.Timestamp](#hibertimestamp) | none |
-| features | [repeated hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature) | none |
-| database_info | [ string](#string) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_defaults**.defaults | [optional hiber.organization.Organization.Defaults](#hiberorganizationorganizationdefaults) | none |
-
-### hiber.organization.Organization.Address
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| lines | [repeated string](#string) | none |
-| zip_code | [ string](#string) | none |
-| city | [ string](#string) | none |
-| state | [ string](#string) | none |
-| country | [ string](#string) | none |
-
-### hiber.organization.Organization.Contact
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| name | [ string](#string) | none |
-| email | [ string](#string) | none |
-| phone | [ string](#string) | none |
-
-### hiber.organization.Organization.Defaults
-
-Default settings for this organization.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_device_transmission_rate**.expected_device_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The default expected transmission interval for devices in this organization. |
-
-### hiber.organization.OrganizationSelection
-
-Selection object for child organizations.
-User for child organization list and tree.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organizations | [ hiber.Filter.Organizations](#hiberfilterorganizations) | none |
 | search | [ string](#string) | none |
 
-### hiber.organization.OrganizationTree
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ hiber.organization.Organization](#hiberorganizationorganization) | none |
-| children | [repeated hiber.organization.OrganizationTree](#hiberorganizationorganizationtree) | none |
-
-### hiber.organization.OrganizationTreeRequest
-
-Get your current organization's organization tree.
-The organization tree contains your current organization as the root of the tree, with all child organizations ordered below it.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate) for this call, overriding your default organization |
-| selection | [ hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) | none |
-
-### hiber.organization.OrganizationTreeRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| request | [ hiber.organization.OrganizationTreeRequest](#hiberorganizationorganizationtreerequest) | none |
-| tree | [ hiber.organization.OrganizationTree](#hiberorganizationorganizationtree) | none |
-
-### hiber.organization.UpdateOrganizationRequest
-
-Update organization data.
-All fields are effectively optional, though address, billing_address, contact and features are assumed to be complete objects,
-not partial updates.
-Note that the organization field specifies the organization, it is not used to update the current organization identifier.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| display_name | [ string](#string) | none |
-| vat_number | [ string](#string) | none |
-| address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | none |
-| billing_name | [ string](#string) | none |
-| billing_address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | none |
-| contact | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) | none |
-| avatar | [ hiber.Avatar](#hiberavatar) | none |
-
-### hiber.organization.ValidateOrganizationCreationTokenRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization_creation_token | [ string](#string) | A token that allows you to create an organization without having an organization. |
-
-### hiber.organization.ValidateOrganizationCreationTokenRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| valid | [ bool](#bool) | none |
-
 
 ### Enums
-#### hiber.organization.Organization.Feature
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| UNKNOWN | none | 0 |
-| HIBER | The default Hiber set of features including Mission Control and the API | 1 |
-| HILO | A limited set of features corresponding to the HiberHilo product. | 2 |
-| MODEM_CREATION | Required to manually create modems using the ModemService. | 4 |
-| EARLY_ACCESS | Used for organizations that get early access to features. | 5 |
-| EXPERIMENTAL | Used for organizations that get access to experimental features. e.g. feature work in progress. | 6 |
-| BI_TOOLING_BETA | Integrate BI tooling in the Mission Control interface. | 8 |
-
-
-
-## Referenced messages from transfer.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
-
-#### This section was generated from [transfer.proto](https://github.com/HiberGlobal/api/blob/master/transfer.proto).
-
-
-### hiber.transfer.Transfer
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifier | [ string](#string) | The identifier for the transfer. |
-| sender_organization | [ string](#string) | The organization that sent the transfer. |
-| recipient_organization | [ string](#string) | The organization that received the transfer. |
-| comment | [ string](#string) | Optional comment for the transfer (i.e. reason, tracking information, etc). |
-| created_at | [ hiber.Timestamp](#hibertimestamp) | none |
-| type | [ hiber.transfer.Transfer.Type](#hibertransfertransfertype) | The type of data transferred to the recipient organization. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **typed**.devices | [ hiber.transfer.Transfer.Devices](#hibertransfertransferdevices) | The devices that were transferred from the sender to the recipient organization. |
-
-### hiber.transfer.Transfer.Devices
-
-The devices that were transferred from the sender to the recipient organization.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| numbers | [repeated string](#string) | The numbers of the devices that were transferred from the sender to the recipient organization. |
-
-
-### Enums
-#### hiber.transfer.Transfer.Type
-The type of data transferred to the recipient organization.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| DEVICES | none | 0 |
-
 
 
 ## Referenced messages from base.proto

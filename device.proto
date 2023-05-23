@@ -65,6 +65,9 @@ message Device {
     /* The expected transmission rate for this device. */
     optional hiber.value.Value.Numeric.Rate expected_transmission_rate = 16;
 
+    /* The DeviceType for this device. See DeviceType for more information. */
+    string type = 17;
+
     /* Collection of data about the devices it is connected to. */
     message Links {
         /* Other identifiers for this devices. Could include data like its MAC-address or otherwise unique identifier. */

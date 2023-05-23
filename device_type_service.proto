@@ -1,0 +1,47 @@
+/* Device Types.
+ *
+ */
+syntax = "proto3";
+
+package hiber.device.type;
+
+import "base.proto";
+import "device_type.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.device.type";
+option java_outer_classname = "DeviceTypeApi";
+option go_package = "hiber";
+
+service DeviceTypeService {
+    rpc List (ListDeviceTypes.Request) returns (ListDeviceTypes.Response);
+}
+
+message ListDeviceTypes {
+    enum Sort {
+        IDENTIFIER_ASC = 0;
+        IDENTIFIER_DESC = 1;
+
+        BRAND_ASC = 2;
+        BRAND_DESC = 3;
+    }
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+
+        /* Select which device types to return. */
+        DeviceTypeSelection selection = 2;
+
+        /* Paginate through results. */
+        Pagination pagination = 3;
+
+        /* Sort the devices with the given sort options. */
+        repeated Sort sort_by = 4;
+    }
+    message Response {
+        repeated DeviceType device_types = 1;
+        Request request = 2;
+        Pagination.Result pagination = 3;
+    }
+}

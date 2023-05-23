@@ -306,6 +306,7 @@ They have a unique device number in our system, used to identify them.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_time_zone**.time_zone | [optional string](#string) | The timezone configured for the modem. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_transmission_interval**.transmission_interval | [optional hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_transmission_rate**.expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this device. |
+| type | [ string](#string) | The DeviceType for this device. See DeviceType for more information. |
 
 ### hiber.device.Device.Links
 

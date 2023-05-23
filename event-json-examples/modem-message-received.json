@@ -97,6 +97,22 @@
     "name": "AAAA AAAA",
     "identifier": "00 11 22 33 AA BB CC DD"
   },
+  "tags": [
+    {
+      "id": "1",
+      "label": {
+        "name": "example-tag",
+        "type": "well"
+      }
+    },
+    {
+      "id": "2",
+      "label": {
+        "name": "example-tag-2",
+        "type": "well"
+      }
+    }
+  ],
   "time": {
     "timestamp": "2020-06-01T06:15:25.365Z",
     "textual": "2020-06-01T06:15:25.365Z",

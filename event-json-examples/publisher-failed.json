@@ -80,7 +80,6 @@
         }
       }
     ],
-
     "title": "Webhook at https://example.com/my-webhook (id 10001) has failed!",
     "description": "Webhook at https://example.com/my-webhook (id 10001) has failed:\n\nthe request timed out\n\nwell: example-tag, example-tag-2",
     "time": {
@@ -105,5 +104,21 @@
       "text": "orange"
     },
     "severity": "2"
-  }
+  },
+  "tags": [
+    {
+      "id": "1",
+      "label": {
+        "name": "example-tag",
+        "type": "well"
+      }
+    },
+    {
+      "id": "2",
+      "label": {
+        "name": "example-tag-2",
+        "type": "well"
+      }
+    }
+  ]
 }

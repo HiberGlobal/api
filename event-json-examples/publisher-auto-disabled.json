@@ -19,7 +19,6 @@
         }
       }
     ],
-
     "title": "Webhook (id 10001) has been disabled automatically.",
     "description": "Webhook (id 10001) has been disabled automatically, because it was failing continuously.\n\nwell: example-tag, example-tag-2",
     "time": {
@@ -55,5 +54,21 @@
     },
     "catchAll": true,
     "severity": "3"
-  }
+  },
+  "tags": [
+    {
+      "id": "1",
+      "label": {
+        "name": "example-tag",
+        "type": "well"
+      }
+    },
+    {
+      "id": "2",
+      "label": {
+        "name": "example-tag-2",
+        "type": "well"
+      }
+    }
+  ]
 }

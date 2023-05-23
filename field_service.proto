@@ -107,6 +107,8 @@ message ListFieldsForModem {
     message Response {
         message ModemWithFields {
             string modem = 1;
+            string name = 3;
+            string identifier = 4;
             repeated Field fields = 2;
         }
 

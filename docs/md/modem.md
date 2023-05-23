@@ -499,6 +499,7 @@ Additional information when this modem is a connected device.
 | ----- | ---- | ----------- |
 | connected_to_gateway | [ string](#string) | The gateways that this modem is connected to. This field reflects the gateway that processed the last message for this modem. If the modem is connected to multiple gateways, the last used gateway is tracked here. |
 | external_device_ids | [repeated string](#string) | External device ids for this modem. |
+| device_type | [ string](#string) | Device type for this modem. |
 
 ### Modem.GatewayInfo
 

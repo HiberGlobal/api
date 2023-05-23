@@ -182,6 +182,9 @@ message Modem {
 
         /* External device ids for this modem. */
         repeated string external_device_ids = 2;
+
+        /* Device type for this modem. */
+        string device_type = 3;
     }
 
     message TechnicalData {

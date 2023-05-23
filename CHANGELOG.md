@@ -1,16 +1,49 @@
 # Changelog Hiber API
 
-### 0.147 (2023-04-10)
+### 0.151 (2023-05-22)
 
+##### DeviceService
 
+- Added `Device.type` to indicate the device type.
 
-### 0.146 (2023-04-03)
+##### DeviceTypeService
 
+- Added the `DeviceTypeService` to list available device types.
 
+##### FieldService
 
-### 0.145 (2023-03-27)
+- Added modem `name` and `identifier` to `ListFieldsForModem.Response.ModemWithFields`.
 
+##### ModemService
 
+- Added `Modem.ConnectedDeviceInfo.device_type` to indicate the device type.
+- Added blocking logic for gateways (i.e. when license expires)
+
+##### TokenService
+
+- Added uniqueness check on token name (for active tokens) within organization.
+
+### 0.148 (2023-04-17)
+
+##### EventService
+
+- Fix a bug where events from transferred modems would be fetched, resulting in errors.
+
+##### ModemTransferService
+
+- Removed the deprecated `ModemTransferService` and related fields
+
+##### ModemTransferReturnService
+
+- Removed the deprecated `ModemTransferReturnService`.
+
+##### EventService
+
+- Removed `deprecated_transfer` from `TransferEvent`.
+
+##### EventService
+
+- Added `ModemHealth` call, which returns all events that affect modem health in the organization (without time limit).
 
 ### 0.144 (2023-03-20)
 
@@ -63,7 +96,7 @@
 
 ##### EventService
 
-- Changed the title and description for `ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent` 
+- Changed the title and description for `ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent`
   to reflect that this is a configuration issue that hiber support should solve.
 
 ### 0.139 (2023-02-06)
@@ -153,10 +186,6 @@
 
 - Removed the Easypulse-related organization features.
 
-### 0.134 (2022-12-19)
-
-
-
 ### 0.133 (2022-12-12)
 
 ##### ValueService
@@ -164,14 +193,6 @@
 - Cleared up some things in `ValueContext`:
   - Renamed `duration` to `value_durations`.
   - Fixed the documentation inside the `oneof value_type`.
-
-### 0.132 (2022-12-05)
-
-
-
-### 0.131 (2022-11-28)
-
-
 
 ### 0.130 (2022-11-21)
 
@@ -349,10 +370,6 @@ Created a new simulation service that allows to directly simulate values.
   - Use `List` to list absolute values for a given period of time.
   - Use `Aggregated` to aggregate values over a given period of time, optionally partitioned (i.e. average per day).
 
-### 0.118 (2022-08-22)
-
-### 0.117 (2022-08-15)
-
 ### 0.116 (2022-08-01)
 
 ##### FieldService
@@ -449,8 +466,6 @@ Created a new simulation service that allows to directly simulate values.
 
 - Added `Value.Enum` with the enum `value`, `display_name` and optional `description`, `color` and `priority`.
 
-### 0.113 (2022-07-04)
-
 ### 0.112 (2022-06-27)
 
 - Added new fields for EasyPulse Assets
@@ -465,8 +480,6 @@ Created a new simulation service that allows to directly simulate values.
 ##### EventService
 
 - Improved the title and description for alarm events with multiple error messages.
-
-### 0.111 (2022-06-20)
 
 ### 0.110 (2022-06-13)
 

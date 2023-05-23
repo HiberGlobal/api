@@ -215,7 +215,7 @@ For Hiber customer development, we have set up endpoints under [acc.env.hiber.cl
 
 - [acc.env.hiber.cloud](https://acc.env.hiber.cloud): The Hiber web application
 - [api.acc.env.hiber.cloud](https://api.acc.env.hiber.cloud) (or [grpc.acc.env.hiber.cloud](https://grpc.acc.env.hiber.cloud)):
-The GRPC API, accessible over https on port 443 or 1443.
+The GRPC API, accessible over https on port 443.
 (Note that opening this url in your browser will not work, since it requires HTTP2.)
 
 Notes:
@@ -238,7 +238,7 @@ For actual modems and modem messages, use [hiber.cloud](https://hiber.cloud):
 
 - [hiber.cloud](https://hiber.cloud): The Hiber web application
 - [api.hiber.cloud](https://api.hiber.cloud) (or [grpc.hiber.cloud](https://grpc.hiber.cloud)):
-The GRPC API, accessible over https on port 443 or 1443.
+The GRPC API, accessible over https on port 443.
 (Note that opening this url in your browser will not work, since it requires HTTP2.)
 
 ## Examples

@@ -29,7 +29,6 @@
         }
       }
     ],
-
     "title": "New message from modem AAAA AAAA was received. It was sent at 2020-06-01 05:15:25Z.",
     "description": "A new message from modem AAAA AAAA was received. It was sent at 2020-06-01 05:15:25Z.\n\nThe body (hex) was: 6578616D706C65\n\nwell: example-tag, example-tag-2",
     "time": {
@@ -45,6 +44,22 @@
     "name": "AAAA AAAA",
     "identifier": "00 11 22 33 AA BB CC DD"
   },
+  "tags": [
+    {
+      "id": "1",
+      "label": {
+        "name": "example-tag",
+        "type": "well"
+      }
+    },
+    {
+      "id": "2",
+      "label": {
+        "name": "example-tag-2",
+        "type": "well"
+      }
+    }
+  ],
   "time": {
     "timestamp": "2020-06-01T06:15:25.355Z",
     "textual": "2020-06-01T06:15:25.355Z",

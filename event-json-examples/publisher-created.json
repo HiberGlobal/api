@@ -69,7 +69,6 @@
         }
       }
     ],
-
     "title": "Webhook at https://example.com/my-webhook has been created with id 10001.",
     "description": "A new Webhook at https://example.com/my-webhook (id 10001) was created:\n\nexample\n\nwell: example-tag, example-tag-2",
     "time": {
@@ -85,5 +84,21 @@
     "textual": "2020-06-01T05:15:25.355Z",
     "timeZone": "UTC"
   },
+  "tags": [
+    {
+      "id": "1",
+      "label": {
+        "name": "example-tag",
+        "type": "well"
+      }
+    },
+    {
+      "id": "2",
+      "label": {
+        "name": "example-tag-2",
+        "type": "well"
+      }
+    }
+  ],
   "type": "PUBLISHER_CREATED"
 }

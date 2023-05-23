@@ -94,6 +94,9 @@
   - [hiber.event.MarkEventsResolved](#hibereventmarkeventsresolved)
   - [hiber.event.MarkEventsResolved.Request](#hibereventmarkeventsresolvedrequest)
   - [hiber.event.MarkEventsResolved.Response](#hibereventmarkeventsresolvedresponse)
+  - [hiber.event.ModemHealthEvents](#hibereventmodemhealthevents)
+  - [hiber.event.ModemHealthEvents.Request](#hibereventmodemhealtheventsrequest)
+  - [hiber.event.ModemHealthEvents.Response](#hibereventmodemhealtheventsresponse)
   - [hiber.event.ResolveEvent](#hibereventresolveevent)
   - [hiber.event.ResolveEvent.Request](#hibereventresolveeventrequest)
   - [hiber.event.ResolveEvent.Response](#hibereventresolveeventresponse)
@@ -214,6 +217,7 @@ the contained object.
 | title | [ string](#string) | Short text describing the event. |
 | description | [ string](#string) | Longer text describing the event in more detail. |
 | modem | [ hiber.event.Event.Modem](#hibereventeventmodem) | The modem number for this event, if it is related to a single modem. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | The tags for this event, if any. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_created | [ hiber.event.Event.ModemEvent.ModemCreatedEvent](#hibereventeventmodemeventmodemcreatedevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_updated | [ hiber.event.Event.ModemEvent.ModemUpdatedEvent](#hibereventeventmodemeventmodemupdatedevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_location_updated | [ hiber.event.Event.ModemEvent.ModemLocationUpdatedEvent](#hibereventeventmodemeventmodemlocationupdatedevent) | none |
@@ -910,7 +914,6 @@ This event is disabled by default.
 | title | [ string](#string) | none |
 | description | [ string](#string) | none |
 | transfer | [ hiber.transfer.Transfer](#hibertransfertransfer) | none |
-| deprecated_transfer | [ hiber.modem.ModemTransfer](#hibermodemmodemtransfer) | Deprecated, here to be backwards compatible with ModemTransferEvents. |
 
 ### hiber.event.Event.UserEvent
 
@@ -1162,6 +1165,34 @@ Mark a selection of events as resolved.
 | ----- | ---- | ----------- |
 | resolved | [ uint32](#uint32) | The amount of events that were resolved. |
 | request | [ hiber.event.MarkEventsResolved.Request](#hibereventmarkeventsresolvedrequest) | The original request, echoed back with any applied corrections. |
+
+### hiber.event.ModemHealthEvents
+
+Get the list of events that affect modem health, chronologically (by default, from now backwards in time).
+
+Only returns the Event with first-level fields set, event details are not included in the response
+(the oneof is not set).
+
+
+### hiber.event.ModemHealthEvents.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| selection | [ hiber.event.EventSelection](#hibereventeventselection) | none |
+| pagination | [ hiber.Pagination](#hiberpagination) | none |
+
+### hiber.event.ModemHealthEvents.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| request | [ hiber.event.ModemHealthEvents.Request](#hibereventmodemhealtheventsrequest) | none |
+| events | [repeated hiber.event.Event](#hibereventevent) | none |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
 
 ### hiber.event.ResolveEvent
 

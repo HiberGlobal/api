@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package hiber.device.type;
+
+option java_multiple_files = true;
+option java_package = "global.hiber.api.grpc.device.type";
+option go_package = "hiber";
+
+/* Preconfigured device type. */
+message DeviceType {
+    string identifier = 1;
+    string brand = 2;
+    string application = 3;
+    string category = 4;
+    string version = 5;
+    string description = 6;
+}
+
+/* Selection object for device types. */
+message DeviceTypeSelection {
+    string search = 1;
+}

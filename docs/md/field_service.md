@@ -336,6 +336,8 @@ Delete the given fields from a parser.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | modem | [ string](#string) | none |
+| name | [ string](#string) | none |
+| identifier | [ string](#string) | none |
 | fields | [repeated Field](#field) | none |
 
 ### ReplaceAllFieldsRequest

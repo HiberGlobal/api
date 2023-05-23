@@ -88,6 +88,9 @@
   - [MarkEventsResolved](#markeventsresolved)
   - [MarkEventsResolved.Request](#markeventsresolvedrequest)
   - [MarkEventsResolved.Response](#markeventsresolvedresponse)
+  - [ModemHealthEvents](#modemhealthevents)
+  - [ModemHealthEvents.Request](#modemhealtheventsrequest)
+  - [ModemHealthEvents.Response](#modemhealtheventsresponse)
   - [ResolveEvent](#resolveevent)
   - [ResolveEvent.Request](#resolveeventrequest)
   - [ResolveEvent.Response](#resolveeventresponse)
@@ -306,35 +309,6 @@
     - [hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing)
     - [hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian](#hibermodemmessagebodyparsersimplemodemmessagebodyparserendian)
 
-- Referenced messages from [modem_transfer.proto](#referenced-messages-from-modem_transferproto)
-  - [hiber.modem.CancelModemTransferRequest](#hibermodemcancelmodemtransferrequest)
-  - [hiber.modem.CancelModemTransferRequest.Response](#hibermodemcancelmodemtransferrequestresponse)
-  - [hiber.modem.DeleteModemTransferReturnLinesRequest](#hibermodemdeletemodemtransferreturnlinesrequest)
-  - [hiber.modem.DeleteModemTransferReturnLinesRequest.Response](#hibermodemdeletemodemtransferreturnlinesrequestresponse)
-  - [hiber.modem.ListModemTransferReturnLinesRequest](#hibermodemlistmodemtransferreturnlinesrequest)
-  - [hiber.modem.ListModemTransferReturnLinesRequest.Response](#hibermodemlistmodemtransferreturnlinesrequestresponse)
-  - [hiber.modem.ListModemTransfersRequest](#hibermodemlistmodemtransfersrequest)
-  - [hiber.modem.ListModemTransfersRequest.Response](#hibermodemlistmodemtransfersrequestresponse)
-  - [hiber.modem.ModemTransfer](#hibermodemmodemtransfer)
-  - [hiber.modem.ModemTransferReturnLine](#hibermodemmodemtransferreturnline)
-  - [hiber.modem.ModemTransferSelection](#hibermodemmodemtransferselection)
-  - [hiber.modem.NotReceivedModemTransferRequest](#hibermodemnotreceivedmodemtransferrequest)
-  - [hiber.modem.NotReceivedModemTransferRequest.Response](#hibermodemnotreceivedmodemtransferrequestresponse)
-  - [hiber.modem.PrepareModemForReturnRequest](#hibermodempreparemodemforreturnrequest)
-  - [hiber.modem.PrepareModemForReturnRequest.Response](#hibermodempreparemodemforreturnrequestresponse)
-  - [hiber.modem.ReceivedModemTransferRequest](#hibermodemreceivedmodemtransferrequest)
-  - [hiber.modem.ReceivedModemTransferRequest.Response](#hibermodemreceivedmodemtransferrequestresponse)
-  - [hiber.modem.SendReturnRequest](#hibermodemsendreturnrequest)
-  - [hiber.modem.SendReturnRequest.Response](#hibermodemsendreturnrequestresponse)
-  - [hiber.modem.TransferModemsRequest](#hibermodemtransfermodemsrequest)
-  - [hiber.modem.TransferModemsRequest.Response](#hibermodemtransfermodemsrequestresponse)
-
-    - [hiber.modem.ModemTransfer.Status](#hibermodemmodemtransferstatus)
-    - [hiber.modem.ModemTransfer.Type](#hibermodemmodemtransfertype)
-    - [hiber.modem.ModemTransferReturnLine.Reason](#hibermodemmodemtransferreturnlinereason)
-    - [hiber.modem.TransferModemsRequest.DataTransferMode](#hibermodemtransfermodemsrequestdatatransfermode)
-    - [hiber.modem.TransferModemsRequest.GatewayTransferMode](#hibermodemtransfermodemsrequestgatewaytransfermode)
-
 - Referenced messages from [organization.proto](#referenced-messages-from-organizationproto)
   - [hiber.organization.CreateOrganizationRequest](#hiberorganizationcreateorganizationrequest)
   - [hiber.organization.DeleteOrganizationRequest](#hiberorganizationdeleteorganizationrequest)
@@ -509,6 +483,18 @@ search, list and stream them for your own purposes
 
 
 
+### History
+> **rpc** History([EventHistory.Request](#eventhistoryrequest))
+    [EventHistory.Response](#eventhistoryresponse)
+
+
+
+### ModemHealth
+> **rpc** ModemHealth([ModemHealthEvents.Request](#modemhealtheventsrequest))
+    [ModemHealthEvents.Response](#modemhealtheventsresponse)
+
+
+
 ### Resolve
 > **rpc** Resolve([ResolveEvent.Request](#resolveeventrequest))
     [ResolveEvent.Response](#resolveeventresponse)
@@ -518,12 +504,6 @@ search, list and stream them for your own purposes
 ### MarkResolved
 > **rpc** MarkResolved([MarkEventsResolved.Request](#markeventsresolvedrequest))
     [MarkEventsResolved.Response](#markeventsresolvedresponse)
-
-
-
-### History
-> **rpc** History([EventHistory.Request](#eventhistoryrequest))
-    [EventHistory.Response](#eventhistoryresponse)
 
 
 
@@ -597,6 +577,7 @@ the contained object.
 | title | [ string](#string) | Short text describing the event. |
 | description | [ string](#string) | Longer text describing the event in more detail. |
 | modem | [ Event.Modem](#eventmodem) | The modem number for this event, if it is related to a single modem. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | The tags for this event, if any. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_created | [ Event.ModemEvent.ModemCreatedEvent](#eventmodemeventmodemcreatedevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_updated | [ Event.ModemEvent.ModemUpdatedEvent](#eventmodemeventmodemupdatedevent) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_location_updated | [ Event.ModemEvent.ModemLocationUpdatedEvent](#eventmodemeventmodemlocationupdatedevent) | none |
@@ -1293,7 +1274,6 @@ This event is disabled by default.
 | title | [ string](#string) | none |
 | description | [ string](#string) | none |
 | transfer | [ hiber.transfer.Transfer](#hibertransfertransfer) | none |
-| deprecated_transfer | [ hiber.modem.ModemTransfer](#hibermodemmodemtransfer) | Deprecated, here to be backwards compatible with ModemTransferEvents. |
 
 ### Event.UserEvent
 
@@ -1545,6 +1525,34 @@ Mark a selection of events as resolved.
 | ----- | ---- | ----------- |
 | resolved | [ uint32](#uint32) | The amount of events that were resolved. |
 | request | [ MarkEventsResolved.Request](#markeventsresolvedrequest) | The original request, echoed back with any applied corrections. |
+
+### ModemHealthEvents
+
+Get the list of events that affect modem health, chronologically (by default, from now backwards in time).
+
+Only returns the Event with first-level fields set, event details are not included in the response
+(the oneof is not set).
+
+
+### ModemHealthEvents.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| selection | [ EventSelection](#eventselection) | none |
+| pagination | [ hiber.Pagination](#hiberpagination) | none |
+
+### ModemHealthEvents.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| request | [ ModemHealthEvents.Request](#modemhealtheventsrequest) | none |
+| events | [repeated Event](#event) | none |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
 
 ### ResolveEvent
 
@@ -3823,301 +3831,6 @@ The type of post-processing to be applied to the result of this parser.
 | DEFAULT | none | 0 |
 | LITTLE_ENDIAN | none | 1 |
 | BIG_ENDIAN | none | 2 |
-
-
-
-## Referenced messages from modem_transfer.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
-
-#### This section was generated from [modem_transfer.proto](https://github.com/HiberGlobal/api/blob/master/modem_transfer.proto).
-
-
-### hiber.modem.CancelModemTransferRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.modem.ModemTransferSelection](#hibermodemmodemtransferselection) | none |
-
-### hiber.modem.CancelModemTransferRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| request | [ hiber.modem.CancelModemTransferRequest](#hibermodemcancelmodemtransferrequest) | none |
-| cancelled | [repeated hiber.modem.ModemTransfer](#hibermodemmodemtransfer) | none |
-
-### hiber.modem.DeleteModemTransferReturnLinesRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| transfer_id | [ string](#string) | none |
-| modem_numbers | [repeated string](#string) | none |
-
-### hiber.modem.DeleteModemTransferReturnLinesRequest.Response
-
-
-
-
-### hiber.modem.ListModemTransferReturnLinesRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.modem.ModemTransferSelection](#hibermodemmodemtransferselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
-
-### hiber.modem.ListModemTransferReturnLinesRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| request | [ hiber.modem.ListModemTransferReturnLinesRequest](#hibermodemlistmodemtransferreturnlinesrequest) | none |
-| lines | [repeated hiber.modem.ModemTransferReturnLine](#hibermodemmodemtransferreturnline) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
-
-### hiber.modem.ListModemTransfersRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.modem.ModemTransferSelection](#hibermodemmodemtransferselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
-
-### hiber.modem.ListModemTransfersRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| request | [ hiber.modem.ListModemTransfersRequest](#hibermodemlistmodemtransfersrequest) | none |
-| transfers | [repeated hiber.modem.ModemTransfer](#hibermodemmodemtransfer) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
-
-### hiber.modem.ModemTransfer
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifier | [ string](#string) | none |
-| modem_numbers | [repeated string](#string) | none |
-| type | [ hiber.modem.ModemTransfer.Type](#hibermodemmodemtransfertype) | none |
-| status | [ hiber.modem.ModemTransfer.Status](#hibermodemmodemtransferstatus) | none |
-| sender_organization | [ string](#string) | none |
-| recipient_organization | [ string](#string) | none |
-| return_transfers | [repeated string](#string) | none |
-| return_for | [repeated string](#string) | none |
-| tracking_information | [ string](#string) | none |
-| created_at | [ hiber.Timestamp](#hibertimestamp) | none |
-| received_at | [ hiber.Timestamp](#hibertimestamp) | none |
-| cancelled_at | [ hiber.Timestamp](#hibertimestamp) | none |
-| not_received_at | [ hiber.Timestamp](#hibertimestamp) | none |
-| return_deadline | [ hiber.Timestamp](#hibertimestamp) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-
-### hiber.modem.ModemTransferReturnLine
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| original_transfer | [ string](#string) | none |
-| return_transfer | [ string](#string) | none |
-| modem_numbers | [repeated string](#string) | none |
-| reason | [ hiber.modem.ModemTransferReturnLine.Reason](#hibermodemmodemtransferreturnlinereason) | none |
-| comment | [ string](#string) | none |
-| created_at | [ hiber.Timestamp](#hibertimestamp) | none |
-| returned_at | [ hiber.Timestamp](#hibertimestamp) | none |
-| return_deadline | [ hiber.Timestamp](#hibertimestamp) | none |
-
-### hiber.modem.ModemTransferSelection
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifiers | [repeated string](#string) | none |
-| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | none |
-| senders | [repeated string](#string) | none |
-| recipients | [repeated string](#string) | none |
-| statuses | [repeated hiber.modem.ModemTransfer.Status](#hibermodemmodemtransferstatus) | none |
-| created_in | [ hiber.TimeRange](#hibertimerange) | none |
-| received_in | [ hiber.TimeRange](#hibertimerange) | none |
-| not_received_in | [ hiber.TimeRange](#hibertimerange) | none |
-| cancelled_in | [ hiber.TimeRange](#hibertimerange) | none |
-| types | [repeated hiber.modem.ModemTransfer.Type](#hibermodemmodemtransfertype) | none |
-| inbound_only | [ bool](#bool) | Convenience method to setting recipients = my organization. Will ignore any current value for recipients, since the only valid recipient is you. |
-| outbound_only | [ bool](#bool) | Convenience method to setting senders = my organization. Will ignore any current value for senders, since the only valid sender is you. |
-
-### hiber.modem.NotReceivedModemTransferRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.modem.ModemTransferSelection](#hibermodemmodemtransferselection) | none |
-
-### hiber.modem.NotReceivedModemTransferRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| request | [ hiber.modem.NotReceivedModemTransferRequest](#hibermodemnotreceivedmodemtransferrequest) | none |
-| not_received | [repeated hiber.modem.ModemTransfer](#hibermodemmodemtransfer) | none |
-
-### hiber.modem.PrepareModemForReturnRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| transfer_id | [ string](#string) | The transfer id that you received the modems with, to be used to the return. If this is provided, only one return line is returned. If this is not provided, the given modem selection could match multiple transfers, so multiple return lines would be created. |
-| selection | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Selection of modems, received from the transfer above. |
-| reason | [ hiber.modem.ModemTransferReturnLine.Reason](#hibermodemmodemtransferreturnlinereason) | The reason for the return. For the 'other' reason, a comment is required. |
-| comment | [ string](#string) | Optional, unless the 'other' reason is selected. |
-| replace_previous_comment | [ bool](#bool) | Use this to update the comment for a return line (using the same transfer_id and reason). |
-
-### hiber.modem.PrepareModemForReturnRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| request | [ hiber.modem.PrepareModemForReturnRequest](#hibermodempreparemodemforreturnrequest) | none |
-| modem_return_lines | [repeated hiber.modem.ModemTransferReturnLine](#hibermodemmodemtransferreturnline) | none |
-
-### hiber.modem.ReceivedModemTransferRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.modem.ModemTransferSelection](#hibermodemmodemtransferselection) | none |
-
-### hiber.modem.ReceivedModemTransferRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| request | [ hiber.modem.ReceivedModemTransferRequest](#hibermodemreceivedmodemtransferrequest) | none |
-| received | [repeated hiber.modem.ModemTransfer](#hibermodemmodemtransfer) | none |
-
-### hiber.modem.SendReturnRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.modem.ModemTransferSelection](#hibermodemmodemtransferselection) | none |
-| tracking_information | [ string](#string) | none |
-
-### hiber.modem.SendReturnRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| request | [ hiber.modem.SendReturnRequest](#hibermodemsendreturnrequest) | none |
-| return_transfer | [ hiber.modem.ModemTransfer](#hibermodemmodemtransfer) | none |
-
-### hiber.modem.TransferModemsRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | The ModemSelection is automatically appended with a status filter for 'in stock' modems. Modems with a different status are ignored for the transfer. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **recipient**.recipient_organization | [ string](#string) | Existing organization to send the modems to. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **recipient**.create_recipient | [ hiber.organization.CreateOrganizationRequest](#hiberorganizationcreateorganizationrequest) | Create a new organization to transfer the modems to. |
-| tracking_information | [ string](#string) | Optional tracking information, like package tracking codes |
-| mark_received_automatically | [ bool](#bool) | Mark the transfer as received automatically. This only works if you're able to impersonate the recipient organization. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **gateway_and_external_devices**.allow_gateways_and_external_devices | [ bool](#bool) | When this value is not set to true, transferring gateways or modems with an external device id is not allowed. Gateways and external devices are connected to the current organization. Moving either a gateway or connected external device to another organization without moving the other can cause a number of issues. Deprecated since 0.46. To allow gateways to be transferred without their external devices must now be done using `gateway_transfer_mode` |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **gateway_and_external_devices**.gateway_transfer_mode | [ hiber.modem.TransferModemsRequest.GatewayTransferMode](#hibermodemtransfermodemsrequestgatewaytransfermode) | Set the mode with which this gateway is transferred. It explicitly sets what needs to happen to external devices. This setting is mutually exclusive with the (now deprecated) setting `allow_gateways_and_external_devices`. |
-| data_transfer_mode | [ hiber.modem.TransferModemsRequest.DataTransferMode](#hibermodemtransfermodemsrequestdatatransfermode) | What to do with the modem's data, like messages and events. |
-
-### hiber.modem.TransferModemsRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| request | [ hiber.modem.TransferModemsRequest](#hibermodemtransfermodemsrequest) | none |
-| transfer | [ hiber.modem.ModemTransfer](#hibermodemmodemtransfer) | none |
-| mark_received_automatically_failed | [ bool](#bool) | When marking a transfer to be received automatically, the calling entity must be able to impersonate the receiving entity. If this (or any other part of the marking the transfer as received) fails, this boolean will be set to true. It is the clients responsibility to check this boolean and inform the client. Note that the transfer itself is created and can still be accepted manually. |
-
-
-### Enums
-#### hiber.modem.ModemTransfer.Status
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| IN_TRANSIT | none | 0 |
-| RECEIVED | none | 1 |
-| CANCELLED | none | 3 |
-| NOT_RECEIVED | none | 4 |
-
-#### hiber.modem.ModemTransfer.Type
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| TRANSFER | none | 0 |
-| RETURN | none | 1 |
-
-#### hiber.modem.ModemTransferReturnLine.Reason
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| OTHER | none | 0 |
-| INVALID_RECIPIENT | none | 1 |
-| INVALID_CONFIGURATION | none | 2 |
-| DAMAGED | none | 3 |
-| DEAD | none | 4 |
-| MISSING | none | 5 |
-
-#### hiber.modem.TransferModemsRequest.DataTransferMode
-What to do with the messages, events and other related data.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| UNKNOWN | The API Will reject any request without an explicitly set DataTransferMode. | 0 |
-| DELETE_DATA | Exclude messages and all events. The data will be deleted. | 1 |
-
-#### hiber.modem.TransferModemsRequest.GatewayTransferMode
-What to do with external devices on transferring a gateway.
-This mode is evaluated twice: once when the transfer is created and once when the transfer is finalised.
-When creating, a double check is done on whether or not your transfer contains gateways or external devices.
-When finalising, the actual state of currently connected external devices is determined.
-Note: Any *new* external devices that start transmitting after starting the transfer will be processed as well.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| NOTHING_SELECTED | Signifies that no selection has been made. This is not allowed for gateways, the client must explicitly choose what happens to external devices. | 0 |
-| ORPHAN_EXTERNAL_DEVICES | When transferring a gateway, *orphan* all external devices. The devices are re-created in the recipient organization when they transmit through the gateway. The old modem is unchanged, but can no longer receive new messages, unless it is connected to another gateway in the sender organization. Old messages from the modem remain in the sender organization under its old modem number. | 1 |
-| DELETE_EXTERNAL_DEVICES | When transferring a gateway, mark all external devices as *DEAD*. The devices are re-created in the recipient organization when they transmit through the gateway. Old messages from this device remain in the sender organization under its old modem, which is marked DEAD. DEAD modems are be automatically hidden, but can still be accessed. | 2 |
-| TRANSFER_EXTERNAL_DEVICES | When transferring a gateway, *transfer* all external devices together with the gateway. This moves all existing external devices with the gateway, while they keep their modem number and messages. Old messages from this device will be available to the new owner. | 3 |
 
 
 

@@ -10,19 +10,22 @@
     "errorMessages": {
       "example-check-id": "Expected battery to be within 20..100%, but it is now at 15%!"
     },
-    "tags": [{
-      "id": "1",
-      "label": {
-        "name": "example-tag",
-        "type": "well"
+    "tags": [
+      {
+        "id": "1",
+        "label": {
+          "name": "example-tag",
+          "type": "well"
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "name": "example-tag-2",
+          "type": "well"
+        }
       }
-    }, {
-      "id": "2",
-      "label": {
-        "name": "example-tag-2",
-        "type": "well"
-      }
-    }],
+    ],
     "title": "Expected battery to be within 20..100%, but it is now at 15%!",
     "description": "In organization your-organization modem AAAA AAAA has failed the following checks:\n\n- example-check-id: Expected battery to be within 20..100%, but it is now at 15%!\n\nThe error messages were produced by alarm example-identifier: example\n\nwell: example-tag, example-tag-2",
     "time": {
@@ -63,5 +66,21 @@
     "number": "AAAA AAAA",
     "name": "AAAA AAAA",
     "identifier": "00 11 22 33 AA BB CC DD"
-  }
+  },
+  "tags": [
+    {
+      "id": "1",
+      "label": {
+        "name": "example-tag",
+        "type": "well"
+      }
+    },
+    {
+      "id": "2",
+      "label": {
+        "name": "example-tag-2",
+        "type": "well"
+      }
+    }
+  ]
 }

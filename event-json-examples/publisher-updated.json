@@ -38,7 +38,6 @@
         }
       }
     ],
-
     "title": "Webhook (id 1) has been updated.",
     "description": "Webhook (id 1) has been updated.\n\n- Description was updated to 'updated'.\n\n- Webhook url was changed to https://example.com/updated-webhook.\n\nwell: example-tag, example-tag-2",
     "time": {
@@ -59,5 +58,21 @@
     "textual": "2020-06-01T05:15:25.355Z",
     "timeZone": "UTC"
   },
+  "tags": [
+    {
+      "id": "1",
+      "label": {
+        "name": "example-tag",
+        "type": "well"
+      }
+    },
+    {
+      "id": "2",
+      "label": {
+        "name": "example-tag-2",
+        "type": "well"
+      }
+    }
+  ],
   "type": "PUBLISHER_UPDATED"
 }

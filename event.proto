@@ -12,7 +12,6 @@ import "integration_mqtt.proto";
 import "modem.proto";
 import "modem_alarm.proto";
 import "modem_message_body_parser.proto";
-import "modem_transfer.proto";
 import "organization.proto";
 import "publisher.proto";
 import "tag.proto";
@@ -31,9 +30,11 @@ option go_package = "hiber";
 service EventService {
     rpc List (ListEventsRequest) returns (ListEventsRequest.Response);
     rpc Stream (EventStreamRequest) returns (stream Event);
+    rpc History (EventHistory.Request) returns (EventHistory.Response);
+
+    rpc ModemHealth (ModemHealthEvents.Request) returns (ModemHealthEvents.Response);
     rpc Resolve (ResolveEvent.Request) returns (ResolveEvent.Response);
     rpc MarkResolved (MarkEventsResolved.Request) returns (MarkEventsResolved.Response);
-    rpc History (EventHistory.Request) returns (EventHistory.Response);
 
     rpc GetEventConfiguration (EventConfiguration.Request) returns (EventConfiguration);
     rpc UpdateEventConfiguration (EventConfiguration) returns (EventConfiguration);
@@ -84,6 +85,9 @@ message Event {
 
     /* The modem number for this event, if it is related to a single modem. */
     Modem modem = 104;
+
+    /* The tags for this event, if any. */
+    repeated tag.Tag tags = 105;
 
     oneof event {
         ModemEvent.ModemCreatedEvent modem_created = 55;
@@ -464,9 +468,6 @@ message Event {
         string description = 6;
 
         transfer.Transfer transfer = 7;
-
-        /* Deprecated, here to be backwards compatible with ModemTransferEvents. */
-        modem.ModemTransfer deprecated_transfer = 1 [deprecated = true];
     }
 
     message AssignmentEvent {
@@ -919,6 +920,25 @@ message EventStreamRequest {
      * Filtering on tags or publishers, for example, can only apply to the parent organization.
      */
     Filter.ChildOrganizations child_organizations = 3;
+}
+
+/* Get the list of events that affect modem health, chronologically (by default, from now backwards in time).
+ *
+ * Only returns the Event with first-level fields set, event details are not included in the response
+ * (the oneof is not set).
+ */
+message ModemHealthEvents {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        EventSelection selection = 2;
+        Pagination pagination = 3;
+    }
+    message Response {
+        Request request = 1;
+        repeated Event events = 2;
+        Pagination.Result pagination = 3;
+    }
 }
 
 /* Resolve a resolvable event using its resolve_identifier. */
