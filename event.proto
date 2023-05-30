@@ -77,6 +77,16 @@ message Event {
      */
     health.HealthLevel health_level = 101;
 
+    oneof resolved_status {
+        /* Whether this event was resolved. */
+        bool resolved = 106;
+
+        /* The identifier to use when resolving this event.
+         * Only present when not resolved, and only available for some event types.
+         */
+        string resolve_identifier = 107;
+    }
+
     /* Short text describing the event. */
     string title = 102;
 

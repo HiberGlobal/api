@@ -257,7 +257,6 @@
   - [hiber.modem.alarm.UpdateModemAlarmRemoveCheck.Response](#hibermodemalarmupdatemodemalarmremovecheckresponse)
   - [hiber.modem.alarm.UpdateModemAlarmUpdateCheck](#hibermodemalarmupdatemodemalarmupdatecheck)
   - [hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Request](#hibermodemalarmupdatemodemalarmupdatecheckrequest)
-  - [hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry](#hibermodemalarmupdatemodemalarmupdatecheckrequestupdateusingparametersentry)
   - [hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Response](#hibermodemalarmupdatemodemalarmupdatecheckresponse)
 
     - [hiber.modem.alarm.ModemAlarm.TriggerCondition](#hibermodemalarmmodemalarmtriggercondition)
@@ -574,6 +573,8 @@ the contained object.
 | is_error | [ bool](#bool) | Whether this event causes the 'Error' health level. If your organization does not use the default health levels, this field will be omitted. Use health_level instead. |
 | is_warning | [ bool](#bool) | Whether this event causes the 'Warning' health level. If your organization does not use the default health levels, this field will be omitted. Use health_level instead. |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | The health level caused by this event. This health generally applies to either a modem, a token or a publisher, and is also applied to the organization health. Not every event affects health, so this field might be empty. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **resolved_status**.resolved | [ bool](#bool) | Whether this event was resolved. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **resolved_status**.resolve_identifier | [ string](#string) | The identifier to use when resolving this event. Only present when not resolved, and only available for some event types. |
 | title | [ string](#string) | Short text describing the event. |
 | description | [ string](#string) | Longer text describing the event in more detail. |
 | modem | [ Event.Modem](#eventmodem) | The modem number for this event, if it is related to a single modem. |
@@ -3318,17 +3319,7 @@ check.
 | alarm_identifier | [ string](#string) | The identifier of the alarm of which to update the check. |
 | check_identifier | [ string](#string) | The identifier of the check to update. |
 | update_check | [ hiber.modem.alarm.ModemAlarm.Check](#hibermodemalarmmodemalarmcheck) | The new values for the check of this alarm. |
-| update_using_parameters | [map hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry](#hibermodemalarmupdatemodemalarmupdatecheckrequestupdateusingparametersentry) | Use parameters to update the check, as it would be when they were added when the alarm was assigned. |
 | test_parameters_only | [ bool](#bool) | If set, the update is not actually saved, but only applied and returned. This is a convenience to easily test parameters for a check similar to TestModemAlarmTestParameters. |
-
-### hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
 
 ### hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Response
 

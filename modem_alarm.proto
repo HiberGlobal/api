@@ -579,13 +579,12 @@ message UpdateModemAlarmUpdateCheck {
         /* The new values for the check of this alarm. */
         ModemAlarm.Check update_check = 4;
 
-        /* Use parameters to update the check, as it would be when they were added when the alarm was assigned. */
-        map<string, google.protobuf.Value> update_using_parameters = 5;
-
         /* If set, the update is not actually saved, but only applied and returned.
          * This is a convenience to easily test parameters for a check similar to TestModemAlarmTestParameters.
          */
         bool test_parameters_only = 6;
+
+        reserved 5;
     }
     message Response {
         ModemAlarm updated = 1;

@@ -1,5 +1,20 @@
 # Changelog Hiber API
 
+### 0.152 (2023-05-29)
+
+##### AlarmService
+
+- Removed unused field `UpdateModemAlarmUpdateCheck.Request.update_using_parameters`.
+
+##### EventService
+
+- Added `resolved` and `resolve_identifier` (in a `one-of`, since it cannot have both) to top-level `Event`.
+- Fixed a bug where `ModemHealth` would return non-modem events with health.
+
+##### ValueService
+
+- Fixed a bug where rotation speed and rate value were not set correctly in the API response.
+
 ### 0.151 (2023-05-22)
 
 ##### DeviceService

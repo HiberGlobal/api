@@ -1636,10 +1636,6 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry"><span class="badge">M</span>UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Response"><span class="badge">M</span>UpdateModemAlarmUpdateCheck.Response</a>
                 </li>
               
@@ -2539,6 +2535,21 @@ Use health_level instead. </p></td>
 This health generally applies to either a modem, a token or a publisher,
 and is also applied to the organization health.
 Not every event affects health, so this field might be empty. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>resolved</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether this event was resolved. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>resolve_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The identifier to use when resolving this event.
+Only present when not resolved, and only available for some event types. </p></td>
                 </tr>
               
                 <tr>
@@ -17615,49 +17626,11 @@ be available to unencrypted values due to performance issues. </p></td>
                 </tr>
               
                 <tr>
-                  <td>update_using_parameters</td>
-                  <td><a href="#hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry">UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry</a></td>
-                  <td>repeated</td>
-                  <td><p>Use parameters to update the check, as it would be when they were added when the alarm was assigned. </p></td>
-                </tr>
-              
-                <tr>
                   <td>test_parameters_only</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>If set, the update is not actually saved, but only applied and returned.
 This is a convenience to easily test parameters for a check similar to TestModemAlarmTestParameters. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry">UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#google.protobuf.Value">google.protobuf.Value</a></td>
-                  <td></td>
-                  <td><p> </p></td>
                 </tr>
               
             </tbody>

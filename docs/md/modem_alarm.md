@@ -64,7 +64,6 @@ advanced use cases, like assigning to a tag.
   - [UpdateModemAlarmRemoveCheck.Response](#updatemodemalarmremovecheckresponse)
   - [UpdateModemAlarmUpdateCheck](#updatemodemalarmupdatecheck)
   - [UpdateModemAlarmUpdateCheck.Request](#updatemodemalarmupdatecheckrequest)
-  - [UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry](#updatemodemalarmupdatecheckrequestupdateusingparametersentry)
   - [UpdateModemAlarmUpdateCheck.Response](#updatemodemalarmupdatecheckresponse)
 
 - Enums
@@ -781,17 +780,7 @@ check.
 | alarm_identifier | [ string](#string) | The identifier of the alarm of which to update the check. |
 | check_identifier | [ string](#string) | The identifier of the check to update. |
 | update_check | [ ModemAlarm.Check](#modemalarmcheck) | The new values for the check of this alarm. |
-| update_using_parameters | [map UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry](#updatemodemalarmupdatecheckrequestupdateusingparametersentry) | Use parameters to update the check, as it would be when they were added when the alarm was assigned. |
 | test_parameters_only | [ bool](#bool) | If set, the update is not actually saved, but only applied and returned. This is a convenience to easily test parameters for a check similar to TestModemAlarmTestParameters. |
-
-### UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
 
 ### UpdateModemAlarmUpdateCheck.Response
 

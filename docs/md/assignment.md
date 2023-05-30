@@ -104,7 +104,6 @@
   - [hiber.modem.alarm.UpdateModemAlarmRemoveCheck.Response](#hibermodemalarmupdatemodemalarmremovecheckresponse)
   - [hiber.modem.alarm.UpdateModemAlarmUpdateCheck](#hibermodemalarmupdatemodemalarmupdatecheck)
   - [hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Request](#hibermodemalarmupdatemodemalarmupdatecheckrequest)
-  - [hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry](#hibermodemalarmupdatemodemalarmupdatecheckrequestupdateusingparametersentry)
   - [hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Response](#hibermodemalarmupdatemodemalarmupdatecheckresponse)
 
     - [hiber.modem.alarm.ModemAlarm.TriggerCondition](#hibermodemalarmmodemalarmtriggercondition)
@@ -1324,17 +1323,7 @@ check.
 | alarm_identifier | [ string](#string) | The identifier of the alarm of which to update the check. |
 | check_identifier | [ string](#string) | The identifier of the check to update. |
 | update_check | [ hiber.modem.alarm.ModemAlarm.Check](#hibermodemalarmmodemalarmcheck) | The new values for the check of this alarm. |
-| update_using_parameters | [map hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry](#hibermodemalarmupdatemodemalarmupdatecheckrequestupdateusingparametersentry) | Use parameters to update the check, as it would be when they were added when the alarm was assigned. |
 | test_parameters_only | [ bool](#bool) | If set, the update is not actually saved, but only applied and returned. This is a convenience to easily test parameters for a check similar to TestModemAlarmTestParameters. |
-
-### hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Request.UpdateUsingParametersEntry
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
 
 ### hiber.modem.alarm.UpdateModemAlarmUpdateCheck.Response
 
