@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.153 (2023-06-05)
+
+##### ValueService
+
+- Fixed a bug where rotation speed and rate value were not set correctly in the API response.
+
 ### 0.152 (2023-05-29)
 
 ##### AlarmService
