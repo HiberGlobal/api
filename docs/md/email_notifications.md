@@ -36,6 +36,7 @@
   - [hiber.Filter](#hiberfilter)
   - [hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations)
   - [hiber.Filter.ChildOrganizations.Update](#hiberfilterchildorganizationsupdate)
+  - [hiber.Filter.DeviceTypes](#hiberfilterdevicetypes)
   - [hiber.Filter.Events](#hiberfilterevents)
   - [hiber.Filter.Events.Update](#hiberfiltereventsupdate)
   - [hiber.Filter.FieldEnumValues](#hiberfilterfieldenumvalues)
@@ -47,6 +48,7 @@
   - [hiber.Filter.Organizations](#hiberfilterorganizations)
   - [hiber.Filter.Properties](#hiberfilterproperties)
   - [hiber.Filter.Publishers](#hiberfilterpublishers)
+  - [hiber.Filter.SensorBrands](#hiberfiltersensorbrands)
   - [hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions)
   - [hiber.Filter.Tags](#hiberfiltertags)
   - [hiber.Filter.Tags.Update](#hiberfiltertagsupdate)
@@ -370,6 +372,15 @@ Update object to update a Filter.ChildOrganizations field.
 | updated | [ bool](#bool) | none |
 | value | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | none |
 
+### hiber.Filter.DeviceTypes
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| include | [repeated string](#string) | none |
+| exclude | [repeated string](#string) | none |
+
 ### hiber.Filter.Events
 
 
@@ -471,6 +482,15 @@ Filter result on specific properties encoded in map-value pairs.
 | include | [repeated int64](#int64) | none |
 | exclude | [repeated int64](#int64) | none |
 | only_active | [ bool](#bool) | none |
+
+### hiber.Filter.SensorBrands
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| include | [repeated string](#string) | none |
+| exclude | [repeated string](#string) | none |
 
 ### hiber.Filter.SupportPermissions
 

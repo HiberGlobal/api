@@ -6627,6 +6627,13 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td><p>Device type for this modem. </p></td>
                 </tr>
               
+                <tr>
+                  <td>sensor_brand</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Brand for this modem&#39;s sensor. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -7322,6 +7329,27 @@ In other words, when providing multiple types, this is an &#34;OR&#34; relations
                 </tr>
               
                 <tr>
+                  <td>device_types</td>
+                  <td><a href="#hiber.Filter.DeviceTypes">hiber.Filter.DeviceTypes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sensorBrands</td>
+                  <td><a href="#hiber.Filter.SensorBrands">hiber.Filter.SensorBrands</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>identifiers</td>
+                  <td><a href="#hiber.Filter.ModemIdentifiers">hiber.Filter.ModemIdentifiers</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>only_gateways</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -7351,7 +7379,7 @@ create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. </p></td
                   <td>external_device_ids</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
@@ -7408,6 +7436,11 @@ create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. </p></td
               
                 <tr>
                   <td>only_has_external_device_ids</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>external_device_ids</td>
                   <td><p>true</p></td>
                 </tr>
               
@@ -8252,6 +8285,66 @@ values were different. Set this to true to apply it anyway. </p></td>
                 <td>HEALTH_DESC_ALPHABETICAL</td>
                 <td>13</td>
                 <td><p>Health sorted alphabetically by health level name, descending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SENSOR_BRAND_ASC</td>
+                <td>16</td>
+                <td><p>Sort alphabetically on the brand of the sensor, in ascending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SENSOR_BRAND_DESC</td>
+                <td>17</td>
+                <td><p>Sort alphabetically on the brand of the sensor, in descending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>DEVICE_TYPE_ASC</td>
+                <td>18</td>
+                <td><p>Sort alphabetically on the device type, in ascending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>DEVICE_TYPE_DESC</td>
+                <td>19</td>
+                <td><p>Sort alphabetically on the device type, in descending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>TAG_TYPE_WELL_ASC</td>
+                <td>20</td>
+                <td><p>Sort alphabetically on any tags of type &#39;well&#39;, in ascending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>TAG_TYPE_WELL_DESC</td>
+                <td>21</td>
+                <td><p>Sort alphabetically on any tags of type &#39;well&#39;, in descending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>TAG_TYPE_SITE_ASC</td>
+                <td>22</td>
+                <td><p>Sort alphabetically on any tags of type &#39;site&#39;, in ascending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>TAG_TYPE_SITE_DESC</td>
+                <td>23</td>
+                <td><p>Sort alphabetically on any tags of type &#39;site&#39;, in descending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>TAG_TYPE_PRODUCTION_AREA_ASC</td>
+                <td>24</td>
+                <td><p>Sort alphabetically on any tags of type &#39;production_area&#39;, in ascending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>TAG_TYPE_PRODUCTION_AREA_DESC</td>
+                <td>25</td>
+                <td><p>Sort alphabetically on any tags of type &#39;production_area&#39;, in descending order.</p></td>
               </tr>
             
           </tbody>

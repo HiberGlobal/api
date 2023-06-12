@@ -12,38 +12,10 @@ service SingleSignOnService {
 
     /* Zendesk SSO using custom JWT */
     rpc Zendesk (ZendeskTokenRequest) returns (ZendeskTokenRequest.Response);
-
-    /* Dundas SSO */
-    rpc Dundas (DundasSSO.Request) returns (DundasSSO.Response);
 }
 
 message ZendeskTokenRequest {
     message Response {
         string token = 1;
-    }
-}
-
-/* Create a session id for the Dundas BI tool. */
-message DundasSSO {
-    message Request {
-        /* The organization to get a session id for. */
-        string organization = 1;
-
-        /* Include the current session id to validate it. If it is valid, the server will not create a new session id.
-         * This makes it easier to avoid having multiple sessions.
-         */
-        string current_session_id = 2;
-
-        /* Kill any other sessions for your account. */
-        bool kill_other_sessions = 3;
-    }
-    message Response {
-        /* A valid session id for the given organization.
-         * If a session id was given, and it was valid, this is that session id.
-         */
-        string session_id = 1;
-
-        /* The subdomain to write the session id to, for convenience. */
-        string session_id_subdomain = 2;
     }
 }

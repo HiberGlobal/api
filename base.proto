@@ -352,6 +352,16 @@ message Filter {
         repeated string exclude = 2;
     }
 
+    message DeviceTypes {
+        repeated string include = 1;
+        repeated string exclude = 2;
+    }
+
+    message SensorBrands {
+        repeated string include = 1;
+        repeated string exclude = 2;
+    }
+
     message Tags {
         repeated int64 include = 1;
         repeated int64 exclude = 2;

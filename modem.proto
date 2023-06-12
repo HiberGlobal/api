@@ -185,6 +185,9 @@ message Modem {
 
         /* Device type for this modem. */
         string device_type = 3;
+
+        /* Brand for this modem's sensor. */
+        string sensor_brand = 4;
     }
 
     message TechnicalData {
@@ -330,6 +333,10 @@ message ModemSelection {
     /* Exclude modems that have a type listed in types. */
     repeated Modem.Type exclude_types = 19;
 
+    Filter.DeviceTypes device_types = 22;
+    Filter.SensorBrands sensorBrands = 23;
+    Filter.ModemIdentifiers identifiers = 24;
+
     /* [DEPRECATED] Only list devices that are a gateway.
      * Replaced by `types`.
      * If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`.
@@ -342,7 +349,7 @@ message ModemSelection {
      */
     bool only_has_external_device_ids = 13 [deprecated = true];
     Filter.Modems connected_to_gateways = 14;
-    repeated string external_device_ids = 15;
+    repeated string external_device_ids = 15 [deprecated = true];
 
     hiber.tag.TagSelection filter_by_tags = 2;
 
@@ -573,6 +580,29 @@ message ListModemsRequest {
         HEALTH_ASC_ALPHABETICAL = 12;
         /* Health sorted alphabetically by health level name, descending order. */
         HEALTH_DESC_ALPHABETICAL = 13;
+
+        /* Sort alphabetically on the brand of the sensor, in ascending order. */
+        SENSOR_BRAND_ASC = 16;
+        /* Sort alphabetically on the brand of the sensor, in descending order. */
+        SENSOR_BRAND_DESC = 17;
+
+        /* Sort alphabetically on the device type, in ascending order. */
+        DEVICE_TYPE_ASC = 18;
+        /* Sort alphabetically on the device type, in descending order. */
+        DEVICE_TYPE_DESC = 19;
+
+        /* Sort alphabetically on any tags of type 'well', in ascending order. */
+        TAG_TYPE_WELL_ASC = 20;
+        /* Sort alphabetically on any tags of type 'well', in descending order. */
+        TAG_TYPE_WELL_DESC = 21;
+        /* Sort alphabetically on any tags of type 'site', in ascending order. */
+        TAG_TYPE_SITE_ASC = 22;
+        /* Sort alphabetically on any tags of type 'site', in descending order. */
+        TAG_TYPE_SITE_DESC = 23;
+        /* Sort alphabetically on any tags of type 'production_area', in ascending order. */
+        TAG_TYPE_PRODUCTION_AREA_ASC = 24;
+        /* Sort alphabetically on any tags of type 'production_area', in descending order. */
+        TAG_TYPE_PRODUCTION_AREA_DESC = 25;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */

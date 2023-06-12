@@ -1,5 +1,19 @@
 # Changelog Hiber API
 
+### 0.154 (2023-06-12)
+
+##### DeviceService
+
+- Added `DeviceSelection.device_types` to select modems by `device_type`
+  and `DeviceSelection.sensor_brand` to select modems by `sensor_brand`.
+  - For values, use `DevicTypeService.List`
+
+##### ModemService
+
+- Added `ModemSelection.device_types` to select modems by `device_type`
+  and `ModemSelection.sensor_brand` to select modems by `sensor_brand`.
+  - For values, use `DevicTypeService.List`
+
 ### 0.153 (2023-06-05)
 
 ##### ValueService

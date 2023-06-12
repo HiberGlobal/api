@@ -179,18 +179,6 @@
             <ul>
               
                 <li>
-                  <a href="#hiber.sso.DundasSSO"><span class="badge">M</span>DundasSSO</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.sso.DundasSSO.Request"><span class="badge">M</span>DundasSSO.Request</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.sso.DundasSSO.Response"><span class="badge">M</span>DundasSSO.Response</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.sso.ZendeskTokenRequest"><span class="badge">M</span>ZendeskTokenRequest</a>
                 </li>
               
@@ -219,84 +207,6 @@
       </div>
       <p></p>
 
-      
-        <h3 id="hiber.sso.DundasSSO">DundasSSO</h3>
-        <p>Create a session id for the Dundas BI tool.</p>
-
-        
-
-        
-      
-        <h3 id="hiber.sso.DundasSSO.Request">DundasSSO.Request</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>The organization to get a session id for. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>current_session_id</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Include the current session id to validate it. If it is valid, the server will not create a new session id.
-This makes it easier to avoid having multiple sessions. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>kill_other_sessions</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Kill any other sessions for your account. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.sso.DundasSSO.Response">DundasSSO.Response</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>session_id</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>A valid session id for the given organization.
-If a session id was given, and it was valid, this is that session id. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>session_id_subdomain</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>The subdomain to write the session id to, for convenience. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
       
         <h3 id="hiber.sso.ZendeskTokenRequest">ZendeskTokenRequest</h3>
         <p></p>
@@ -348,13 +258,6 @@ If a session id was given, and it was valid, this is that session id. </p></td>
                 <td><a href="#hiber.sso.ZendeskTokenRequest">ZendeskTokenRequest</a></td>
                 <td><a href="#hiber.sso.ZendeskTokenRequest.Response">ZendeskTokenRequest.Response</a></td>
                 <td><p>Zendesk SSO using custom JWT</p></td>
-              </tr>
-            
-              <tr>
-                <td>Dundas</td>
-                <td><a href="#hiber.sso.DundasSSO.Request">DundasSSO.Request</a></td>
-                <td><a href="#hiber.sso.DundasSSO.Response">DundasSSO.Response</a></td>
-                <td><p>Dundas SSO</p></td>
               </tr>
             
           </tbody>

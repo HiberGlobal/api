@@ -87,6 +87,7 @@
   - [hiber.Filter](#hiberfilter)
   - [hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations)
   - [hiber.Filter.ChildOrganizations.Update](#hiberfilterchildorganizationsupdate)
+  - [hiber.Filter.DeviceTypes](#hiberfilterdevicetypes)
   - [hiber.Filter.Events](#hiberfilterevents)
   - [hiber.Filter.Events.Update](#hiberfiltereventsupdate)
   - [hiber.Filter.FieldEnumValues](#hiberfilterfieldenumvalues)
@@ -98,6 +99,7 @@
   - [hiber.Filter.Organizations](#hiberfilterorganizations)
   - [hiber.Filter.Properties](#hiberfilterproperties)
   - [hiber.Filter.Publishers](#hiberfilterpublishers)
+  - [hiber.Filter.SensorBrands](#hiberfiltersensorbrands)
   - [hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions)
   - [hiber.Filter.Tags](#hiberfiltertags)
   - [hiber.Filter.Tags.Update](#hiberfiltertagsupdate)
@@ -155,6 +157,7 @@ They have a unique device number in our system, used to identify them.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_transmission_interval**.transmission_interval | [optional hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_transmission_rate**.expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this device. |
 | type | [ string](#string) | The DeviceType for this device. See DeviceType for more information. |
+| sensor_brand | [ string](#string) | The DeviceType for this device. See DeviceType for more information. |
 
 ### Device.Links
 
@@ -188,6 +191,8 @@ Filter devices by device number, tags, etc.
 | lifecycles | [ ModemFilter.Lifecycles](#modemfilterlifecycles) | none |
 | with_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
 | peripherals | [ hiber.Filter.Properties](#hiberfilterproperties) | none |
+| device_types | [ hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) | none |
+| sensorBrands | [ hiber.Filter.SensorBrands](#hiberfiltersensorbrands) | none |
 | filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
 | with_last_message_in | [ hiber.TimeRange](#hibertimerange) | none |
 
@@ -228,6 +233,16 @@ Sorting options for the results.
 | HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 13 |
 | HEALTH_ALPHABETICAL_ASC | Health sorted alphabetically by health level name. | 14 |
 | HEALTH_ALPHABETICAL_DESC | Health sorted alphabetically by health level name, descending order. | 15 |
+| SENSOR_BRAND_ASC | Sort alphabetically on the brand of the sensor, in ascending order. | 16 |
+| SENSOR_BRAND_DESC | Sort alphabetically on the brand of the sensor, in descending order. | 17 |
+| DEVICE_TYPE_ASC | Sort alphabetically on the device type, in ascending order. | 18 |
+| DEVICE_TYPE_DESC | Sort alphabetically on the device type, in descending order. | 19 |
+| TAG_TYPE_WELL_ASC | Sort alphabetically on any tags of type 'well', in ascending order. | 20 |
+| TAG_TYPE_WELL_DESC | Sort alphabetically on any tags of type 'well', in descending order. | 21 |
+| TAG_TYPE_SITE_ASC | Sort alphabetically on any tags of type 'site', in ascending order. | 22 |
+| TAG_TYPE_SITE_DESC | Sort alphabetically on any tags of type 'site', in descending order. | 23 |
+| TAG_TYPE_PRODUCTION_AREA_ASC | Sort alphabetically on any tags of type 'production_area', in ascending order. | 24 |
+| TAG_TYPE_PRODUCTION_AREA_DESC | Sort alphabetically on any tags of type 'production_area', in descending order. | 25 |
 
 
 
@@ -381,6 +396,9 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 | transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) | none |
 | include_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Only include modems that have a type listed in types. In other words, when providing multiple types, this is an "OR" relationship. |
 | exclude_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Exclude modems that have a type listed in types. |
+| device_types | [ hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) | none |
+| sensorBrands | [ hiber.Filter.SensorBrands](#hiberfiltersensorbrands) | none |
+| identifiers | [ hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) | none |
 | only_gateways | [ bool](#bool) | [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
 | only_has_external_device_ids | [ bool](#bool) | [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
 | connected_to_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
@@ -412,6 +430,16 @@ Sorting options for the results.
 | HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 11 |
 | HEALTH_ASC_ALPHABETICAL | Health sorted alphabetically by health level name. | 12 |
 | HEALTH_DESC_ALPHABETICAL | Health sorted alphabetically by health level name, descending order. | 13 |
+| SENSOR_BRAND_ASC | Sort alphabetically on the brand of the sensor, in ascending order. | 16 |
+| SENSOR_BRAND_DESC | Sort alphabetically on the brand of the sensor, in descending order. | 17 |
+| DEVICE_TYPE_ASC | Sort alphabetically on the device type, in ascending order. | 18 |
+| DEVICE_TYPE_DESC | Sort alphabetically on the device type, in descending order. | 19 |
+| TAG_TYPE_WELL_ASC | Sort alphabetically on any tags of type 'well', in ascending order. | 20 |
+| TAG_TYPE_WELL_DESC | Sort alphabetically on any tags of type 'well', in descending order. | 21 |
+| TAG_TYPE_SITE_ASC | Sort alphabetically on any tags of type 'site', in ascending order. | 22 |
+| TAG_TYPE_SITE_DESC | Sort alphabetically on any tags of type 'site', in descending order. | 23 |
+| TAG_TYPE_PRODUCTION_AREA_ASC | Sort alphabetically on any tags of type 'production_area', in ascending order. | 24 |
+| TAG_TYPE_PRODUCTION_AREA_DESC | Sort alphabetically on any tags of type 'production_area', in descending order. | 25 |
 
 #### hiber.modem.Modem.Lifecycle
 
@@ -1014,6 +1042,15 @@ Update object to update a Filter.ChildOrganizations field.
 | updated | [ bool](#bool) | none |
 | value | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | none |
 
+### hiber.Filter.DeviceTypes
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| include | [repeated string](#string) | none |
+| exclude | [repeated string](#string) | none |
+
 ### hiber.Filter.Events
 
 
@@ -1115,6 +1152,15 @@ Filter result on specific properties encoded in map-value pairs.
 | include | [repeated int64](#int64) | none |
 | exclude | [repeated int64](#int64) | none |
 | only_active | [ bool](#bool) | none |
+
+### hiber.Filter.SensorBrands
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| include | [repeated string](#string) | none |
+| exclude | [repeated string](#string) | none |
 
 ### hiber.Filter.SupportPermissions
 

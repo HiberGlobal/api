@@ -10,9 +10,6 @@
   - [SingleSignOnService](#singlesignonservice)
 
 - Messages
-  - [DundasSSO](#dundassso)
-  - [DundasSSO.Request](#dundasssorequest)
-  - [DundasSSO.Response](#dundasssoresponse)
   - [ZendeskTokenRequest](#zendesktokenrequest)
   - [ZendeskTokenRequest.Response](#zendesktokenrequestresponse)
 
@@ -30,38 +27,8 @@ Single sign on support service.
 
 Zendesk SSO using custom JWT
 
-### Dundas
-> **rpc** Dundas([DundasSSO.Request](#dundasssorequest))
-    [DundasSSO.Response](#dundasssoresponse)
-
-Dundas SSO
-
 
 ## Messages
-
-### DundasSSO
-
-Create a session id for the Dundas BI tool.
-
-
-### DundasSSO.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | The organization to get a session id for. |
-| current_session_id | [ string](#string) | Include the current session id to validate it. If it is valid, the server will not create a new session id. This makes it easier to avoid having multiple sessions. |
-| kill_other_sessions | [ bool](#bool) | Kill any other sessions for your account. |
-
-### DundasSSO.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| session_id | [ string](#string) | A valid session id for the given organization. If a session id was given, and it was valid, this is that session id. |
-| session_id_subdomain | [ string](#string) | The subdomain to write the session id to, for convenience. |
 
 ### ZendeskTokenRequest
 
