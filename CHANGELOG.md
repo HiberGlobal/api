@@ -1,5 +1,21 @@
 # Changelog Hiber API
 
+### 0.155 (2023-06-19)
+
+- Refactored encryption logic to allow us to more easily improve encryption (i.e. switching algorithms) in the future
+
+##### DeviceService
+
+- Added the option to sort on tags for some common tag types: 'well', 'site' and 'production_area'.
+
+##### ModemService
+
+- Added the option to sort on tags for some common tag types: 'well', 'site' and 'production_area'.
+
+##### SingleSignOnService
+
+- Removed Dundas option.
+
 ### 0.154 (2023-06-12)
 
 ##### DeviceService
