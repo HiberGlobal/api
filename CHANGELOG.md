@@ -1,5 +1,20 @@
 # Changelog Hiber API
 
+### 0.156 (2023-06-26)
+
+##### StatusService
+
+- Removed the outdated status service; it was no longer in use and used the old health.
+
+##### ModemService
+
+- Fix a bug where `connected_to_gateway` was not set on modem when showing child organizations.
+
+##### UserService
+
+- Invites now expire after 30 days.
+  - This has also been applied to existing invites.
+
 ### 0.155 (2023-06-19)
 
 - Refactored encryption logic to allow us to more easily improve encryption (i.e. switching algorithms) in the future

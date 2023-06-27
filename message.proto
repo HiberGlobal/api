@@ -132,6 +132,9 @@ message MessageSelection {
     /* Filter message by time range. This field is required, to limit the amount of messages. */
     TimeRange time_range = 2;
 
+    /* Include messages by id */
+    repeated int64 modem_message_ids = 4;
+
     /* Replace whatever time zone was specified in the start and end time with the modem time zone.
      * This means you may get values outside of the original time range, but can be useful when requesting
      * data for a date, for example.

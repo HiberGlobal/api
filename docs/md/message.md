@@ -388,6 +388,7 @@ Filter messages by modem and time sent (note that this is not the time the messa
 | ----- | ---- | ----------- |
 | modem_selection | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the modems to return messages for. |
 | time_range | [ hiber.TimeRange](#hibertimerange) | Filter message by time range. This field is required, to limit the amount of messages. |
+| modem_message_ids | [repeated int64](#int64) | Include messages by id |
 | override_time_range_with_modem_time_zone | [ bool](#bool) | Replace whatever time zone was specified in the start and end time with the modem time zone. This means you may get values outside of the original time range, but can be useful when requesting data for a date, for example. For example: start.textual = 2022-01-01, end.textual = 2022-02-01 would return a month of data in UTC time. When combined with this flag, it would return that month of data in the time zone of the modem, which may even be different per modem. |
 
 
