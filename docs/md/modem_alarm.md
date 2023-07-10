@@ -563,11 +563,14 @@ Check that the field is higher than the given value.
 
 ### ModemAlarm.Check.FieldCheck.ThresholdCheck
 
-Check that the field is within a given numeric range.
+Check that the field is above a minimum threshold and under a maximum threshold.
+If minimum <= maximum, this means that the value must be between minimum and maximum.
+If minimum > maximum, however, this means that the value must NOT be between maximum and minimum
+(i.e. minimum 100 with maximum 50 means it cannot be between 50 and 100).
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| expected | [ hiber.DoubleRange](#hiberdoublerange) | The range the value must be in. |
+| expected | [ hiber.DoubleRange](#hiberdoublerange) | The range the value must be in. If maximum < minimum, the value must effectively be outside the inverted range, i.e. 20..10 implies the value must not be in 10..20. |
 | minimum | [ double](#double) | The minimum expected value, available separately for convenience and check parameters. |
 | maximum | [ double](#double) | The maximum expected value, available separately for convenience and check parameters. |
 
@@ -1024,9 +1027,9 @@ Type can depend on the hardware itself as well as network topology.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | OTHER | A device of which the specific type is not known | 0 |
-| DEVICE | A device that is not currently connected to a gateway. | 1 |
+| DISCONNECTED_SENSOR | A device that is not currently connected to a gateway. | 1 |
 | GATEWAY | A device that can receive messages from sensors in the field and relay them (directly) to the satellite. Typically a LoRaWAN hub. Note that gateways also send messages themselves (e.g. a daily heartbeat). | 2 |
-| CONNECTED_DEVICE | A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. | 3 |
+| SENSOR | A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. | 3 |
 
 #### hiber.modem.ModemMessage.Source
 

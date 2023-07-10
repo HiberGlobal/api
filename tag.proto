@@ -3,6 +3,7 @@ syntax = "proto3";
 package hiber.tag;
 
 import "base.proto";
+import "health.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.tag";
@@ -17,6 +18,9 @@ service TagService {
     rpc Create (CreateTagRequest) returns (Tag);
     rpc Update (UpdateTagRequest) returns (Tag);
     rpc Delete (DeleteTagRequest) returns (DeleteTagRequest.Response);
+
+    /* Count the tags in your organization by health. */
+    rpc Health (TagHealth.Request) returns (TagHealth.Response);
 }
 
 message Tag {
@@ -79,4 +83,21 @@ message DeleteTagRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     int64 id = 2;
+}
+
+message TagHealth {
+    hiber.tag.Tag tag = 1;
+    health.HealthLevel health_level = 2;
+    bool most_severe = 3;
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        TagSelection selection = 2;
+    }
+
+    message Response {
+        repeated TagHealth tag_health = 1;
+        Request request = 2;
+    }
 }

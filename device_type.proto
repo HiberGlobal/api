@@ -14,9 +14,12 @@ message DeviceType {
     string category = 4;
     string version = 5;
     string description = 6;
+    bool gateway = 7;
 }
 
 /* Selection object for device types. */
 message DeviceTypeSelection {
     string search = 1;
+    bool only_gateways = 2;
+    bool exclude_gateways = 3;
 }

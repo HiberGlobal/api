@@ -77,7 +77,11 @@ service ModemService {
     };
 
     /* Count the modems in your organization by health. */
-    rpc HealthCount (ModemHealthCount.Request) returns (ModemHealthCount.Response);
+    rpc HealthCount (ModemHealthCount.Request) returns (ModemHealthCount.Response){
+        option deprecated = true;
+    };
+
+    rpc TagCount (TagCount.Request) returns (TagCount.Response);
 }
 
 /* Modem data, including location and last message (if available).
@@ -170,6 +174,12 @@ message Modem {
     /* Additional information when this modem is a gateway. */
     message GatewayInfo {
         int32 number_of_connected_devices = 1;
+
+        /* Device type for this gateway. */
+        string device_type = 2;
+
+        /* Brand for this gateway. */
+        string gateway_brand = 3;
     }
 
     /* Additional information when this modem is a connected device. */
@@ -237,7 +247,7 @@ message Modem {
         OTHER = 0;
 
         /* A device that is not currently connected to a gateway. */
-        DEVICE = 1;
+        DISCONNECTED_SENSOR = 1;
 
         /* A device that can receive messages from sensors in the field and relay them (directly) to the satellite.
          * Typically a LoRaWAN hub.
@@ -246,7 +256,7 @@ message Modem {
         GATEWAY = 2;
 
         /* A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. */
-        CONNECTED_DEVICE = 3;
+        SENSOR = 3;
     }
 
     reserved 6, 9, 13;
@@ -898,8 +908,13 @@ message UpdatePeripheralsRequest {
     reserved 3;
 }
 
+/* Deprecated: replaced with simpler calls in TagService.TagHealth and ModemService.TagCount. */
 message ModemHealthCount {
+    option deprecated = true;
+
     message Request {
+        option deprecated = true;
+
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         string organization = 1;
 
@@ -914,6 +929,8 @@ message ModemHealthCount {
     }
 
     message HealthCount {
+        option deprecated = true;
+
         /* Health level based on the modem alarm and some always-present alarms. */
         health.HealthLevel health_level = 1;
 
@@ -924,16 +941,37 @@ message ModemHealthCount {
     }
 
     message HealthCountGroupedPerTag {
+        option deprecated = true;
+
         /* The tag this count is for. */
         hiber.tag.Tag tag = 1;
         repeated HealthCount health_counts = 2;
     }
 
     message Response {
+        option deprecated = true;
+
         repeated HealthCount health_totals = 1;
         repeated HealthCountGroupedPerTag health_grouped_per_tag = 4;
         Request request = 3;
 
         reserved 2;
+    }
+}
+
+message TagCount {
+    hiber.tag.Tag tag = 1;
+    uint32 modems = 2;
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        ModemSelection selection = 2;
+        tag.TagSelection tag_selection = 3;
+    }
+
+    message Response {
+        repeated TagCount tags = 1;
+        Request request = 2;
     }
 }

@@ -362,9 +362,16 @@ message ModemAlarm {
                 double maximum = 3;
             }
 
-            /* Check that the field is within a given numeric range. */
+            /* Check that the field is above a minimum threshold and under a maximum threshold.
+             * If minimum <= maximum, this means that the value must be between minimum and maximum.
+             * If minimum > maximum, however, this means that the value must NOT be between maximum and minimum
+             * (i.e. minimum 100 with maximum 50 means it cannot be between 50 and 100).
+             */
             message ThresholdCheck {
-                /* The range the value must be in. */
+                /* The range the value must be in.
+                 * If maximum < minimum, the value must effectively be outside the inverted range, i.e.
+                 * 20..10 implies the value must not be in 10..20.
+                 */
                 DoubleRange expected = 1;
 
                 /* The minimum expected value, available separately for convenience and check parameters. */

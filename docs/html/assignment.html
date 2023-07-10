@@ -689,6 +689,18 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.modem.TagCount"><span class="badge">M</span>TagCount</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.modem.TagCount.Request"><span class="badge">M</span>TagCount.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.modem.TagCount.Response"><span class="badge">M</span>TagCount.Response</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.modem.UpdateModemLifecycleRequest"><span class="badge">M</span>UpdateModemLifecycleRequest</a>
                 </li>
               
@@ -1199,6 +1211,18 @@
               
                 <li>
                   <a href="#hiber.tag.Tag.Label"><span class="badge">M</span>Tag.Label</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.tag.TagHealth"><span class="badge">M</span>TagHealth</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.tag.TagHealth.Request"><span class="badge">M</span>TagHealth.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.tag.TagHealth.Response"><span class="badge">M</span>TagHealth.Response</a>
                 </li>
               
                 <li>
@@ -5773,6 +5797,20 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>device_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Device type for this gateway. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>gateway_brand</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Brand for this gateway. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -5881,7 +5919,7 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
         
       
         <h3 id="hiber.modem.ModemHealthCount">ModemHealthCount</h3>
-        <p></p>
+        <p>Deprecated: replaced with simpler calls in TagService.TagHealth and ModemService.TagCount.</p>
 
         
 
@@ -6751,6 +6789,106 @@ add the name of the peripheral as a map-key and add a repeated list of versions 
 
         
       
+        <h3 id="hiber.modem.TagCount">TagCount</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tag</td>
+                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>modems</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.modem.TagCount.Request">TagCount.Request</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>selection</td>
+                  <td><a href="#hiber.modem.ModemSelection">ModemSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tag_selection</td>
+                  <td><a href="#hiber.tag.TagSelection">hiber.tag.TagSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.modem.TagCount.Response">TagCount.Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#hiber.modem.TagCount">TagCount</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#hiber.modem.TagCount.Request">TagCount.Request</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="hiber.modem.UpdateModemLifecycleRequest">UpdateModemLifecycleRequest</h3>
         <p></p>
 
@@ -7526,7 +7664,7 @@ should not be burdened with the health of this device.</p></td>
               </tr>
             
               <tr>
-                <td>DEVICE</td>
+                <td>DISCONNECTED_SENSOR</td>
                 <td>1</td>
                 <td><p>A device that is not currently connected to a gateway.</p></td>
               </tr>
@@ -7540,7 +7678,7 @@ Note that gateways also send messages themselves (e.g. a daily heartbeat).</p></
               </tr>
             
               <tr>
-                <td>CONNECTED_DEVICE</td>
+                <td>SENSOR</td>
                 <td>3</td>
                 <td><p>A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection.</p></td>
               </tr>
@@ -7687,6 +7825,13 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                 <td><p>Count the modems in your organization by health.</p></td>
               </tr>
             
+              <tr>
+                <td>TagCount</td>
+                <td><a href="#hiber.modem.TagCount.Request">TagCount.Request</a></td>
+                <td><a href="#hiber.modem.TagCount.Response">TagCount.Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
           </tbody>
         </table>
 
@@ -7735,6 +7880,11 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
             
               <tr>
                 <td>UpdatePeripherals</td>
+                <td><p>true</p></td>
+              </tr>
+            
+              <tr>
+                <td>HealthCount</td>
                 <td><p>true</p></td>
               </tr>
             
@@ -8583,7 +8733,7 @@ be available to unencrypted values due to performance issues. </p></td>
         
       
         <h3 id="hiber.modem.alarm.ModemAlarm.Check.FieldCheck.ThresholdCheck">ModemAlarm.Check.FieldCheck.ThresholdCheck</h3>
-        <p>Check that the field is within a given numeric range.</p>
+        <p>Check that the field is above a minimum threshold and under a maximum threshold.</p><p>If minimum <= maximum, this means that the value must be between minimum and maximum.</p><p>If minimum > maximum, however, this means that the value must NOT be between maximum and minimum</p><p>(i.e. minimum 100 with maximum 50 means it cannot be between 50 and 100).</p>
 
         
           <table class="field-table">
@@ -8596,7 +8746,9 @@ be available to unencrypted values due to performance issues. </p></td>
                   <td>expected</td>
                   <td><a href="#hiber.DoubleRange">hiber.DoubleRange</a></td>
                   <td></td>
-                  <td><p>The range the value must be in. </p></td>
+                  <td><p>The range the value must be in.
+If maximum &lt; minimum, the value must effectively be outside the inverted range, i.e.
+20..10 implies the value must not be in 10..20. </p></td>
                 </tr>
               
                 <tr>
@@ -11601,6 +11753,106 @@ This can also be used without an existing parser by uploading a .ksy file or spe
 
         
       
+        <h3 id="hiber.tag.TagHealth">TagHealth</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tag</td>
+                  <td><a href="#hiber.tag.Tag">Tag</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>health_level</td>
+                  <td><a href="#hiber.health.HealthLevel">hiber.health.HealthLevel</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>most_severe</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.tag.TagHealth.Request">TagHealth.Request</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>selection</td>
+                  <td><a href="#hiber.tag.TagSelection">TagSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.tag.TagHealth.Response">TagHealth.Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tag_health</td>
+                  <td><a href="#hiber.tag.TagHealth">TagHealth</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#hiber.tag.TagHealth.Request">TagHealth.Request</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="hiber.tag.TagSelection">TagSelection</h3>
         <p></p>
 
@@ -11762,6 +12014,13 @@ This can also be used without an existing parser by uploading a .ksy file or spe
                 <td><a href="#hiber.tag.DeleteTagRequest">DeleteTagRequest</a></td>
                 <td><a href="#hiber.tag.DeleteTagRequest.Response">DeleteTagRequest.Response</a></td>
                 <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Health</td>
+                <td><a href="#hiber.tag.TagHealth.Request">TagHealth.Request</a></td>
+                <td><a href="#hiber.tag.TagHealth.Response">TagHealth.Response</a></td>
+                <td><p>Count the tags in your organization by health.</p></td>
               </tr>
             
           </tbody>

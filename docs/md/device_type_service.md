@@ -148,6 +148,7 @@ Preconfigured device type.
 | category | [ string](#string) | none |
 | version | [ string](#string) | none |
 | description | [ string](#string) | none |
+| gateway | [ bool](#bool) | none |
 
 ### hiber.device.type.DeviceTypeSelection
 
@@ -156,6 +157,8 @@ Selection object for device types.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | search | [ string](#string) | none |
+| only_gateways | [ bool](#bool) | none |
+| exclude_gateways | [ bool](#bool) | none |
 
 
 ### Enums

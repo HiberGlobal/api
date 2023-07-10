@@ -459,9 +459,9 @@ Type can depend on the hardware itself as well as network topology.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | OTHER | A device of which the specific type is not known | 0 |
-| DEVICE | A device that is not currently connected to a gateway. | 1 |
+| DISCONNECTED_SENSOR | A device that is not currently connected to a gateway. | 1 |
 | GATEWAY | A device that can receive messages from sensors in the field and relay them (directly) to the satellite. Typically a LoRaWAN hub. Note that gateways also send messages themselves (e.g. a daily heartbeat). | 2 |
-| CONNECTED_DEVICE | A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. | 3 |
+| SENSOR | A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. | 3 |
 
 #### hiber.modem.ModemMessage.Source
 

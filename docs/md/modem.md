@@ -51,6 +51,9 @@ used to identify them.
   - [ModemSelection.Peripherals.OneOfValues](#modemselectionperipheralsoneofvalues)
   - [ModemSelection.Transfers](#modemselectiontransfers)
   - [RenameModemRequest](#renamemodemrequest)
+  - [TagCount](#tagcount)
+  - [TagCount.Request](#tagcountrequest)
+  - [TagCount.Response](#tagcountresponse)
   - [UpdateModemLifecycleRequest](#updatemodemlifecyclerequest)
   - [UpdateModemLifecycleRequest.Response](#updatemodemlifecyclerequestresponse)
   - [UpdateModemNotesRequest](#updatemodemnotesrequest)
@@ -279,6 +282,12 @@ Add and remove peripherals for the selected modems.
     [ModemHealthCount.Response](#modemhealthcountresponse)
 
 Count the modems in your organization by health.
+
+### TagCount
+> **rpc** TagCount([TagCount.Request](#tagcountrequest))
+    [TagCount.Response](#tagcountresponse)
+
+
 
 
 ## Messages
@@ -511,6 +520,8 @@ Additional information when this modem is a gateway.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | number_of_connected_devices | [ int32](#int32) | none |
+| device_type | [ string](#string) | Device type for this gateway. |
+| gateway_brand | [ string](#string) | Brand for this gateway. |
 
 ### Modem.Peripherals
 
@@ -543,7 +554,7 @@ open field for peripherals like battery, sensors, etc.
 
 ### ModemHealthCount
 
-
+Deprecated: replaced with simpler calls in TagService.TagHealth and ModemService.TagCount.
 
 
 ### ModemHealthCount.HealthCount
@@ -754,6 +765,34 @@ For example:
 | modem_number | [ string](#string) | none |
 | name | [ string](#string) | none |
 
+### TagCount
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| tag | [ hiber.tag.Tag](#hibertagtag) | none |
+| modems | [ uint32](#uint32) | none |
+
+### TagCount.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| selection | [ ModemSelection](#modemselection) | none |
+| tag_selection | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
+
+### TagCount.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| tags | [repeated TagCount](#tagcount) | none |
+| request | [ TagCount.Request](#tagcountrequest) | none |
+
 ### UpdateModemLifecycleRequest
 
 
@@ -928,9 +967,9 @@ Type can depend on the hardware itself as well as network topology.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | OTHER | A device of which the specific type is not known | 0 |
-| DEVICE | A device that is not currently connected to a gateway. | 1 |
+| DISCONNECTED_SENSOR | A device that is not currently connected to a gateway. | 1 |
 | GATEWAY | A device that can receive messages from sensors in the field and relay them (directly) to the satellite. Typically a LoRaWAN hub. Note that gateways also send messages themselves (e.g. a daily heartbeat). | 2 |
-| CONNECTED_DEVICE | A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. | 3 |
+| SENSOR | A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. | 3 |
 
 ### ModemMessage.Source
 

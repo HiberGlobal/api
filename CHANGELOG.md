@@ -1,5 +1,27 @@
 # Changelog Hiber API
 
+### 0.157 (2023-07-10)
+
+##### AlarmService
+
+- Added support for inverted threshold check, where the value must be outside of the given (inverted) range.
+
+##### DeviceTypeService
+
+- Add `gateway` flag to device type, indicating this is a gateway, and some additional related validation.
+
+##### TagService
+
+- Add `Health` call to list the health for tags.
+  - Lists multiple health levels if applicable, the most severe is marked as most severe.
+
+##### ModemService
+
+- Added `TagCount` to count modems per tag.
+- Rename some of the values in `Modem.Type` to be more descriptive: 
+  - `CONNECTED_DEVICE` to `SENSOR`
+  - `DEVICE` to `DISCONNECTED_SENSOR`
+
 ### 0.156 (2023-06-26)
 
 ##### StatusService
