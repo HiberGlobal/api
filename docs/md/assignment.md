@@ -733,6 +733,7 @@ Sorting options for the results.
 | PAUSED | Device is paused and not sending messages. This should be of a temporary nature. (e.g. a change to the installation is being made) | 6 |
 | DISABLED | Device is disabled and not sending messages. Invisible for customer. This could be either temporary or become permanent. Used for cases where devices is being serviced and customer should not be burdened with the health of this device. | 5 |
 | DECOMMISSIONED | Device is (going to be) removed from installation and will not return to installed status again. | 4 |
+| DEFECTIVE | Device is defective and should not be used anymore. | 7 |
 
 #### hiber.modem.Modem.Type
 The effective type of this modem.

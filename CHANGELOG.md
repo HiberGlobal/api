@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.158 (2023-07-17)
+
+##### ModemService
+
+- Added `Modem.Lifecycle.DEFECTIVE`.
+
 ### 0.157 (2023-07-10)
 
 ##### AlarmService

@@ -237,6 +237,9 @@ message Modem {
         /* Device is (going to be) removed from installation and will not return to installed status again.
          */
         DECOMMISSIONED = 4;
+        /* Device is defective and should not be used anymore.
+         */
+        DEFECTIVE = 7;
     }
 
     /* The effective type of this modem.
