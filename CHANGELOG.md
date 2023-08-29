@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.161 (2023-08-29)
+
+##### ExportService
+
+- Fixed a bug that could break the export list call.
+
 ### 0.158 (2023-07-17)
 
 ##### ModemService
