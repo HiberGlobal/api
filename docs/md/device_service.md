@@ -52,6 +52,7 @@ They have a unique device (previously modem) number, used to identify them.
   - [hiber.value.Value.Numeric](#hibervaluevaluenumeric)
   - [hiber.value.Value.Numeric.BatteryLevel](#hibervaluevaluenumericbatterylevel)
   - [hiber.value.Value.Numeric.Distance](#hibervaluevaluenumericdistance)
+  - [hiber.value.Value.Numeric.Duration](#hibervaluevaluenumericduration)
   - [hiber.value.Value.Numeric.Flow](#hibervaluevaluenumericflow)
   - [hiber.value.Value.Numeric.FuelEfficiency](#hibervaluevaluenumericfuelefficiency)
   - [hiber.value.Value.Numeric.Mass](#hibervaluevaluenumericmass)
@@ -66,7 +67,7 @@ They have a unique device (previously modem) number, used to identify them.
   - Enums
     - [hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit)
     - [hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit)
-    - [hiber.value.Value.Numeric.DurationUnit](#hibervaluevaluenumericdurationunit)
+    - [hiber.value.Value.Numeric.Duration.Unit](#hibervaluevaluenumericdurationunit)
     - [hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit)
     - [hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit)
     - [hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit)
@@ -577,7 +578,7 @@ If the value is numeric, this specifies the unit, value, etc.
 | type | [ hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.battery_level | [ hiber.value.Value.Numeric.BatteryLevel](#hibervaluevaluenumericbatterylevel) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.distance | [ hiber.value.Value.Numeric.Distance](#hibervaluevaluenumericdistance) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.duration | [ hiber.Duration](#hiberduration) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.duration | [ hiber.value.Value.Numeric.Duration](#hibervaluevaluenumericduration) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.fuel_efficiency | [ hiber.value.Value.Numeric.FuelEfficiency](#hibervaluevaluenumericfuelefficiency) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.percentage | [ hiber.value.Value.Numeric.Percentage](#hibervaluevaluenumericpercentage) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.pressure | [ hiber.value.Value.Numeric.Pressure](#hibervaluevaluenumericpressure) | none |
@@ -613,6 +614,18 @@ The value is a distance value, converted to your preferred distance unit.
 | unit | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) | none |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Duration
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| duration | [ google.protobuf.Duration](#googleprotobufduration) | none |
+| value | [ double](#double) | none |
+| unit | [ hiber.value.Value.Numeric.Duration.Unit](#hibervaluevaluenumericdurationunit) | none |
+| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| converted_from | [ hiber.value.Value.Numeric.Duration.Unit](#hibervaluevaluenumericdurationunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### hiber.value.Value.Numeric.Flow
 
@@ -759,9 +772,8 @@ other units will be added here later, like voltage
 | INCH | none | 7 |
 | NAUTICAL_MILE | This is a special case unit and may not be auto-converted to your UnitPreference. | 8 |
 
-#### hiber.value.Value.Numeric.DurationUnit
-The duration enum is not wrapped in Duration, since duration is always returned as a normalize Duration.
-This unit is still used for fields, however.
+#### hiber.value.Value.Numeric.Duration.Unit
+
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |

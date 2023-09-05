@@ -858,6 +858,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.value.Value.Numeric.Duration"><span class="badge">M</span>Value.Numeric.Duration</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.value.Value.Numeric.Flow"><span class="badge">M</span>Value.Numeric.Flow</a>
                 </li>
               
@@ -911,7 +915,7 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.value.Value.Numeric.DurationUnit"><span class="badge">E</span>Value.Numeric.DurationUnit</a>
+                  <a href="#hiber.value.Value.Numeric.Duration.Unit"><span class="badge">E</span>Value.Numeric.Duration.Unit</a>
                 </li>
               
                 <li>
@@ -4388,7 +4392,7 @@ unit, from the original unit specified in this field. </p></td>
               
                 <tr>
                   <td>duration</td>
-                  <td><a href="#hiber.value.Value.Numeric.DurationUnit">hiber.value.Value.Numeric.DurationUnit</a></td>
+                  <td><a href="#hiber.value.Value.Numeric.Duration.Unit">hiber.value.Value.Numeric.Duration.Unit</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -8381,7 +8385,7 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
               
                 <tr>
                   <td>duration</td>
-                  <td><a href="#hiber.Duration">hiber.Duration</a></td>
+                  <td><a href="#hiber.value.Value.Numeric.Duration">Value.Numeric.Duration</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -8556,6 +8560,58 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.value.Value.Numeric.Distance.Unit">Value.Numeric.Distance.Unit</a></td>
+                  <td></td>
+                  <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.value.Value.Numeric.Duration">Value.Numeric.Duration</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>duration</td>
+                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>unit</td>
+                  <td><a href="#hiber.value.Value.Numeric.Duration.Unit">Value.Numeric.Duration.Unit</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>textual</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>converted_from</td>
+                  <td><a href="#hiber.value.Value.Numeric.Duration.Unit">Value.Numeric.Duration.Unit</a></td>
                   <td></td>
                   <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
                 </tr>
@@ -9139,8 +9195,8 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
           </tbody>
         </table>
       
-        <h3 id="hiber.value.Value.Numeric.DurationUnit">Value.Numeric.DurationUnit</h3>
-        <p>The duration enum is not wrapped in Duration, since duration is always returned as a normalize Duration.</p><p>This unit is still used for fields, however.</p>
+        <h3 id="hiber.value.Value.Numeric.Duration.Unit">Value.Numeric.Duration.Unit</h3>
+        <p></p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package hiber.value;
 
-import "base.proto";
+import "google/protobuf/duration.proto";
 
 option java_multiple_files = true;
 option java_package = "global.hiber.api.grpc.value";
@@ -292,16 +292,24 @@ message Value {
             Unit converted_from = 4;
         }
 
-        /* The duration enum is not wrapped in Duration, since duration is always returned as a normalize Duration.
-         * This unit is still used for fields, however.
-         */
-        enum DurationUnit {
-            MILLISECONDS = 0;
-            SECONDS = 1;
-            MINUTES = 2;
-            HOURS = 3;
-            DAYS = 4;
-            WEEKS = 5;
+        message Duration {
+            enum Unit {
+                MILLISECONDS = 0;
+                SECONDS = 1;
+                MINUTES = 2;
+                HOURS = 3;
+                DAYS = 4;
+                WEEKS = 5;
+            }
+
+            google.protobuf.Duration duration = 1;
+            double value = 3;
+            Unit unit = 4;
+
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
+            string textual = 2;
+            /* The original unit, iff this value was converted from another unit because of user preferences. */
+            Unit converted_from = 5;
         }
 
         Type type = 1;

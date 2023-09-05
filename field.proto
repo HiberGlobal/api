@@ -16,7 +16,7 @@ message Field {
             oneof unit {
                 value.Value.Numeric.BatteryLevel.Unit battery_level = 1;
                 value.Value.Numeric.Distance.Unit distance = 2;
-                value.Value.Numeric.DurationUnit duration = 3;
+                value.Value.Numeric.Duration.Unit duration = 3;
                 value.Value.Numeric.FuelEfficiency.Unit fuel_efficiency = 4;
                 value.Value.Numeric.Flow.Unit flow = 5;
                 value.Value.Numeric.Percentage.Unit percentage = 12;

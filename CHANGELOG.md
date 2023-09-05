@@ -1,5 +1,25 @@
 # Changelog Hiber API
 
+### 0.162 (2023-09-05)
+
+##### ModemService
+
+- Fixed an issue where gateway counts would sometimes count devices that were still in acceptance testing.
+
+##### MessageService
+
+- Fixed an issue where a deprecated call was not updated to use the new device type logic.
+
+##### ValueService
+
+- Added `Value.Numeric.Duration`
+  - It is backwards compatible with `Duration` in `base.proto`
+  - Replaced `Value.Numeric.DurationUnit` with `Value.Numeric.Duration.Unit` (also backwards compatible, but might require code changes when using the new API version)
+
+##### Technical
+
+- Prepare for database migration (date to be determined), by cleaning up some data and preparing for proper READ-ONLY notifications and banner.
+
 ### 0.161 (2023-08-29)
 
 ##### ExportService
