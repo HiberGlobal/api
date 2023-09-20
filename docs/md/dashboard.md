@@ -66,6 +66,8 @@
   - [hiber.event.Event.PublisherEvent.UpdatedEvent](#hibereventeventpublishereventupdatedevent)
   - [hiber.event.Event.PublisherEvent.UpdatedEvent.EmailUpdate](#hibereventeventpublishereventupdatedeventemailupdate)
   - [hiber.event.Event.PublisherEvent.UpdatedEvent.MQTTUpdate](#hibereventeventpublishereventupdatedeventmqttupdate)
+  - [hiber.event.Event.PublisherEvent.UpdatedEvent.ShellSsipUpdate](#hibereventeventpublishereventupdatedeventshellssipupdate)
+  - [hiber.event.Event.PublisherEvent.UpdatedEvent.SlackUpdate](#hibereventeventpublishereventupdatedeventslackupdate)
   - [hiber.event.Event.PublisherEvent.UpdatedEvent.WebhookUpdate](#hibereventeventpublishereventupdatedeventwebhookupdate)
   - [hiber.event.Event.TokenEvent](#hibereventeventtokenevent)
   - [hiber.event.Event.TokenEvent.TokenCreatedEvent](#hibereventeventtokeneventtokencreatedevent)
@@ -809,6 +811,8 @@ This event is disabled by default.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.webhook | [ hiber.event.Event.PublisherEvent.UpdatedEvent.WebhookUpdate](#hibereventeventpublishereventupdatedeventwebhookupdate) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.mqtt | [ hiber.event.Event.PublisherEvent.UpdatedEvent.MQTTUpdate](#hibereventeventpublishereventupdatedeventmqttupdate) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.email | [ hiber.event.Event.PublisherEvent.UpdatedEvent.EmailUpdate](#hibereventeventpublishereventupdatedeventemailupdate) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.slack | [ hiber.event.Event.PublisherEvent.UpdatedEvent.SlackUpdate](#hibereventeventpublishereventupdatedeventslackupdate) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.shell_ssip | [ hiber.event.Event.PublisherEvent.UpdatedEvent.ShellSsipUpdate](#hibereventeventpublishereventupdatedeventshellssipupdate) | none |
 | updated_event_filter | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) | none |
 | updated_modem_filter | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | none |
 | updated_tag_filter | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | none |
@@ -838,6 +842,16 @@ This event is disabled by default.
 | username | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
 | password | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
 | certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | none |
+
+### hiber.event.Event.PublisherEvent.UpdatedEvent.ShellSsipUpdate
+
+
+
+
+### hiber.event.Event.PublisherEvent.UpdatedEvent.SlackUpdate
+
+
+
 
 ### hiber.event.Event.PublisherEvent.UpdatedEvent.WebhookUpdate
 

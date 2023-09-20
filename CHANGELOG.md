@@ -1,5 +1,23 @@
 # Changelog Hiber API
 
+### 0.164 (2023-09-19)
+
+##### Permissions
+
+- Add a number of new `SupportPermission`s:
+  - `MANAGE_ORGANIZATION_FEATURE`: to manage organization features
+  - `MANAGE_DEVICE_TYPE` to manage device types
+  - `CUSTOM_TAGS` to manage custom tags
+  - `INTEGRATION_SHELL_SSIP` to manage the Shell SSIP integration
+
+##### PublisherService
+
+- Add `Data.ShellSsipConfig`, the `SHELL_SSIP` type for Shell SSIP integration.
+
+##### TagService
+
+- Added validation to avoid changing from a default tag type (like well, site or production area) to a custom tag type.
+
 ### 0.162 (2023-09-05)
 
 ##### ModemService

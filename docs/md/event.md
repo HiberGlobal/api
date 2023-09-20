@@ -60,6 +60,8 @@
   - [Event.PublisherEvent.UpdatedEvent](#eventpublishereventupdatedevent)
   - [Event.PublisherEvent.UpdatedEvent.EmailUpdate](#eventpublishereventupdatedeventemailupdate)
   - [Event.PublisherEvent.UpdatedEvent.MQTTUpdate](#eventpublishereventupdatedeventmqttupdate)
+  - [Event.PublisherEvent.UpdatedEvent.ShellSsipUpdate](#eventpublishereventupdatedeventshellssipupdate)
+  - [Event.PublisherEvent.UpdatedEvent.SlackUpdate](#eventpublishereventupdatedeventslackupdate)
   - [Event.PublisherEvent.UpdatedEvent.WebhookUpdate](#eventpublishereventupdatedeventwebhookupdate)
   - [Event.TokenEvent](#eventtokenevent)
   - [Event.TokenEvent.TokenCreatedEvent](#eventtokeneventtokencreatedevent)
@@ -338,6 +340,7 @@
   - [hiber.publisher.Publisher.Data](#hiberpublisherpublisherdata)
   - [hiber.publisher.Publisher.Data.HTTPConfig](#hiberpublisherpublisherdatahttpconfig)
   - [hiber.publisher.Publisher.Data.MQTTConfig](#hiberpublisherpublisherdatamqttconfig)
+  - [hiber.publisher.Publisher.Data.ShellSsipConfig](#hiberpublisherpublisherdatashellssipconfig)
   - [hiber.publisher.Publisher.Filters](#hiberpublisherpublisherfilters)
   - [hiber.publisher.UpdatePublisherRequest](#hiberpublisherupdatepublisherrequest)
   - [hiber.publisher.UpdatePublisherRequest.UpdateModems](#hiberpublisherupdatepublisherrequestupdatemodems)
@@ -1170,6 +1173,8 @@ This event is disabled by default.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.webhook | [ Event.PublisherEvent.UpdatedEvent.WebhookUpdate](#eventpublishereventupdatedeventwebhookupdate) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.mqtt | [ Event.PublisherEvent.UpdatedEvent.MQTTUpdate](#eventpublishereventupdatedeventmqttupdate) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.email | [ Event.PublisherEvent.UpdatedEvent.EmailUpdate](#eventpublishereventupdatedeventemailupdate) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.slack | [ Event.PublisherEvent.UpdatedEvent.SlackUpdate](#eventpublishereventupdatedeventslackupdate) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.shell_ssip | [ Event.PublisherEvent.UpdatedEvent.ShellSsipUpdate](#eventpublishereventupdatedeventshellssipupdate) | none |
 | updated_event_filter | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) | none |
 | updated_modem_filter | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | none |
 | updated_tag_filter | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | none |
@@ -1199,6 +1204,16 @@ This event is disabled by default.
 | username | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
 | password | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
 | certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | none |
+
+### Event.PublisherEvent.UpdatedEvent.ShellSsipUpdate
+
+
+
+
+### Event.PublisherEvent.UpdatedEvent.SlackUpdate
+
+
+
 
 ### Event.PublisherEvent.UpdatedEvent.WebhookUpdate
 
@@ -4127,6 +4142,7 @@ Now, this types is only used in the relevant events.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.mqtt | [ hiber.integration.mqtt.MQTTPublisher.Data](#hiberintegrationmqttmqttpublisherdata) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.email | [ hiber.email.EmailNotificationPreferences](#hiberemailemailnotificationpreferences) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.slack | [ hiber.integration.slack.SlackPublisher.Data](#hiberintegrationslackslackpublisherdata) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.shell_ssip | [ hiber.publisher.Publisher.Data.ShellSsipConfig](#hiberpublisherpublisherdatashellssipconfig) | none |
 
 ### hiber.publisher.Publisher.Data
 
@@ -4163,6 +4179,16 @@ This field remains for backwards compatibility, but it should not be used.
 | username | [ string](#string) | Optional username to authenticate with. |
 | password | [ string](#string) | Optional password to authenticate with. Requires username to be set. |
 | identifier | [ string](#string) | Identifier used by the MQTT client. Defaults to "hiber". |
+
+### hiber.publisher.Publisher.Data.ShellSsipConfig
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| url | [ string](#string) | none |
+| tenant_id | [ string](#string) | none |
+| resource_id | [ string](#string) | none |
 
 ### hiber.publisher.Publisher.Filters
 
@@ -4218,6 +4244,7 @@ This type remains for backwards compatibility, but it should not be used.
 | MQTT | none | 1 |
 | EMAIL | none | 3 |
 | SLACK | none | 4 |
+| SHELL_SSIP | none | 5 |
 
 
 

@@ -574,6 +574,12 @@ message Event {
             message EmailUpdate {
             }
 
+            message SlackUpdate {
+            }
+
+            message ShellSsipUpdate {
+            }
+
             string organization = 1;
             UpdateClearableString updated_description = 2;
 
@@ -584,6 +590,8 @@ message Event {
                 WebhookUpdate webhook = 15;
                 MQTTUpdate mqtt = 16;
                 EmailUpdate email = 18;
+                SlackUpdate slack = 22;
+                ShellSsipUpdate shell_ssip = 23;
             }
 
             Filter.Events.Update updated_event_filter = 4;

@@ -117,4 +117,15 @@ enum UserPermission {
 enum SupportPermission {
     /* Allow Customer Support functions. */
     CUSTOMER_SUPPORT = 0;
+
+    /* Manage organization feature flags. */
+    MANAGE_ORGANIZATION_FEATURE = 1;
+
+    /* Change the device type for devices. */
+    MANAGE_DEVICE_TYPE = 2;
+
+    /* Create and assign custom tags. */
+    CUSTOM_TAGS = 3;
+
+    INTEGRATION_SHELL_SSIP = 4;
 }

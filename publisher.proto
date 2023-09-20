@@ -50,6 +50,7 @@ message Publisher {
         integration.mqtt.MQTTPublisher.Data mqtt = 11;
         email.EmailNotificationPreferences email = 13;
         integration.slack.SlackPublisher.Data slack = 14;
+        Data.ShellSsipConfig shell_ssip = 16;
     }
 
     reserved 12;
@@ -68,6 +69,7 @@ message Publisher {
         MQTT = 1;
         EMAIL = 3;
         SLACK = 4;
+        SHELL_SSIP = 5;
 
         reserved 2;
     }
@@ -122,6 +124,12 @@ message Publisher {
              * https://github.com/danharper/hmac-examples
              */
             string secret = 1;
+        }
+
+        message ShellSsipConfig {
+            string url = 1;
+            string tenant_id = 2;
+            string resource_id = 3;
         }
     }
 

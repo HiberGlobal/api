@@ -71,6 +71,10 @@ when used by a customer support operator.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | CUSTOMER_SUPPORT | Allow Customer Support functions. | 0 |
+| MANAGE_ORGANIZATION_FEATURE | Manage organization feature flags. | 1 |
+| MANAGE_DEVICE_TYPE | Change the device type for devices. | 2 |
+| CUSTOM_TAGS | Create and assign custom tags. | 3 |
+| INTEGRATION_SHELL_SSIP | none | 4 |
 
 ### UserPermission
 UserPermissions are generally used to limit what a token can do to its user.

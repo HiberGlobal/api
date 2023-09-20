@@ -13,6 +13,7 @@
   - [Publisher.Data](#publisherdata)
   - [Publisher.Data.HTTPConfig](#publisherdatahttpconfig)
   - [Publisher.Data.MQTTConfig](#publisherdatamqttconfig)
+  - [Publisher.Data.ShellSsipConfig](#publisherdatashellssipconfig)
   - [Publisher.Filters](#publisherfilters)
   - [UpdatePublisherRequest](#updatepublisherrequest)
   - [UpdatePublisherRequest.UpdateModems](#updatepublisherrequestupdatemodems)
@@ -221,6 +222,7 @@ Now, this types is only used in the relevant events.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.mqtt | [ hiber.integration.mqtt.MQTTPublisher.Data](#hiberintegrationmqttmqttpublisherdata) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.email | [ hiber.email.EmailNotificationPreferences](#hiberemailemailnotificationpreferences) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.slack | [ hiber.integration.slack.SlackPublisher.Data](#hiberintegrationslackslackpublisherdata) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.shell_ssip | [ Publisher.Data.ShellSsipConfig](#publisherdatashellssipconfig) | none |
 
 ### Publisher.Data
 
@@ -257,6 +259,16 @@ This field remains for backwards compatibility, but it should not be used.
 | username | [ string](#string) | Optional username to authenticate with. |
 | password | [ string](#string) | Optional password to authenticate with. Requires username to be set. |
 | identifier | [ string](#string) | Identifier used by the MQTT client. Defaults to "hiber". |
+
+### Publisher.Data.ShellSsipConfig
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| url | [ string](#string) | none |
+| tenant_id | [ string](#string) | none |
+| resource_id | [ string](#string) | none |
 
 ### Publisher.Filters
 
@@ -312,6 +324,7 @@ This type remains for backwards compatibility, but it should not be used.
 | MQTT | none | 1 |
 | EMAIL | none | 3 |
 | SLACK | none | 4 |
+| SHELL_SSIP | none | 5 |
 
 
 
