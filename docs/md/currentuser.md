@@ -83,6 +83,7 @@
   - [hiber.Filter.Organizations](#hiberfilterorganizations)
   - [hiber.Filter.Properties](#hiberfilterproperties)
   - [hiber.Filter.Publishers](#hiberfilterpublishers)
+  - [hiber.Filter.Roles](#hiberfilterroles)
   - [hiber.Filter.SensorBrands](#hiberfiltersensorbrands)
   - [hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions)
   - [hiber.Filter.Tags](#hiberfiltertags)
@@ -270,6 +271,7 @@ Your personal data.
 | current_organization_permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions for the current organization. |
 | user_permissions | [ hiber.Filter.UserPermissions](#hiberfilteruserpermissions) | Permissions for the user. If this is a token, the user permissions may be limited. |
 | support_permissions | [ hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions) | Permissions for customer support. Used for features typically reserved for customer support, or that behave differently when used by a customer support operator. |
+| roles | [repeated string](#string) | Roles for the current organization. |
 | mission_control_settings | [ string](#string) | none |
 | accepted_tac | [ bool](#bool) | Whether the user accepted the terms and conditions. |
 | user_hash | [ string](#string) | none |
@@ -854,6 +856,15 @@ Filter result on specific properties encoded in map-value pairs.
 | include | [repeated int64](#int64) | none |
 | exclude | [repeated int64](#int64) | none |
 | only_active | [ bool](#bool) | none |
+
+### hiber.Filter.Roles
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| include | [repeated string](#string) | none |
+| exclude | [repeated string](#string) | none |
 
 ### hiber.Filter.SensorBrands
 

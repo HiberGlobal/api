@@ -110,6 +110,7 @@ advanced use cases, like assigning to a tag.
   - [hiber.Filter.Organizations](#hiberfilterorganizations)
   - [hiber.Filter.Properties](#hiberfilterproperties)
   - [hiber.Filter.Publishers](#hiberfilterpublishers)
+  - [hiber.Filter.Roles](#hiberfilterroles)
   - [hiber.Filter.SensorBrands](#hiberfiltersensorbrands)
   - [hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions)
   - [hiber.Filter.Tags](#hiberfiltertags)
@@ -1283,6 +1284,15 @@ Filter result on specific properties encoded in map-value pairs.
 | include | [repeated int64](#int64) | none |
 | exclude | [repeated int64](#int64) | none |
 | only_active | [ bool](#bool) | none |
+
+### hiber.Filter.Roles
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| include | [repeated string](#string) | none |
+| exclude | [repeated string](#string) | none |
 
 ### hiber.Filter.SensorBrands
 

@@ -219,6 +219,26 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.token.UpdateTokenRoles"><span class="badge">M</span>UpdateTokenRoles</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.token.UpdateTokenRoles.Request"><span class="badge">M</span>UpdateTokenRoles.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.token.UpdateTokenRoles.Request.ModifyRoles"><span class="badge">M</span>UpdateTokenRoles.Request.ModifyRoles</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.token.UpdateTokenRoles.Request.ReplaceRoles"><span class="badge">M</span>UpdateTokenRoles.Request.ReplaceRoles</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.token.UpdateTokenRoles.Response"><span class="badge">M</span>UpdateTokenRoles.Response</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.token.UpdateTokenUserPermissionsRequest"><span class="badge">M</span>UpdateTokenUserPermissionsRequest</a>
                 </li>
               
@@ -327,6 +347,10 @@
               
                 <li>
                   <a href="#hiber.Filter.Publishers"><span class="badge">M</span>Filter.Publishers</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.Filter.Roles"><span class="badge">M</span>Filter.Roles</a>
                 </li>
               
                 <li>
@@ -520,7 +544,14 @@
                   <td>organization_permissions</td>
                   <td><a href="#hiber.Filter.OrganizationPermissions">hiber.Filter.OrganizationPermissions</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Permissions the new token should get. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>roles</td>
+                  <td><a href="#hiber.Filter.Roles">hiber.Filter.Roles</a></td>
+                  <td></td>
+                  <td><p>Roles the new token should get. </p></td>
                 </tr>
               
             </tbody>
@@ -734,6 +765,13 @@
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>roles</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -768,6 +806,13 @@
                 <tr>
                   <td>include_expired</td>
                   <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>roles</td>
+                  <td><a href="#hiber.Filter.Roles">hiber.Filter.Roles</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -833,6 +878,120 @@ Ensures the permissions is no longer on the token (even if you also add it using
         
       
         <h3 id="hiber.token.UpdateTokenOrganizationPermissionsRequest.Response">UpdateTokenOrganizationPermissionsRequest.Response</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.token.UpdateTokenRoles">UpdateTokenRoles</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.token.UpdateTokenRoles.Request">UpdateTokenRoles.Request</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>token_ids</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>modify</td>
+                  <td><a href="#hiber.token.UpdateTokenRoles.Request.ModifyRoles">UpdateTokenRoles.Request.ModifyRoles</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>replace</td>
+                  <td><a href="#hiber.token.UpdateTokenRoles.Request.ReplaceRoles">UpdateTokenRoles.Request.ReplaceRoles</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.token.UpdateTokenRoles.Request.ModifyRoles">UpdateTokenRoles.Request.ModifyRoles</h3>
+        <p>Grant and remove roles on the current roles the tokens have.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>add</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Grant roles in addition to the current roles the tokens have. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remove</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Remove roles from the current roles the tokens have. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.token.UpdateTokenRoles.Request.ReplaceRoles">UpdateTokenRoles.Request.ReplaceRoles</h3>
+        <p>Completely replace the roles the tokens have.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>roles</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.token.UpdateTokenRoles.Response">UpdateTokenRoles.Response</h3>
         <p></p>
 
         
@@ -944,6 +1103,13 @@ Ensures the permissions is no longer on the token (even if you also add it using
                 <td>UpdateTokenUserPermissions</td>
                 <td><a href="#hiber.token.UpdateTokenUserPermissionsRequest">UpdateTokenUserPermissionsRequest</a></td>
                 <td><a href="#hiber.token.UpdateTokenUserPermissionsRequest.Response">UpdateTokenUserPermissionsRequest.Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateTokenRoles</td>
+                <td><a href="#hiber.token.UpdateTokenRoles.Request">UpdateTokenRoles.Request</a></td>
+                <td><a href="#hiber.token.UpdateTokenRoles.Response">UpdateTokenRoles.Response</a></td>
                 <td><p></p></td>
               </tr>
             
@@ -1664,6 +1830,37 @@ Exclude takes precedence over include. </p></td>
                   <td>only_active</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.Filter.Roles">Filter.Roles</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>include</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>exclude</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               

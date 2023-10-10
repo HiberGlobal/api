@@ -32,6 +32,11 @@
   - [TestUserValidationRequest.Response](#testuservalidationrequestresponse)
   - [UpdateUserPermissionsRequest](#updateuserpermissionsrequest)
   - [UpdateUserPermissionsRequest.Response](#updateuserpermissionsrequestresponse)
+  - [UpdateUserRoles](#updateuserroles)
+  - [UpdateUserRoles.Request](#updateuserrolesrequest)
+  - [UpdateUserRoles.Request.ModifyRoles](#updateuserrolesrequestmodifyroles)
+  - [UpdateUserRoles.Request.ReplaceRoles](#updateuserrolesrequestreplaceroles)
+  - [UpdateUserRoles.Response](#updateuserrolesresponse)
   - [UpdateUserValidationRequest](#updateuservalidationrequest)
   - [User](#user)
   - [UserActivitySummaryRequest](#useractivitysummaryrequest)
@@ -66,6 +71,7 @@
   - [hiber.Filter.Organizations](#hiberfilterorganizations)
   - [hiber.Filter.Properties](#hiberfilterproperties)
   - [hiber.Filter.Publishers](#hiberfilterpublishers)
+  - [hiber.Filter.Roles](#hiberfilterroles)
   - [hiber.Filter.SensorBrands](#hiberfiltersensorbrands)
   - [hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions)
   - [hiber.Filter.Tags](#hiberfiltertags)
@@ -161,6 +167,12 @@
 
 
 
+### UpdateUserRoles
+> **rpc** UpdateUserRoles([UpdateUserRoles.Request](#updateuserrolesrequest))
+    [UpdateUserRoles.Response](#updateuserrolesresponse)
+
+
+
 ### GetUserValidation
 > **rpc** GetUserValidation([GetUserValidationRequest](#getuservalidationrequest))
     [UserValidation](#uservalidation)
@@ -196,8 +208,9 @@
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | user_ids | [repeated string](#string) | none |
-| permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | none |
-| override_allow_no_permissions | [ bool](#bool) | By default, the server returns an error when you don't specify any permissions. Set this to true to allow it. |
+| permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new user should get. |
+| roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new user should get. |
+| override_allow_no_permissions | [ bool](#bool) | By default, the server returns an error when you don't specify any permissions or roles. Set this to true to allow it. |
 
 ### ApproveUserRequest.Response
 
@@ -215,6 +228,7 @@
 | name | [ string](#string) | none |
 | password | [ string](#string) | Optional. If no password is given, the account can only be accessed using a password reset. |
 | permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new user should get. |
+| roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new user should get. |
 | send_verification_mail | [ bool](#bool) | Send an automated email prompting the user to verify their email address. |
 | send_password_reset_mail | [ bool](#bool) | Send an automated email prompting the user to set a password. Recommended when password is not set. |
 | allow_invite_instead | [ bool](#bool) | When the user cannot be created, (i.e. they already exist because they are in a different organization) we can send an invite instead, effectively calling InviteUserRequest with the email and permissions. Set this to true to allow this behaviour. |
@@ -228,7 +242,8 @@
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | users | [repeated CreateUserRequest](#createuserrequest) | Users to create. Allows for individual impersonation and mail settings. |
-| permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Set the permissions for all users. Can be replaced for specific settings in the CreateUserRequest. |
+| permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new users should get. Can be replaced for specific settings in the CreateUserRequest. |
+| roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new users should get. Can be replaced for specific settings in the CreateUserRequest. |
 | send_verification_mail | [ bool](#bool) | Send an automated email prompting the users to verify their email addresses. If true, applies to all users. |
 | send_password_reset_mail | [ bool](#bool) | Send an automated email prompting the users to set their password. If true, applies to all users. |
 
@@ -257,8 +272,9 @@ Accept an invitation to an organization.
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | email | [ string](#string) | The email address of the user you want to invite. |
 | retry | [ bool](#bool) | Invite the user again, even if there is an open invite. This can be done a limited amount of times. |
-| permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | none |
-| override_allow_no_permissions | [ bool](#bool) | By default, the server returns an error when you don't specify any permissions. Set this to true to allow it. |
+| permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new user should get. |
+| roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new user should get. |
+| override_allow_no_permissions | [ bool](#bool) | By default, the server returns an error when you don't specify any permissions or roles. Set this to true to allow it. |
 
 ### InviteUserRequest.Response
 
@@ -386,6 +402,44 @@ List all invited users (email addresses).
 
 
 
+### UpdateUserRoles
+
+
+
+
+### UpdateUserRoles.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| user_ids | [repeated string](#string) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update**.modify | [ UpdateUserRoles.Request.ModifyRoles](#updateuserrolesrequestmodifyroles) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update**.replace | [ UpdateUserRoles.Request.ReplaceRoles](#updateuserrolesrequestreplaceroles) | none |
+
+### UpdateUserRoles.Request.ModifyRoles
+
+Grant and remove roles on the current roles the users have.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| add | [repeated string](#string) | Grant roles in addition to the current roles the users have. |
+| remove | [repeated string](#string) | Remove roles from the current roles the users have. |
+
+### UpdateUserRoles.Request.ReplaceRoles
+
+Completely replace the roles the users have.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| roles | [repeated string](#string) | none |
+
+### UpdateUserRoles.Response
+
+
+
+
 ### UpdateUserValidationRequest
 
 
@@ -405,6 +459,7 @@ List all invited users (email addresses).
 | email | [ string](#string) | none |
 | name | [ string](#string) | none |
 | permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | none |
+| roles | [repeated string](#string) | none |
 
 ### UserActivitySummaryRequest
 
@@ -447,6 +502,8 @@ List all invited users (email addresses).
 | by_email | [ string](#string) | none |
 | by_name | [ string](#string) | none |
 | search | [ string](#string) | none |
+| roles | [ hiber.Filter.Roles](#hiberfilterroles) | none |
+| permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | none |
 
 ### UserValidation
 
@@ -709,6 +766,15 @@ Filter result on specific properties encoded in map-value pairs.
 | include | [repeated int64](#int64) | none |
 | exclude | [repeated int64](#int64) | none |
 | only_active | [ bool](#bool) | none |
+
+### hiber.Filter.Roles
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| include | [repeated string](#string) | none |
+| exclude | [repeated string](#string) | none |
 
 ### hiber.Filter.SensorBrands
 

@@ -64,6 +64,9 @@ message CurrentUser {
      */
     Filter.SupportPermissions support_permissions = 14;
 
+    /* Roles for the current organization. */
+    repeated string roles = 15;
+
     string mission_control_settings = 11;
 
     /* Whether the user accepted the terms and conditions. */

@@ -1,37 +1,28 @@
-# tag.proto
+# role.proto
 
 
 
-#### This file was generated from [tag.proto](https://github.com/HiberGlobal/api/blob/master/tag.proto).
+#### This file was generated from [role.proto](https://github.com/HiberGlobal/api/blob/master/role.proto).
 
 ## Table of Contents
 
 - Services
-  - [TagService](#tagservice)
+  - [RoleService](#roleservice)
 
 - Messages
-  - [CreateTagRequest](#createtagrequest)
-  - [DeleteTagRequest](#deletetagrequest)
-  - [DeleteTagRequest.Response](#deletetagrequestresponse)
-  - [ListTagsRequest](#listtagsrequest)
-  - [ListTagsRequest.Response](#listtagsrequestresponse)
-  - [ListTagsRequest.Response.TagModemCountEntry](#listtagsrequestresponsetagmodemcountentry)
-  - [ListTagsRequest.Response.TagWebhookCountEntry](#listtagsrequestresponsetagwebhookcountentry)
-  - [Tag](#tag)
-  - [Tag.Label](#taglabel)
-  - [TagHealth](#taghealth)
-  - [TagHealth.Request](#taghealthrequest)
-  - [TagHealth.Response](#taghealthresponse)
-  - [TagSelection](#tagselection)
-  - [UpdateTagRequest](#updatetagrequest)
-  - [UpdateTagsForItem](#updatetagsforitem)
+  - [ListRoles](#listroles)
+  - [ListRoles.Request](#listrolesrequest)
+  - [ListRoles.Response](#listrolesresponse)
+  - [Role](#role)
+  - [RoleSelection](#roleselection)
 
 - Enums
 
-- Referenced messages from [health.proto](#referenced-messages-from-healthproto)
-  - [hiber.health.HealthLevel](#hiberhealthhealthlevel)
-  - [hiber.health.HealthLevelSelection](#hiberhealthhealthlevelselection)
 
+  - Enums
+    - [hiber.OrganizationPermission](#hiberorganizationpermission)
+    - [hiber.SupportPermission](#hibersupportpermission)
+    - [hiber.UserPermission](#hiberuserpermission)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -89,275 +80,140 @@
 - [Scalar Value Types](#scalar-value-types)
 
 
-## TagService
-Tag management api calls. You can already get tags for objects when you get their data, and even create new tags
-when updating them, so these calls are meant for easier tag management if you need it.
+## RoleService
+
 
 ### List
-> **rpc** List([ListTagsRequest](#listtagsrequest))
-    [ListTagsRequest.Response](#listtagsrequestresponse)
+> **rpc** List([ListRoles.Request](#listrolesrequest))
+    [ListRoles.Response](#listrolesresponse)
 
 
-
-### Create
-> **rpc** Create([CreateTagRequest](#createtagrequest))
-    [Tag](#tag)
-
-
-
-### Update
-> **rpc** Update([UpdateTagRequest](#updatetagrequest))
-    [Tag](#tag)
-
-
-
-### Delete
-> **rpc** Delete([DeleteTagRequest](#deletetagrequest))
-    [DeleteTagRequest.Response](#deletetagrequestresponse)
-
-
-
-### Health
-> **rpc** Health([TagHealth.Request](#taghealthrequest))
-    [TagHealth.Response](#taghealthresponse)
-
-Count the tags in your organization by health.
 
 
 ## Messages
 
-### CreateTagRequest
+### ListRoles
+
+
+
+
+### ListRoles.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| create | [ Tag.Label](#taglabel) | none |
+| selection | [ RoleSelection](#roleselection) | none |
 
-### DeleteTagRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| id | [ int64](#int64) | none |
-
-### DeleteTagRequest.Response
-
-
-
-
-### ListTagsRequest
+### ListRoles.Response
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ TagSelection](#tagselection) | none |
-| modem_count | [ bool](#bool) | none |
-| webhook_count | [ bool](#bool) | none |
+| roles | [repeated Role](#role) | none |
+| request | [ ListRoles.Request](#listrolesrequest) | none |
 
-### ListTagsRequest.Response
+### Role
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| tags | [repeated Tag](#tag) | none |
-| request | [ ListTagsRequest](#listtagsrequest) | none |
-| tag_modem_count | [map ListTagsRequest.Response.TagModemCountEntry](#listtagsrequestresponsetagmodemcountentry) | map<tag-id, count> |
-| tag_webhook_count | [map ListTagsRequest.Response.TagWebhookCountEntry](#listtagsrequestresponsetagwebhookcountentry) | map<webhook-id, count> |
+| identifier | [ string](#string) | none |
+| display_name | [ string](#string) | none |
+| permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | none |
 
-### ListTagsRequest.Response.TagModemCountEntry
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| key | [ int64](#int64) | none |
-| value | [ int32](#int32) | none |
-
-### ListTagsRequest.Response.TagWebhookCountEntry
+### RoleSelection
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ int64](#int64) | none |
-| value | [ int32](#int32) | none |
-
-### Tag
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| id | [ int64](#int64) | none |
-| label | [ Tag.Label](#taglabel) | none |
-
-### Tag.Label
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| name | [ string](#string) | none |
-| type | [ string](#string) | none |
-
-### TagHealth
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| tag | [ Tag](#tag) | none |
-| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | none |
-| most_severe | [ bool](#bool) | none |
-
-### TagHealth.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ TagSelection](#tagselection) | none |
-
-### TagHealth.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| tag_health | [repeated TagHealth](#taghealth) | none |
-| request | [ TagHealth.Request](#taghealthrequest) | none |
-
-### TagSelection
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| search | [repeated string](#string) | none |
-| names | [repeated string](#string) | none |
-| filter | [ hiber.Filter.Tags](#hiberfiltertags) | none |
-| types | [repeated string](#string) | none |
-
-### UpdateTagRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| id | [ int64](#int64) | none |
-| update | [ Tag.Label](#taglabel) | none |
-
-### UpdateTagsForItem
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| tag_ids_to_add | [repeated int64](#int64) | none |
-| tag_ids_to_remove | [repeated int64](#int64) | none |
-| new_tags_to_add | [repeated Tag.Label](#taglabel) | none |
+| search | [ string](#string) | none |
+| roles | [ hiber.Filter.Roles](#hiberfilterroles) | none |
 
 
 ## Enums
 
 
-## Referenced messages from health.proto
+## Referenced messages from permission.proto
 (Note that these are included because there is a proto dependency on the file,
 so not all messages listed here are referenced.)
 
-#### This section was generated from [health.proto](https://github.com/HiberGlobal/api/blob/master/health.proto).
+#### This section was generated from [permission.proto](https://github.com/HiberGlobal/api/blob/master/permission.proto).
 
-
-### hiber.health.HealthLevel
-
-A health level in an organization.
-Health can be customized depending on your need.
-
-The default health levels are:
-- OK (green): no problems detected
-- WARNING (orange): unresolvable problems detected, for example delayed or skipped messages
-- ERROR (red): significant problems detected (that typically can be resolved),
-  for example inactivity or invalid messages (resolved on a successful message)
-
-Health levels can be customized to as many as you need for your operations, for example:
-- INTERVENTION
-- DEFECT
-- BATTERY
-- HIGH
-- LOW
-
-Health levels are ordered by severity (low to high),
-and of all things affecting a modem's health,
-only the most severe level will be returned when retrieving a modem.
-
-Health can be assigned using modems alarms, which specify the health level they will cause on a modem (and for how
-long, if it does not resolve automatically).
-
-Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems),
-which can happen when a device manufacturer has provided alarms to your device (e.g. a low battery alarm).
-By default, any unknown health levels map to the level that is marked catch-all.
-
-Health level have a set of named colors, represented by a map where the key is the name of the color
-and the value is a string that represents a valid CSS3 color.
-Simple examples are: green, red, orange, grey, #FF00FF for fuchsia, etc (Keep in mind that CSS3 allows for many
-ways to define colors, see https://www.w3.org/TR/2003/WD-css3-color-20030214/).
-
-All the following definitions also mean "red":
- - rgb(255, 0, 0)
- - rgb(100%, 0, 0)
- - rgba(100%, 0%, 0%, 100%)
- - hsl(0, 100%, 50%)
- - hsla(0, 100%, 50%, 1)
-
-The client is responsible for rendering the correct color from the CSS3 color-space and for setting the colors and
-their names. There is no verification on missing named colors, so the client must set sensible defaults when colors
-are missing.
-
-To assist with sorting, health levels have a numeric severity equal to their index in the sorted list of health
-levels (starting at 1). This means higher numbers denote a more severe health.
-Since these values are noting more than a list index, they should not be cached, compared to another organization or
-compared to values retrieved from the API at another time.
-
-For example, an organization using the default health would have:
-- Ok: severity 1
-- Warning: severity 2
-- Error: severity 3
-
-That organization could then add a new health level in between Ok and Warning, meaning the severity of Warning and
-Error will change:
-- Ok, severity 1
-- ItsComplicated, severity 2
-- Warning, severity 3
-- Error, severity 4
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| level | [ string](#string) | The name of this health level. Levels are identified by their name. The API does support renaming, where the rename is propagated to all the relevant parts of the system. |
-| color | [ string](#string) | Default color for the health level, as a string that represents a valid CSS3 color. DEPRECATED: Maps to the color named "text" in color_data. |
-| color_data | [map hiber.health.HealthLevel.ColorDataEntry](#hiberhealthhealthlevelcolordataentry) | Map of named colors, where key is the name and the value is a valid CSS3 color definition. |
-| severity | [ int64](#int64) | A unique numeric value equal to the index of this health level in the list of health levels sorted by ascending severity (starting at 1). This means higher numbers denote a more severe health. This value cannot be used when creating or updating. To change the severity for a health level, reorder all health levels. |
-| catch_all | [ bool](#bool) | Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems), which can happen when a device manufacturer has provided alarms for your device (e.g. a low battery alarm). By default, unknown health levels map to the level of the highest severity, unless another level is marked as catch-all. |
-
-### hiber.health.HealthLevelSelection
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| search | [ string](#string) | Search for the given string in the levels and colors. |
-| levels | [repeated string](#string) | Filter by exact levels. |
 
 
 ### Enums
+#### hiber.OrganizationPermission
+OrganizationPermissions limit what a user can do in an Organization.
+By default, everyone who has access to an organization, can access:
+- organization data
+- dashboard (including the map, and message count for the past days, and any events they have access to)
+- tags
+- deleting tags, but only if they are allowed to update the modems and webhooks the tag is assigned to
+
+Events are filtered by permission, i.e. if you cannot access the users, you would not see user-related events.
+Requesting user-related events explicitly if you cannot access the users will return an error.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| PERMISSION_DEFAULT | none | 0 |
+| ORGANIZATION_CREATE | Create a new child organization. | 1 |
+| ORGANIZATION_UPDATE | Update the organizations data, such as billing information, address, and contact. | 2 |
+| ORGANIZATION_DELETE | Delete child organizations. You cannot delete your own organization. To delete your organization, contact support. | 3 |
+| MODEMS | List modems, see their details and health | 10 |
+| MODEMS_CREATE | Create new modems. Includes MODEMS permission. | 50 |
+| MODEMS_UPDATE | Update modems, such as their peripherals, display name and tags. Includes MODEMS permission. | 11 |
+| MODEMS_LICENSE_KEYS | Show and regenerate license keys. Includes MODEMS permission. | 12 |
+| MODEMS_MESSAGE_BODY_PARSERS | Manage and assign message body parsers. Includes MODEMS permission. | 43 |
+| MODEMS_SECURE_NOTES | Show and update secure notes. Includes MODEMS permission. | 42 |
+| MODEMS_ALARMS | Manage and assign message alerts. Includes MODEMS permission. | 44 |
+| MODEM_VALUES | Read modem values. | 17 |
+| MODEM_MESSAGES | Read modem messages. | 15 |
+| MODEM_MESSAGES_SEND_TEST_MESSAGES | Send modem messages using the TestingService. Does not include MODEMS or MESSAGES permission. | 16 |
+| MODEM_MESSAGES_SEND_REAL_MESSAGES | Send modem messages using real message sources (i.e. gateway). Does not include MODEMS or MESSAGES permission. | 41 |
+| MODEM_DOWNLINK_MESSAGES | Send modem downlink messages. | 51 |
+| TRANSFERS | See the transfers to/from other organizations. | 20 |
+| TRANSFERS_SEND | Transfer devices to another organization. | 21 |
+| USERS | List all users, see their names and email addresses. | 30 |
+| USERS_MANAGE | Approve or create new users, remove users from the organization. Includes users permission. | 31 |
+| PUBLISHERS | Manage publishers: webhooks, MQTT integration and custom email publishers. | 35 |
+| TOKENS | Manage tokens. | 36 |
+| CERTIFICATES | Read and use uploaded certificates (i.e. for publishers). | 38 |
+| CERTIFICATES_MANAGE | Upload certificates, and update or delete uploaded certificates. | 39 |
+| ASSIGNMENTS | Manage assignments using the assignment services and individual calls on, for example, ModemService. | 45 |
+| SIMULATION_MANAGE | Manage simulations, like modem message simulation. | 46 |
+| HEALTH_MANAGE | Manage custom health levels. | 47 |
+| LOCATIONS_MANAGE | Manage saved locations using the OrganizationLocationService. | 48 |
+| EXPORT | Create, access and download exports. | 49 |
+
+#### hiber.SupportPermission
+SupportPermissions are used for features typically reserved for customer support, or that behave differently
+when used by a customer support operator.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| CUSTOMER_SUPPORT | Allow Customer Support functions. | 0 |
+| MANAGE_ORGANIZATION_FEATURE | Manage organization feature flags. | 1 |
+| MANAGE_DEVICE_TYPE | Change the device type for devices. | 2 |
+| CUSTOM_TAGS | Create and assign custom tags. | 3 |
+| INTEGRATION_SHELL_SSIP | none | 4 |
+
+#### hiber.UserPermission
+UserPermissions are generally used to limit what a token can do to its user.
+By default, a user has all UserPermissions, which apply only to himself.
+When creating a token, however, the token typically does not need permission to affect the user at all.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| READ | Read your name, email, linked organizations and mission-control settings. | 0 |
+| UPDATE | Update your personal information, mission-control settings and default organization. Includes read permission. | 1 |
+| REQUEST_ACCESS | Request access to an organization and cancel open requests. Does not include read permission. | 2 |
+| DELETE | Delete your user account permanently. Includes read permission. | 3 |
+
 
 
 ## Referenced messages from base.proto

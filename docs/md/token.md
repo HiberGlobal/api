@@ -20,6 +20,11 @@
   - [TokenSelection](#tokenselection)
   - [UpdateTokenOrganizationPermissionsRequest](#updatetokenorganizationpermissionsrequest)
   - [UpdateTokenOrganizationPermissionsRequest.Response](#updatetokenorganizationpermissionsrequestresponse)
+  - [UpdateTokenRoles](#updatetokenroles)
+  - [UpdateTokenRoles.Request](#updatetokenrolesrequest)
+  - [UpdateTokenRoles.Request.ModifyRoles](#updatetokenrolesrequestmodifyroles)
+  - [UpdateTokenRoles.Request.ReplaceRoles](#updatetokenrolesrequestreplaceroles)
+  - [UpdateTokenRoles.Response](#updatetokenrolesresponse)
   - [UpdateTokenUserPermissionsRequest](#updatetokenuserpermissionsrequest)
   - [UpdateTokenUserPermissionsRequest.Response](#updatetokenuserpermissionsrequestresponse)
 
@@ -54,6 +59,7 @@
   - [hiber.Filter.Organizations](#hiberfilterorganizations)
   - [hiber.Filter.Properties](#hiberfilterproperties)
   - [hiber.Filter.Publishers](#hiberfilterpublishers)
+  - [hiber.Filter.Roles](#hiberfilterroles)
   - [hiber.Filter.SensorBrands](#hiberfiltersensorbrands)
   - [hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions)
   - [hiber.Filter.Tags](#hiberfiltertags)
@@ -119,6 +125,12 @@
 
 
 
+### UpdateTokenRoles
+> **rpc** UpdateTokenRoles([UpdateTokenRoles.Request](#updatetokenrolesrequest))
+    [UpdateTokenRoles.Response](#updatetokenrolesresponse)
+
+
+
 
 ## Messages
 
@@ -132,7 +144,8 @@
 | name | [ string](#string) | none |
 | expires_at | [ hiber.Timestamp](#hibertimestamp) | none |
 | user_permissions | [ hiber.Filter.UserPermissions](#hiberfilteruserpermissions) | none |
-| organization_permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | none |
+| organization_permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new token should get. |
+| roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new token should get. |
 
 ### CreateTokenRequest.Response
 
@@ -190,6 +203,7 @@
 | expires_at | [ hiber.Timestamp](#hibertimestamp) | none |
 | user_permissions | [repeated hiber.UserPermission](#hiberuserpermission) | none |
 | organization_permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | none |
+| roles | [repeated string](#string) | none |
 
 ### TokenSelection
 
@@ -200,6 +214,7 @@
 | users | [ hiber.Filter.Users](#hiberfilterusers) | none |
 | name | [ string](#string) | none |
 | include_expired | [ bool](#bool) | none |
+| roles | [ hiber.Filter.Roles](#hiberfilterroles) | none |
 
 ### UpdateTokenOrganizationPermissionsRequest
 
@@ -214,6 +229,44 @@
 | remove_organization_permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | Remove organization permissions from the token. Ensures the permissions is no longer on the token (even if you also add it using add_organization_permissions). |
 
 ### UpdateTokenOrganizationPermissionsRequest.Response
+
+
+
+
+### UpdateTokenRoles
+
+
+
+
+### UpdateTokenRoles.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| token_ids | [repeated int64](#int64) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update**.modify | [ UpdateTokenRoles.Request.ModifyRoles](#updatetokenrolesrequestmodifyroles) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update**.replace | [ UpdateTokenRoles.Request.ReplaceRoles](#updatetokenrolesrequestreplaceroles) | none |
+
+### UpdateTokenRoles.Request.ModifyRoles
+
+Grant and remove roles on the current roles the tokens have.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| add | [repeated string](#string) | Grant roles in addition to the current roles the tokens have. |
+| remove | [repeated string](#string) | Remove roles from the current roles the tokens have. |
+
+### UpdateTokenRoles.Request.ReplaceRoles
+
+Completely replace the roles the tokens have.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| roles | [repeated string](#string) | none |
+
+### UpdateTokenRoles.Response
 
 
 
@@ -556,6 +609,15 @@ Filter result on specific properties encoded in map-value pairs.
 | include | [repeated int64](#int64) | none |
 | exclude | [repeated int64](#int64) | none |
 | only_active | [ bool](#bool) | none |
+
+### hiber.Filter.Roles
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| include | [repeated string](#string) | none |
+| exclude | [repeated string](#string) | none |
 
 ### hiber.Filter.SensorBrands
 

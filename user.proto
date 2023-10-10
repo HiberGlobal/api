@@ -23,6 +23,7 @@ service UserService {
 
     rpc ResetPassword (ResetUserPasswordRequest) returns (ResetUserPasswordRequest.Response);
     rpc UpdateUserPermissions (UpdateUserPermissionsRequest) returns (UpdateUserPermissionsRequest.Response);
+    rpc UpdateUserRoles (UpdateUserRoles.Request) returns (UpdateUserRoles.Response);
 
     rpc GetUserValidation (GetUserValidationRequest) returns (UserValidation);
     rpc UpdateUserValidation (UpdateUserValidationRequest) returns (UserValidation);
@@ -36,6 +37,7 @@ message User {
     string email = 2;
     string name = 3;
     Filter.OrganizationPermissions permissions = 4;
+    repeated string roles = 5;
 }
 
 message UserSelection {
@@ -43,6 +45,8 @@ message UserSelection {
     string by_email = 1;
     string by_name = 2;
     string search = 4;
+    Filter.Roles roles = 5;
+    Filter.OrganizationPermissions permissions = 6;
 }
 
 enum UserSort {
@@ -91,9 +95,16 @@ message ApproveUserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     repeated string user_ids = 2;
+
+    /* Permissions the new user should get. */
     Filter.OrganizationPermissions permissions = 3;
 
-    /* By default, the server returns an error when you don't specify any permissions. Set this to true to allow it. */
+    /* Roles the new user should get. */
+    Filter.Roles roles = 5;
+
+    /* By default, the server returns an error when you don't specify any permissions or roles.
+     * Set this to true to allow it.
+     */
     bool override_allow_no_permissions = 4;
 }
 
@@ -139,9 +150,15 @@ message InviteUserRequest {
     /* Invite the user again, even if there is an open invite. This can be done a limited amount of times. */
     bool retry = 3;
 
+    /* Permissions the new user should get. */
     Filter.OrganizationPermissions permissions = 4;
 
-    /* By default, the server returns an error when you don't specify any permissions. Set this to true to allow it. */
+    /* Roles the new user should get. */
+    Filter.Roles roles = 6;
+
+    /* By default, the server returns an error when you don't specify any permissions or roles.
+     * Set this to true to allow it.
+     */
     bool override_allow_no_permissions = 5;
 }
 
@@ -156,6 +173,9 @@ message CreateUserRequest {
 
     /* Permissions the new user should get. */
     Filter.OrganizationPermissions permissions = 5;
+
+    /* Roles the new user should get. */
+    Filter.Roles roles = 10;
 
     /* Send an automated email prompting the user to verify their email address. */
     bool send_verification_mail = 6;
@@ -180,12 +200,21 @@ message CreateUsersRequest {
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
+
     /* Users to create. Allows for individual impersonation and mail settings. */
     repeated CreateUserRequest users = 2;
-    /* Set the permissions for all users. Can be replaced for specific settings in the CreateUserRequest. */
+
+    /* Permissions the new users should get.
+     * Can be replaced for specific settings in the CreateUserRequest.
+     */
     Filter.OrganizationPermissions permissions = 3;
+
+    /* Roles the new users should get. Can be replaced for specific settings in the CreateUserRequest. */
+    Filter.Roles roles = 6;
+
     /* Send an automated email prompting the users to verify their email addresses. If true, applies to all users. */
     bool send_verification_mail = 4;
+
     /* Send an automated email prompting the users to set their password. If true, applies to all users. */
     bool send_password_reset_mail = 5;
 }
@@ -212,6 +241,35 @@ message UpdateUserPermissionsRequest {
 
     /* By default, the server returns an error when you don't specify any permissions. Set this to true to allow it. */
     bool override_allow_no_permissions = 4;
+}
+
+message UpdateUserRoles {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        repeated string user_ids = 2;
+
+        /* Grant and remove roles on the current roles the users have. */
+        message ModifyRoles {
+            /* Grant roles in addition to the current roles the users have. */
+            repeated string add = 1;
+
+            /* Remove roles from the current roles the users have. */
+            repeated string remove = 2;
+        }
+
+        /* Completely replace the roles the users have. */
+        message ReplaceRoles {
+            repeated string roles = 1;
+        }
+
+        oneof update {
+            ModifyRoles modify = 3;
+            ReplaceRoles replace = 4;
+        }
+    }
+    message Response {
+    }
 }
 
 message GetUserValidationRequest {

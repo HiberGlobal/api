@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package hiber.role;
+
+import "base.proto";
+import "permission.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.role";
+option java_outer_classname = "RoleApi";
+option go_package = "hiber";
+
+service RoleService {
+    rpc List (ListRoles.Request) returns (ListRoles.Response);
+}
+
+message Role {
+    string identifier = 1;
+    string display_name = 2;
+    repeated OrganizationPermission permissions = 3;
+}
+
+message RoleSelection {
+    string search = 1;
+    Filter.Roles roles = 2;
+}
+
+message ListRoles {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        RoleSelection selection = 2;
+    }
+
+    message Response {
+        repeated Role roles = 1;
+        Request request = 2;
+    }
+}

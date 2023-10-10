@@ -16,6 +16,7 @@ service TokenService {
     rpc Delete (DeleteTokenRequest) returns (DeleteTokenRequest.Response);
     rpc UpdateTokenOrganizationPermissions (UpdateTokenOrganizationPermissionsRequest) returns (UpdateTokenOrganizationPermissionsRequest.Response);
     rpc UpdateTokenUserPermissions (UpdateTokenUserPermissionsRequest) returns (UpdateTokenUserPermissionsRequest.Response);
+    rpc UpdateTokenRoles(UpdateTokenRoles.Request) returns (UpdateTokenRoles.Response);
 }
 
 message Token {
@@ -27,12 +28,14 @@ message Token {
     Timestamp expires_at = 6;
     repeated UserPermission user_permissions = 7;
     repeated OrganizationPermission organization_permissions = 8;
+    repeated string roles = 9;
 }
 
 message TokenSelection {
     Filter.Users users = 1;
     string name = 3;
     bool include_expired = 4;
+    Filter.Roles roles = 5;
 }
 
 message ListTokensRequest {
@@ -60,7 +63,12 @@ message CreateTokenRequest {
     reserved 3;
     Timestamp expires_at = 4;
     Filter.UserPermissions user_permissions = 5;
+
+    /* Permissions the new token should get. */
     Filter.OrganizationPermissions organization_permissions = 6;
+
+    /* Roles the new token should get. */
+    Filter.Roles roles = 8;
 
     reserved 7;
 }
@@ -112,4 +120,33 @@ message UpdateTokenUserPermissionsRequest {
 
     /* Remove user permissions from the token. */
     repeated UserPermission remove_user_permissions = 6;
+}
+
+message UpdateTokenRoles {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        repeated int64 token_ids = 2;
+
+        /* Grant and remove roles on the current roles the tokens have. */
+        message ModifyRoles {
+            /* Grant roles in addition to the current roles the tokens have. */
+            repeated string add = 1;
+
+            /* Remove roles from the current roles the tokens have. */
+            repeated string remove = 2;
+        }
+
+        /* Completely replace the roles the tokens have. */
+        message ReplaceRoles {
+            repeated string roles = 1;
+        }
+
+        oneof update {
+            ModifyRoles modify = 3;
+            ReplaceRoles replace = 4;
+        }
+    }
+    message Response {
+    }
 }

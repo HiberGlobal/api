@@ -390,6 +390,11 @@ message Filter {
         repeated string exclude = 2;
     }
 
+    message Roles {
+        repeated string include = 1;
+        repeated string exclude = 2;
+    }
+
     message OrganizationPermissions {
         bool include_all = 1;
         repeated OrganizationPermission include = 2;

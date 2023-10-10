@@ -1,5 +1,29 @@
 # Changelog Hiber API
 
+### 0.166 (2023-10-10)
+
+##### RoleService
+
+- Introduced the `RoleService` to list available `Role`s.
+  - A `Role` is a named collection of `OrganizationPermission`s.
+
+##### TokenService
+
+- Added `roles` to `Token`
+  - Added `roles` to `TokenSelection` to select tokens with specific roles.
+  - Added `roles` to `CreateTokenRequest` to create a token with roles.
+  - Added `UpdateTokenRoles` to update the roles on a token.
+
+##### UserService
+
+- Introducing the concept of roles to the system.
+  Roles group permissions and impersonation limitations in one place.
+  - Added `roles` to `User` to see the roles a user has.
+  - Added `roles` to `ApproveUserRequest`, `InviteUserRequest`, `CreateUserRequest` and `CreateUsersRequest`, where users are added.
+  - Added `UserSelection.roles` to list the users with a given (set of) roles.
+  - Added `UserSelection.permissions` to list the users with a given (set of) permissions.
+- Fixed an issue where users that let their invite expire could not be invited again.
+
 ### 0.164 (2023-09-19)
 
 ##### Permissions
