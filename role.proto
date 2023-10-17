@@ -15,9 +15,22 @@ service RoleService {
 }
 
 message Role {
+    /* Unique identifier for the role. */
     string identifier = 1;
+
+    /* Display name for the role. */
     string display_name = 2;
+
+    /* Description for the role. */
+    string description = 5;
+
+    /* The organization permissions the role grants. */
     repeated OrganizationPermission permissions = 3;
+
+    /* The support permissions the role grants.
+     * This is not typically available in any organizations other than the Hiber organization.
+     */
+    repeated SupportPermission support_permissions = 4;
 }
 
 message RoleSelection {

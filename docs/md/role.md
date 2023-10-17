@@ -121,9 +121,11 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| identifier | [ string](#string) | none |
-| display_name | [ string](#string) | none |
-| permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | none |
+| identifier | [ string](#string) | Unique identifier for the role. |
+| display_name | [ string](#string) | Display name for the role. |
+| description | [ string](#string) | Description for the role. |
+| permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | The organization permissions the role grants. |
+| support_permissions | [repeated hiber.SupportPermission](#hibersupportpermission) | The support permissions the role grants. This is not typically available in any organizations other than the Hiber organization. |
 
 ### RoleSelection
 

@@ -267,6 +267,11 @@ message UpdateUserRoles {
             ModifyRoles modify = 3;
             ReplaceRoles replace = 4;
         }
+
+        /* By default, the server returns an error when you don't specify any permissions.
+         * Set this to true to allow it.
+         */
+        bool override_allow_no_permissions = 5;
     }
     message Response {
     }

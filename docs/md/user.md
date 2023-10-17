@@ -417,6 +417,7 @@ List all invited users (email addresses).
 | user_ids | [repeated string](#string) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update**.modify | [ UpdateUserRoles.Request.ModifyRoles](#updateuserrolesrequestmodifyroles) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update**.replace | [ UpdateUserRoles.Request.ReplaceRoles](#updateuserrolesrequestreplaceroles) | none |
+| override_allow_no_permissions | [ bool](#bool) | By default, the server returns an error when you don't specify any permissions. Set this to true to allow it. |
 
 ### UpdateUserRoles.Request.ModifyRoles
 

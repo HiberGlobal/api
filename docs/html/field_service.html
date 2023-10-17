@@ -556,6 +556,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.modem.ListModemsGrouped.Response.Total"><span class="badge">M</span>ListModemsGrouped.Response.Total</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.modem.ListModemsRequest"><span class="badge">M</span>ListModemsRequest</a>
                 </li>
               
@@ -4974,6 +4978,51 @@ the group parent in the group_parents field. </p></td>
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>total</td>
+                  <td><a href="#hiber.modem.ListModemsGrouped.Response.Total">ListModemsGrouped.Response.Total</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.modem.ListModemsGrouped.Response.Total">ListModemsGrouped.Response.Total</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>groups</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>all</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -6300,6 +6349,20 @@ create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. </p></td
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>When set to true, only modems that do not have any peripheral will be included in the result. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>only_connected_to_gateway</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Only select modems that are connected to a gateway (connected devices). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>not_connected_to_gateway</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Only select modems that are not connected to a gateway (i.e. gateways). </p></td>
                 </tr>
               
             </tbody>

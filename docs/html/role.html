@@ -537,21 +537,36 @@
                   <td>identifier</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Unique identifier for the role. </p></td>
                 </tr>
               
                 <tr>
                   <td>display_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Display name for the role. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Description for the role. </p></td>
                 </tr>
               
                 <tr>
                   <td>permissions</td>
                   <td><a href="#hiber.OrganizationPermission">hiber.OrganizationPermission</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>The organization permissions the role grants. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>support_permissions</td>
+                  <td><a href="#hiber.SupportPermission">hiber.SupportPermission</a></td>
+                  <td>repeated</td>
+                  <td><p>The support permissions the role grants.
+This is not typically available in any organizations other than the Hiber organization. </p></td>
                 </tr>
               
             </tbody>

@@ -1352,6 +1352,8 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 | filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ hiber.modem.ModemSelection.Peripherals](#hibermodemmodemselectionperipherals) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.only_without_peripheral | [ bool](#bool) | When set to true, only modems that do not have any peripheral will be included in the result. |
+| only_connected_to_gateway | [ bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
+| not_connected_to_gateway | [ bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
 
 
 ### Enums

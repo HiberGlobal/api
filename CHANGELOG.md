@@ -1,5 +1,25 @@
 # Changelog Hiber API
 
+### 0.167 (2023-10-17)
+
+##### AlarmService
+
+- Fixed a bug where an out-of-order message could trigger an inactivity check (by scheduling the trigger from its sent time).
+
+##### ModemService
+
+- Added `total` to `ListModemsGrouped.Response` for convenience, since the pagination was not sufficient to get totals.
+
+##### RoleService
+
+- Added `description` to `Role`.
+- Added `support_permissions` to `Role` for some Hiber employees.
+
+##### UserService
+
+- Fixed a bug where updating roles would still allow you to reduce a user to have no permissions.
+  - Added `override_allow_no_permissions` to `UpdateUserRoles.Request`.
+
 ### 0.166 (2023-10-10)
 
 ##### RoleService

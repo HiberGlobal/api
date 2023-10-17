@@ -24,6 +24,7 @@ used to identify them.
   - [ListModemsGrouped](#listmodemsgrouped)
   - [ListModemsGrouped.Request](#listmodemsgroupedrequest)
   - [ListModemsGrouped.Response](#listmodemsgroupedresponse)
+  - [ListModemsGrouped.Response.Total](#listmodemsgroupedresponsetotal)
   - [ListModemsRequest](#listmodemsrequest)
   - [ListModemsRequest.Response](#listmodemsrequestresponse)
   - [MessageCountRequest](#messagecountrequest)
@@ -412,6 +413,17 @@ list method.
 | request | [ ListModemsGrouped.Request](#listmodemsgroupedrequest) | none |
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
 | sorted_by | [repeated ListModemsRequest.Sort](#listmodemsrequestsort) | none |
+| total | [ ListModemsGrouped.Response.Total](#listmodemsgroupedresponsetotal) | none |
+
+### ListModemsGrouped.Response.Total
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| groups | [ uint32](#uint32) | none |
+| content | [ uint32](#uint32) | none |
+| all | [ uint32](#uint32) | none |
 
 ### ListModemsRequest
 
@@ -687,6 +699,8 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 | filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ ModemSelection.Peripherals](#modemselectionperipherals) | none |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.only_without_peripheral | [ bool](#bool) | When set to true, only modems that do not have any peripheral will be included in the result. |
+| only_connected_to_gateway | [ bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
+| not_connected_to_gateway | [ bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
 
 ### ModemSelection.Peripherals
 

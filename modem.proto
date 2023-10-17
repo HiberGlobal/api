@@ -373,6 +373,12 @@ message ModemSelection {
         bool only_without_peripheral = 21;
     }
 
+    /* Only select modems that are connected to a gateway (connected devices). */
+    bool only_connected_to_gateway = 25;
+
+    /* Only select modems that are not connected to a gateway (i.e. gateways). */
+    bool not_connected_to_gateway = 26;
+
     reserved 3, 6, 9, 17;
 }
 
@@ -694,6 +700,13 @@ message ListModemsGrouped {
         Request request = 2;
         Pagination.Result pagination = 3;
         repeated ListModemsRequest.Sort sorted_by = 4;
+        Total total = 5;
+
+        message Total {
+            uint32 groups = 1;
+            uint32 content = 2;
+            uint32 all = 3;
+        }
     }
 }
 
