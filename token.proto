@@ -20,6 +20,16 @@ service TokenService {
 }
 
 message Token {
+    enum Type {
+        /* A token with a specific set of permissions, given when the token is created. */
+        SPECIFIC = 0;
+
+        /* A personal access token has the permissions of the creator.
+         * When the creator gains or loses permissions, this applies to the token as well.
+         */
+        PERSONAL = 1;
+    }
+
     int64 id = 1;
     string name = 2;
     string user_id = 3;
@@ -29,6 +39,7 @@ message Token {
     repeated UserPermission user_permissions = 7;
     repeated OrganizationPermission organization_permissions = 8;
     repeated string roles = 9;
+    Type type = 10;
 }
 
 message TokenSelection {
@@ -36,6 +47,7 @@ message TokenSelection {
     string name = 3;
     bool include_expired = 4;
     Filter.Roles roles = 5;
+    repeated Token.Type type = 6;
 }
 
 message ListTokensRequest {
@@ -60,7 +72,7 @@ message CreateTokenRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     string name = 2;
-    reserved 3;
+    Token.Type type = 9;
     Timestamp expires_at = 4;
     Filter.UserPermissions user_permissions = 5;
 
@@ -70,7 +82,7 @@ message CreateTokenRequest {
     /* Roles the new token should get. */
     Filter.Roles roles = 8;
 
-    reserved 7;
+    reserved 3,7;
 }
 
 message DeleteTokenRequest {

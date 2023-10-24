@@ -6,13 +6,9 @@
 
 ## Table of Contents
 
-- Services
-  - [RoleService](#roleservice)
+
 
 - Messages
-  - [ListRoles](#listroles)
-  - [ListRoles.Request](#listrolesrequest)
-  - [ListRoles.Response](#listrolesresponse)
   - [Role](#role)
   - [RoleSelection](#roleselection)
 
@@ -79,41 +75,7 @@
 
 - [Scalar Value Types](#scalar-value-types)
 
-
-## RoleService
-
-
-### List
-> **rpc** List([ListRoles.Request](#listrolesrequest))
-    [ListRoles.Response](#listrolesresponse)
-
-
-
-
 ## Messages
-
-### ListRoles
-
-
-
-
-### ListRoles.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ RoleSelection](#roleselection) | none |
-
-### ListRoles.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| roles | [repeated Role](#role) | none |
-| request | [ ListRoles.Request](#listrolesrequest) | none |
 
 ### Role
 

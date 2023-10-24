@@ -4,6 +4,7 @@ package hiber.user;
 
 import "base.proto";
 import "organization.proto";
+import "role.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.user";
@@ -27,6 +28,9 @@ service CurrentUserService {
 
     rpc UpdateMissionControlSettings (UpdateMissionControlSettingsRequest) returns (UpdateMissionControlSettingsRequest.Response);
     rpc AcceptTermsAndConditions (AcceptTermsAndConditionsRequest) returns (AcceptTermsAndConditionsRequest.Response);
+
+    rpc OverrideRoles (OverrideRoles.Request) returns (OverrideRoles.Response);
+    rpc RestoreRoles (OverrideRoles.Restore.Request) returns (OverrideRoles.Restore.Response);
 }
 
 /* Your personal data. */
@@ -200,4 +204,30 @@ message AccessibleOrganizationsRequest {
     bool default_only = 4;
 
     Pagination pagination = 2;
+}
+
+message OverrideRoles {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        string organization = 1;
+        role.RoleSelection selection = 2;
+    }
+
+    message Response {
+        hiber.user.CurrentUser current_user = 1;
+        Request request = 2;
+    }
+
+    message Restore {
+        message Request {
+            /* Optionally, specify organization(s) with an active override that you wish to remove.
+             * If no organizations are provided, all overrides will be removed.
+             */
+            repeated string organization = 1;
+        }
+        message Response {
+            hiber.user.CurrentUser current_user = 1;
+            Request request = 2;
+        }
+    }
 }

@@ -1,5 +1,24 @@
 # Changelog Hiber API
 
+### 0.168 (2023-10-24)
+
+##### CurrentUserService
+
+- Added `OverrideRoles` and `RestoreRoles` to temporarily override and restore roles.
+
+##### RoleService
+
+- Moved `RoleService` to `role_service.proto`, split off from `role.proto`, for cleaner imports.
+- Added `Override` and `Restore` to temporarily override and restore roles.
+
+##### TokenService
+
+- Added `Token.Type` to indicate the type of token:
+  - `SPECIFIC`: has a specified set of permissions. All tokens before this release were specific.
+  - `PERSONAL`: uses the user's roles and permissions
+- Added `Token.type` and `CreateTokenRequest.type` to use the new type.
+- Added `TokenSelection.type` to list specific token types.
+
 ### 0.167 (2023-10-17)
 
 ##### AlarmService

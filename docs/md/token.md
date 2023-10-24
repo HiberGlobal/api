@@ -29,6 +29,7 @@
   - [UpdateTokenUserPermissionsRequest.Response](#updatetokenuserpermissionsrequestresponse)
 
 - Enums
+  - [Token.Type](#tokentype)
 
 
   - Enums
@@ -142,6 +143,7 @@
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | name | [ string](#string) | none |
+| type | [ Token.Type](#tokentype) | none |
 | expires_at | [ hiber.Timestamp](#hibertimestamp) | none |
 | user_permissions | [ hiber.Filter.UserPermissions](#hiberfilteruserpermissions) | none |
 | organization_permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new token should get. |
@@ -204,6 +206,7 @@
 | user_permissions | [repeated hiber.UserPermission](#hiberuserpermission) | none |
 | organization_permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | none |
 | roles | [repeated string](#string) | none |
+| type | [ Token.Type](#tokentype) | none |
 
 ### TokenSelection
 
@@ -215,6 +218,7 @@
 | name | [ string](#string) | none |
 | include_expired | [ bool](#bool) | none |
 | roles | [ hiber.Filter.Roles](#hiberfilterroles) | none |
+| type | [repeated Token.Type](#tokentype) | none |
 
 ### UpdateTokenOrganizationPermissionsRequest
 
@@ -290,6 +294,14 @@ Completely replace the roles the tokens have.
 
 
 ## Enums
+### Token.Type
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| SPECIFIC | A token with a specific set of permissions, given when the token is created. | 0 |
+| PERSONAL | A personal access token has the permissions of the creator. When the creator gains or loses permissions, this applies to the token as well. | 1 |
+
 
 
 ## Referenced messages from permission.proto

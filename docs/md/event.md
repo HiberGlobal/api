@@ -374,6 +374,7 @@
   - [hiber.token.UpdateTokenUserPermissionsRequest](#hibertokenupdatetokenuserpermissionsrequest)
   - [hiber.token.UpdateTokenUserPermissionsRequest.Response](#hibertokenupdatetokenuserpermissionsrequestresponse)
 
+    - [hiber.token.Token.Type](#hibertokentokentype)
 
 - Referenced messages from [transfer.proto](#referenced-messages-from-transferproto)
   - [hiber.transfer.Transfer](#hibertransfertransfer)
@@ -4311,6 +4312,7 @@ so not all messages listed here are referenced.)
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | name | [ string](#string) | none |
+| type | [ hiber.token.Token.Type](#hibertokentokentype) | none |
 | expires_at | [ hiber.Timestamp](#hibertimestamp) | none |
 | user_permissions | [ hiber.Filter.UserPermissions](#hiberfilteruserpermissions) | none |
 | organization_permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new token should get. |
@@ -4373,6 +4375,7 @@ so not all messages listed here are referenced.)
 | user_permissions | [repeated hiber.UserPermission](#hiberuserpermission) | none |
 | organization_permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | none |
 | roles | [repeated string](#string) | none |
+| type | [ hiber.token.Token.Type](#hibertokentokentype) | none |
 
 ### hiber.token.TokenSelection
 
@@ -4384,6 +4387,7 @@ so not all messages listed here are referenced.)
 | name | [ string](#string) | none |
 | include_expired | [ bool](#bool) | none |
 | roles | [ hiber.Filter.Roles](#hiberfilterroles) | none |
+| type | [repeated hiber.token.Token.Type](#hibertokentokentype) | none |
 
 ### hiber.token.UpdateTokenOrganizationPermissionsRequest
 
@@ -4459,6 +4463,14 @@ Completely replace the roles the tokens have.
 
 
 ### Enums
+#### hiber.token.Token.Type
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| SPECIFIC | A token with a specific set of permissions, given when the token is created. | 0 |
+| PERSONAL | A personal access token has the permissions of the creator. When the creator gains or loses permissions, this applies to the token as well. | 1 |
+
 
 
 ## Referenced messages from transfer.proto

@@ -247,6 +247,10 @@
                 </li>
               
               
+                <li>
+                  <a href="#hiber.token.Token.Type"><span class="badge">E</span>Token.Type</a>
+                </li>
+              
               
               
                 <li>
@@ -527,6 +531,13 @@
                 </tr>
               
                 <tr>
+                  <td>type</td>
+                  <td><a href="#hiber.token.Token.Type">Token.Type</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>expires_at</td>
                   <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
                   <td></td>
@@ -772,6 +783,13 @@
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>type</td>
+                  <td><a href="#hiber.token.Token.Type">Token.Type</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -814,6 +832,13 @@
                   <td>roles</td>
                   <td><a href="#hiber.Filter.Roles">hiber.Filter.Roles</a></td>
                   <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#hiber.token.Token.Type">Token.Type</a></td>
+                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1058,6 +1083,30 @@ Ensures the permissions is no longer on the token (even if you also add it using
         
       
 
+      
+        <h3 id="hiber.token.Token.Type">Token.Type</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>SPECIFIC</td>
+                <td>0</td>
+                <td><p>A token with a specific set of permissions, given when the token is created.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PERSONAL</td>
+                <td>1</td>
+                <td><p>A personal access token has the permissions of the creator.
+When the creator gains or loses permissions, this applies to the token as well.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
 
       

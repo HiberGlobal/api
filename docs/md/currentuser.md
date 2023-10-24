@@ -26,6 +26,12 @@
   - [ListOrganizationInvitesRequest](#listorganizationinvitesrequest)
   - [ListOrganizationInvitesRequest.Invite](#listorganizationinvitesrequestinvite)
   - [ListOrganizationInvitesRequest.Response](#listorganizationinvitesrequestresponse)
+  - [OverrideRoles](#overrideroles)
+  - [OverrideRoles.Request](#overriderolesrequest)
+  - [OverrideRoles.Response](#overriderolesresponse)
+  - [OverrideRoles.Restore](#overriderolesrestore)
+  - [OverrideRoles.Restore.Request](#overriderolesrestorerequest)
+  - [OverrideRoles.Restore.Response](#overriderolesrestoreresponse)
   - [RequestAccessRequest](#requestaccessrequest)
   - [RequestAccessRequest.Response](#requestaccessrequestresponse)
   - [UpdateDefaultOrganizationRequest](#updatedefaultorganizationrequest)
@@ -59,6 +65,11 @@
   - [hiber.organization.ValidateOrganizationCreationTokenRequest.Response](#hiberorganizationvalidateorganizationcreationtokenrequestresponse)
 
     - [hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature)
+
+- Referenced messages from [role.proto](#referenced-messages-from-roleproto)
+  - [hiber.role.Role](#hiberrolerole)
+  - [hiber.role.RoleSelection](#hiberroleroleselection)
+
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -177,6 +188,18 @@ others require an organization to be linked.
 ### AcceptTermsAndConditions
 > **rpc** AcceptTermsAndConditions([AcceptTermsAndConditionsRequest](#accepttermsandconditionsrequest))
     [AcceptTermsAndConditionsRequest.Response](#accepttermsandconditionsrequestresponse)
+
+
+
+### OverrideRoles
+> **rpc** OverrideRoles([OverrideRoles.Request](#overriderolesrequest))
+    [OverrideRoles.Response](#overriderolesresponse)
+
+
+
+### RestoreRoles
+> **rpc** RestoreRoles([OverrideRoles.Restore.Request](#overriderolesrestorerequest))
+    [OverrideRoles.Restore.Response](#overriderolesrestoreresponse)
 
 
 
@@ -320,6 +343,51 @@ List all invitations from organizations.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organizations | [repeated ListOrganizationInvitesRequest.Invite](#listorganizationinvitesrequestinvite) | none |
+
+### OverrideRoles
+
+
+
+
+### OverrideRoles.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| selection | [ hiber.role.RoleSelection](#hiberroleroleselection) | none |
+
+### OverrideRoles.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| current_user | [ CurrentUser](#currentuser) | none |
+| request | [ OverrideRoles.Request](#overriderolesrequest) | none |
+
+### OverrideRoles.Restore
+
+
+
+
+### OverrideRoles.Restore.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [repeated string](#string) | Optionally, specify organization(s) with an active override that you wish to remove. If no organizations are provided, all overrides will be removed. |
+
+### OverrideRoles.Restore.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| current_user | [ CurrentUser](#currentuser) | none |
+| request | [ OverrideRoles.Restore.Request](#overriderolesrestorerequest) | none |
 
 ### RequestAccessRequest
 
@@ -615,6 +683,38 @@ Note that the organization field specifies the organization, it is not used to u
 | EXPERIMENTAL | Used for organizations that get access to experimental features. e.g. feature work in progress. | 6 |
 | BI_TOOLING_BETA | Integrate BI tooling in the Mission Control interface. | 8 |
 
+
+
+## Referenced messages from role.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [role.proto](https://github.com/HiberGlobal/api/blob/master/role.proto).
+
+
+### hiber.role.Role
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifier | [ string](#string) | Unique identifier for the role. |
+| display_name | [ string](#string) | Display name for the role. |
+| description | [ string](#string) | Description for the role. |
+| permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | The organization permissions the role grants. |
+| support_permissions | [repeated hiber.SupportPermission](#hibersupportpermission) | The support permissions the role grants. This is not typically available in any organizations other than the Hiber organization. |
+
+### hiber.role.RoleSelection
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| search | [ string](#string) | none |
+| roles | [ hiber.Filter.Roles](#hiberfilterroles) | none |
+
+
+### Enums
 
 
 ## Referenced messages from base.proto

@@ -243,6 +243,30 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.user.OverrideRoles"><span class="badge">M</span>OverrideRoles</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.user.OverrideRoles.Request"><span class="badge">M</span>OverrideRoles.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.user.OverrideRoles.Response"><span class="badge">M</span>OverrideRoles.Response</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.user.OverrideRoles.Restore"><span class="badge">M</span>OverrideRoles.Restore</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.user.OverrideRoles.Restore.Request"><span class="badge">M</span>OverrideRoles.Restore.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.user.OverrideRoles.Restore.Response"><span class="badge">M</span>OverrideRoles.Restore.Response</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.user.RequestAccessRequest"><span class="badge">M</span>RequestAccessRequest</a>
                 </li>
               
@@ -586,6 +610,25 @@
                 <li>
                   <a href="#hiber.organization.OrganizationService"><span class="badge">S</span>OrganizationService</a>
                 </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#role.proto">role.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#hiber.role.Role"><span class="badge">M</span>Role</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.role.RoleSelection"><span class="badge">M</span>RoleSelection</a>
+                </li>
+              
+              
+              
               
             </ul>
           </li>
@@ -1073,6 +1116,138 @@ when used by a customer support operator. </p></td>
 
         
       
+        <h3 id="hiber.user.OverrideRoles">OverrideRoles</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.user.OverrideRoles.Request">OverrideRoles.Request</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>selection</td>
+                  <td><a href="#hiber.role.RoleSelection">hiber.role.RoleSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.user.OverrideRoles.Response">OverrideRoles.Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>current_user</td>
+                  <td><a href="#hiber.user.CurrentUser">CurrentUser</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#hiber.user.OverrideRoles.Request">OverrideRoles.Request</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.user.OverrideRoles.Restore">OverrideRoles.Restore</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.user.OverrideRoles.Restore.Request">OverrideRoles.Restore.Request</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Optionally, specify organization(s) with an active override that you wish to remove.
+If no organizations are provided, all overrides will be removed. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.user.OverrideRoles.Restore.Response">OverrideRoles.Restore.Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>current_user</td>
+                  <td><a href="#hiber.user.CurrentUser">CurrentUser</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#hiber.user.OverrideRoles.Restore.Request">OverrideRoles.Restore.Request</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="hiber.user.RequestAccessRequest">RequestAccessRequest</h3>
         <p>Request access to an organization by name, if it exists.</p><p>You request will be saved and the organization owner notified.</p><p>Organization admins can approve or reject your request.</p>
 
@@ -1281,6 +1456,20 @@ when used by a customer support operator. </p></td>
                 <td>AcceptTermsAndConditions</td>
                 <td><a href="#hiber.user.AcceptTermsAndConditionsRequest">AcceptTermsAndConditionsRequest</a></td>
                 <td><a href="#hiber.user.AcceptTermsAndConditionsRequest.Response">AcceptTermsAndConditionsRequest.Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OverrideRoles</td>
+                <td><a href="#hiber.user.OverrideRoles.Request">OverrideRoles.Request</a></td>
+                <td><a href="#hiber.user.OverrideRoles.Response">OverrideRoles.Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>RestoreRoles</td>
+                <td><a href="#hiber.user.OverrideRoles.Restore.Request">OverrideRoles.Restore.Request</a></td>
+                <td><a href="#hiber.user.OverrideRoles.Restore.Response">OverrideRoles.Restore.Response</a></td>
                 <td><p></p></td>
               </tr>
             
@@ -4397,6 +4586,104 @@ Used as an identifier for the organization. </p></td>
         </table>
 
         
+    
+      
+      <div class="file-heading">
+        <h2 id="role.proto">role.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="hiber.role.Role">Role</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique identifier for the role. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>display_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Display name for the role. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Description for the role. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>permissions</td>
+                  <td><a href="#hiber.OrganizationPermission">hiber.OrganizationPermission</a></td>
+                  <td>repeated</td>
+                  <td><p>The organization permissions the role grants. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>support_permissions</td>
+                  <td><a href="#hiber.SupportPermission">hiber.SupportPermission</a></td>
+                  <td>repeated</td>
+                  <td><p>The support permissions the role grants.
+This is not typically available in any organizations other than the Hiber organization. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.role.RoleSelection">RoleSelection</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>search</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>roles</td>
+                  <td><a href="#hiber.Filter.Roles">hiber.Filter.Roles</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
     
 
     <h2 id="scalar-value-types">Scalar Value Types</h2>
