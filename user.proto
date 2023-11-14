@@ -22,8 +22,10 @@ service UserService {
     rpc CreateUsers (CreateUsersRequest) returns (CreateUsersRequest.Response);
 
     rpc ResetPassword (ResetUserPasswordRequest) returns (ResetUserPasswordRequest.Response);
-    rpc UpdateUserPermissions (UpdateUserPermissionsRequest) returns (UpdateUserPermissionsRequest.Response);
     rpc UpdateUserRoles (UpdateUserRoles.Request) returns (UpdateUserRoles.Response);
+    rpc UpdateUserPermissions (UpdateUserPermissionsRequest) returns (UpdateUserPermissionsRequest.Response) {
+        option deprecated = true;
+    };
 
     rpc GetUserValidation (GetUserValidationRequest) returns (UserValidation);
     rpc UpdateUserValidation (UpdateUserValidationRequest) returns (UserValidation);
@@ -96,8 +98,8 @@ message ApproveUserRequest {
     string organization = 1;
     repeated string user_ids = 2;
 
-    /* Permissions the new user should get. */
-    Filter.OrganizationPermissions permissions = 3;
+    /* Permissions the new user should get. DEPRECATED in favor of roles. */
+    Filter.OrganizationPermissions permissions = 3 [deprecated = true];
 
     /* Roles the new user should get. */
     Filter.Roles roles = 5;
@@ -150,8 +152,8 @@ message InviteUserRequest {
     /* Invite the user again, even if there is an open invite. This can be done a limited amount of times. */
     bool retry = 3;
 
-    /* Permissions the new user should get. */
-    Filter.OrganizationPermissions permissions = 4;
+    /* Permissions the new user should get. DEPRECATED in favor of roles. */
+    Filter.OrganizationPermissions permissions = 4 [deprecated = true];
 
     /* Roles the new user should get. */
     Filter.Roles roles = 6;
@@ -171,8 +173,8 @@ message CreateUserRequest {
     /* Optional. If no password is given, the account can only be accessed using a password reset. */
     string password = 4;
 
-    /* Permissions the new user should get. */
-    Filter.OrganizationPermissions permissions = 5;
+    /* Permissions the new user should get. DEPRECATED in favor of roles. */
+    Filter.OrganizationPermissions permissions = 5 [deprecated = true];
 
     /* Roles the new user should get. */
     Filter.Roles roles = 10;
@@ -206,8 +208,9 @@ message CreateUsersRequest {
 
     /* Permissions the new users should get.
      * Can be replaced for specific settings in the CreateUserRequest.
+     * DEPRECATED in favor of roles.
      */
-    Filter.OrganizationPermissions permissions = 3;
+    Filter.OrganizationPermissions permissions = 3 [deprecated = true];
 
     /* Roles the new users should get. Can be replaced for specific settings in the CreateUserRequest. */
     Filter.Roles roles = 6;
@@ -228,7 +231,9 @@ message ResetUserPasswordRequest {
     string user_id = 2;
 }
 
+/* DEPRECATED in favor of roles. */
 message UpdateUserPermissionsRequest {
+    option deprecated = true;
     message Response {
     }
 
@@ -237,7 +242,7 @@ message UpdateUserPermissionsRequest {
     repeated string user_ids = 2;
 
     /* The previous permissions are replaced! */
-    Filter.OrganizationPermissions new_permissions = 3;
+    Filter.OrganizationPermissions new_permissions = 3 [deprecated = true];
 
     /* By default, the server returns an error when you don't specify any permissions. Set this to true to allow it. */
     bool override_allow_no_permissions = 4;

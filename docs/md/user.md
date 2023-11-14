@@ -161,15 +161,15 @@
 
 
 
-### UpdateUserPermissions
-> **rpc** UpdateUserPermissions([UpdateUserPermissionsRequest](#updateuserpermissionsrequest))
-    [UpdateUserPermissionsRequest.Response](#updateuserpermissionsrequestresponse)
-
-
-
 ### UpdateUserRoles
 > **rpc** UpdateUserRoles([UpdateUserRoles.Request](#updateuserrolesrequest))
     [UpdateUserRoles.Response](#updateuserrolesresponse)
+
+
+
+### UpdateUserPermissions
+> **rpc** UpdateUserPermissions([UpdateUserPermissionsRequest](#updateuserpermissionsrequest))
+    [UpdateUserPermissionsRequest.Response](#updateuserpermissionsrequestresponse)
 
 
 
@@ -208,7 +208,7 @@
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | user_ids | [repeated string](#string) | none |
-| permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new user should get. |
+| permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new user should get. DEPRECATED in favor of roles. |
 | roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new user should get. |
 | override_allow_no_permissions | [ bool](#bool) | By default, the server returns an error when you don't specify any permissions or roles. Set this to true to allow it. |
 
@@ -227,7 +227,7 @@
 | email | [ string](#string) | none |
 | name | [ string](#string) | none |
 | password | [ string](#string) | Optional. If no password is given, the account can only be accessed using a password reset. |
-| permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new user should get. |
+| permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new user should get. DEPRECATED in favor of roles. |
 | roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new user should get. |
 | send_verification_mail | [ bool](#bool) | Send an automated email prompting the user to verify their email address. |
 | send_password_reset_mail | [ bool](#bool) | Send an automated email prompting the user to set a password. Recommended when password is not set. |
@@ -242,7 +242,7 @@
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | users | [repeated CreateUserRequest](#createuserrequest) | Users to create. Allows for individual impersonation and mail settings. |
-| permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new users should get. Can be replaced for specific settings in the CreateUserRequest. |
+| permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new users should get. Can be replaced for specific settings in the CreateUserRequest. DEPRECATED in favor of roles. |
 | roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new users should get. Can be replaced for specific settings in the CreateUserRequest. |
 | send_verification_mail | [ bool](#bool) | Send an automated email prompting the users to verify their email addresses. If true, applies to all users. |
 | send_password_reset_mail | [ bool](#bool) | Send an automated email prompting the users to set their password. If true, applies to all users. |
@@ -272,7 +272,7 @@ Accept an invitation to an organization.
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | email | [ string](#string) | The email address of the user you want to invite. |
 | retry | [ bool](#bool) | Invite the user again, even if there is an open invite. This can be done a limited amount of times. |
-| permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new user should get. |
+| permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new user should get. DEPRECATED in favor of roles. |
 | roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new user should get. |
 | override_allow_no_permissions | [ bool](#bool) | By default, the server returns an error when you don't specify any permissions or roles. Set this to true to allow it. |
 
@@ -388,7 +388,7 @@ List all invited users (email addresses).
 
 ### UpdateUserPermissionsRequest
 
-
+DEPRECATED in favor of roles.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |

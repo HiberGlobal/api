@@ -579,7 +579,7 @@
                   <td>permissions</td>
                   <td><a href="#hiber.Filter.OrganizationPermissions">hiber.Filter.OrganizationPermissions</a></td>
                   <td></td>
-                  <td><p>Permissions the new user should get. </p></td>
+                  <td><p><strong>Deprecated.</strong> Permissions the new user should get. DEPRECATED in favor of roles. </p></td>
                 </tr>
               
                 <tr>
@@ -600,6 +600,27 @@ Set this to true to allow it. </p></td>
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>permissions</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -653,7 +674,7 @@ Set this to true to allow it. </p></td>
                   <td>permissions</td>
                   <td><a href="#hiber.Filter.OrganizationPermissions">hiber.Filter.OrganizationPermissions</a></td>
                   <td></td>
-                  <td><p>Permissions the new user should get. </p></td>
+                  <td><p><strong>Deprecated.</strong> Permissions the new user should get. DEPRECATED in favor of roles. </p></td>
                 </tr>
               
                 <tr>
@@ -697,6 +718,27 @@ Set this to true to allow this behaviour. </p></td>
           </table>
 
           
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>permissions</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
 
         
       
@@ -728,8 +770,9 @@ Set this to true to allow this behaviour. </p></td>
                   <td>permissions</td>
                   <td><a href="#hiber.Filter.OrganizationPermissions">hiber.Filter.OrganizationPermissions</a></td>
                   <td></td>
-                  <td><p>Permissions the new users should get.
-Can be replaced for specific settings in the CreateUserRequest. </p></td>
+                  <td><p><strong>Deprecated.</strong> Permissions the new users should get.
+Can be replaced for specific settings in the CreateUserRequest.
+DEPRECATED in favor of roles. </p></td>
                 </tr>
               
                 <tr>
@@ -756,6 +799,27 @@ Can be replaced for specific settings in the CreateUserRequest. </p></td>
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>permissions</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -843,7 +907,7 @@ Can be replaced for specific settings in the CreateUserRequest. </p></td>
                   <td>permissions</td>
                   <td><a href="#hiber.Filter.OrganizationPermissions">hiber.Filter.OrganizationPermissions</a></td>
                   <td></td>
-                  <td><p>Permissions the new user should get. </p></td>
+                  <td><p><strong>Deprecated.</strong> Permissions the new user should get. DEPRECATED in favor of roles. </p></td>
                 </tr>
               
                 <tr>
@@ -864,6 +928,27 @@ Set this to true to allow it. </p></td>
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>permissions</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -1239,7 +1324,7 @@ Set this to true to allow it. </p></td>
         
       
         <h3 id="hiber.user.UpdateUserPermissionsRequest">UpdateUserPermissionsRequest</h3>
-        <p></p>
+        <p>DEPRECATED in favor of roles.</p>
 
         
           <table class="field-table">
@@ -1266,7 +1351,7 @@ Set this to true to allow it. </p></td>
                   <td>new_permissions</td>
                   <td><a href="#hiber.Filter.OrganizationPermissions">hiber.Filter.OrganizationPermissions</a></td>
                   <td></td>
-                  <td><p>The previous permissions are replaced! </p></td>
+                  <td><p><strong>Deprecated.</strong> The previous permissions are replaced! </p></td>
                 </tr>
               
                 <tr>
@@ -1279,6 +1364,27 @@ Set this to true to allow it. </p></td>
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>new_permissions</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -1812,16 +1918,16 @@ Set this to true to allow it. </p></td>
               </tr>
             
               <tr>
-                <td>UpdateUserPermissions</td>
-                <td><a href="#hiber.user.UpdateUserPermissionsRequest">UpdateUserPermissionsRequest</a></td>
-                <td><a href="#hiber.user.UpdateUserPermissionsRequest.Response">UpdateUserPermissionsRequest.Response</a></td>
+                <td>UpdateUserRoles</td>
+                <td><a href="#hiber.user.UpdateUserRoles.Request">UpdateUserRoles.Request</a></td>
+                <td><a href="#hiber.user.UpdateUserRoles.Response">UpdateUserRoles.Response</a></td>
                 <td><p></p></td>
               </tr>
             
               <tr>
-                <td>UpdateUserRoles</td>
-                <td><a href="#hiber.user.UpdateUserRoles.Request">UpdateUserRoles.Request</a></td>
-                <td><a href="#hiber.user.UpdateUserRoles.Response">UpdateUserRoles.Response</a></td>
+                <td>UpdateUserPermissions</td>
+                <td><a href="#hiber.user.UpdateUserPermissionsRequest">UpdateUserPermissionsRequest</a></td>
+                <td><a href="#hiber.user.UpdateUserPermissionsRequest.Response">UpdateUserPermissionsRequest.Response</a></td>
                 <td><p></p></td>
               </tr>
             
@@ -1856,6 +1962,27 @@ Set this to true to allow it. </p></td>
           </tbody>
         </table>
 
+        
+          
+          
+          <h4>Methods with deprecated option</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Option</td>
+              </tr>
+            </thead>
+            <tbody>
+            
+              <tr>
+                <td>UpdateUserPermissions</td>
+                <td><p>true</p></td>
+              </tr>
+            
+            </tbody>
+          </table>
+          
         
     
       

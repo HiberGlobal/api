@@ -636,10 +636,8 @@ message ListModemsRequest {
     /* Sort the modem with the given sort options. */
     repeated Sort sort_by = 4 [packed = false];
 
-    /* Include modems from the selected child organizations.
-     * DEPRECATED: this option will be removed in the future!
-     */
-    Filter.ChildOrganizations child_organizations = 8 [deprecated = true];
+    /* Include modems from the selected child organizations. */
+    Filter.ChildOrganizations child_organizations = 8;
 
     /* Filter modems by location. */
     LocationSelection location_selection = 9;

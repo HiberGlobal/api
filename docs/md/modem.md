@@ -435,7 +435,7 @@ list method.
 | selection | [ ModemSelection](#modemselection) | Select which modems to return. |
 | pagination | [ hiber.Pagination](#hiberpagination) | Paginate through results. |
 | sort_by | [repeated ListModemsRequest.Sort](#listmodemsrequestsort) | Sort the modem with the given sort options. |
-| child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Include modems from the selected child organizations. DEPRECATED: this option will be removed in the future! |
+| child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Include modems from the selected child organizations. |
 | location_selection | [ hiber.LocationSelection](#hiberlocationselection) | Filter modems by location. |
 | include_missing_group_parents | [ bool](#bool) | Set this to true to populate the group_parents field in the response. This will be populated with missing group parents (i.e. gateways) for the the modems on this page. Any group parent that is on the current page is not included in this list to avoid duplicate data. |
 

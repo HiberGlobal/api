@@ -1,5 +1,20 @@
 # Changelog Hiber API
 
+### 0.171 (2023-11-14)
+
+##### UserService
+
+- Deprecated all options to set individual permissions on users, in favor of using roles:
+  - Deprecated `ApproveUserRequest.permissions`.
+  - Deprecated `InviteUserRequest.permissions`.
+  - Deprecated `CreateUserRequest.permissions`.
+  - Deprecated `CreateUsersRequest.permissions`.
+  - Deprecated `UpdateUserPermissionsRequest`.
+
+##### ModemService
+
+- Removed deprecation on `ListModemsRequest.child_organizations`.
+
 ### 0.168 (2023-10-24)
 
 ##### CurrentUserService
