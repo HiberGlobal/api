@@ -135,6 +135,9 @@ message Field {
     /* Whether this field should be validated from the parser output. */
     bool optional = 12;
 
+    /* Field contains values relevant for operating the device. */
+    optional bool operational = 13;
+
     /* If numeric, the unit of the field.
      * Deprecated: use numeric.numeric_unit oneof instead
      */

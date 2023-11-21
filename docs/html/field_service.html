@@ -1224,6 +1224,13 @@
                   <td><p>Filter fields by field identifiers. </p></td>
                 </tr>
               
+                <tr>
+                  <td>include_operational</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Include operational fields as well (e.g. battery, device status). </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -1818,6 +1825,13 @@ When set to true at a later point, earlier values are not encrypted retro-active
                   <td><a href="#hiber.UpdateBoolean">hiber.UpdateBoolean</a></td>
                   <td></td>
                   <td><p>Whether this field is optional or not. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>operational</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>If the field is used by operations and does not produce process values. </p></td>
                 </tr>
               
                 <tr>
@@ -4166,6 +4180,13 @@ If it is, some processing options may be unavailable or slower. </p></td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>Whether this field should be validated from the parser output. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>operational</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Field contains values relevant for operating the device. </p></td>
                 </tr>
               
                 <tr>

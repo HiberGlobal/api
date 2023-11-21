@@ -114,7 +114,7 @@ User preferences for distance values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| unit_category | [ UnitPreferences.UnitCategory](#unitpreferencesunitcategory) | Unit category (metric / imperial) to convert distance values to. |
+| preference | [ UnitPreferences.UnitCategory](#unitpreferencesunitcategory) | Unit category (metric / imperial) to convert distance values to. |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
 ### UnitPreferences.FlowPreference
@@ -123,7 +123,7 @@ User preferences for mass values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| unit | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) | none |
+| preference | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) | none |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
 ### UnitPreferences.FuelEfficiencyPreference
@@ -132,7 +132,7 @@ User preferences for fuel efficiency values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| unit | [ Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit) | none |
+| preference | [ Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit) | none |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
 ### UnitPreferences.MassPreference
@@ -141,7 +141,7 @@ User preferences for mass values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| unit_category | [ UnitPreferences.UnitCategory](#unitpreferencesunitcategory) | Unit category (metric / imperial) to convert mass values to. |
+| preference | [ UnitPreferences.UnitCategory](#unitpreferencesunitcategory) | Unit category (metric / imperial) to convert mass values to. |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
 ### UnitPreferences.PercentagePreference
@@ -158,7 +158,7 @@ User preferences for pressure values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| unit | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) | none |
+| preference | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) | none |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
 ### UnitPreferences.Request
@@ -204,7 +204,7 @@ User preferences for rotation speed values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| unit | [ Value.Numeric.RotationSpeed.Unit](#valuenumericrotationspeedunit) | none |
+| preference | [ Value.Numeric.RotationSpeed.Unit](#valuenumericrotationspeedunit) | none |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
 ### UnitPreferences.SpeedPreference
@@ -213,7 +213,7 @@ User preferences for speed values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| unit_category | [ UnitPreferences.UnitCategory](#unitpreferencesunitcategory) | Unit category (metric / imperial) to convert speed values to. |
+| preference | [ UnitPreferences.UnitCategory](#unitpreferencesunitcategory) | Unit category (metric / imperial) to convert speed values to. |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
 ### UnitPreferences.TemperaturePreference
@@ -222,7 +222,7 @@ User preferences for temperature values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| unit | [ Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit) | none |
+| preference | [ Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit) | none |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
 ### UnitPreferences.VoltagePreference
@@ -231,7 +231,7 @@ User preferences for voltage values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| unit | [ Value.Numeric.Voltage.Unit](#valuenumericvoltageunit) | none |
+| preference | [ Value.Numeric.Voltage.Unit](#valuenumericvoltageunit) | none |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
 ### UnitPreferences.VolumePreference
@@ -240,7 +240,7 @@ User preferences for volume values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| unit_category | [ UnitPreferences.UnitCategory](#unitpreferencesunitcategory) | Unit category (metric / imperial) to convert volume values to. |
+| preference | [ UnitPreferences.UnitCategory](#unitpreferencesunitcategory) | Unit category (metric / imperial) to convert volume values to. |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
 
@@ -277,6 +277,7 @@ so not all messages listed here are referenced.)
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.enum | [ hiber.field.Field.Enum](#hiberfieldfieldenum) | none |
 | encrypted | [ bool](#bool) | Whether this field should be stored encrypted or not. If it is, some processing options may be unavailable or slower. |
 | optional | [ bool](#bool) | Whether this field should be validated from the parser output. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_operational**.operational | [optional bool](#bool) | Field contains values relevant for operating the device. |
 | unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
 | unit_symbol | [ string](#string) | The symbol for the unit. Deprecated: use numeric.symbol instead |
 

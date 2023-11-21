@@ -1,5 +1,23 @@
 # Changelog Hiber API
 
+### 0.172 (2023-11-21)
+
+##### WebhookService
+
+- Replaced the http client library used for webhook calls with one that is better maintained.
+
+##### ModemService
+
+- Fix a bug where `gateway_info` was set for devices.
+
+##### UnitPreferencesService
+
+- Renamed `unit` and `unit_category` in preference messages to `preference` for simplicity.
+
+##### FieldService
+
+- Introduced `operational` fields. Fields represent operational time-series data and are hidden by default.
+
 ### 0.171 (2023-11-14)
 
 ##### UserService

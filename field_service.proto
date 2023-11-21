@@ -41,6 +41,9 @@ message FieldSelection {
 
     /* Filter fields by field identifiers. */
     repeated string field_identifiers = 5;
+
+    /* Include operational fields as well (e.g. battery, device status). */
+    bool include_operational = 6;
 }
 
 message ListFields {
@@ -177,6 +180,9 @@ message UpdateFieldRequest {
 
     /* Whether this field is optional or not. */
     UpdateBoolean optional = 8;
+
+    /* If the field is used by operations and does not produce process values. */
+    optional bool operational = 9;
 
     /* Update field details, like numeric details or enum values. */
     oneof update_details {

@@ -23,7 +23,7 @@ message UnitPreferences {
     /* User preferences for distance values. */
     message DistancePreference {
         /* Unit category (metric / imperial) to convert distance values to. */
-        UnitCategory unit_category = 1;
+        UnitCategory preference = 1;
 
         /* Optional formatting options for values (rounding, etc). */
         field.Field.Numeric.Format format = 2;
@@ -34,7 +34,7 @@ message UnitPreferences {
 
     /* User preferences for mass values. */
     message FlowPreference {
-        value.Value.Numeric.Flow.Unit unit = 1;
+        value.Value.Numeric.Flow.Unit preference = 1;
 
         /* Optional formatting options for values (rounding, etc). */
         field.Field.Numeric.Format format = 2;
@@ -45,7 +45,7 @@ message UnitPreferences {
 
     /* User preferences for fuel efficiency values. */
     message FuelEfficiencyPreference {
-        value.Value.Numeric.FuelEfficiency.Unit unit = 1;
+        value.Value.Numeric.FuelEfficiency.Unit preference = 1;
 
         /* Optional formatting options for values (rounding, etc). */
         field.Field.Numeric.Format format = 2;
@@ -57,7 +57,7 @@ message UnitPreferences {
     /* User preferences for mass values. */
     message MassPreference {
         /* Unit category (metric / imperial) to convert mass values to. */
-        UnitCategory unit_category = 1;
+        UnitCategory preference = 1;
 
         /* Optional formatting options for values (rounding, etc). */
         field.Field.Numeric.Format format = 2;
@@ -77,7 +77,7 @@ message UnitPreferences {
 
     /* User preferences for pressure values. */
     message PressurePreference {
-        value.Value.Numeric.Pressure.Unit unit = 1;
+        value.Value.Numeric.Pressure.Unit preference = 1;
 
         /* Optional formatting options for values (rounding, etc). */
         field.Field.Numeric.Format format = 2;
@@ -89,7 +89,7 @@ message UnitPreferences {
     /* User preferences for speed values. */
     message SpeedPreference {
         /* Unit category (metric / imperial) to convert speed values to. */
-        UnitCategory unit_category = 1;
+        UnitCategory preference = 1;
 
         /* Optional formatting options for values (rounding, etc). */
         field.Field.Numeric.Format format = 2;
@@ -100,7 +100,7 @@ message UnitPreferences {
 
     /* User preferences for temperature values. */
     message TemperaturePreference {
-        value.Value.Numeric.Temperature.Unit unit = 1;
+        value.Value.Numeric.Temperature.Unit preference = 1;
 
         /* Optional formatting options for values (rounding, etc). */
         field.Field.Numeric.Format format = 2;
@@ -111,7 +111,7 @@ message UnitPreferences {
 
     /* User preferences for voltage values. */
     message VoltagePreference {
-        value.Value.Numeric.Voltage.Unit unit = 1;
+        value.Value.Numeric.Voltage.Unit preference = 1;
 
         /* Optional formatting options for values (rounding, etc). */
         field.Field.Numeric.Format format = 2;
@@ -123,7 +123,7 @@ message UnitPreferences {
     /* User preferences for volume values. */
     message VolumePreference {
         /* Unit category (metric / imperial) to convert volume values to. */
-        UnitCategory unit_category = 1;
+        UnitCategory preference = 1;
 
         /* Optional formatting options for values (rounding, etc). */
         field.Field.Numeric.Format format = 2;
@@ -134,7 +134,7 @@ message UnitPreferences {
 
     /* User preferences for rotation speed values. */
     message RotationSpeedPreference {
-        value.Value.Numeric.RotationSpeed.Unit unit = 1;
+        value.Value.Numeric.RotationSpeed.Unit preference = 1;
 
         /* Optional formatting options for values (rounding, etc). */
         field.Field.Numeric.Format format = 2;

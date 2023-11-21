@@ -128,6 +128,7 @@
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.enum | [ Field.Enum](#fieldenum) | none |
 | encrypted | [ bool](#bool) | Whether this field should be stored encrypted or not. If it is, some processing options may be unavailable or slower. |
 | optional | [ bool](#bool) | Whether this field should be validated from the parser output. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_operational**.operational | [optional bool](#bool) | Field contains values relevant for operating the device. |
 | unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
 | unit_symbol | [ string](#string) | The symbol for the unit. Deprecated: use numeric.symbol instead |
 
