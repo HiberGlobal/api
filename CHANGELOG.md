@@ -1,5 +1,27 @@
 # Changelog Hiber API
 
+### 0.173 (2023-11-28)
+
+##### MQTTIntegrationService
+
+- Improved at-rest encryption of MQTT call history
+
+##### SlackService
+
+- Improved at-rest encryption of slack call history
+
+##### WebhookService
+
+- Improved at-rest encryption of webhook history
+
+##### UserService
+
+- Fixed a bug where email subscriptions could remain active after a user was removed from the organization.
+
+##### TokenService
+
+- Fix a bug in the validation for the expiry date for tokens.
+
 ### 0.172 (2023-11-21)
 
 ##### WebhookService
@@ -1848,13 +1870,13 @@ Small convenience hotfix for the `ModemHealthCount`.
 ### 0.71 (2021-03-16)
 
 The main focus for this release is tweaking the concepts previously introduced around alarms and health.
-It also introduces the notion of _features_ for organisations.
-_Features_ can be en- or disabled on a per-organisation basis
-and have an effect on the set of features that organisations can use.
+It also introduces the notion of _features_ for organizations.
+_Features_ can be en- or disabled on a per-organization basis
+and have an effect on the set of features that organizations can use.
 
 #### Changes
 
-##### Organisation features
+##### Organization features
 
 This change introduces 2 new feature (sets)
 

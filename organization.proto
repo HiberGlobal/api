@@ -175,7 +175,7 @@ message CreateOrganizationRequest {
     /* The name to display for your organization (i.e. capitalized, with spaces, etc.). Default to the name above. */
     string display_name = 3;
 
-    /* The avatar image representing this organisation. Usually the logo. */
+    /* The avatar image representing this organization. Usually the logo. */
     Avatar avatar = 11;
 
     /* Whether this organization is created for a business. */

@@ -3610,6 +3610,7 @@ If the message was previously parsed by any of those parsers, the previous resul
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | modem_message_ids | [repeated uint64](#uint64) | The messages to parse. |
 | parser_selection | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | A selection of parsers to apply, if they are assigned. |
+| suppress_events | [ bool](#bool) | Re-parsing messages causes new events to be sent out. Set suppress_events to true to prevent that. |
 
 ### hiber.modem.message.bodyparser.RetryModemMessageBodyParsing.Response
 
@@ -3884,7 +3885,7 @@ so not all messages listed here are referenced.)
 | parent_organization | [ string](#string) | Pick the organization to use as parent. If unset, your default organization is used. If you have no organization, an organization_creation_token is required. |
 | new_organization | [ string](#string) | The name for the new organization. Lowercase, letters, numbers, dashes and underscores only. Required. Used as an identifier for the organization. |
 | display_name | [ string](#string) | The name to display for your organization (i.e. capitalized, with spaces, etc.). Default to the name above. |
-| avatar | [ hiber.Avatar](#hiberavatar) | The avatar image representing this organisation. Usually the logo. |
+| avatar | [ hiber.Avatar](#hiberavatar) | The avatar image representing this organization. Usually the logo. |
 | is_business | [ bool](#bool) | Whether this organization is created for a business. |
 | vat_number | [ string](#string) | Whether this organization is created for a business, provide a VAT number. |
 | address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | Postal address for your organization. |

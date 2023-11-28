@@ -582,6 +582,9 @@ message RetryModemMessageBodyParsing {
 
         /* A selection of parsers to apply, if they are assigned. */
         ModemMessageBodyParserSelection parser_selection = 3;
+
+        /* Re-parsing messages causes new events to be sent out. Set suppress_events to true to prevent that. */
+        bool suppress_events = 4;
     }
 
     message Response {
