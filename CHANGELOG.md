@@ -1,5 +1,25 @@
 # Changelog Hiber API
 
+### 0.174 (2023-12-05)
+
+##### DeviceTypeService
+
+- Added new device types to parse both pressure and temperature.
+
+##### ModemMessageBodyParserService
+
+- Fixed a bug where the `operational` flag on data fields was not saved correctly, which resulting in operation values like reboot count showing up in the dashboards.
+
+##### TokenService
+
+- Added `CreateTokenRequest.for_user_id` to create a token for another user.
+  To do so, you must have the USERS_MANAGE permission and you must both have the permissions granted to the new token.
+  As such, user permissions are not allowed when creating a token like this.
+
+##### Publishers
+
+- Fixed a bug where retry would not be triggered for publishers (webhooks, mqtt, shell-ssip)
+
 ### 0.173 (2023-11-28)
 
 ##### MQTTIntegrationService
@@ -186,7 +206,7 @@
 ##### ModemService
 
 - Added `TagCount` to count modems per tag.
-- Rename some of the values in `Modem.Type` to be more descriptive: 
+- Rename some of the values in `Modem.Type` to be more descriptive:
   - `CONNECTED_DEVICE` to `SENSOR`
   - `DEVICE` to `DISCONNECTED_SENSOR`
 

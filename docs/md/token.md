@@ -148,6 +148,7 @@
 | user_permissions | [ hiber.Filter.UserPermissions](#hiberfilteruserpermissions) | none |
 | organization_permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new token should get. |
 | roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new token should get. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_for_user_id**.for_user_id | [optional string](#string) | Optionally, if you have the USERS_MANAGE permission, you can make a token for another user. If you do, you cannot grant it permissions they do not have, not can you grant it any user permissions. |
 
 ### CreateTokenRequest.Response
 

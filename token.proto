@@ -82,6 +82,11 @@ message CreateTokenRequest {
     /* Roles the new token should get. */
     Filter.Roles roles = 8;
 
+    /* Optionally, if you have the USERS_MANAGE permission, you can make a token for another user.
+     * If you do, you cannot grant it permissions they do not have, not can you grant it any user permissions.
+     */
+    optional string for_user_id = 10;
+
     reserved 3,7;
 }
 
