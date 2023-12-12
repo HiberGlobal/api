@@ -1,5 +1,15 @@
 # Changelog Hiber API
 
+### 0.175 (2023-12-12)
+
+##### ValueService
+
+- Do not omit trailing 0s, but output the digits expects from unit format preferences and field format preferences.
+
+##### ModemService
+
+- List all external identifier variations in `Modem.ConnectedDeviceInfo.external_device_ids`.
+
 ### 0.174 (2023-12-05)
 
 ##### DeviceTypeService
