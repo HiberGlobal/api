@@ -363,6 +363,7 @@
   - [hiber.token.ListTokensRequest](#hibertokenlisttokensrequest)
   - [hiber.token.ListTokensRequest.Response](#hibertokenlisttokensrequestresponse)
   - [hiber.token.Token](#hibertokentoken)
+  - [hiber.token.Token.UserDetails](#hibertokentokenuserdetails)
   - [hiber.token.TokenSelection](#hibertokentokenselection)
   - [hiber.token.UpdateTokenOrganizationPermissionsRequest](#hibertokenupdatetokenorganizationpermissionsrequest)
   - [hiber.token.UpdateTokenOrganizationPermissionsRequest.Response](#hibertokenupdatetokenorganizationpermissionsrequestresponse)
@@ -4372,12 +4373,23 @@ so not all messages listed here are referenced.)
 | id | [ int64](#int64) | none |
 | name | [ string](#string) | none |
 | user_id | [ string](#string) | none |
+| user_details | [ hiber.token.Token.UserDetails](#hibertokentokenuserdetails) | none |
 | organization | [ string](#string) | none |
 | expires_at | [ hiber.Timestamp](#hibertimestamp) | none |
 | user_permissions | [repeated hiber.UserPermission](#hiberuserpermission) | none |
 | organization_permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | none |
 | roles | [repeated string](#string) | none |
 | type | [ hiber.token.Token.Type](#hibertokentokentype) | none |
+
+### hiber.token.Token.UserDetails
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| id | [ string](#string) | none |
+| email | [ string](#string) | none |
+| name | [ string](#string) | none |
 
 ### hiber.token.TokenSelection
 

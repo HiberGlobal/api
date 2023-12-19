@@ -164,7 +164,11 @@ when used by a customer support operator.
 | MANAGE_ORGANIZATION_FEATURE | Manage organization feature flags. | 1 |
 | MANAGE_DEVICE_TYPE | Change the device type for devices. | 2 |
 | CUSTOM_TAGS | Create and assign custom tags. | 3 |
-| INTEGRATION_SHELL_SSIP | none | 4 |
+| INTEGRATION_SHELL_SSIP | Manage Shell SSIP integration. | 4 |
+| MANAGE_DEVICE_TRANSMISSION_INTERVAL | Manage device transmission interval (actual interval). | 5 |
+| MANAGE_DEVICE_SLA | Manage device SLA values (minimum messages per day). | 6 |
+| DEVICE_VIEW_ALL_LIFECYCLES | View all lifecycles. Without this permission, you can only see INSTALLED and PAUSED. | 7 |
+| MANAGE_DEVICE_NOTES | Assign device notes. | 8 |
 
 #### hiber.UserPermission
 UserPermissions are generally used to limit what a token can do to its user.

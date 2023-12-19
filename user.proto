@@ -23,9 +23,6 @@ service UserService {
 
     rpc ResetPassword (ResetUserPasswordRequest) returns (ResetUserPasswordRequest.Response);
     rpc UpdateUserRoles (UpdateUserRoles.Request) returns (UpdateUserRoles.Response);
-    rpc UpdateUserPermissions (UpdateUserPermissionsRequest) returns (UpdateUserPermissionsRequest.Response) {
-        option deprecated = true;
-    };
 
     rpc GetUserValidation (GetUserValidationRequest) returns (UserValidation);
     rpc UpdateUserValidation (UpdateUserValidationRequest) returns (UserValidation);
@@ -38,8 +35,18 @@ message User {
     string id = 1;
     string email = 2;
     string name = 3;
-    Filter.OrganizationPermissions permissions = 4;
+
+    /* Roles for the current organization. */
     repeated string roles = 5;
+
+    /* Permissions for the current organization. */
+    Filter.OrganizationPermissions permissions = 4;
+
+    /* Permissions for customer support.
+     * Used for features typically reserved for customer support, or that behave differently
+     * when used by a customer support operator.
+     */
+    Filter.SupportPermissions support_permissions = 6;
 }
 
 message UserSelection {
@@ -47,8 +54,15 @@ message UserSelection {
     string by_email = 1;
     string by_name = 2;
     string search = 4;
+
+    /* Select users by roles for the current organization. */
     Filter.Roles roles = 5;
+
+    /* Select users by permissions for the current organization. */
     Filter.OrganizationPermissions permissions = 6;
+
+    /* Select users by permissions for customer support. */
+    Filter.SupportPermissions support_permissions = 7;
 }
 
 enum UserSort {
@@ -98,16 +112,15 @@ message ApproveUserRequest {
     string organization = 1;
     repeated string user_ids = 2;
 
-    /* Permissions the new user should get. DEPRECATED in favor of roles. */
-    Filter.OrganizationPermissions permissions = 3 [deprecated = true];
-
     /* Roles the new user should get. */
     Filter.Roles roles = 5;
 
-    /* By default, the server returns an error when you don't specify any permissions or roles.
+    /* By default, the server returns an error when you don't specify any roles.
      * Set this to true to allow it.
      */
-    bool override_allow_no_permissions = 4;
+    bool override_allow_no_roles = 4;
+
+    reserved 3;
 }
 
 message RemoveUserRequest {
@@ -152,16 +165,15 @@ message InviteUserRequest {
     /* Invite the user again, even if there is an open invite. This can be done a limited amount of times. */
     bool retry = 3;
 
-    /* Permissions the new user should get. DEPRECATED in favor of roles. */
-    Filter.OrganizationPermissions permissions = 4 [deprecated = true];
-
     /* Roles the new user should get. */
     Filter.Roles roles = 6;
 
-    /* By default, the server returns an error when you don't specify any permissions or roles.
+    /* By default, the server returns an error when you don't specify any roles.
      * Set this to true to allow it.
      */
-    bool override_allow_no_permissions = 5;
+    bool override_allow_no_roles = 5;
+
+    reserved 4;
 }
 
 message CreateUserRequest {
@@ -173,9 +185,6 @@ message CreateUserRequest {
     /* Optional. If no password is given, the account can only be accessed using a password reset. */
     string password = 4;
 
-    /* Permissions the new user should get. DEPRECATED in favor of roles. */
-    Filter.OrganizationPermissions permissions = 5 [deprecated = true];
-
     /* Roles the new user should get. */
     Filter.Roles roles = 10;
 
@@ -186,13 +195,15 @@ message CreateUserRequest {
     bool send_password_reset_mail = 7;
 
     /* When the user cannot be created, (i.e. they already exist because they are in a different organization)
-     * we can send an invite instead, effectively calling InviteUserRequest with the email and permissions.
+     * we can send an invite instead, effectively calling InviteUserRequest with the email and roles.
      * Set this to true to allow this behaviour.
      */
     bool allow_invite_instead = 8;
 
-    /* By default, the server returns an error when you don't specify any permissions. Set this to true to allow it. */
-    bool override_allow_no_permissions = 9;
+    /* By default, the server returns an error when you don't specify any roles. Set this to true to allow it. */
+    bool override_allow_no_roles = 9;
+
+    reserved 5;
 }
 
 message CreateUsersRequest {
@@ -205,12 +216,6 @@ message CreateUsersRequest {
 
     /* Users to create. Allows for individual impersonation and mail settings. */
     repeated CreateUserRequest users = 2;
-
-    /* Permissions the new users should get.
-     * Can be replaced for specific settings in the CreateUserRequest.
-     * DEPRECATED in favor of roles.
-     */
-    Filter.OrganizationPermissions permissions = 3 [deprecated = true];
 
     /* Roles the new users should get. Can be replaced for specific settings in the CreateUserRequest. */
     Filter.Roles roles = 6;
@@ -229,23 +234,6 @@ message ResetUserPasswordRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 1;
     string user_id = 2;
-}
-
-/* DEPRECATED in favor of roles. */
-message UpdateUserPermissionsRequest {
-    option deprecated = true;
-    message Response {
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    repeated string user_ids = 2;
-
-    /* The previous permissions are replaced! */
-    Filter.OrganizationPermissions new_permissions = 3 [deprecated = true];
-
-    /* By default, the server returns an error when you don't specify any permissions. Set this to true to allow it. */
-    bool override_allow_no_permissions = 4;
 }
 
 message UpdateUserRoles {
@@ -273,10 +261,10 @@ message UpdateUserRoles {
             ReplaceRoles replace = 4;
         }
 
-        /* By default, the server returns an error when you don't specify any permissions.
+        /* By default, the server returns an error when you don't specify any roles.
          * Set this to true to allow it.
          */
-        bool override_allow_no_permissions = 5;
+        bool override_allow_no_roles = 5;
     }
     message Response {
     }

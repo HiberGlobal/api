@@ -127,5 +127,18 @@ enum SupportPermission {
     /* Create and assign custom tags. */
     CUSTOM_TAGS = 3;
 
+    /* Manage Shell SSIP integration. */
     INTEGRATION_SHELL_SSIP = 4;
+
+    /* Manage device transmission interval (actual interval). */
+    MANAGE_DEVICE_TRANSMISSION_INTERVAL = 5;
+
+    /* Manage device SLA values (minimum messages per day). */
+    MANAGE_DEVICE_SLA = 6;
+
+    /* View all lifecycles. Without this permission, you can only see INSTALLED and PAUSED. */
+    DEVICE_VIEW_ALL_LIFECYCLES = 7;
+
+    /* Assign device notes. */
+    MANAGE_DEVICE_NOTES = 8;
 }

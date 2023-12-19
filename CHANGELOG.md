@@ -1,5 +1,42 @@
 # Changelog Hiber API
 
+### 0.176 (2023-12-19)
+
+##### ModemService
+
+- Fixed a bug in `Grouped` where the total count did not include devices in child organizations.
+- Better validation when explicit modems are given, but not found.
+  This could previously result in an empty result, or those items missing from the list.
+  Now, a proper error is given that you have provided a modem you do not have access to.
+  - This fix also applies to other usages for the ModemSelection object.
+
+##### SupportPermissions
+
+- Added `MANAGE_DEVICE_TRANSMISSION_INTERVAL` to replace `CUSTOMER_SUPPORT` for updating transmission interval.
+- Added `MANAGE_DEVICE_SLA` to replace `CUSTOMER_SUPPORT` for updating SLA configuration.
+- Added `DEVICE_VIEW_ALL_LIFECYCLES` to replace `CUSTOMER_SUPPORT` for seeing all possible lifecycles.
+- Added `MANAGE_DEVICE_NOTES` to replace `CUSTOMER_SUPPORT` for updating customer support device notes.
+
+##### TokenService
+
+- Add `user_details`, including name and email address, of the token owner, to `Token`.
+
+##### UserService
+
+- Added `support_permissions` to `User` and `UserSelection`.
+- Removed all options to set individual permissions on users
+  - Removed deprecated `UpdateUserPermissions`.
+  - Removed deprecated option `permissions` in
+    - `ApproveUserRequest`
+    - `InviteUserRequest`
+    - `CreateUserRequest`
+    - `CreateUsersRequest`
+  - Renamed `override_allow_no_permissions` to `override_allow_no_roles` in
+    - `ApproveUserRequest`
+    - `InviteUserRequest`
+    - `CreateUserRequest`
+    - `CreateUsersRequest`
+
 ### 0.175 (2023-12-12)
 
 ##### ValueService

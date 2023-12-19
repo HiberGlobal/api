@@ -33,6 +33,7 @@ message Token {
     int64 id = 1;
     string name = 2;
     string user_id = 3;
+    UserDetails user_details = 11;
     string organization = 4;
     reserved 5;
     Timestamp expires_at = 6;
@@ -40,6 +41,12 @@ message Token {
     repeated OrganizationPermission organization_permissions = 8;
     repeated string roles = 9;
     Type type = 10;
+
+    message UserDetails {
+        string id = 1;
+        string email = 2;
+        string name = 3;
+    }
 }
 
 message TokenSelection {
@@ -87,7 +94,7 @@ message CreateTokenRequest {
      */
     optional string for_user_id = 10;
 
-    reserved 3,7;
+    reserved 3, 7;
 }
 
 message DeleteTokenRequest {

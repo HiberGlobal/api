@@ -17,6 +17,7 @@
   - [ListTokensRequest](#listtokensrequest)
   - [ListTokensRequest.Response](#listtokensrequestresponse)
   - [Token](#token)
+  - [Token.UserDetails](#tokenuserdetails)
   - [TokenSelection](#tokenselection)
   - [UpdateTokenOrganizationPermissionsRequest](#updatetokenorganizationpermissionsrequest)
   - [UpdateTokenOrganizationPermissionsRequest.Response](#updatetokenorganizationpermissionsrequestresponse)
@@ -202,12 +203,23 @@
 | id | [ int64](#int64) | none |
 | name | [ string](#string) | none |
 | user_id | [ string](#string) | none |
+| user_details | [ Token.UserDetails](#tokenuserdetails) | none |
 | organization | [ string](#string) | none |
 | expires_at | [ hiber.Timestamp](#hibertimestamp) | none |
 | user_permissions | [repeated hiber.UserPermission](#hiberuserpermission) | none |
 | organization_permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | none |
 | roles | [repeated string](#string) | none |
 | type | [ Token.Type](#tokentype) | none |
+
+### Token.UserDetails
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| id | [ string](#string) | none |
+| email | [ string](#string) | none |
+| name | [ string](#string) | none |
 
 ### TokenSelection
 
@@ -367,7 +379,11 @@ when used by a customer support operator.
 | MANAGE_ORGANIZATION_FEATURE | Manage organization feature flags. | 1 |
 | MANAGE_DEVICE_TYPE | Change the device type for devices. | 2 |
 | CUSTOM_TAGS | Create and assign custom tags. | 3 |
-| INTEGRATION_SHELL_SSIP | none | 4 |
+| INTEGRATION_SHELL_SSIP | Manage Shell SSIP integration. | 4 |
+| MANAGE_DEVICE_TRANSMISSION_INTERVAL | Manage device transmission interval (actual interval). | 5 |
+| MANAGE_DEVICE_SLA | Manage device SLA values (minimum messages per day). | 6 |
+| DEVICE_VIEW_ALL_LIFECYCLES | View all lifecycles. Without this permission, you can only see INSTALLED and PAUSED. | 7 |
+| MANAGE_DEVICE_NOTES | Assign device notes. | 8 |
 
 #### hiber.UserPermission
 UserPermissions are generally used to limit what a token can do to its user.

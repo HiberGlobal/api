@@ -259,14 +259,6 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.user.UpdateUserPermissionsRequest"><span class="badge">M</span>UpdateUserPermissionsRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.user.UpdateUserPermissionsRequest.Response"><span class="badge">M</span>UpdateUserPermissionsRequest.Response</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.user.UpdateUserRoles"><span class="badge">M</span>UpdateUserRoles</a>
                 </li>
               
@@ -576,13 +568,6 @@
                 </tr>
               
                 <tr>
-                  <td>permissions</td>
-                  <td><a href="#hiber.Filter.OrganizationPermissions">hiber.Filter.OrganizationPermissions</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong> Permissions the new user should get. DEPRECATED in favor of roles. </p></td>
-                </tr>
-              
-                <tr>
                   <td>roles</td>
                   <td><a href="#hiber.Filter.Roles">hiber.Filter.Roles</a></td>
                   <td></td>
@@ -590,37 +575,16 @@
                 </tr>
               
                 <tr>
-                  <td>override_allow_no_permissions</td>
+                  <td>override_allow_no_roles</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>By default, the server returns an error when you don&#39;t specify any permissions or roles.
+                  <td><p>By default, the server returns an error when you don&#39;t specify any roles.
 Set this to true to allow it. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>permissions</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -671,13 +635,6 @@ Set this to true to allow it. </p></td>
                 </tr>
               
                 <tr>
-                  <td>permissions</td>
-                  <td><a href="#hiber.Filter.OrganizationPermissions">hiber.Filter.OrganizationPermissions</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong> Permissions the new user should get. DEPRECATED in favor of roles. </p></td>
-                </tr>
-              
-                <tr>
                   <td>roles</td>
                   <td><a href="#hiber.Filter.Roles">hiber.Filter.Roles</a></td>
                   <td></td>
@@ -703,41 +660,20 @@ Set this to true to allow it. </p></td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>When the user cannot be created, (i.e. they already exist because they are in a different organization)
-we can send an invite instead, effectively calling InviteUserRequest with the email and permissions.
+we can send an invite instead, effectively calling InviteUserRequest with the email and roles.
 Set this to true to allow this behaviour. </p></td>
                 </tr>
               
                 <tr>
-                  <td>override_allow_no_permissions</td>
+                  <td>override_allow_no_roles</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>By default, the server returns an error when you don&#39;t specify any permissions. Set this to true to allow it. </p></td>
+                  <td><p>By default, the server returns an error when you don&#39;t specify any roles. Set this to true to allow it. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>permissions</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -767,15 +703,6 @@ Set this to true to allow this behaviour. </p></td>
                 </tr>
               
                 <tr>
-                  <td>permissions</td>
-                  <td><a href="#hiber.Filter.OrganizationPermissions">hiber.Filter.OrganizationPermissions</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong> Permissions the new users should get.
-Can be replaced for specific settings in the CreateUserRequest.
-DEPRECATED in favor of roles. </p></td>
-                </tr>
-              
-                <tr>
                   <td>roles</td>
                   <td><a href="#hiber.Filter.Roles">hiber.Filter.Roles</a></td>
                   <td></td>
@@ -799,27 +726,6 @@ DEPRECATED in favor of roles. </p></td>
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>permissions</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -904,13 +810,6 @@ DEPRECATED in favor of roles. </p></td>
                 </tr>
               
                 <tr>
-                  <td>permissions</td>
-                  <td><a href="#hiber.Filter.OrganizationPermissions">hiber.Filter.OrganizationPermissions</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong> Permissions the new user should get. DEPRECATED in favor of roles. </p></td>
-                </tr>
-              
-                <tr>
                   <td>roles</td>
                   <td><a href="#hiber.Filter.Roles">hiber.Filter.Roles</a></td>
                   <td></td>
@@ -918,37 +817,16 @@ DEPRECATED in favor of roles. </p></td>
                 </tr>
               
                 <tr>
-                  <td>override_allow_no_permissions</td>
+                  <td>override_allow_no_roles</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>By default, the server returns an error when you don&#39;t specify any permissions or roles.
+                  <td><p>By default, the server returns an error when you don&#39;t specify any roles.
 Set this to true to allow it. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>permissions</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -1323,79 +1201,6 @@ Set this to true to allow it. </p></td>
 
         
       
-        <h3 id="hiber.user.UpdateUserPermissionsRequest">UpdateUserPermissionsRequest</h3>
-        <p>DEPRECATED in favor of roles.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>user_ids</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>new_permissions</td>
-                  <td><a href="#hiber.Filter.OrganizationPermissions">hiber.Filter.OrganizationPermissions</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong> The previous permissions are replaced! </p></td>
-                </tr>
-              
-                <tr>
-                  <td>override_allow_no_permissions</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>By default, the server returns an error when you don&#39;t specify any permissions. Set this to true to allow it. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>new_permissions</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
-          
-
-        
-      
-        <h3 id="hiber.user.UpdateUserPermissionsRequest.Response">UpdateUserPermissionsRequest.Response</h3>
-        <p></p>
-
-        
-
-        
-      
         <h3 id="hiber.user.UpdateUserRoles">UpdateUserRoles</h3>
         <p></p>
 
@@ -1442,10 +1247,10 @@ Set this to true to allow it. </p></td>
                 </tr>
               
                 <tr>
-                  <td>override_allow_no_permissions</td>
+                  <td>override_allow_no_roles</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>By default, the server returns an error when you don&#39;t specify any permissions.
+                  <td><p>By default, the server returns an error when you don&#39;t specify any roles.
 Set this to true to allow it. </p></td>
                 </tr>
               
@@ -1581,17 +1386,26 @@ Set this to true to allow it. </p></td>
                 </tr>
               
                 <tr>
-                  <td>permissions</td>
-                  <td><a href="#hiber.Filter.OrganizationPermissions">hiber.Filter.OrganizationPermissions</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
                   <td>roles</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>Roles for the current organization. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>permissions</td>
+                  <td><a href="#hiber.Filter.OrganizationPermissions">hiber.Filter.OrganizationPermissions</a></td>
+                  <td></td>
+                  <td><p>Permissions for the current organization. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>support_permissions</td>
+                  <td><a href="#hiber.Filter.SupportPermissions">hiber.Filter.SupportPermissions</a></td>
+                  <td></td>
+                  <td><p>Permissions for customer support.
+Used for features typically reserved for customer support, or that behave differently
+when used by a customer support operator. </p></td>
                 </tr>
               
             </tbody>
@@ -1764,14 +1578,21 @@ Set this to true to allow it. </p></td>
                   <td>roles</td>
                   <td><a href="#hiber.Filter.Roles">hiber.Filter.Roles</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Select users by roles for the current organization. </p></td>
                 </tr>
               
                 <tr>
                   <td>permissions</td>
                   <td><a href="#hiber.Filter.OrganizationPermissions">hiber.Filter.OrganizationPermissions</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Select users by permissions for the current organization. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>support_permissions</td>
+                  <td><a href="#hiber.Filter.SupportPermissions">hiber.Filter.SupportPermissions</a></td>
+                  <td></td>
+                  <td><p>Select users by permissions for customer support. </p></td>
                 </tr>
               
             </tbody>
@@ -1925,13 +1746,6 @@ Set this to true to allow it. </p></td>
               </tr>
             
               <tr>
-                <td>UpdateUserPermissions</td>
-                <td><a href="#hiber.user.UpdateUserPermissionsRequest">UpdateUserPermissionsRequest</a></td>
-                <td><a href="#hiber.user.UpdateUserPermissionsRequest.Response">UpdateUserPermissionsRequest.Response</a></td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
                 <td>GetUserValidation</td>
                 <td><a href="#hiber.user.GetUserValidationRequest">GetUserValidationRequest</a></td>
                 <td><a href="#hiber.user.UserValidation">UserValidation</a></td>
@@ -1962,27 +1776,6 @@ Set this to true to allow it. </p></td>
           </tbody>
         </table>
 
-        
-          
-          
-          <h4>Methods with deprecated option</h4>
-          <table>
-            <thead>
-              <tr>
-                <td>Method Name</td>
-                <td>Option</td>
-              </tr>
-            </thead>
-            <tbody>
-            
-              <tr>
-                <td>UpdateUserPermissions</td>
-                <td><p>true</p></td>
-              </tr>
-            
-            </tbody>
-          </table>
-          
         
     
       
