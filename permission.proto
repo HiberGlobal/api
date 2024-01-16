@@ -93,6 +93,9 @@ enum OrganizationPermission {
     /* Create, access and download exports. */
     EXPORT = 49;
 
+    /* Create, edit and delete tags. Viewing tags is always allowed. */
+    TAGS_MANAGE = 52;
+
     reserved 14, 22, 25, 40, 37;
 }
 
@@ -141,4 +144,7 @@ enum SupportPermission {
 
     /* Assign device notes. */
     MANAGE_DEVICE_NOTES = 8;
+
+    /* Assign device time zones. */
+    MANAGE_DEVICE_TIME_ZONE = 9;
 }

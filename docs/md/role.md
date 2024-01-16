@@ -153,6 +153,7 @@ Requesting user-related events explicitly if you cannot access the users will re
 | HEALTH_MANAGE | Manage custom health levels. | 47 |
 | LOCATIONS_MANAGE | Manage saved locations using the OrganizationLocationService. | 48 |
 | EXPORT | Create, access and download exports. | 49 |
+| TAGS_MANAGE | Create, edit and delete tags. Viewing tags is always allowed. | 52 |
 
 #### hiber.SupportPermission
 SupportPermissions are used for features typically reserved for customer support, or that behave differently
@@ -169,6 +170,7 @@ when used by a customer support operator.
 | MANAGE_DEVICE_SLA | Manage device SLA values (minimum messages per day). | 6 |
 | DEVICE_VIEW_ALL_LIFECYCLES | View all lifecycles. Without this permission, you can only see INSTALLED and PAUSED. | 7 |
 | MANAGE_DEVICE_NOTES | Assign device notes. | 8 |
+| MANAGE_DEVICE_TIME_ZONE | Assign device time zones. | 9 |
 
 #### hiber.UserPermission
 UserPermissions are generally used to limit what a token can do to its user.

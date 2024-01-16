@@ -1,5 +1,20 @@
 # Changelog Hiber API
 
+### 0.177 (2024-01-16)
+
+##### ModemMessagePayloadParserService
+
+- Fixed a bug in `Retry` where the `parser_selection` was ignored for some modems.
+- Fixed a bug in `Retry` where the `require_message_metadata` of parsers was not checked when retrying, leading to parser errors.
+
+##### OrganizationPermissions
+
+- Added `TAGS_MANAGE` permission for creating, updating and deleting tags.
+
+##### SupportPermissions
+
+- Added `MANAGE_DEVICE_TIME_ZONE` to replace `CUSTOMER_SUPPORT` for updating time zone.
+
 ### 0.176 (2023-12-19)
 
 ##### ModemService
