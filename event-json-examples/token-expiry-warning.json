@@ -20,7 +20,10 @@
         "MODEMS",
         "USERS",
         "USERS_MANAGE"
-      ]
+      ],
+      "userDetails": {
+        "id": "user-identifier"
+      }
     },
     "title": "Token your-token (id 1) will expire in 14 days.",
     "description": "Token your-token (id 1) will expire in 14 days.",

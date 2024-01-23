@@ -1,5 +1,12 @@
 # Changelog Hiber API
 
+### 0.178 (2024-01-23)
+
+##### TokenService
+
+- Fix a bug where the user id would not be set in the details if the user does not exists in the organization.
+  (Other details are still omitted when the user is not in the organization)
+
 ### 0.177 (2024-01-16)
 
 ##### ModemMessagePayloadParserService

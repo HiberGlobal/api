@@ -19,7 +19,10 @@
         "MODEMS",
         "USERS",
         "USERS_MANAGE"
-      ]
+      ],
+      "userDetails": {
+        "id": "user-identifier"
+      }
     },
     "title": "Token your-token (id 1) has expired.",
     "description": "Token your-token (id 1) has expired.",
