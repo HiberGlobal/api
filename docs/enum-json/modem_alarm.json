@@ -1,0 +1,9 @@
+[{
+  "name": "TriggerCondition",
+  "description": "Condition determining when an alarm is triggered if it has multiple checks.",
+  "values": {
+    "DEFAULT": "Defaults to the current value when updating, or to ANY_CHECK_FAILED when creating."
+    ,"ANY_CHECK_FAILED": "Trigger the alarm when any of the checks fail. This is useful when providing a single device health alarm, that checks, for example, battery, operating temperature, etc. and should trigger when any of those are outside the expected range."
+    ,"ALL_CHECKS_FAILED": "Trigger the alarm only when all checks fail. This is useful when creating a combined alarm, where several data points factor into the decisions to trigger the alarm, for example, combining a check on the current value with a delta check on the historical values, to trigger only if the value is high for a longer period."
+    }
+}]

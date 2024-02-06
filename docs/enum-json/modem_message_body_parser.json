@@ -1,0 +1,15 @@
+[{
+  "name": "PostProcessing",
+  "description": "The type of post-processing to be applied to the result of this parser.",
+  "values": {
+    "NOTHING": ""
+    }
+},{
+  "name": "Endian",
+  "description": "",
+  "values": {
+    "DEFAULT": ""
+    ,"LITTLE_ENDIAN": ""
+    ,"BIG_ENDIAN": ""
+    }
+}]

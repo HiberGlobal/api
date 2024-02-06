@@ -1,0 +1,59 @@
+{
+  "deviceInstalled": {
+    "organization": "your-organization",
+    "number": "AAAA AAAA",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
+    },
+    "tags": [
+      {
+        "id": "1",
+        "label": {
+          "name": "example-tag",
+          "type": "well"
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "name": "example-tag-2",
+          "type": "well"
+        }
+      }
+    ],
+    "title": "Device AAAA AAAA has been installed at 2020-06-01 05:15:25Z.",
+    "description": "Device AAAA AAAA in your-organization was installed at 2020-06-01 05:15:25Z.\n\nwell: example-tag, example-tag-2",
+    "externalDeviceId": "00 11 22 33 AA BB CC DD"
+  },
+  "title": "Device AAAA AAAA has been installed at 2020-06-01 05:15:25Z.",
+  "description": "Device AAAA AAAA in your-organization was installed at 2020-06-01 05:15:25Z.\n\nwell: example-tag, example-tag-2",
+  "device": {
+    "number": "AAAA AAAA",
+    "name": "AAAA AAAA",
+    "identifier": "00 11 22 33 AA BB CC DD"
+  },
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
+  },
+  "tags": [
+    {
+      "id": "1",
+      "label": {
+        "name": "example-tag",
+        "type": "well"
+      }
+    },
+    {
+      "id": "2",
+      "label": {
+        "name": "example-tag-2",
+        "type": "well"
+      }
+    }
+  ],
+  "type": "DEVICE_INSTALLED"
+}

@@ -49,7 +49,7 @@
   },
   "title": "You transferred 1 device to your-organization-2.",
   "description": "your-organization transferred 1 device to your-organization-2.\n\nThe following devices are in this transfer:\n\n- AAAA AAAA (00 11 22 33 AA BB CC DD)\n\nwell: example-tag, example-tag-2",
-  "modem": {
+  "device": {
     "number": "AAAA AAAA",
     "name": "AAAA AAAA",
     "identifier": "00 11 22 33 AA BB CC DD"

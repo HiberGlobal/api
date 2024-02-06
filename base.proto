@@ -168,7 +168,7 @@ message Shape {
     string textual = 5;
 }
 
-/* Selection object for map data. Filter modems on the map by id, (child)organization.
+/* Selection object for map data.
  *
  * Also, filter the map data by level and area restriction, to only display a small area at a detailed map level,
  * for example
@@ -226,63 +226,178 @@ message Pagination {
 }
 
 /* Enum of api-accessible events.
- *
  * The event types in this enum have a protobuf implementation, and can be used, for example, in the
  * api event stream and publishers.
  */
 enum EventType {
     DEFAULT = 0;
 
+    /* A new organization was created under your organization. */
     ORGANIZATION_CREATED = 34;
+
+    /* Your organization information was updated.
+     * This deals with things like display name and contact information, not users and devices.
+     */
     ORGANIZATION_UPDATED = 12;
+
+    /* An organization under your organization was deleted. */
     ORGANIZATION_DELETED = 35;
+
+    /* Your organization's event configuration was updated.
+     * This refers to things like message summary configuration.
+     */
     ORGANIZATION_EVENT_CONFIGURATION_UPDATED = 43;
 
-    MODEM_CREATED = 55;
-    MODEM_UPDATED = 36;
-    MODEM_LOCATION_UPDATED = 4;
-    MODEM_ACTIVATED = 33;
+    /* A new device was created in your organization, either manually or by a gateway. */
+    DEVICE_CREATED = 55;
 
-    MODEM_MESSAGE_RECEIVED = 5;
-    MODEM_MESSAGE_BODY_PARSED = 39;
-    MODEM_MESSAGE_BODY_RECEIVED = 45;
-    MODEM_MESSAGE_CANNOT_BE_PARSED = 15;
-    MODEM_MESSAGE_SUMMARY = 42;
+    /* A device in your organization was manually updated (i.e. renamed, tagged). */
+    DEVICE_UPDATED = 36;
 
-    MODEM_MESSAGE_BODY_PARSER_CREATED = 46;
-    MODEM_MESSAGE_BODY_PARSER_UPDATED = 47;
-    MODEM_MESSAGE_BODY_PARSER_DELETED = 48;
+    /* The location of a device in your organization was updated, either manually or by a message. */
+    DEVICE_LOCATION_UPDATED = 4;
 
-    MODEM_ALARM = 56;
-    MODEM_ALARM_CREATED = 57;
-    MODEM_ALARM_UPDATED = 58;
-    MODEM_ALARM_DELETED = 59;
+    /* A device in your organization was installed and should now be active. */
+    DEVICE_INSTALLED = 33;
 
+    /* A device in your organization sent a message.
+     * This event is the final output for the message, after any parsing and post-processing.
+     */
+    MESSAGE_RECEIVED = 5;
+
+    /* A device in your organization sent a message, and it was parsed by a message body parser.
+     * For the final event, with all applied parsers and post processing, use MESSAGE_RECEIVED instead.
+     */
+    MESSAGE_BODY_PARSED = 39;
+
+    /* A device in your organization sent a message, and it has been scheduled for parsing by message body parsers
+     * and post-processing.
+     * For the final event, with all applied parsers and post processing, use MESSAGE_RECEIVED instead.
+     */
+    MESSAGE_BODY_RECEIVED = 45;
+
+    /* A device in your organization sent a message, and it could not be parsed by any assigned message body parser.
+     * This is typically a configuration issue. Please contact customer support if this is not resolved.
+     */
+    MESSAGE_CANNOT_BE_PARSED = 15;
+
+    /* A summary of messages in your organization was created, based on your event configuration. */
+    MESSAGE_SUMMARY = 42;
+
+    /* A new message body parser was created in your organization.
+     * This typically only happens for custom solutions.
+     */
+    MESSAGE_BODY_PARSER_CREATED = 46;
+
+    /* A message body parser in your organization was updated.
+     * This typically only happens for custom solutions.
+     */
+    MESSAGE_BODY_PARSER_UPDATED = 47;
+
+    /* A message body parser in your organization was deleted.
+     * This typically only happens for custom solutions.
+     */
+    MESSAGE_BODY_PARSER_DELETED = 48;
+
+    /* An alarm was triggered in your organizations.
+     * Depending on the alarm, this may mean that a device sent a message with a value (e.g. pressure)
+     * outside of the expected range, or moved out of the expected area.
+     */
+    ALARM_TRIGGERED = 56;
+
+    /* A new alarm was created in your organization. */
+    ALARM_CREATED = 57;
+
+    /* An alarm in your organization was updated. */
+    ALARM_UPDATED = 58;
+
+    /* An alarm in your organization was deleted. */
+    ALARM_DELETED = 59;
+
+    /* An assignment was made in your organization.
+     * For example: assigning a tag or alarm to a modem.
+     */
     ASSIGNED = 63;
+
+    /* An assignment was removed in your organization.
+     * For example: removing a tag or alarm from a modem.
+     */
     UNASSIGNED = 64;
 
+    /* A device was transferred into or out of your organization.
+     * Transferred device lose their data and are only used in the new organization if connected to a gateway in that
+     * organization.
+     */
     TRANSFER = 18;
 
+    /* A new publisher was created in your organization.
+     * Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and
+     * even email preferences.
+     */
     PUBLISHER_CREATED = 1;
+
+    /* A publisher in your organization was updated.
+     * Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and
+     * even email preferences.
+     */
     PUBLISHER_UPDATED = 2;
+
+    /* A publisher in your organization was deleted.
+     * Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and
+     * even email preferences.
+     */
     PUBLISHER_DELETED = 3;
-    PUBLISHER_AUTO_DISABLED = 37;
+
+    /* A publisher in your organization failed to send its data.
+     * This can be a temporary issue (perhaps the webhook endpoint is down) or an indication of a configuration issue.
+     * Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and
+     * even email preferences.
+     */
     PUBLISHER_FAILED = 11;
 
+    /* A publisher in your organization failed to send its data for a long enough period that is has been disabled.
+     * This means the failures were not a temporary issue, but there is something wrong with the configuration.
+     * Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and
+     * even email preferences.
+     */
+    PUBLISHER_AUTO_DISABLED = 37;
+
+    /* A user has requested access to your organization. You can review their request and approve or reject them. */
     USER_ACCESS_REQUEST = 8;
+
+    /* A user was invited into your organization. They can review your invite and accept it or ignore it. */
     USER_INVITED = 38;
+
+    /* A user was granted access to your organization, by request, invite, or created by an organization admin. */
     USER_ADDED = 9;
+
+    /* A user was removed from your organization by an organization admin. */
     USER_REMOVED = 10;
 
+    /* The user validation (i.e. email domain) for your organization was updated. */
     USER_VALIDATION_UPDATED = 54;
 
+    /* A new token was created for your organization. */
     TOKEN_CREATED = 31;
+
+    /* A token in your organization will expire within 2 weeks. */
     TOKEN_EXPIRY_WARNING = 25;
+
+    /* A token in your organization has expired. */
     TOKEN_EXPIRED = 26;
+
+    /* A token in your organization was deleted. */
     TOKEN_DELETED = 32;
 
+    /* A new export was started for your organization, exporting data (i.e. messages) to a file. */
     EXPORT_CREATED = 65;
+
+    /* An export in your organization has completed and the resulting file with data (i.e. messages as CSV)
+     * is ready to be downloaded.
+     */
     EXPORT_READY = 66;
+
+    /* An export in your organization has failed (typically because of incorrect data selection). */
     EXPORT_FAILED = 67;
 
     reserved 6, 7, 13, 14, 16, 17, 19 to  24, 27, 28, 29, 30;

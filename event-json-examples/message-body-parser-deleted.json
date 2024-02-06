@@ -1,0 +1,21 @@
+{
+  "messageBodyParserDeleted": {
+    "organization": "your-organization",
+    "deleted": "example-identifier",
+    "title": "Message Body Parser example-identifier was deleted.",
+    "description": "Message Body Parser example-identifier was deleted.",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
+    }
+  },
+  "type": "MESSAGE_BODY_PARSER_DELETED",
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
+  },
+  "title": "Message Body Parser example-identifier was deleted.",
+  "description": "Message Body Parser example-identifier was deleted."
+}

@@ -106,7 +106,7 @@ The preferred units for the current user.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_temperature_preference**.temperature_preference | [optional UnitPreferences.TemperaturePreference](#unitpreferencestemperaturepreference) | Optional temperature preference for the current user. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_voltage_preference**.voltage_preference | [optional UnitPreferences.VoltagePreference](#unitpreferencesvoltagepreference) | Optional voltage preference for the current user. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_volume_preference**.volume_preference | [optional UnitPreferences.VolumePreference](#unitpreferencesvolumepreference) | Optional volume preference for the current user. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_rotation_speed_preference**.rotation_speed_preference | [optional UnitPreferences.RotationSpeedPreference](#unitpreferencesrotationspeedpreference) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_rotation_speed_preference**.rotation_speed_preference | [optional UnitPreferences.RotationSpeedPreference](#unitpreferencesrotationspeedpreference) |  |
 
 ### UnitPreferences.DistancePreference
 
@@ -123,7 +123,7 @@ User preferences for mass values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| preference | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) | none |
+| preference | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) |  |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
 ### UnitPreferences.FuelEfficiencyPreference
@@ -132,7 +132,7 @@ User preferences for fuel efficiency values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| preference | [ Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit) | none |
+| preference | [ Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit) |  |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
 ### UnitPreferences.MassPreference
@@ -158,7 +158,7 @@ User preferences for pressure values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| preference | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) | none |
+| preference | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) |  |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
 ### UnitPreferences.Request
@@ -167,28 +167,28 @@ User preferences for pressure values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **distance**.update_distance_preference | [ UnitPreferences.DistancePreference](#unitpreferencesdistancepreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **distance**.remove_distance_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **flow**.update_flow_preference | [ UnitPreferences.FlowPreference](#unitpreferencesflowpreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **flow**.remove_flow_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **fuel_efficiency**.update_fuel_efficiency_preference | [ UnitPreferences.FuelEfficiencyPreference](#unitpreferencesfuelefficiencypreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **fuel_efficiency**.remove_fuel_efficiency_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **mass**.update_mass_preference | [ UnitPreferences.MassPreference](#unitpreferencesmasspreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **mass**.remove_mass_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **percentage**.update_percentage_preference | [ UnitPreferences.PercentagePreference](#unitpreferencespercentagepreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **percentage**.remove_percentage_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **pressure**.update_pressure_preference | [ UnitPreferences.PressurePreference](#unitpreferencespressurepreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **pressure**.remove_pressure_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **speed**.update_speed_preference | [ UnitPreferences.SpeedPreference](#unitpreferencesspeedpreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **speed**.remove_speed_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **temperature**.update_temperature_preference | [ UnitPreferences.TemperaturePreference](#unitpreferencestemperaturepreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **temperature**.remove_temperature_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **voltage**.update_voltage_preference | [ UnitPreferences.VoltagePreference](#unitpreferencesvoltagepreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **voltage**.remove_voltage_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **volume**.update_volume_preference | [ UnitPreferences.VolumePreference](#unitpreferencesvolumepreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **volume**.remove_volume_preference | [ bool](#bool) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **rotation_speed**.update_rotation_speed_preference | [ UnitPreferences.RotationSpeedPreference](#unitpreferencesrotationspeedpreference) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **rotation_speed**.remove_rotation_speed_preference | [ bool](#bool) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **distance**.update_distance_preference | [ UnitPreferences.DistancePreference](#unitpreferencesdistancepreference) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **distance**.remove_distance_preference | [ bool](#bool) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **flow**.update_flow_preference | [ UnitPreferences.FlowPreference](#unitpreferencesflowpreference) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **flow**.remove_flow_preference | [ bool](#bool) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **fuel_efficiency**.update_fuel_efficiency_preference | [ UnitPreferences.FuelEfficiencyPreference](#unitpreferencesfuelefficiencypreference) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **fuel_efficiency**.remove_fuel_efficiency_preference | [ bool](#bool) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **mass**.update_mass_preference | [ UnitPreferences.MassPreference](#unitpreferencesmasspreference) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **mass**.remove_mass_preference | [ bool](#bool) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **percentage**.update_percentage_preference | [ UnitPreferences.PercentagePreference](#unitpreferencespercentagepreference) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **percentage**.remove_percentage_preference | [ bool](#bool) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **pressure**.update_pressure_preference | [ UnitPreferences.PressurePreference](#unitpreferencespressurepreference) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **pressure**.remove_pressure_preference | [ bool](#bool) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **speed**.update_speed_preference | [ UnitPreferences.SpeedPreference](#unitpreferencesspeedpreference) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **speed**.remove_speed_preference | [ bool](#bool) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **temperature**.update_temperature_preference | [ UnitPreferences.TemperaturePreference](#unitpreferencestemperaturepreference) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **temperature**.remove_temperature_preference | [ bool](#bool) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **voltage**.update_voltage_preference | [ UnitPreferences.VoltagePreference](#unitpreferencesvoltagepreference) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **voltage**.remove_voltage_preference | [ bool](#bool) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **volume**.update_volume_preference | [ UnitPreferences.VolumePreference](#unitpreferencesvolumepreference) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **volume**.remove_volume_preference | [ bool](#bool) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **rotation_speed**.update_rotation_speed_preference | [ UnitPreferences.RotationSpeedPreference](#unitpreferencesrotationspeedpreference) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **rotation_speed**.remove_rotation_speed_preference | [ bool](#bool) |  |
 
 ### UnitPreferences.Response
 
@@ -196,7 +196,7 @@ User preferences for pressure values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| preferences | [ UnitPreferences](#unitpreferences) | none |
+| preferences | [ UnitPreferences](#unitpreferences) |  |
 
 ### UnitPreferences.RotationSpeedPreference
 
@@ -204,7 +204,7 @@ User preferences for rotation speed values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| preference | [ Value.Numeric.RotationSpeed.Unit](#valuenumericrotationspeedunit) | none |
+| preference | [ Value.Numeric.RotationSpeed.Unit](#valuenumericrotationspeedunit) |  |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
 ### UnitPreferences.SpeedPreference
@@ -222,7 +222,7 @@ User preferences for temperature values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| preference | [ Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit) | none |
+| preference | [ Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit) |  |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
 ### UnitPreferences.VoltagePreference
@@ -231,7 +231,7 @@ User preferences for voltage values.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| preference | [ Value.Numeric.Voltage.Unit](#valuenumericvoltageunit) | none |
+| preference | [ Value.Numeric.Voltage.Unit](#valuenumericvoltageunit) |  |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | Optional formatting options for values (rounding, etc). |
 
 ### UnitPreferences.VolumePreference
@@ -250,8 +250,8 @@ User preferences for volume values.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| METRIC | none | 0 |
-| IMPERIAL | none | 1 |
+| METRIC |  | 0 |
+| IMPERIAL |  | 1 |
 
 
 
@@ -273,13 +273,13 @@ so not all messages listed here are referenced.)
 | display_name | [ string](#string) | An optional display name for the field. |
 | priority | [ int32](#int32) | Priority of the field, typically used for ordering. |
 | type | [ hiber.value.Value.Type](#hibervaluevaluetype) | The type of value the field contains. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.numeric | [ hiber.field.Field.Numeric](#hiberfieldfieldnumeric) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.enum | [ hiber.field.Field.Enum](#hiberfieldfieldenum) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.numeric | [ hiber.field.Field.Numeric](#hiberfieldfieldnumeric) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.enum | [ hiber.field.Field.Enum](#hiberfieldfieldenum) |  |
 | encrypted | [ bool](#bool) | Whether this field should be stored encrypted or not. If it is, some processing options may be unavailable or slower. |
 | optional | [ bool](#bool) | Whether this field should be validated from the parser output. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_operational**.operational | [optional bool](#bool) | Field contains values relevant for operating the device. |
-| unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
-| unit_symbol | [ string](#string) | The symbol for the unit. Deprecated: use numeric.symbol instead |
+| unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | <strong>Deprecated.</strong> If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
+| unit_symbol | [ string](#string) | <strong>Deprecated.</strong> The symbol for the unit. Deprecated: use numeric.symbol instead |
 
 ### hiber.field.Field.Enum
 
@@ -287,7 +287,7 @@ If the field is an enum, this specifies the enum values for the field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| values | [repeated hiber.value.Value.Enum](#hibervaluevalueenum) | none |
+| values | [repeated hiber.value.Value.Enum](#hibervaluevalueenum) |  |
 
 ### hiber.field.Field.Numeric
 
@@ -317,20 +317,20 @@ Formatting options for the field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.battery_level | [ hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.distance | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.duration | [ hiber.value.Value.Numeric.Duration.Unit](#hibervaluevaluenumericdurationunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.fuel_efficiency | [ hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.flow | [ hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.percentage | [ hiber.value.Value.Numeric.Percentage.Unit](#hibervaluevaluenumericpercentageunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.pressure | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.speed | [ hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.temperature | [ hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.voltage | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.volume | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.mass | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rate | [ hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.battery_level | [ hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.distance | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.duration | [ hiber.value.Value.Numeric.Duration.Unit](#hibervaluevaluenumericdurationunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.fuel_efficiency | [ hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.flow | [ hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.percentage | [ hiber.value.Value.Numeric.Percentage.Unit](#hibervaluevaluenumericpercentageunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.pressure | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.speed | [ hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.temperature | [ hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.voltage | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.volume | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.mass | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rate | [ hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit) |  |
 
 
 ### Enums
@@ -342,13 +342,13 @@ For example, a value of 3.1415 with scale 3 could be
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| HALF_UP | Round towards "nearest neighbor" unless both neighbors are equidistant, in which case round up Effectively round up when >= .5, otherwise round down. | 0 |
-| HALF_DOWN | Round towards "nearest neighbor" unless both neighbors are equidistant, in which case round down. Effectively round up when > .5, otherwise round down. | 1 |
+| HALF_UP | Round towards nearest neighbor unless both neighbors are equidistant, in which case round up Effectively round up when >= .5, otherwise round down. | 0 |
+| HALF_DOWN | Round towards nearest neighbor unless both neighbors are equidistant, in which case round down. Effectively round up when > .5, otherwise round down. | 1 |
 | UP | Round away from zero: 1.1 -> 2, while -1.1 -> -2. | 3 |
 | DOWN | Round towards zero: 1.1 -> 1, while -1.1 -> -1. | 4 |
 | CEILING | Round towards positive infinity. | 5 |
 | FLOOR | Round towards negative infinity. | 6 |
-| HALF_EVEN | Round towards the "nearest neighbor" unless both neighbors are equidistant, in which case, round towards the even neighbor. Effectively round up when >= .5 and next integer value is even, otherwise round down. | 7 |
+| HALF_EVEN | Round towards the nearest neighbor unless both neighbors are equidistant, in which case, round towards the even neighbor. Effectively round up when >= .5 and next integer value is even, otherwise round down. | 7 |
 
 
 
@@ -365,10 +365,10 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| type | [ hiber.value.Value.Type](#hibervaluevaluetype) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.numeric | [ hiber.value.Value.Numeric](#hibervaluevaluenumeric) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.text | [ string](#string) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.enum | [ hiber.value.Value.Enum](#hibervaluevalueenum) | none |
+| type | [ hiber.value.Value.Type](#hibervaluevaluetype) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.numeric | [ hiber.value.Value.Numeric](#hibervaluevaluenumeric) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.text | [ string](#string) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.enum | [ hiber.value.Value.Enum](#hibervaluevalueenum) |  |
 
 ### hiber.value.Value.Enum
 
@@ -388,22 +388,22 @@ If the value is numeric, this specifies the unit, value, etc.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| type | [ hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.battery_level | [ hiber.value.Value.Numeric.BatteryLevel](#hibervaluevaluenumericbatterylevel) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.distance | [ hiber.value.Value.Numeric.Distance](#hibervaluevaluenumericdistance) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.duration | [ hiber.value.Value.Numeric.Duration](#hibervaluevaluenumericduration) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.fuel_efficiency | [ hiber.value.Value.Numeric.FuelEfficiency](#hibervaluevaluenumericfuelefficiency) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.percentage | [ hiber.value.Value.Numeric.Percentage](#hibervaluevaluenumericpercentage) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.pressure | [ hiber.value.Value.Numeric.Pressure](#hibervaluevaluenumericpressure) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.speed | [ hiber.value.Value.Numeric.Speed](#hibervaluevaluenumericspeed) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.temperature | [ hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.voltage | [ hiber.value.Value.Numeric.Voltage](#hibervaluevaluenumericvoltage) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.volume | [ hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.mass | [ hiber.value.Value.Numeric.Mass](#hibervaluevaluenumericmass) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.flow | [ hiber.value.Value.Numeric.Flow](#hibervaluevaluenumericflow) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed](#hibervaluevaluenumericrotationspeed) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rate | [ hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.unknown | [ double](#double) | none |
+| type | [ hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.battery_level | [ hiber.value.Value.Numeric.BatteryLevel](#hibervaluevaluenumericbatterylevel) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.distance | [ hiber.value.Value.Numeric.Distance](#hibervaluevaluenumericdistance) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.duration | [ hiber.value.Value.Numeric.Duration](#hibervaluevaluenumericduration) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.fuel_efficiency | [ hiber.value.Value.Numeric.FuelEfficiency](#hibervaluevaluenumericfuelefficiency) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.percentage | [ hiber.value.Value.Numeric.Percentage](#hibervaluevaluenumericpercentage) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.pressure | [ hiber.value.Value.Numeric.Pressure](#hibervaluevaluenumericpressure) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.speed | [ hiber.value.Value.Numeric.Speed](#hibervaluevaluenumericspeed) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.temperature | [ hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.voltage | [ hiber.value.Value.Numeric.Voltage](#hibervaluevaluenumericvoltage) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.volume | [ hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.mass | [ hiber.value.Value.Numeric.Mass](#hibervaluevaluenumericmass) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.flow | [ hiber.value.Value.Numeric.Flow](#hibervaluevaluenumericflow) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed](#hibervaluevaluenumericrotationspeed) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rate | [ hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.unknown | [ double](#double) |  |
 
 ### hiber.value.Value.Numeric.BatteryLevel
 
@@ -412,8 +412,8 @@ Not included in the UnitPreferences, since it cannot be converted.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -423,8 +423,8 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -434,9 +434,9 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) | none |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.Duration.Unit](#hibervaluevaluenumericdurationunit) | none |
+| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.Duration.Unit](#hibervaluevaluenumericdurationunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Duration.Unit](#hibervaluevaluenumericdurationunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -446,8 +446,8 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -457,8 +457,8 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -468,8 +468,8 @@ The value is a volume value, converted to your preferred volume unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -479,8 +479,8 @@ The value is a percentage.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ float](#float) | none |
-| unit | [ hiber.value.Value.Numeric.Percentage.Unit](#hibervaluevaluenumericpercentageunit) | none |
+| value | [ float](#float) |  |
+| unit | [ hiber.value.Value.Numeric.Percentage.Unit](#hibervaluevaluenumericpercentageunit) |  |
 | textual | [ string](#string) | Textual representation with % symbol, rounded based on the user preferences and field config. |
 
 ### hiber.value.Value.Numeric.Pressure
@@ -489,8 +489,8 @@ The value is a pressure value, converted to your preferred pressure unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -500,8 +500,8 @@ The value is a pressure value, converted to your preferred pressure unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ uint32](#uint32) | none |
-| unit | [ hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit) | none |
+| value | [ uint32](#uint32) |  |
+| unit | [ hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -512,8 +512,8 @@ unit preferences.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -523,8 +523,8 @@ The value is a speed value, converted to your preferred speed unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -534,8 +534,8 @@ The value is a temperature, converted to your preferred temperature unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -545,8 +545,8 @@ The value is a voltage, converted to your preferred voltage unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -556,8 +556,8 @@ The value is a volume value, converted to your preferred volume unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -575,14 +575,14 @@ other units will be added here later, like voltage
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| METER | none | 0 |
-| MILLIMETER | none | 1 |
-| CENTIMETER | none | 2 |
-| KILOMETER | none | 3 |
-| YARD | none | 5 |
-| MILE | none | 4 |
-| FOOT | none | 6 |
-| INCH | none | 7 |
+| METER |  | 0 |
+| MILLIMETER |  | 1 |
+| CENTIMETER |  | 2 |
+| KILOMETER |  | 3 |
+| YARD |  | 5 |
+| MILE |  | 4 |
+| FOOT |  | 6 |
+| INCH |  | 7 |
 | NAUTICAL_MILE | This is a special case unit and may not be auto-converted to your UnitPreference. | 8 |
 
 #### hiber.value.Value.Numeric.Duration.Unit
@@ -590,41 +590,41 @@ other units will be added here later, like voltage
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| MILLISECONDS | none | 0 |
-| SECONDS | none | 1 |
-| MINUTES | none | 2 |
-| HOURS | none | 3 |
-| DAYS | none | 4 |
-| WEEKS | none | 5 |
+| MILLISECONDS |  | 0 |
+| SECONDS |  | 1 |
+| MINUTES |  | 2 |
+| HOURS |  | 3 |
+| DAYS |  | 4 |
+| WEEKS |  | 5 |
 
 #### hiber.value.Value.Numeric.Flow.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| CUBIC_METER_PER_HOUR | none | 0 |
-| BARRELS_PER_DAY | none | 1 |
+| CUBIC_METER_PER_HOUR |  | 0 |
+| BARRELS_PER_DAY |  | 1 |
 
 #### hiber.value.Value.Numeric.FuelEfficiency.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| LITER_PER_100_KILOMETER | none | 0 |
-| KILOMETER_PER_LITER | none | 1 |
-| KILOMETER_PER_GALLON | none | 2 |
-| KILOMETER_PER_IMPERIAL_GALLON | none | 3 |
-| MILE_PER_GALLON | none | 4 |
-| MILE_PER_IMPERIAL_GALLON | none | 5 |
-| MILE_PER_LITER | none | 6 |
+| LITER_PER_100_KILOMETER |  | 0 |
+| KILOMETER_PER_LITER |  | 1 |
+| KILOMETER_PER_GALLON |  | 2 |
+| KILOMETER_PER_IMPERIAL_GALLON |  | 3 |
+| MILE_PER_GALLON |  | 4 |
+| MILE_PER_IMPERIAL_GALLON |  | 5 |
+| MILE_PER_LITER |  | 6 |
 
 #### hiber.value.Value.Numeric.Mass.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| KILOGRAMS | none | 0 |
-| POUNDS | none | 1 |
+| KILOGRAMS |  | 0 |
+| POUNDS |  | 1 |
 
 #### hiber.value.Value.Numeric.Percentage.Unit
 
@@ -638,9 +638,9 @@ other units will be added here later, like voltage
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| BAR | none | 0 |
-| PSI | none | 1 |
-| K_PA | none | 2 |
+| BAR |  | 0 |
+| PSI |  | 1 |
+| K_PA |  | 2 |
 
 #### hiber.value.Value.Numeric.Rate.Unit
 
@@ -654,26 +654,26 @@ other units will be added here later, like voltage
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| REVOLUTIONS_PER_MINUTE | none | 0 |
+| REVOLUTIONS_PER_MINUTE |  | 0 |
 
 #### hiber.value.Value.Numeric.Speed.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| KILOMETERS_PER_HOUR | none | 0 |
+| KILOMETERS_PER_HOUR |  | 0 |
 | KNOTS | This is a special case unit and may not be auto-converted to your UnitPreference. | 1 |
-| METERS_PER_SECOND | none | 2 |
-| MILES_PER_HOUR | none | 3 |
+| METERS_PER_SECOND |  | 2 |
+| MILES_PER_HOUR |  | 3 |
 
 #### hiber.value.Value.Numeric.Temperature.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| KELVIN | none | 0 |
-| DEGREES_CELSIUS | none | 1 |
-| DEGREES_FAHRENHEIT | none | 2 |
+| KELVIN |  | 0 |
+| DEGREES_CELSIUS |  | 1 |
+| DEGREES_FAHRENHEIT |  | 2 |
 
 #### hiber.value.Value.Numeric.Type
 The type of numeric value that is represented.
@@ -681,70 +681,61 @@ Supported types will automatically convert to the preferred unit (based on the u
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| TYPE_UNKNOWN | none | 0 |
-| PERCENTAGE | none | 1 |
-| TEMPERATURE | none | 2 |
-| DISTANCE | none | 3 |
-| PRESSURE | none | 4 |
-| VOLTAGE | none | 5 |
-| SPEED | none | 6 |
-| VOLUME | none | 7 |
-| DURATION | none | 8 |
-| FUEL_EFFICIENCY | none | 9 |
-| MASS | none | 10 |
-| BATTERY_LEVEL | none | 11 |
-| FLOW | none | 12 |
-| ROTATION_SPEED | none | 13 |
-| RATE | none | 14 |
+| TYPE_UNKNOWN |  | 0 |
+| PERCENTAGE |  | 1 |
+| TEMPERATURE |  | 2 |
+| DISTANCE |  | 3 |
+| PRESSURE |  | 4 |
+| VOLTAGE |  | 5 |
+| SPEED |  | 6 |
+| VOLUME |  | 7 |
+| DURATION |  | 8 |
+| FUEL_EFFICIENCY |  | 9 |
+| MASS |  | 10 |
+| BATTERY_LEVEL |  | 11 |
+| FLOW |  | 12 |
+| ROTATION_SPEED |  | 13 |
+| RATE |  | 14 |
 
 #### hiber.value.Value.Numeric.Voltage.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| MILLIVOLT | none | 0 |
+| MILLIVOLT |  | 0 |
 
 #### hiber.value.Value.Numeric.Volume.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| LITER | none | 0 |
-| GALLON_US | none | 1 |
-| GALLON_IMPERIAL | none | 2 |
-| CUBIC_METER | none | 3 |
-| CUBIC_FEET | none | 4 |
+| LITER |  | 0 |
+| GALLON_US |  | 1 |
+| GALLON_IMPERIAL |  | 2 |
+| CUBIC_METER |  | 3 |
+| CUBIC_FEET |  | 4 |
 
 #### hiber.value.Value.Type
 The type of value that is represented.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| OTHER | none | 0 |
+| OTHER |  | 0 |
 | NUMERIC | This field contains numeric values, with an optional unit of measurement defined below. | 1 |
 | TEXT | This field contains text to be displayed. | 2 |
 | ENUM | This field switches between several predefined values. Typically used for status fields. | 3 |
 
 #### hiber.value.ValueAggregation
-Get the values for the selected field.
-
-There are a few limitations here:
-- text fields can only use the LAST aggregation.
-- enum fields support a subset of aggregations:
-  - DEFAULT and LAST return the last value.
-  - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order.
+Get an aggregated value for the selected data (e.g. average).
+Text fields can only use the LAST aggregation.
+Enum fields support a subset of aggregations:
+  - DEFAULT and LAST return the last value;
+  - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order;
   - AVERAGE and SUM are not supported.
-
-- enum duration
-
-An enum example:
-Field "status" with this timeline: 00:00 OK, 00:10 FAILED, 00:20 OK, 00:25 FAILED, 00:40 OK
-- aggregation DEFAULT or LAST: OK, since it's OK at the end of the time range.
-- aggregation SUM: OK: 35m, FAILED: 25m
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| DEFAULT | none | 0 |
+| DEFAULT |  | 0 |
 | AVERAGE | Return the average value. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 1 |
 | SUM | Return the sum all values. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 2 |
 | LAST | Just take the last value. | 3 |

@@ -38,18 +38,7 @@ service AssignmentService {
     rpc ModemMessageBodyParserAssignments (ListModemMessageBodyParserAssignments.Request) returns (ListModemMessageBodyParserAssignments.Response);
 }
 
-/* Supported assignment types:
- * - assign a message body parser to a modem
- * - assign a message body parser to a tag
- * - assign a modem alarm to a modem
- * - assign a modem alarm to a tag
- * - assign a modem to a tag
- *
- * Assignment is transitive: when an alarm or parser is assigned to a tag, and the tag is assigned to a modem,
- *   the alarm or parser is considered assigned to that modem.
- * This only works in one direction, though. Assigning the alarm or parser to the modem directly does not also assign
- * the tag.
- */
+/* The types of assignment available, like assigning a message body parser to a modem. */
 enum AssignmentType {
     DEFAULT = 0;
 
@@ -71,7 +60,13 @@ enum AssignmentType {
     reserved 3;
 }
 
-/* An assignment assigning one thing to another. */
+/* An assignment assigning one thing to another.
+ *
+ * Assignment is transitive: when an alarm or parser is assigned to a tag, and the tag is assigned to a modem,
+ *   the alarm or parser is considered assigned to that modem.
+ * This only works in one direction, though. Assigning the alarm or parser to the modem directly does not also assign
+ * the tag.
+ */
 message Assignment {
     message ModemAlarmAssignment {
         string identifier = 1;

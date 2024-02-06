@@ -1,0 +1,72 @@
+{
+  "deviceUpdated": {
+    "organization": "your-organization",
+    "number": "AAAA AAAA",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
+    },
+    "tags": [
+      {
+        "id": "1",
+        "label": {
+          "name": "example-tag",
+          "type": "well"
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "name": "example-tag-2",
+          "type": "well"
+        }
+      }
+    ],
+    "title": "Device AAAA AAAA was updated.",
+    "description": "Device AAAA AAAA was updated:\n\n- Display name was changed from 'AAAA AAAA' to 'custom-name'.\n\n- The peripherals were changed.\n\n- The notes were changed to:\nmy-updated-notes\n\nwell: example-tag, example-tag-2",
+    "displayName": {
+      "updated": true,
+      "value": "custom-name"
+    },
+    "peripherals": {
+      "peripheral-type-1": "peripheral-name-1",
+      "peripheral-type-2": "peripheral-name-2",
+      "peripheral-type-3": "peripheral-name-3"
+    },
+    "notes": {
+      "updated": true,
+      "value": "my-updated-notes"
+    },
+    "externalDeviceId": "00 11 22 33 AA BB CC DD"
+  },
+  "title": "Device AAAA AAAA was updated.",
+  "description": "Device AAAA AAAA was updated:\n\n- Display name was changed from 'AAAA AAAA' to 'custom-name'.\n\n- The peripherals were changed.\n\n- The notes were changed to:\nmy-updated-notes\n\nwell: example-tag, example-tag-2",
+  "device": {
+    "number": "AAAA AAAA",
+    "name": "AAAA AAAA",
+    "identifier": "00 11 22 33 AA BB CC DD"
+  },
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
+  },
+  "tags": [
+    {
+      "id": "1",
+      "label": {
+        "name": "example-tag",
+        "type": "well"
+      }
+    },
+    {
+      "id": "2",
+      "label": {
+        "name": "example-tag-2",
+        "type": "well"
+      }
+    }
+  ],
+  "type": "DEVICE_UPDATED"
+}

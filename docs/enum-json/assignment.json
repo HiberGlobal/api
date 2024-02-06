@@ -1,0 +1,12 @@
+[{
+  "name": "AssignmentType",
+  "description": "The types of assignment available, like assigning a message body parser to a modem.",
+  "values": {
+    "DEFAULT": ""
+    ,"ASSIGNS_MESSAGE_BODY_PARSER_TO_MODEM": "Assignment that assigns a message body parser to a modem."
+    ,"ASSIGNS_ALARM_TO_MODEM": "Assignment that assigns a modem alarm to a modem."
+    ,"ASSIGNS_MODEM_TO_TAG": "Assignment that assigns a modem to a tag."
+    ,"ASSIGNS_MESSAGE_BODY_PARSER_TO_TAG": "Assignment that assigns a message body parser to a tag, effectively assigning it to all modems with that tag."
+    ,"ASSIGNS_ALARM_TO_TAG": "Assignment that assigns a modem alarm to a tag, effectively assigning it to all modems with that tag."
+    }
+}]

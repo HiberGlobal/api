@@ -15,7 +15,7 @@
       "filters": {
         "eventTypes": {
           "include": [
-            "MODEM_MESSAGE_RECEIVED"
+            "MESSAGE_RECEIVED"
           ]
         },
         "modemNumbers": {

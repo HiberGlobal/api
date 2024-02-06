@@ -2710,7 +2710,7 @@ Exclude takes precedence over include. </p></td>
         
       
         <h3 id="hiber.LocationSelection">LocationSelection</h3>
-        <p>Selection object for map data. Filter modems on the map by id, (child)organization.</p><p>Also, filter the map data by level and area restriction, to only display a small area at a detailed map level,</p><p>for example</p>
+        <p>Selection object for map data.</p><p>Also, filter the map data by level and area restriction, to only display a small area at a detailed map level,</p><p>for example</p>
 
         
           <table class="field-table">
@@ -3268,241 +3268,270 @@ For example, unbundled events are likely to return an approximated total, but no
               <tr>
                 <td>ORGANIZATION_CREATED</td>
                 <td>34</td>
-                <td><p></p></td>
+                <td><p>A new organization was created under your organization.</p></td>
               </tr>
             
               <tr>
                 <td>ORGANIZATION_UPDATED</td>
                 <td>12</td>
-                <td><p></p></td>
+                <td><p>Your organization information was updated.
+This deals with things like display name and contact information, not users and devices.</p></td>
               </tr>
             
               <tr>
                 <td>ORGANIZATION_DELETED</td>
                 <td>35</td>
-                <td><p></p></td>
+                <td><p>An organization under your organization was deleted.</p></td>
               </tr>
             
               <tr>
                 <td>ORGANIZATION_EVENT_CONFIGURATION_UPDATED</td>
                 <td>43</td>
-                <td><p></p></td>
+                <td><p>Your organization&#39;s event configuration was updated.
+This refers to things like message summary configuration.</p></td>
               </tr>
             
               <tr>
-                <td>MODEM_CREATED</td>
+                <td>DEVICE_CREATED</td>
                 <td>55</td>
-                <td><p></p></td>
+                <td><p>A new device was created in your organization, either manually or by a gateway.</p></td>
               </tr>
             
               <tr>
-                <td>MODEM_UPDATED</td>
+                <td>DEVICE_UPDATED</td>
                 <td>36</td>
-                <td><p></p></td>
+                <td><p>A device in your organization was manually updated (i.e. renamed, tagged).</p></td>
               </tr>
             
               <tr>
-                <td>MODEM_LOCATION_UPDATED</td>
+                <td>DEVICE_LOCATION_UPDATED</td>
                 <td>4</td>
-                <td><p></p></td>
+                <td><p>The location of a device in your organization was updated, either manually or by a message.</p></td>
               </tr>
             
               <tr>
-                <td>MODEM_ACTIVATED</td>
+                <td>DEVICE_INSTALLED</td>
                 <td>33</td>
-                <td><p></p></td>
+                <td><p>A device in your organization was installed and should now be active.</p></td>
               </tr>
             
               <tr>
-                <td>MODEM_MESSAGE_RECEIVED</td>
+                <td>MESSAGE_RECEIVED</td>
                 <td>5</td>
-                <td><p></p></td>
+                <td><p>A device in your organization sent a message.
+This event is the final output for the message, after any parsing and post-processing.</p></td>
               </tr>
             
               <tr>
-                <td>MODEM_MESSAGE_BODY_PARSED</td>
+                <td>MESSAGE_BODY_PARSED</td>
                 <td>39</td>
-                <td><p></p></td>
+                <td><p>A device in your organization sent a message, and it was parsed by a message body parser.
+For the final event, with all applied parsers and post processing, use MESSAGE_RECEIVED instead.</p></td>
               </tr>
             
               <tr>
-                <td>MODEM_MESSAGE_BODY_RECEIVED</td>
+                <td>MESSAGE_BODY_RECEIVED</td>
                 <td>45</td>
-                <td><p></p></td>
+                <td><p>A device in your organization sent a message, and it has been scheduled for parsing by message body parsers
+and post-processing.
+For the final event, with all applied parsers and post processing, use MESSAGE_RECEIVED instead.</p></td>
               </tr>
             
               <tr>
-                <td>MODEM_MESSAGE_CANNOT_BE_PARSED</td>
+                <td>MESSAGE_CANNOT_BE_PARSED</td>
                 <td>15</td>
-                <td><p></p></td>
+                <td><p>A device in your organization sent a message, and it could not be parsed by any assigned message body parser.
+This is typically a configuration issue. Please contact customer support if this is not resolved.</p></td>
               </tr>
             
               <tr>
-                <td>MODEM_MESSAGE_SUMMARY</td>
+                <td>MESSAGE_SUMMARY</td>
                 <td>42</td>
-                <td><p></p></td>
+                <td><p>A summary of messages in your organization was created, based on your event configuration.</p></td>
               </tr>
             
               <tr>
-                <td>MODEM_MESSAGE_BODY_PARSER_CREATED</td>
+                <td>MESSAGE_BODY_PARSER_CREATED</td>
                 <td>46</td>
-                <td><p></p></td>
+                <td><p>A new message body parser was created in your organization.
+This typically only happens for custom solutions.</p></td>
               </tr>
             
               <tr>
-                <td>MODEM_MESSAGE_BODY_PARSER_UPDATED</td>
+                <td>MESSAGE_BODY_PARSER_UPDATED</td>
                 <td>47</td>
-                <td><p></p></td>
+                <td><p>A message body parser in your organization was updated.
+This typically only happens for custom solutions.</p></td>
               </tr>
             
               <tr>
-                <td>MODEM_MESSAGE_BODY_PARSER_DELETED</td>
+                <td>MESSAGE_BODY_PARSER_DELETED</td>
                 <td>48</td>
-                <td><p></p></td>
+                <td><p>A message body parser in your organization was deleted.
+This typically only happens for custom solutions.</p></td>
               </tr>
             
               <tr>
-                <td>MODEM_ALARM</td>
+                <td>ALARM_TRIGGERED</td>
                 <td>56</td>
-                <td><p></p></td>
+                <td><p>An alarm was triggered in your organizations.
+Depending on the alarm, this may mean that a device sent a message with a value (e.g. pressure)
+outside of the expected range, or moved out of the expected area.</p></td>
               </tr>
             
               <tr>
-                <td>MODEM_ALARM_CREATED</td>
+                <td>ALARM_CREATED</td>
                 <td>57</td>
-                <td><p></p></td>
+                <td><p>A new alarm was created in your organization.</p></td>
               </tr>
             
               <tr>
-                <td>MODEM_ALARM_UPDATED</td>
+                <td>ALARM_UPDATED</td>
                 <td>58</td>
-                <td><p></p></td>
+                <td><p>An alarm in your organization was updated.</p></td>
               </tr>
             
               <tr>
-                <td>MODEM_ALARM_DELETED</td>
+                <td>ALARM_DELETED</td>
                 <td>59</td>
-                <td><p></p></td>
+                <td><p>An alarm in your organization was deleted.</p></td>
               </tr>
             
               <tr>
                 <td>ASSIGNED</td>
                 <td>63</td>
-                <td><p></p></td>
+                <td><p>An assignment was made in your organization.
+For example: assigning a tag or alarm to a modem.</p></td>
               </tr>
             
               <tr>
                 <td>UNASSIGNED</td>
                 <td>64</td>
-                <td><p></p></td>
+                <td><p>An assignment was removed in your organization.
+For example: removing a tag or alarm from a modem.</p></td>
               </tr>
             
               <tr>
                 <td>TRANSFER</td>
                 <td>18</td>
-                <td><p></p></td>
+                <td><p>A device was transferred into or out of your organization.
+Transferred device lose their data and are only used in the new organization if connected to a gateway in that
+organization.</p></td>
               </tr>
             
               <tr>
                 <td>PUBLISHER_CREATED</td>
                 <td>1</td>
-                <td><p></p></td>
+                <td><p>A new publisher was created in your organization.
+Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and
+even email preferences.</p></td>
               </tr>
             
               <tr>
                 <td>PUBLISHER_UPDATED</td>
                 <td>2</td>
-                <td><p></p></td>
+                <td><p>A publisher in your organization was updated.
+Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and
+even email preferences.</p></td>
               </tr>
             
               <tr>
                 <td>PUBLISHER_DELETED</td>
                 <td>3</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>PUBLISHER_AUTO_DISABLED</td>
-                <td>37</td>
-                <td><p></p></td>
+                <td><p>A publisher in your organization was deleted.
+Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and
+even email preferences.</p></td>
               </tr>
             
               <tr>
                 <td>PUBLISHER_FAILED</td>
                 <td>11</td>
-                <td><p></p></td>
+                <td><p>A publisher in your organization failed to send its data.
+This can be a temporary issue (perhaps the webhook endpoint is down) or an indication of a configuration issue.
+Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and
+even email preferences.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PUBLISHER_AUTO_DISABLED</td>
+                <td>37</td>
+                <td><p>A publisher in your organization failed to send its data for a long enough period that is has been disabled.
+This means the failures were not a temporary issue, but there is something wrong with the configuration.
+Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and
+even email preferences.</p></td>
               </tr>
             
               <tr>
                 <td>USER_ACCESS_REQUEST</td>
                 <td>8</td>
-                <td><p></p></td>
+                <td><p>A user has requested access to your organization. You can review their request and approve or reject them.</p></td>
               </tr>
             
               <tr>
                 <td>USER_INVITED</td>
                 <td>38</td>
-                <td><p></p></td>
+                <td><p>A user was invited into your organization. They can review your invite and accept it or ignore it.</p></td>
               </tr>
             
               <tr>
                 <td>USER_ADDED</td>
                 <td>9</td>
-                <td><p></p></td>
+                <td><p>A user was granted access to your organization, by request, invite, or created by an organization admin.</p></td>
               </tr>
             
               <tr>
                 <td>USER_REMOVED</td>
                 <td>10</td>
-                <td><p></p></td>
+                <td><p>A user was removed from your organization by an organization admin.</p></td>
               </tr>
             
               <tr>
                 <td>USER_VALIDATION_UPDATED</td>
                 <td>54</td>
-                <td><p></p></td>
+                <td><p>The user validation (i.e. email domain) for your organization was updated.</p></td>
               </tr>
             
               <tr>
                 <td>TOKEN_CREATED</td>
                 <td>31</td>
-                <td><p></p></td>
+                <td><p>A new token was created for your organization.</p></td>
               </tr>
             
               <tr>
                 <td>TOKEN_EXPIRY_WARNING</td>
                 <td>25</td>
-                <td><p></p></td>
+                <td><p>A token in your organization will expire within 2 weeks.</p></td>
               </tr>
             
               <tr>
                 <td>TOKEN_EXPIRED</td>
                 <td>26</td>
-                <td><p></p></td>
+                <td><p>A token in your organization has expired.</p></td>
               </tr>
             
               <tr>
                 <td>TOKEN_DELETED</td>
                 <td>32</td>
-                <td><p></p></td>
+                <td><p>A token in your organization was deleted.</p></td>
               </tr>
             
               <tr>
                 <td>EXPORT_CREATED</td>
                 <td>65</td>
-                <td><p></p></td>
+                <td><p>A new export was started for your organization, exporting data (i.e. messages) to a file.</p></td>
               </tr>
             
               <tr>
                 <td>EXPORT_READY</td>
                 <td>66</td>
-                <td><p></p></td>
+                <td><p>An export in your organization has completed and the resulting file with data (i.e. messages as CSV)
+is ready to be downloaded.</p></td>
               </tr>
             
               <tr>
                 <td>EXPORT_FAILED</td>
                 <td>67</td>
-                <td><p></p></td>
+                <td><p>An export in your organization has failed (typically because of incorrect data selection).</p></td>
               </tr>
             
           </tbody>
@@ -8436,7 +8465,7 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
         </table>
       
         <h3 id="hiber.value.ValueAggregation">ValueAggregation</h3>
-        <p>Get the values for the selected field.</p><p>There are a few limitations here:</p><p>- text fields can only use the LAST aggregation.</p><p>- enum fields support a subset of aggregations:</p><p>- DEFAULT and LAST return the last value.</p><p>- MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order.</p><p>- AVERAGE and SUM are not supported.</p><p>- enum duration</p><p>An enum example:</p><p>Field "status" with this timeline: 00:00 OK, 00:10 FAILED, 00:20 OK, 00:25 FAILED, 00:40 OK</p><p>- aggregation DEFAULT or LAST: OK, since it's OK at the end of the time range.</p><p>- aggregation SUM: OK: 35m, FAILED: 25m</p>
+        <p>Get an aggregated value for the selected data (e.g. average).</p><p>Text fields can only use the LAST aggregation.</p><p>Enum fields support a subset of aggregations:</p><p>- DEFAULT and LAST return the last value;</p><p>- MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order;</p><p>- AVERAGE and SUM are not supported.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>

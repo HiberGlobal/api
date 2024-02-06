@@ -41,7 +41,7 @@ Zendesk SSO using custom JWT
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| token | [ string](#string) | none |
+| token | [ string](#string) |  |
 
 
 ## Enums

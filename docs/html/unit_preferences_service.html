@@ -1498,14 +1498,14 @@ unit, from the original unit specified in this field. </p></td>
               <tr>
                 <td>HALF_UP</td>
                 <td>0</td>
-                <td><p>Round towards &#34;nearest neighbor&#34; unless both neighbors are equidistant, in which case round up
+                <td><p>Round towards nearest neighbor unless both neighbors are equidistant, in which case round up
 Effectively round up when &gt;= .5, otherwise round down.</p></td>
               </tr>
             
               <tr>
                 <td>HALF_DOWN</td>
                 <td>1</td>
-                <td><p>Round towards &#34;nearest neighbor&#34; unless both neighbors are equidistant, in which case round down.
+                <td><p>Round towards nearest neighbor unless both neighbors are equidistant, in which case round down.
 Effectively round up when &gt; .5, otherwise round down.</p></td>
               </tr>
             
@@ -1536,7 +1536,7 @@ Effectively round up when &gt; .5, otherwise round down.</p></td>
               <tr>
                 <td>HALF_EVEN</td>
                 <td>7</td>
-                <td><p>Round towards the &#34;nearest neighbor&#34; unless both neighbors are equidistant, in which case,
+                <td><p>Round towards the nearest neighbor unless both neighbors are equidistant, in which case,
 round towards the even neighbor.
 Effectively round up when &gt;= .5 and next integer value is even, otherwise round down.</p></td>
               </tr>
@@ -2981,7 +2981,7 @@ Effectively round up when &gt;= .5 and next integer value is even, otherwise rou
         </table>
       
         <h3 id="hiber.value.ValueAggregation">ValueAggregation</h3>
-        <p>Get the values for the selected field.</p><p>There are a few limitations here:</p><p>- text fields can only use the LAST aggregation.</p><p>- enum fields support a subset of aggregations:</p><p>- DEFAULT and LAST return the last value.</p><p>- MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order.</p><p>- AVERAGE and SUM are not supported.</p><p>- enum duration</p><p>An enum example:</p><p>Field "status" with this timeline: 00:00 OK, 00:10 FAILED, 00:20 OK, 00:25 FAILED, 00:40 OK</p><p>- aggregation DEFAULT or LAST: OK, since it's OK at the end of the time range.</p><p>- aggregation SUM: OK: 35m, FAILED: 25m</p>
+        <p>Get an aggregated value for the selected data (e.g. average).</p><p>Text fields can only use the LAST aggregation.</p><p>Enum fields support a subset of aggregations:</p><p>- DEFAULT and LAST return the last value;</p><p>- MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order;</p><p>- AVERAGE and SUM are not supported.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>

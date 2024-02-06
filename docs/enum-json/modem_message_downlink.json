@@ -1,0 +1,19 @@
+[{
+  "name": "Sort",
+  "description": "",
+  "values": {
+    "DEFAULT": "Sort by last change, last changed first."
+    ,"CREATED_OLDEST_FIRST": "Sort by created time, oldest first."
+    ,"CREATED_NEWEST_FIRST": "Sort by created time, newest first."
+    ,"MODEM_NUMBER": "Sort numerically on the number of the modem."
+    ,"MODEM_NUMBER_INVERTED": "Sort numerically on the number of the modem, inverted."
+    }
+},{
+  "name": "Status",
+  "description": "",
+  "values": {
+    "CREATED": "Message was created but not sent to the device."
+    ,"SENT": "Message was sent to the device, but not acknowledged."
+    ,"ACKNOWLEDGED": "Message was sent to the device, and acknowledged."
+    }
+}]

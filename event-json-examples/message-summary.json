@@ -1,0 +1,38 @@
+{
+  "messageSummary": {
+    "organization": "your-organization",
+    "messageCount": [
+      {
+        "device": "AAAA AAAA",
+        "amount": 10
+      }
+    ],
+    "title": "Device message summary from 2020-05-31 05:15:25Z to 2020-06-01 05:15:25Z.",
+    "description": "Device message summary for your-organization from 2020-05-31 05:15:25Z to 2020-06-01 05:15:25Z:\n\nDevices active: [AAAA AAAA]\n\nMessages received: 10",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
+    },
+    "timeRange": {
+      "start": {
+        "timestamp": "2020-05-31T05:15:25.355Z",
+        "textual": "2020-05-31T05:15:25.355Z",
+        "timeZone": "UTC"
+      },
+      "end": {
+        "timestamp": "2020-06-01T05:15:25.355Z",
+        "textual": "2020-06-01T05:15:25.355Z",
+        "timeZone": "UTC"
+      }
+    }
+  },
+  "title": "Device message summary from 2020-05-31 05:15:25Z to 2020-06-01 05:15:25Z.",
+  "description": "Device message summary for your-organization from 2020-05-31 05:15:25Z to 2020-06-01 05:15:25Z:\n\nDevices active: [AAAA AAAA]\n\nMessages received: 10",
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
+  },
+  "type": "MESSAGE_SUMMARY"
+}

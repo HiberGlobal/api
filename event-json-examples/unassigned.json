@@ -19,7 +19,7 @@
   },
   "title": "Assignment of example-identifier to AAAA AAAA was removed.",
   "description": "Assignment of example-identifier to AAAA AAAA was removed.",
-  "modem": {
+  "device": {
     "number": "AAAA AAAA",
     "name": "AAAA AAAA",
     "identifier": "example-identifier"

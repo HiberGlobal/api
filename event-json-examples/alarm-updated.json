@@ -1,0 +1,39 @@
+{
+  "alarmUpdated": {
+    "organization": "your-organization",
+    "alarmIdentifier": "example-identifier",
+    "updated": {
+      "description": {
+        "updated": true,
+        "value": "updated-example"
+      },
+      "triggerCondition": "ALL",
+      "updateDefaultHealthLevel": {
+        "updated": true,
+        "value": "Build up"
+      },
+      "updateHealthLevelAfterResolved": {
+        "healthLevel": "INSPECT",
+        "period": {
+          "duration": "172800s",
+          "textual": "2d"
+        }
+      }
+    },
+    "title": "Alarm example (example-identifier) was updated.",
+    "description": "Alarm example (example-identifier) was updated:\n\n- Description was changed from 'example' to 'updated-example'.\n\n- Trigger condition was updated.\n\n- Default health level was changed from 'Alarm' to 'Build up'.\n\n- Health level (after resolved) was changed from 'Build up' to 'INSPECT'.\n\n- Period for health level after resolved was changed from 'PT1H' to 'PT48H'.",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
+    }
+  },
+  "title": "Alarm example (example-identifier) was updated.",
+  "description": "Alarm example (example-identifier) was updated:\n\n- Description was changed from 'example' to 'updated-example'.\n\n- Trigger condition was updated.\n\n- Default health level was changed from 'Alarm' to 'Build up'.\n\n- Health level (after resolved) was changed from 'Build up' to 'INSPECT'.\n\n- Period for health level after resolved was changed from 'PT1H' to 'PT48H'.",
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
+  },
+  "type": "ALARM_UPDATED"
+}

@@ -57,10 +57,10 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| type | [ Value.Type](#valuetype) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.numeric | [ Value.Numeric](#valuenumeric) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.text | [ string](#string) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.enum | [ Value.Enum](#valueenum) | none |
+| type | [ Value.Type](#valuetype) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.numeric | [ Value.Numeric](#valuenumeric) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.text | [ string](#string) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.enum | [ Value.Enum](#valueenum) |  |
 
 ### Value.Enum
 
@@ -80,22 +80,22 @@ If the value is numeric, this specifies the unit, value, etc.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| type | [ Value.Numeric.Type](#valuenumerictype) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.battery_level | [ Value.Numeric.BatteryLevel](#valuenumericbatterylevel) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.distance | [ Value.Numeric.Distance](#valuenumericdistance) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.duration | [ Value.Numeric.Duration](#valuenumericduration) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.fuel_efficiency | [ Value.Numeric.FuelEfficiency](#valuenumericfuelefficiency) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.percentage | [ Value.Numeric.Percentage](#valuenumericpercentage) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.pressure | [ Value.Numeric.Pressure](#valuenumericpressure) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.speed | [ Value.Numeric.Speed](#valuenumericspeed) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.temperature | [ Value.Numeric.Temperature](#valuenumerictemperature) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.voltage | [ Value.Numeric.Voltage](#valuenumericvoltage) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.volume | [ Value.Numeric.Volume](#valuenumericvolume) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.mass | [ Value.Numeric.Mass](#valuenumericmass) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.flow | [ Value.Numeric.Flow](#valuenumericflow) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rotation_speed | [ Value.Numeric.RotationSpeed](#valuenumericrotationspeed) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rate | [ Value.Numeric.Rate](#valuenumericrate) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.unknown | [ double](#double) | none |
+| type | [ Value.Numeric.Type](#valuenumerictype) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.battery_level | [ Value.Numeric.BatteryLevel](#valuenumericbatterylevel) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.distance | [ Value.Numeric.Distance](#valuenumericdistance) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.duration | [ Value.Numeric.Duration](#valuenumericduration) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.fuel_efficiency | [ Value.Numeric.FuelEfficiency](#valuenumericfuelefficiency) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.percentage | [ Value.Numeric.Percentage](#valuenumericpercentage) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.pressure | [ Value.Numeric.Pressure](#valuenumericpressure) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.speed | [ Value.Numeric.Speed](#valuenumericspeed) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.temperature | [ Value.Numeric.Temperature](#valuenumerictemperature) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.voltage | [ Value.Numeric.Voltage](#valuenumericvoltage) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.volume | [ Value.Numeric.Volume](#valuenumericvolume) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.mass | [ Value.Numeric.Mass](#valuenumericmass) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.flow | [ Value.Numeric.Flow](#valuenumericflow) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rotation_speed | [ Value.Numeric.RotationSpeed](#valuenumericrotationspeed) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rate | [ Value.Numeric.Rate](#valuenumericrate) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.unknown | [ double](#double) |  |
 
 ### Value.Numeric.BatteryLevel
 
@@ -104,8 +104,8 @@ Not included in the UnitPreferences, since it cannot be converted.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.BatteryLevel.Unit](#valuenumericbatterylevelunit) | none |
+| value | [ double](#double) |  |
+| unit | [ Value.Numeric.BatteryLevel.Unit](#valuenumericbatterylevelunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ Value.Numeric.BatteryLevel.Unit](#valuenumericbatterylevelunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -115,8 +115,8 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.Distance.Unit](#valuenumericdistanceunit) | none |
+| value | [ double](#double) |  |
+| unit | [ Value.Numeric.Distance.Unit](#valuenumericdistanceunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ Value.Numeric.Distance.Unit](#valuenumericdistanceunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -126,9 +126,9 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) | none |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.Duration.Unit](#valuenumericdurationunit) | none |
+| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
+| value | [ double](#double) |  |
+| unit | [ Value.Numeric.Duration.Unit](#valuenumericdurationunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ Value.Numeric.Duration.Unit](#valuenumericdurationunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -138,8 +138,8 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) | none |
+| value | [ double](#double) |  |
+| unit | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -149,8 +149,8 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit) | none |
+| value | [ double](#double) |  |
+| unit | [ Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -160,8 +160,8 @@ The value is a volume value, converted to your preferred volume unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.Mass.Unit](#valuenumericmassunit) | none |
+| value | [ double](#double) |  |
+| unit | [ Value.Numeric.Mass.Unit](#valuenumericmassunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ Value.Numeric.Mass.Unit](#valuenumericmassunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -171,8 +171,8 @@ The value is a percentage.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ float](#float) | none |
-| unit | [ Value.Numeric.Percentage.Unit](#valuenumericpercentageunit) | none |
+| value | [ float](#float) |  |
+| unit | [ Value.Numeric.Percentage.Unit](#valuenumericpercentageunit) |  |
 | textual | [ string](#string) | Textual representation with % symbol, rounded based on the user preferences and field config. |
 
 ### Value.Numeric.Pressure
@@ -181,8 +181,8 @@ The value is a pressure value, converted to your preferred pressure unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) | none |
+| value | [ double](#double) |  |
+| unit | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -192,8 +192,8 @@ The value is a pressure value, converted to your preferred pressure unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ uint32](#uint32) | none |
-| unit | [ Value.Numeric.Rate.Unit](#valuenumericrateunit) | none |
+| value | [ uint32](#uint32) |  |
+| unit | [ Value.Numeric.Rate.Unit](#valuenumericrateunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ Value.Numeric.Rate.Unit](#valuenumericrateunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -204,8 +204,8 @@ unit preferences.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.RotationSpeed.Unit](#valuenumericrotationspeedunit) | none |
+| value | [ double](#double) |  |
+| unit | [ Value.Numeric.RotationSpeed.Unit](#valuenumericrotationspeedunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ Value.Numeric.RotationSpeed.Unit](#valuenumericrotationspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -215,8 +215,8 @@ The value is a speed value, converted to your preferred speed unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.Speed.Unit](#valuenumericspeedunit) | none |
+| value | [ double](#double) |  |
+| unit | [ Value.Numeric.Speed.Unit](#valuenumericspeedunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ Value.Numeric.Speed.Unit](#valuenumericspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -226,8 +226,8 @@ The value is a temperature, converted to your preferred temperature unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit) | none |
+| value | [ double](#double) |  |
+| unit | [ Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -237,8 +237,8 @@ The value is a voltage, converted to your preferred voltage unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.Voltage.Unit](#valuenumericvoltageunit) | none |
+| value | [ double](#double) |  |
+| unit | [ Value.Numeric.Voltage.Unit](#valuenumericvoltageunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ Value.Numeric.Voltage.Unit](#valuenumericvoltageunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -248,8 +248,8 @@ The value is a volume value, converted to your preferred volume unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ Value.Numeric.Volume.Unit](#valuenumericvolumeunit) | none |
+| value | [ double](#double) |  |
+| unit | [ Value.Numeric.Volume.Unit](#valuenumericvolumeunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ Value.Numeric.Volume.Unit](#valuenumericvolumeunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -267,14 +267,14 @@ other units will be added here later, like voltage
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| METER | none | 0 |
-| MILLIMETER | none | 1 |
-| CENTIMETER | none | 2 |
-| KILOMETER | none | 3 |
-| YARD | none | 5 |
-| MILE | none | 4 |
-| FOOT | none | 6 |
-| INCH | none | 7 |
+| METER |  | 0 |
+| MILLIMETER |  | 1 |
+| CENTIMETER |  | 2 |
+| KILOMETER |  | 3 |
+| YARD |  | 5 |
+| MILE |  | 4 |
+| FOOT |  | 6 |
+| INCH |  | 7 |
 | NAUTICAL_MILE | This is a special case unit and may not be auto-converted to your UnitPreference. | 8 |
 
 ### Value.Numeric.Duration.Unit
@@ -282,41 +282,41 @@ other units will be added here later, like voltage
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| MILLISECONDS | none | 0 |
-| SECONDS | none | 1 |
-| MINUTES | none | 2 |
-| HOURS | none | 3 |
-| DAYS | none | 4 |
-| WEEKS | none | 5 |
+| MILLISECONDS |  | 0 |
+| SECONDS |  | 1 |
+| MINUTES |  | 2 |
+| HOURS |  | 3 |
+| DAYS |  | 4 |
+| WEEKS |  | 5 |
 
 ### Value.Numeric.Flow.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| CUBIC_METER_PER_HOUR | none | 0 |
-| BARRELS_PER_DAY | none | 1 |
+| CUBIC_METER_PER_HOUR |  | 0 |
+| BARRELS_PER_DAY |  | 1 |
 
 ### Value.Numeric.FuelEfficiency.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| LITER_PER_100_KILOMETER | none | 0 |
-| KILOMETER_PER_LITER | none | 1 |
-| KILOMETER_PER_GALLON | none | 2 |
-| KILOMETER_PER_IMPERIAL_GALLON | none | 3 |
-| MILE_PER_GALLON | none | 4 |
-| MILE_PER_IMPERIAL_GALLON | none | 5 |
-| MILE_PER_LITER | none | 6 |
+| LITER_PER_100_KILOMETER |  | 0 |
+| KILOMETER_PER_LITER |  | 1 |
+| KILOMETER_PER_GALLON |  | 2 |
+| KILOMETER_PER_IMPERIAL_GALLON |  | 3 |
+| MILE_PER_GALLON |  | 4 |
+| MILE_PER_IMPERIAL_GALLON |  | 5 |
+| MILE_PER_LITER |  | 6 |
 
 ### Value.Numeric.Mass.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| KILOGRAMS | none | 0 |
-| POUNDS | none | 1 |
+| KILOGRAMS |  | 0 |
+| POUNDS |  | 1 |
 
 ### Value.Numeric.Percentage.Unit
 
@@ -330,9 +330,9 @@ other units will be added here later, like voltage
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| BAR | none | 0 |
-| PSI | none | 1 |
-| K_PA | none | 2 |
+| BAR |  | 0 |
+| PSI |  | 1 |
+| K_PA |  | 2 |
 
 ### Value.Numeric.Rate.Unit
 
@@ -346,26 +346,26 @@ other units will be added here later, like voltage
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| REVOLUTIONS_PER_MINUTE | none | 0 |
+| REVOLUTIONS_PER_MINUTE |  | 0 |
 
 ### Value.Numeric.Speed.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| KILOMETERS_PER_HOUR | none | 0 |
+| KILOMETERS_PER_HOUR |  | 0 |
 | KNOTS | This is a special case unit and may not be auto-converted to your UnitPreference. | 1 |
-| METERS_PER_SECOND | none | 2 |
-| MILES_PER_HOUR | none | 3 |
+| METERS_PER_SECOND |  | 2 |
+| MILES_PER_HOUR |  | 3 |
 
 ### Value.Numeric.Temperature.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| KELVIN | none | 0 |
-| DEGREES_CELSIUS | none | 1 |
-| DEGREES_FAHRENHEIT | none | 2 |
+| KELVIN |  | 0 |
+| DEGREES_CELSIUS |  | 1 |
+| DEGREES_FAHRENHEIT |  | 2 |
 
 ### Value.Numeric.Type
 The type of numeric value that is represented.
@@ -373,70 +373,61 @@ Supported types will automatically convert to the preferred unit (based on the u
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| TYPE_UNKNOWN | none | 0 |
-| PERCENTAGE | none | 1 |
-| TEMPERATURE | none | 2 |
-| DISTANCE | none | 3 |
-| PRESSURE | none | 4 |
-| VOLTAGE | none | 5 |
-| SPEED | none | 6 |
-| VOLUME | none | 7 |
-| DURATION | none | 8 |
-| FUEL_EFFICIENCY | none | 9 |
-| MASS | none | 10 |
-| BATTERY_LEVEL | none | 11 |
-| FLOW | none | 12 |
-| ROTATION_SPEED | none | 13 |
-| RATE | none | 14 |
+| TYPE_UNKNOWN |  | 0 |
+| PERCENTAGE |  | 1 |
+| TEMPERATURE |  | 2 |
+| DISTANCE |  | 3 |
+| PRESSURE |  | 4 |
+| VOLTAGE |  | 5 |
+| SPEED |  | 6 |
+| VOLUME |  | 7 |
+| DURATION |  | 8 |
+| FUEL_EFFICIENCY |  | 9 |
+| MASS |  | 10 |
+| BATTERY_LEVEL |  | 11 |
+| FLOW |  | 12 |
+| ROTATION_SPEED |  | 13 |
+| RATE |  | 14 |
 
 ### Value.Numeric.Voltage.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| MILLIVOLT | none | 0 |
+| MILLIVOLT |  | 0 |
 
 ### Value.Numeric.Volume.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| LITER | none | 0 |
-| GALLON_US | none | 1 |
-| GALLON_IMPERIAL | none | 2 |
-| CUBIC_METER | none | 3 |
-| CUBIC_FEET | none | 4 |
+| LITER |  | 0 |
+| GALLON_US |  | 1 |
+| GALLON_IMPERIAL |  | 2 |
+| CUBIC_METER |  | 3 |
+| CUBIC_FEET |  | 4 |
 
 ### Value.Type
 The type of value that is represented.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| OTHER | none | 0 |
+| OTHER |  | 0 |
 | NUMERIC | This field contains numeric values, with an optional unit of measurement defined below. | 1 |
 | TEXT | This field contains text to be displayed. | 2 |
 | ENUM | This field switches between several predefined values. Typically used for status fields. | 3 |
 
 ### ValueAggregation
-Get the values for the selected field.
-
-There are a few limitations here:
-- text fields can only use the LAST aggregation.
-- enum fields support a subset of aggregations:
-  - DEFAULT and LAST return the last value.
-  - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order.
+Get an aggregated value for the selected data (e.g. average).
+Text fields can only use the LAST aggregation.
+Enum fields support a subset of aggregations:
+  - DEFAULT and LAST return the last value;
+  - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order;
   - AVERAGE and SUM are not supported.
-
-- enum duration
-
-An enum example:
-Field "status" with this timeline: 00:00 OK, 00:10 FAILED, 00:20 OK, 00:25 FAILED, 00:40 OK
-- aggregation DEFAULT or LAST: OK, since it's OK at the end of the time range.
-- aggregation SUM: OK: 35m, FAILED: 25m
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| DEFAULT | none | 0 |
+| DEFAULT |  | 0 |
 | AVERAGE | Return the average value. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 1 |
 | SUM | Return the sum all values. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 2 |
 | LAST | Just take the last value. | 3 |

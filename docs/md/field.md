@@ -124,13 +124,13 @@
 | display_name | [ string](#string) | An optional display name for the field. |
 | priority | [ int32](#int32) | Priority of the field, typically used for ordering. |
 | type | [ hiber.value.Value.Type](#hibervaluevaluetype) | The type of value the field contains. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.numeric | [ Field.Numeric](#fieldnumeric) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.enum | [ Field.Enum](#fieldenum) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.numeric | [ Field.Numeric](#fieldnumeric) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.enum | [ Field.Enum](#fieldenum) |  |
 | encrypted | [ bool](#bool) | Whether this field should be stored encrypted or not. If it is, some processing options may be unavailable or slower. |
 | optional | [ bool](#bool) | Whether this field should be validated from the parser output. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_operational**.operational | [optional bool](#bool) | Field contains values relevant for operating the device. |
-| unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
-| unit_symbol | [ string](#string) | The symbol for the unit. Deprecated: use numeric.symbol instead |
+| unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | <strong>Deprecated.</strong> If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
+| unit_symbol | [ string](#string) | <strong>Deprecated.</strong> The symbol for the unit. Deprecated: use numeric.symbol instead |
 
 ### Field.Enum
 
@@ -138,7 +138,7 @@ If the field is an enum, this specifies the enum values for the field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| values | [repeated hiber.value.Value.Enum](#hibervaluevalueenum) | none |
+| values | [repeated hiber.value.Value.Enum](#hibervaluevalueenum) |  |
 
 ### Field.Numeric
 
@@ -168,20 +168,20 @@ Formatting options for the field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.battery_level | [ hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.distance | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.duration | [ hiber.value.Value.Numeric.Duration.Unit](#hibervaluevaluenumericdurationunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.fuel_efficiency | [ hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.flow | [ hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.percentage | [ hiber.value.Value.Numeric.Percentage.Unit](#hibervaluevaluenumericpercentageunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.pressure | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.speed | [ hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.temperature | [ hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.voltage | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.volume | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.mass | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rate | [ hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.battery_level | [ hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.distance | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.duration | [ hiber.value.Value.Numeric.Duration.Unit](#hibervaluevaluenumericdurationunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.fuel_efficiency | [ hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.flow | [ hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.percentage | [ hiber.value.Value.Numeric.Percentage.Unit](#hibervaluevaluenumericpercentageunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.pressure | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.speed | [ hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.temperature | [ hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.voltage | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.volume | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.mass | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rate | [ hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit) |  |
 
 
 ## Enums
@@ -193,13 +193,13 @@ For example, a value of 3.1415 with scale 3 could be
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| HALF_UP | Round towards "nearest neighbor" unless both neighbors are equidistant, in which case round up Effectively round up when >= .5, otherwise round down. | 0 |
-| HALF_DOWN | Round towards "nearest neighbor" unless both neighbors are equidistant, in which case round down. Effectively round up when > .5, otherwise round down. | 1 |
+| HALF_UP | Round towards nearest neighbor unless both neighbors are equidistant, in which case round up Effectively round up when >= .5, otherwise round down. | 0 |
+| HALF_DOWN | Round towards nearest neighbor unless both neighbors are equidistant, in which case round down. Effectively round up when > .5, otherwise round down. | 1 |
 | UP | Round away from zero: 1.1 -> 2, while -1.1 -> -2. | 3 |
 | DOWN | Round towards zero: 1.1 -> 1, while -1.1 -> -1. | 4 |
 | CEILING | Round towards positive infinity. | 5 |
 | FLOOR | Round towards negative infinity. | 6 |
-| HALF_EVEN | Round towards the "nearest neighbor" unless both neighbors are equidistant, in which case, round towards the even neighbor. Effectively round up when >= .5 and next integer value is even, otherwise round down. | 7 |
+| HALF_EVEN | Round towards the nearest neighbor unless both neighbors are equidistant, in which case, round towards the even neighbor. Effectively round up when >= .5 and next integer value is even, otherwise round down. | 7 |
 
 
 
@@ -216,10 +216,10 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| type | [ hiber.value.Value.Type](#hibervaluevaluetype) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.numeric | [ hiber.value.Value.Numeric](#hibervaluevaluenumeric) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.text | [ string](#string) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.enum | [ hiber.value.Value.Enum](#hibervaluevalueenum) | none |
+| type | [ hiber.value.Value.Type](#hibervaluevaluetype) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.numeric | [ hiber.value.Value.Numeric](#hibervaluevaluenumeric) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.text | [ string](#string) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.enum | [ hiber.value.Value.Enum](#hibervaluevalueenum) |  |
 
 ### hiber.value.Value.Enum
 
@@ -239,22 +239,22 @@ If the value is numeric, this specifies the unit, value, etc.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| type | [ hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.battery_level | [ hiber.value.Value.Numeric.BatteryLevel](#hibervaluevaluenumericbatterylevel) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.distance | [ hiber.value.Value.Numeric.Distance](#hibervaluevaluenumericdistance) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.duration | [ hiber.value.Value.Numeric.Duration](#hibervaluevaluenumericduration) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.fuel_efficiency | [ hiber.value.Value.Numeric.FuelEfficiency](#hibervaluevaluenumericfuelefficiency) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.percentage | [ hiber.value.Value.Numeric.Percentage](#hibervaluevaluenumericpercentage) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.pressure | [ hiber.value.Value.Numeric.Pressure](#hibervaluevaluenumericpressure) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.speed | [ hiber.value.Value.Numeric.Speed](#hibervaluevaluenumericspeed) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.temperature | [ hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.voltage | [ hiber.value.Value.Numeric.Voltage](#hibervaluevaluenumericvoltage) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.volume | [ hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.mass | [ hiber.value.Value.Numeric.Mass](#hibervaluevaluenumericmass) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.flow | [ hiber.value.Value.Numeric.Flow](#hibervaluevaluenumericflow) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed](#hibervaluevaluenumericrotationspeed) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rate | [ hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.unknown | [ double](#double) | none |
+| type | [ hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.battery_level | [ hiber.value.Value.Numeric.BatteryLevel](#hibervaluevaluenumericbatterylevel) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.distance | [ hiber.value.Value.Numeric.Distance](#hibervaluevaluenumericdistance) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.duration | [ hiber.value.Value.Numeric.Duration](#hibervaluevaluenumericduration) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.fuel_efficiency | [ hiber.value.Value.Numeric.FuelEfficiency](#hibervaluevaluenumericfuelefficiency) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.percentage | [ hiber.value.Value.Numeric.Percentage](#hibervaluevaluenumericpercentage) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.pressure | [ hiber.value.Value.Numeric.Pressure](#hibervaluevaluenumericpressure) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.speed | [ hiber.value.Value.Numeric.Speed](#hibervaluevaluenumericspeed) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.temperature | [ hiber.value.Value.Numeric.Temperature](#hibervaluevaluenumerictemperature) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.voltage | [ hiber.value.Value.Numeric.Voltage](#hibervaluevaluenumericvoltage) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.volume | [ hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.mass | [ hiber.value.Value.Numeric.Mass](#hibervaluevaluenumericmass) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.flow | [ hiber.value.Value.Numeric.Flow](#hibervaluevaluenumericflow) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed](#hibervaluevaluenumericrotationspeed) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.rate | [ hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value**.unknown | [ double](#double) |  |
 
 ### hiber.value.Value.Numeric.BatteryLevel
 
@@ -263,8 +263,8 @@ Not included in the UnitPreferences, since it cannot be converted.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -274,8 +274,8 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -285,9 +285,9 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) | none |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.Duration.Unit](#hibervaluevaluenumericdurationunit) | none |
+| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.Duration.Unit](#hibervaluevaluenumericdurationunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Duration.Unit](#hibervaluevaluenumericdurationunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -297,8 +297,8 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -308,8 +308,8 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -319,8 +319,8 @@ The value is a volume value, converted to your preferred volume unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -330,8 +330,8 @@ The value is a percentage.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ float](#float) | none |
-| unit | [ hiber.value.Value.Numeric.Percentage.Unit](#hibervaluevaluenumericpercentageunit) | none |
+| value | [ float](#float) |  |
+| unit | [ hiber.value.Value.Numeric.Percentage.Unit](#hibervaluevaluenumericpercentageunit) |  |
 | textual | [ string](#string) | Textual representation with % symbol, rounded based on the user preferences and field config. |
 
 ### hiber.value.Value.Numeric.Pressure
@@ -340,8 +340,8 @@ The value is a pressure value, converted to your preferred pressure unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -351,8 +351,8 @@ The value is a pressure value, converted to your preferred pressure unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ uint32](#uint32) | none |
-| unit | [ hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit) | none |
+| value | [ uint32](#uint32) |  |
+| unit | [ hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -363,8 +363,8 @@ unit preferences.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -374,8 +374,8 @@ The value is a speed value, converted to your preferred speed unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -385,8 +385,8 @@ The value is a temperature, converted to your preferred temperature unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -396,8 +396,8 @@ The value is a voltage, converted to your preferred voltage unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -407,8 +407,8 @@ The value is a volume value, converted to your preferred volume unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | none |
-| unit | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) | none |
+| value | [ double](#double) |  |
+| unit | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
 | converted_from | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
@@ -426,14 +426,14 @@ other units will be added here later, like voltage
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| METER | none | 0 |
-| MILLIMETER | none | 1 |
-| CENTIMETER | none | 2 |
-| KILOMETER | none | 3 |
-| YARD | none | 5 |
-| MILE | none | 4 |
-| FOOT | none | 6 |
-| INCH | none | 7 |
+| METER |  | 0 |
+| MILLIMETER |  | 1 |
+| CENTIMETER |  | 2 |
+| KILOMETER |  | 3 |
+| YARD |  | 5 |
+| MILE |  | 4 |
+| FOOT |  | 6 |
+| INCH |  | 7 |
 | NAUTICAL_MILE | This is a special case unit and may not be auto-converted to your UnitPreference. | 8 |
 
 #### hiber.value.Value.Numeric.Duration.Unit
@@ -441,41 +441,41 @@ other units will be added here later, like voltage
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| MILLISECONDS | none | 0 |
-| SECONDS | none | 1 |
-| MINUTES | none | 2 |
-| HOURS | none | 3 |
-| DAYS | none | 4 |
-| WEEKS | none | 5 |
+| MILLISECONDS |  | 0 |
+| SECONDS |  | 1 |
+| MINUTES |  | 2 |
+| HOURS |  | 3 |
+| DAYS |  | 4 |
+| WEEKS |  | 5 |
 
 #### hiber.value.Value.Numeric.Flow.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| CUBIC_METER_PER_HOUR | none | 0 |
-| BARRELS_PER_DAY | none | 1 |
+| CUBIC_METER_PER_HOUR |  | 0 |
+| BARRELS_PER_DAY |  | 1 |
 
 #### hiber.value.Value.Numeric.FuelEfficiency.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| LITER_PER_100_KILOMETER | none | 0 |
-| KILOMETER_PER_LITER | none | 1 |
-| KILOMETER_PER_GALLON | none | 2 |
-| KILOMETER_PER_IMPERIAL_GALLON | none | 3 |
-| MILE_PER_GALLON | none | 4 |
-| MILE_PER_IMPERIAL_GALLON | none | 5 |
-| MILE_PER_LITER | none | 6 |
+| LITER_PER_100_KILOMETER |  | 0 |
+| KILOMETER_PER_LITER |  | 1 |
+| KILOMETER_PER_GALLON |  | 2 |
+| KILOMETER_PER_IMPERIAL_GALLON |  | 3 |
+| MILE_PER_GALLON |  | 4 |
+| MILE_PER_IMPERIAL_GALLON |  | 5 |
+| MILE_PER_LITER |  | 6 |
 
 #### hiber.value.Value.Numeric.Mass.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| KILOGRAMS | none | 0 |
-| POUNDS | none | 1 |
+| KILOGRAMS |  | 0 |
+| POUNDS |  | 1 |
 
 #### hiber.value.Value.Numeric.Percentage.Unit
 
@@ -489,9 +489,9 @@ other units will be added here later, like voltage
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| BAR | none | 0 |
-| PSI | none | 1 |
-| K_PA | none | 2 |
+| BAR |  | 0 |
+| PSI |  | 1 |
+| K_PA |  | 2 |
 
 #### hiber.value.Value.Numeric.Rate.Unit
 
@@ -505,26 +505,26 @@ other units will be added here later, like voltage
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| REVOLUTIONS_PER_MINUTE | none | 0 |
+| REVOLUTIONS_PER_MINUTE |  | 0 |
 
 #### hiber.value.Value.Numeric.Speed.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| KILOMETERS_PER_HOUR | none | 0 |
+| KILOMETERS_PER_HOUR |  | 0 |
 | KNOTS | This is a special case unit and may not be auto-converted to your UnitPreference. | 1 |
-| METERS_PER_SECOND | none | 2 |
-| MILES_PER_HOUR | none | 3 |
+| METERS_PER_SECOND |  | 2 |
+| MILES_PER_HOUR |  | 3 |
 
 #### hiber.value.Value.Numeric.Temperature.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| KELVIN | none | 0 |
-| DEGREES_CELSIUS | none | 1 |
-| DEGREES_FAHRENHEIT | none | 2 |
+| KELVIN |  | 0 |
+| DEGREES_CELSIUS |  | 1 |
+| DEGREES_FAHRENHEIT |  | 2 |
 
 #### hiber.value.Value.Numeric.Type
 The type of numeric value that is represented.
@@ -532,70 +532,61 @@ Supported types will automatically convert to the preferred unit (based on the u
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| TYPE_UNKNOWN | none | 0 |
-| PERCENTAGE | none | 1 |
-| TEMPERATURE | none | 2 |
-| DISTANCE | none | 3 |
-| PRESSURE | none | 4 |
-| VOLTAGE | none | 5 |
-| SPEED | none | 6 |
-| VOLUME | none | 7 |
-| DURATION | none | 8 |
-| FUEL_EFFICIENCY | none | 9 |
-| MASS | none | 10 |
-| BATTERY_LEVEL | none | 11 |
-| FLOW | none | 12 |
-| ROTATION_SPEED | none | 13 |
-| RATE | none | 14 |
+| TYPE_UNKNOWN |  | 0 |
+| PERCENTAGE |  | 1 |
+| TEMPERATURE |  | 2 |
+| DISTANCE |  | 3 |
+| PRESSURE |  | 4 |
+| VOLTAGE |  | 5 |
+| SPEED |  | 6 |
+| VOLUME |  | 7 |
+| DURATION |  | 8 |
+| FUEL_EFFICIENCY |  | 9 |
+| MASS |  | 10 |
+| BATTERY_LEVEL |  | 11 |
+| FLOW |  | 12 |
+| ROTATION_SPEED |  | 13 |
+| RATE |  | 14 |
 
 #### hiber.value.Value.Numeric.Voltage.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| MILLIVOLT | none | 0 |
+| MILLIVOLT |  | 0 |
 
 #### hiber.value.Value.Numeric.Volume.Unit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| LITER | none | 0 |
-| GALLON_US | none | 1 |
-| GALLON_IMPERIAL | none | 2 |
-| CUBIC_METER | none | 3 |
-| CUBIC_FEET | none | 4 |
+| LITER |  | 0 |
+| GALLON_US |  | 1 |
+| GALLON_IMPERIAL |  | 2 |
+| CUBIC_METER |  | 3 |
+| CUBIC_FEET |  | 4 |
 
 #### hiber.value.Value.Type
 The type of value that is represented.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| OTHER | none | 0 |
+| OTHER |  | 0 |
 | NUMERIC | This field contains numeric values, with an optional unit of measurement defined below. | 1 |
 | TEXT | This field contains text to be displayed. | 2 |
 | ENUM | This field switches between several predefined values. Typically used for status fields. | 3 |
 
 #### hiber.value.ValueAggregation
-Get the values for the selected field.
-
-There are a few limitations here:
-- text fields can only use the LAST aggregation.
-- enum fields support a subset of aggregations:
-  - DEFAULT and LAST return the last value.
-  - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order.
+Get an aggregated value for the selected data (e.g. average).
+Text fields can only use the LAST aggregation.
+Enum fields support a subset of aggregations:
+  - DEFAULT and LAST return the last value;
+  - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order;
   - AVERAGE and SUM are not supported.
-
-- enum duration
-
-An enum example:
-Field "status" with this timeline: 00:00 OK, 00:10 FAILED, 00:20 OK, 00:25 FAILED, 00:40 OK
-- aggregation DEFAULT or LAST: OK, since it's OK at the end of the time range.
-- aggregation SUM: OK: 35m, FAILED: 25m
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| DEFAULT | none | 0 |
+| DEFAULT |  | 0 |
 | AVERAGE | Return the average value. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 1 |
 | SUM | Return the sum all values. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 2 |
 | LAST | Just take the last value. | 3 |
@@ -628,9 +619,9 @@ When sending an Area to the api, the center location is ignored.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| center | [ hiber.Location](#hiberlocation) | none |
-| bottom_left | [ hiber.Location](#hiberlocation) | none |
-| top_right | [ hiber.Location](#hiberlocation) | none |
+| center | [ hiber.Location](#hiberlocation) |  |
+| bottom_left | [ hiber.Location](#hiberlocation) |  |
+| top_right | [ hiber.Location](#hiberlocation) |  |
 | textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
@@ -657,8 +648,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) | none |
-| hex | [ string](#string) | none |
+| bytes | [ bytes](#bytes) |  |
+| hex | [ string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -666,8 +657,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.BytesOrHex](#hiberbytesorhex) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.BytesOrHex](#hiberbytesorhex) |  |
 
 ### hiber.Date
 
@@ -684,10 +675,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) | none |
-| month | [ uint32](#uint32) | none |
-| day | [ uint32](#uint32) | none |
-| textual | [ string](#string) | none |
+| year | [ uint32](#uint32) |  |
+| month | [ uint32](#uint32) |  |
+| day | [ uint32](#uint32) |  |
+| textual | [ string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -695,8 +686,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| start | [ double](#double) | none |
-| end | [ double](#double) | none |
+| start | [ double](#double) |  |
+| end | [ double](#double) |  |
 
 ### hiber.Duration
 
@@ -704,8 +695,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) | none |
-| textual | [ string](#string) | none |
+| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
+| textual | [ string](#string) |  |
 
 ### hiber.Filter
 
@@ -728,9 +719,9 @@ other filters default to allowing everything
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include_all | [ bool](#bool) | none |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include_all | [ bool](#bool) |  |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.ChildOrganizations.Update
 
@@ -738,8 +729,8 @@ Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) |  |
 
 ### hiber.Filter.DeviceTypes
 
@@ -747,8 +738,8 @@ Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.Events
 
@@ -756,8 +747,8 @@ Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated hiber.EventType](#hibereventtype) | none |
-| exclude | [repeated hiber.EventType](#hibereventtype) | none |
+| include | [repeated hiber.EventType](#hibereventtype) |  |
+| exclude | [repeated hiber.EventType](#hibereventtype) |  |
 
 ### hiber.Filter.Events.Update
 
@@ -765,8 +756,8 @@ Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.Events](#hiberfilterevents) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.Events](#hiberfilterevents) |  |
 
 ### hiber.Filter.FieldEnumValues
 
@@ -774,9 +765,9 @@ Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| field | [ string](#string) | none |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| field | [ string](#string) |  |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.HealthLevels
 
@@ -784,8 +775,8 @@ Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.ModemIdentifiers
 
@@ -793,8 +784,8 @@ Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.Modems
 
@@ -811,8 +802,8 @@ Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
 
 ### hiber.Filter.OrganizationPermissions
 
@@ -820,9 +811,9 @@ Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include_all | [ bool](#bool) | none |
-| include | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | none |
-| exclude | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | none |
+| include_all | [ bool](#bool) |  |
+| include | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) |  |
+| exclude | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) |  |
 
 ### hiber.Filter.Organizations
 
@@ -830,8 +821,8 @@ Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.Properties
 
@@ -839,7 +830,7 @@ Filter result on specific properties encoded in map-value pairs.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **selection**.properties | [ hiber.MapFilter](#hibermapfilter) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **selection**.properties | [ hiber.MapFilter](#hibermapfilter) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **selection**.include_only_empty | [ bool](#bool) | When set to true, match only empty property-sets. |
 
 ### hiber.Filter.Publishers
@@ -848,9 +839,9 @@ Filter result on specific properties encoded in map-value pairs.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated int64](#int64) | none |
-| exclude | [repeated int64](#int64) | none |
-| only_active | [ bool](#bool) | none |
+| include | [repeated int64](#int64) |  |
+| exclude | [repeated int64](#int64) |  |
+| only_active | [ bool](#bool) |  |
 
 ### hiber.Filter.Roles
 
@@ -858,8 +849,8 @@ Filter result on specific properties encoded in map-value pairs.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.SensorBrands
 
@@ -867,8 +858,8 @@ Filter result on specific properties encoded in map-value pairs.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.SupportPermissions
 
@@ -876,8 +867,8 @@ Filter result on specific properties encoded in map-value pairs.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated hiber.SupportPermission](#hibersupportpermission) | none |
-| exclude | [repeated hiber.SupportPermission](#hibersupportpermission) | none |
+| include | [repeated hiber.SupportPermission](#hibersupportpermission) |  |
+| exclude | [repeated hiber.SupportPermission](#hibersupportpermission) |  |
 
 ### hiber.Filter.Tags
 
@@ -885,8 +876,8 @@ Filter result on specific properties encoded in map-value pairs.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated int64](#int64) | none |
-| exclude | [repeated int64](#int64) | none |
+| include | [repeated int64](#int64) |  |
+| exclude | [repeated int64](#int64) |  |
 
 ### hiber.Filter.Tags.Update
 
@@ -894,8 +885,8 @@ Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.Tags](#hiberfiltertags) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.Tags](#hiberfiltertags) |  |
 
 ### hiber.Filter.UserPermissions
 
@@ -903,9 +894,9 @@ Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include_all | [ bool](#bool) | none |
-| include | [repeated hiber.UserPermission](#hiberuserpermission) | none |
-| exclude | [repeated hiber.UserPermission](#hiberuserpermission) | none |
+| include_all | [ bool](#bool) |  |
+| include | [repeated hiber.UserPermission](#hiberuserpermission) |  |
+| exclude | [repeated hiber.UserPermission](#hiberuserpermission) |  |
 
 ### hiber.Filter.Users
 
@@ -913,8 +904,8 @@ Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.Webhooks
 
@@ -922,9 +913,9 @@ Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated int64](#int64) | none |
-| exclude | [repeated int64](#int64) | none |
-| only_active | [ bool](#bool) | none |
+| include | [repeated int64](#int64) |  |
+| exclude | [repeated int64](#int64) |  |
+| only_active | [ bool](#bool) |  |
 
 ### hiber.Location
 
@@ -939,7 +930,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 
 ### hiber.LocationSelection
 
-Selection object for map data. Filter modems on the map by id, (child)organization.
+Selection object for map data.
 
 Also, filter the map data by level and area restriction, to only display a small area at a detailed map level,
 for example
@@ -983,8 +974,8 @@ For example:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues) | none |
+| key | [ string](#string) |  |
+| value | [ hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues) |  |
 
 ### hiber.MapFilter.IncludeAndEntry
 
@@ -992,8 +983,8 @@ For example:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues) | none |
+| key | [ string](#string) |  |
+| value | [ hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues) |  |
 
 ### hiber.MapFilter.OneOfValues
 
@@ -1002,7 +993,7 @@ which is not possible in protobuf without trickery.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [repeated string](#string) | none |
+| value | [repeated string](#string) |  |
 
 ### hiber.NamedFile
 
@@ -1046,8 +1037,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) | none |
-| page | [ int32](#int32) | none |
+| size | [ int32](#int32) |  |
+| page | [ int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -1055,12 +1046,12 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) | none |
-| page | [ int32](#int32) | none |
-| total | [ int32](#int32) | none |
-| total_pages | [ int32](#int32) | none |
-| previous | [ hiber.Pagination](#hiberpagination) | none |
-| next | [ hiber.Pagination](#hiberpagination) | none |
+| size | [ int32](#int32) |  |
+| page | [ int32](#int32) |  |
+| total | [ int32](#int32) |  |
+| total_pages | [ int32](#int32) |  |
+| previous | [ hiber.Pagination](#hiberpagination) |  |
+| next | [ hiber.Pagination](#hiberpagination) |  |
 | approximated_total | [ bool](#bool) | Indicates that the total is an approximation, and not an exact value. This can be set for data that changes often, or is generally only fetched in an infinite scrolling manner. For example, unbundled events are likely to return an approximated total, but not guaranteed to do so. |
 
 ### hiber.Shape
@@ -1073,7 +1064,7 @@ while a rectangular region is easier to define using Area.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| path | [repeated hiber.Location](#hiberlocation) | none |
+| path | [repeated hiber.Location](#hiberlocation) |  |
 | textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
@@ -1089,8 +1080,8 @@ Examples:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| start | [ hiber.Timestamp](#hibertimestamp) | none |
-| end | [ hiber.Timestamp](#hibertimestamp) | none |
+| start | [ hiber.Timestamp](#hibertimestamp) |  |
+| end | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### hiber.Timestamp
 
@@ -1110,9 +1101,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) | none |
-| time_zone | [ string](#string) | none |
-| textual | [ string](#string) | none |
+| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+| time_zone | [ string](#string) |  |
+| textual | [ string](#string) |  |
 
 ### hiber.UpdateBoolean
 
@@ -1125,8 +1116,8 @@ To use this to update, set a value and set updated to true
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ bool](#bool) | none |
+| updated | [ bool](#bool) |  |
+| value | [ bool](#bool) |  |
 
 ### hiber.UpdateClearableString
 
@@ -1139,8 +1130,8 @@ To use this to update, set a value and set updated to true
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ string](#string) | none |
+| updated | [ bool](#bool) |  |
+| value | [ string](#string) |  |
 
 ### hiber.UpdateOptionalDuration
 
@@ -1151,8 +1142,8 @@ To clear the duration, set updated to true, but set no value.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Duration](#hiberduration) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Duration](#hiberduration) |  |
 
 ### hiber.UpdateOptionalId
 
@@ -1162,8 +1153,8 @@ To use this to update, set a value and set updated to true. To clear the id, set
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ int64](#int64) | none |
+| updated | [ bool](#bool) |  |
+| value | [ int64](#int64) |  |
 
 ### hiber.UpdateZeroableInt
 
@@ -1176,121 +1167,120 @@ To use this to update, set a value and set updated to true
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ uint32](#uint32) | none |
+| updated | [ bool](#bool) |  |
+| value | [ uint32](#uint32) |  |
 
 
 ### Enums
 #### hiber.EventType
 Enum of api-accessible events.
-
 The event types in this enum have a protobuf implementation, and can be used, for example, in the
 api event stream and publishers.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| DEFAULT | none | 0 |
-| ORGANIZATION_CREATED | none | 34 |
-| ORGANIZATION_UPDATED | none | 12 |
-| ORGANIZATION_DELETED | none | 35 |
-| ORGANIZATION_EVENT_CONFIGURATION_UPDATED | none | 43 |
-| MODEM_CREATED | none | 55 |
-| MODEM_UPDATED | none | 36 |
-| MODEM_LOCATION_UPDATED | none | 4 |
-| MODEM_ACTIVATED | none | 33 |
-| MODEM_MESSAGE_RECEIVED | none | 5 |
-| MODEM_MESSAGE_BODY_PARSED | none | 39 |
-| MODEM_MESSAGE_BODY_RECEIVED | none | 45 |
-| MODEM_MESSAGE_CANNOT_BE_PARSED | none | 15 |
-| MODEM_MESSAGE_SUMMARY | none | 42 |
-| MODEM_MESSAGE_BODY_PARSER_CREATED | none | 46 |
-| MODEM_MESSAGE_BODY_PARSER_UPDATED | none | 47 |
-| MODEM_MESSAGE_BODY_PARSER_DELETED | none | 48 |
-| MODEM_ALARM | none | 56 |
-| MODEM_ALARM_CREATED | none | 57 |
-| MODEM_ALARM_UPDATED | none | 58 |
-| MODEM_ALARM_DELETED | none | 59 |
-| ASSIGNED | none | 63 |
-| UNASSIGNED | none | 64 |
-| TRANSFER | none | 18 |
-| PUBLISHER_CREATED | none | 1 |
-| PUBLISHER_UPDATED | none | 2 |
-| PUBLISHER_DELETED | none | 3 |
-| PUBLISHER_AUTO_DISABLED | none | 37 |
-| PUBLISHER_FAILED | none | 11 |
-| USER_ACCESS_REQUEST | none | 8 |
-| USER_INVITED | none | 38 |
-| USER_ADDED | none | 9 |
-| USER_REMOVED | none | 10 |
-| USER_VALIDATION_UPDATED | none | 54 |
-| TOKEN_CREATED | none | 31 |
-| TOKEN_EXPIRY_WARNING | none | 25 |
-| TOKEN_EXPIRED | none | 26 |
-| TOKEN_DELETED | none | 32 |
-| EXPORT_CREATED | none | 65 |
-| EXPORT_READY | none | 66 |
-| EXPORT_FAILED | none | 67 |
+| DEFAULT |  | 0 |
+| ORGANIZATION_CREATED | A new organization was created under your organization. | 34 |
+| ORGANIZATION_UPDATED | Your organization information was updated. This deals with things like display name and contact information, not users and devices. | 12 |
+| ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
+| ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
+| DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
+| DEVICE_UPDATED | A device in your organization was manually updated (i.e. renamed, tagged). | 36 |
+| DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |
+| DEVICE_INSTALLED | A device in your organization was installed and should now be active. | 33 |
+| MESSAGE_RECEIVED | A device in your organization sent a message. This event is the final output for the message, after any parsing and post-processing. | 5 |
+| MESSAGE_BODY_PARSED | A device in your organization sent a message, and it was parsed by a message body parser. For the final event, with all applied parsers and post processing, use MESSAGE_RECEIVED instead. | 39 |
+| MESSAGE_BODY_RECEIVED | A device in your organization sent a message, and it has been scheduled for parsing by message body parsers and post-processing. For the final event, with all applied parsers and post processing, use MESSAGE_RECEIVED instead. | 45 |
+| MESSAGE_CANNOT_BE_PARSED | A device in your organization sent a message, and it could not be parsed by any assigned message body parser. This is typically a configuration issue. Please contact customer support if this is not resolved. | 15 |
+| MESSAGE_SUMMARY | A summary of messages in your organization was created, based on your event configuration. | 42 |
+| MESSAGE_BODY_PARSER_CREATED | A new message body parser was created in your organization. This typically only happens for custom solutions. | 46 |
+| MESSAGE_BODY_PARSER_UPDATED | A message body parser in your organization was updated. This typically only happens for custom solutions. | 47 |
+| MESSAGE_BODY_PARSER_DELETED | A message body parser in your organization was deleted. This typically only happens for custom solutions. | 48 |
+| ALARM_TRIGGERED | An alarm was triggered in your organizations. Depending on the alarm, this may mean that a device sent a message with a value (e.g. pressure) outside of the expected range, or moved out of the expected area. | 56 |
+| ALARM_CREATED | A new alarm was created in your organization. | 57 |
+| ALARM_UPDATED | An alarm in your organization was updated. | 58 |
+| ALARM_DELETED | An alarm in your organization was deleted. | 59 |
+| ASSIGNED | An assignment was made in your organization. For example: assigning a tag or alarm to a modem. | 63 |
+| UNASSIGNED | An assignment was removed in your organization. For example: removing a tag or alarm from a modem. | 64 |
+| TRANSFER | A device was transferred into or out of your organization. Transferred device lose their data and are only used in the new organization if connected to a gateway in that organization. | 18 |
+| PUBLISHER_CREATED | A new publisher was created in your organization. Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and even email preferences. | 1 |
+| PUBLISHER_UPDATED | A publisher in your organization was updated. Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and even email preferences. | 2 |
+| PUBLISHER_DELETED | A publisher in your organization was deleted. Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and even email preferences. | 3 |
+| PUBLISHER_FAILED | A publisher in your organization failed to send its data. This can be a temporary issue (perhaps the webhook endpoint is down) or an indication of a configuration issue. Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and even email preferences. | 11 |
+| PUBLISHER_AUTO_DISABLED | A publisher in your organization failed to send its data for a long enough period that is has been disabled. This means the failures were not a temporary issue, but there is something wrong with the configuration. Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and even email preferences. | 37 |
+| USER_ACCESS_REQUEST | A user has requested access to your organization. You can review their request and approve or reject them. | 8 |
+| USER_INVITED | A user was invited into your organization. They can review your invite and accept it or ignore it. | 38 |
+| USER_ADDED | A user was granted access to your organization, by request, invite, or created by an organization admin. | 9 |
+| USER_REMOVED | A user was removed from your organization by an organization admin. | 10 |
+| USER_VALIDATION_UPDATED | The user validation (i.e. email domain) for your organization was updated. | 54 |
+| TOKEN_CREATED | A new token was created for your organization. | 31 |
+| TOKEN_EXPIRY_WARNING | A token in your organization will expire within 2 weeks. | 25 |
+| TOKEN_EXPIRED | A token in your organization has expired. | 26 |
+| TOKEN_DELETED | A token in your organization was deleted. | 32 |
+| EXPORT_CREATED | A new export was started for your organization, exporting data (i.e. messages) to a file. | 65 |
+| EXPORT_READY | An export in your organization has completed and the resulting file with data (i.e. messages as CSV) is ready to be downloaded. | 66 |
+| EXPORT_FAILED | An export in your organization has failed (typically because of incorrect data selection). | 67 |
 
 #### hiber.Health
 Health is an indicator for issues. It is used for publishers to give a quick indication of issues.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| OK | none | 0 |
-| WARNING | none | 1 |
-| ERROR | none | 2 |
+| OK |  | 0 |
+| WARNING |  | 1 |
+| ERROR |  | 2 |
 
 #### hiber.UnitOfMeasurement
 Unit of measurement for a numeric value.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| UNIT_UNKNOWN | none | 0 |
-| DURATION_MILLISECONDS | none | 40 |
-| DURATION_SECONDS | none | 1 |
-| DURATION_MINUTES | none | 2 |
-| DURATION_HOURS | none | 3 |
-| DURATION_DAYS | none | 4 |
-| DURATION_WEEKS | none | 41 |
-| FUEL_EFFICIENCY_LITER_PER_100_KILOMETER | none | 30 |
-| FUEL_EFFICIENCY_KILOMETER_PER_LITER | none | 31 |
-| FUEL_EFFICIENCY_KILOMETER_PER_US_GALLON | none | 32 |
-| FUEL_EFFICIENCY_KILOMETER_PER_IMPERIAL_GALLON | none | 33 |
-| FUEL_EFFICIENCY_MILE_PER_US_GALLON | none | 34 |
-| FUEL_EFFICIENCY_MILE_PER_IMPERIAL_GALLON | none | 35 |
-| FUEL_EFFICIENCY_MILE_PER_LITER | none | 36 |
-| DISTANCE_METER | none | 8 |
-| DISTANCE_MILLIMETER | none | 9 |
-| DISTANCE_CENTIMETER | none | 10 |
-| DISTANCE_KILOMETER | none | 11 |
-| DISTANCE_NAUTICAL_MILE | none | 26 |
-| DISTANCE_MILE | none | 21 |
-| DISTANCE_YARD | none | 27 |
-| DISTANCE_FOOT | none | 28 |
-| DISTANCE_INCH | none | 29 |
-| PERCENT | none | 16 |
-| PRESSURE_BAR | none | 12 |
-| PRESSURE_PSI | none | 14 |
-| PRESSURE_K_PA | none | 17 |
-| SPEED_KILOMETERS_PER_HOUR | none | 18 |
-| SPEED_KNOTS | none | 19 |
-| SPEED_METERS_PER_SECOND | none | 20 |
-| SPEED_MILES_PER_HOUR | none | 22 |
-| TEMPERATURE_KELVIN | none | 5 |
-| TEMPERATURE_DEGREES_CELSIUS | none | 6 |
-| TEMPERATURE_DEGREES_FAHRENHEIT | none | 7 |
-| VOLTAGE_MILLIVOLT | none | 15 |
-| VOLUME_LITER | none | 23 |
-| VOLUME_GALLON_US | none | 24 |
-| VOLUME_GALLON_IMPERIAL | none | 25 |
-| VOLUME_CUBIC_METER | none | 42 |
-| VOLUME_CUBIC_FOOT | none | 43 |
-| MASS_KILOGRAMS | none | 37 |
-| MASS_POUNDS | none | 38 |
-| FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
-| FLOW_BARRELS_PER_DAY | none | 46 |
-| REVOLUTIONS_PER_MINUTE | none | 44 |
-| ITEMS_PER_24_HOURS | none | 45 |
+| UNIT_UNKNOWN |  | 0 |
+| DURATION_MILLISECONDS |  | 40 |
+| DURATION_SECONDS |  | 1 |
+| DURATION_MINUTES |  | 2 |
+| DURATION_HOURS |  | 3 |
+| DURATION_DAYS |  | 4 |
+| DURATION_WEEKS |  | 41 |
+| FUEL_EFFICIENCY_LITER_PER_100_KILOMETER |  | 30 |
+| FUEL_EFFICIENCY_KILOMETER_PER_LITER |  | 31 |
+| FUEL_EFFICIENCY_KILOMETER_PER_US_GALLON |  | 32 |
+| FUEL_EFFICIENCY_KILOMETER_PER_IMPERIAL_GALLON |  | 33 |
+| FUEL_EFFICIENCY_MILE_PER_US_GALLON |  | 34 |
+| FUEL_EFFICIENCY_MILE_PER_IMPERIAL_GALLON |  | 35 |
+| FUEL_EFFICIENCY_MILE_PER_LITER |  | 36 |
+| DISTANCE_METER |  | 8 |
+| DISTANCE_MILLIMETER |  | 9 |
+| DISTANCE_CENTIMETER |  | 10 |
+| DISTANCE_KILOMETER |  | 11 |
+| DISTANCE_NAUTICAL_MILE |  | 26 |
+| DISTANCE_MILE |  | 21 |
+| DISTANCE_YARD |  | 27 |
+| DISTANCE_FOOT |  | 28 |
+| DISTANCE_INCH |  | 29 |
+| PERCENT |  | 16 |
+| PRESSURE_BAR |  | 12 |
+| PRESSURE_PSI |  | 14 |
+| PRESSURE_K_PA |  | 17 |
+| SPEED_KILOMETERS_PER_HOUR |  | 18 |
+| SPEED_KNOTS |  | 19 |
+| SPEED_METERS_PER_SECOND |  | 20 |
+| SPEED_MILES_PER_HOUR |  | 22 |
+| TEMPERATURE_KELVIN |  | 5 |
+| TEMPERATURE_DEGREES_CELSIUS |  | 6 |
+| TEMPERATURE_DEGREES_FAHRENHEIT |  | 7 |
+| VOLTAGE_MILLIVOLT |  | 15 |
+| VOLUME_LITER |  | 23 |
+| VOLUME_GALLON_US |  | 24 |
+| VOLUME_GALLON_IMPERIAL |  | 25 |
+| VOLUME_CUBIC_METER |  | 42 |
+| VOLUME_CUBIC_FOOT |  | 43 |
+| MASS_KILOGRAMS |  | 37 |
+| MASS_POUNDS |  | 38 |
+| FLOW_CUBIC_METERS_PER_HOUR |  | 39 |
+| FLOW_BARRELS_PER_DAY |  | 46 |
+| REVOLUTIONS_PER_MINUTE |  | 44 |
+| ITEMS_PER_24_HOURS |  | 45 |
 
 ## Scalar Value Types
 

@@ -1,7 +1,7 @@
 {
   "organizationEventConfigurationUpdated": {
     "organization": "your-organization",
-    "modemMessageSummaryUpdate": {
+    "messageSummaryUpdate": {
       "period": {
         "duration": "43200s",
         "textual": "12h"

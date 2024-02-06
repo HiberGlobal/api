@@ -24,13 +24,13 @@ Preconfigured device type.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| identifier | [ string](#string) | none |
-| brand | [ string](#string) | none |
-| application | [ string](#string) | none |
-| category | [ string](#string) | none |
-| version | [ string](#string) | none |
-| description | [ string](#string) | none |
-| gateway | [ bool](#bool) | none |
+| identifier | [ string](#string) |  |
+| brand | [ string](#string) |  |
+| application | [ string](#string) |  |
+| category | [ string](#string) |  |
+| version | [ string](#string) |  |
+| description | [ string](#string) |  |
+| gateway | [ bool](#bool) |  |
 
 ### DeviceTypeSelection
 
@@ -38,9 +38,9 @@ Selection object for device types.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| search | [ string](#string) | none |
-| only_gateways | [ bool](#bool) | none |
-| exclude_gateways | [ bool](#bool) | none |
+| search | [ string](#string) |  |
+| only_gateways | [ bool](#bool) |  |
+| exclude_gateways | [ bool](#bool) |  |
 
 
 ## Enums

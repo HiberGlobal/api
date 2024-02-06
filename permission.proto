@@ -9,14 +9,7 @@ option java_package = "global.hiber.api.grpc";
 option go_package = "hiber";
 
 /* OrganizationPermissions limit what a user can do in an Organization.
- * By default, everyone who has access to an organization, can access:
- * - organization data
- * - dashboard (including the map, and message count for the past days, and any events they have access to)
- * - tags
- * - deleting tags, but only if they are allowed to update the modems and webhooks the tag is assigned to
- *
- * Events are filtered by permission, i.e. if you cannot access the users, you would not see user-related events.
- * Requesting user-related events explicitly if you cannot access the users will return an error.
+ * By default, everyone who has access to an organization, can access basic organization data.
  */
 enum OrganizationPermission {
     PERMISSION_DEFAULT = 0;

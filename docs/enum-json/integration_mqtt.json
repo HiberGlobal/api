@@ -1,0 +1,32 @@
+[{
+  "name": "Sort",
+  "description": "",
+  "values": {
+    "DEFAULT": "Sort by id."
+    ,"ID_DESC": "Sort by id, high to low."
+    ,"DESCRIPTION": "Sort by description."
+    ,"DESCRIPTION_DESC": "Sort by description, z to a."
+    ,"URL": "Sort by url."
+    ,"URL_DESC": "Sort by url, z to a."
+    ,"TOPIC": "Sort by topic."
+    ,"TOPIC_DESC": "Sort by topic, z to a."
+    ,"HEALTH": "Sort unhealthy webhooks before health webhooks."
+    }
+},{
+  "name": "ContentType",
+  "description": "",
+  "values": {
+    "DEFAULT": ""
+    ,"JSON": ""
+    ,"PROTO": ""
+    }
+},{
+  "name": "QoS",
+  "description": "",
+  "values": {
+    "DEFAULT": ""
+    ,"AT_MOST_ONCE": "Qos level 0"
+    ,"AT_LEAST_ONCE": "Qos level 1"
+    ,"EXACTLY_ONCE": "Qos level 2"
+    }
+}]

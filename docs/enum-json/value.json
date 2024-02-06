@@ -1,0 +1,164 @@
+[{
+  "name": "Unit",
+  "description": "other units will be added here later, like voltage",
+  "values": {
+    "PERCENT": "Battery level as a percentage (technically not a unit)."
+    }
+},{
+  "name": "Unit",
+  "description": "",
+  "values": {
+    "METER": ""
+    ,"MILLIMETER": ""
+    ,"CENTIMETER": ""
+    ,"KILOMETER": ""
+    ,"YARD": ""
+    ,"MILE": ""
+    ,"FOOT": ""
+    ,"INCH": ""
+    ,"NAUTICAL_MILE": "This is a special case unit and may not be auto-converted to your UnitPreference."
+    }
+},{
+  "name": "Unit",
+  "description": "",
+  "values": {
+    "MILLISECONDS": ""
+    ,"SECONDS": ""
+    ,"MINUTES": ""
+    ,"HOURS": ""
+    ,"DAYS": ""
+    ,"WEEKS": ""
+    }
+},{
+  "name": "Unit",
+  "description": "",
+  "values": {
+    "CUBIC_METER_PER_HOUR": ""
+    ,"BARRELS_PER_DAY": ""
+    }
+},{
+  "name": "Unit",
+  "description": "",
+  "values": {
+    "LITER_PER_100_KILOMETER": ""
+    ,"KILOMETER_PER_LITER": ""
+    ,"KILOMETER_PER_GALLON": ""
+    ,"KILOMETER_PER_IMPERIAL_GALLON": ""
+    ,"MILE_PER_GALLON": ""
+    ,"MILE_PER_IMPERIAL_GALLON": ""
+    ,"MILE_PER_LITER": ""
+    }
+},{
+  "name": "Unit",
+  "description": "",
+  "values": {
+    "KILOGRAMS": ""
+    ,"POUNDS": ""
+    }
+},{
+  "name": "Unit",
+  "description": "",
+  "values": {
+    "PERCENT": "Technically not a unit, but for consistency, we've added it here."
+    }
+},{
+  "name": "Unit",
+  "description": "",
+  "values": {
+    "BAR": ""
+    ,"PSI": ""
+    ,"K_PA": ""
+    }
+},{
+  "name": "Unit",
+  "description": "",
+  "values": {
+    "ITEMS_PER_24_HOURS": "The amount of items counted in a 24 hour window."
+    }
+},{
+  "name": "Unit",
+  "description": "",
+  "values": {
+    "REVOLUTIONS_PER_MINUTE": ""
+    }
+},{
+  "name": "Unit",
+  "description": "",
+  "values": {
+    "KILOMETERS_PER_HOUR": ""
+    ,"KNOTS": "This is a special case unit and may not be auto-converted to your UnitPreference."
+    ,"METERS_PER_SECOND": ""
+    ,"MILES_PER_HOUR": ""
+    }
+},{
+  "name": "Unit",
+  "description": "",
+  "values": {
+    "KELVIN": ""
+    ,"DEGREES_CELSIUS": ""
+    ,"DEGREES_FAHRENHEIT": ""
+    }
+},{
+  "name": "Type",
+  "description": "The type of numeric value that is represented. Supported types will automatically convert to the preferred unit (based on the user settings).",
+  "values": {
+    "TYPE_UNKNOWN": ""
+    ,"PERCENTAGE": ""
+    ,"TEMPERATURE": ""
+    ,"DISTANCE": ""
+    ,"PRESSURE": ""
+    ,"VOLTAGE": ""
+    ,"SPEED": ""
+    ,"VOLUME": ""
+    ,"DURATION": ""
+    ,"FUEL_EFFICIENCY": ""
+    ,"MASS": ""
+    ,"BATTERY_LEVEL": ""
+    ,"FLOW": ""
+    ,"ROTATION_SPEED": ""
+    ,"RATE": ""
+    }
+},{
+  "name": "Unit",
+  "description": "",
+  "values": {
+    "MILLIVOLT": ""
+    }
+},{
+  "name": "Unit",
+  "description": "",
+  "values": {
+    "LITER": ""
+    ,"GALLON_US": ""
+    ,"GALLON_IMPERIAL": ""
+    ,"CUBIC_METER": ""
+    ,"CUBIC_FEET": ""
+    }
+},{
+  "name": "Type",
+  "description": "The type of value that is represented.",
+  "values": {
+    "OTHER": ""
+    ,"NUMERIC": "This field contains numeric values, with an optional unit of measurement defined below."
+    ,"TEXT": "This field contains text to be displayed."
+    ,"ENUM": "This field switches between several predefined values. Typically used for status fields."
+    }
+},{
+  "name": "ValueAggregation",
+  "description": "Get an aggregated value for the selected data (e.g. average). Text fields can only use the LAST aggregation. Enum fields support a subset of aggregations: - DEFAULT and LAST return the last value; - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order; - AVERAGE and SUM are not supported.",
+  "values": {
+    "DEFAULT": ""
+    ,"AVERAGE": "Return the average value. Not supported for textual and enum fields. When used with these fields, LAST is used instead."
+    ,"SUM": "Return the sum all values. Not supported for textual and enum fields. When used with these fields, LAST is used instead."
+    ,"LAST": "Just take the last value."
+    ,"MINIMUM": "Return the lowest value. For enum fields, the order of values is used to determine the MINIMUM. Not supported for textual fields. When used with these fields, LAST is used instead."
+    ,"MAXIMUM": "Return the highest value. For enum fields, the order of values is used to determine the MAXIMUM. Not supported for textual fields. When used with these fields, LAST is used instead."
+    }
+},{
+  "name": "ValueTransformation",
+  "description": "Transform the values into a derived value.",
+  "values": {
+    "DURATION": "Instead of returning the value, return the amount of time a value was active. Aggregation (if applicable) is applied afterwards on the duration value."
+    ,"DELTA": "Instead of returning the value, return the difference between the value and the previous value. Aggregation (if applicable) is applied before the delta is calculated."
+    }
+}]

@@ -1,0 +1,7 @@
+[{
+  "name": "Type",
+  "description": "The type of data transferred to the recipient organization.",
+  "values": {
+    "DEVICES": ""
+    }
+}]

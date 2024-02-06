@@ -1,0 +1,9 @@
+[{
+  "name": "Sort",
+  "description": "",
+  "values": {
+    "PARSER_PRIORITY": "Sort by parser and priority in the parser."
+    ,"DISPLAY_NAME": "Sort by display_name."
+    ,"FIELD_PATH": "Sort by json path only."
+    }
+}]

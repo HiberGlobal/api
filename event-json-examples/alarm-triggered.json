@@ -1,0 +1,86 @@
+{
+  "isError": true,
+  "alarmTriggered": {
+    "organization": "your-organization",
+    "deviceNumber": "AAAA AAAA",
+    "deviceExternalDeviceId": "00 11 22 33 AA BB CC DD",
+    "messageId": "10002",
+    "alarmIdentifier": "example-identifier",
+    "alarmDescription": "example",
+    "errorMessages": {
+      "example-check-id": "Expected battery to be within 20..100%, but it is now at 15%!"
+    },
+    "tags": [
+      {
+        "id": "1",
+        "label": {
+          "name": "example-tag",
+          "type": "well"
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "name": "example-tag-2",
+          "type": "well"
+        }
+      }
+    ],
+    "title": "Expected battery to be within 20..100%, but it is now at 15%!",
+    "description": "In organization Your Organization (your-organization) device AAAA AAAA has failed the following checks:\n\n- example-check-id: Expected battery to be within 20..100%, but it is now at 15%!\n\nThe error messages were produced by alarm example-identifier: example\n\nwell: example-tag, example-tag-2",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
+    },
+    "healthLevel": {
+      "level": "Alarm",
+      "color": "red",
+      "catchAll": true,
+      "colorData": {
+        "fill": "red",
+        "text": "red"
+      },
+      "severity": "3"
+    }
+  },
+  "type": "ALARM_TRIGGERED",
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
+  },
+  "healthLevel": {
+    "level": "Alarm",
+    "color": "red",
+    "catchAll": true,
+    "colorData": {
+      "fill": "red",
+      "text": "red"
+    },
+    "severity": "3"
+  },
+  "title": "Expected battery to be within 20..100%, but it is now at 15%!",
+  "description": "In organization Your Organization (your-organization) device AAAA AAAA has failed the following checks:\n\n- example-check-id: Expected battery to be within 20..100%, but it is now at 15%!\n\nThe error messages were produced by alarm example-identifier: example\n\nwell: example-tag, example-tag-2",
+  "device": {
+    "number": "AAAA AAAA",
+    "name": "AAAA AAAA",
+    "identifier": "00 11 22 33 AA BB CC DD"
+  },
+  "tags": [
+    {
+      "id": "1",
+      "label": {
+        "name": "example-tag",
+        "type": "well"
+      }
+    },
+    {
+      "id": "2",
+      "label": {
+        "name": "example-tag-2",
+        "type": "well"
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+[{
+  "name": "Sort",
+  "description": "Sorting options for the results.",
+  "values": {
+    "DEVICE_NAME_ASC": "Sort alphabetically on the name of the device. De default name of the device is its HEX number, in ascending order."
+    ,"DEVICE_NAME_DESC": "Sort alphabetically on the name of the device. De default name of the device is its HEX number, in descending order."
+    ,"DEVICE_NUMBER_ASC": "Sort numerically on the number of the device, in ascending order."
+    ,"DEVICE_NUMBER_DESC": "Sort numerically on the number of the device, in descending order."
+    ,"ACTIVITY": "Sort devices on most recent activity first (e.g. newest message received)."
+    ,"INACTIVITY": "Sort devices on least recent activity first (e.g. longest no message received)."
+    ,"LIFECYCLE_ASC": "Sort device on its lifecycle state."
+    ,"LIFECYCLE_DESC": "Sort device on its lifecycle state in reverse order."
+    ,"LIFECYCLE_ALPHABETICAL_ASC": "Sort device on lifecycle name, alphabetically."
+    ,"LIFECYCLE_ALPHABETICAL_DESC": "Sort device on lifecycle name, alphabetically in reverse order."
+    ,"ORGANIZATION_ASC": "Sort alphabetically on the name of the organization that owns the device, in ascending order."
+    ,"ORGANIZATION_DESC": "Sort alphabetically on the name of the organization that owns the device, in descending order."
+    ,"HEALTH_ASC": "Health sorted from least to most severe (i.e. OK, WARNING, ERROR)."
+    ,"HEALTH_DESC": "Health sorted from most to least severe (i.e. ERROR, WARNING, OK)."
+    ,"HEALTH_ALPHABETICAL_ASC": "Health sorted alphabetically by health level name."
+    ,"HEALTH_ALPHABETICAL_DESC": "Health sorted alphabetically by health level name, descending order."
+    ,"SENSOR_BRAND_ASC": "Sort alphabetically on the brand of the sensor, in ascending order."
+    ,"SENSOR_BRAND_DESC": "Sort alphabetically on the brand of the sensor, in descending order."
+    ,"DEVICE_TYPE_ASC": "Sort alphabetically on the device type, in ascending order."
+    ,"DEVICE_TYPE_DESC": "Sort alphabetically on the device type, in descending order."
+    ,"TAG_TYPE_WELL_ASC": "Sort alphabetically on any tags of type 'well', in ascending order."
+    ,"TAG_TYPE_WELL_DESC": "Sort alphabetically on any tags of type 'well', in descending order."
+    ,"TAG_TYPE_SITE_ASC": "Sort alphabetically on any tags of type 'site', in ascending order."
+    ,"TAG_TYPE_SITE_DESC": "Sort alphabetically on any tags of type 'site', in descending order."
+    ,"TAG_TYPE_PRODUCTION_AREA_ASC": "Sort alphabetically on any tags of type 'production_area', in ascending order."
+    ,"TAG_TYPE_PRODUCTION_AREA_DESC": "Sort alphabetically on any tags of type 'production_area', in descending order."
+    }
+}]

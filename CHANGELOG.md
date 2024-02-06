@@ -1,5 +1,33 @@
 # Changelog Hiber API
 
+### 0.180 (2024-02-06)
+
+##### EventService
+
+- Updated event titles and descriptions to match the renaming in the previous release.
+
+##### UserService
+
+- Fixed a bug where `UpdateUserRoles` would sometimes incorrectly reject the new roles.
+
+### 0.179 (2024-01-30)
+
+##### Json generated documentation
+
+- Generated documentation for enums into json format, to have easily accessible values and descriptions.
+
+##### EventService
+
+- Renamed and moved a number of events and event fields to better reflect reality (vs when they were defined).
+
+##### EventType
+
+- Documented the event types with a short description.
+
+##### UserService
+
+- Fixed a bug where `Remove` did not remove access requests.
+
 ### 0.178 (2024-01-23)
 
 ##### TokenService

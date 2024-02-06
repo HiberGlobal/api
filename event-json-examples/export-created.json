@@ -35,16 +35,16 @@
         }
       }
     },
-    "title": "Exporting messages for modem AAAA AAAA to example-identifier from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z.",
-    "description": "Exporting messages for modem AAAA AAAA to example-identifier from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z.\n\nwell: example-tag, example-tag-2\nRequested by: user-identifier for your-organization",
+    "title": "Exporting messages for device AAAA AAAA to example-identifier from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z.",
+    "description": "Exporting messages for device AAAA AAAA to example-identifier from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z.\n\nwell: example-tag, example-tag-2\nRequested by: user-identifier for your-organization",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
       "textual": "2020-06-01T05:15:25.355Z",
       "timeZone": "UTC"
     }
   },
-  "title": "Exporting messages for modem AAAA AAAA to example-identifier from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z.",
-  "description": "Exporting messages for modem AAAA AAAA to example-identifier from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z.\n\nwell: example-tag, example-tag-2\nRequested by: user-identifier for your-organization",
+  "title": "Exporting messages for device AAAA AAAA to example-identifier from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z.",
+  "description": "Exporting messages for device AAAA AAAA to example-identifier from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z.\n\nwell: example-tag, example-tag-2\nRequested by: user-identifier for your-organization",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
     "textual": "2020-06-01T05:15:25.355Z",

@@ -39,12 +39,12 @@ message Field {
              *   4.142 (HALF_UP, UP, CEILING).
              */
             enum RoundingMode {
-                /* Round towards "nearest neighbor" unless both neighbors are equidistant, in which case round up
+                /* Round towards nearest neighbor unless both neighbors are equidistant, in which case round up
                  * Effectively round up when >= .5, otherwise round down.
                  */
                 HALF_UP = 0;
 
-                /* Round towards "nearest neighbor" unless both neighbors are equidistant, in which case round down.
+                /* Round towards nearest neighbor unless both neighbors are equidistant, in which case round down.
                  * Effectively round up when > .5, otherwise round down.
                  */
                 HALF_DOWN = 1;
@@ -61,7 +61,7 @@ message Field {
                 /* Round towards negative infinity. */
                 FLOOR = 6;
 
-                /* Round towards the "nearest neighbor" unless both neighbors are equidistant, in which case,
+                /* Round towards the nearest neighbor unless both neighbors are equidistant, in which case,
                  * round towards the even neighbor.
                  * Effectively round up when >= .5 and next integer value is even, otherwise round down.
                  */

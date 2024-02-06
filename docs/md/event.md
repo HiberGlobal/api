@@ -14,41 +14,41 @@
   - [BundledEvent.ApproximatedAmount](#bundledeventapproximatedamount)
   - [BundledEvent.ExactAmount](#bundledeventexactamount)
   - [Event](#event)
+  - [Event.AlarmEvent](#eventalarmevent)
+  - [Event.AlarmEvent.AlarmTriggeredEvent](#eventalarmeventalarmtriggeredevent)
+  - [Event.AlarmEvent.AlarmTriggeredEvent.ErrorMessagesEntry](#eventalarmeventalarmtriggeredeventerrormessagesentry)
+  - [Event.AlarmEvent.CreatedEvent](#eventalarmeventcreatedevent)
+  - [Event.AlarmEvent.DeletedEvent](#eventalarmeventdeletedevent)
+  - [Event.AlarmEvent.UpdatedEvent](#eventalarmeventupdatedevent)
+  - [Event.AlarmEvent.UpdatedEvent.Update](#eventalarmeventupdatedeventupdate)
   - [Event.AssignmentEvent](#eventassignmentevent)
   - [Event.AssignmentEvent.AssignedEvent](#eventassignmenteventassignedevent)
   - [Event.AssignmentEvent.UnassignedEvent](#eventassignmenteventunassignedevent)
+  - [Event.Device](#eventdevice)
+  - [Event.DeviceEvent](#eventdeviceevent)
+  - [Event.DeviceEvent.DeviceCreatedEvent](#eventdeviceeventdevicecreatedevent)
+  - [Event.DeviceEvent.DeviceInstalledEvent](#eventdeviceeventdeviceinstalledevent)
+  - [Event.DeviceEvent.DeviceLocationUpdatedEvent](#eventdeviceeventdevicelocationupdatedevent)
+  - [Event.DeviceEvent.DeviceUpdatedEvent](#eventdeviceeventdeviceupdatedevent)
+  - [Event.DeviceEvent.DeviceUpdatedEvent.PeripheralsEntry](#eventdeviceeventdeviceupdatedeventperipheralsentry)
   - [Event.ExportEvent](#eventexportevent)
   - [Event.ExportEvent.ExportCreatedEvent](#eventexporteventexportcreatedevent)
   - [Event.ExportEvent.ExportFailedEvent](#eventexporteventexportfailedevent)
   - [Event.ExportEvent.ExportReadyEvent](#eventexporteventexportreadyevent)
-  - [Event.Modem](#eventmodem)
-  - [Event.ModemEvent](#eventmodemevent)
-  - [Event.ModemEvent.AlarmEvent](#eventmodemeventalarmevent)
-  - [Event.ModemEvent.AlarmEvent.CreatedEvent](#eventmodemeventalarmeventcreatedevent)
-  - [Event.ModemEvent.AlarmEvent.DeletedEvent](#eventmodemeventalarmeventdeletedevent)
-  - [Event.ModemEvent.AlarmEvent.ModemAlarmEvent](#eventmodemeventalarmeventmodemalarmevent)
-  - [Event.ModemEvent.AlarmEvent.ModemAlarmEvent.ErrorMessagesEntry](#eventmodemeventalarmeventmodemalarmeventerrormessagesentry)
-  - [Event.ModemEvent.AlarmEvent.UpdatedEvent](#eventmodemeventalarmeventupdatedevent)
-  - [Event.ModemEvent.AlarmEvent.UpdatedEvent.Update](#eventmodemeventalarmeventupdatedeventupdate)
-  - [Event.ModemEvent.MessageBodyParserEvent](#eventmodemeventmessagebodyparserevent)
-  - [Event.ModemEvent.MessageBodyParserEvent.CreatedEvent](#eventmodemeventmessagebodyparsereventcreatedevent)
-  - [Event.ModemEvent.MessageBodyParserEvent.DeletedEvent](#eventmodemeventmessagebodyparsereventdeletedevent)
-  - [Event.ModemEvent.MessageBodyParserEvent.UpdatedEvent](#eventmodemeventmessagebodyparsereventupdatedevent)
-  - [Event.ModemEvent.MessageEvent](#eventmodemeventmessageevent)
-  - [Event.ModemEvent.MessageEvent.ModemMessageBodyParsedEvent](#eventmodemeventmessageeventmodemmessagebodyparsedevent)
-  - [Event.ModemEvent.MessageEvent.ModemMessageBodyReceivedEvent](#eventmodemeventmessageeventmodemmessagebodyreceivedevent)
-  - [Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent](#eventmodemeventmessageeventmodemmessagecannotbeparsedevent)
-  - [Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent](#eventmodemeventmessageeventmodemmessagereceivedevent)
-  - [Event.ModemEvent.ModemCreatedEvent](#eventmodemeventmodemcreatedevent)
-  - [Event.ModemEvent.ModemInstalledEvent](#eventmodemeventmodeminstalledevent)
-  - [Event.ModemEvent.ModemLocationUpdatedEvent](#eventmodemeventmodemlocationupdatedevent)
-  - [Event.ModemEvent.ModemUpdatedEvent](#eventmodemeventmodemupdatedevent)
-  - [Event.ModemEvent.ModemUpdatedEvent.PeripheralsEntry](#eventmodemeventmodemupdatedeventperipheralsentry)
+  - [Event.MessageBodyParserEvent](#eventmessagebodyparserevent)
+  - [Event.MessageBodyParserEvent.CreatedEvent](#eventmessagebodyparsereventcreatedevent)
+  - [Event.MessageBodyParserEvent.DeletedEvent](#eventmessagebodyparsereventdeletedevent)
+  - [Event.MessageBodyParserEvent.UpdatedEvent](#eventmessagebodyparsereventupdatedevent)
+  - [Event.MessageEvent](#eventmessageevent)
+  - [Event.MessageEvent.MessageBodyParsedEvent](#eventmessageeventmessagebodyparsedevent)
+  - [Event.MessageEvent.MessageBodyReceivedEvent](#eventmessageeventmessagebodyreceivedevent)
+  - [Event.MessageEvent.MessageCannotBeParsedEvent](#eventmessageeventmessagecannotbeparsedevent)
+  - [Event.MessageEvent.MessageReceivedEvent](#eventmessageeventmessagereceivedevent)
   - [Event.OrganizationEvent](#eventorganizationevent)
   - [Event.OrganizationEvent.EventConfigurationUpdated](#eventorganizationeventeventconfigurationupdated)
-  - [Event.OrganizationEvent.EventConfigurationUpdated.ModemMessageSummaryUpdate](#eventorganizationeventeventconfigurationupdatedmodemmessagesummaryupdate)
-  - [Event.OrganizationEvent.ModemMessageSummaryEvent](#eventorganizationeventmodemmessagesummaryevent)
-  - [Event.OrganizationEvent.ModemMessageSummaryEvent.MessageCount](#eventorganizationeventmodemmessagesummaryeventmessagecount)
+  - [Event.OrganizationEvent.EventConfigurationUpdated.MessageSummaryUpdate](#eventorganizationeventeventconfigurationupdatedmessagesummaryupdate)
+  - [Event.OrganizationEvent.MessageSummaryEvent](#eventorganizationeventmessagesummaryevent)
+  - [Event.OrganizationEvent.MessageSummaryEvent.MessageCount](#eventorganizationeventmessagesummaryeventmessagecount)
   - [Event.OrganizationEvent.OrganizationCreatedEvent](#eventorganizationeventorganizationcreatedevent)
   - [Event.OrganizationEvent.OrganizationDeletedEvent](#eventorganizationeventorganizationdeletedevent)
   - [Event.OrganizationEvent.OrganizationUpdatedEvent](#eventorganizationeventorganizationupdatedevent)
@@ -77,7 +77,7 @@
   - [Event.UserEvent.UserValidationUpdatedEvent](#eventusereventuservalidationupdatedevent)
   - [EventConfiguration](#eventconfiguration)
   - [EventConfiguration.EventHealthLevelConfiguration](#eventconfigurationeventhealthlevelconfiguration)
-  - [EventConfiguration.ModemMessageSummaryConfiguration](#eventconfigurationmodemmessagesummaryconfiguration)
+  - [EventConfiguration.MessageSummaryConfiguration](#eventconfigurationmessagesummaryconfiguration)
   - [EventConfiguration.Request](#eventconfigurationrequest)
   - [EventHistory](#eventhistory)
   - [EventHistory.Request](#eventhistoryrequest)
@@ -481,7 +481,10 @@
 
 ## EventService
 Events are used in a number of ways in the api. With this service you can
-search, list and stream them for your own purposes
+search, list and stream them for your own purposes.
+
+Events are filtered by permission, i.e. if you cannot access the users, you would not see user-related events.
+Requesting user-related events explicitly if you cannot access the users will return an error.
 
 ### List
 > **rpc** List([ListEventsRequest](#listeventsrequest))
@@ -546,14 +549,14 @@ A bundle/set of events, all of the same event-type.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| type | [ hiber.EventType](#hibereventtype) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **amount**.exact_amount | [ BundledEvent.ExactAmount](#bundledeventexactamount) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **amount**.approximated_amount | [ BundledEvent.ApproximatedAmount](#bundledeventapproximatedamount) | none |
-| deprecated_amount | [ int32](#int32) | Deprecated in favour of using the amount field that is either an ExactAmount or ApproximatedAmount |
-| deprecated_last_event | [ hiber.Timestamp](#hibertimestamp) | Deprecated in favour of using the amount field that is either an ExactAmount or ApproximatedAmount. since `last_event` is not available when using approximation (we don't know the actual last event), this field is only present when getting an ExactAmount. |
-| deprecated_approximated_amount | [ bool](#bool) | Indicates that the amount is an approximation, and not an exact value. Some events will be approximated to avoid a large number of events affecting the request time. Deprecated in favour of using the oneof_amount field that is either an ExactAmount or ApproximatedAmount |
+| type | [ hiber.EventType](#hibereventtype) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **amount**.exact_amount | [ BundledEvent.ExactAmount](#bundledeventexactamount) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **amount**.approximated_amount | [ BundledEvent.ApproximatedAmount](#bundledeventapproximatedamount) |  |
+| deprecated_amount | [ int32](#int32) | <strong>Deprecated.</strong> Deprecated in favour of using the amount field that is either an ExactAmount or ApproximatedAmount |
+| deprecated_last_event | [ hiber.Timestamp](#hibertimestamp) | <strong>Deprecated.</strong> Deprecated in favour of using the amount field that is either an ExactAmount or ApproximatedAmount. since `last_event` is not available when using approximation (we don't know the actual last event), this field is only present when getting an ExactAmount. |
+| deprecated_approximated_amount | [ bool](#bool) | <strong>Deprecated.</strong> Indicates that the amount is an approximation, and not an exact value. Some events will be approximated to avoid a large number of events affecting the request time. Deprecated in favour of using the oneof_amount field that is either an ExactAmount or ApproximatedAmount |
 
 ### BundledEvent.ApproximatedAmount
 
@@ -563,7 +566,7 @@ Because of the nature of approximation, we don't have a "last" event, so no time
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| amount | [ int32](#int32) | none |
+| amount | [ int32](#int32) |  |
 
 ### BundledEvent.ExactAmount
 
@@ -571,8 +574,8 @@ Indicates that the amount is an exact count, and not an approximated value.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| amount | [ int32](#int32) | none |
-| last_event | [ hiber.Timestamp](#hibertimestamp) | none |
+| amount | [ int32](#int32) |  |
+| last_event | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### Event
 
@@ -583,55 +586,140 @@ the contained object.
 | ----- | ---- | ----------- |
 | type | [ hiber.EventType](#hibereventtype) | Time of the event. |
 | time | [ hiber.Timestamp](#hibertimestamp) | Time of the event. |
-| is_error | [ bool](#bool) | Whether this event causes the 'Error' health level. If your organization does not use the default health levels, this field will be omitted. Use health_level instead. |
-| is_warning | [ bool](#bool) | Whether this event causes the 'Warning' health level. If your organization does not use the default health levels, this field will be omitted. Use health_level instead. |
-| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | The health level caused by this event. This health generally applies to either a modem, a token or a publisher, and is also applied to the organization health. Not every event affects health, so this field might be empty. |
+| is_error | [ bool](#bool) | <strong>Deprecated.</strong> Whether this event causes the 'Error' health level. If your organization does not use the default health levels, this field will be omitted. Use health_level instead. |
+| is_warning | [ bool](#bool) | <strong>Deprecated.</strong> Whether this event causes the 'Warning' health level. If your organization does not use the default health levels, this field will be omitted. Use health_level instead. |
+| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | The health level caused by this event. This health generally applies to either a device, a token or a publisher, and is also applied to the organization health. Not every event affects health, so this field might be empty. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **resolved_status**.resolved | [ bool](#bool) | Whether this event was resolved. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **resolved_status**.resolve_identifier | [ string](#string) | The identifier to use when resolving this event. Only present when not resolved, and only available for some event types. |
 | title | [ string](#string) | Short text describing the event. |
 | description | [ string](#string) | Longer text describing the event in more detail. |
-| modem | [ Event.Modem](#eventmodem) | The modem number for this event, if it is related to a single modem. |
+| device | [ Event.Device](#eventdevice) | The device data for this event, if it is related to a single device. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | The tags for this event, if any. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_created | [ Event.ModemEvent.ModemCreatedEvent](#eventmodemeventmodemcreatedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_updated | [ Event.ModemEvent.ModemUpdatedEvent](#eventmodemeventmodemupdatedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_location_updated | [ Event.ModemEvent.ModemLocationUpdatedEvent](#eventmodemeventmodemlocationupdatedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_installed | [ Event.ModemEvent.ModemInstalledEvent](#eventmodemeventmodeminstalledevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_message_received | [ Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent](#eventmodemeventmessageeventmodemmessagereceivedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_message_body_received | [ Event.ModemEvent.MessageEvent.ModemMessageBodyReceivedEvent](#eventmodemeventmessageeventmodemmessagebodyreceivedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_message_body_parsed | [ Event.ModemEvent.MessageEvent.ModemMessageBodyParsedEvent](#eventmodemeventmessageeventmodemmessagebodyparsedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_message_cannot_be_parsed | [ Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent](#eventmodemeventmessageeventmodemmessagecannotbeparsedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_message_body_parser_created | [ Event.ModemEvent.MessageBodyParserEvent.CreatedEvent](#eventmodemeventmessagebodyparsereventcreatedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_message_body_parser_updated | [ Event.ModemEvent.MessageBodyParserEvent.UpdatedEvent](#eventmodemeventmessagebodyparsereventupdatedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_message_body_parser_deleted | [ Event.ModemEvent.MessageBodyParserEvent.DeletedEvent](#eventmodemeventmessagebodyparsereventdeletedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_alarm | [ Event.ModemEvent.AlarmEvent.ModemAlarmEvent](#eventmodemeventalarmeventmodemalarmevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_alarm_created | [ Event.ModemEvent.AlarmEvent.CreatedEvent](#eventmodemeventalarmeventcreatedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_alarm_updated | [ Event.ModemEvent.AlarmEvent.UpdatedEvent](#eventmodemeventalarmeventupdatedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_alarm_deleted | [ Event.ModemEvent.AlarmEvent.DeletedEvent](#eventmodemeventalarmeventdeletedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.assigned | [ Event.AssignmentEvent.AssignedEvent](#eventassignmenteventassignedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.unassigned | [ Event.AssignmentEvent.UnassignedEvent](#eventassignmenteventunassignedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.user_added | [ Event.UserEvent.UserAddedEvent](#eventusereventuseraddedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.user_removed | [ Event.UserEvent.UserRemovedEvent](#eventusereventuserremovedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.user_invited | [ Event.UserEvent.UserInvitedEvent](#eventusereventuserinvitedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.user_access_request | [ Event.UserEvent.UserAccessRequestEvent](#eventusereventuseraccessrequestevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.user_validation_updated | [ Event.UserEvent.UserValidationUpdatedEvent](#eventusereventuservalidationupdatedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.transfer | [ Event.TransferEvent](#eventtransferevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.token_expiry_warning | [ Event.TokenEvent.TokenExpiryWarningEvent](#eventtokeneventtokenexpirywarningevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.token_expired | [ Event.TokenEvent.TokenExpiredEvent](#eventtokeneventtokenexpiredevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.token_created | [ Event.TokenEvent.TokenCreatedEvent](#eventtokeneventtokencreatedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.token_deleted | [ Event.TokenEvent.TokenDeletedEvent](#eventtokeneventtokendeletedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.organization_created | [ Event.OrganizationEvent.OrganizationCreatedEvent](#eventorganizationeventorganizationcreatedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.organization_updated | [ Event.OrganizationEvent.OrganizationUpdatedEvent](#eventorganizationeventorganizationupdatedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.organization_deleted | [ Event.OrganizationEvent.OrganizationDeletedEvent](#eventorganizationeventorganizationdeletedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.modem_message_summary | [ Event.OrganizationEvent.ModemMessageSummaryEvent](#eventorganizationeventmodemmessagesummaryevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.organization_event_configuration_updated | [ Event.OrganizationEvent.EventConfigurationUpdated](#eventorganizationeventeventconfigurationupdated) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.publisher_created | [ Event.PublisherEvent.CreatedEvent](#eventpublishereventcreatedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.publisher_updated | [ Event.PublisherEvent.UpdatedEvent](#eventpublishereventupdatedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.publisher_deleted | [ Event.PublisherEvent.DeletedEvent](#eventpublishereventdeletedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.publisher_auto_disabled | [ Event.PublisherEvent.AutoDisabledEvent](#eventpublishereventautodisabledevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.publisher_failed | [ Event.PublisherEvent.FailedEvent](#eventpublishereventfailedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.export_created | [ Event.ExportEvent.ExportCreatedEvent](#eventexporteventexportcreatedevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.export_ready | [ Event.ExportEvent.ExportReadyEvent](#eventexporteventexportreadyevent) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.export_failed | [ Event.ExportEvent.ExportFailedEvent](#eventexporteventexportfailedevent) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.device_created | [ Event.DeviceEvent.DeviceCreatedEvent](#eventdeviceeventdevicecreatedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.device_updated | [ Event.DeviceEvent.DeviceUpdatedEvent](#eventdeviceeventdeviceupdatedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.device_location_updated | [ Event.DeviceEvent.DeviceLocationUpdatedEvent](#eventdeviceeventdevicelocationupdatedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.device_installed | [ Event.DeviceEvent.DeviceInstalledEvent](#eventdeviceeventdeviceinstalledevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.message_received | [ Event.MessageEvent.MessageReceivedEvent](#eventmessageeventmessagereceivedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.message_body_received | [ Event.MessageEvent.MessageBodyReceivedEvent](#eventmessageeventmessagebodyreceivedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.message_body_parsed | [ Event.MessageEvent.MessageBodyParsedEvent](#eventmessageeventmessagebodyparsedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.message_cannot_be_parsed | [ Event.MessageEvent.MessageCannotBeParsedEvent](#eventmessageeventmessagecannotbeparsedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.message_body_parser_created | [ Event.MessageBodyParserEvent.CreatedEvent](#eventmessagebodyparsereventcreatedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.message_body_parser_updated | [ Event.MessageBodyParserEvent.UpdatedEvent](#eventmessagebodyparsereventupdatedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.message_body_parser_deleted | [ Event.MessageBodyParserEvent.DeletedEvent](#eventmessagebodyparsereventdeletedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.alarm_triggered | [ Event.AlarmEvent.AlarmTriggeredEvent](#eventalarmeventalarmtriggeredevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.alarm_created | [ Event.AlarmEvent.CreatedEvent](#eventalarmeventcreatedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.alarm_updated | [ Event.AlarmEvent.UpdatedEvent](#eventalarmeventupdatedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.alarm_deleted | [ Event.AlarmEvent.DeletedEvent](#eventalarmeventdeletedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.assigned | [ Event.AssignmentEvent.AssignedEvent](#eventassignmenteventassignedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.unassigned | [ Event.AssignmentEvent.UnassignedEvent](#eventassignmenteventunassignedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.user_added | [ Event.UserEvent.UserAddedEvent](#eventusereventuseraddedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.user_removed | [ Event.UserEvent.UserRemovedEvent](#eventusereventuserremovedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.user_invited | [ Event.UserEvent.UserInvitedEvent](#eventusereventuserinvitedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.user_access_request | [ Event.UserEvent.UserAccessRequestEvent](#eventusereventuseraccessrequestevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.user_validation_updated | [ Event.UserEvent.UserValidationUpdatedEvent](#eventusereventuservalidationupdatedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.transfer | [ Event.TransferEvent](#eventtransferevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.token_expiry_warning | [ Event.TokenEvent.TokenExpiryWarningEvent](#eventtokeneventtokenexpirywarningevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.token_expired | [ Event.TokenEvent.TokenExpiredEvent](#eventtokeneventtokenexpiredevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.token_created | [ Event.TokenEvent.TokenCreatedEvent](#eventtokeneventtokencreatedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.token_deleted | [ Event.TokenEvent.TokenDeletedEvent](#eventtokeneventtokendeletedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.organization_created | [ Event.OrganizationEvent.OrganizationCreatedEvent](#eventorganizationeventorganizationcreatedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.organization_updated | [ Event.OrganizationEvent.OrganizationUpdatedEvent](#eventorganizationeventorganizationupdatedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.organization_deleted | [ Event.OrganizationEvent.OrganizationDeletedEvent](#eventorganizationeventorganizationdeletedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.message_summary | [ Event.OrganizationEvent.MessageSummaryEvent](#eventorganizationeventmessagesummaryevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.organization_event_configuration_updated | [ Event.OrganizationEvent.EventConfigurationUpdated](#eventorganizationeventeventconfigurationupdated) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.publisher_created | [ Event.PublisherEvent.CreatedEvent](#eventpublishereventcreatedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.publisher_updated | [ Event.PublisherEvent.UpdatedEvent](#eventpublishereventupdatedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.publisher_deleted | [ Event.PublisherEvent.DeletedEvent](#eventpublishereventdeletedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.publisher_auto_disabled | [ Event.PublisherEvent.AutoDisabledEvent](#eventpublishereventautodisabledevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.publisher_failed | [ Event.PublisherEvent.FailedEvent](#eventpublishereventfailedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.export_created | [ Event.ExportEvent.ExportCreatedEvent](#eventexporteventexportcreatedevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.export_ready | [ Event.ExportEvent.ExportReadyEvent](#eventexporteventexportreadyevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.export_failed | [ Event.ExportEvent.ExportFailedEvent](#eventexporteventexportfailedevent) |  |
+
+### Event.AlarmEvent
+
+
+
+
+### Event.AlarmEvent.AlarmTriggeredEvent
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) |  |
+| device_number | [ string](#string) |  |
+| device_external_device_id | [ string](#string) |  |
+| message_id | [ uint64](#uint64) | The id of the device that triggered the alarm, if any. |
+| alarm_identifier | [ string](#string) | The identifier of the alarm. |
+| alarm_description | [ string](#string) | The description of the alarm. |
+| error_messages | [map Event.AlarmEvent.AlarmTriggeredEvent.ErrorMessagesEntry](#eventalarmeventalarmtriggeredeventerrormessagesentry) | The filled in error message(s) for the failing checks in the alarm. |
+| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | The highest health level caused by the failing checks in this alarm, for the device (and organization). |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
+| resolved_at | [ hiber.Timestamp](#hibertimestamp) | When this alarm event was resolved. |
+| health_level_after_resolved | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Optional health that this alarm event causes after it has been resolved. |
+| health_level_after_resolved_until | [ hiber.Timestamp](#hibertimestamp) | How long the optional health that this alarm event causes after it has been resolved lasts. |
+
+### Event.AlarmEvent.AlarmTriggeredEvent.ErrorMessagesEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) |  |
+| value | [ string](#string) |  |
+
+### Event.AlarmEvent.CreatedEvent
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) |  |
+| created | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
+
+### Event.AlarmEvent.DeletedEvent
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) |  |
+| deleted | [ string](#string) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
+
+### Event.AlarmEvent.UpdatedEvent
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) |  |
+| updated | [ Event.AlarmEvent.UpdatedEvent.Update](#eventalarmeventupdatedeventupdate) |  |
+| alarm_identifier | [ string](#string) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
+
+### Event.AlarmEvent.UpdatedEvent.Update
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+| trigger_condition | [ string](#string) |  |
+| checks | [ google.protobuf.Struct](#googleprotobufstruct) |  |
+| update_default_health_level | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+| update_health_level_after_resolved | [ hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved](#hibermodemalarmmodemalarmhealthlevelafterresolved) |  |
 
 ### Event.AssignmentEvent
 
@@ -644,12 +732,12 @@ the contained object.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| created | [ hiber.assign.Assignment](#hiberassignassignment) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| created | [ hiber.assign.Assignment](#hiberassignassignment) |  |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### Event.AssignmentEvent.UnassignedEvent
 
@@ -657,12 +745,103 @@ the contained object.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| removed | [ hiber.assign.Assignment](#hiberassignassignment) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| removed | [ hiber.assign.Assignment](#hiberassignassignment) |  |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
+
+### Event.Device
+
+The device data for this event, if it is related to a single device.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| number | [ string](#string) |  |
+| name | [ string](#string) |  |
+| identifier | [ string](#string) |  |
+
+### Event.DeviceEvent
+
+
+
+
+### Event.DeviceEvent.DeviceCreatedEvent
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) |  |
+| number | [ string](#string) |  |
+| external_device_id | [ string](#string) | External device id for this device (e.g. a MAC address). |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+
+### Event.DeviceEvent.DeviceInstalledEvent
+
+When the device is marked as installed.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) |  |
+| number | [ string](#string) |  |
+| external_device_id | [ string](#string) | External device id for this device (e.g. a MAC address). |
+| time | [ hiber.Timestamp](#hibertimestamp) | The time this device was installed. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+
+### Event.DeviceEvent.DeviceLocationUpdatedEvent
+
+When a message comes in, the device's location is updated automatically. This event is generated whenever the
+device's location is updated
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) |  |
+| number | [ string](#string) |  |
+| external_device_id | [ string](#string) | External device id for this device (e.g. a MAC address). |
+| location | [ hiber.Location](#hiberlocation) | The updated location for this device. |
+| updated_at | [ hiber.Timestamp](#hibertimestamp) | The device time of the first message with the new location. |
+| time | [ hiber.Timestamp](#hibertimestamp) | The time this event was generated on the server, after the message was received. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+
+### Event.DeviceEvent.DeviceUpdatedEvent
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) |  |
+| number | [ string](#string) |  |
+| external_device_id | [ string](#string) | External device id for this device (e.g. a MAC address). |
+| display_name | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+| custom_antenna | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+| gps | [ hiber.UpdateBoolean](#hiberupdateboolean) |  |
+| location | [ hiber.Location](#hiberlocation) |  |
+| peripherals | [map Event.DeviceEvent.DeviceUpdatedEvent.PeripheralsEntry](#eventdeviceeventdeviceupdatedeventperipheralsentry) |  |
+| notes | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+| secure_notes_updated | [ bool](#bool) |  |
+| health_warning_period | [ hiber.Duration](#hiberduration) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+
+### Event.DeviceEvent.DeviceUpdatedEvent.PeripheralsEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) |  |
+| value | [ string](#string) |  |
 
 ### Event.ExportEvent
 
@@ -675,11 +854,11 @@ the contained object.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| export | [ hiber.export.Export](#hiberexportexport) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| export | [ hiber.export.Export](#hiberexportexport) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### Event.ExportEvent.ExportFailedEvent
 
@@ -687,11 +866,11 @@ the contained object.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| export | [ hiber.export.Export](#hiberexportexport) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| export | [ hiber.export.Export](#hiberexportexport) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### Event.ExportEvent.ExportReadyEvent
 
@@ -699,318 +878,143 @@ the contained object.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| export | [ hiber.export.Export](#hiberexportexport) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| export | [ hiber.export.Export](#hiberexportexport) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
-### Event.Modem
+### Event.MessageBodyParserEvent
 
-The modem data for this event, if it is related to a single modem.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| number | [ string](#string) | none |
-| name | [ string](#string) | none |
-| identifier | [ string](#string) | none |
-
-### Event.ModemEvent
+Events related to MessageBodyParsers.
 
 
-
-
-### Event.ModemEvent.AlarmEvent
-
-
-
-
-### Event.ModemEvent.AlarmEvent.CreatedEvent
+### Event.MessageBodyParserEvent.CreatedEvent
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| created | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| created | [ hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
-### Event.ModemEvent.AlarmEvent.DeletedEvent
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| deleted | [ string](#string) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-
-### Event.ModemEvent.AlarmEvent.ModemAlarmEvent
+### Event.MessageBodyParserEvent.DeletedEvent
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| modem_number | [ string](#string) | none |
-| modem_external_device_id | [ string](#string) | none |
-| modem_message_id | [ uint64](#uint64) | The id of the modem that triggered the alarm, if any. |
-| alarm_identifier | [ string](#string) | The identifier of the alarm. |
-| alarm_description | [ string](#string) | The description of the alarm. |
-| error_messages | [map Event.ModemEvent.AlarmEvent.ModemAlarmEvent.ErrorMessagesEntry](#eventmodemeventalarmeventmodemalarmeventerrormessagesentry) | The filled in error message(s) for the failing checks in the alarm. |
-| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | The highest health level caused by the failing checks in this alarm, for the modem (and organization). |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-| resolved_at | [ hiber.Timestamp](#hibertimestamp) | When this alarm event was resolved. |
-| health_level_after_resolved | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Optional health that this alarm event causes after it has been resolved. |
-| health_level_after_resolved_until | [ hiber.Timestamp](#hibertimestamp) | How long the optional health that this alarm event causes after it has been resolved lasts. |
+| organization | [ string](#string) |  |
+| deleted | [ string](#string) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
-### Event.ModemEvent.AlarmEvent.ModemAlarmEvent.ErrorMessagesEntry
+### Event.MessageBodyParserEvent.UpdatedEvent
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ string](#string) | none |
+| organization | [ string](#string) |  |
+| updated_name | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+| updated_content_ksy | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+| updated_simple_parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) |  |
+| updated_available_to_child_organizations | [ hiber.Filter.ChildOrganizations.Update](#hiberfilterchildorganizationsupdate) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
-### Event.ModemEvent.AlarmEvent.UpdatedEvent
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| updated | [ Event.ModemEvent.AlarmEvent.UpdatedEvent.Update](#eventmodemeventalarmeventupdatedeventupdate) | none |
-| alarm_identifier | [ string](#string) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-
-### Event.ModemEvent.AlarmEvent.UpdatedEvent.Update
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
-| trigger_condition | [ string](#string) | none |
-| checks | [ google.protobuf.Struct](#googleprotobufstruct) | none |
-| update_default_health_level | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
-| update_health_level_after_resolved | [ hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved](#hibermodemalarmmodemalarmhealthlevelafterresolved) | none |
-
-### Event.ModemEvent.MessageBodyParserEvent
-
-Events related to ModemMessageBodyParsers.
-
-
-### Event.ModemEvent.MessageBodyParserEvent.CreatedEvent
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| created | [ hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-
-### Event.ModemEvent.MessageBodyParserEvent.DeletedEvent
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| deleted | [ string](#string) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-
-### Event.ModemEvent.MessageBodyParserEvent.UpdatedEvent
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| updated_name | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
-| updated_content_ksy | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
-| updated_simple_parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) | none |
-| updated_available_to_child_organizations | [ hiber.Filter.ChildOrganizations.Update](#hiberfilterchildorganizationsupdate) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-
-### Event.ModemEvent.MessageEvent
+### Event.MessageEvent
 
 
 
 
-### Event.ModemEvent.MessageEvent.ModemMessageBodyParsedEvent
+### Event.MessageEvent.MessageBodyParsedEvent
 
 This event is generated whenever a message is parsed successfully by an assigned body parser.
-If multiple body parsers are assigned to a modem, multiple ModemMessageParsedEvent events will
+If multiple body parsers are assigned to a device, multiple DeviceMessageBodyParsedEvent events will
 be produced by an incoming message.
-For the total result of all assigned parsers, see the ModemMessageReceivedEvent, which is produced
+For the total result of all assigned parsers, see the DeviceMessageReceivedEvent, which is produced
 after all body parsers have been applied.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| modem_number | [ string](#string) | none |
-| modem_external_device_id | [ string](#string) | External device id for this modem (e.g. a MAC address). |
+| organization | [ string](#string) |  |
+| device_number | [ string](#string) |  |
+| device_external_device_id | [ string](#string) | External device id for this device (e.g. a MAC address). |
 | message_id | [ uint64](#uint64) | Id of the message that was parsed. |
-| sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the message was sent from the modem. |
+| sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the message was sent from the device. |
 | parser_identifier | [ string](#string) | The identifier of the parser that parsed the body. |
 | parser_name | [ string](#string) | The name of the parser that parsed the body. |
 | parsed_message | [ google.protobuf.Struct](#googleprotobufstruct) | The resulting json from parsing the message body. |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | The modem's tags. |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | The device's tags. |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
-### Event.ModemEvent.MessageEvent.ModemMessageBodyReceivedEvent
+### Event.MessageEvent.MessageBodyReceivedEvent
 
 This lightweight event is generated whenever a message comes in, after is has been decrypted.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| modem_number | [ string](#string) | none |
-| modem_external_device_id | [ string](#string) | External device id for this modem (e.g. a MAC address). |
+| organization | [ string](#string) |  |
+| device_number | [ string](#string) |  |
+| device_external_device_id | [ string](#string) | External device id for this device (e.g. a MAC address). |
 | message_id | [ uint64](#uint64) | Id of the message that was parsed. |
-| sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the message was sent from the modem. |
+| sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the message was sent from the device. |
 | body | [ hiber.BytesOrHex](#hiberbytesorhex) | Message body convenience object. |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | The modem's tags. |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | The device's tags. |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
-### Event.ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent
+### Event.MessageEvent.MessageCannotBeParsedEvent
 
 Triggered when a message cannot be parsed. This can have multiple reasons, for example, an invalid
 message version.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| modem_number | [ string](#string) | none |
-| modem_external_device_id | [ string](#string) | External device id for this modem (e.g. a MAC address). |
-| modem_message_id | [ uint64](#uint64) | The message that cannot be parsed. This message may or may not be available in the system, depending one the reason it could not be parsed. |
+| organization | [ string](#string) |  |
+| device_number | [ string](#string) |  |
+| device_external_device_id | [ string](#string) | External device id for this device (e.g. a MAC address). |
+| message_id | [ uint64](#uint64) | The message that cannot be parsed. This message may or may not be available in the system, depending one the reason it could not be parsed. |
 | time | [ hiber.Timestamp](#hibertimestamp) | The moment this event was triggered. |
-| reason | [ string](#string) | The reason this message could not be parsed. This could be, for example: - invalid message envelope, but with enough information to determine the modem - all body parsers failed to parse the body of the message |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | The health level caused for the modem (and organization) by this event. |
+| reason | [ string](#string) | The reason this message could not be parsed. This could be, for example: - invalid message envelope, but with enough information to determine the device - all body parsers failed to parse the body of the message |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | The health level caused for the device (and organization) by this event. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **resolved_status**.resolved | [ bool](#bool) | Whether this event was resolved. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **resolved_status**.resolve_identifier | [ string](#string) | The identifier to use when resolving this event. Only present when not resolved |
 
-### Event.ModemEvent.MessageEvent.ModemMessageReceivedEvent
+### Event.MessageEvent.MessageReceivedEvent
 
 This event is generated whenever a message comes in, after is has been decrypted
-and parsed (if any body parsers are configured for the modem).
+and parsed (if any body parsers are configured for the device).
 
 It contains the relevant data in the message object, including location and the
 user-defined body.
 
-If any body parser(s) are configured for the modem, the modem message object also contains
+If any body parser(s) are configured for the device, the device message object also contains
 a ParsedBody for each of them.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| modem_number | [ string](#string) | none |
-| modem_external_device_id | [ string](#string) | External device id for this modem (e.g. a MAC address). |
+| organization | [ string](#string) |  |
+| modem_number | [ string](#string) | <strong>Deprecated.</strong>  |
+| device_number | [ string](#string) |  |
+| device_external_device_id | [ string](#string) | External device id for this device (e.g. a MAC address). |
 | message | [ hiber.modem.ModemMessage](#hibermodemmodemmessage) | The received message, including parsed body. |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | The modem's tags. |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-
-### Event.ModemEvent.ModemCreatedEvent
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| modem_number | [ string](#string) | none |
-| modem_external_device_id | [ string](#string) | External device id for this modem (e.g. a MAC address). |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-
-### Event.ModemEvent.ModemInstalledEvent
-
-When the modem is marked as installed.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| modem_number | [ string](#string) | none |
-| modem_external_device_id | [ string](#string) | External device id for this modem (e.g. a MAC address). |
-| time | [ hiber.Timestamp](#hibertimestamp) | The time this modem was installed. |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-
-### Event.ModemEvent.ModemLocationUpdatedEvent
-
-When a message comes in, the modem's location is updated automatically. This event is generated whenever the
-modem's location is updated
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| modem_number | [ string](#string) | none |
-| modem_external_device_id | [ string](#string) | External device id for this modem (e.g. a MAC address). |
-| location | [ hiber.Location](#hiberlocation) | The updated location for this modem. |
-| updated_at | [ hiber.Timestamp](#hibertimestamp) | The device time of the first message with the new location. |
-| time | [ hiber.Timestamp](#hibertimestamp) | The time this event was generated on the server, after the message was received. |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-
-### Event.ModemEvent.ModemUpdatedEvent
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| modem_number | [ string](#string) | none |
-| modem_external_device_id | [ string](#string) | External device id for this modem (e.g. a MAC address). |
-| display_name | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
-| custom_antenna | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
-| gps | [ hiber.UpdateBoolean](#hiberupdateboolean) | none |
-| location | [ hiber.Location](#hiberlocation) | none |
-| peripherals | [map Event.ModemEvent.ModemUpdatedEvent.PeripheralsEntry](#eventmodemeventmodemupdatedeventperipheralsentry) | none |
-| notes | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
-| secure_notes_updated | [ bool](#bool) | none |
-| health_warning_period | [ hiber.Duration](#hiberduration) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-
-### Event.ModemEvent.ModemUpdatedEvent.PeripheralsEntry
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ string](#string) | none |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | The device's tags. |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### Event.OrganizationEvent
 
@@ -1023,23 +1027,23 @@ modem's location is updated
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| modem_message_summary_update | [ Event.OrganizationEvent.EventConfigurationUpdated.ModemMessageSummaryUpdate](#eventorganizationeventeventconfigurationupdatedmodemmessagesummaryupdate) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| message_summary_update | [ Event.OrganizationEvent.EventConfigurationUpdated.MessageSummaryUpdate](#eventorganizationeventeventconfigurationupdatedmessagesummaryupdate) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
-### Event.OrganizationEvent.EventConfigurationUpdated.ModemMessageSummaryUpdate
+### Event.OrganizationEvent.EventConfigurationUpdated.MessageSummaryUpdate
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| enabled | [ hiber.UpdateBoolean](#hiberupdateboolean) | none |
-| period | [ hiber.Duration](#hiberduration) | none |
-| align_to_time | [ hiber.Timestamp](#hibertimestamp) | none |
+| enabled | [ hiber.UpdateBoolean](#hiberupdateboolean) |  |
+| period | [ hiber.Duration](#hiberduration) |  |
+| align_to_time | [ hiber.Timestamp](#hibertimestamp) |  |
 
-### Event.OrganizationEvent.ModemMessageSummaryEvent
+### Event.OrganizationEvent.MessageSummaryEvent
 
 Message summary event that is sent when it has been configured for the organization.
 The period is configurable, using the EventConfiguration.
@@ -1047,22 +1051,22 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| message_count | [repeated Event.OrganizationEvent.ModemMessageSummaryEvent.MessageCount](#eventorganizationeventmodemmessagesummaryeventmessagecount) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-| time_range | [ hiber.TimeRange](#hibertimerange) | none |
+| organization | [ string](#string) |  |
+| message_count | [repeated Event.OrganizationEvent.MessageSummaryEvent.MessageCount](#eventorganizationeventmessagesummaryeventmessagecount) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
+| time_range | [ hiber.TimeRange](#hibertimerange) |  |
 
-### Event.OrganizationEvent.ModemMessageSummaryEvent.MessageCount
+### Event.OrganizationEvent.MessageSummaryEvent.MessageCount
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modem | [ string](#string) | none |
-| source | [ hiber.modem.ModemMessage.Source](#hibermodemmodemmessagesource) | none |
-| amount | [ int32](#int32) | none |
+| device | [ string](#string) |  |
+| source | [ hiber.modem.ModemMessage.Source](#hibermodemmodemmessagesource) |  |
+| amount | [ int32](#int32) |  |
 
 ### Event.OrganizationEvent.OrganizationCreatedEvent
 
@@ -1070,12 +1074,12 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| parent_organization | [ string](#string) | none |
-| created | [ hiber.organization.Organization](#hiberorganizationorganization) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| avatar | [ hiber.Avatar](#hiberavatar) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| parent_organization | [ string](#string) |  |
+| created | [ hiber.organization.Organization](#hiberorganizationorganization) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| avatar | [ hiber.Avatar](#hiberavatar) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### Event.OrganizationEvent.OrganizationDeletedEvent
 
@@ -1083,11 +1087,11 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| parent_organization | [ string](#string) | none |
-| deleted_organization | [ string](#string) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| parent_organization | [ string](#string) |  |
+| deleted_organization | [ string](#string) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### Event.OrganizationEvent.OrganizationUpdatedEvent
 
@@ -1095,19 +1099,19 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| display_name_updated | [ string](#string) | none |
-| vat_number_updated | [ string](#string) | none |
-| address_updated | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | none |
-| is_business_updated | [ hiber.UpdateBoolean](#hiberupdateboolean) | none |
-| billing_name_updated | [ string](#string) | none |
-| billing_address_updated | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | none |
-| contact_updated | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-| features_added | [repeated hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature) | none |
-| features_removed | [repeated hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature) | none |
+| organization | [ string](#string) |  |
+| display_name_updated | [ string](#string) |  |
+| vat_number_updated | [ string](#string) |  |
+| address_updated | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) |  |
+| is_business_updated | [ hiber.UpdateBoolean](#hiberupdateboolean) |  |
+| billing_name_updated | [ string](#string) |  |
+| billing_address_updated | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) |  |
+| contact_updated | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
+| features_added | [repeated hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature) |  |
+| features_removed | [repeated hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature) |  |
 
 ### Event.PublisherEvent
 
@@ -1120,12 +1124,12 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| id | [ int64](#int64) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| id | [ int64](#int64) |  |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | The health level caused for the publisher (and organization) by this event. |
 
 ### Event.PublisherEvent.CreatedEvent
@@ -1134,12 +1138,12 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| created | [ hiber.publisher.Publisher](#hiberpublisherpublisher) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| created | [ hiber.publisher.Publisher](#hiberpublisherpublisher) |  |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### Event.PublisherEvent.DeletedEvent
 
@@ -1147,12 +1151,12 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| deleted | [ hiber.publisher.Publisher](#hiberpublisherpublisher) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| deleted | [ hiber.publisher.Publisher](#hiberpublisherpublisher) |  |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### Event.PublisherEvent.FailedEvent
 
@@ -1160,13 +1164,13 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| reason | [ string](#string) | none |
-| failed | [ hiber.publisher.Publisher](#hiberpublisherpublisher) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| reason | [ string](#string) |  |
+| failed | [ hiber.publisher.Publisher](#hiberpublisherpublisher) |  |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | The health level caused for the publisher (and organization) by this event. |
 
 ### Event.PublisherEvent.UpdatedEvent
@@ -1175,23 +1179,23 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| updated_description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
-| partial_update_data | [ hiber.publisher.Publisher.Data](#hiberpublisherpublisherdata) | Deprecated in favor of the new updated_data field |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.webhook | [ Event.PublisherEvent.UpdatedEvent.WebhookUpdate](#eventpublishereventupdatedeventwebhookupdate) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.mqtt | [ Event.PublisherEvent.UpdatedEvent.MQTTUpdate](#eventpublishereventupdatedeventmqttupdate) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.email | [ Event.PublisherEvent.UpdatedEvent.EmailUpdate](#eventpublishereventupdatedeventemailupdate) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.slack | [ Event.PublisherEvent.UpdatedEvent.SlackUpdate](#eventpublishereventupdatedeventslackupdate) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.shell_ssip | [ Event.PublisherEvent.UpdatedEvent.ShellSsipUpdate](#eventpublishereventupdatedeventshellssipupdate) | none |
-| updated_event_filter | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) | none |
-| updated_modem_filter | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | none |
-| updated_tag_filter | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | none |
-| updated_active_state | [ hiber.UpdateBoolean](#hiberupdateboolean) | none |
-| health_warning_period | [ hiber.Duration](#hiberduration) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| updated_description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+| partial_update_data | [ hiber.publisher.Publisher.Data](#hiberpublisherpublisherdata) | <strong>Deprecated.</strong> Deprecated in favor of the new updated_data field |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.webhook | [ Event.PublisherEvent.UpdatedEvent.WebhookUpdate](#eventpublishereventupdatedeventwebhookupdate) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.mqtt | [ Event.PublisherEvent.UpdatedEvent.MQTTUpdate](#eventpublishereventupdatedeventmqttupdate) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.email | [ Event.PublisherEvent.UpdatedEvent.EmailUpdate](#eventpublishereventupdatedeventemailupdate) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.slack | [ Event.PublisherEvent.UpdatedEvent.SlackUpdate](#eventpublishereventupdatedeventslackupdate) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.shell_ssip | [ Event.PublisherEvent.UpdatedEvent.ShellSsipUpdate](#eventpublishereventupdatedeventshellssipupdate) |  |
+| updated_event_filter | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
+| updated_modem_filter | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
+| updated_tag_filter | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
+| updated_active_state | [ hiber.UpdateBoolean](#hiberupdateboolean) |  |
+| health_warning_period | [ hiber.Duration](#hiberduration) |  |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### Event.PublisherEvent.UpdatedEvent.EmailUpdate
 
@@ -1204,14 +1208,14 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| url | [ string](#string) | none |
-| content_type | [ hiber.integration.mqtt.MQTTPublisher.ContentType](#hiberintegrationmqttmqttpublishercontenttype) | none |
-| topic | [ string](#string) | none |
-| qos | [ hiber.integration.mqtt.MQTTPublisher.Data.QoS](#hiberintegrationmqttmqttpublisherdataqos) | none |
-| identifier | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
-| username | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
-| password | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
-| certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | none |
+| url | [ string](#string) |  |
+| content_type | [ hiber.integration.mqtt.MQTTPublisher.ContentType](#hiberintegrationmqttmqttpublishercontenttype) |  |
+| topic | [ string](#string) |  |
+| qos | [ hiber.integration.mqtt.MQTTPublisher.Data.QoS](#hiberintegrationmqttmqttpublisherdataqos) |  |
+| identifier | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+| username | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+| password | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+| certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) |  |
 
 ### Event.PublisherEvent.UpdatedEvent.ShellSsipUpdate
 
@@ -1229,10 +1233,10 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| url | [ string](#string) | none |
-| secret | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
-| content_type | [ hiber.webhook.Webhook.ContentType](#hiberwebhookwebhookcontenttype) | none |
-| certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | none |
+| url | [ string](#string) |  |
+| secret | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+| content_type | [ hiber.webhook.Webhook.ContentType](#hiberwebhookwebhookcontenttype) |  |
+| certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) |  |
 
 ### Event.TokenEvent
 
@@ -1245,11 +1249,11 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| token | [ hiber.token.Token](#hibertokentoken) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| token | [ hiber.token.Token](#hibertokentoken) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### Event.TokenEvent.TokenDeletedEvent
 
@@ -1257,11 +1261,11 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| token | [ hiber.token.Token](#hibertokentoken) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| token | [ hiber.token.Token](#hibertokentoken) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### Event.TokenEvent.TokenExpiredEvent
 
@@ -1269,11 +1273,11 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| token | [ hiber.token.Token](#hibertokentoken) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| token | [ hiber.token.Token](#hibertokentoken) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### Event.TokenEvent.TokenExpiryWarningEvent
 
@@ -1281,11 +1285,11 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| token | [ hiber.token.Token](#hibertokentoken) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| token | [ hiber.token.Token](#hibertokentoken) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | The health level caused for the organization by this event. |
 
 ### Event.TransferEvent
@@ -1294,12 +1298,12 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| transfer | [ hiber.transfer.Transfer](#hibertransfertransfer) | none |
+| organization | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| transfer | [ hiber.transfer.Transfer](#hibertransfertransfer) |  |
 
 ### Event.UserEvent
 
@@ -1312,11 +1316,11 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| user | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
+| organization | [ string](#string) |  |
+| user | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
 
 ### Event.UserEvent.UserAddedEvent
 
@@ -1324,11 +1328,11 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| user | [ string](#string) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| user | [ string](#string) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### Event.UserEvent.UserInvitedEvent
 
@@ -1336,11 +1340,11 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| email | [ string](#string) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| email | [ string](#string) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### Event.UserEvent.UserRemovedEvent
 
@@ -1348,11 +1352,11 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| user | [ string](#string) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| user | [ string](#string) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### Event.UserEvent.UserValidationUpdatedEvent
 
@@ -1360,11 +1364,11 @@ This event is disabled by default.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| email_validation_regex | [ string](#string) | none |
-| title | [ string](#string) | none |
-| description | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
+| organization | [ string](#string) |  |
+| email_validation_regex | [ string](#string) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### EventConfiguration
 
@@ -1373,8 +1377,8 @@ Some events are disable by default, or can be configured in different ways. Thei
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| modem_message_summary_configuration | [ EventConfiguration.ModemMessageSummaryConfiguration](#eventconfigurationmodemmessagesummaryconfiguration) | none |
+| organization | [ string](#string) |  |
+| message_summary_configuration | [ EventConfiguration.MessageSummaryConfiguration](#eventconfigurationmessagesummaryconfiguration) |  |
 | event_health_level_configuration | [repeated EventConfiguration.EventHealthLevelConfiguration](#eventconfigurationeventhealthlevelconfiguration) | List of event-types that have a health-level associated with them. Ignored when updating. |
 
 ### EventConfiguration.EventHealthLevelConfiguration
@@ -1383,7 +1387,7 @@ Details the health level configuration for an event-type.
 Health of the system can be influenced by multiple things, among which certain events.
 When an event that has health associated with it,
 said health level will be applied to the part of the system it refers to.
-For instance, an event about not being able to parse modem messages, will influence modem health.
+For instance, an event about not being able to parse device messages, will influence device health.
 An event about a failing parser, will affect parser health.
 
 In general, when multiple events affect the health level of a subsystem,
@@ -1394,7 +1398,7 @@ Health levels reset to the least severe applicable level, typically "Ok".
 
 For instance, an event might not be relevant anymore after 5 days.
 By setting expiry to "5d", the event will resolve automatically 5 days after the last event happened.
-Depending on other factors that influence modem health,
+Depending on other factors that influence device health,
 the health level will be reset to the least severe health level available.
 
 If there is no expiry duration, events need to be resolved manually.
@@ -1409,9 +1413,9 @@ To update, use EventService/UpdateEventHealthConfiguration(UpdateEventHealthConf
 | created_at | [ hiber.Timestamp](#hibertimestamp) | When this configuration item was created. |
 | updated_at | [ hiber.Timestamp](#hibertimestamp) | The most recent time this configuration item was updated. |
 
-### EventConfiguration.ModemMessageSummaryConfiguration
+### EventConfiguration.MessageSummaryConfiguration
 
-When enabled, this sends a ModemMessageSummaryEvent periodically.
+When enabled, this sends a MessageSummaryEvent periodically.
 For example, you can configure the message summary to be a daily message, aligned to midnight in your time zone.
 
 | Field | Type | Description |
@@ -1446,8 +1450,8 @@ The Pagination object will let you limit the number of events returned.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ EventSelection](#eventselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| selection | [ EventSelection](#eventselection) |  |
+| pagination | [ hiber.Pagination](#hiberpagination) |  |
 
 ### EventHistory.Response
 
@@ -1455,29 +1459,29 @@ The Pagination object will let you limit the number of events returned.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| request | [ EventHistory.Request](#eventhistoryrequest) | none |
-| events | [repeated Event](#event) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| request | [ EventHistory.Request](#eventhistoryrequest) |  |
+| events | [repeated Event](#event) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 ### EventSelection
 
-Selection object for Event list and stream. Filter events on modem, webhook, time and error state, and
+Selection object for Event list and stream. Filter events on device, webhook, time and error state, and
 paginate the list.
 Events are returned bundled by default. this means that, instead of the details, you get a list of bundles,
 one per event type, with the count.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| events | [ hiber.Filter.Events](#hiberfilterevents) | none |
-| modems | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
-| publishers | [ hiber.Filter.Publishers](#hiberfilterpublishers) | none |
-| tags | [ hiber.Filter.Tags](#hiberfiltertags) | none |
-| time_range | [ hiber.TimeRange](#hibertimerange) | none |
+| events | [ hiber.Filter.Events](#hiberfilterevents) |  |
+| modems | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
+| publishers | [ hiber.Filter.Publishers](#hiberfilterpublishers) |  |
+| tags | [ hiber.Filter.Tags](#hiberfiltertags) |  |
+| time_range | [ hiber.TimeRange](#hibertimerange) |  |
 | health_levels | [repeated string](#string) | Filter events by actual configured health level. |
 | include_resolved_events | [ bool](#bool) | By default, events that have been resolved are not listed. |
-| unbundled_events | [ bool](#bool) | When not set, no unbundled events are returned. When set, returns unbundled events per type, paginated per type. Deprecated: use unbundled_events on ListEventsRequest |
-| errors_only | [ bool](#bool) | Return only events that cause the default Error health. Deprecated: use health_levels with custom health levels instead. |
-| warnings_only | [ bool](#bool) | Return only events that cause the default Warning health. Deprecated: use health_levels with custom health levels instead. |
+| unbundled_events | [ bool](#bool) | <strong>Deprecated.</strong> When not set, no unbundled events are returned. When set, returns unbundled events per type, paginated per type. Deprecated: use unbundled_events on ListEventsRequest |
+| errors_only | [ bool](#bool) | <strong>Deprecated.</strong> Return only events that cause the default Error health. Deprecated: use health_levels with custom health levels instead. |
+| warnings_only | [ bool](#bool) | <strong>Deprecated.</strong> Return only events that cause the default Warning health. Deprecated: use health_levels with custom health levels instead. |
 
 ### EventStreamRequest
 
@@ -1504,9 +1508,9 @@ see the most recent events of each type on the first page.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ EventSelection](#eventselection) | none |
+| selection | [ EventSelection](#eventselection) |  |
 | pagination | [ hiber.Pagination](#hiberpagination) | Pagination is applied per event type on unbundled events. It is not necessary for bundled events. |
-| sort | [ ListEventsRequest.Sort](#listeventsrequestsort) | none |
+| sort | [ ListEventsRequest.Sort](#listeventsrequestsort) |  |
 | unbundled_events | [ bool](#bool) | When not set, bundled/grouped events are returned. When set, returns unbundled events per type, paginated per type. Overrides unbundled_events in EventSelection message. |
 
 ### ListEventsRequest.Response
@@ -1515,9 +1519,9 @@ see the most recent events of each type on the first page.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| request | [ ListEventsRequest](#listeventsrequest) | none |
-| events | [repeated BundledEvent](#bundledevent) | none |
-| unbundled_events | [repeated ListEventsRequest.Response.EventTypeResponse](#listeventsrequestresponseeventtyperesponse) | none |
+| request | [ ListEventsRequest](#listeventsrequest) |  |
+| events | [repeated BundledEvent](#bundledevent) |  |
+| unbundled_events | [repeated ListEventsRequest.Response.EventTypeResponse](#listeventsrequestresponseeventtyperesponse) |  |
 
 ### ListEventsRequest.Response.EventTypeResponse
 
@@ -1525,9 +1529,9 @@ see the most recent events of each type on the first page.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| type | [ hiber.EventType](#hibereventtype) | none |
-| unbundled_events | [repeated Event](#event) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| type | [ hiber.EventType](#hibereventtype) |  |
+| unbundled_events | [repeated Event](#event) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 ### MarkEventsResolved
 
@@ -1554,7 +1558,7 @@ Mark a selection of events as resolved.
 
 ### ModemHealthEvents
 
-Get the list of events that affect modem health, chronologically (by default, from now backwards in time).
+Get the list of events that affect device health, chronologically (by default, from now backwards in time).
 
 Only returns the Event with first-level fields set, event details are not included in the response
 (the oneof is not set).
@@ -1567,8 +1571,8 @@ Only returns the Event with first-level fields set, event details are not includ
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ EventSelection](#eventselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| selection | [ EventSelection](#eventselection) |  |
+| pagination | [ hiber.Pagination](#hiberpagination) |  |
 
 ### ModemHealthEvents.Response
 
@@ -1576,9 +1580,9 @@ Only returns the Event with first-level fields set, event details are not includ
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| request | [ ModemHealthEvents.Request](#modemhealtheventsrequest) | none |
-| events | [repeated Event](#event) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| request | [ ModemHealthEvents.Request](#modemhealtheventsrequest) |  |
+| events | [repeated Event](#event) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 ### ResolveEvent
 
@@ -1600,7 +1604,7 @@ Resolve a resolvable event using its resolve_identifier.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| event | [ Event](#event) | none |
+| event | [ Event](#event) |  |
 
 ### UpdateEventHealthConfiguration
 
@@ -1644,11 +1648,11 @@ To clear an existing expiry, set `updated` true and leave `duration` to be the d
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| TIME_DESCENDING | none | 0 |
-| TIME_ASCENDING | none | 1 |
-| MODEM_NUMBER_ASC | none | 2 |
-| MODEM_NUMBER_DESC | none | 3 |
-| MODEM_NUMBER_SPECIFIED | none | 4 |
+| TIME_DESCENDING |  | 0 |
+| TIME_ASCENDING |  | 1 |
+| DEVICE_NUMBER_ASC |  | 2 |
+| DEVICE_NUMBER_DESC |  | 3 |
+| DEVICE_NUMBER_SPECIFIED |  | 4 |
 
 
 
@@ -1671,11 +1675,11 @@ Add assignments.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_tags | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
 | alarm_parameters | [map hiber.assign.Assign.Request.AlarmParametersEntry](#hiberassignassignrequestalarmparametersentry) | The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
 
 ### hiber.assign.Assign.Request.AlarmParametersEntry
@@ -1684,8 +1688,8 @@ Add assignments.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ google.protobuf.Struct](#googleprotobufstruct) | none |
+| key | [ string](#string) |  |
+| value | [ google.protobuf.Struct](#googleprotobufstruct) |  |
 
 ### hiber.assign.Assign.Response
 
@@ -1693,22 +1697,27 @@ Add assignments.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| assigned | [repeated hiber.assign.Assignment](#hiberassignassignment) | none |
-| request | [ hiber.assign.Assign.Request](#hiberassignassignrequest) | none |
+| assigned | [repeated hiber.assign.Assignment](#hiberassignassignment) |  |
+| request | [ hiber.assign.Assign.Request](#hiberassignassignrequest) |  |
 
 ### hiber.assign.Assignment
 
 An assignment assigning one thing to another.
 
+Assignment is transitive: when an alarm or parser is assigned to a tag, and the tag is assigned to a modem,
+  the alarm or parser is considered assigned to that modem.
+This only works in one direction, though. Assigning the alarm or parser to the modem directly does not also assign
+the tag.
+
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | type | [ hiber.assign.AssignmentType](#hiberassignassignmenttype) | The type of assignment. This is a helper enum to indicate which fields are set. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_parser | [ hiber.assign.Assignment.ModemMessageBodyParserAssignment](#hiberassignassignmentmodemmessagebodyparserassignment) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_alarm | [ hiber.assign.Assignment.ModemAlarmAssignment](#hiberassignassignmentmodemalarmassignment) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_modem | [ string](#string) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_modem | [ string](#string) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_parser | [ hiber.assign.Assignment.ModemMessageBodyParserAssignment](#hiberassignassignmentmodemmessagebodyparserassignment) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_tag | [ hiber.tag.Tag](#hibertagtag) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_parser | [ hiber.assign.Assignment.ModemMessageBodyParserAssignment](#hiberassignassignmentmodemmessagebodyparserassignment) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_alarm | [ hiber.assign.Assignment.ModemAlarmAssignment](#hiberassignassignmentmodemalarmassignment) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_modem | [ string](#string) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_modem | [ string](#string) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_parser | [ hiber.assign.Assignment.ModemMessageBodyParserAssignment](#hiberassignassignmentmodemmessagebodyparserassignment) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_tag | [ hiber.tag.Tag](#hibertagtag) |  |
 
 ### hiber.assign.Assignment.ModemAlarmAssignment
 
@@ -1716,10 +1725,10 @@ An assignment assigning one thing to another.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| identifier | [ string](#string) | none |
-| name | [ string](#string) | none |
-| description | [ string](#string) | none |
-| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | none |
+| identifier | [ string](#string) |  |
+| name | [ string](#string) |  |
+| description | [ string](#string) |  |
+| parameters | [ google.protobuf.Struct](#googleprotobufstruct) |  |
 
 ### hiber.assign.Assignment.ModemMessageBodyParserAssignment
 
@@ -1727,9 +1736,9 @@ An assignment assigning one thing to another.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| identifier | [ string](#string) | none |
-| name | [ string](#string) | none |
-| owner_organization | [ string](#string) | none |
+| identifier | [ string](#string) |  |
+| name | [ string](#string) |  |
+| owner_organization | [ string](#string) |  |
 
 ### hiber.assign.AssignmentSelection
 
@@ -1749,8 +1758,8 @@ An assignment assigning one thing to another.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated hiber.assign.AssignmentType](#hiberassignassignmenttype) | none |
-| exclude | [repeated hiber.assign.AssignmentType](#hiberassignassignmenttype) | none |
+| include | [repeated hiber.assign.AssignmentType](#hiberassignassignmenttype) |  |
+| exclude | [repeated hiber.assign.AssignmentType](#hiberassignassignmenttype) |  |
 
 ### hiber.assign.ListAlarmAssignments
 
@@ -1764,8 +1773,8 @@ An assignment assigning one thing to another.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.assign.AssignmentSelection](#hiberassignassignmentselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| selection | [ hiber.assign.AssignmentSelection](#hiberassignassignmentselection) |  |
+| pagination | [ hiber.Pagination](#hiberpagination) |  |
 | include_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Whether to include modems from child organizations in this list (and which organizations). |
 | include_alarms_without_assignments | [ bool](#bool) | Whether to include alarms that are in the selection and have no assignments. |
 | apply_unit_preferences | [ bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
@@ -1776,9 +1785,9 @@ An assignment assigning one thing to another.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| alarms | [repeated hiber.assign.ListAlarmAssignments.Response.AlarmAssignment](#hiberassignlistalarmassignmentsresponsealarmassignment) | none |
-| request | [ hiber.assign.ListAlarmAssignments.Request](#hiberassignlistalarmassignmentsrequest) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| alarms | [repeated hiber.assign.ListAlarmAssignments.Response.AlarmAssignment](#hiberassignlistalarmassignmentsresponsealarmassignment) |  |
+| request | [ hiber.assign.ListAlarmAssignments.Request](#hiberassignlistalarmassignmentsrequest) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 ### hiber.assign.ListAlarmAssignments.Response.AlarmAssignment
 
@@ -1786,8 +1795,8 @@ Things that an alarm is assigned to.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| alarm | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | none |
+| organization | [ string](#string) |  |
+| alarm | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) |  |
 | modems | [repeated hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToModem](#hiberassignlistalarmassignmentsresponsealarmassignmenttomodem) | The modem numbers this alarm is assigned to, with the alarm parameters. |
 | tags | [repeated hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToTag](#hiberassignlistalarmassignmentsresponsealarmassignmenttotag) | The tags this alarm is assigned to, with the alarm parameters. |
 
@@ -1797,8 +1806,8 @@ Things that an alarm is assigned to.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modem_number | [ string](#string) | none |
-| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | none |
+| modem_number | [ string](#string) |  |
+| parameters | [ google.protobuf.Struct](#googleprotobufstruct) |  |
 
 ### hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToTag
 
@@ -1806,8 +1815,8 @@ Things that an alarm is assigned to.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| tag | [ hiber.tag.Tag](#hibertagtag) | none |
-| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | none |
+| tag | [ hiber.tag.Tag](#hibertagtag) |  |
+| parameters | [ google.protobuf.Struct](#googleprotobufstruct) |  |
 
 ### hiber.assign.ListAssignments
 
@@ -1821,8 +1830,8 @@ Things that an alarm is assigned to.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.assign.AssignmentSelection](#hiberassignassignmentselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| selection | [ hiber.assign.AssignmentSelection](#hiberassignassignmentselection) |  |
+| pagination | [ hiber.Pagination](#hiberpagination) |  |
 
 ### hiber.assign.ListAssignments.Response
 
@@ -1831,8 +1840,8 @@ Things that an alarm is assigned to.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | assignments | [repeated hiber.assign.Assignment](#hiberassignassignment) | The assignments as identifiers in the selection. |
-| request | [ hiber.assign.ListAssignments.Request](#hiberassignlistassignmentsrequest) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| request | [ hiber.assign.ListAssignments.Request](#hiberassignlistassignmentsrequest) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 ### hiber.assign.ListModemAssignments
 
@@ -1846,8 +1855,8 @@ Things that an alarm is assigned to.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.assign.AssignmentSelection](#hiberassignassignmentselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| selection | [ hiber.assign.AssignmentSelection](#hiberassignassignmentselection) |  |
+| pagination | [ hiber.Pagination](#hiberpagination) |  |
 | include_alarm_details | [ bool](#bool) | Whether to include the full alarms that are assigned, instead of just assignment. |
 | include_message_body_parser_details | [ bool](#bool) | Whether to include the full parsers that are assigned, instead of just assignment. |
 | include_message_body_parser_content | [ bool](#bool) | Whether to include, for example, the message body parser ksy content in the result. Excluded by default to save data. |
@@ -1860,9 +1869,9 @@ Things that an alarm is assigned to.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modems | [repeated hiber.assign.ListModemAssignments.Response.ModemAssignment](#hiberassignlistmodemassignmentsresponsemodemassignment) | none |
-| request | [ hiber.assign.ListModemAssignments.Request](#hiberassignlistmodemassignmentsrequest) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| modems | [repeated hiber.assign.ListModemAssignments.Response.ModemAssignment](#hiberassignlistmodemassignmentsresponsemodemassignment) |  |
+| request | [ hiber.assign.ListModemAssignments.Request](#hiberassignlistmodemassignmentsrequest) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 ### hiber.assign.ListModemAssignments.Response.ModemAssignment
 
@@ -1870,8 +1879,8 @@ Things that are assigned to a modem.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| modem_number | [ string](#string) | none |
+| organization | [ string](#string) |  |
+| modem_number | [ string](#string) |  |
 | message_body_parsers | [repeated hiber.assign.Assignment.ModemMessageBodyParserAssignment](#hiberassignassignmentmodemmessagebodyparserassignment) | The identifiers of the message body parsers that are assigned to this modem. |
 | alarms | [repeated hiber.assign.Assignment.ModemAlarmAssignment](#hiberassignassignmentmodemalarmassignment) | The identifiers and parameters of the alarms that are assigned to this modem. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | The tags for this modem. |
@@ -1890,8 +1899,8 @@ Things that are assigned to a modem.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.assign.AssignmentSelection](#hiberassignassignmentselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| selection | [ hiber.assign.AssignmentSelection](#hiberassignassignmentselection) |  |
+| pagination | [ hiber.Pagination](#hiberpagination) |  |
 | include_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Whether to include modems from child organizations in this list (and which organizations). |
 | include_parser_without_assignments | [ bool](#bool) | Whether to include alarms that are in the selection and have no assignments. |
 
@@ -1901,9 +1910,9 @@ Things that are assigned to a modem.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| parsers | [repeated hiber.assign.ListModemMessageBodyParserAssignments.Response.ModemMessageBodyParserAssignment](#hiberassignlistmodemmessagebodyparserassignmentsresponsemodemmessagebodyparserassignment) | none |
-| request | [ hiber.assign.ListModemMessageBodyParserAssignments.Request](#hiberassignlistmodemmessagebodyparserassignmentsrequest) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| parsers | [repeated hiber.assign.ListModemMessageBodyParserAssignments.Response.ModemMessageBodyParserAssignment](#hiberassignlistmodemmessagebodyparserassignmentsresponsemodemmessagebodyparserassignment) |  |
+| request | [ hiber.assign.ListModemMessageBodyParserAssignments.Request](#hiberassignlistmodemmessagebodyparserassignmentsrequest) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 ### hiber.assign.ListModemMessageBodyParserAssignments.Response.ModemMessageBodyParserAssignment
 
@@ -1911,8 +1920,8 @@ Things that an alarm is assigned to.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| message_body_parser | [ hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) | none |
+| organization | [ string](#string) |  |
+| message_body_parser | [ hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) |  |
 | modems | [repeated string](#string) | The modem numbers this alarm is assigned to, with the alarm parameters. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | The tags this alarm is assigned to, with the alarm parameters. |
 
@@ -1928,8 +1937,8 @@ Things that an alarm is assigned to.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.assign.AssignmentSelection](#hiberassignassignmentselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| selection | [ hiber.assign.AssignmentSelection](#hiberassignassignmentselection) |  |
+| pagination | [ hiber.Pagination](#hiberpagination) |  |
 | include_alarm_details | [ bool](#bool) | Whether to include the full alarms that are assigned, instead of just assignment. |
 | include_message_body_parser_details | [ bool](#bool) | Whether to include the full parsers that are assigned, instead of just assignment. |
 | include_message_body_parser_content | [ bool](#bool) | Whether to include, for example, the message body parser ksy content in the result. Excluded by default to save data. |
@@ -1942,9 +1951,9 @@ Things that an alarm is assigned to.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| tags | [repeated hiber.assign.ListTagAssignments.Response.TagAssignment](#hiberassignlisttagassignmentsresponsetagassignment) | none |
-| request | [ hiber.assign.ListTagAssignments.Request](#hiberassignlisttagassignmentsrequest) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| tags | [repeated hiber.assign.ListTagAssignments.Response.TagAssignment](#hiberassignlisttagassignmentsresponsetagassignment) |  |
+| request | [ hiber.assign.ListTagAssignments.Request](#hiberassignlisttagassignmentsrequest) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 ### hiber.assign.ListTagAssignments.Response.TagAssignment
 
@@ -1952,8 +1961,8 @@ Things that an alarm is assigned to.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| tag | [ hiber.tag.Tag](#hibertagtag) | none |
+| organization | [ string](#string) |  |
+| tag | [ hiber.tag.Tag](#hibertagtag) |  |
 | modems | [repeated string](#string) | The modems with this tag. |
 | message_body_parsers | [repeated hiber.assign.Assignment.ModemMessageBodyParserAssignment](#hiberassignassignmentmodemmessagebodyparserassignment) | The identifiers of the message body parsers that are assigned to this modem. |
 | alarms | [repeated hiber.assign.Assignment.ModemAlarmAssignment](#hiberassignassignmentmodemalarmassignment) | The identifiers and parameters of the alarms that are assigned to this modem. |
@@ -1972,11 +1981,11 @@ Remove a assignment.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_tags | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
 
 ### hiber.assign.Unassign.Response
 
@@ -1984,27 +1993,17 @@ Remove a assignment.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| unassigned | [repeated hiber.assign.Assignment](#hiberassignassignment) | none |
-| request | [ hiber.assign.Unassign.Request](#hiberassignunassignrequest) | none |
+| unassigned | [repeated hiber.assign.Assignment](#hiberassignassignment) |  |
+| request | [ hiber.assign.Unassign.Request](#hiberassignunassignrequest) |  |
 
 
 ### Enums
 #### hiber.assign.AssignmentType
-Supported assignment types:
-- assign a message body parser to a modem
-- assign a message body parser to a tag
-- assign a modem alarm to a modem
-- assign a modem alarm to a tag
-- assign a modem to a tag
-
-Assignment is transitive: when an alarm or parser is assigned to a tag, and the tag is assigned to a modem,
-  the alarm or parser is considered assigned to that modem.
-This only works in one direction, though. Assigning the alarm or parser to the modem directly does not also assign
-the tag.
+The types of assignment available, like assigning a message body parser to a modem.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| DEFAULT | none | 0 |
+| DEFAULT |  | 0 |
 | ASSIGNS_MESSAGE_BODY_PARSER_TO_MODEM | Assignment that assigns a message body parser to a modem. | 1 |
 | ASSIGNS_ALARM_TO_MODEM | Assignment that assigns a modem alarm to a modem. | 2 |
 | ASSIGNS_MODEM_TO_TAG | Assignment that assigns a modem to a tag. | 4 |
@@ -2055,7 +2054,7 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| name | [ string](#string) | none |
+| name | [ string](#string) |  |
 | format | [ hiber.export.Export.Format](#hiberexportexportformat) | The format for the export. |
 | configuration | [ hiber.export.Export.Configuration](#hiberexportexportconfiguration) | Specific configuration for the export. |
 | email_subscribe | [ bool](#bool) | Subscribe to email updates to get an email with links when the export is ready. |
@@ -2066,8 +2065,8 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| created | [ hiber.export.Export](#hiberexportexport) | none |
-| request | [ hiber.export.CreateExport.Request](#hiberexportcreateexportrequest) | none |
+| created | [ hiber.export.Export](#hiberexportexport) |  |
+| request | [ hiber.export.CreateExport.Request](#hiberexportcreateexportrequest) |  |
 
 ### hiber.export.DeleteExport
 
@@ -2081,7 +2080,7 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| identifier | [ string](#string) | none |
+| identifier | [ string](#string) |  |
 
 ### hiber.export.DeleteExport.Response
 
@@ -2110,7 +2109,7 @@ The configuration for the export, which determines what data is exported.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | expires_in | [ hiber.Duration](#hiberduration) | The time urls will be available after the moment the export has the READY status. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.modem_message | [ hiber.export.Export.Configuration.ModemMessages](#hiberexportexportconfigurationmodemmessages) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.modem_message | [ hiber.export.Export.Configuration.ModemMessages](#hiberexportexportconfigurationmodemmessages) |  |
 
 ### hiber.export.Export.Configuration.ModemMessages
 
@@ -2118,8 +2117,8 @@ Export modem messages for a set of modems.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modems | [repeated string](#string) | none |
-| time_range | [ hiber.TimeRange](#hibertimerange) | none |
+| modems | [repeated string](#string) |  |
+| time_range | [ hiber.TimeRange](#hibertimerange) |  |
 
 ### hiber.export.Export.File
 
@@ -2127,8 +2126,8 @@ Downloadable file.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| name | [ string](#string) | none |
-| url | [ string](#string) | none |
+| name | [ string](#string) |  |
+| url | [ string](#string) |  |
 
 ### hiber.export.Export.Format
 
@@ -2136,9 +2135,9 @@ The format for the export.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| type | [ hiber.export.Export.Format.Type](#hiberexportexportformattype) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **configuration**.json | [ hiber.export.Export.Format.Json](#hiberexportexportformatjson) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **configuration**.csv | [ hiber.export.Export.Format.Csv](#hiberexportexportformatcsv) | none |
+| type | [ hiber.export.Export.Format.Type](#hiberexportexportformattype) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **configuration**.json | [ hiber.export.Export.Format.Json](#hiberexportexportformatjson) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **configuration**.csv | [ hiber.export.Export.Format.Csv](#hiberexportexportformatcsv) |  |
 
 ### hiber.export.Export.Format.Csv
 
@@ -2176,8 +2175,8 @@ Json format for export.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ string](#string) | none |
+| key | [ string](#string) |  |
+| value | [ string](#string) |  |
 
 ### hiber.export.ExportSelection
 
@@ -2211,7 +2210,7 @@ Json format for export.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| export | [ hiber.export.Export](#hiberexportexport) | none |
+| export | [ hiber.export.Export](#hiberexportexport) |  |
 
 ### hiber.export.ListExports
 
@@ -2225,8 +2224,8 @@ Json format for export.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.export.ExportSelection](#hiberexportexportselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| selection | [ hiber.export.ExportSelection](#hiberexportexportselection) |  |
+| pagination | [ hiber.Pagination](#hiberpagination) |  |
 
 ### hiber.export.ListExports.Response
 
@@ -2234,9 +2233,9 @@ Json format for export.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| exports | [repeated hiber.export.Export](#hiberexportexport) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
-| request | [ hiber.export.ListExports.Request](#hiberexportlistexportsrequest) | none |
+| exports | [repeated hiber.export.Export](#hiberexportexport) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
+| request | [ hiber.export.ListExports.Request](#hiberexportlistexportsrequest) |  |
 
 
 ### Enums
@@ -2245,9 +2244,9 @@ Json format for export.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| DEFAULT | none | 0 |
-| JSON | none | 1 |
-| CSV | none | 2 |
+| DEFAULT |  | 0 |
+| JSON |  | 1 |
+| CSV |  | 2 |
 
 #### hiber.export.Export.Status
 
@@ -2333,7 +2332,7 @@ Error will change:
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | level | [ string](#string) | The name of this health level. Levels are identified by their name. The API does support renaming, where the rename is propagated to all the relevant parts of the system. |
-| color | [ string](#string) | Default color for the health level, as a string that represents a valid CSS3 color. DEPRECATED: Maps to the color named "text" in color_data. |
+| color | [ string](#string) | <strong>Deprecated.</strong> Default color for the health level, as a string that represents a valid CSS3 color. DEPRECATED: Maps to the color named "text" in color_data. |
 | color_data | [map hiber.health.HealthLevel.ColorDataEntry](#hiberhealthhealthlevelcolordataentry) | Map of named colors, where key is the name and the value is a valid CSS3 color definition. |
 | severity | [ int64](#int64) | A unique numeric value equal to the index of this health level in the list of health levels sorted by ascending severity (starting at 1). This means higher numbers denote a more severe health. This value cannot be used when creating or updating. To change the severity for a health level, reorder all health levels. |
 | catch_all | [ bool](#bool) | Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems), which can happen when a device manufacturer has provided alarms for your device (e.g. a low battery alarm). By default, unknown health levels map to the level of the highest severity, unless another level is marked as catch-all. |
@@ -2365,12 +2364,12 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| description | [ string](#string) | none |
-| filter_event_types | [ hiber.Filter.Events](#hiberfilterevents) | none |
-| filter_modem_numbers | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
-| filter_tags | [ hiber.Filter.Tags](#hiberfiltertags) | none |
+| description | [ string](#string) |  |
+| filter_event_types | [ hiber.Filter.Events](#hiberfilterevents) |  |
+| filter_modem_numbers | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
+| filter_tags | [ hiber.Filter.Tags](#hiberfiltertags) |  |
 | url | [ string](#string) | The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 |
-| content_type | [ hiber.integration.mqtt.MQTTPublisher.ContentType](#hiberintegrationmqttmqttpublishercontenttype) | none |
+| content_type | [ hiber.integration.mqtt.MQTTPublisher.ContentType](#hiberintegrationmqttmqttpublishercontenttype) |  |
 | topic | [ string](#string) | The MQTT topic to send to on the receiving server. |
 | qos | [ hiber.integration.mqtt.MQTTPublisher.Data.QoS](#hiberintegrationmqttmqttpublisherdataqos) | MQTT QoS value. |
 | identifier | [ string](#string) | Identifier used by the MQTT client. Defaults to "hiber". |
@@ -2379,7 +2378,7 @@ so not all messages listed here are referenced.)
 | certificate_id | [ int64](#int64) | Client certificate to use when connecting to the MQTT server. |
 | server_ca_certificate_id | [ int64](#int64) | Server CA certificate to use when connecting to the MQTT server. |
 | disabled | [ bool](#bool) | Disable the MQTT publisher after creation, so it needs to be enabled before it is active. |
-| tags | [repeated int64](#int64) | none |
+| tags | [repeated int64](#int64) |  |
 
 ### hiber.integration.mqtt.DeleteMQTTPublisherRequest
 
@@ -2388,7 +2387,7 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| id | [ int64](#int64) | none |
+| id | [ int64](#int64) |  |
 
 ### hiber.integration.mqtt.DeleteMQTTPublisherRequest.Response
 
@@ -2402,7 +2401,7 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.integration.mqtt.MQTTPublisherSelection](#hiberintegrationmqttmqttpublisherselection) | none |
+| selection | [ hiber.integration.mqtt.MQTTPublisherSelection](#hiberintegrationmqttmqttpublisherselection) |  |
 
 ### hiber.integration.mqtt.DisableMQTTPublisherRequest.Response
 
@@ -2410,8 +2409,8 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| publishers | [repeated hiber.integration.mqtt.MQTTPublisher](#hiberintegrationmqttmqttpublisher) | none |
-| request | [ hiber.integration.mqtt.DisableMQTTPublisherRequest](#hiberintegrationmqttdisablemqttpublisherrequest) | none |
+| publishers | [repeated hiber.integration.mqtt.MQTTPublisher](#hiberintegrationmqttmqttpublisher) |  |
+| request | [ hiber.integration.mqtt.DisableMQTTPublisherRequest](#hiberintegrationmqttdisablemqttpublisherrequest) |  |
 
 ### hiber.integration.mqtt.EnableMQTTPublisherRequest
 
@@ -2420,7 +2419,7 @@ Enable a disabled publisher or re-enable a publisher that's failed and is in coo
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.integration.mqtt.MQTTPublisherSelection](#hiberintegrationmqttmqttpublisherselection) | none |
+| selection | [ hiber.integration.mqtt.MQTTPublisherSelection](#hiberintegrationmqttmqttpublisherselection) |  |
 
 ### hiber.integration.mqtt.EnableMQTTPublisherRequest.Response
 
@@ -2428,8 +2427,8 @@ Enable a disabled publisher or re-enable a publisher that's failed and is in coo
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| publishers | [repeated hiber.integration.mqtt.MQTTPublisher](#hiberintegrationmqttmqttpublisher) | none |
-| request | [ hiber.integration.mqtt.EnableMQTTPublisherRequest](#hiberintegrationmqttenablemqttpublisherrequest) | none |
+| publishers | [repeated hiber.integration.mqtt.MQTTPublisher](#hiberintegrationmqttmqttpublisher) |  |
+| request | [ hiber.integration.mqtt.EnableMQTTPublisherRequest](#hiberintegrationmqttenablemqttpublisherrequest) |  |
 
 ### hiber.integration.mqtt.ListMQTTPublishersRequest
 
@@ -2438,9 +2437,9 @@ Enable a disabled publisher or re-enable a publisher that's failed and is in coo
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.integration.mqtt.MQTTPublisherSelection](#hiberintegrationmqttmqttpublisherselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
-| sort | [repeated hiber.integration.mqtt.ListMQTTPublishersRequest.Sort](#hiberintegrationmqttlistmqttpublishersrequestsort) | none |
+| selection | [ hiber.integration.mqtt.MQTTPublisherSelection](#hiberintegrationmqttmqttpublisherselection) |  |
+| pagination | [ hiber.Pagination](#hiberpagination) |  |
+| sort | [repeated hiber.integration.mqtt.ListMQTTPublishersRequest.Sort](#hiberintegrationmqttlistmqttpublishersrequestsort) |  |
 
 ### hiber.integration.mqtt.ListMQTTPublishersRequest.Response
 
@@ -2448,9 +2447,9 @@ Enable a disabled publisher or re-enable a publisher that's failed and is in coo
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| publishers | [repeated hiber.integration.mqtt.MQTTPublisher](#hiberintegrationmqttmqttpublisher) | none |
-| request | [ hiber.integration.mqtt.ListMQTTPublishersRequest](#hiberintegrationmqttlistmqttpublishersrequest) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| publishers | [repeated hiber.integration.mqtt.MQTTPublisher](#hiberintegrationmqttmqttpublisher) |  |
+| request | [ hiber.integration.mqtt.ListMQTTPublishersRequest](#hiberintegrationmqttlistmqttpublishersrequest) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 ### hiber.integration.mqtt.MQTTMessage
 
@@ -2458,11 +2457,11 @@ Enable a disabled publisher or re-enable a publisher that's failed and is in coo
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-| publisher_data | [ hiber.integration.mqtt.MQTTPublisher.Data](#hiberintegrationmqttmqttpublisherdata) | none |
-| message | [ hiber.BytesOrHex](#hiberbytesorhex) | none |
-| successful | [ bool](#bool) | none |
-| error | [ string](#string) | none |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
+| publisher_data | [ hiber.integration.mqtt.MQTTPublisher.Data](#hiberintegrationmqttmqttpublisherdata) |  |
+| message | [ hiber.BytesOrHex](#hiberbytesorhex) |  |
+| successful | [ bool](#bool) |  |
+| error | [ string](#string) |  |
 
 ### hiber.integration.mqtt.MQTTPublisher
 
@@ -2470,16 +2469,16 @@ Enable a disabled publisher or re-enable a publisher that's failed and is in coo
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| id | [ int64](#int64) | none |
-| description | [ string](#string) | none |
+| id | [ int64](#int64) |  |
+| description | [ string](#string) |  |
 | created_by | [ string](#string) | The uid of the user that created this publisher |
-| data | [ hiber.integration.mqtt.MQTTPublisher.Data](#hiberintegrationmqttmqttpublisherdata) | none |
-| filter_event_types | [ hiber.Filter.Events](#hiberfilterevents) | none |
-| filter_modem_numbers | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
-| filter_tags | [ hiber.Filter.Tags](#hiberfiltertags) | none |
-| health | [ hiber.Health](#hiberhealth) | none |
-| health_config | [ hiber.integration.mqtt.MQTTPublisher.HealthConfig](#hiberintegrationmqttmqttpublisherhealthconfig) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
+| data | [ hiber.integration.mqtt.MQTTPublisher.Data](#hiberintegrationmqttmqttpublisherdata) |  |
+| filter_event_types | [ hiber.Filter.Events](#hiberfilterevents) |  |
+| filter_modem_numbers | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
+| filter_tags | [ hiber.Filter.Tags](#hiberfiltertags) |  |
+| health | [ hiber.Health](#hiberhealth) |  |
+| health_config | [ hiber.integration.mqtt.MQTTPublisher.HealthConfig](#hiberintegrationmqttmqttpublisherhealthconfig) |  |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
 
 ### hiber.integration.mqtt.MQTTPublisher.Data
 
@@ -2488,19 +2487,19 @@ Enable a disabled publisher or re-enable a publisher that's failed and is in coo
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | url | [ string](#string) | The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 |
-| content_type | [ hiber.integration.mqtt.MQTTPublisher.ContentType](#hiberintegrationmqttmqttpublishercontenttype) | none |
+| content_type | [ hiber.integration.mqtt.MQTTPublisher.ContentType](#hiberintegrationmqttmqttpublishercontenttype) |  |
 | topic | [ string](#string) | The MQTT topic to send to on the receiving server. |
 | qos | [ hiber.integration.mqtt.MQTTPublisher.Data.QoS](#hiberintegrationmqttmqttpublisherdataqos) | MQTT QoS value. |
 | identifier | [ string](#string) | Identifier used by the MQTT client. Defaults to "hiber". |
 | username | [ string](#string) | Optional username to authenticate with. |
 | password | [ string](#string) | Optional password to authenticate with. Requires username to be set. |
 | certificate_id | [ int64](#int64) | Client certificate to use when connecting to the MQTT server. |
-| certificate_name | [ string](#string) | none |
+| certificate_name | [ string](#string) |  |
 | ca_certificate_id | [ int64](#int64) | CA certificate for the client certificate to use when connecting to the MQTT server. |
-| ca_certificate_name | [ string](#string) | none |
+| ca_certificate_name | [ string](#string) |  |
 | server_ca_certificate_id | [ int64](#int64) | Server CA certificate to use when connecting to the MQTT server. |
-| server_ca_certificate_name | [ string](#string) | none |
-| disabled | [ bool](#bool) | none |
+| server_ca_certificate_name | [ string](#string) |  |
+| disabled | [ bool](#bool) |  |
 
 ### hiber.integration.mqtt.MQTTPublisher.HealthConfig
 
@@ -2518,9 +2517,9 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| id | [ int64](#int64) | none |
-| selection | [ hiber.integration.mqtt.MQTTPublisherHistorySelection](#hiberintegrationmqttmqttpublisherhistoryselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| id | [ int64](#int64) |  |
+| selection | [ hiber.integration.mqtt.MQTTPublisherHistorySelection](#hiberintegrationmqttmqttpublisherhistoryselection) |  |
+| pagination | [ hiber.Pagination](#hiberpagination) |  |
 
 ### hiber.integration.mqtt.MQTTPublisherHistoryRequest.Response
 
@@ -2528,9 +2527,9 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| items | [repeated hiber.integration.mqtt.MQTTMessage](#hiberintegrationmqttmqttmessage) | none |
-| request | [ hiber.integration.mqtt.MQTTPublisherHistoryRequest](#hiberintegrationmqttmqttpublisherhistoryrequest) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| items | [repeated hiber.integration.mqtt.MQTTMessage](#hiberintegrationmqttmqttmessage) |  |
+| request | [ hiber.integration.mqtt.MQTTPublisherHistoryRequest](#hiberintegrationmqttmqttpublisherhistoryrequest) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 ### hiber.integration.mqtt.MQTTPublisherHistorySelection
 
@@ -2538,8 +2537,8 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| time_range | [ hiber.TimeRange](#hibertimerange) | none |
-| only_failures | [ bool](#bool) | none |
+| time_range | [ hiber.TimeRange](#hibertimerange) |  |
+| only_failures | [ bool](#bool) |  |
 
 ### hiber.integration.mqtt.MQTTPublisherSelection
 
@@ -2553,8 +2552,8 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 | search_topic | [ string](#string) | Partial text match on the topic. |
 | content_types | [repeated hiber.integration.mqtt.MQTTPublisher.ContentType](#hiberintegrationmqttmqttpublishercontenttype) | Only return MQTT integrations that use the given content types. |
 | certificate_ids | [repeated int64](#int64) | Filter by referenced certificate (id), either as client or server certificate. |
-| tags | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
-| health | [repeated hiber.Health](#hiberhealth) | none |
+| tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+| health | [repeated hiber.Health](#hiberhealth) |  |
 
 ### hiber.integration.mqtt.UpdateMQTTPublisherRequest
 
@@ -2563,13 +2562,13 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| id | [ int64](#int64) | none |
-| filter_event_types | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) | none |
-| filter_modem_numbers | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | none |
-| filter_tags | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | none |
-| description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
+| id | [ int64](#int64) |  |
+| filter_event_types | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
+| filter_modem_numbers | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
+| filter_tags | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
+| description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
 | url | [ string](#string) | The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 |
-| content_type | [ hiber.integration.mqtt.MQTTPublisher.ContentType](#hiberintegrationmqttmqttpublishercontenttype) | none |
+| content_type | [ hiber.integration.mqtt.MQTTPublisher.ContentType](#hiberintegrationmqttmqttpublishercontenttype) |  |
 | topic | [ string](#string) | The MQTT topic to send to on the receiving server. |
 | qos | [ hiber.integration.mqtt.MQTTPublisher.Data.QoS](#hiberintegrationmqttmqttpublisherdataqos) | MQTT QoS value. |
 | identifier | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Identifier used by the MQTT client. Defaults to "hiber". |
@@ -2587,9 +2586,9 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| selection | [ hiber.integration.mqtt.MQTTPublisherSelection](#hiberintegrationmqttmqttpublisherselection) | none |
-| update | [ hiber.tag.UpdateTagsForItem](#hibertagupdatetagsforitem) | none |
+| organization | [ string](#string) |  |
+| selection | [ hiber.integration.mqtt.MQTTPublisherSelection](#hiberintegrationmqttmqttpublisherselection) |  |
+| update | [ hiber.tag.UpdateTagsForItem](#hibertagupdatetagsforitem) |  |
 
 ### hiber.integration.mqtt.UpdateMQTTPublisherTagsRequest.Response
 
@@ -2597,7 +2596,7 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| mqtt_publishers | [repeated hiber.integration.mqtt.MQTTPublisher](#hiberintegrationmqttmqttpublisher) | none |
+| mqtt_publishers | [repeated hiber.integration.mqtt.MQTTPublisher](#hiberintegrationmqttmqttpublisher) |  |
 
 
 ### Enums
@@ -2621,16 +2620,16 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| DEFAULT | none | 0 |
-| JSON | none | 1 |
-| PROTO | none | 2 |
+| DEFAULT |  | 0 |
+| JSON |  | 1 |
+| PROTO |  | 2 |
 
 #### hiber.integration.mqtt.MQTTPublisher.Data.QoS
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| DEFAULT | none | 0 |
+| DEFAULT |  | 0 |
 | AT_MOST_ONCE | Qos level 0 | 1 |
 | AT_LEAST_ONCE | Qos level 1 | 2 |
 | EXACTLY_ONCE | Qos level 2 | 3 |
@@ -2653,25 +2652,25 @@ when the modem is registered into the system or when a subscription is authorize
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | number | [ string](#string) | An 8-character hexadecimal string |
-| organization | [ string](#string) | none |
+| organization | [ string](#string) |  |
 | name | [ string](#string) | An optional descriptor given to the modem |
-| location | [ hiber.Location](#hiberlocation) | none |
-| last_message_id | [ uint64](#uint64) | none |
+| location | [ hiber.Location](#hiberlocation) |  |
+| last_message_id | [ uint64](#uint64) |  |
 | last_message_received_at | [ hiber.Timestamp](#hibertimestamp) | Time the server has received the last message. |
 | last_message_sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the modem has sent the last message. |
 | last_message_body | [ hiber.BytesOrHex](#hiberbytesorhex) | The body of the last message. |
 | inactivity | [ hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
-| lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | none |
+| lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) |  |
 | technical | [ hiber.modem.Modem.TechnicalData](#hibermodemmodemtechnicaldata) | additional information |
-| peripherals | [ hiber.modem.Modem.Peripherals](#hibermodemmodemperipherals) | none |
+| peripherals | [ hiber.modem.Modem.Peripherals](#hibermodemmodemperipherals) |  |
 | notes | [ string](#string) | Notes field that can be used to add additional information to a modem. |
 | secure_notes | [ string](#string) | Secure notes field that can be used to add additional information to a modem, with limited accessibility. |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| is_gateway | [ bool](#bool) | [DEPRECATED] Whether the modem is a gateway, it has been configured as a gateway and has connected devices. Use `type` instead. |
-| is_device_connected_to_gateway | [ bool](#bool) | [DEPRECATED] Whether the modem is connected to a modem configured as a gateway. Use `type` instead. |
-| connected_to_gateway | [ string](#string) | [DEPRECATED] The modem number that this modem is connected to, if any. Use `connected_device_info.connected_to_gateway` instead. |
-| external_device_ids | [repeated string](#string) | [DEPRECATED] External device ids, if any. Use `connected_device_info.external_device_ids` instead. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| is_gateway | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Whether the modem is a gateway, it has been configured as a gateway and has connected devices. Use `type` instead. |
+| is_device_connected_to_gateway | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Whether the modem is connected to a modem configured as a gateway. Use `type` instead. |
+| connected_to_gateway | [ string](#string) | <strong>Deprecated.</strong> [DEPRECATED] The modem number that this modem is connected to, if any. Use `connected_device_info.connected_to_gateway` instead. |
+| external_device_ids | [repeated string](#string) | <strong>Deprecated.</strong> [DEPRECATED] External device ids, if any. Use `connected_device_info.external_device_ids` instead. |
 | type | [ hiber.modem.Modem.Type](#hibermodemmodemtype) | The type of modem. Used mainly to differentiate in the UI or to sort on. |
 | gateway_info | [ hiber.modem.Modem.GatewayInfo](#hibermodemmodemgatewayinfo) | Additional information when this modem is a gateway. |
 | connected_device_info | [ hiber.modem.Modem.ConnectedDeviceInfo](#hibermodemmodemconnecteddeviceinfo) | Additional information when this modem is a connected device. |
@@ -2687,25 +2686,25 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modems | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
-| free_text_search | [ string](#string) | none |
-| only_active | [ bool](#bool) | Use lifecycle filter instead. |
-| activated_in | [ hiber.TimeRange](#hibertimerange) | none |
-| with_last_message_in | [ hiber.TimeRange](#hibertimerange) | none |
+| modems | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
+| free_text_search | [ string](#string) |  |
+| only_active | [ bool](#bool) | <strong>Deprecated.</strong> Use lifecycle filter instead. |
+| activated_in | [ hiber.TimeRange](#hibertimerange) | <strong>Deprecated.</strong>  |
+| with_last_message_in | [ hiber.TimeRange](#hibertimerange) |  |
 | health_levels | [repeated string](#string) | Filter modems by health level. |
 | lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
-| transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) | none |
+| transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) |  |
 | include_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Only include modems that have a type listed in types. In other words, when providing multiple types, this is an "OR" relationship. |
 | exclude_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Exclude modems that have a type listed in types. |
-| device_types | [ hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) | none |
-| sensorBrands | [ hiber.Filter.SensorBrands](#hiberfiltersensorbrands) | none |
-| identifiers | [ hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) | none |
-| only_gateways | [ bool](#bool) | [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
-| only_has_external_device_ids | [ bool](#bool) | [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
-| connected_to_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
-| external_device_ids | [repeated string](#string) | none |
-| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ hiber.modem.ModemSelection.Peripherals](#hibermodemmodemselectionperipherals) | none |
+| device_types | [ hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
+| sensorBrands | [ hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
+| identifiers | [ hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
+| only_gateways | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
+| only_has_external_device_ids | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
+| connected_to_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
+| external_device_ids | [repeated string](#string) | <strong>Deprecated.</strong>  |
+| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ hiber.modem.ModemSelection.Peripherals](#hibermodemmodemselectionperipherals) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.only_without_peripheral | [ bool](#bool) | When set to true, only modems that do not have any peripheral will be included in the result. |
 | only_connected_to_gateway | [ bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
 | not_connected_to_gateway | [ bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
@@ -2801,8 +2800,8 @@ Simplified version of assign.AssignDirectly.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) | none |
-| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | none |
+| alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
+| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 | parameters | [map hiber.modem.alarm.AssignModemAlarms.Request.ParametersEntry](#hibermodemalarmassignmodemalarmsrequestparametersentry) | The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
 
 ### hiber.modem.alarm.AssignModemAlarms.Request.ParametersEntry
@@ -2811,8 +2810,8 @@ Simplified version of assign.AssignDirectly.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ google.protobuf.Struct](#googleprotobufstruct) | none |
+| key | [ string](#string) |  |
+| value | [ google.protobuf.Struct](#googleprotobufstruct) |  |
 
 ### hiber.modem.alarm.AssignModemAlarms.Response
 
@@ -2820,8 +2819,8 @@ Simplified version of assign.AssignDirectly.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| created | [repeated hiber.modem.alarm.AssignedModemAlarm](#hibermodemalarmassignedmodemalarm) | none |
-| request | [ hiber.modem.alarm.AssignModemAlarms.Request](#hibermodemalarmassignmodemalarmsrequest) | none |
+| created | [repeated hiber.modem.alarm.AssignedModemAlarm](#hibermodemalarmassignedmodemalarm) |  |
+| request | [ hiber.modem.alarm.AssignModemAlarms.Request](#hibermodemalarmassignmodemalarmsrequest) |  |
 
 ### hiber.modem.alarm.AssignedModemAlarm
 
@@ -2829,8 +2828,8 @@ Directly assigned modem alarm to a modem.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| alarm_identifier | [ string](#string) | none |
-| modem_number | [ string](#string) | none |
+| alarm_identifier | [ string](#string) |  |
+| modem_number | [ string](#string) |  |
 
 ### hiber.modem.alarm.CreateModemAlarm
 
@@ -3162,7 +3161,7 @@ Has the following parameters:
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | maximum | [ hiber.Duration](#hiberduration) | The maximum value for the modem's inactivity (time since last message was received on the server). |
-| deprecated_maximum | [ hiber.Duration](#hiberduration) | none |
+| deprecated_maximum | [ hiber.Duration](#hiberduration) | <strong>Deprecated.</strong>  |
 
 ### hiber.modem.alarm.ModemAlarm.Check.LocationCheck
 
@@ -3224,7 +3223,7 @@ Test a set of parameters on a modem alarm, to see the result when they are appli
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| result | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | none |
+| result | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) |  |
 
 ### hiber.modem.alarm.UnassignModemAlarms
 
@@ -3241,8 +3240,8 @@ Simplified version of assign.UnassignDirectly.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) | none |
-| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | none |
+| alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
+| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 
 ### hiber.modem.alarm.UnassignModemAlarms.Response
 
@@ -3250,8 +3249,8 @@ Simplified version of assign.UnassignDirectly.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| removed_direct_assignments | [repeated hiber.modem.alarm.AssignedModemAlarm](#hibermodemalarmassignedmodemalarm) | none |
-| request | [ hiber.modem.alarm.UnassignModemAlarms.Request](#hibermodemalarmunassignmodemalarmsrequest) | none |
+| removed_direct_assignments | [repeated hiber.modem.alarm.AssignedModemAlarm](#hibermodemalarmassignedmodemalarm) |  |
+| request | [ hiber.modem.alarm.UnassignModemAlarms.Request](#hibermodemalarmunassignmodemalarmsrequest) |  |
 
 ### hiber.modem.alarm.UpdateModemAlarm
 
@@ -3288,8 +3287,8 @@ and as such can result in multiple events:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ hiber.modem.alarm.ModemAlarm.Check](#hibermodemalarmmodemalarmcheck) | none |
+| key | [ string](#string) |  |
+| value | [ hiber.modem.alarm.ModemAlarm.Check](#hibermodemalarmmodemalarmcheck) |  |
 
 ### hiber.modem.alarm.UpdateModemAlarm.Response
 
@@ -3297,7 +3296,7 @@ and as such can result in multiple events:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | none |
+| updated | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) |  |
 
 ### hiber.modem.alarm.UpdateModemAlarmAddCheck
 
@@ -3320,7 +3319,7 @@ Add a check to the alarm, iff you are the owner or can impersonate the owner org
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | none |
+| updated | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) |  |
 
 ### hiber.modem.alarm.UpdateModemAlarmRemoveCheck
 
@@ -3343,7 +3342,7 @@ Remove a check from an alarm.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | none |
+| updated | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) |  |
 
 ### hiber.modem.alarm.UpdateModemAlarmUpdateCheck
 
@@ -3371,7 +3370,7 @@ check.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | none |
+| updated | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) |  |
 
 
 ### Enums
@@ -3408,8 +3407,8 @@ Simplified version of assign.AssignDirectly.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| assign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | none |
-| to_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | none |
+| assign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
+| to_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 
 ### hiber.modem.message.bodyparser.AssignModemMessageBodyParsers.Response
 
@@ -3417,8 +3416,8 @@ Simplified version of assign.AssignDirectly.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| created | [repeated hiber.modem.message.bodyparser.AssignedModemMessageBodyParser](#hibermodemmessagebodyparserassignedmodemmessagebodyparser) | none |
-| request | [ hiber.modem.message.bodyparser.AssignModemMessageBodyParsers.Request](#hibermodemmessagebodyparserassignmodemmessagebodyparsersrequest) | none |
+| created | [repeated hiber.modem.message.bodyparser.AssignedModemMessageBodyParser](#hibermodemmessagebodyparserassignedmodemmessagebodyparser) |  |
+| request | [ hiber.modem.message.bodyparser.AssignModemMessageBodyParsers.Request](#hibermodemmessagebodyparserassignmodemmessagebodyparsersrequest) |  |
 
 ### hiber.modem.message.bodyparser.AssignedModemMessageBodyParser
 
@@ -3426,8 +3425,8 @@ Directly assigned modem message parser to a modem.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| parser_identifier | [ string](#string) | none |
-| modem_number | [ string](#string) | none |
+| parser_identifier | [ string](#string) |  |
+| modem_number | [ string](#string) |  |
 
 ### hiber.modem.message.bodyparser.CreateSimpleModemMessageBodyParserRequest
 
@@ -3436,7 +3435,7 @@ Create a simple modem message parser, which generates a .ksy specification.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) | none |
+| parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) |  |
 
 ### hiber.modem.message.bodyparser.DeleteModemMessageBodyParserRequest
 
@@ -3462,8 +3461,8 @@ typically larger multi-line strings.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| selection | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
+| pagination | [ hiber.Pagination](#hiberpagination) |  |
 | exclude_content | [ bool](#bool) | Whether to omit the content in the resulting ModemMessageBodyParsers. |
 
 ### hiber.modem.message.bodyparser.ListModemMessageBodyParsersRequest.Response
@@ -3472,9 +3471,9 @@ typically larger multi-line strings.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| parsers | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
-| request | [ hiber.modem.message.bodyparser.ListModemMessageBodyParsersRequest](#hibermodemmessagebodyparserlistmodemmessagebodyparsersrequest) | none |
+| parsers | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
+| request | [ hiber.modem.message.bodyparser.ListModemMessageBodyParsersRequest](#hibermodemmessagebodyparserlistmodemmessagebodyparsersrequest) |  |
 
 ### hiber.modem.message.bodyparser.MakeModemMessageBodyParserAvailableToChildOrganizationRequest
 
@@ -3519,8 +3518,8 @@ A parser can be defined in two ways: using a .ksy (Kaitai struct https://kaitai.
 | data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Fields in the parsed result that contain data. Data fields are cached for efficient retrieval and allow all kinds of processing. |
 | metadata_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields) | Fields in the parsed result that contain metadata, and special things like a location. |
 | available_to_child_organizations | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations](#hibermodemmessagebodyparsermodemmessagebodyparseravailabletochildorganizations) | If set, this parser is available to your child organizations, as a Provided parser. |
-| post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | The list of post-processing steps applied to the result of this parser. |
-| require_message_metadata | [map hiber.modem.message.bodyparser.ModemMessageBodyParser.RequireMessageMetadataEntry](#hibermodemmessagebodyparsermodemmessagebodyparserrequiremessagemetadataentry) | In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. Deprecated: use metadata_fields.require_message_metadata |
+| post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | <strong>Deprecated.</strong> The list of post-processing steps applied to the result of this parser. |
+| require_message_metadata | [map hiber.modem.message.bodyparser.ModemMessageBodyParser.RequireMessageMetadataEntry](#hibermodemmessagebodyparsermodemmessagebodyparserrequiremessagemetadataentry) | <strong>Deprecated.</strong> In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. Deprecated: use metadata_fields.require_message_metadata |
 
 ### hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations
 
@@ -3529,7 +3528,7 @@ This means the child organization can use it, but not update or delete it.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | none |
+| child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) |  |
 
 ### hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields
 
@@ -3551,8 +3550,8 @@ like a location or battery percentage.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| latitude | [ string](#string) | none |
-| longitude | [ string](#string) | none |
+| latitude | [ string](#string) |  |
+| longitude | [ string](#string) |  |
 
 ### hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.RequireMessageMetadataEntry
 
@@ -3560,8 +3559,8 @@ like a location or battery percentage.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
+| key | [ string](#string) |  |
+| value | [ google.protobuf.Value](#googleprotobufvalue) |  |
 
 ### hiber.modem.message.bodyparser.ModemMessageBodyParser.RequireMessageMetadataEntry
 
@@ -3569,8 +3568,8 @@ like a location or battery percentage.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
+| key | [ string](#string) |  |
+| value | [ google.protobuf.Value](#googleprotobufvalue) |  |
 
 ### hiber.modem.message.bodyparser.ModemMessageBodyParserSelection
 
@@ -3619,7 +3618,7 @@ If the message was previously parsed by any of those parsers, the previous resul
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| parsed_messages | [repeated hiber.modem.ModemMessage.ParsedBody](#hibermodemmodemmessageparsedbody) | none |
+| parsed_messages | [repeated hiber.modem.ModemMessage.ParsedBody](#hibermodemmodemmessageparsedbody) |  |
 
 ### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser
 
@@ -3653,10 +3652,10 @@ Delimited size definition, used for Bytes and Text.
 | ----- | ---- | ----------- |
 | name | [ string](#string) | Field name. This is a reduced to a value containing only lowercase letters, numbers and underscores. |
 | documentation | [ string](#string) | A short, single line description of the field. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.integer | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Integer](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldinteger) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.float | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Float](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldfloat) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.bytes | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Bytes](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldbytes) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.string | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.String](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldstring) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.integer | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Integer](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldinteger) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.float | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Float](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldfloat) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.bytes | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Bytes](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldbytes) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.string | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.String](#hibermodemmessagebodyparsersimplemodemmessagebodyparserfieldstring) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.magic | [ bytes](#bytes) | Specify an expected magic sequence (some bytes that are always the same). |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.custom_type | [ string](#string) | Specify a custom type name. |
 
@@ -3666,7 +3665,7 @@ Delimited size definition, used for Bytes and Text.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.DelimitedSize](#hibermodemmessagebodyparsersimplemodemmessagebodyparserdelimitedsize) | none |
+| size | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.DelimitedSize](#hibermodemmessagebodyparsersimplemodemmessagebodyparserdelimitedsize) |  |
 
 ### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field.Float
 
@@ -3693,7 +3692,7 @@ Delimited size definition, used for Bytes and Text.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.DelimitedSize](#hibermodemmessagebodyparsersimplemodemmessagebodyparserdelimitedsize) | none |
+| size | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.DelimitedSize](#hibermodemmessagebodyparsersimplemodemmessagebodyparserdelimitedsize) |  |
 | encoding | [ string](#string) | Specifies encoding for the string. This can be omitted if default encoding specified. |
 
 ### hiber.modem.message.bodyparser.TestModemMessageBodyParserRequest
@@ -3722,8 +3721,8 @@ or while developing a parser to validate it with an expected body.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **result**.parsed | [ google.protobuf.Struct](#googleprotobufstruct) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **result**.error | [ string](#string) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **result**.parsed | [ google.protobuf.Struct](#googleprotobufstruct) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **result**.error | [ string](#string) |  |
 
 ### hiber.modem.message.bodyparser.UnassignModemMessageBodyParsers
 
@@ -3740,8 +3739,8 @@ Simplified version of assign.UnassignDirectly.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| unassign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | none |
-| from_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | none |
+| unassign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
+| from_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 
 ### hiber.modem.message.bodyparser.UnassignModemMessageBodyParsers.Response
 
@@ -3749,8 +3748,8 @@ Simplified version of assign.UnassignDirectly.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| removed_direct_assignments | [repeated hiber.modem.message.bodyparser.AssignedModemMessageBodyParser](#hibermodemmessagebodyparserassignedmodemmessagebodyparser) | none |
-| request | [ hiber.modem.message.bodyparser.UnassignModemMessageBodyParsers.Request](#hibermodemmessagebodyparserunassignmodemmessagebodyparsersrequest) | none |
+| removed_direct_assignments | [repeated hiber.modem.message.bodyparser.AssignedModemMessageBodyParser](#hibermodemmessagebodyparserassignedmodemmessagebodyparser) |  |
+| request | [ hiber.modem.message.bodyparser.UnassignModemMessageBodyParsers.Request](#hibermodemmessagebodyparserunassignmodemmessagebodyparsersrequest) |  |
 
 ### hiber.modem.message.bodyparser.UpdateChildOrganizationAvailabilityRequest
 
@@ -3772,7 +3771,7 @@ Update a simple modem message parser, updating the generated .ksy specification.
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifier of the parser that should be updated. |
-| parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) | none |
+| parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) |  |
 
 ### hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest
 
@@ -3787,8 +3786,8 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 | add_data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Add fields to the data fields list. |
 | remove_data_fields | [repeated string](#string) | Remove fields from the data fields list. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_metadata_fields**.metadata_fields | [optional hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
-| add_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | Add a post-processing step to the result of this parser. |
-| remove_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | Remove a post-processing step to the result of this parser. |
+| add_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | <strong>Deprecated.</strong> Add a post-processing step to the result of this parser. |
+| remove_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | <strong>Deprecated.</strong> Remove a post-processing step to the result of this parser. |
 
 ### hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields
 
@@ -3815,8 +3814,8 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
+| key | [ string](#string) |  |
+| value | [ google.protobuf.Value](#googleprotobufvalue) |  |
 
 ### hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields.ReplaceRequireMessageMetadataEntry
 
@@ -3824,8 +3823,8 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
+| key | [ string](#string) |  |
+| value | [ google.protobuf.Value](#googleprotobufvalue) |  |
 
 ### hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest
 
@@ -3838,7 +3837,7 @@ Upload a new body parser from a .ksy file.
 | content_ksy | [ string](#string) | The ksy definition for this parser. |
 | data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Fields in the parsed result that contain data. This can be useful to track which fields could be plotted, etc. |
 | metadata_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
-| post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | none |
+| post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) |  |
 | require_message_metadata | [map hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest.RequireMessageMetadataEntry](#hibermodemmessagebodyparseruploadmodemmessagebodyparserrequestrequiremessagemetadataentry) | In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. |
 
 ### hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest.RequireMessageMetadataEntry
@@ -3847,8 +3846,8 @@ Upload a new body parser from a .ksy file.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ google.protobuf.Value](#googleprotobufvalue) | none |
+| key | [ string](#string) |  |
+| value | [ google.protobuf.Value](#googleprotobufvalue) |  |
 
 
 ### Enums
@@ -3857,16 +3856,16 @@ The type of post-processing to be applied to the result of this parser.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| NOTHING | none | 0 |
+| NOTHING |  | 0 |
 
 #### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Endian
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| DEFAULT | none | 0 |
-| LITTLE_ENDIAN | none | 1 |
-| BIG_ENDIAN | none | 2 |
+| DEFAULT |  | 0 |
+| LITTLE_ENDIAN |  | 1 |
+| BIG_ENDIAN |  | 2 |
 
 
 
@@ -3910,7 +3909,7 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization_to_delete | [ string](#string) | none |
+| organization_to_delete | [ string](#string) |  |
 | organizations_deleted | [ hiber.organization.OrganizationTree](#hiberorganizationorganizationtree) | The organizations that were deleted. |
 
 ### hiber.organization.GetOrganizationAvatar
@@ -3925,7 +3924,7 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organizations | [repeated string](#string) | The slug for this organization, used to identify organizations |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| pagination | [ hiber.Pagination](#hiberpagination) |  |
 
 ### hiber.organization.GetOrganizationAvatar.Response
 
@@ -3934,7 +3933,7 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | avatars | [map hiber.organization.GetOrganizationAvatar.Response.AvatarsEntry](#hiberorganizationgetorganizationavatarresponseavatarsentry) | Avatars, indexed by organization slug |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 ### hiber.organization.GetOrganizationAvatar.Response.AvatarsEntry
 
@@ -3942,8 +3941,8 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ hiber.Avatar](#hiberavatar) | none |
+| key | [ string](#string) |  |
+| value | [ hiber.Avatar](#hiberavatar) |  |
 
 ### hiber.organization.GetOrganizationRequest
 
@@ -3960,9 +3959,9 @@ List the child organizations for the given organization
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
-| include_details | [ bool](#bool) | none |
+| selection | [ hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) |  |
+| pagination | [ hiber.Pagination](#hiberpagination) |  |
+| include_details | [ bool](#bool) |  |
 
 ### hiber.organization.ListChildOrganizationsRequest.Response
 
@@ -3970,9 +3969,9 @@ List the child organizations for the given organization
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| child_organizations | [repeated hiber.organization.Organization](#hiberorganizationorganization) | none |
-| request | [ hiber.organization.ListChildOrganizationsRequest](#hiberorganizationlistchildorganizationsrequest) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| child_organizations | [repeated hiber.organization.Organization](#hiberorganizationorganization) |  |
+| request | [ hiber.organization.ListChildOrganizationsRequest](#hiberorganizationlistchildorganizationsrequest) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 ### hiber.organization.Organization
 
@@ -3983,17 +3982,17 @@ of any modems and related data.
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | The slug for this organization, used to identify organizations |
 | display_name | [ string](#string) | The name of the organization to display to the end-user |
-| address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | none |
-| contact | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) | none |
-| vat_number | [ string](#string) | none |
-| billing_name | [ string](#string) | none |
-| billing_address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | none |
-| contract_signature_date | [ hiber.Timestamp](#hibertimestamp) | none |
-| created_at | [ hiber.Timestamp](#hibertimestamp) | none |
-| updated_at | [ hiber.Timestamp](#hibertimestamp) | none |
-| features | [repeated hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature) | none |
-| database_info | [ string](#string) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_defaults**.defaults | [optional hiber.organization.Organization.Defaults](#hiberorganizationorganizationdefaults) | none |
+| address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) |  |
+| contact | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) |  |
+| vat_number | [ string](#string) |  |
+| billing_name | [ string](#string) |  |
+| billing_address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) |  |
+| contract_signature_date | [ hiber.Timestamp](#hibertimestamp) |  |
+| created_at | [ hiber.Timestamp](#hibertimestamp) |  |
+| updated_at | [ hiber.Timestamp](#hibertimestamp) |  |
+| features | [repeated hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature) |  |
+| database_info | [ string](#string) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_defaults**.defaults | [optional hiber.organization.Organization.Defaults](#hiberorganizationorganizationdefaults) |  |
 
 ### hiber.organization.Organization.Address
 
@@ -4001,11 +4000,11 @@ of any modems and related data.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| lines | [repeated string](#string) | none |
-| zip_code | [ string](#string) | none |
-| city | [ string](#string) | none |
-| state | [ string](#string) | none |
-| country | [ string](#string) | none |
+| lines | [repeated string](#string) |  |
+| zip_code | [ string](#string) |  |
+| city | [ string](#string) |  |
+| state | [ string](#string) |  |
+| country | [ string](#string) |  |
 
 ### hiber.organization.Organization.Contact
 
@@ -4013,9 +4012,9 @@ of any modems and related data.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| name | [ string](#string) | none |
-| email | [ string](#string) | none |
-| phone | [ string](#string) | none |
+| name | [ string](#string) |  |
+| email | [ string](#string) |  |
+| phone | [ string](#string) |  |
 
 ### hiber.organization.Organization.Defaults
 
@@ -4032,8 +4031,8 @@ User for child organization list and tree.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organizations | [ hiber.Filter.Organizations](#hiberfilterorganizations) | none |
-| search | [ string](#string) | none |
+| organizations | [ hiber.Filter.Organizations](#hiberfilterorganizations) |  |
+| search | [ string](#string) |  |
 
 ### hiber.organization.OrganizationTree
 
@@ -4041,8 +4040,8 @@ User for child organization list and tree.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ hiber.organization.Organization](#hiberorganizationorganization) | none |
-| children | [repeated hiber.organization.OrganizationTree](#hiberorganizationorganizationtree) | none |
+| organization | [ hiber.organization.Organization](#hiberorganizationorganization) |  |
+| children | [repeated hiber.organization.OrganizationTree](#hiberorganizationorganizationtree) |  |
 
 ### hiber.organization.OrganizationTreeRequest
 
@@ -4052,7 +4051,7 @@ The organization tree contains your current organization as the root of the tree
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate) for this call, overriding your default organization |
-| selection | [ hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) | none |
+| selection | [ hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) |  |
 
 ### hiber.organization.OrganizationTreeRequest.Response
 
@@ -4060,8 +4059,8 @@ The organization tree contains your current organization as the root of the tree
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| request | [ hiber.organization.OrganizationTreeRequest](#hiberorganizationorganizationtreerequest) | none |
-| tree | [ hiber.organization.OrganizationTree](#hiberorganizationorganizationtree) | none |
+| request | [ hiber.organization.OrganizationTreeRequest](#hiberorganizationorganizationtreerequest) |  |
+| tree | [ hiber.organization.OrganizationTree](#hiberorganizationorganizationtree) |  |
 
 ### hiber.organization.UpdateOrganizationRequest
 
@@ -4072,14 +4071,14 @@ Note that the organization field specifies the organization, it is not used to u
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| display_name | [ string](#string) | none |
-| vat_number | [ string](#string) | none |
-| address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | none |
-| billing_name | [ string](#string) | none |
-| billing_address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | none |
-| contact | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) | none |
-| avatar | [ hiber.Avatar](#hiberavatar) | none |
+| organization | [ string](#string) |  |
+| display_name | [ string](#string) |  |
+| vat_number | [ string](#string) |  |
+| address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) |  |
+| billing_name | [ string](#string) |  |
+| billing_address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) |  |
+| contact | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) |  |
+| avatar | [ hiber.Avatar](#hiberavatar) |  |
 
 ### hiber.organization.ValidateOrganizationCreationTokenRequest
 
@@ -4095,7 +4094,7 @@ Note that the organization field specifies the organization, it is not used to u
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| valid | [ bool](#bool) | none |
+| valid | [ bool](#bool) |  |
 
 
 ### Enums
@@ -4104,7 +4103,7 @@ Note that the organization field specifies the organization, it is not used to u
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| UNKNOWN | none | 0 |
+| UNKNOWN |  | 0 |
 | HIBER | The default Hiber set of features including Mission Control and the API | 1 |
 | HILO | A limited set of features corresponding to the HiberHilo product. | 2 |
 | MODEM_CREATION | Required to manually create modems using the ModemService. | 4 |
@@ -4139,41 +4138,41 @@ Now, this types is only used in the relevant events.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| id | [ int64](#int64) | none |
-| description | [ string](#string) | none |
-| deprecated_data | [ hiber.publisher.Publisher.Data](#hiberpublisherpublisherdata) | This field remains for backwards compatibility, but it should not be used. |
-| filters | [ hiber.publisher.Publisher.Filters](#hiberpublisherpublisherfilters) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| health | [ hiber.Health](#hiberhealth) | none |
-| type | [ hiber.publisher.Publisher.Type](#hiberpublisherpublishertype) | none |
-| in_cooldown_until | [ hiber.Timestamp](#hibertimestamp) | none |
-| disabled | [ bool](#bool) | none |
+| id | [ int64](#int64) |  |
+| description | [ string](#string) |  |
+| deprecated_data | [ hiber.publisher.Publisher.Data](#hiberpublisherpublisherdata) | <strong>Deprecated.</strong> This field remains for backwards compatibility, but it should not be used. |
+| filters | [ hiber.publisher.Publisher.Filters](#hiberpublisherpublisherfilters) |  |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| health | [ hiber.Health](#hiberhealth) |  |
+| type | [ hiber.publisher.Publisher.Type](#hiberpublisherpublishertype) |  |
+| in_cooldown_until | [ hiber.Timestamp](#hibertimestamp) |  |
+| disabled | [ bool](#bool) |  |
 | created_by | [ string](#string) | Firebase uid of the user that created this publisher |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.http | [ hiber.webhook.Webhook.WebhookData](#hiberwebhookwebhookwebhookdata) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.mqtt | [ hiber.integration.mqtt.MQTTPublisher.Data](#hiberintegrationmqttmqttpublisherdata) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.email | [ hiber.email.EmailNotificationPreferences](#hiberemailemailnotificationpreferences) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.slack | [ hiber.integration.slack.SlackPublisher.Data](#hiberintegrationslackslackpublisherdata) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.shell_ssip | [ hiber.publisher.Publisher.Data.ShellSsipConfig](#hiberpublisherpublisherdatashellssipconfig) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.http | [ hiber.webhook.Webhook.WebhookData](#hiberwebhookwebhookwebhookdata) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.mqtt | [ hiber.integration.mqtt.MQTTPublisher.Data](#hiberintegrationmqttmqttpublisherdata) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.email | [ hiber.email.EmailNotificationPreferences](#hiberemailemailnotificationpreferences) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.slack | [ hiber.integration.slack.SlackPublisher.Data](#hiberintegrationslackslackpublisherdata) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.shell_ssip | [ hiber.publisher.Publisher.Data.ShellSsipConfig](#hiberpublisherpublisherdatashellssipconfig) |  |
 
 ### hiber.publisher.Publisher.Data
 
-This type remains for backwards compatibility, but it should not be used.
+<strong>Deprecated.</strong> This type remains for backwards compatibility, but it should not be used.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| url | [ string](#string) | none |
-| content_type | [ hiber.publisher.Publisher.ContentType](#hiberpublisherpublishercontenttype) | none |
-| disabled | [ bool](#bool) | none |
-| certificate_id | [ int64](#int64) | none |
-| certificate_name | [ string](#string) | none |
-| ca_certificate_id | [ int64](#int64) | none |
-| ca_certificate_name | [ string](#string) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **config**.http | [ hiber.publisher.Publisher.Data.HTTPConfig](#hiberpublisherpublisherdatahttpconfig) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **config**.mqtt | [ hiber.publisher.Publisher.Data.MQTTConfig](#hiberpublisherpublisherdatamqttconfig) | none |
+| url | [ string](#string) |  |
+| content_type | [ hiber.publisher.Publisher.ContentType](#hiberpublisherpublishercontenttype) |  |
+| disabled | [ bool](#bool) |  |
+| certificate_id | [ int64](#int64) |  |
+| certificate_name | [ string](#string) |  |
+| ca_certificate_id | [ int64](#int64) |  |
+| ca_certificate_name | [ string](#string) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **config**.http | [ hiber.publisher.Publisher.Data.HTTPConfig](#hiberpublisherpublisherdatahttpconfig) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **config**.mqtt | [ hiber.publisher.Publisher.Data.MQTTConfig](#hiberpublisherpublisherdatamqttconfig) |  |
 
 ### hiber.publisher.Publisher.Data.HTTPConfig
 
-This field remains for backwards compatibility, but it should not be used.
+<strong>Deprecated.</strong> This field remains for backwards compatibility, but it should not be used.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -4181,12 +4180,12 @@ This field remains for backwards compatibility, but it should not be used.
 
 ### hiber.publisher.Publisher.Data.MQTTConfig
 
-This field remains for backwards compatibility, but it should not be used.
+<strong>Deprecated.</strong> This field remains for backwards compatibility, but it should not be used.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| topic | [ string](#string) | none |
-| qos | [ hiber.publisher.Publisher.Data.MQTTConfig.QoS](#hiberpublisherpublisherdatamqttconfigqos) | none |
+| topic | [ string](#string) |  |
+| qos | [ hiber.publisher.Publisher.Data.MQTTConfig.QoS](#hiberpublisherpublisherdatamqttconfigqos) |  |
 | username | [ string](#string) | Optional username to authenticate with. |
 | password | [ string](#string) | Optional password to authenticate with. Requires username to be set. |
 | identifier | [ string](#string) | Identifier used by the MQTT client. Defaults to "hiber". |
@@ -4197,9 +4196,9 @@ This field remains for backwards compatibility, but it should not be used.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| url | [ string](#string) | none |
-| tenant_id | [ string](#string) | none |
-| resource_id | [ string](#string) | none |
+| url | [ string](#string) |  |
+| tenant_id | [ string](#string) |  |
+| resource_id | [ string](#string) |  |
 
 ### hiber.publisher.Publisher.Filters
 
@@ -4207,41 +4206,41 @@ This field remains for backwards compatibility, but it should not be used.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| event_types | [ hiber.Filter.Events](#hiberfilterevents) | none |
-| modem_numbers | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
-| tags | [ hiber.Filter.Tags](#hiberfiltertags) | none |
+| event_types | [ hiber.Filter.Events](#hiberfilterevents) |  |
+| modem_numbers | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
+| tags | [ hiber.Filter.Tags](#hiberfiltertags) |  |
 
 ### hiber.publisher.UpdatePublisherRequest
 
-
+<strong>Deprecated.</strong> 
 
 
 ### hiber.publisher.UpdatePublisherRequest.UpdateModems
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
 
 
 ### Enums
 #### hiber.publisher.Publisher.ContentType
-This type remains for backwards compatibility, but it should not be used.
+<strong>Deprecated.</strong> This type remains for backwards compatibility, but it should not be used.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| DEFAULT | none | 0 |
-| JSON | none | 1 |
-| PROTO | none | 2 |
+| DEFAULT |  | 0 |
+| JSON |  | 1 |
+| PROTO |  | 2 |
 
 #### hiber.publisher.Publisher.Data.MQTTConfig.QoS
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| DEFAULT | none | 0 |
+| DEFAULT |  | 0 |
 | AT_MOST_ONCE | Qos level 0 | 1 |
 | AT_LEAST_ONCE | Qos level 1 | 2 |
 | EXACTLY_ONCE | Qos level 2 | 3 |
@@ -4251,11 +4250,11 @@ This type remains for backwards compatibility, but it should not be used.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| HTTP | none | 0 |
-| MQTT | none | 1 |
-| EMAIL | none | 3 |
-| SLACK | none | 4 |
-| SHELL_SSIP | none | 5 |
+| HTTP |  | 0 |
+| MQTT |  | 1 |
+| EMAIL |  | 3 |
+| SLACK |  | 4 |
+| SHELL_SSIP |  | 5 |
 
 
 
@@ -4272,8 +4271,8 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| id | [ int64](#int64) | none |
-| label | [ hiber.tag.Tag.Label](#hibertagtaglabel) | none |
+| id | [ int64](#int64) |  |
+| label | [ hiber.tag.Tag.Label](#hibertagtaglabel) |  |
 
 ### hiber.tag.Tag.Label
 
@@ -4281,8 +4280,8 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| name | [ string](#string) | none |
-| type | [ string](#string) | none |
+| name | [ string](#string) |  |
+| type | [ string](#string) |  |
 
 ### hiber.tag.TagSelection
 
@@ -4290,10 +4289,10 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| search | [repeated string](#string) | none |
-| names | [repeated string](#string) | none |
-| filter | [ hiber.Filter.Tags](#hiberfiltertags) | none |
-| types | [repeated string](#string) | none |
+| search | [repeated string](#string) |  |
+| names | [repeated string](#string) |  |
+| filter | [ hiber.Filter.Tags](#hiberfiltertags) |  |
+| types | [repeated string](#string) |  |
 
 
 ### Enums
@@ -4313,10 +4312,10 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| name | [ string](#string) | none |
-| type | [ hiber.token.Token.Type](#hibertokentokentype) | none |
-| expires_at | [ hiber.Timestamp](#hibertimestamp) | none |
-| user_permissions | [ hiber.Filter.UserPermissions](#hiberfilteruserpermissions) | none |
+| name | [ string](#string) |  |
+| type | [ hiber.token.Token.Type](#hibertokentokentype) |  |
+| expires_at | [ hiber.Timestamp](#hibertimestamp) |  |
+| user_permissions | [ hiber.Filter.UserPermissions](#hiberfilteruserpermissions) |  |
 | organization_permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new token should get. |
 | roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new token should get. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_for_user_id**.for_user_id | [optional string](#string) | Optionally, if you have the USERS_MANAGE permission, you can make a token for another user. If you do, you cannot grant it permissions they do not have, not can you grant it any user permissions. |
@@ -4327,8 +4326,8 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| token | [ string](#string) | none |
-| created | [ hiber.token.Token](#hibertokentoken) | none |
+| token | [ string](#string) |  |
+| created | [ hiber.token.Token](#hibertokentoken) |  |
 
 ### hiber.token.DeleteTokenRequest
 
@@ -4337,7 +4336,7 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| token_id | [ int64](#int64) | none |
+| token_id | [ int64](#int64) |  |
 
 ### hiber.token.DeleteTokenRequest.Response
 
@@ -4351,8 +4350,8 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.token.TokenSelection](#hibertokentokenselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| selection | [ hiber.token.TokenSelection](#hibertokentokenselection) |  |
+| pagination | [ hiber.Pagination](#hiberpagination) |  |
 
 ### hiber.token.ListTokensRequest.Response
 
@@ -4360,9 +4359,9 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| tokens | [repeated hiber.token.Token](#hibertokentoken) | none |
-| request | [ hiber.token.ListTokensRequest](#hibertokenlisttokensrequest) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| tokens | [repeated hiber.token.Token](#hibertokentoken) |  |
+| request | [ hiber.token.ListTokensRequest](#hibertokenlisttokensrequest) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 ### hiber.token.Token
 
@@ -4370,16 +4369,16 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| id | [ int64](#int64) | none |
-| name | [ string](#string) | none |
-| user_id | [ string](#string) | none |
-| user_details | [ hiber.token.Token.UserDetails](#hibertokentokenuserdetails) | none |
-| organization | [ string](#string) | none |
-| expires_at | [ hiber.Timestamp](#hibertimestamp) | none |
-| user_permissions | [repeated hiber.UserPermission](#hiberuserpermission) | none |
-| organization_permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | none |
-| roles | [repeated string](#string) | none |
-| type | [ hiber.token.Token.Type](#hibertokentokentype) | none |
+| id | [ int64](#int64) |  |
+| name | [ string](#string) |  |
+| user_id | [ string](#string) |  |
+| user_details | [ hiber.token.Token.UserDetails](#hibertokentokenuserdetails) |  |
+| organization | [ string](#string) |  |
+| expires_at | [ hiber.Timestamp](#hibertimestamp) |  |
+| user_permissions | [repeated hiber.UserPermission](#hiberuserpermission) |  |
+| organization_permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) |  |
+| roles | [repeated string](#string) |  |
+| type | [ hiber.token.Token.Type](#hibertokentokentype) |  |
 
 ### hiber.token.Token.UserDetails
 
@@ -4387,9 +4386,9 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| id | [ string](#string) | none |
-| email | [ string](#string) | none |
-| name | [ string](#string) | none |
+| id | [ string](#string) |  |
+| email | [ string](#string) |  |
+| name | [ string](#string) |  |
 
 ### hiber.token.TokenSelection
 
@@ -4397,11 +4396,11 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| users | [ hiber.Filter.Users](#hiberfilterusers) | none |
-| name | [ string](#string) | none |
-| include_expired | [ bool](#bool) | none |
-| roles | [ hiber.Filter.Roles](#hiberfilterroles) | none |
-| type | [repeated hiber.token.Token.Type](#hibertokentokentype) | none |
+| users | [ hiber.Filter.Users](#hiberfilterusers) |  |
+| name | [ string](#string) |  |
+| include_expired | [ bool](#bool) |  |
+| roles | [ hiber.Filter.Roles](#hiberfilterroles) |  |
+| type | [repeated hiber.token.Token.Type](#hibertokentokentype) |  |
 
 ### hiber.token.UpdateTokenOrganizationPermissionsRequest
 
@@ -4410,7 +4409,7 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| token_ids | [repeated int64](#int64) | none |
+| token_ids | [repeated int64](#int64) |  |
 | replace_organization_permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Completely replace the organization permission for the selected token(s) with this set. |
 | add_organization_permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | Add organization permissions to the token. |
 | remove_organization_permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | Remove organization permissions from the token. Ensures the permissions is no longer on the token (even if you also add it using add_organization_permissions). |
@@ -4432,9 +4431,9 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| token_ids | [repeated int64](#int64) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update**.modify | [ hiber.token.UpdateTokenRoles.Request.ModifyRoles](#hibertokenupdatetokenrolesrequestmodifyroles) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update**.replace | [ hiber.token.UpdateTokenRoles.Request.ReplaceRoles](#hibertokenupdatetokenrolesrequestreplaceroles) | none |
+| token_ids | [repeated int64](#int64) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update**.modify | [ hiber.token.UpdateTokenRoles.Request.ModifyRoles](#hibertokenupdatetokenrolesrequestmodifyroles) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update**.replace | [ hiber.token.UpdateTokenRoles.Request.ReplaceRoles](#hibertokenupdatetokenrolesrequestreplaceroles) |  |
 
 ### hiber.token.UpdateTokenRoles.Request.ModifyRoles
 
@@ -4451,7 +4450,7 @@ Completely replace the roles the tokens have.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| roles | [repeated string](#string) | none |
+| roles | [repeated string](#string) |  |
 
 ### hiber.token.UpdateTokenRoles.Response
 
@@ -4465,7 +4464,7 @@ Completely replace the roles the tokens have.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| token_ids | [repeated int64](#int64) | none |
+| token_ids | [repeated int64](#int64) |  |
 | replace_user_permissions | [ hiber.Filter.UserPermissions](#hiberfilteruserpermissions) | Completely replace the user permission for the selected token(s) with this set. |
 | add_user_permissions | [repeated hiber.UserPermission](#hiberuserpermission) | Add user permissions to the token. |
 | remove_user_permissions | [repeated hiber.UserPermission](#hiberuserpermission) | Remove user permissions from the token. |
@@ -4504,7 +4503,7 @@ so not all messages listed here are referenced.)
 | sender_organization | [ string](#string) | The organization that sent the transfer. |
 | recipient_organization | [ string](#string) | The organization that received the transfer. |
 | comment | [ string](#string) | Optional comment for the transfer (i.e. reason, tracking information, etc). |
-| created_at | [ hiber.Timestamp](#hibertimestamp) | none |
+| created_at | [ hiber.Timestamp](#hibertimestamp) |  |
 | type | [ hiber.transfer.Transfer.Type](#hibertransfertransfertype) | The type of data transferred to the recipient organization. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **typed**.devices | [ hiber.transfer.Transfer.Devices](#hibertransfertransferdevices) | The devices that were transferred from the sender to the recipient organization. |
 
@@ -4523,7 +4522,7 @@ The type of data transferred to the recipient organization.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| DEVICES | none | 0 |
+| DEVICES |  | 0 |
 
 
 
@@ -4541,11 +4540,11 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| description | [ string](#string) | none |
-| data | [ hiber.webhook.Webhook.WebhookData](#hiberwebhookwebhookwebhookdata) | none |
-| filters | [ hiber.webhook.Webhook.WebhookFilters](#hiberwebhookwebhookwebhookfilters) | none |
+| description | [ string](#string) |  |
+| data | [ hiber.webhook.Webhook.WebhookData](#hiberwebhookwebhookwebhookdata) |  |
+| filters | [ hiber.webhook.Webhook.WebhookFilters](#hiberwebhookwebhookwebhookfilters) |  |
 | health_levels | [repeated string](#string) | Filter events by health level caused. |
-| tags | [repeated int64](#int64) | none |
+| tags | [repeated int64](#int64) |  |
 | certificate_id | [ int64](#int64) | Optionally, a client certificate can be used for the webhook call. See the CertificateService for certificate management options. |
 
 ### hiber.webhook.DeleteWebhookRequest
@@ -4554,7 +4553,7 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| id | [ int64](#int64) | none |
+| id | [ int64](#int64) |  |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 
 ### hiber.webhook.DeleteWebhookRequest.Response
@@ -4568,7 +4567,7 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| id | [ int64](#int64) | none |
+| id | [ int64](#int64) |  |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 
 ### hiber.webhook.EnableWebhookRequest
@@ -4577,7 +4576,7 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| id | [ int64](#int64) | none |
+| id | [ int64](#int64) |  |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 
 ### hiber.webhook.GetWebhookRequest
@@ -4586,7 +4585,7 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| id | [ int64](#int64) | none |
+| id | [ int64](#int64) |  |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 
 ### hiber.webhook.ListWebhooksRequest
@@ -4596,9 +4595,9 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.webhook.WebhookSelection](#hiberwebhookwebhookselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
-| sort | [repeated hiber.webhook.ListWebhooksRequest.Sort](#hiberwebhooklistwebhooksrequestsort) | none |
+| selection | [ hiber.webhook.WebhookSelection](#hiberwebhookwebhookselection) |  |
+| pagination | [ hiber.Pagination](#hiberpagination) |  |
+| sort | [repeated hiber.webhook.ListWebhooksRequest.Sort](#hiberwebhooklistwebhooksrequestsort) |  |
 
 ### hiber.webhook.ListWebhooksRequest.Response
 
@@ -4606,9 +4605,9 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| webhooks | [repeated hiber.webhook.Webhook](#hiberwebhookwebhook) | none |
-| request | [ hiber.webhook.ListWebhooksRequest](#hiberwebhooklistwebhooksrequest) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| webhooks | [repeated hiber.webhook.Webhook](#hiberwebhookwebhook) |  |
+| request | [ hiber.webhook.ListWebhooksRequest](#hiberwebhooklistwebhooksrequest) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 ### hiber.webhook.UpdateWebhookFilterRequest
 
@@ -4616,43 +4615,43 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| id | [ int64](#int64) | none |
+| id | [ int64](#int64) |  |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| deprecated_event_filter | [ hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents](#hiberwebhookupdatewebhookfilterrequestupdateevents) | none |
-| deprecated_modem_filter | [ hiber.webhook.UpdateWebhookFilterRequest.UpdateModems](#hiberwebhookupdatewebhookfilterrequestupdatemodems) | none |
-| deprecated_tag_filter | [ hiber.webhook.UpdateWebhookFilterRequest.UpdateTags](#hiberwebhookupdatewebhookfilterrequestupdatetags) | none |
-| event_filter | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) | none |
-| modem_filter | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | none |
-| tag_filter | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | none |
+| deprecated_event_filter | [ hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents](#hiberwebhookupdatewebhookfilterrequestupdateevents) | <strong>Deprecated.</strong>  |
+| deprecated_modem_filter | [ hiber.webhook.UpdateWebhookFilterRequest.UpdateModems](#hiberwebhookupdatewebhookfilterrequestupdatemodems) | <strong>Deprecated.</strong>  |
+| deprecated_tag_filter | [ hiber.webhook.UpdateWebhookFilterRequest.UpdateTags](#hiberwebhookupdatewebhookfilterrequestupdatetags) | <strong>Deprecated.</strong>  |
+| event_filter | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
+| modem_filter | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
+| tag_filter | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
 | add_health_levels_to_filter | [repeated string](#string) | Add health levels to the health levels filter. |
 | remove_health_levels_from_filter | [repeated string](#string) | Remove health levels from the health levels filter. |
 
 ### hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.Events](#hiberfilterevents) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.Events](#hiberfilterevents) |  |
 
 ### hiber.webhook.UpdateWebhookFilterRequest.UpdateModems
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
 
 ### hiber.webhook.UpdateWebhookFilterRequest.UpdateTags
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.Tags](#hiberfiltertags) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.Tags](#hiberfiltertags) |  |
 
 ### hiber.webhook.UpdateWebhookRequest
 
@@ -4660,9 +4659,9 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| id | [ int64](#int64) | none |
+| id | [ int64](#int64) |  |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| update | [ hiber.webhook.UpdateWebhookRequest.UpdateWebhook](#hiberwebhookupdatewebhookrequestupdatewebhook) | none |
+| update | [ hiber.webhook.UpdateWebhookRequest.UpdateWebhook](#hiberwebhookupdatewebhookrequestupdatewebhook) |  |
 
 ### hiber.webhook.UpdateWebhookRequest.UpdateWebhook
 
@@ -4670,19 +4669,19 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| url | [ string](#string) | none |
-| secret | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
-| content_type | [ hiber.webhook.Webhook.ContentType](#hiberwebhookwebhookcontenttype) | none |
-| description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | none |
-| deprecated_event_filter | [ hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents](#hiberwebhookupdatewebhookrequestupdatewebhookupdateevents) | none |
-| deprecated_modem_filter | [ hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems](#hiberwebhookupdatewebhookrequestupdatewebhookupdatemodems) | none |
-| deprecated_tag_filter | [ hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags](#hiberwebhookupdatewebhookrequestupdatewebhookupdatetags) | none |
-| event_filter | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) | none |
-| modem_filter | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | none |
-| tag_filter | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | none |
+| url | [ string](#string) |  |
+| secret | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+| content_type | [ hiber.webhook.Webhook.ContentType](#hiberwebhookwebhookcontenttype) |  |
+| description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+| deprecated_event_filter | [ hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents](#hiberwebhookupdatewebhookrequestupdatewebhookupdateevents) | <strong>Deprecated.</strong>  |
+| deprecated_modem_filter | [ hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems](#hiberwebhookupdatewebhookrequestupdatewebhookupdatemodems) | <strong>Deprecated.</strong>  |
+| deprecated_tag_filter | [ hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags](#hiberwebhookupdatewebhookrequestupdatewebhookupdatetags) | <strong>Deprecated.</strong>  |
+| event_filter | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
+| modem_filter | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
+| tag_filter | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
 | add_health_levels | [repeated string](#string) | Add health levels to the health levels filter. |
 | remove_health_levels | [repeated string](#string) | Remove health levels from the health levels filter. |
-| active | [ hiber.UpdateBoolean](#hiberupdateboolean) | none |
+| active | [ hiber.UpdateBoolean](#hiberupdateboolean) |  |
 | certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | A value of 0 removes the certificate |
 | health_warning_period | [ hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
 | health_warning_failure_percentage | [ hiber.UpdateZeroableInt](#hiberupdatezeroableint) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
@@ -4697,8 +4696,8 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ string](#string) | none |
+| key | [ string](#string) |  |
+| value | [ string](#string) |  |
 
 ### hiber.webhook.UpdateWebhookRequest.UpdateWebhook.ReplaceCustomHeadersEntry
 
@@ -4706,35 +4705,35 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ string](#string) | none |
+| key | [ string](#string) |  |
+| value | [ string](#string) |  |
 
 ### hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.Events](#hiberfilterevents) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.Events](#hiberfilterevents) |  |
 
 ### hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
 
 ### hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.Tags](#hiberfiltertags) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.Tags](#hiberfiltertags) |  |
 
 ### hiber.webhook.UpdateWebhookTagsRequest
 
@@ -4742,9 +4741,9 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
-| webhook_ids | [repeated int64](#int64) | none |
-| update | [ hiber.tag.UpdateTagsForItem](#hibertagupdatetagsforitem) | none |
+| organization | [ string](#string) |  |
+| webhook_ids | [repeated int64](#int64) |  |
+| update | [ hiber.tag.UpdateTagsForItem](#hibertagupdatetagsforitem) |  |
 
 ### hiber.webhook.UpdateWebhookTagsRequest.Response
 
@@ -4752,7 +4751,7 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| webhooks | [repeated hiber.webhook.Webhook](#hiberwebhookwebhook) | none |
+| webhooks | [repeated hiber.webhook.Webhook](#hiberwebhookwebhook) |  |
 
 ### hiber.webhook.UpdateWebhooksRequest
 
@@ -4761,7 +4760,7 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| webhook_updates | [repeated hiber.webhook.UpdateWebhooksRequest.Update](#hiberwebhookupdatewebhooksrequestupdate) | none |
+| webhook_updates | [repeated hiber.webhook.UpdateWebhooksRequest.Update](#hiberwebhookupdatewebhooksrequestupdate) |  |
 
 ### hiber.webhook.UpdateWebhooksRequest.Response
 
@@ -4769,8 +4768,8 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| webhooks | [repeated hiber.webhook.Webhook](#hiberwebhookwebhook) | none |
-| request | [ hiber.webhook.UpdateWebhooksRequest](#hiberwebhookupdatewebhooksrequest) | none |
+| webhooks | [repeated hiber.webhook.Webhook](#hiberwebhookwebhook) |  |
+| request | [ hiber.webhook.UpdateWebhooksRequest](#hiberwebhookupdatewebhooksrequest) |  |
 
 ### hiber.webhook.UpdateWebhooksRequest.Update
 
@@ -4778,8 +4777,8 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| id | [ int64](#int64) | none |
-| update | [ hiber.webhook.UpdateWebhookRequest.UpdateWebhook](#hiberwebhookupdatewebhookrequestupdatewebhook) | none |
+| id | [ int64](#int64) |  |
+| update | [ hiber.webhook.UpdateWebhookRequest.UpdateWebhook](#hiberwebhookupdatewebhookrequestupdatewebhook) |  |
 
 ### hiber.webhook.Webhook
 
@@ -4794,15 +4793,15 @@ To disable the cooldown, use EnableWebhookRequest to re-enable it.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| id | [ int64](#int64) | none |
-| organization | [ string](#string) | none |
-| created_by | [ string](#string) | none |
-| description | [ string](#string) | none |
-| data | [ hiber.webhook.Webhook.WebhookData](#hiberwebhookwebhookwebhookdata) | none |
-| filters | [ hiber.webhook.Webhook.WebhookFilters](#hiberwebhookwebhookwebhookfilters) | none |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| health | [ hiber.Health](#hiberhealth) | none |
-| health_config | [ hiber.webhook.Webhook.HealthConfig](#hiberwebhookwebhookhealthconfig) | none |
+| id | [ int64](#int64) |  |
+| organization | [ string](#string) |  |
+| created_by | [ string](#string) |  |
+| description | [ string](#string) |  |
+| data | [ hiber.webhook.Webhook.WebhookData](#hiberwebhookwebhookwebhookdata) |  |
+| filters | [ hiber.webhook.Webhook.WebhookFilters](#hiberwebhookwebhookwebhookfilters) |  |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| health | [ hiber.Health](#hiberhealth) |  |
+| health_config | [ hiber.webhook.Webhook.HealthConfig](#hiberwebhookwebhookhealthconfig) |  |
 | in_cooldown_until | [ hiber.Timestamp](#hibertimestamp) | The time the cooldown ends. |
 
 ### hiber.webhook.Webhook.HealthConfig
@@ -4820,15 +4819,15 @@ Health configuration for the webhook. Defines how the health is calculated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| url | [ string](#string) | none |
+| url | [ string](#string) |  |
 | secret | [ string](#string) | Used to generate the HMAC-SHA256 header on every webhook call, which you can use to verify the message. The HMAC-SHA256 header is calculated with the message body and this secret. There are many examples of how to do this in different languages, for example: https://github.com/danharper/hmac-examples |
 | hmac_header_name | [ string](#string) | The header that the hmac value is placed in. Defaults to X-Hub-Signature. |
-| content_type | [ hiber.webhook.Webhook.ContentType](#hiberwebhookwebhookcontenttype) | none |
-| disabled | [ bool](#bool) | none |
-| certificate_id | [ int64](#int64) | none |
-| certificate_name | [ string](#string) | none |
-| ca_certificate_id | [ int64](#int64) | none |
-| ca_certificate_name | [ string](#string) | none |
+| content_type | [ hiber.webhook.Webhook.ContentType](#hiberwebhookwebhookcontenttype) |  |
+| disabled | [ bool](#bool) |  |
+| certificate_id | [ int64](#int64) |  |
+| certificate_name | [ string](#string) |  |
+| ca_certificate_id | [ int64](#int64) |  |
+| ca_certificate_name | [ string](#string) |  |
 | custom_headers | [map hiber.webhook.Webhook.WebhookData.CustomHeadersEntry](#hiberwebhookwebhookwebhookdatacustomheadersentry) | Custom headers to add to every call. |
 
 ### hiber.webhook.Webhook.WebhookData.CustomHeadersEntry
@@ -4837,8 +4836,8 @@ Health configuration for the webhook. Defines how the health is calculated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ string](#string) | none |
+| key | [ string](#string) |  |
+| value | [ string](#string) |  |
 
 ### hiber.webhook.Webhook.WebhookFilters
 
@@ -4846,9 +4845,9 @@ Health configuration for the webhook. Defines how the health is calculated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| event_types | [ hiber.Filter.Events](#hiberfilterevents) | none |
-| modem_numbers | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
-| tags | [ hiber.Filter.Tags](#hiberfiltertags) | none |
+| event_types | [ hiber.Filter.Events](#hiberfilterevents) |  |
+| modem_numbers | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
+| tags | [ hiber.Filter.Tags](#hiberfiltertags) |  |
 | health_levels | [repeated string](#string) | Filter events by health level caused. |
 
 ### hiber.webhook.WebhookCall
@@ -4857,13 +4856,13 @@ Health configuration for the webhook. Defines how the health is calculated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-| url | [ string](#string) | none |
-| headers | [map hiber.webhook.WebhookCall.HeadersEntry](#hiberwebhookwebhookcallheadersentry) | none |
-| body_proto | [ bytes](#bytes) | none |
-| body_json | [ string](#string) | none |
-| successful | [ bool](#bool) | none |
-| error | [ string](#string) | none |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
+| url | [ string](#string) |  |
+| headers | [map hiber.webhook.WebhookCall.HeadersEntry](#hiberwebhookwebhookcallheadersentry) |  |
+| body_proto | [ bytes](#bytes) |  |
+| body_json | [ string](#string) |  |
+| successful | [ bool](#bool) |  |
+| error | [ string](#string) |  |
 
 ### hiber.webhook.WebhookCall.HeadersEntry
 
@@ -4871,8 +4870,8 @@ Health configuration for the webhook. Defines how the health is calculated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ string](#string) | none |
+| key | [ string](#string) |  |
+| value | [ string](#string) |  |
 
 ### hiber.webhook.WebhookHistoryRequest
 
@@ -4881,9 +4880,9 @@ Health configuration for the webhook. Defines how the health is calculated.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| webhook_id | [ int64](#int64) | none |
-| selection | [ hiber.webhook.WebhookHistorySelection](#hiberwebhookwebhookhistoryselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| webhook_id | [ int64](#int64) |  |
+| selection | [ hiber.webhook.WebhookHistorySelection](#hiberwebhookwebhookhistoryselection) |  |
+| pagination | [ hiber.Pagination](#hiberpagination) |  |
 
 ### hiber.webhook.WebhookHistoryRequest.Response
 
@@ -4891,9 +4890,9 @@ Health configuration for the webhook. Defines how the health is calculated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| calls | [repeated hiber.webhook.WebhookCall](#hiberwebhookwebhookcall) | none |
-| request | [ hiber.webhook.WebhookHistoryRequest](#hiberwebhookwebhookhistoryrequest) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| calls | [repeated hiber.webhook.WebhookCall](#hiberwebhookwebhookcall) |  |
+| request | [ hiber.webhook.WebhookHistoryRequest](#hiberwebhookwebhookhistoryrequest) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 ### hiber.webhook.WebhookHistorySelection
 
@@ -4901,8 +4900,8 @@ Health configuration for the webhook. Defines how the health is calculated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| only_failures | [ bool](#bool) | none |
-| time_range | [ hiber.TimeRange](#hibertimerange) | none |
+| only_failures | [ bool](#bool) |  |
+| time_range | [ hiber.TimeRange](#hibertimerange) |  |
 
 ### hiber.webhook.WebhookSelection
 
@@ -4910,12 +4909,12 @@ Health configuration for the webhook. Defines how the health is calculated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| description | [ string](#string) | none |
-| url | [ string](#string) | none |
-| webhooks | [ hiber.Filter.Webhooks](#hiberfilterwebhooks) | none |
-| tags | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
-| health | [repeated hiber.Health](#hiberhealth) | none |
-| certificate_ids | [repeated int64](#int64) | none |
+| description | [ string](#string) |  |
+| url | [ string](#string) |  |
+| webhooks | [ hiber.Filter.Webhooks](#hiberfilterwebhooks) |  |
+| tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+| health | [repeated hiber.Health](#hiberhealth) |  |
+| certificate_ids | [repeated int64](#int64) |  |
 | search | [ string](#string) | Search in the all available text, like description and url. |
 
 
@@ -4938,9 +4937,9 @@ Health configuration for the webhook. Defines how the health is calculated.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| DEFAULT | none | 0 |
-| JSON | none | 1 |
-| PROTO | none | 2 |
+| DEFAULT |  | 0 |
+| JSON |  | 1 |
+| PROTO |  | 2 |
 
 
 
@@ -4960,9 +4959,9 @@ When sending an Area to the api, the center location is ignored.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| center | [ hiber.Location](#hiberlocation) | none |
-| bottom_left | [ hiber.Location](#hiberlocation) | none |
-| top_right | [ hiber.Location](#hiberlocation) | none |
+| center | [ hiber.Location](#hiberlocation) |  |
+| bottom_left | [ hiber.Location](#hiberlocation) |  |
+| top_right | [ hiber.Location](#hiberlocation) |  |
 | textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
@@ -4989,8 +4988,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) | none |
-| hex | [ string](#string) | none |
+| bytes | [ bytes](#bytes) |  |
+| hex | [ string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -4998,8 +4997,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.BytesOrHex](#hiberbytesorhex) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.BytesOrHex](#hiberbytesorhex) |  |
 
 ### hiber.Date
 
@@ -5016,10 +5015,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) | none |
-| month | [ uint32](#uint32) | none |
-| day | [ uint32](#uint32) | none |
-| textual | [ string](#string) | none |
+| year | [ uint32](#uint32) |  |
+| month | [ uint32](#uint32) |  |
+| day | [ uint32](#uint32) |  |
+| textual | [ string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -5027,8 +5026,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| start | [ double](#double) | none |
-| end | [ double](#double) | none |
+| start | [ double](#double) |  |
+| end | [ double](#double) |  |
 
 ### hiber.Duration
 
@@ -5036,8 +5035,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) | none |
-| textual | [ string](#string) | none |
+| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
+| textual | [ string](#string) |  |
 
 ### hiber.Filter
 
@@ -5060,9 +5059,9 @@ other filters default to allowing everything
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include_all | [ bool](#bool) | none |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include_all | [ bool](#bool) |  |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.ChildOrganizations.Update
 
@@ -5070,8 +5069,8 @@ Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) |  |
 
 ### hiber.Filter.DeviceTypes
 
@@ -5079,8 +5078,8 @@ Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.Events
 
@@ -5088,8 +5087,8 @@ Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated hiber.EventType](#hibereventtype) | none |
-| exclude | [repeated hiber.EventType](#hibereventtype) | none |
+| include | [repeated hiber.EventType](#hibereventtype) |  |
+| exclude | [repeated hiber.EventType](#hibereventtype) |  |
 
 ### hiber.Filter.Events.Update
 
@@ -5097,8 +5096,8 @@ Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.Events](#hiberfilterevents) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.Events](#hiberfilterevents) |  |
 
 ### hiber.Filter.FieldEnumValues
 
@@ -5106,9 +5105,9 @@ Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| field | [ string](#string) | none |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| field | [ string](#string) |  |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.HealthLevels
 
@@ -5116,8 +5115,8 @@ Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.ModemIdentifiers
 
@@ -5125,8 +5124,8 @@ Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.Modems
 
@@ -5143,8 +5142,8 @@ Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
 
 ### hiber.Filter.OrganizationPermissions
 
@@ -5152,9 +5151,9 @@ Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include_all | [ bool](#bool) | none |
-| include | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | none |
-| exclude | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | none |
+| include_all | [ bool](#bool) |  |
+| include | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) |  |
+| exclude | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) |  |
 
 ### hiber.Filter.Organizations
 
@@ -5162,8 +5161,8 @@ Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.Properties
 
@@ -5171,7 +5170,7 @@ Filter result on specific properties encoded in map-value pairs.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **selection**.properties | [ hiber.MapFilter](#hibermapfilter) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **selection**.properties | [ hiber.MapFilter](#hibermapfilter) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **selection**.include_only_empty | [ bool](#bool) | When set to true, match only empty property-sets. |
 
 ### hiber.Filter.Publishers
@@ -5180,9 +5179,9 @@ Filter result on specific properties encoded in map-value pairs.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated int64](#int64) | none |
-| exclude | [repeated int64](#int64) | none |
-| only_active | [ bool](#bool) | none |
+| include | [repeated int64](#int64) |  |
+| exclude | [repeated int64](#int64) |  |
+| only_active | [ bool](#bool) |  |
 
 ### hiber.Filter.Roles
 
@@ -5190,8 +5189,8 @@ Filter result on specific properties encoded in map-value pairs.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.SensorBrands
 
@@ -5199,8 +5198,8 @@ Filter result on specific properties encoded in map-value pairs.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.SupportPermissions
 
@@ -5208,8 +5207,8 @@ Filter result on specific properties encoded in map-value pairs.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated hiber.SupportPermission](#hibersupportpermission) | none |
-| exclude | [repeated hiber.SupportPermission](#hibersupportpermission) | none |
+| include | [repeated hiber.SupportPermission](#hibersupportpermission) |  |
+| exclude | [repeated hiber.SupportPermission](#hibersupportpermission) |  |
 
 ### hiber.Filter.Tags
 
@@ -5217,8 +5216,8 @@ Filter result on specific properties encoded in map-value pairs.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated int64](#int64) | none |
-| exclude | [repeated int64](#int64) | none |
+| include | [repeated int64](#int64) |  |
+| exclude | [repeated int64](#int64) |  |
 
 ### hiber.Filter.Tags.Update
 
@@ -5226,8 +5225,8 @@ Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.Tags](#hiberfiltertags) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.Tags](#hiberfiltertags) |  |
 
 ### hiber.Filter.UserPermissions
 
@@ -5235,9 +5234,9 @@ Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include_all | [ bool](#bool) | none |
-| include | [repeated hiber.UserPermission](#hiberuserpermission) | none |
-| exclude | [repeated hiber.UserPermission](#hiberuserpermission) | none |
+| include_all | [ bool](#bool) |  |
+| include | [repeated hiber.UserPermission](#hiberuserpermission) |  |
+| exclude | [repeated hiber.UserPermission](#hiberuserpermission) |  |
 
 ### hiber.Filter.Users
 
@@ -5245,8 +5244,8 @@ Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.Webhooks
 
@@ -5254,9 +5253,9 @@ Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated int64](#int64) | none |
-| exclude | [repeated int64](#int64) | none |
-| only_active | [ bool](#bool) | none |
+| include | [repeated int64](#int64) |  |
+| exclude | [repeated int64](#int64) |  |
+| only_active | [ bool](#bool) |  |
 
 ### hiber.Location
 
@@ -5271,7 +5270,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 
 ### hiber.LocationSelection
 
-Selection object for map data. Filter modems on the map by id, (child)organization.
+Selection object for map data.
 
 Also, filter the map data by level and area restriction, to only display a small area at a detailed map level,
 for example
@@ -5315,8 +5314,8 @@ For example:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues) | none |
+| key | [ string](#string) |  |
+| value | [ hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues) |  |
 
 ### hiber.MapFilter.IncludeAndEntry
 
@@ -5324,8 +5323,8 @@ For example:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues) | none |
+| key | [ string](#string) |  |
+| value | [ hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues) |  |
 
 ### hiber.MapFilter.OneOfValues
 
@@ -5334,7 +5333,7 @@ which is not possible in protobuf without trickery.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [repeated string](#string) | none |
+| value | [repeated string](#string) |  |
 
 ### hiber.NamedFile
 
@@ -5378,8 +5377,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) | none |
-| page | [ int32](#int32) | none |
+| size | [ int32](#int32) |  |
+| page | [ int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -5387,12 +5386,12 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) | none |
-| page | [ int32](#int32) | none |
-| total | [ int32](#int32) | none |
-| total_pages | [ int32](#int32) | none |
-| previous | [ hiber.Pagination](#hiberpagination) | none |
-| next | [ hiber.Pagination](#hiberpagination) | none |
+| size | [ int32](#int32) |  |
+| page | [ int32](#int32) |  |
+| total | [ int32](#int32) |  |
+| total_pages | [ int32](#int32) |  |
+| previous | [ hiber.Pagination](#hiberpagination) |  |
+| next | [ hiber.Pagination](#hiberpagination) |  |
 | approximated_total | [ bool](#bool) | Indicates that the total is an approximation, and not an exact value. This can be set for data that changes often, or is generally only fetched in an infinite scrolling manner. For example, unbundled events are likely to return an approximated total, but not guaranteed to do so. |
 
 ### hiber.Shape
@@ -5405,7 +5404,7 @@ while a rectangular region is easier to define using Area.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| path | [repeated hiber.Location](#hiberlocation) | none |
+| path | [repeated hiber.Location](#hiberlocation) |  |
 | textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
@@ -5421,8 +5420,8 @@ Examples:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| start | [ hiber.Timestamp](#hibertimestamp) | none |
-| end | [ hiber.Timestamp](#hibertimestamp) | none |
+| start | [ hiber.Timestamp](#hibertimestamp) |  |
+| end | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### hiber.Timestamp
 
@@ -5442,9 +5441,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) | none |
-| time_zone | [ string](#string) | none |
-| textual | [ string](#string) | none |
+| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+| time_zone | [ string](#string) |  |
+| textual | [ string](#string) |  |
 
 ### hiber.UpdateBoolean
 
@@ -5457,8 +5456,8 @@ To use this to update, set a value and set updated to true
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ bool](#bool) | none |
+| updated | [ bool](#bool) |  |
+| value | [ bool](#bool) |  |
 
 ### hiber.UpdateClearableString
 
@@ -5471,8 +5470,8 @@ To use this to update, set a value and set updated to true
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ string](#string) | none |
+| updated | [ bool](#bool) |  |
+| value | [ string](#string) |  |
 
 ### hiber.UpdateOptionalDuration
 
@@ -5483,8 +5482,8 @@ To clear the duration, set updated to true, but set no value.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Duration](#hiberduration) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Duration](#hiberduration) |  |
 
 ### hiber.UpdateOptionalId
 
@@ -5494,8 +5493,8 @@ To use this to update, set a value and set updated to true. To clear the id, set
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ int64](#int64) | none |
+| updated | [ bool](#bool) |  |
+| value | [ int64](#int64) |  |
 
 ### hiber.UpdateZeroableInt
 
@@ -5508,121 +5507,120 @@ To use this to update, set a value and set updated to true
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ uint32](#uint32) | none |
+| updated | [ bool](#bool) |  |
+| value | [ uint32](#uint32) |  |
 
 
 ### Enums
 #### hiber.EventType
 Enum of api-accessible events.
-
 The event types in this enum have a protobuf implementation, and can be used, for example, in the
 api event stream and publishers.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| DEFAULT | none | 0 |
-| ORGANIZATION_CREATED | none | 34 |
-| ORGANIZATION_UPDATED | none | 12 |
-| ORGANIZATION_DELETED | none | 35 |
-| ORGANIZATION_EVENT_CONFIGURATION_UPDATED | none | 43 |
-| MODEM_CREATED | none | 55 |
-| MODEM_UPDATED | none | 36 |
-| MODEM_LOCATION_UPDATED | none | 4 |
-| MODEM_ACTIVATED | none | 33 |
-| MODEM_MESSAGE_RECEIVED | none | 5 |
-| MODEM_MESSAGE_BODY_PARSED | none | 39 |
-| MODEM_MESSAGE_BODY_RECEIVED | none | 45 |
-| MODEM_MESSAGE_CANNOT_BE_PARSED | none | 15 |
-| MODEM_MESSAGE_SUMMARY | none | 42 |
-| MODEM_MESSAGE_BODY_PARSER_CREATED | none | 46 |
-| MODEM_MESSAGE_BODY_PARSER_UPDATED | none | 47 |
-| MODEM_MESSAGE_BODY_PARSER_DELETED | none | 48 |
-| MODEM_ALARM | none | 56 |
-| MODEM_ALARM_CREATED | none | 57 |
-| MODEM_ALARM_UPDATED | none | 58 |
-| MODEM_ALARM_DELETED | none | 59 |
-| ASSIGNED | none | 63 |
-| UNASSIGNED | none | 64 |
-| TRANSFER | none | 18 |
-| PUBLISHER_CREATED | none | 1 |
-| PUBLISHER_UPDATED | none | 2 |
-| PUBLISHER_DELETED | none | 3 |
-| PUBLISHER_AUTO_DISABLED | none | 37 |
-| PUBLISHER_FAILED | none | 11 |
-| USER_ACCESS_REQUEST | none | 8 |
-| USER_INVITED | none | 38 |
-| USER_ADDED | none | 9 |
-| USER_REMOVED | none | 10 |
-| USER_VALIDATION_UPDATED | none | 54 |
-| TOKEN_CREATED | none | 31 |
-| TOKEN_EXPIRY_WARNING | none | 25 |
-| TOKEN_EXPIRED | none | 26 |
-| TOKEN_DELETED | none | 32 |
-| EXPORT_CREATED | none | 65 |
-| EXPORT_READY | none | 66 |
-| EXPORT_FAILED | none | 67 |
+| DEFAULT |  | 0 |
+| ORGANIZATION_CREATED | A new organization was created under your organization. | 34 |
+| ORGANIZATION_UPDATED | Your organization information was updated. This deals with things like display name and contact information, not users and devices. | 12 |
+| ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
+| ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
+| DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
+| DEVICE_UPDATED | A device in your organization was manually updated (i.e. renamed, tagged). | 36 |
+| DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |
+| DEVICE_INSTALLED | A device in your organization was installed and should now be active. | 33 |
+| MESSAGE_RECEIVED | A device in your organization sent a message. This event is the final output for the message, after any parsing and post-processing. | 5 |
+| MESSAGE_BODY_PARSED | A device in your organization sent a message, and it was parsed by a message body parser. For the final event, with all applied parsers and post processing, use MESSAGE_RECEIVED instead. | 39 |
+| MESSAGE_BODY_RECEIVED | A device in your organization sent a message, and it has been scheduled for parsing by message body parsers and post-processing. For the final event, with all applied parsers and post processing, use MESSAGE_RECEIVED instead. | 45 |
+| MESSAGE_CANNOT_BE_PARSED | A device in your organization sent a message, and it could not be parsed by any assigned message body parser. This is typically a configuration issue. Please contact customer support if this is not resolved. | 15 |
+| MESSAGE_SUMMARY | A summary of messages in your organization was created, based on your event configuration. | 42 |
+| MESSAGE_BODY_PARSER_CREATED | A new message body parser was created in your organization. This typically only happens for custom solutions. | 46 |
+| MESSAGE_BODY_PARSER_UPDATED | A message body parser in your organization was updated. This typically only happens for custom solutions. | 47 |
+| MESSAGE_BODY_PARSER_DELETED | A message body parser in your organization was deleted. This typically only happens for custom solutions. | 48 |
+| ALARM_TRIGGERED | An alarm was triggered in your organizations. Depending on the alarm, this may mean that a device sent a message with a value (e.g. pressure) outside of the expected range, or moved out of the expected area. | 56 |
+| ALARM_CREATED | A new alarm was created in your organization. | 57 |
+| ALARM_UPDATED | An alarm in your organization was updated. | 58 |
+| ALARM_DELETED | An alarm in your organization was deleted. | 59 |
+| ASSIGNED | An assignment was made in your organization. For example: assigning a tag or alarm to a modem. | 63 |
+| UNASSIGNED | An assignment was removed in your organization. For example: removing a tag or alarm from a modem. | 64 |
+| TRANSFER | A device was transferred into or out of your organization. Transferred device lose their data and are only used in the new organization if connected to a gateway in that organization. | 18 |
+| PUBLISHER_CREATED | A new publisher was created in your organization. Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and even email preferences. | 1 |
+| PUBLISHER_UPDATED | A publisher in your organization was updated. Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and even email preferences. | 2 |
+| PUBLISHER_DELETED | A publisher in your organization was deleted. Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and even email preferences. | 3 |
+| PUBLISHER_FAILED | A publisher in your organization failed to send its data. This can be a temporary issue (perhaps the webhook endpoint is down) or an indication of a configuration issue. Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and even email preferences. | 11 |
+| PUBLISHER_AUTO_DISABLED | A publisher in your organization failed to send its data for a long enough period that is has been disabled. This means the failures were not a temporary issue, but there is something wrong with the configuration. Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and even email preferences. | 37 |
+| USER_ACCESS_REQUEST | A user has requested access to your organization. You can review their request and approve or reject them. | 8 |
+| USER_INVITED | A user was invited into your organization. They can review your invite and accept it or ignore it. | 38 |
+| USER_ADDED | A user was granted access to your organization, by request, invite, or created by an organization admin. | 9 |
+| USER_REMOVED | A user was removed from your organization by an organization admin. | 10 |
+| USER_VALIDATION_UPDATED | The user validation (i.e. email domain) for your organization was updated. | 54 |
+| TOKEN_CREATED | A new token was created for your organization. | 31 |
+| TOKEN_EXPIRY_WARNING | A token in your organization will expire within 2 weeks. | 25 |
+| TOKEN_EXPIRED | A token in your organization has expired. | 26 |
+| TOKEN_DELETED | A token in your organization was deleted. | 32 |
+| EXPORT_CREATED | A new export was started for your organization, exporting data (i.e. messages) to a file. | 65 |
+| EXPORT_READY | An export in your organization has completed and the resulting file with data (i.e. messages as CSV) is ready to be downloaded. | 66 |
+| EXPORT_FAILED | An export in your organization has failed (typically because of incorrect data selection). | 67 |
 
 #### hiber.Health
 Health is an indicator for issues. It is used for publishers to give a quick indication of issues.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| OK | none | 0 |
-| WARNING | none | 1 |
-| ERROR | none | 2 |
+| OK |  | 0 |
+| WARNING |  | 1 |
+| ERROR |  | 2 |
 
 #### hiber.UnitOfMeasurement
 Unit of measurement for a numeric value.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| UNIT_UNKNOWN | none | 0 |
-| DURATION_MILLISECONDS | none | 40 |
-| DURATION_SECONDS | none | 1 |
-| DURATION_MINUTES | none | 2 |
-| DURATION_HOURS | none | 3 |
-| DURATION_DAYS | none | 4 |
-| DURATION_WEEKS | none | 41 |
-| FUEL_EFFICIENCY_LITER_PER_100_KILOMETER | none | 30 |
-| FUEL_EFFICIENCY_KILOMETER_PER_LITER | none | 31 |
-| FUEL_EFFICIENCY_KILOMETER_PER_US_GALLON | none | 32 |
-| FUEL_EFFICIENCY_KILOMETER_PER_IMPERIAL_GALLON | none | 33 |
-| FUEL_EFFICIENCY_MILE_PER_US_GALLON | none | 34 |
-| FUEL_EFFICIENCY_MILE_PER_IMPERIAL_GALLON | none | 35 |
-| FUEL_EFFICIENCY_MILE_PER_LITER | none | 36 |
-| DISTANCE_METER | none | 8 |
-| DISTANCE_MILLIMETER | none | 9 |
-| DISTANCE_CENTIMETER | none | 10 |
-| DISTANCE_KILOMETER | none | 11 |
-| DISTANCE_NAUTICAL_MILE | none | 26 |
-| DISTANCE_MILE | none | 21 |
-| DISTANCE_YARD | none | 27 |
-| DISTANCE_FOOT | none | 28 |
-| DISTANCE_INCH | none | 29 |
-| PERCENT | none | 16 |
-| PRESSURE_BAR | none | 12 |
-| PRESSURE_PSI | none | 14 |
-| PRESSURE_K_PA | none | 17 |
-| SPEED_KILOMETERS_PER_HOUR | none | 18 |
-| SPEED_KNOTS | none | 19 |
-| SPEED_METERS_PER_SECOND | none | 20 |
-| SPEED_MILES_PER_HOUR | none | 22 |
-| TEMPERATURE_KELVIN | none | 5 |
-| TEMPERATURE_DEGREES_CELSIUS | none | 6 |
-| TEMPERATURE_DEGREES_FAHRENHEIT | none | 7 |
-| VOLTAGE_MILLIVOLT | none | 15 |
-| VOLUME_LITER | none | 23 |
-| VOLUME_GALLON_US | none | 24 |
-| VOLUME_GALLON_IMPERIAL | none | 25 |
-| VOLUME_CUBIC_METER | none | 42 |
-| VOLUME_CUBIC_FOOT | none | 43 |
-| MASS_KILOGRAMS | none | 37 |
-| MASS_POUNDS | none | 38 |
-| FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
-| FLOW_BARRELS_PER_DAY | none | 46 |
-| REVOLUTIONS_PER_MINUTE | none | 44 |
-| ITEMS_PER_24_HOURS | none | 45 |
+| UNIT_UNKNOWN |  | 0 |
+| DURATION_MILLISECONDS |  | 40 |
+| DURATION_SECONDS |  | 1 |
+| DURATION_MINUTES |  | 2 |
+| DURATION_HOURS |  | 3 |
+| DURATION_DAYS |  | 4 |
+| DURATION_WEEKS |  | 41 |
+| FUEL_EFFICIENCY_LITER_PER_100_KILOMETER |  | 30 |
+| FUEL_EFFICIENCY_KILOMETER_PER_LITER |  | 31 |
+| FUEL_EFFICIENCY_KILOMETER_PER_US_GALLON |  | 32 |
+| FUEL_EFFICIENCY_KILOMETER_PER_IMPERIAL_GALLON |  | 33 |
+| FUEL_EFFICIENCY_MILE_PER_US_GALLON |  | 34 |
+| FUEL_EFFICIENCY_MILE_PER_IMPERIAL_GALLON |  | 35 |
+| FUEL_EFFICIENCY_MILE_PER_LITER |  | 36 |
+| DISTANCE_METER |  | 8 |
+| DISTANCE_MILLIMETER |  | 9 |
+| DISTANCE_CENTIMETER |  | 10 |
+| DISTANCE_KILOMETER |  | 11 |
+| DISTANCE_NAUTICAL_MILE |  | 26 |
+| DISTANCE_MILE |  | 21 |
+| DISTANCE_YARD |  | 27 |
+| DISTANCE_FOOT |  | 28 |
+| DISTANCE_INCH |  | 29 |
+| PERCENT |  | 16 |
+| PRESSURE_BAR |  | 12 |
+| PRESSURE_PSI |  | 14 |
+| PRESSURE_K_PA |  | 17 |
+| SPEED_KILOMETERS_PER_HOUR |  | 18 |
+| SPEED_KNOTS |  | 19 |
+| SPEED_METERS_PER_SECOND |  | 20 |
+| SPEED_MILES_PER_HOUR |  | 22 |
+| TEMPERATURE_KELVIN |  | 5 |
+| TEMPERATURE_DEGREES_CELSIUS |  | 6 |
+| TEMPERATURE_DEGREES_FAHRENHEIT |  | 7 |
+| VOLTAGE_MILLIVOLT |  | 15 |
+| VOLUME_LITER |  | 23 |
+| VOLUME_GALLON_US |  | 24 |
+| VOLUME_GALLON_IMPERIAL |  | 25 |
+| VOLUME_CUBIC_METER |  | 42 |
+| VOLUME_CUBIC_FOOT |  | 43 |
+| MASS_KILOGRAMS |  | 37 |
+| MASS_POUNDS |  | 38 |
+| FLOW_CUBIC_METERS_PER_HOUR |  | 39 |
+| FLOW_BARRELS_PER_DAY |  | 46 |
+| REVOLUTIONS_PER_MINUTE |  | 44 |
+| ITEMS_PER_24_HOURS |  | 45 |
 
 ## Scalar Value Types
 

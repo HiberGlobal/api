@@ -1,0 +1,69 @@
+{
+  "deviceLocationUpdated": {
+    "organization": "your-organization",
+    "number": "AAAA AAAA",
+    "location": {
+      "latitude": 21.222,
+      "longitude": 31.33299,
+      "textual": "[21.222,31.33299]"
+    },
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
+    },
+    "tags": [
+      {
+        "id": "1",
+        "label": {
+          "name": "example-tag",
+          "type": "well"
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "name": "example-tag-2",
+          "type": "well"
+        }
+      }
+    ],
+    "title": "Device AAAA AAAA is now at [21.222,31.33299].",
+    "description": "The message from device AAAA AAAA, received at 2020-06-01 05:15:25Z, changed the device location from [20.222,30.33299] to [21.222,31.33299].\n\nwell: example-tag, example-tag-2",
+    "externalDeviceId": "00 11 22 33 AA BB CC DD",
+    "updatedAt": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
+    }
+  },
+  "title": "Device AAAA AAAA is now at [21.222,31.33299].",
+  "description": "The message from device AAAA AAAA, received at 2020-06-01 05:15:25Z, changed the device location from [20.222,30.33299] to [21.222,31.33299].\n\nwell: example-tag, example-tag-2",
+  "device": {
+    "number": "AAAA AAAA",
+    "name": "AAAA AAAA",
+    "identifier": "00 11 22 33 AA BB CC DD"
+  },
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
+  },
+  "tags": [
+    {
+      "id": "1",
+      "label": {
+        "name": "example-tag",
+        "type": "well"
+      }
+    },
+    {
+      "id": "2",
+      "label": {
+        "name": "example-tag-2",
+        "type": "well"
+      }
+    }
+  ],
+  "type": "DEVICE_LOCATION_UPDATED"
+}

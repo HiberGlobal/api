@@ -166,7 +166,7 @@ This means the message is an encrypted string, which the server can parse.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| encoded_messages | [repeated string](#string) | none |
+| encoded_messages | [repeated string](#string) |  |
 
 ### PushModemMessagesFromDebugPortRequest.Response
 
@@ -174,7 +174,7 @@ This means the message is an encrypted string, which the server can parse.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| request | [ PushModemMessagesFromDebugPortRequest](#pushmodemmessagesfromdebugportrequest) | none |
+| request | [ PushModemMessagesFromDebugPortRequest](#pushmodemmessagesfromdebugportrequest) |  |
 
 ### PushModemMessagesRequest
 
@@ -186,7 +186,7 @@ the decryption process and all relevant events are triggered (including webhooks
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| messages | [repeated PushModemMessagesRequest.MessageToPush](#pushmodemmessagesrequestmessagetopush) | none |
+| messages | [repeated PushModemMessagesRequest.MessageToPush](#pushmodemmessagesrequestmessagetopush) |  |
 
 ### PushModemMessagesRequest.MessageToPush
 
@@ -194,10 +194,10 @@ the decryption process and all relevant events are triggered (including webhooks
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modem_number | [ string](#string) | none |
-| time | [ hiber.Timestamp](#hibertimestamp) | none |
-| location | [ hiber.Location](#hiberlocation) | none |
-| content | [ bytes](#bytes) | none |
+| modem_number | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
+| location | [ hiber.Location](#hiberlocation) |  |
+| content | [ bytes](#bytes) |  |
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Metadata for this message. For example: LoRaWAN values like fPort. |
 
 ### PushModemMessagesRequest.Response
@@ -206,7 +206,7 @@ the decryption process and all relevant events are triggered (including webhooks
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| request | [ PushModemMessagesRequest](#pushmodemmessagesrequest) | none |
+| request | [ PushModemMessagesRequest](#pushmodemmessagesrequest) |  |
 
 ### Simulation
 
@@ -218,7 +218,7 @@ a percentage of simulated messages to trigger a delayed event.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | none |
+| organization | [ string](#string) |  |
 | enabled | [ bool](#bool) | Whether or not all simulations for this organization are enabled. |
 | modem_inactivity | [ Simulation.ModemInactivitySimulation](#simulationmodeminactivitysimulation) | Configuration for simulating modem inactivity. |
 | delayed_messages | [ Simulation.DelayedMessageSimulation](#simulationdelayedmessagesimulation) | Configuration for simulating delayed messages. |
@@ -236,9 +236,9 @@ The messages themselves are not actually delayed; this just sets the sent time f
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| percentage_of_simulated_messages | [ uint32](#uint32) | none |
-| minimum_message_delay | [ hiber.Duration](#hiberduration) | none |
-| maximum_message_delay | [ hiber.Duration](#hiberduration) | none |
+| percentage_of_simulated_messages | [ uint32](#uint32) |  |
+| minimum_message_delay | [ hiber.Duration](#hiberduration) |  |
+| maximum_message_delay | [ hiber.Duration](#hiberduration) |  |
 
 ### Simulation.GetRequest
 
@@ -262,9 +262,9 @@ This does not affect messages that are not simulated (like test messages or real
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| percentage_of_simulating_modems | [ uint32](#uint32) | none |
-| period_min | [ hiber.Duration](#hiberduration) | none |
-| period_max | [ hiber.Duration](#hiberduration) | none |
+| percentage_of_simulating_modems | [ uint32](#uint32) |  |
+| period_min | [ hiber.Duration](#hiberduration) |  |
+| period_max | [ hiber.Duration](#hiberduration) |  |
 
 ### Simulation.ModemMessageSimulation
 
@@ -272,7 +272,7 @@ This does not affect messages that are not simulated (like test messages or real
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modem_number | [ string](#string) | none |
+| modem_number | [ string](#string) |  |
 | messages_per_interval | [ uint32](#uint32) | The number of simulated messages per day for this modem. This value is either the custom amount per day for this modem or the default value |
 | simulation_interval | [ hiber.Duration](#hiberduration) | Interval messages should be simulated at (i.e. once every hour). |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **message_bodies**.message_body | [ hiber.BytesOrHex](#hiberbytesorhex) | A message body to use for the simulated messages. |
@@ -303,7 +303,7 @@ This does not affect messages that are not simulated (like test messages or real
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | none |
+| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 
 ### Simulation.ModemMessageSimulation.Delete.Response
 
@@ -311,8 +311,8 @@ This does not affect messages that are not simulated (like test messages or real
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| deleted | [ uint32](#uint32) | none |
-| request | [ Simulation.ModemMessageSimulation.Delete.Request](#simulationmodemmessagesimulationdeleterequest) | none |
+| deleted | [ uint32](#uint32) |  |
+| request | [ Simulation.ModemMessageSimulation.Delete.Request](#simulationmodemmessagesimulationdeleterequest) |  |
 
 ### Simulation.ModemMessageSimulation.List
 
@@ -326,8 +326,8 @@ This does not affect messages that are not simulated (like test messages or real
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | none |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
+| pagination | [ hiber.Pagination](#hiberpagination) |  |
 | include_disabled | [ bool](#bool) | Include modems for which message simulation is disabled. |
 
 ### Simulation.ModemMessageSimulation.List.Response
@@ -336,9 +336,9 @@ This does not affect messages that are not simulated (like test messages or real
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modems | [repeated Simulation.ModemMessageSimulation](#simulationmodemmessagesimulation) | none |
-| request | [ Simulation.ModemMessageSimulation.List.Request](#simulationmodemmessagesimulationlistrequest) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| modems | [repeated Simulation.ModemMessageSimulation](#simulationmodemmessagesimulation) |  |
+| request | [ Simulation.ModemMessageSimulation.List.Request](#simulationmodemmessagesimulationlistrequest) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 ### Simulation.ModemMessageSimulation.LocationRotation
 
@@ -390,7 +390,7 @@ Create or update the modem message simulation for a selection of modems.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.random_location_in_area | [ hiber.Area](#hiberarea) | Randomize modem location within the given area. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.replace_location_rotation | [ Simulation.ModemMessageSimulation.LocationRotation](#simulationmodemmessagesimulationlocationrotation) | Replace the list of locations to rotate through. This does not have to match the length of the message body rotation, if any. Note that this **replaces** the entire list of values, to ensure the order is maintained. |
 | set_inactive_until | [ hiber.Timestamp](#hibertimestamp) | Disable the message simulation until the given date (UTC). |
-| pagination | [ hiber.Pagination](#hiberpagination) | none |
+| pagination | [ hiber.Pagination](#hiberpagination) |  |
 
 ### Simulation.ModemMessageSimulation.Update.Response
 
@@ -398,9 +398,9 @@ Create or update the modem message simulation for a selection of modems.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modems | [repeated Simulation.ModemMessageSimulation](#simulationmodemmessagesimulation) | none |
-| request | [ Simulation.ModemMessageSimulation.Update.Request](#simulationmodemmessagesimulationupdaterequest) | none |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) | none |
+| modems | [repeated Simulation.ModemMessageSimulation](#simulationmodemmessagesimulation) |  |
+| request | [ Simulation.ModemMessageSimulation.Update.Request](#simulationmodemmessagesimulationupdaterequest) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 ### Simulation.UpdateRequest
 
@@ -409,10 +409,10 @@ Create or update the modem message simulation for a selection of modems.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| enabled | [ hiber.UpdateBoolean](#hiberupdateboolean) | none |
-| simulate_modem_inactivity | [ Simulation.ModemInactivitySimulation](#simulationmodeminactivitysimulation) | none |
-| simulate_delayed_messages | [ Simulation.DelayedMessageSimulation](#simulationdelayedmessagesimulation) | none |
-| modem_message_simulation_defaults | [ Simulation.ModemMessageSimulation.Defaults](#simulationmodemmessagesimulationdefaults) | none |
+| enabled | [ hiber.UpdateBoolean](#hiberupdateboolean) |  |
+| simulate_modem_inactivity | [ Simulation.ModemInactivitySimulation](#simulationmodeminactivitysimulation) |  |
+| simulate_delayed_messages | [ Simulation.DelayedMessageSimulation](#simulationdelayedmessagesimulation) |  |
+| modem_message_simulation_defaults | [ Simulation.ModemMessageSimulation.Defaults](#simulationmodemmessagesimulationdefaults) |  |
 
 
 ## Enums
@@ -434,25 +434,25 @@ when the modem is registered into the system or when a subscription is authorize
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | number | [ string](#string) | An 8-character hexadecimal string |
-| organization | [ string](#string) | none |
+| organization | [ string](#string) |  |
 | name | [ string](#string) | An optional descriptor given to the modem |
-| location | [ hiber.Location](#hiberlocation) | none |
-| last_message_id | [ uint64](#uint64) | none |
+| location | [ hiber.Location](#hiberlocation) |  |
+| last_message_id | [ uint64](#uint64) |  |
 | last_message_received_at | [ hiber.Timestamp](#hibertimestamp) | Time the server has received the last message. |
 | last_message_sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the modem has sent the last message. |
 | last_message_body | [ hiber.BytesOrHex](#hiberbytesorhex) | The body of the last message. |
 | inactivity | [ hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
-| lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | none |
+| lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) |  |
 | technical | [ hiber.modem.Modem.TechnicalData](#hibermodemmodemtechnicaldata) | additional information |
-| peripherals | [ hiber.modem.Modem.Peripherals](#hibermodemmodemperipherals) | none |
+| peripherals | [ hiber.modem.Modem.Peripherals](#hibermodemmodemperipherals) |  |
 | notes | [ string](#string) | Notes field that can be used to add additional information to a modem. |
 | secure_notes | [ string](#string) | Secure notes field that can be used to add additional information to a modem, with limited accessibility. |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | none |
-| is_gateway | [ bool](#bool) | [DEPRECATED] Whether the modem is a gateway, it has been configured as a gateway and has connected devices. Use `type` instead. |
-| is_device_connected_to_gateway | [ bool](#bool) | [DEPRECATED] Whether the modem is connected to a modem configured as a gateway. Use `type` instead. |
-| connected_to_gateway | [ string](#string) | [DEPRECATED] The modem number that this modem is connected to, if any. Use `connected_device_info.connected_to_gateway` instead. |
-| external_device_ids | [repeated string](#string) | [DEPRECATED] External device ids, if any. Use `connected_device_info.external_device_ids` instead. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| is_gateway | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Whether the modem is a gateway, it has been configured as a gateway and has connected devices. Use `type` instead. |
+| is_device_connected_to_gateway | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Whether the modem is connected to a modem configured as a gateway. Use `type` instead. |
+| connected_to_gateway | [ string](#string) | <strong>Deprecated.</strong> [DEPRECATED] The modem number that this modem is connected to, if any. Use `connected_device_info.connected_to_gateway` instead. |
+| external_device_ids | [repeated string](#string) | <strong>Deprecated.</strong> [DEPRECATED] External device ids, if any. Use `connected_device_info.external_device_ids` instead. |
 | type | [ hiber.modem.Modem.Type](#hibermodemmodemtype) | The type of modem. Used mainly to differentiate in the UI or to sort on. |
 | gateway_info | [ hiber.modem.Modem.GatewayInfo](#hibermodemmodemgatewayinfo) | Additional information when this modem is a gateway. |
 | connected_device_info | [ hiber.modem.Modem.ConnectedDeviceInfo](#hibermodemmodemconnecteddeviceinfo) | Additional information when this modem is a connected device. |
@@ -468,25 +468,25 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modems | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
-| free_text_search | [ string](#string) | none |
-| only_active | [ bool](#bool) | Use lifecycle filter instead. |
-| activated_in | [ hiber.TimeRange](#hibertimerange) | none |
-| with_last_message_in | [ hiber.TimeRange](#hibertimerange) | none |
+| modems | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
+| free_text_search | [ string](#string) |  |
+| only_active | [ bool](#bool) | <strong>Deprecated.</strong> Use lifecycle filter instead. |
+| activated_in | [ hiber.TimeRange](#hibertimerange) | <strong>Deprecated.</strong>  |
+| with_last_message_in | [ hiber.TimeRange](#hibertimerange) |  |
 | health_levels | [repeated string](#string) | Filter modems by health level. |
 | lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
-| transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) | none |
+| transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) |  |
 | include_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Only include modems that have a type listed in types. In other words, when providing multiple types, this is an "OR" relationship. |
 | exclude_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Exclude modems that have a type listed in types. |
-| device_types | [ hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) | none |
-| sensorBrands | [ hiber.Filter.SensorBrands](#hiberfiltersensorbrands) | none |
-| identifiers | [ hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) | none |
-| only_gateways | [ bool](#bool) | [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
-| only_has_external_device_ids | [ bool](#bool) | [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
-| connected_to_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
-| external_device_ids | [repeated string](#string) | none |
-| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) | none |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ hiber.modem.ModemSelection.Peripherals](#hibermodemmodemselectionperipherals) | none |
+| device_types | [ hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
+| sensorBrands | [ hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
+| identifiers | [ hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
+| only_gateways | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
+| only_has_external_device_ids | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
+| connected_to_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
+| external_device_ids | [repeated string](#string) | <strong>Deprecated.</strong>  |
+| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ hiber.modem.ModemSelection.Peripherals](#hibermodemmodemselectionperipherals) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.only_without_peripheral | [ bool](#bool) | When set to true, only modems that do not have any peripheral will be included in the result. |
 | only_connected_to_gateway | [ bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
 | not_connected_to_gateway | [ bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
@@ -576,9 +576,9 @@ When sending an Area to the api, the center location is ignored.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| center | [ hiber.Location](#hiberlocation) | none |
-| bottom_left | [ hiber.Location](#hiberlocation) | none |
-| top_right | [ hiber.Location](#hiberlocation) | none |
+| center | [ hiber.Location](#hiberlocation) |  |
+| bottom_left | [ hiber.Location](#hiberlocation) |  |
+| top_right | [ hiber.Location](#hiberlocation) |  |
 | textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
@@ -605,8 +605,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) | none |
-| hex | [ string](#string) | none |
+| bytes | [ bytes](#bytes) |  |
+| hex | [ string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -614,8 +614,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.BytesOrHex](#hiberbytesorhex) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.BytesOrHex](#hiberbytesorhex) |  |
 
 ### hiber.Date
 
@@ -632,10 +632,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) | none |
-| month | [ uint32](#uint32) | none |
-| day | [ uint32](#uint32) | none |
-| textual | [ string](#string) | none |
+| year | [ uint32](#uint32) |  |
+| month | [ uint32](#uint32) |  |
+| day | [ uint32](#uint32) |  |
+| textual | [ string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -643,8 +643,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| start | [ double](#double) | none |
-| end | [ double](#double) | none |
+| start | [ double](#double) |  |
+| end | [ double](#double) |  |
 
 ### hiber.Duration
 
@@ -652,8 +652,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) | none |
-| textual | [ string](#string) | none |
+| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
+| textual | [ string](#string) |  |
 
 ### hiber.Filter
 
@@ -676,9 +676,9 @@ other filters default to allowing everything
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include_all | [ bool](#bool) | none |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include_all | [ bool](#bool) |  |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.ChildOrganizations.Update
 
@@ -686,8 +686,8 @@ Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) |  |
 
 ### hiber.Filter.DeviceTypes
 
@@ -695,8 +695,8 @@ Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.Events
 
@@ -704,8 +704,8 @@ Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated hiber.EventType](#hibereventtype) | none |
-| exclude | [repeated hiber.EventType](#hibereventtype) | none |
+| include | [repeated hiber.EventType](#hibereventtype) |  |
+| exclude | [repeated hiber.EventType](#hibereventtype) |  |
 
 ### hiber.Filter.Events.Update
 
@@ -713,8 +713,8 @@ Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.Events](#hiberfilterevents) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.Events](#hiberfilterevents) |  |
 
 ### hiber.Filter.FieldEnumValues
 
@@ -722,9 +722,9 @@ Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| field | [ string](#string) | none |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| field | [ string](#string) |  |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.HealthLevels
 
@@ -732,8 +732,8 @@ Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.ModemIdentifiers
 
@@ -741,8 +741,8 @@ Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.Modems
 
@@ -759,8 +759,8 @@ Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.Modems](#hiberfiltermodems) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
 
 ### hiber.Filter.OrganizationPermissions
 
@@ -768,9 +768,9 @@ Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include_all | [ bool](#bool) | none |
-| include | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | none |
-| exclude | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | none |
+| include_all | [ bool](#bool) |  |
+| include | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) |  |
+| exclude | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) |  |
 
 ### hiber.Filter.Organizations
 
@@ -778,8 +778,8 @@ Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.Properties
 
@@ -787,7 +787,7 @@ Filter result on specific properties encoded in map-value pairs.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **selection**.properties | [ hiber.MapFilter](#hibermapfilter) | none |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **selection**.properties | [ hiber.MapFilter](#hibermapfilter) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **selection**.include_only_empty | [ bool](#bool) | When set to true, match only empty property-sets. |
 
 ### hiber.Filter.Publishers
@@ -796,9 +796,9 @@ Filter result on specific properties encoded in map-value pairs.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated int64](#int64) | none |
-| exclude | [repeated int64](#int64) | none |
-| only_active | [ bool](#bool) | none |
+| include | [repeated int64](#int64) |  |
+| exclude | [repeated int64](#int64) |  |
+| only_active | [ bool](#bool) |  |
 
 ### hiber.Filter.Roles
 
@@ -806,8 +806,8 @@ Filter result on specific properties encoded in map-value pairs.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.SensorBrands
 
@@ -815,8 +815,8 @@ Filter result on specific properties encoded in map-value pairs.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.SupportPermissions
 
@@ -824,8 +824,8 @@ Filter result on specific properties encoded in map-value pairs.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated hiber.SupportPermission](#hibersupportpermission) | none |
-| exclude | [repeated hiber.SupportPermission](#hibersupportpermission) | none |
+| include | [repeated hiber.SupportPermission](#hibersupportpermission) |  |
+| exclude | [repeated hiber.SupportPermission](#hibersupportpermission) |  |
 
 ### hiber.Filter.Tags
 
@@ -833,8 +833,8 @@ Filter result on specific properties encoded in map-value pairs.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated int64](#int64) | none |
-| exclude | [repeated int64](#int64) | none |
+| include | [repeated int64](#int64) |  |
+| exclude | [repeated int64](#int64) |  |
 
 ### hiber.Filter.Tags.Update
 
@@ -842,8 +842,8 @@ Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Filter.Tags](#hiberfiltertags) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Filter.Tags](#hiberfiltertags) |  |
 
 ### hiber.Filter.UserPermissions
 
@@ -851,9 +851,9 @@ Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include_all | [ bool](#bool) | none |
-| include | [repeated hiber.UserPermission](#hiberuserpermission) | none |
-| exclude | [repeated hiber.UserPermission](#hiberuserpermission) | none |
+| include_all | [ bool](#bool) |  |
+| include | [repeated hiber.UserPermission](#hiberuserpermission) |  |
+| exclude | [repeated hiber.UserPermission](#hiberuserpermission) |  |
 
 ### hiber.Filter.Users
 
@@ -861,8 +861,8 @@ Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated string](#string) | none |
-| exclude | [repeated string](#string) | none |
+| include | [repeated string](#string) |  |
+| exclude | [repeated string](#string) |  |
 
 ### hiber.Filter.Webhooks
 
@@ -870,9 +870,9 @@ Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| include | [repeated int64](#int64) | none |
-| exclude | [repeated int64](#int64) | none |
-| only_active | [ bool](#bool) | none |
+| include | [repeated int64](#int64) |  |
+| exclude | [repeated int64](#int64) |  |
+| only_active | [ bool](#bool) |  |
 
 ### hiber.Location
 
@@ -887,7 +887,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 
 ### hiber.LocationSelection
 
-Selection object for map data. Filter modems on the map by id, (child)organization.
+Selection object for map data.
 
 Also, filter the map data by level and area restriction, to only display a small area at a detailed map level,
 for example
@@ -931,8 +931,8 @@ For example:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues) | none |
+| key | [ string](#string) |  |
+| value | [ hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues) |  |
 
 ### hiber.MapFilter.IncludeAndEntry
 
@@ -940,8 +940,8 @@ For example:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ string](#string) | none |
-| value | [ hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues) | none |
+| key | [ string](#string) |  |
+| value | [ hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues) |  |
 
 ### hiber.MapFilter.OneOfValues
 
@@ -950,7 +950,7 @@ which is not possible in protobuf without trickery.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [repeated string](#string) | none |
+| value | [repeated string](#string) |  |
 
 ### hiber.NamedFile
 
@@ -994,8 +994,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) | none |
-| page | [ int32](#int32) | none |
+| size | [ int32](#int32) |  |
+| page | [ int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -1003,12 +1003,12 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) | none |
-| page | [ int32](#int32) | none |
-| total | [ int32](#int32) | none |
-| total_pages | [ int32](#int32) | none |
-| previous | [ hiber.Pagination](#hiberpagination) | none |
-| next | [ hiber.Pagination](#hiberpagination) | none |
+| size | [ int32](#int32) |  |
+| page | [ int32](#int32) |  |
+| total | [ int32](#int32) |  |
+| total_pages | [ int32](#int32) |  |
+| previous | [ hiber.Pagination](#hiberpagination) |  |
+| next | [ hiber.Pagination](#hiberpagination) |  |
 | approximated_total | [ bool](#bool) | Indicates that the total is an approximation, and not an exact value. This can be set for data that changes often, or is generally only fetched in an infinite scrolling manner. For example, unbundled events are likely to return an approximated total, but not guaranteed to do so. |
 
 ### hiber.Shape
@@ -1021,7 +1021,7 @@ while a rectangular region is easier to define using Area.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| path | [repeated hiber.Location](#hiberlocation) | none |
+| path | [repeated hiber.Location](#hiberlocation) |  |
 | textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
@@ -1037,8 +1037,8 @@ Examples:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| start | [ hiber.Timestamp](#hibertimestamp) | none |
-| end | [ hiber.Timestamp](#hibertimestamp) | none |
+| start | [ hiber.Timestamp](#hibertimestamp) |  |
+| end | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### hiber.Timestamp
 
@@ -1058,9 +1058,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) | none |
-| time_zone | [ string](#string) | none |
-| textual | [ string](#string) | none |
+| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+| time_zone | [ string](#string) |  |
+| textual | [ string](#string) |  |
 
 ### hiber.UpdateBoolean
 
@@ -1073,8 +1073,8 @@ To use this to update, set a value and set updated to true
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ bool](#bool) | none |
+| updated | [ bool](#bool) |  |
+| value | [ bool](#bool) |  |
 
 ### hiber.UpdateClearableString
 
@@ -1087,8 +1087,8 @@ To use this to update, set a value and set updated to true
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ string](#string) | none |
+| updated | [ bool](#bool) |  |
+| value | [ string](#string) |  |
 
 ### hiber.UpdateOptionalDuration
 
@@ -1099,8 +1099,8 @@ To clear the duration, set updated to true, but set no value.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ hiber.Duration](#hiberduration) | none |
+| updated | [ bool](#bool) |  |
+| value | [ hiber.Duration](#hiberduration) |  |
 
 ### hiber.UpdateOptionalId
 
@@ -1110,8 +1110,8 @@ To use this to update, set a value and set updated to true. To clear the id, set
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ int64](#int64) | none |
+| updated | [ bool](#bool) |  |
+| value | [ int64](#int64) |  |
 
 ### hiber.UpdateZeroableInt
 
@@ -1124,121 +1124,120 @@ To use this to update, set a value and set updated to true
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| updated | [ bool](#bool) | none |
-| value | [ uint32](#uint32) | none |
+| updated | [ bool](#bool) |  |
+| value | [ uint32](#uint32) |  |
 
 
 ### Enums
 #### hiber.EventType
 Enum of api-accessible events.
-
 The event types in this enum have a protobuf implementation, and can be used, for example, in the
 api event stream and publishers.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| DEFAULT | none | 0 |
-| ORGANIZATION_CREATED | none | 34 |
-| ORGANIZATION_UPDATED | none | 12 |
-| ORGANIZATION_DELETED | none | 35 |
-| ORGANIZATION_EVENT_CONFIGURATION_UPDATED | none | 43 |
-| MODEM_CREATED | none | 55 |
-| MODEM_UPDATED | none | 36 |
-| MODEM_LOCATION_UPDATED | none | 4 |
-| MODEM_ACTIVATED | none | 33 |
-| MODEM_MESSAGE_RECEIVED | none | 5 |
-| MODEM_MESSAGE_BODY_PARSED | none | 39 |
-| MODEM_MESSAGE_BODY_RECEIVED | none | 45 |
-| MODEM_MESSAGE_CANNOT_BE_PARSED | none | 15 |
-| MODEM_MESSAGE_SUMMARY | none | 42 |
-| MODEM_MESSAGE_BODY_PARSER_CREATED | none | 46 |
-| MODEM_MESSAGE_BODY_PARSER_UPDATED | none | 47 |
-| MODEM_MESSAGE_BODY_PARSER_DELETED | none | 48 |
-| MODEM_ALARM | none | 56 |
-| MODEM_ALARM_CREATED | none | 57 |
-| MODEM_ALARM_UPDATED | none | 58 |
-| MODEM_ALARM_DELETED | none | 59 |
-| ASSIGNED | none | 63 |
-| UNASSIGNED | none | 64 |
-| TRANSFER | none | 18 |
-| PUBLISHER_CREATED | none | 1 |
-| PUBLISHER_UPDATED | none | 2 |
-| PUBLISHER_DELETED | none | 3 |
-| PUBLISHER_AUTO_DISABLED | none | 37 |
-| PUBLISHER_FAILED | none | 11 |
-| USER_ACCESS_REQUEST | none | 8 |
-| USER_INVITED | none | 38 |
-| USER_ADDED | none | 9 |
-| USER_REMOVED | none | 10 |
-| USER_VALIDATION_UPDATED | none | 54 |
-| TOKEN_CREATED | none | 31 |
-| TOKEN_EXPIRY_WARNING | none | 25 |
-| TOKEN_EXPIRED | none | 26 |
-| TOKEN_DELETED | none | 32 |
-| EXPORT_CREATED | none | 65 |
-| EXPORT_READY | none | 66 |
-| EXPORT_FAILED | none | 67 |
+| DEFAULT |  | 0 |
+| ORGANIZATION_CREATED | A new organization was created under your organization. | 34 |
+| ORGANIZATION_UPDATED | Your organization information was updated. This deals with things like display name and contact information, not users and devices. | 12 |
+| ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
+| ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
+| DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
+| DEVICE_UPDATED | A device in your organization was manually updated (i.e. renamed, tagged). | 36 |
+| DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |
+| DEVICE_INSTALLED | A device in your organization was installed and should now be active. | 33 |
+| MESSAGE_RECEIVED | A device in your organization sent a message. This event is the final output for the message, after any parsing and post-processing. | 5 |
+| MESSAGE_BODY_PARSED | A device in your organization sent a message, and it was parsed by a message body parser. For the final event, with all applied parsers and post processing, use MESSAGE_RECEIVED instead. | 39 |
+| MESSAGE_BODY_RECEIVED | A device in your organization sent a message, and it has been scheduled for parsing by message body parsers and post-processing. For the final event, with all applied parsers and post processing, use MESSAGE_RECEIVED instead. | 45 |
+| MESSAGE_CANNOT_BE_PARSED | A device in your organization sent a message, and it could not be parsed by any assigned message body parser. This is typically a configuration issue. Please contact customer support if this is not resolved. | 15 |
+| MESSAGE_SUMMARY | A summary of messages in your organization was created, based on your event configuration. | 42 |
+| MESSAGE_BODY_PARSER_CREATED | A new message body parser was created in your organization. This typically only happens for custom solutions. | 46 |
+| MESSAGE_BODY_PARSER_UPDATED | A message body parser in your organization was updated. This typically only happens for custom solutions. | 47 |
+| MESSAGE_BODY_PARSER_DELETED | A message body parser in your organization was deleted. This typically only happens for custom solutions. | 48 |
+| ALARM_TRIGGERED | An alarm was triggered in your organizations. Depending on the alarm, this may mean that a device sent a message with a value (e.g. pressure) outside of the expected range, or moved out of the expected area. | 56 |
+| ALARM_CREATED | A new alarm was created in your organization. | 57 |
+| ALARM_UPDATED | An alarm in your organization was updated. | 58 |
+| ALARM_DELETED | An alarm in your organization was deleted. | 59 |
+| ASSIGNED | An assignment was made in your organization. For example: assigning a tag or alarm to a modem. | 63 |
+| UNASSIGNED | An assignment was removed in your organization. For example: removing a tag or alarm from a modem. | 64 |
+| TRANSFER | A device was transferred into or out of your organization. Transferred device lose their data and are only used in the new organization if connected to a gateway in that organization. | 18 |
+| PUBLISHER_CREATED | A new publisher was created in your organization. Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and even email preferences. | 1 |
+| PUBLISHER_UPDATED | A publisher in your organization was updated. Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and even email preferences. | 2 |
+| PUBLISHER_DELETED | A publisher in your organization was deleted. Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and even email preferences. | 3 |
+| PUBLISHER_FAILED | A publisher in your organization failed to send its data. This can be a temporary issue (perhaps the webhook endpoint is down) or an indication of a configuration issue. Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and even email preferences. | 11 |
+| PUBLISHER_AUTO_DISABLED | A publisher in your organization failed to send its data for a long enough period that is has been disabled. This means the failures were not a temporary issue, but there is something wrong with the configuration. Publishers are any system that pushes data out of the system, like webhooks, MQTT integrations and even email preferences. | 37 |
+| USER_ACCESS_REQUEST | A user has requested access to your organization. You can review their request and approve or reject them. | 8 |
+| USER_INVITED | A user was invited into your organization. They can review your invite and accept it or ignore it. | 38 |
+| USER_ADDED | A user was granted access to your organization, by request, invite, or created by an organization admin. | 9 |
+| USER_REMOVED | A user was removed from your organization by an organization admin. | 10 |
+| USER_VALIDATION_UPDATED | The user validation (i.e. email domain) for your organization was updated. | 54 |
+| TOKEN_CREATED | A new token was created for your organization. | 31 |
+| TOKEN_EXPIRY_WARNING | A token in your organization will expire within 2 weeks. | 25 |
+| TOKEN_EXPIRED | A token in your organization has expired. | 26 |
+| TOKEN_DELETED | A token in your organization was deleted. | 32 |
+| EXPORT_CREATED | A new export was started for your organization, exporting data (i.e. messages) to a file. | 65 |
+| EXPORT_READY | An export in your organization has completed and the resulting file with data (i.e. messages as CSV) is ready to be downloaded. | 66 |
+| EXPORT_FAILED | An export in your organization has failed (typically because of incorrect data selection). | 67 |
 
 #### hiber.Health
 Health is an indicator for issues. It is used for publishers to give a quick indication of issues.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| OK | none | 0 |
-| WARNING | none | 1 |
-| ERROR | none | 2 |
+| OK |  | 0 |
+| WARNING |  | 1 |
+| ERROR |  | 2 |
 
 #### hiber.UnitOfMeasurement
 Unit of measurement for a numeric value.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| UNIT_UNKNOWN | none | 0 |
-| DURATION_MILLISECONDS | none | 40 |
-| DURATION_SECONDS | none | 1 |
-| DURATION_MINUTES | none | 2 |
-| DURATION_HOURS | none | 3 |
-| DURATION_DAYS | none | 4 |
-| DURATION_WEEKS | none | 41 |
-| FUEL_EFFICIENCY_LITER_PER_100_KILOMETER | none | 30 |
-| FUEL_EFFICIENCY_KILOMETER_PER_LITER | none | 31 |
-| FUEL_EFFICIENCY_KILOMETER_PER_US_GALLON | none | 32 |
-| FUEL_EFFICIENCY_KILOMETER_PER_IMPERIAL_GALLON | none | 33 |
-| FUEL_EFFICIENCY_MILE_PER_US_GALLON | none | 34 |
-| FUEL_EFFICIENCY_MILE_PER_IMPERIAL_GALLON | none | 35 |
-| FUEL_EFFICIENCY_MILE_PER_LITER | none | 36 |
-| DISTANCE_METER | none | 8 |
-| DISTANCE_MILLIMETER | none | 9 |
-| DISTANCE_CENTIMETER | none | 10 |
-| DISTANCE_KILOMETER | none | 11 |
-| DISTANCE_NAUTICAL_MILE | none | 26 |
-| DISTANCE_MILE | none | 21 |
-| DISTANCE_YARD | none | 27 |
-| DISTANCE_FOOT | none | 28 |
-| DISTANCE_INCH | none | 29 |
-| PERCENT | none | 16 |
-| PRESSURE_BAR | none | 12 |
-| PRESSURE_PSI | none | 14 |
-| PRESSURE_K_PA | none | 17 |
-| SPEED_KILOMETERS_PER_HOUR | none | 18 |
-| SPEED_KNOTS | none | 19 |
-| SPEED_METERS_PER_SECOND | none | 20 |
-| SPEED_MILES_PER_HOUR | none | 22 |
-| TEMPERATURE_KELVIN | none | 5 |
-| TEMPERATURE_DEGREES_CELSIUS | none | 6 |
-| TEMPERATURE_DEGREES_FAHRENHEIT | none | 7 |
-| VOLTAGE_MILLIVOLT | none | 15 |
-| VOLUME_LITER | none | 23 |
-| VOLUME_GALLON_US | none | 24 |
-| VOLUME_GALLON_IMPERIAL | none | 25 |
-| VOLUME_CUBIC_METER | none | 42 |
-| VOLUME_CUBIC_FOOT | none | 43 |
-| MASS_KILOGRAMS | none | 37 |
-| MASS_POUNDS | none | 38 |
-| FLOW_CUBIC_METERS_PER_HOUR | none | 39 |
-| FLOW_BARRELS_PER_DAY | none | 46 |
-| REVOLUTIONS_PER_MINUTE | none | 44 |
-| ITEMS_PER_24_HOURS | none | 45 |
+| UNIT_UNKNOWN |  | 0 |
+| DURATION_MILLISECONDS |  | 40 |
+| DURATION_SECONDS |  | 1 |
+| DURATION_MINUTES |  | 2 |
+| DURATION_HOURS |  | 3 |
+| DURATION_DAYS |  | 4 |
+| DURATION_WEEKS |  | 41 |
+| FUEL_EFFICIENCY_LITER_PER_100_KILOMETER |  | 30 |
+| FUEL_EFFICIENCY_KILOMETER_PER_LITER |  | 31 |
+| FUEL_EFFICIENCY_KILOMETER_PER_US_GALLON |  | 32 |
+| FUEL_EFFICIENCY_KILOMETER_PER_IMPERIAL_GALLON |  | 33 |
+| FUEL_EFFICIENCY_MILE_PER_US_GALLON |  | 34 |
+| FUEL_EFFICIENCY_MILE_PER_IMPERIAL_GALLON |  | 35 |
+| FUEL_EFFICIENCY_MILE_PER_LITER |  | 36 |
+| DISTANCE_METER |  | 8 |
+| DISTANCE_MILLIMETER |  | 9 |
+| DISTANCE_CENTIMETER |  | 10 |
+| DISTANCE_KILOMETER |  | 11 |
+| DISTANCE_NAUTICAL_MILE |  | 26 |
+| DISTANCE_MILE |  | 21 |
+| DISTANCE_YARD |  | 27 |
+| DISTANCE_FOOT |  | 28 |
+| DISTANCE_INCH |  | 29 |
+| PERCENT |  | 16 |
+| PRESSURE_BAR |  | 12 |
+| PRESSURE_PSI |  | 14 |
+| PRESSURE_K_PA |  | 17 |
+| SPEED_KILOMETERS_PER_HOUR |  | 18 |
+| SPEED_KNOTS |  | 19 |
+| SPEED_METERS_PER_SECOND |  | 20 |
+| SPEED_MILES_PER_HOUR |  | 22 |
+| TEMPERATURE_KELVIN |  | 5 |
+| TEMPERATURE_DEGREES_CELSIUS |  | 6 |
+| TEMPERATURE_DEGREES_FAHRENHEIT |  | 7 |
+| VOLTAGE_MILLIVOLT |  | 15 |
+| VOLUME_LITER |  | 23 |
+| VOLUME_GALLON_US |  | 24 |
+| VOLUME_GALLON_IMPERIAL |  | 25 |
+| VOLUME_CUBIC_METER |  | 42 |
+| VOLUME_CUBIC_FOOT |  | 43 |
+| MASS_KILOGRAMS |  | 37 |
+| MASS_POUNDS |  | 38 |
+| FLOW_CUBIC_METERS_PER_HOUR |  | 39 |
+| FLOW_BARRELS_PER_DAY |  | 46 |
+| REVOLUTIONS_PER_MINUTE |  | 44 |
+| ITEMS_PER_24_HOURS |  | 45 |
 
 ## Scalar Value Types
 

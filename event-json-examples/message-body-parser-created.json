@@ -1,0 +1,34 @@
+{
+  "messageBodyParserCreated": {
+    "organization": "your-organization",
+    "created": {
+      "name": "example",
+      "contentKsy": "example",
+      "identifier": "example-identifier",
+      "organization": "your-organization",
+      "metadataFields": {
+        "requireMessageMetadata": {
+          "$.fPort": 10.0
+        }
+      },
+      "requireMessageMetadata": {
+        "$.fPort": 10.0
+      }
+    },
+    "title": "Message Body Parser example (example-identifier) was created.",
+    "description": "Message Body Parser example (example-identifier) was created with the following configuration:\n\nexample",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
+    }
+  },
+  "type": "MESSAGE_BODY_PARSER_CREATED",
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
+  },
+  "title": "Message Body Parser example (example-identifier) was created.",
+  "description": "Message Body Parser example (example-identifier) was created with the following configuration:\n\nexample"
+}

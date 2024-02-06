@@ -352,21 +352,12 @@ message Value {
     }
 }
 
-/* Get the values for the selected field.
- *
- * There are a few limitations here:
- * - text fields can only use the LAST aggregation.
- * - enum fields support a subset of aggregations:
- *   - DEFAULT and LAST return the last value.
- *   - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order.
+/* Get an aggregated value for the selected data (e.g. average).
+ * Text fields can only use the LAST aggregation.
+ * Enum fields support a subset of aggregations:
+ *   - DEFAULT and LAST return the last value;
+ *   - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order;
  *   - AVERAGE and SUM are not supported.
- *
- * - enum duration
- *
- * An enum example:
- * Field "status" with this timeline: 00:00 OK, 00:10 FAILED, 00:20 OK, 00:25 FAILED, 00:40 OK
- * - aggregation DEFAULT or LAST: OK, since it's OK at the end of the time range.
- * - aggregation SUM: OK: 35m, FAILED: 25m
  */
 enum ValueAggregation {
     DEFAULT = 0;

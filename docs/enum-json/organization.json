@@ -1,0 +1,13 @@
+[{
+  "name": "Feature",
+  "description": "",
+  "values": {
+    "UNKNOWN": ""
+    ,"HIBER": "The default Hiber set of features including Mission Control and the API"
+    ,"HILO": "A limited set of features corresponding to the HiberHilo product."
+    ,"MODEM_CREATION": "Required to manually create modems using the ModemService."
+    ,"EARLY_ACCESS": "Used for organizations that get early access to features."
+    ,"EXPERIMENTAL": "Used for organizations that get access to experimental features. e.g. feature work in progress."
+    ,"BI_TOOLING_BETA": "Integrate BI tooling in the Mission Control interface."
+    }
+}]

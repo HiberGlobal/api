@@ -1,0 +1,84 @@
+{
+  "isError": true,
+  "messageCannotBeParsed": {
+    "organization": "your-organization",
+    "deviceNumber": "AAAA AAAA",
+    "messageId": "10001",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "textual": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC"
+    },
+    "reason": "Parsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.\n\n",
+    "healthLevel": {
+      "level": "Alarm",
+      "color": "red",
+      "colorData": {
+        "fill": "red",
+        "text": "red"
+      },
+      "catchAll": true,
+      "severity": "3"
+    },
+    "resolveIdentifier": "resolve-15-1127000000000000",
+    "tags": [
+      {
+        "id": "1",
+        "label": {
+          "name": "example-tag",
+          "type": "well"
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "name": "example-tag-2",
+          "type": "well"
+        }
+      }
+    ],
+    "title": "Processing for AAAA AAAA appears to be misconfigured! Please contact customer support if this is not resolved.",
+    "description": "Processing for AAAA AAAA appears to be misconfigured! Please contact customer support if this is not resolved.\n\nThis can mean that:\n- the device is sending invalid messages\n- the processing is configured incorrectly (i.e. for a different type of device)\n\nSee the message below for more information:\n\nParsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.\n\nwell: example-tag, example-tag-2",
+    "deviceExternalDeviceId": "00 11 22 33 AA BB CC DD"
+  },
+  "title": "Processing for AAAA AAAA appears to be misconfigured! Please contact customer support if this is not resolved.",
+  "description": "Processing for AAAA AAAA appears to be misconfigured! Please contact customer support if this is not resolved.\n\nThis can mean that:\n- the device is sending invalid messages\n- the processing is configured incorrectly (i.e. for a different type of device)\n\nSee the message below for more information:\n\nParsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.\n\nwell: example-tag, example-tag-2",
+  "device": {
+    "number": "AAAA AAAA",
+    "name": "AAAA AAAA",
+    "identifier": "00 11 22 33 AA BB CC DD"
+  },
+  "tags": [
+    {
+      "id": "1",
+      "label": {
+        "name": "example-tag",
+        "type": "well"
+      }
+    },
+    {
+      "id": "2",
+      "label": {
+        "name": "example-tag-2",
+        "type": "well"
+      }
+    }
+  ],
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "textual": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC"
+  },
+  "type": "MESSAGE_CANNOT_BE_PARSED",
+  "healthLevel": {
+    "level": "Alarm",
+    "color": "red",
+    "colorData": {
+      "fill": "red",
+      "text": "red"
+    },
+    "catchAll": true,
+    "severity": "3"
+  },
+  "resolveIdentifier": "resolve-15-1127000000000000"
+}

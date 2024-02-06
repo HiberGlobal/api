@@ -25,7 +25,10 @@ option java_outer_classname = "EventApi";
 option go_package = "hiber";
 
 /* Events are used in a number of ways in the api. With this service you can
- * search, list and stream them for your own purposes
+ * search, list and stream them for your own purposes.
+ *
+ * Events are filtered by permission, i.e. if you cannot access the users, you would not see user-related events.
+ * Requesting user-related events explicitly if you cannot access the users will return an error.
  */
 service EventService {
     rpc List (ListEventsRequest) returns (ListEventsRequest.Response);
@@ -45,8 +48,8 @@ service EventService {
  * the contained object.
  */
 message Event {
-    /* The modem data for this event, if it is related to a single modem. */
-    message Modem {
+    /* The device data for this event, if it is related to a single device. */
+    message Device {
         string number = 1;
         string name = 2;
         string identifier = 3;
@@ -71,7 +74,7 @@ message Event {
     bool is_warning = 100 [deprecated = true];
 
     /* The health level caused by this event.
-     * This health generally applies to either a modem, a token or a publisher,
+     * This health generally applies to either a device, a token or a publisher,
      * and is also applied to the organization health.
      * Not every event affects health, so this field might be empty.
      */
@@ -93,31 +96,31 @@ message Event {
     /* Longer text describing the event in more detail. */
     string description = 103;
 
-    /* The modem number for this event, if it is related to a single modem. */
-    Modem modem = 104;
+    /* The device data for this event, if it is related to a single device. */
+    Device device = 104;
 
     /* The tags for this event, if any. */
     repeated tag.Tag tags = 105;
 
     oneof event {
-        ModemEvent.ModemCreatedEvent modem_created = 55;
-        ModemEvent.ModemUpdatedEvent modem_updated = 39;
-        ModemEvent.ModemLocationUpdatedEvent modem_location_updated = 2;
-        ModemEvent.ModemInstalledEvent modem_installed = 36;
+        DeviceEvent.DeviceCreatedEvent device_created = 55;
+        DeviceEvent.DeviceUpdatedEvent device_updated = 39;
+        DeviceEvent.DeviceLocationUpdatedEvent device_location_updated = 2;
+        DeviceEvent.DeviceInstalledEvent device_installed = 36;
 
-        ModemEvent.MessageEvent.ModemMessageReceivedEvent modem_message_received = 4;
-        ModemEvent.MessageEvent.ModemMessageBodyReceivedEvent modem_message_body_received = 44;
-        ModemEvent.MessageEvent.ModemMessageBodyParsedEvent modem_message_body_parsed = 45;
-        ModemEvent.MessageEvent.ModemMessageCannotBeParsedEvent modem_message_cannot_be_parsed = 7;
+        MessageEvent.MessageReceivedEvent message_received = 4;
+        MessageEvent.MessageBodyReceivedEvent message_body_received = 44;
+        MessageEvent.MessageBodyParsedEvent message_body_parsed = 45;
+        MessageEvent.MessageCannotBeParsedEvent message_cannot_be_parsed = 7;
 
-        ModemEvent.MessageBodyParserEvent.CreatedEvent modem_message_body_parser_created = 46;
-        ModemEvent.MessageBodyParserEvent.UpdatedEvent modem_message_body_parser_updated = 47;
-        ModemEvent.MessageBodyParserEvent.DeletedEvent modem_message_body_parser_deleted = 48;
+        MessageBodyParserEvent.CreatedEvent message_body_parser_created = 46;
+        MessageBodyParserEvent.UpdatedEvent message_body_parser_updated = 47;
+        MessageBodyParserEvent.DeletedEvent message_body_parser_deleted = 48;
 
-        ModemEvent.AlarmEvent.ModemAlarmEvent modem_alarm = 56;
-        ModemEvent.AlarmEvent.CreatedEvent modem_alarm_created = 57;
-        ModemEvent.AlarmEvent.UpdatedEvent modem_alarm_updated = 58;
-        ModemEvent.AlarmEvent.DeletedEvent modem_alarm_deleted = 59;
+        AlarmEvent.AlarmTriggeredEvent alarm_triggered = 56;
+        AlarmEvent.CreatedEvent alarm_created = 57;
+        AlarmEvent.UpdatedEvent alarm_updated = 58;
+        AlarmEvent.DeletedEvent alarm_deleted = 59;
 
         AssignmentEvent.AssignedEvent assigned = 68;
         AssignmentEvent.UnassignedEvent unassigned = 69;
@@ -138,7 +141,7 @@ message Event {
         OrganizationEvent.OrganizationCreatedEvent organization_created = 37;
         OrganizationEvent.OrganizationUpdatedEvent organization_updated = 25;
         OrganizationEvent.OrganizationDeletedEvent organization_deleted = 38;
-        OrganizationEvent.ModemMessageSummaryEvent modem_message_summary = 42;
+        OrganizationEvent.MessageSummaryEvent message_summary = 42;
         OrganizationEvent.EventConfigurationUpdated organization_event_configuration_updated = 43;
 
         PublisherEvent.CreatedEvent publisher_created = 31;
@@ -153,13 +156,13 @@ message Event {
     }
     reserved 3, 6, 11 to 16, 18 to 22, 26 to 29, 49 to 53, 60 to 64;
 
-    message ModemEvent {
-        message ModemCreatedEvent {
+    message DeviceEvent {
+        message DeviceCreatedEvent {
             string organization = 1;
-            string modem_number = 2;
+            string number = 2;
 
-            /* External device id for this modem (e.g. a MAC address). */
-            string modem_external_device_id = 20;
+            /* External device id for this device (e.g. a MAC address). */
+            string external_device_id = 20;
 
             Timestamp time = 4;
             repeated tag.Tag tags = 5;
@@ -167,12 +170,12 @@ message Event {
             string description = 7;
         }
 
-        message ModemUpdatedEvent {
+        message DeviceUpdatedEvent {
             string organization = 1;
-            string modem_number = 2;
+            string number = 2;
 
-            /* External device id for this modem (e.g. a MAC address). */
-            string modem_external_device_id = 20;
+            /* External device id for this device (e.g. a MAC address). */
+            string external_device_id = 20;
 
             UpdateClearableString display_name = 10;
             UpdateClearableString custom_antenna = 12;
@@ -191,17 +194,17 @@ message Event {
             reserved 11;
         }
 
-        /* When a message comes in, the modem's location is updated automatically. This event is generated whenever the
-         * modem's location is updated
+        /* When a message comes in, the device's location is updated automatically. This event is generated whenever the
+         * device's location is updated
          */
-        message ModemLocationUpdatedEvent {
+        message DeviceLocationUpdatedEvent {
             string organization = 1;
-            string modem_number = 2;
+            string number = 2;
 
-            /* External device id for this modem (e.g. a MAC address). */
-            string modem_external_device_id = 8;
+            /* External device id for this device (e.g. a MAC address). */
+            string external_device_id = 8;
 
-            /* The updated location for this modem. */
+            /* The updated location for this device. */
             Location location = 3;
 
             /* The device time of the first message with the new location. */
@@ -215,256 +218,256 @@ message Event {
             string description = 7;
         }
 
-        /* When the modem is marked as installed. */
-        message ModemInstalledEvent {
+        /* When the device is marked as installed. */
+        message DeviceInstalledEvent {
             string organization = 1;
-            string modem_number = 2;
+            string number = 2;
 
-            /* External device id for this modem (e.g. a MAC address). */
-            string modem_external_device_id = 11;
+            /* External device id for this device (e.g. a MAC address). */
+            string external_device_id = 11;
 
-            /* The time this modem was installed. */
+            /* The time this device was installed. */
             Timestamp time = 4;
 
             repeated tag.Tag tags = 7;
             string title = 8;
             string description = 9;
         }
+    }
+    message MessageEvent {
 
-        message MessageEvent {
+        /* This event is generated whenever a message comes in, after is has been decrypted
+         * and parsed (if any body parsers are configured for the device).
+         *
+         * It contains the relevant data in the message object, including location and the
+         * user-defined body.
+         *
+         * If any body parser(s) are configured for the device, the device message object also contains
+         * a ParsedBody for each of them.
+         */
+        message MessageReceivedEvent {
+            string organization = 1;
+            string modem_number = 2 [deprecated = true];
+            string device_number = 9;
 
-            /* This event is generated whenever a message comes in, after is has been decrypted
-             * and parsed (if any body parsers are configured for the modem).
-             *
-             * It contains the relevant data in the message object, including location and the
-             * user-defined body.
-             *
-             * If any body parser(s) are configured for the modem, the modem message object also contains
-             * a ParsedBody for each of them.
-             */
-            message ModemMessageReceivedEvent {
-                string organization = 1;
-                string modem_number = 2;
+            /* External device id for this device (e.g. a MAC address). */
+            string device_external_device_id = 8;
 
-                /* External device id for this modem (e.g. a MAC address). */
-                string modem_external_device_id = 8;
+            /* The received message, including parsed body. */
+            modem.ModemMessage message = 3;
 
-                /* The received message, including parsed body. */
-                modem.ModemMessage message = 3;
+            /* The device's tags. */
+            repeated tag.Tag tags = 4;
 
-                /* The modem's tags. */
-                repeated tag.Tag tags = 4;
-
-                string title = 5;
-                string description = 6;
-                Timestamp time = 7;
-            }
-
-            /* This lightweight event is generated whenever a message comes in, after is has been decrypted. */
-            message ModemMessageBodyReceivedEvent {
-                string organization = 1;
-                string modem_number = 2;
-
-                /* External device id for this modem (e.g. a MAC address). */
-                string modem_external_device_id = 3;
-
-                /* Id of the message that was parsed. */
-                uint64 message_id = 4;
-
-                /* Time the message was sent from the modem. */
-                Timestamp sent_at = 5;
-
-                /* Message body convenience object. */
-                BytesOrHex body = 6;
-
-                /* The modem's tags. */
-                repeated tag.Tag tags = 7;
-
-                string title = 8;
-                string description = 9;
-                Timestamp time = 10;
-            }
-
-            /* This event is generated whenever a message is parsed successfully by an assigned body parser.
-             * If multiple body parsers are assigned to a modem, multiple ModemMessageParsedEvent events will
-             * be produced by an incoming message.
-             * For the total result of all assigned parsers, see the ModemMessageReceivedEvent, which is produced
-             * after all body parsers have been applied.
-             */
-            message ModemMessageBodyParsedEvent {
-                string organization = 1;
-                string modem_number = 2;
-
-                /* External device id for this modem (e.g. a MAC address). */
-                string modem_external_device_id = 3;
-
-                /* Id of the message that was parsed. */
-                uint64 message_id = 4;
-
-                /* Time the message was sent from the modem. */
-                Timestamp sent_at = 5;
-
-                /* The identifier of the parser that parsed the body. */
-                string parser_identifier = 6;
-
-                /* The name of the parser that parsed the body. */
-                string parser_name = 7;
-
-                /* The resulting json from parsing the message body. */
-                google.protobuf.Struct parsed_message = 8;
-
-                /* The modem's tags. */
-                repeated tag.Tag tags = 9;
-
-                string title = 10;
-                string description = 11;
-                Timestamp time = 12;
-            }
-
-            /* Triggered when a message cannot be parsed. This can have multiple reasons, for example, an invalid
-             * message version.
-             */
-            message ModemMessageCannotBeParsedEvent {
-                string organization = 1;
-                string modem_number = 2;
-
-                /* External device id for this modem (e.g. a MAC address). */
-                string modem_external_device_id = 9;
-
-                /* The message that cannot be parsed.
-                 * This message may or may not be available in the system, depending one the reason it could not
-                 * be parsed.
-                 */
-                uint64 modem_message_id = 3;
-
-                /* The moment this event was triggered. */
-                Timestamp time = 4;
-
-                /* The reason this message could not be parsed.
-                 * This could be, for example:
-                 * - invalid message envelope, but with enough information to determine the modem
-                 * - all body parsers failed to parse the body of the message
-                 */
-                string reason = 5;
-                repeated tag.Tag tags = 6;
-                string title = 7;
-                string description = 8;
-
-                /* The health level caused for the modem (and organization) by this event. */
-                health.HealthLevel health_level = 10;
-
-                oneof resolved_status {
-                    /* Whether this event was resolved. */
-                    bool resolved = 11;
-
-                    /* The identifier to use when resolving this event. Only present when not resolved */
-                    string resolve_identifier = 12;
-                }
-            }
+            string title = 5;
+            string description = 6;
+            Timestamp time = 7;
         }
 
-        /* Events related to ModemMessageBodyParsers. */
-        message MessageBodyParserEvent {
-            message CreatedEvent {
-                string organization = 1;
-                modem.message.bodyparser.ModemMessageBodyParser created = 2;
-                string title = 3;
-                string description = 4;
-                Timestamp time = 5;
-            }
+        /* This lightweight event is generated whenever a message comes in, after is has been decrypted. */
+        message MessageBodyReceivedEvent {
+            string organization = 1;
+            string device_number = 2;
 
-            message UpdatedEvent {
-                string organization = 1;
-                UpdateClearableString updated_name = 2;
-                UpdateClearableString updated_content_ksy = 3;
-                modem.message.bodyparser.SimpleModemMessageBodyParser updated_simple_parser = 4;
-                Filter.ChildOrganizations.Update updated_available_to_child_organizations = 5;
-                string title = 6;
-                string description = 7;
-                Timestamp time = 8;
-            }
+            /* External device id for this device (e.g. a MAC address). */
+            string device_external_device_id = 3;
 
-            message DeletedEvent {
-                string organization = 1;
-                string deleted = 2;
-                string title = 3;
-                string description = 4;
-                Timestamp time = 5;
-            }
+            /* Id of the message that was parsed. */
+            uint64 message_id = 4;
+
+            /* Time the message was sent from the device. */
+            Timestamp sent_at = 5;
+
+            /* Message body convenience object. */
+            BytesOrHex body = 6;
+
+            /* The device's tags. */
+            repeated tag.Tag tags = 7;
+
+            string title = 8;
+            string description = 9;
+            Timestamp time = 10;
         }
 
-        message AlarmEvent {
-            message ModemAlarmEvent {
-                string organization = 1;
-                string modem_number = 2;
-                string modem_external_device_id = 3;
+        /* This event is generated whenever a message is parsed successfully by an assigned body parser.
+         * If multiple body parsers are assigned to a device, multiple DeviceMessageBodyParsedEvent events will
+         * be produced by an incoming message.
+         * For the total result of all assigned parsers, see the DeviceMessageReceivedEvent, which is produced
+         * after all body parsers have been applied.
+         */
+        message MessageBodyParsedEvent {
+            string organization = 1;
+            string device_number = 2;
 
-                /* The id of the modem that triggered the alarm, if any. */
-                uint64 modem_message_id = 4;
+            /* External device id for this device (e.g. a MAC address). */
+            string device_external_device_id = 3;
 
-                /* The identifier of the alarm. */
-                string alarm_identifier = 5;
+            /* Id of the message that was parsed. */
+            uint64 message_id = 4;
 
-                /* The description of the alarm. */
-                string alarm_description = 6;
+            /* Time the message was sent from the device. */
+            Timestamp sent_at = 5;
 
-                /* The filled in error message(s) for the failing checks in the alarm. */
-                map<string, string> error_messages = 7;
+            /* The identifier of the parser that parsed the body. */
+            string parser_identifier = 6;
 
-                /* The highest health level caused by the failing checks in this alarm,
-                 * for the modem (and organization).
-                 */
-                health.HealthLevel health_level = 12;
+            /* The name of the parser that parsed the body. */
+            string parser_name = 7;
 
-                repeated hiber.tag.Tag tags = 8;
-                string title = 9;
-                string description = 10;
-                Timestamp time = 11;
+            /* The resulting json from parsing the message body. */
+            google.protobuf.Struct parsed_message = 8;
 
-                /* When this alarm event was resolved. */
-                Timestamp resolved_at = 13;
+            /* The device's tags. */
+            repeated tag.Tag tags = 9;
 
-                /* Optional health that this alarm event causes after it has been resolved. */
-                health.HealthLevel health_level_after_resolved = 14;
+            string title = 10;
+            string description = 11;
+            Timestamp time = 12;
+        }
 
-                /* How long the optional health that this alarm event causes after it has been resolved lasts. */
-                Timestamp health_level_after_resolved_until = 15;
+        /* Triggered when a message cannot be parsed. This can have multiple reasons, for example, an invalid
+         * message version.
+         */
+        message MessageCannotBeParsedEvent {
+            string organization = 1;
+            string device_number = 2;
+
+            /* External device id for this device (e.g. a MAC address). */
+            string device_external_device_id = 9;
+
+            /* The message that cannot be parsed.
+             * This message may or may not be available in the system, depending one the reason it could not
+             * be parsed.
+             */
+            uint64 message_id = 3;
+
+            /* The moment this event was triggered. */
+            Timestamp time = 4;
+
+            /* The reason this message could not be parsed.
+             * This could be, for example:
+             * - invalid message envelope, but with enough information to determine the device
+             * - all body parsers failed to parse the body of the message
+             */
+            string reason = 5;
+            repeated tag.Tag tags = 6;
+            string title = 7;
+            string description = 8;
+
+            /* The health level caused for the device (and organization) by this event. */
+            health.HealthLevel health_level = 10;
+
+            oneof resolved_status {
+                /* Whether this event was resolved. */
+                bool resolved = 11;
+
+                /* The identifier to use when resolving this event. Only present when not resolved */
+                string resolve_identifier = 12;
+            }
+        }
+    }
+
+    /* Events related to MessageBodyParsers. */
+    message MessageBodyParserEvent {
+        message CreatedEvent {
+            string organization = 1;
+            modem.message.bodyparser.ModemMessageBodyParser created = 2;
+            string title = 3;
+            string description = 4;
+            Timestamp time = 5;
+        }
+
+        message UpdatedEvent {
+            string organization = 1;
+            UpdateClearableString updated_name = 2;
+            UpdateClearableString updated_content_ksy = 3;
+            modem.message.bodyparser.SimpleModemMessageBodyParser updated_simple_parser = 4;
+            Filter.ChildOrganizations.Update updated_available_to_child_organizations = 5;
+            string title = 6;
+            string description = 7;
+            Timestamp time = 8;
+        }
+
+        message DeletedEvent {
+            string organization = 1;
+            string deleted = 2;
+            string title = 3;
+            string description = 4;
+            Timestamp time = 5;
+        }
+    }
+
+    message AlarmEvent {
+        message AlarmTriggeredEvent {
+            string organization = 1;
+            string device_number = 2;
+            string device_external_device_id = 3;
+
+            /* The id of the device that triggered the alarm, if any. */
+            uint64 message_id = 4;
+
+            /* The identifier of the alarm. */
+            string alarm_identifier = 5;
+
+            /* The description of the alarm. */
+            string alarm_description = 6;
+
+            /* The filled in error message(s) for the failing checks in the alarm. */
+            map<string, string> error_messages = 7;
+
+            /* The highest health level caused by the failing checks in this alarm,
+             * for the device (and organization).
+             */
+            health.HealthLevel health_level = 12;
+
+            repeated hiber.tag.Tag tags = 8;
+            string title = 9;
+            string description = 10;
+            Timestamp time = 11;
+
+            /* When this alarm event was resolved. */
+            Timestamp resolved_at = 13;
+
+            /* Optional health that this alarm event causes after it has been resolved. */
+            health.HealthLevel health_level_after_resolved = 14;
+
+            /* How long the optional health that this alarm event causes after it has been resolved lasts. */
+            Timestamp health_level_after_resolved_until = 15;
+        }
+
+        message CreatedEvent {
+            string organization = 1;
+            modem.alarm.ModemAlarm created = 2;
+            string title = 3;
+            string description = 4;
+            Timestamp time = 5;
+        }
+
+        message UpdatedEvent {
+            message Update {
+                UpdateClearableString description = 1;
+                string trigger_condition = 2;
+                google.protobuf.Struct checks = 4;
+                UpdateClearableString update_default_health_level = 5;
+                modem.alarm.ModemAlarm.HealthLevelAfterResolved update_health_level_after_resolved = 6;
+
+                reserved 3;
             }
 
-            message CreatedEvent {
-                string organization = 1;
-                modem.alarm.ModemAlarm created = 2;
-                string title = 3;
-                string description = 4;
-                Timestamp time = 5;
-            }
+            string organization = 1;
+            Update updated = 2;
+            string alarm_identifier = 3;
+            string title = 4;
+            string description = 5;
+            Timestamp time = 6;
+        }
 
-            message UpdatedEvent {
-                message Update {
-                    UpdateClearableString description = 1;
-                    string trigger_condition = 2;
-                    google.protobuf.Struct checks = 4;
-                    UpdateClearableString update_default_health_level = 5;
-                    modem.alarm.ModemAlarm.HealthLevelAfterResolved update_health_level_after_resolved = 6;
-
-                    reserved 3;
-                }
-
-                string organization = 1;
-                Update updated = 2;
-                string alarm_identifier = 3;
-                string title = 4;
-                string description = 5;
-                Timestamp time = 6;
-            }
-
-            message DeletedEvent {
-                string organization = 1;
-                string deleted = 2;
-                string title = 3;
-                string description = 4;
-                Timestamp time = 5;
-            }
+        message DeletedEvent {
+            string organization = 1;
+            string deleted = 2;
+            string title = 3;
+            string description = 4;
+            Timestamp time = 5;
         }
     }
 
@@ -717,14 +720,14 @@ message Event {
         }
 
         message EventConfigurationUpdated {
-            message ModemMessageSummaryUpdate {
+            message MessageSummaryUpdate {
                 UpdateBoolean enabled = 1;
                 Duration period = 2;
                 Timestamp align_to_time = 3;
             }
 
             string organization = 1;
-            ModemMessageSummaryUpdate modem_message_summary_update = 2;
+            MessageSummaryUpdate message_summary_update = 2;
             string title = 3;
             string description = 4;
             Timestamp time = 5;
@@ -734,9 +737,9 @@ message Event {
          * The period is configurable, using the EventConfiguration.
          * This event is disabled by default.
          */
-        message ModemMessageSummaryEvent {
+        message MessageSummaryEvent {
             message MessageCount {
-                string modem = 1;
+                string device = 1;
                 modem.ModemMessage.Source source = 2;
                 int32 amount = 3;
             }
@@ -818,7 +821,7 @@ message BundledEvent {
     bool deprecated_approximated_amount = 6 [deprecated = true];
 }
 
-/* Selection object for Event list and stream. Filter events on modem, webhook, time and error state, and
+/* Selection object for Event list and stream. Filter events on device, webhook, time and error state, and
  * paginate the list.
  * Events are returned bundled by default. this means that, instead of the details, you get a list of bundles,
  * one per event type, with the count.
@@ -879,9 +882,9 @@ message ListEventsRequest {
     enum Sort {
         TIME_DESCENDING = 0;
         TIME_ASCENDING = 1;
-        MODEM_NUMBER_ASC = 2;
-        MODEM_NUMBER_DESC = 3;
-        MODEM_NUMBER_SPECIFIED = 4;
+        DEVICE_NUMBER_ASC = 2;
+        DEVICE_NUMBER_DESC = 3;
+        DEVICE_NUMBER_SPECIFIED = 4;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
@@ -940,7 +943,7 @@ message EventStreamRequest {
     Filter.ChildOrganizations child_organizations = 3;
 }
 
-/* Get the list of events that affect modem health, chronologically (by default, from now backwards in time).
+/* Get the list of events that affect device health, chronologically (by default, from now backwards in time).
  *
  * Only returns the Event with first-level fields set, event details are not included in the response
  * (the oneof is not set).
@@ -995,10 +998,10 @@ message MarkEventsResolved {
  * Some events are disable by default, or can be configured in different ways. Their configuration is available here.
  */
 message EventConfiguration {
-    /* When enabled, this sends a ModemMessageSummaryEvent periodically.
+    /* When enabled, this sends a MessageSummaryEvent periodically.
      * For example, you can configure the message summary to be a daily message, aligned to midnight in your time zone.
      */
-    message ModemMessageSummaryConfiguration {
+    message MessageSummaryConfiguration {
         /* The message summary event is disabled by default. */
         bool enabled = 1;
 
@@ -1022,7 +1025,7 @@ message EventConfiguration {
      * Health of the system can be influenced by multiple things, among which certain events.
      * When an event that has health associated with it,
      * said health level will be applied to the part of the system it refers to.
-     * For instance, an event about not being able to parse modem messages, will influence modem health.
+     * For instance, an event about not being able to parse device messages, will influence device health.
      * An event about a failing parser, will affect parser health.
      *
      * In general, when multiple events affect the health level of a subsystem,
@@ -1033,7 +1036,7 @@ message EventConfiguration {
      *
      * For instance, an event might not be relevant anymore after 5 days.
      * By setting expiry to "5d", the event will resolve automatically 5 days after the last event happened.
-     * Depending on other factors that influence modem health,
+     * Depending on other factors that influence device health,
      * the health level will be reset to the least severe health level available.
      *
      * If there is no expiry duration, events need to be resolved manually.
@@ -1055,7 +1058,7 @@ message EventConfiguration {
     }
 
     string organization = 1;
-    ModemMessageSummaryConfiguration modem_message_summary_configuration = 2;
+    MessageSummaryConfiguration message_summary_configuration = 2;
 
     /* List of event-types that have a health-level associated with them. Ignored when updating. */
     repeated EventHealthLevelConfiguration event_health_level_configuration = 3;
@@ -1064,7 +1067,6 @@ message EventConfiguration {
         string organization = 1;
     }
 }
-
 
 message UpdateEventHealthConfiguration {
 

@@ -1,0 +1,60 @@
+[{
+  "name": "OrganizationPermission",
+  "description": "OrganizationPermissions limit what a user can do in an Organization. By default, everyone who has access to an organization, can access basic organization data.",
+  "values": {
+    "PERMISSION_DEFAULT": ""
+    ,"ORGANIZATION_CREATE": "Create a new child organization."
+    ,"ORGANIZATION_UPDATE": "Update the organizations data, such as billing information, address, and contact."
+    ,"ORGANIZATION_DELETE": "Delete child organizations. You cannot delete your own organization. To delete your organization, contact support."
+    ,"MODEMS": "List modems, see their details and health"
+    ,"MODEMS_CREATE": "Create new modems. Includes MODEMS permission."
+    ,"MODEMS_UPDATE": "Update modems, such as their peripherals, display name and tags. Includes MODEMS permission."
+    ,"MODEMS_LICENSE_KEYS": "Show and regenerate license keys. Includes MODEMS permission."
+    ,"MODEMS_MESSAGE_BODY_PARSERS": "Manage and assign message body parsers. Includes MODEMS permission."
+    ,"MODEMS_SECURE_NOTES": "Show and update secure notes. Includes MODEMS permission."
+    ,"MODEMS_ALARMS": "Manage and assign message alerts. Includes MODEMS permission."
+    ,"MODEM_VALUES": "Read modem values."
+    ,"MODEM_MESSAGES": "Read modem messages."
+    ,"MODEM_MESSAGES_SEND_TEST_MESSAGES": "Send modem messages using the TestingService. Does not include MODEMS or MESSAGES permission."
+    ,"MODEM_MESSAGES_SEND_REAL_MESSAGES": "Send modem messages using real message sources (i.e. gateway). Does not include MODEMS or MESSAGES permission."
+    ,"MODEM_DOWNLINK_MESSAGES": "Send modem downlink messages."
+    ,"TRANSFERS": "See the transfers to/from other organizations."
+    ,"TRANSFERS_SEND": "Transfer devices to another organization."
+    ,"USERS": "List all users, see their names and email addresses."
+    ,"USERS_MANAGE": "Approve or create new users, remove users from the organization. Includes users permission."
+    ,"PUBLISHERS": "Manage publishers: webhooks, MQTT integration and custom email publishers."
+    ,"TOKENS": "Manage tokens."
+    ,"CERTIFICATES": "Read and use uploaded certificates (i.e. for publishers)."
+    ,"CERTIFICATES_MANAGE": "Upload certificates, and update or delete uploaded certificates."
+    ,"ASSIGNMENTS": "Manage assignments using the assignment services and individual calls on, for example, ModemService."
+    ,"SIMULATION_MANAGE": "Manage simulations, like modem message simulation."
+    ,"HEALTH_MANAGE": "Manage custom health levels."
+    ,"LOCATIONS_MANAGE": "Manage saved locations using the OrganizationLocationService."
+    ,"EXPORT": "Create, access and download exports."
+    ,"TAGS_MANAGE": "Create, edit and delete tags. Viewing tags is always allowed."
+    }
+},{
+  "name": "SupportPermission",
+  "description": "SupportPermissions are used for features typically reserved for customer support, or that behave differently when used by a customer support operator.",
+  "values": {
+    "CUSTOMER_SUPPORT": "Allow Customer Support functions."
+    ,"MANAGE_ORGANIZATION_FEATURE": "Manage organization feature flags."
+    ,"MANAGE_DEVICE_TYPE": "Change the device type for devices."
+    ,"CUSTOM_TAGS": "Create and assign custom tags."
+    ,"INTEGRATION_SHELL_SSIP": "Manage Shell SSIP integration."
+    ,"MANAGE_DEVICE_TRANSMISSION_INTERVAL": "Manage device transmission interval (actual interval)."
+    ,"MANAGE_DEVICE_SLA": "Manage device SLA values (minimum messages per day)."
+    ,"DEVICE_VIEW_ALL_LIFECYCLES": "View all lifecycles. Without this permission, you can only see INSTALLED and PAUSED."
+    ,"MANAGE_DEVICE_NOTES": "Assign device notes."
+    ,"MANAGE_DEVICE_TIME_ZONE": "Assign device time zones."
+    }
+},{
+  "name": "UserPermission",
+  "description": "UserPermissions are generally used to limit what a token can do to its user. By default, a user has all UserPermissions, which apply only to himself. When creating a token, however, the token typically does not need permission to affect the user at all.",
+  "values": {
+    "READ": "Read your name, email, linked organizations and mission-control settings."
+    ,"UPDATE": "Update your personal information, mission-control settings and default organization. Includes read permission."
+    ,"REQUEST_ACCESS": "Request access to an organization and cancel open requests. Does not include read permission."
+    ,"DELETE": "Delete your user account permanently. Includes read permission."
+    }
+}]
