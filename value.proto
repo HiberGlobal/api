@@ -58,42 +58,42 @@ message Value {
          */
         message BatteryLevel {
             // other units will be added here later, like voltage
-            enum Unit {
+            enum BatteryLevelUnit {
                 /* Battery level as a percentage (technically not a unit). */
                 PERCENT = 0;
             }
 
             double value = 1;
-            Unit unit = 2;
+            BatteryLevelUnit unit = 2;
 
             /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
             string textual = 3;
 
             /* The original unit, iff this value was converted from another unit because of user preferences. */
-            Unit converted_from = 4;
+            BatteryLevelUnit converted_from = 4;
         }
 
         /* The value for rotation speed. The only value is revolutions per minute (RPM), therefore it is not included in
          * unit preferences.
          */
         message RotationSpeed {
-            enum Unit {
+            enum RotationSpeedUnit {
                 REVOLUTIONS_PER_MINUTE = 0;
             }
 
             double value = 1;
-            Unit unit = 2;
+            RotationSpeedUnit unit = 2;
 
             /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
             string textual = 3;
 
             /* The original unit, iff this value was converted from another unit because of user preferences. */
-            Unit converted_from = 4;
+            RotationSpeedUnit converted_from = 4;
         }
 
         /* The value is a distance value, converted to your preferred distance unit. */
         message Distance {
-            enum Unit {
+            enum DistanceUnit {
                 METER = 0;
                 MILLIMETER = 1;
                 CENTIMETER = 2;
@@ -108,18 +108,18 @@ message Value {
             }
 
             double value = 1;
-            Unit unit = 2;
+            DistanceUnit unit = 2;
 
             /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
             string textual = 3;
 
             /* The original unit, iff this value was converted from another unit because of user preferences. */
-            Unit converted_from = 4;
+            DistanceUnit converted_from = 4;
         }
 
         /* The value is a distance value, converted to your preferred distance unit. */
         message FuelEfficiency {
-            enum Unit {
+            enum FuelEfficiencyUnit {
                 LITER_PER_100_KILOMETER = 0;
                 KILOMETER_PER_LITER = 1;
                 KILOMETER_PER_GALLON = 2;
@@ -130,24 +130,24 @@ message Value {
             }
 
             double value = 1;
-            Unit unit = 2;
+            FuelEfficiencyUnit unit = 2;
 
             /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
             string textual = 3;
 
             /* The original unit, iff this value was converted from another unit because of user preferences. */
-            Unit converted_from = 4;
+            FuelEfficiencyUnit converted_from = 4;
         }
 
         /* The value is a percentage. */
         message Percentage {
-            enum Unit {
+            enum PercentageUnit {
                 /* Technically not a unit, but for consistency, we've added it here. */
                 PERCENT = 0;
             }
 
             float value = 1;
-            Unit unit = 3;
+            PercentageUnit unit = 3;
 
             /* Textual representation with % symbol, rounded based on the user preferences and field config. */
             string textual = 2;
@@ -155,25 +155,25 @@ message Value {
 
         /* The value is a pressure value, converted to your preferred pressure unit. */
         message Pressure {
-            enum Unit {
+            enum PressureUnit {
                 BAR = 0;
                 PSI = 1;
                 K_PA = 2;
             }
 
             double value = 1;
-            Unit unit = 2;
+            PressureUnit unit = 2;
 
             /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
             string textual = 3;
 
             /* The original unit, iff this value was converted from another unit because of user preferences. */
-            Unit converted_from = 4;
+            PressureUnit converted_from = 4;
         }
 
         /* The value is a speed value, converted to your preferred speed unit. */
         message Speed {
-            enum Unit {
+            enum SpeedUnit {
                 KILOMETERS_PER_HOUR = 0;
                 /* This is a special case unit and may not be auto-converted to your UnitPreference. */
                 KNOTS = 1;
@@ -182,52 +182,52 @@ message Value {
             }
 
             double value = 1;
-            Unit unit = 2;
+            SpeedUnit unit = 2;
 
             /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
             string textual = 3;
 
             /* The original unit, iff this value was converted from another unit because of user preferences. */
-            Unit converted_from = 4;
+            SpeedUnit converted_from = 4;
         }
 
         /* The value is a temperature, converted to your preferred temperature unit. */
         message Temperature {
-            enum Unit {
+            enum TemperatureUnit {
                 KELVIN = 0;
                 DEGREES_CELSIUS = 1;
                 DEGREES_FAHRENHEIT = 2;
             }
 
             double value = 1;
-            Unit unit = 2;
+            TemperatureUnit unit = 2;
 
             /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
             string textual = 3;
 
             /* The original unit, iff this value was converted from another unit because of user preferences. */
-            Unit converted_from = 4;
+            TemperatureUnit converted_from = 4;
         }
 
         /* The value is a voltage, converted to your preferred voltage unit. */
         message Voltage {
-            enum Unit {
+            enum VoltageUnit {
                 MILLIVOLT = 0;
             }
 
             double value = 1;
-            Unit unit = 2;
+            VoltageUnit unit = 2;
 
             /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
             string textual = 3;
 
             /* The original unit, iff this value was converted from another unit because of user preferences. */
-            Unit converted_from = 4;
+            VoltageUnit converted_from = 4;
         }
 
         /* The value is a volume value, converted to your preferred volume unit. */
         message Volume {
-            enum Unit {
+            enum VolumeUnit {
                 LITER = 0;
                 GALLON_US = 1;
                 GALLON_IMPERIAL = 2;
@@ -236,64 +236,64 @@ message Value {
             }
 
             double value = 1;
-            Unit unit = 2;
+            VolumeUnit unit = 2;
 
             /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
             string textual = 3;
 
             /* The original unit, iff this value was converted from another unit because of user preferences. */
-            Unit converted_from = 4;
+            VolumeUnit converted_from = 4;
         }
 
         /* The value is a volume value, converted to your preferred volume unit. */
         message Mass {
-            enum Unit {
+            enum MassUnit {
                 KILOGRAMS = 0;
                 POUNDS = 1;
             }
 
             double value = 1;
-            Unit unit = 2;
+            MassUnit unit = 2;
 
             /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
             string textual = 3;
 
             /* The original unit, iff this value was converted from another unit because of user preferences. */
-            Unit converted_from = 4;
+            MassUnit converted_from = 4;
         }
 
         message Flow {
-            enum Unit {
+            enum FlowUnit {
                 CUBIC_METER_PER_HOUR = 0;
                 BARRELS_PER_DAY = 1;
             }
 
             double value = 1;
-            Unit unit = 2;
+            FlowUnit unit = 2;
 
             /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
             string textual = 3;
             /* The original unit, iff this value was converted from another unit because of user preferences. */
-            Unit converted_from = 4;
+            FlowUnit converted_from = 4;
         }
 
         message Rate {
-            enum Unit {
+            enum RateUnit {
                 /* The amount of items counted in a 24 hour window. */
                 ITEMS_PER_24_HOURS = 0;
             }
 
             uint32 value = 1;
-            Unit unit = 2;
+            RateUnit unit = 2;
 
             /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
             string textual = 3;
             /* The original unit, iff this value was converted from another unit because of user preferences. */
-            Unit converted_from = 4;
+            RateUnit converted_from = 4;
         }
 
         message Duration {
-            enum Unit {
+            enum DurationUnit {
                 MILLISECONDS = 0;
                 SECONDS = 1;
                 MINUTES = 2;
@@ -304,12 +304,12 @@ message Value {
 
             google.protobuf.Duration duration = 1;
             double value = 3;
-            Unit unit = 4;
+            DurationUnit unit = 4;
 
             /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
             string textual = 2;
             /* The original unit, iff this value was converted from another unit because of user preferences. */
-            Unit converted_from = 5;
+            DurationUnit converted_from = 5;
         }
 
         Type type = 1;

@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.181 (2024-02-13)
+
+##### Value
+
+- Renamed `Value.Numeric.*.Unit` to specific names, to make it the enum names clearer.
+
 ### 0.180 (2024-02-06)
 
 ##### EventService

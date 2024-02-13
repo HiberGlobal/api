@@ -14,20 +14,20 @@ message Field {
     message Numeric {
         message Unit {
             oneof unit {
-                value.Value.Numeric.BatteryLevel.Unit battery_level = 1;
-                value.Value.Numeric.Distance.Unit distance = 2;
-                value.Value.Numeric.Duration.Unit duration = 3;
-                value.Value.Numeric.FuelEfficiency.Unit fuel_efficiency = 4;
-                value.Value.Numeric.Flow.Unit flow = 5;
-                value.Value.Numeric.Percentage.Unit percentage = 12;
-                value.Value.Numeric.Pressure.Unit pressure = 6;
-                value.Value.Numeric.Speed.Unit speed = 7;
-                value.Value.Numeric.Temperature.Unit temperature = 8;
-                value.Value.Numeric.Voltage.Unit voltage = 9;
-                value.Value.Numeric.Volume.Unit volume = 10;
-                value.Value.Numeric.Mass.Unit mass = 11;
-                value.Value.Numeric.RotationSpeed.Unit rotation_speed = 13;
-                value.Value.Numeric.Rate.Unit rate = 14;
+                value.Value.Numeric.BatteryLevel.BatteryLevelUnit battery_level = 1;
+                value.Value.Numeric.Distance.DistanceUnit distance = 2;
+                value.Value.Numeric.Duration.DurationUnit duration = 3;
+                value.Value.Numeric.FuelEfficiency.FuelEfficiencyUnit fuel_efficiency = 4;
+                value.Value.Numeric.Flow.FlowUnit flow = 5;
+                value.Value.Numeric.Percentage.PercentageUnit percentage = 12;
+                value.Value.Numeric.Pressure.PressureUnit pressure = 6;
+                value.Value.Numeric.Speed.SpeedUnit speed = 7;
+                value.Value.Numeric.Temperature.TemperatureUnit temperature = 8;
+                value.Value.Numeric.Voltage.VoltageUnit voltage = 9;
+                value.Value.Numeric.Volume.VolumeUnit volume = 10;
+                value.Value.Numeric.Mass.MassUnit mass = 11;
+                value.Value.Numeric.RotationSpeed.RotationSpeedUnit rotation_speed = 13;
+                value.Value.Numeric.Rate.RateUnit rate = 14;
             }
         }
 

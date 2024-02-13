@@ -1,11 +1,11 @@
 [{
-  "name": "Unit",
+  "name": "BatteryLevelUnit",
   "description": "other units will be added here later, like voltage",
   "values": {
     "PERCENT": "Battery level as a percentage (technically not a unit)."
     }
 },{
-  "name": "Unit",
+  "name": "DistanceUnit",
   "description": "",
   "values": {
     "METER": ""
@@ -19,7 +19,7 @@
     ,"NAUTICAL_MILE": "This is a special case unit and may not be auto-converted to your UnitPreference."
     }
 },{
-  "name": "Unit",
+  "name": "DurationUnit",
   "description": "",
   "values": {
     "MILLISECONDS": ""
@@ -30,14 +30,14 @@
     ,"WEEKS": ""
     }
 },{
-  "name": "Unit",
+  "name": "FlowUnit",
   "description": "",
   "values": {
     "CUBIC_METER_PER_HOUR": ""
     ,"BARRELS_PER_DAY": ""
     }
 },{
-  "name": "Unit",
+  "name": "FuelEfficiencyUnit",
   "description": "",
   "values": {
     "LITER_PER_100_KILOMETER": ""
@@ -49,20 +49,20 @@
     ,"MILE_PER_LITER": ""
     }
 },{
-  "name": "Unit",
+  "name": "MassUnit",
   "description": "",
   "values": {
     "KILOGRAMS": ""
     ,"POUNDS": ""
     }
 },{
-  "name": "Unit",
+  "name": "PercentageUnit",
   "description": "",
   "values": {
     "PERCENT": "Technically not a unit, but for consistency, we've added it here."
     }
 },{
-  "name": "Unit",
+  "name": "PressureUnit",
   "description": "",
   "values": {
     "BAR": ""
@@ -70,19 +70,19 @@
     ,"K_PA": ""
     }
 },{
-  "name": "Unit",
+  "name": "RateUnit",
   "description": "",
   "values": {
     "ITEMS_PER_24_HOURS": "The amount of items counted in a 24 hour window."
     }
 },{
-  "name": "Unit",
+  "name": "RotationSpeedUnit",
   "description": "",
   "values": {
     "REVOLUTIONS_PER_MINUTE": ""
     }
 },{
-  "name": "Unit",
+  "name": "SpeedUnit",
   "description": "",
   "values": {
     "KILOMETERS_PER_HOUR": ""
@@ -91,7 +91,7 @@
     ,"MILES_PER_HOUR": ""
     }
 },{
-  "name": "Unit",
+  "name": "TemperatureUnit",
   "description": "",
   "values": {
     "KELVIN": ""
@@ -119,13 +119,13 @@
     ,"RATE": ""
     }
 },{
-  "name": "Unit",
+  "name": "VoltageUnit",
   "description": "",
   "values": {
     "MILLIVOLT": ""
     }
 },{
-  "name": "Unit",
+  "name": "VolumeUnit",
   "description": "",
   "values": {
     "LITER": ""

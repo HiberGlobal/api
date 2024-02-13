@@ -65,21 +65,21 @@ They have a unique device (previously modem) number, used to identify them.
   - [hiber.value.Value.Numeric.Voltage](#hibervaluevaluenumericvoltage)
   - [hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume)
   - Enums
-    - [hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit)
-    - [hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit)
-    - [hiber.value.Value.Numeric.Duration.Unit](#hibervaluevaluenumericdurationunit)
-    - [hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit)
-    - [hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit)
-    - [hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit)
-    - [hiber.value.Value.Numeric.Percentage.Unit](#hibervaluevaluenumericpercentageunit)
-    - [hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit)
-    - [hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit)
-    - [hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit)
-    - [hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit)
-    - [hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit)
+    - [hiber.value.Value.Numeric.BatteryLevel.BatteryLevelUnit](#hibervaluevaluenumericbatterylevelbatterylevelunit)
+    - [hiber.value.Value.Numeric.Distance.DistanceUnit](#hibervaluevaluenumericdistancedistanceunit)
+    - [hiber.value.Value.Numeric.Duration.DurationUnit](#hibervaluevaluenumericdurationdurationunit)
+    - [hiber.value.Value.Numeric.Flow.FlowUnit](#hibervaluevaluenumericflowflowunit)
+    - [hiber.value.Value.Numeric.FuelEfficiency.FuelEfficiencyUnit](#hibervaluevaluenumericfuelefficiencyfuelefficiencyunit)
+    - [hiber.value.Value.Numeric.Mass.MassUnit](#hibervaluevaluenumericmassmassunit)
+    - [hiber.value.Value.Numeric.Percentage.PercentageUnit](#hibervaluevaluenumericpercentagepercentageunit)
+    - [hiber.value.Value.Numeric.Pressure.PressureUnit](#hibervaluevaluenumericpressurepressureunit)
+    - [hiber.value.Value.Numeric.Rate.RateUnit](#hibervaluevaluenumericraterateunit)
+    - [hiber.value.Value.Numeric.RotationSpeed.RotationSpeedUnit](#hibervaluevaluenumericrotationspeedrotationspeedunit)
+    - [hiber.value.Value.Numeric.Speed.SpeedUnit](#hibervaluevaluenumericspeedspeedunit)
+    - [hiber.value.Value.Numeric.Temperature.TemperatureUnit](#hibervaluevaluenumerictemperaturetemperatureunit)
     - [hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype)
-    - [hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit)
-    - [hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit)
+    - [hiber.value.Value.Numeric.Voltage.VoltageUnit](#hibervaluevaluenumericvoltagevoltageunit)
+    - [hiber.value.Value.Numeric.Volume.VolumeUnit](#hibervaluevaluenumericvolumevolumeunit)
     - [hiber.value.Value.Type](#hibervaluevaluetype)
     - [hiber.value.ValueAggregation](#hibervaluevalueaggregation)
     - [hiber.value.ValueTransformation](#hibervaluevaluetransformation)
@@ -603,9 +603,9 @@ Not included in the UnitPreferences, since it cannot be converted.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit) |  |
+| unit | [ hiber.value.Value.Numeric.BatteryLevel.BatteryLevelUnit](#hibervaluevaluenumericbatterylevelbatterylevelunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ hiber.value.Value.Numeric.BatteryLevel.Unit](#hibervaluevaluenumericbatterylevelunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ hiber.value.Value.Numeric.BatteryLevel.BatteryLevelUnit](#hibervaluevaluenumericbatterylevelbatterylevelunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### hiber.value.Value.Numeric.Distance
 
@@ -614,9 +614,9 @@ The value is a distance value, converted to your preferred distance unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) |  |
+| unit | [ hiber.value.Value.Numeric.Distance.DistanceUnit](#hibervaluevaluenumericdistancedistanceunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ hiber.value.Value.Numeric.Distance.Unit](#hibervaluevaluenumericdistanceunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ hiber.value.Value.Numeric.Distance.DistanceUnit](#hibervaluevaluenumericdistancedistanceunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### hiber.value.Value.Numeric.Duration
 
@@ -626,9 +626,9 @@ The value is a distance value, converted to your preferred distance unit.
 | ----- | ---- | ----------- |
 | duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
 | value | [ double](#double) |  |
-| unit | [ hiber.value.Value.Numeric.Duration.Unit](#hibervaluevaluenumericdurationunit) |  |
+| unit | [ hiber.value.Value.Numeric.Duration.DurationUnit](#hibervaluevaluenumericdurationdurationunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ hiber.value.Value.Numeric.Duration.Unit](#hibervaluevaluenumericdurationunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ hiber.value.Value.Numeric.Duration.DurationUnit](#hibervaluevaluenumericdurationdurationunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### hiber.value.Value.Numeric.Flow
 
@@ -637,9 +637,9 @@ The value is a distance value, converted to your preferred distance unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit) |  |
+| unit | [ hiber.value.Value.Numeric.Flow.FlowUnit](#hibervaluevaluenumericflowflowunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ hiber.value.Value.Numeric.Flow.Unit](#hibervaluevaluenumericflowunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ hiber.value.Value.Numeric.Flow.FlowUnit](#hibervaluevaluenumericflowflowunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### hiber.value.Value.Numeric.FuelEfficiency
 
@@ -648,9 +648,9 @@ The value is a distance value, converted to your preferred distance unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit) |  |
+| unit | [ hiber.value.Value.Numeric.FuelEfficiency.FuelEfficiencyUnit](#hibervaluevaluenumericfuelefficiencyfuelefficiencyunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ hiber.value.Value.Numeric.FuelEfficiency.Unit](#hibervaluevaluenumericfuelefficiencyunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ hiber.value.Value.Numeric.FuelEfficiency.FuelEfficiencyUnit](#hibervaluevaluenumericfuelefficiencyfuelefficiencyunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### hiber.value.Value.Numeric.Mass
 
@@ -659,9 +659,9 @@ The value is a volume value, converted to your preferred volume unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) |  |
+| unit | [ hiber.value.Value.Numeric.Mass.MassUnit](#hibervaluevaluenumericmassmassunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ hiber.value.Value.Numeric.Mass.Unit](#hibervaluevaluenumericmassunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ hiber.value.Value.Numeric.Mass.MassUnit](#hibervaluevaluenumericmassmassunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### hiber.value.Value.Numeric.Percentage
 
@@ -670,7 +670,7 @@ The value is a percentage.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ float](#float) |  |
-| unit | [ hiber.value.Value.Numeric.Percentage.Unit](#hibervaluevaluenumericpercentageunit) |  |
+| unit | [ hiber.value.Value.Numeric.Percentage.PercentageUnit](#hibervaluevaluenumericpercentagepercentageunit) |  |
 | textual | [ string](#string) | Textual representation with % symbol, rounded based on the user preferences and field config. |
 
 ### hiber.value.Value.Numeric.Pressure
@@ -680,9 +680,9 @@ The value is a pressure value, converted to your preferred pressure unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) |  |
+| unit | [ hiber.value.Value.Numeric.Pressure.PressureUnit](#hibervaluevaluenumericpressurepressureunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ hiber.value.Value.Numeric.Pressure.Unit](#hibervaluevaluenumericpressureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ hiber.value.Value.Numeric.Pressure.PressureUnit](#hibervaluevaluenumericpressurepressureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### hiber.value.Value.Numeric.Rate
 
@@ -691,9 +691,9 @@ The value is a pressure value, converted to your preferred pressure unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ uint32](#uint32) |  |
-| unit | [ hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit) |  |
+| unit | [ hiber.value.Value.Numeric.Rate.RateUnit](#hibervaluevaluenumericraterateunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ hiber.value.Value.Numeric.Rate.Unit](#hibervaluevaluenumericrateunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ hiber.value.Value.Numeric.Rate.RateUnit](#hibervaluevaluenumericraterateunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### hiber.value.Value.Numeric.RotationSpeed
 
@@ -703,9 +703,9 @@ unit preferences.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) |  |
+| unit | [ hiber.value.Value.Numeric.RotationSpeed.RotationSpeedUnit](#hibervaluevaluenumericrotationspeedrotationspeedunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ hiber.value.Value.Numeric.RotationSpeed.Unit](#hibervaluevaluenumericrotationspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ hiber.value.Value.Numeric.RotationSpeed.RotationSpeedUnit](#hibervaluevaluenumericrotationspeedrotationspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### hiber.value.Value.Numeric.Speed
 
@@ -714,9 +714,9 @@ The value is a speed value, converted to your preferred speed unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit) |  |
+| unit | [ hiber.value.Value.Numeric.Speed.SpeedUnit](#hibervaluevaluenumericspeedspeedunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ hiber.value.Value.Numeric.Speed.Unit](#hibervaluevaluenumericspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ hiber.value.Value.Numeric.Speed.SpeedUnit](#hibervaluevaluenumericspeedspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### hiber.value.Value.Numeric.Temperature
 
@@ -725,9 +725,9 @@ The value is a temperature, converted to your preferred temperature unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit) |  |
+| unit | [ hiber.value.Value.Numeric.Temperature.TemperatureUnit](#hibervaluevaluenumerictemperaturetemperatureunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ hiber.value.Value.Numeric.Temperature.Unit](#hibervaluevaluenumerictemperatureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ hiber.value.Value.Numeric.Temperature.TemperatureUnit](#hibervaluevaluenumerictemperaturetemperatureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### hiber.value.Value.Numeric.Voltage
 
@@ -736,9 +736,9 @@ The value is a voltage, converted to your preferred voltage unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) |  |
+| unit | [ hiber.value.Value.Numeric.Voltage.VoltageUnit](#hibervaluevaluenumericvoltagevoltageunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ hiber.value.Value.Numeric.Voltage.Unit](#hibervaluevaluenumericvoltageunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ hiber.value.Value.Numeric.Voltage.VoltageUnit](#hibervaluevaluenumericvoltagevoltageunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### hiber.value.Value.Numeric.Volume
 
@@ -747,20 +747,20 @@ The value is a volume value, converted to your preferred volume unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) |  |
+| unit | [ hiber.value.Value.Numeric.Volume.VolumeUnit](#hibervaluevaluenumericvolumevolumeunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ hiber.value.Value.Numeric.Volume.Unit](#hibervaluevaluenumericvolumeunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ hiber.value.Value.Numeric.Volume.VolumeUnit](#hibervaluevaluenumericvolumevolumeunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 
 ### Enums
-#### hiber.value.Value.Numeric.BatteryLevel.Unit
+#### hiber.value.Value.Numeric.BatteryLevel.BatteryLevelUnit
 other units will be added here later, like voltage
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | PERCENT | Battery level as a percentage (technically not a unit). | 0 |
 
-#### hiber.value.Value.Numeric.Distance.Unit
+#### hiber.value.Value.Numeric.Distance.DistanceUnit
 
 
 | Name | Description | Number |
@@ -775,7 +775,7 @@ other units will be added here later, like voltage
 | INCH |  | 7 |
 | NAUTICAL_MILE | This is a special case unit and may not be auto-converted to your UnitPreference. | 8 |
 
-#### hiber.value.Value.Numeric.Duration.Unit
+#### hiber.value.Value.Numeric.Duration.DurationUnit
 
 
 | Name | Description | Number |
@@ -787,7 +787,7 @@ other units will be added here later, like voltage
 | DAYS |  | 4 |
 | WEEKS |  | 5 |
 
-#### hiber.value.Value.Numeric.Flow.Unit
+#### hiber.value.Value.Numeric.Flow.FlowUnit
 
 
 | Name | Description | Number |
@@ -795,7 +795,7 @@ other units will be added here later, like voltage
 | CUBIC_METER_PER_HOUR |  | 0 |
 | BARRELS_PER_DAY |  | 1 |
 
-#### hiber.value.Value.Numeric.FuelEfficiency.Unit
+#### hiber.value.Value.Numeric.FuelEfficiency.FuelEfficiencyUnit
 
 
 | Name | Description | Number |
@@ -808,7 +808,7 @@ other units will be added here later, like voltage
 | MILE_PER_IMPERIAL_GALLON |  | 5 |
 | MILE_PER_LITER |  | 6 |
 
-#### hiber.value.Value.Numeric.Mass.Unit
+#### hiber.value.Value.Numeric.Mass.MassUnit
 
 
 | Name | Description | Number |
@@ -816,14 +816,14 @@ other units will be added here later, like voltage
 | KILOGRAMS |  | 0 |
 | POUNDS |  | 1 |
 
-#### hiber.value.Value.Numeric.Percentage.Unit
+#### hiber.value.Value.Numeric.Percentage.PercentageUnit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | PERCENT | Technically not a unit, but for consistency, we've added it here. | 0 |
 
-#### hiber.value.Value.Numeric.Pressure.Unit
+#### hiber.value.Value.Numeric.Pressure.PressureUnit
 
 
 | Name | Description | Number |
@@ -832,21 +832,21 @@ other units will be added here later, like voltage
 | PSI |  | 1 |
 | K_PA |  | 2 |
 
-#### hiber.value.Value.Numeric.Rate.Unit
+#### hiber.value.Value.Numeric.Rate.RateUnit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | ITEMS_PER_24_HOURS | The amount of items counted in a 24 hour window. | 0 |
 
-#### hiber.value.Value.Numeric.RotationSpeed.Unit
+#### hiber.value.Value.Numeric.RotationSpeed.RotationSpeedUnit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | REVOLUTIONS_PER_MINUTE |  | 0 |
 
-#### hiber.value.Value.Numeric.Speed.Unit
+#### hiber.value.Value.Numeric.Speed.SpeedUnit
 
 
 | Name | Description | Number |
@@ -856,7 +856,7 @@ other units will be added here later, like voltage
 | METERS_PER_SECOND |  | 2 |
 | MILES_PER_HOUR |  | 3 |
 
-#### hiber.value.Value.Numeric.Temperature.Unit
+#### hiber.value.Value.Numeric.Temperature.TemperatureUnit
 
 
 | Name | Description | Number |
@@ -887,14 +887,14 @@ Supported types will automatically convert to the preferred unit (based on the u
 | ROTATION_SPEED |  | 13 |
 | RATE |  | 14 |
 
-#### hiber.value.Value.Numeric.Voltage.Unit
+#### hiber.value.Value.Numeric.Voltage.VoltageUnit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | MILLIVOLT |  | 0 |
 
-#### hiber.value.Value.Numeric.Volume.Unit
+#### hiber.value.Value.Numeric.Volume.VolumeUnit
 
 
 | Name | Description | Number |

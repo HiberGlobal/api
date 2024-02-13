@@ -28,21 +28,21 @@
   - [Value.Numeric.Volume](#valuenumericvolume)
 
 - Enums
-  - [Value.Numeric.BatteryLevel.Unit](#valuenumericbatterylevelunit)
-  - [Value.Numeric.Distance.Unit](#valuenumericdistanceunit)
-  - [Value.Numeric.Duration.Unit](#valuenumericdurationunit)
-  - [Value.Numeric.Flow.Unit](#valuenumericflowunit)
-  - [Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit)
-  - [Value.Numeric.Mass.Unit](#valuenumericmassunit)
-  - [Value.Numeric.Percentage.Unit](#valuenumericpercentageunit)
-  - [Value.Numeric.Pressure.Unit](#valuenumericpressureunit)
-  - [Value.Numeric.Rate.Unit](#valuenumericrateunit)
-  - [Value.Numeric.RotationSpeed.Unit](#valuenumericrotationspeedunit)
-  - [Value.Numeric.Speed.Unit](#valuenumericspeedunit)
-  - [Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit)
+  - [Value.Numeric.BatteryLevel.BatteryLevelUnit](#valuenumericbatterylevelbatterylevelunit)
+  - [Value.Numeric.Distance.DistanceUnit](#valuenumericdistancedistanceunit)
+  - [Value.Numeric.Duration.DurationUnit](#valuenumericdurationdurationunit)
+  - [Value.Numeric.Flow.FlowUnit](#valuenumericflowflowunit)
+  - [Value.Numeric.FuelEfficiency.FuelEfficiencyUnit](#valuenumericfuelefficiencyfuelefficiencyunit)
+  - [Value.Numeric.Mass.MassUnit](#valuenumericmassmassunit)
+  - [Value.Numeric.Percentage.PercentageUnit](#valuenumericpercentagepercentageunit)
+  - [Value.Numeric.Pressure.PressureUnit](#valuenumericpressurepressureunit)
+  - [Value.Numeric.Rate.RateUnit](#valuenumericraterateunit)
+  - [Value.Numeric.RotationSpeed.RotationSpeedUnit](#valuenumericrotationspeedrotationspeedunit)
+  - [Value.Numeric.Speed.SpeedUnit](#valuenumericspeedspeedunit)
+  - [Value.Numeric.Temperature.TemperatureUnit](#valuenumerictemperaturetemperatureunit)
   - [Value.Numeric.Type](#valuenumerictype)
-  - [Value.Numeric.Voltage.Unit](#valuenumericvoltageunit)
-  - [Value.Numeric.Volume.Unit](#valuenumericvolumeunit)
+  - [Value.Numeric.Voltage.VoltageUnit](#valuenumericvoltagevoltageunit)
+  - [Value.Numeric.Volume.VolumeUnit](#valuenumericvolumevolumeunit)
   - [Value.Type](#valuetype)
   - [ValueAggregation](#valueaggregation)
   - [ValueTransformation](#valuetransformation)
@@ -105,9 +105,9 @@ Not included in the UnitPreferences, since it cannot be converted.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ Value.Numeric.BatteryLevel.Unit](#valuenumericbatterylevelunit) |  |
+| unit | [ Value.Numeric.BatteryLevel.BatteryLevelUnit](#valuenumericbatterylevelbatterylevelunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.BatteryLevel.Unit](#valuenumericbatterylevelunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ Value.Numeric.BatteryLevel.BatteryLevelUnit](#valuenumericbatterylevelbatterylevelunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### Value.Numeric.Distance
 
@@ -116,9 +116,9 @@ The value is a distance value, converted to your preferred distance unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ Value.Numeric.Distance.Unit](#valuenumericdistanceunit) |  |
+| unit | [ Value.Numeric.Distance.DistanceUnit](#valuenumericdistancedistanceunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Distance.Unit](#valuenumericdistanceunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ Value.Numeric.Distance.DistanceUnit](#valuenumericdistancedistanceunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### Value.Numeric.Duration
 
@@ -128,9 +128,9 @@ The value is a distance value, converted to your preferred distance unit.
 | ----- | ---- | ----------- |
 | duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
 | value | [ double](#double) |  |
-| unit | [ Value.Numeric.Duration.Unit](#valuenumericdurationunit) |  |
+| unit | [ Value.Numeric.Duration.DurationUnit](#valuenumericdurationdurationunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Duration.Unit](#valuenumericdurationunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ Value.Numeric.Duration.DurationUnit](#valuenumericdurationdurationunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### Value.Numeric.Flow
 
@@ -139,9 +139,9 @@ The value is a distance value, converted to your preferred distance unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) |  |
+| unit | [ Value.Numeric.Flow.FlowUnit](#valuenumericflowflowunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Flow.Unit](#valuenumericflowunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ Value.Numeric.Flow.FlowUnit](#valuenumericflowflowunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### Value.Numeric.FuelEfficiency
 
@@ -150,9 +150,9 @@ The value is a distance value, converted to your preferred distance unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit) |  |
+| unit | [ Value.Numeric.FuelEfficiency.FuelEfficiencyUnit](#valuenumericfuelefficiencyfuelefficiencyunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.FuelEfficiency.Unit](#valuenumericfuelefficiencyunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ Value.Numeric.FuelEfficiency.FuelEfficiencyUnit](#valuenumericfuelefficiencyfuelefficiencyunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### Value.Numeric.Mass
 
@@ -161,9 +161,9 @@ The value is a volume value, converted to your preferred volume unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ Value.Numeric.Mass.Unit](#valuenumericmassunit) |  |
+| unit | [ Value.Numeric.Mass.MassUnit](#valuenumericmassmassunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Mass.Unit](#valuenumericmassunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ Value.Numeric.Mass.MassUnit](#valuenumericmassmassunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### Value.Numeric.Percentage
 
@@ -172,7 +172,7 @@ The value is a percentage.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ float](#float) |  |
-| unit | [ Value.Numeric.Percentage.Unit](#valuenumericpercentageunit) |  |
+| unit | [ Value.Numeric.Percentage.PercentageUnit](#valuenumericpercentagepercentageunit) |  |
 | textual | [ string](#string) | Textual representation with % symbol, rounded based on the user preferences and field config. |
 
 ### Value.Numeric.Pressure
@@ -182,9 +182,9 @@ The value is a pressure value, converted to your preferred pressure unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) |  |
+| unit | [ Value.Numeric.Pressure.PressureUnit](#valuenumericpressurepressureunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Pressure.Unit](#valuenumericpressureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ Value.Numeric.Pressure.PressureUnit](#valuenumericpressurepressureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### Value.Numeric.Rate
 
@@ -193,9 +193,9 @@ The value is a pressure value, converted to your preferred pressure unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ uint32](#uint32) |  |
-| unit | [ Value.Numeric.Rate.Unit](#valuenumericrateunit) |  |
+| unit | [ Value.Numeric.Rate.RateUnit](#valuenumericraterateunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Rate.Unit](#valuenumericrateunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ Value.Numeric.Rate.RateUnit](#valuenumericraterateunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### Value.Numeric.RotationSpeed
 
@@ -205,9 +205,9 @@ unit preferences.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ Value.Numeric.RotationSpeed.Unit](#valuenumericrotationspeedunit) |  |
+| unit | [ Value.Numeric.RotationSpeed.RotationSpeedUnit](#valuenumericrotationspeedrotationspeedunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.RotationSpeed.Unit](#valuenumericrotationspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ Value.Numeric.RotationSpeed.RotationSpeedUnit](#valuenumericrotationspeedrotationspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### Value.Numeric.Speed
 
@@ -216,9 +216,9 @@ The value is a speed value, converted to your preferred speed unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ Value.Numeric.Speed.Unit](#valuenumericspeedunit) |  |
+| unit | [ Value.Numeric.Speed.SpeedUnit](#valuenumericspeedspeedunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Speed.Unit](#valuenumericspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ Value.Numeric.Speed.SpeedUnit](#valuenumericspeedspeedunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### Value.Numeric.Temperature
 
@@ -227,9 +227,9 @@ The value is a temperature, converted to your preferred temperature unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit) |  |
+| unit | [ Value.Numeric.Temperature.TemperatureUnit](#valuenumerictemperaturetemperatureunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Temperature.Unit](#valuenumerictemperatureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ Value.Numeric.Temperature.TemperatureUnit](#valuenumerictemperaturetemperatureunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### Value.Numeric.Voltage
 
@@ -238,9 +238,9 @@ The value is a voltage, converted to your preferred voltage unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ Value.Numeric.Voltage.Unit](#valuenumericvoltageunit) |  |
+| unit | [ Value.Numeric.Voltage.VoltageUnit](#valuenumericvoltagevoltageunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Voltage.Unit](#valuenumericvoltageunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ Value.Numeric.Voltage.VoltageUnit](#valuenumericvoltagevoltageunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 ### Value.Numeric.Volume
 
@@ -249,20 +249,20 @@ The value is a volume value, converted to your preferred volume unit.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [ double](#double) |  |
-| unit | [ Value.Numeric.Volume.Unit](#valuenumericvolumeunit) |  |
+| unit | [ Value.Numeric.Volume.VolumeUnit](#valuenumericvolumevolumeunit) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
-| converted_from | [ Value.Numeric.Volume.Unit](#valuenumericvolumeunit) | The original unit, iff this value was converted from another unit because of user preferences. |
+| converted_from | [ Value.Numeric.Volume.VolumeUnit](#valuenumericvolumevolumeunit) | The original unit, iff this value was converted from another unit because of user preferences. |
 
 
 ## Enums
-### Value.Numeric.BatteryLevel.Unit
+### Value.Numeric.BatteryLevel.BatteryLevelUnit
 other units will be added here later, like voltage
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | PERCENT | Battery level as a percentage (technically not a unit). | 0 |
 
-### Value.Numeric.Distance.Unit
+### Value.Numeric.Distance.DistanceUnit
 
 
 | Name | Description | Number |
@@ -277,7 +277,7 @@ other units will be added here later, like voltage
 | INCH |  | 7 |
 | NAUTICAL_MILE | This is a special case unit and may not be auto-converted to your UnitPreference. | 8 |
 
-### Value.Numeric.Duration.Unit
+### Value.Numeric.Duration.DurationUnit
 
 
 | Name | Description | Number |
@@ -289,7 +289,7 @@ other units will be added here later, like voltage
 | DAYS |  | 4 |
 | WEEKS |  | 5 |
 
-### Value.Numeric.Flow.Unit
+### Value.Numeric.Flow.FlowUnit
 
 
 | Name | Description | Number |
@@ -297,7 +297,7 @@ other units will be added here later, like voltage
 | CUBIC_METER_PER_HOUR |  | 0 |
 | BARRELS_PER_DAY |  | 1 |
 
-### Value.Numeric.FuelEfficiency.Unit
+### Value.Numeric.FuelEfficiency.FuelEfficiencyUnit
 
 
 | Name | Description | Number |
@@ -310,7 +310,7 @@ other units will be added here later, like voltage
 | MILE_PER_IMPERIAL_GALLON |  | 5 |
 | MILE_PER_LITER |  | 6 |
 
-### Value.Numeric.Mass.Unit
+### Value.Numeric.Mass.MassUnit
 
 
 | Name | Description | Number |
@@ -318,14 +318,14 @@ other units will be added here later, like voltage
 | KILOGRAMS |  | 0 |
 | POUNDS |  | 1 |
 
-### Value.Numeric.Percentage.Unit
+### Value.Numeric.Percentage.PercentageUnit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | PERCENT | Technically not a unit, but for consistency, we've added it here. | 0 |
 
-### Value.Numeric.Pressure.Unit
+### Value.Numeric.Pressure.PressureUnit
 
 
 | Name | Description | Number |
@@ -334,21 +334,21 @@ other units will be added here later, like voltage
 | PSI |  | 1 |
 | K_PA |  | 2 |
 
-### Value.Numeric.Rate.Unit
+### Value.Numeric.Rate.RateUnit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | ITEMS_PER_24_HOURS | The amount of items counted in a 24 hour window. | 0 |
 
-### Value.Numeric.RotationSpeed.Unit
+### Value.Numeric.RotationSpeed.RotationSpeedUnit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | REVOLUTIONS_PER_MINUTE |  | 0 |
 
-### Value.Numeric.Speed.Unit
+### Value.Numeric.Speed.SpeedUnit
 
 
 | Name | Description | Number |
@@ -358,7 +358,7 @@ other units will be added here later, like voltage
 | METERS_PER_SECOND |  | 2 |
 | MILES_PER_HOUR |  | 3 |
 
-### Value.Numeric.Temperature.Unit
+### Value.Numeric.Temperature.TemperatureUnit
 
 
 | Name | Description | Number |
@@ -389,14 +389,14 @@ Supported types will automatically convert to the preferred unit (based on the u
 | ROTATION_SPEED |  | 13 |
 | RATE |  | 14 |
 
-### Value.Numeric.Voltage.Unit
+### Value.Numeric.Voltage.VoltageUnit
 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | MILLIVOLT |  | 0 |
 
-### Value.Numeric.Volume.Unit
+### Value.Numeric.Volume.VolumeUnit
 
 
 | Name | Description | Number |
