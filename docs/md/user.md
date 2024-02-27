@@ -318,6 +318,7 @@ List all invited users (email addresses).
 | selection | [ UserSelection](#userselection) |  |
 | pagination | [ hiber.Pagination](#hiberpagination) |  |
 | sort | [ UserSort](#usersort) |  |
+| child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) |  |
 
 ### ListUsersRequest.Response
 
@@ -431,6 +432,7 @@ Completely replace the roles the users have.
 | id | [ string](#string) |  |
 | email | [ string](#string) |  |
 | name | [ string](#string) |  |
+| organization | [ string](#string) |  |
 | roles | [repeated string](#string) | Roles for the current organization. |
 | permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions for the current organization. |
 | support_permissions | [ hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions) | Permissions for customer support. Used for features typically reserved for customer support, or that behave differently when used by a customer support operator. |
@@ -1165,6 +1167,7 @@ Unit of measurement for a numeric value.
 | SPEED_KNOTS |  | 19 |
 | SPEED_METERS_PER_SECOND |  | 20 |
 | SPEED_MILES_PER_HOUR |  | 22 |
+| SPEED_FEET_PER_SECOND |  | 47 |
 | TEMPERATURE_KELVIN |  | 5 |
 | TEMPERATURE_DEGREES_CELSIUS |  | 6 |
 | TEMPERATURE_DEGREES_FAHRENHEIT |  | 7 |
@@ -1176,8 +1179,13 @@ Unit of measurement for a numeric value.
 | VOLUME_CUBIC_FOOT |  | 43 |
 | MASS_KILOGRAMS |  | 37 |
 | MASS_POUNDS |  | 38 |
-| FLOW_CUBIC_METERS_PER_HOUR |  | 39 |
 | FLOW_BARRELS_PER_DAY |  | 46 |
+| FLOW_CUBIC_METER_PER_HOUR |  | 39 |
+| FLOW_CUBIC_METER_PER_SECOND |  | 49 |
+| FLOW_LITER_PER_HOUR |  | 51 |
+| FLOW_LITER_PER_SECOND |  | 52 |
+| FLOW_CUBIC_FEET_PER_HOUR |  | 48 |
+| FLOW_CUBIC_FEET_PER_SECOND |  | 50 |
 | REVOLUTIONS_PER_MINUTE |  | 44 |
 | ITEMS_PER_24_HOURS |  | 45 |
 

@@ -721,83 +721,88 @@ The value is a volume value, converted to your preferred volume unit.
 
 ### Enums
 #### hiber.value.Value.Numeric.BatteryLevel.BatteryLevelUnit
-other units will be added here later, like voltage
+Convenience type for battery level. Other units may be added here later, like voltage.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | PERCENT | Battery level as a percentage (technically not a unit). | 0 |
 
 #### hiber.value.Value.Numeric.Distance.DistanceUnit
-
+Unit of distance
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| METER |  | 0 |
-| MILLIMETER |  | 1 |
-| CENTIMETER |  | 2 |
-| KILOMETER |  | 3 |
-| YARD |  | 5 |
-| MILE |  | 4 |
-| FOOT |  | 6 |
-| INCH |  | 7 |
-| NAUTICAL_MILE | This is a special case unit and may not be auto-converted to your UnitPreference. | 8 |
+| METER | m | 0 |
+| MILLIMETER | mm | 1 |
+| CENTIMETER | cm | 2 |
+| KILOMETER | km | 3 |
+| YARD | yd | 5 |
+| MILE | mi | 4 |
+| FOOT | ' | 6 |
+| INCH | ″ | 7 |
+| NAUTICAL_MILE | NM. This is a special case unit and may not be auto-converted to your UnitPreference. | 8 |
 
 #### hiber.value.Value.Numeric.Duration.DurationUnit
-
+Unit of duration.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| MILLISECONDS |  | 0 |
-| SECONDS |  | 1 |
-| MINUTES |  | 2 |
-| HOURS |  | 3 |
-| DAYS |  | 4 |
-| WEEKS |  | 5 |
+| MILLISECONDS | ms | 0 |
+| SECONDS | s | 1 |
+| MINUTES | min | 2 |
+| HOURS | h | 3 |
+| DAYS | d | 4 |
+| WEEKS | w | 5 |
 
 #### hiber.value.Value.Numeric.Flow.FlowUnit
-
+Unit of volume per time.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| CUBIC_METER_PER_HOUR |  | 0 |
-| BARRELS_PER_DAY |  | 1 |
+| CUBIC_METER_PER_HOUR | m³/h | 0 |
+| BARRELS_PER_DAY | bbl/d | 1 |
+| CUBIC_METER_PER_SECOND | m³/s | 2 |
+| CUBIC_FEET_PER_HOUR | ft³/h | 3 |
+| CUBIC_FEET_PER_SECOND | ft³/s | 4 |
+| LITER_PER_HOUR | l/h | 5 |
+| LITER_PER_SECOND | l/s | 6 |
 
 #### hiber.value.Value.Numeric.FuelEfficiency.FuelEfficiencyUnit
-
+Unit of fuel efficiency
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| LITER_PER_100_KILOMETER |  | 0 |
-| KILOMETER_PER_LITER |  | 1 |
-| KILOMETER_PER_GALLON |  | 2 |
-| KILOMETER_PER_IMPERIAL_GALLON |  | 3 |
-| MILE_PER_GALLON |  | 4 |
-| MILE_PER_IMPERIAL_GALLON |  | 5 |
-| MILE_PER_LITER |  | 6 |
+| LITER_PER_100_KILOMETER | l/100km | 0 |
+| KILOMETER_PER_LITER | km/l | 1 |
+| KILOMETER_PER_GALLON | km/gal (US) | 2 |
+| KILOMETER_PER_IMPERIAL_GALLON | km/gal (imp) | 3 |
+| MILES_PER_GALLON | mpg (US) | 4 |
+| MILES_PER_IMPERIAL_GALLON | mpg (imp) | 5 |
+| MILES_PER_LITER | mpl | 6 |
 
 #### hiber.value.Value.Numeric.Mass.MassUnit
-
+Unit of mass.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| KILOGRAMS |  | 0 |
-| POUNDS |  | 1 |
+| KILOGRAMS | kg | 0 |
+| POUNDS | lb | 1 |
 
 #### hiber.value.Value.Numeric.Percentage.PercentageUnit
-
+Convenience type for percentage. Technically not a unit, but for consistency, we've added it here.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| PERCENT | Technically not a unit, but for consistency, we've added it here. | 0 |
+| PERCENT | % | 0 |
 
 #### hiber.value.Value.Numeric.Pressure.PressureUnit
-
+Unit of pressure.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| BAR |  | 0 |
-| PSI |  | 1 |
-| K_PA |  | 2 |
+| BAR | bar | 0 |
+| PSI | psi | 1 |
+| K_PA | kPa | 2 |
 
 #### hiber.value.Value.Numeric.Rate.RateUnit
 
@@ -811,26 +816,27 @@ other units will be added here later, like voltage
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| REVOLUTIONS_PER_MINUTE |  | 0 |
+| REVOLUTIONS_PER_MINUTE | rpm | 0 |
 
 #### hiber.value.Value.Numeric.Speed.SpeedUnit
-
+Unit of speed.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| KILOMETERS_PER_HOUR |  | 0 |
-| KNOTS | This is a special case unit and may not be auto-converted to your UnitPreference. | 1 |
-| METERS_PER_SECOND |  | 2 |
-| MILES_PER_HOUR |  | 3 |
+| KILOMETERS_PER_HOUR | km/h | 0 |
+| KNOTS | kn. This is a special case unit and may not be auto-converted to your UnitPreference. | 1 |
+| METERS_PER_SECOND | m/s | 2 |
+| MILES_PER_HOUR | mph | 3 |
+| FEET_PER_SECOND | ft/s | 4 |
 
 #### hiber.value.Value.Numeric.Temperature.TemperatureUnit
-
+Unit of temperature.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| KELVIN |  | 0 |
-| DEGREES_CELSIUS |  | 1 |
-| DEGREES_FAHRENHEIT |  | 2 |
+| KELVIN | K | 0 |
+| DEGREES_CELSIUS | °C | 1 |
+| DEGREES_FAHRENHEIT | °F | 2 |
 
 #### hiber.value.Value.Numeric.Type
 The type of numeric value that is represented.
@@ -855,22 +861,22 @@ Supported types will automatically convert to the preferred unit (based on the u
 | RATE |  | 14 |
 
 #### hiber.value.Value.Numeric.Voltage.VoltageUnit
-
+Unit of voltage.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| MILLIVOLT |  | 0 |
+| MILLIVOLT | mV | 0 |
 
 #### hiber.value.Value.Numeric.Volume.VolumeUnit
-
+Unit of volume.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| LITER |  | 0 |
-| GALLON_US |  | 1 |
-| GALLON_IMPERIAL |  | 2 |
-| CUBIC_METER |  | 3 |
-| CUBIC_FEET |  | 4 |
+| LITER | l | 0 |
+| GALLON_US | gal (US) | 1 |
+| GALLON_IMPERIAL | gal (imp) | 2 |
+| CUBIC_METER | m³ | 3 |
+| CUBIC_FEET | ft³ | 4 |
 
 #### hiber.value.Value.Type
 The type of value that is represented.
@@ -1572,6 +1578,7 @@ Unit of measurement for a numeric value.
 | SPEED_KNOTS |  | 19 |
 | SPEED_METERS_PER_SECOND |  | 20 |
 | SPEED_MILES_PER_HOUR |  | 22 |
+| SPEED_FEET_PER_SECOND |  | 47 |
 | TEMPERATURE_KELVIN |  | 5 |
 | TEMPERATURE_DEGREES_CELSIUS |  | 6 |
 | TEMPERATURE_DEGREES_FAHRENHEIT |  | 7 |
@@ -1583,8 +1590,13 @@ Unit of measurement for a numeric value.
 | VOLUME_CUBIC_FOOT |  | 43 |
 | MASS_KILOGRAMS |  | 37 |
 | MASS_POUNDS |  | 38 |
-| FLOW_CUBIC_METERS_PER_HOUR |  | 39 |
 | FLOW_BARRELS_PER_DAY |  | 46 |
+| FLOW_CUBIC_METER_PER_HOUR |  | 39 |
+| FLOW_CUBIC_METER_PER_SECOND |  | 49 |
+| FLOW_LITER_PER_HOUR |  | 51 |
+| FLOW_LITER_PER_SECOND |  | 52 |
+| FLOW_CUBIC_FEET_PER_HOUR |  | 48 |
+| FLOW_CUBIC_FEET_PER_SECOND |  | 50 |
 | REVOLUTIONS_PER_MINUTE |  | 44 |
 | ITEMS_PER_24_HOURS |  | 45 |
 

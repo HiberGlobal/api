@@ -57,7 +57,7 @@ message Value {
          * Not included in the UnitPreferences, since it cannot be converted.
          */
         message BatteryLevel {
-            // other units will be added here later, like voltage
+            /* Convenience type for battery level. Other units may be added here later, like voltage. */
             enum BatteryLevelUnit {
                 /* Battery level as a percentage (technically not a unit). */
                 PERCENT = 0;
@@ -78,7 +78,7 @@ message Value {
          */
         message RotationSpeed {
             enum RotationSpeedUnit {
-                REVOLUTIONS_PER_MINUTE = 0;
+                REVOLUTIONS_PER_MINUTE = 0; // rpm
             }
 
             double value = 1;
@@ -93,17 +93,18 @@ message Value {
 
         /* The value is a distance value, converted to your preferred distance unit. */
         message Distance {
+            /* Unit of distance */
             enum DistanceUnit {
-                METER = 0;
-                MILLIMETER = 1;
-                CENTIMETER = 2;
-                KILOMETER = 3;
-                YARD = 5;
-                MILE = 4;
-                FOOT = 6;
-                INCH = 7;
+                METER = 0; // m
+                MILLIMETER = 1; // mm
+                CENTIMETER = 2; // cm
+                KILOMETER = 3; // km
+                YARD = 5; // yd
+                MILE = 4; // mi
+                FOOT = 6; // '
+                INCH = 7; // ″
 
-                /* This is a special case unit and may not be auto-converted to your UnitPreference. */
+                /* NM. This is a special case unit and may not be auto-converted to your UnitPreference. */
                 NAUTICAL_MILE = 8;
             }
 
@@ -119,14 +120,15 @@ message Value {
 
         /* The value is a distance value, converted to your preferred distance unit. */
         message FuelEfficiency {
+            /* Unit of fuel efficiency */
             enum FuelEfficiencyUnit {
-                LITER_PER_100_KILOMETER = 0;
-                KILOMETER_PER_LITER = 1;
-                KILOMETER_PER_GALLON = 2;
-                KILOMETER_PER_IMPERIAL_GALLON = 3;
-                MILE_PER_GALLON = 4;
-                MILE_PER_IMPERIAL_GALLON = 5;
-                MILE_PER_LITER = 6;
+                LITER_PER_100_KILOMETER = 0; // l/100km
+                KILOMETER_PER_LITER = 1; // km/l
+                KILOMETER_PER_GALLON = 2; // km/gal (US)
+                KILOMETER_PER_IMPERIAL_GALLON = 3; // km/gal (imp)
+                MILES_PER_GALLON = 4; // mpg (US)
+                MILES_PER_IMPERIAL_GALLON = 5; // mpg (imp)
+                MILES_PER_LITER = 6; // mpl
             }
 
             double value = 1;
@@ -141,8 +143,9 @@ message Value {
 
         /* The value is a percentage. */
         message Percentage {
+            /* Convenience type for percentage. Technically not a unit, but for consistency, we've added it here. */
             enum PercentageUnit {
-                /* Technically not a unit, but for consistency, we've added it here. */
+                /* % */
                 PERCENT = 0;
             }
 
@@ -155,10 +158,11 @@ message Value {
 
         /* The value is a pressure value, converted to your preferred pressure unit. */
         message Pressure {
+            /* Unit of pressure. */
             enum PressureUnit {
-                BAR = 0;
-                PSI = 1;
-                K_PA = 2;
+                BAR = 0; // bar
+                PSI = 1; // psi
+                K_PA = 2; // kPa
             }
 
             double value = 1;
@@ -173,12 +177,14 @@ message Value {
 
         /* The value is a speed value, converted to your preferred speed unit. */
         message Speed {
+            /* Unit of speed. */
             enum SpeedUnit {
-                KILOMETERS_PER_HOUR = 0;
-                /* This is a special case unit and may not be auto-converted to your UnitPreference. */
+                KILOMETERS_PER_HOUR = 0; // km/h
+                /* kn. This is a special case unit and may not be auto-converted to your UnitPreference. */
                 KNOTS = 1;
-                METERS_PER_SECOND = 2;
-                MILES_PER_HOUR = 3;
+                METERS_PER_SECOND = 2; // m/s
+                MILES_PER_HOUR = 3; // mph
+                FEET_PER_SECOND = 4; // ft/s
             }
 
             double value = 1;
@@ -193,10 +199,11 @@ message Value {
 
         /* The value is a temperature, converted to your preferred temperature unit. */
         message Temperature {
+            /* Unit of temperature. */
             enum TemperatureUnit {
-                KELVIN = 0;
-                DEGREES_CELSIUS = 1;
-                DEGREES_FAHRENHEIT = 2;
+                KELVIN = 0; // K
+                DEGREES_CELSIUS = 1; // °C
+                DEGREES_FAHRENHEIT = 2; // °F
             }
 
             double value = 1;
@@ -211,8 +218,9 @@ message Value {
 
         /* The value is a voltage, converted to your preferred voltage unit. */
         message Voltage {
+            /* Unit of voltage. */
             enum VoltageUnit {
-                MILLIVOLT = 0;
+                MILLIVOLT = 0; // mV
             }
 
             double value = 1;
@@ -227,12 +235,13 @@ message Value {
 
         /* The value is a volume value, converted to your preferred volume unit. */
         message Volume {
+            /* Unit of volume. */
             enum VolumeUnit {
-                LITER = 0;
-                GALLON_US = 1;
-                GALLON_IMPERIAL = 2;
-                CUBIC_METER = 3;
-                CUBIC_FEET = 4;
+                LITER = 0; // l
+                GALLON_US = 1; // gal (US)
+                GALLON_IMPERIAL = 2; // gal (imp)
+                CUBIC_METER = 3; // m³
+                CUBIC_FEET = 4; // ft³
             }
 
             double value = 1;
@@ -247,9 +256,10 @@ message Value {
 
         /* The value is a volume value, converted to your preferred volume unit. */
         message Mass {
+            /* Unit of mass. */
             enum MassUnit {
-                KILOGRAMS = 0;
-                POUNDS = 1;
+                KILOGRAMS = 0; // kg
+                POUNDS = 1; // lb
             }
 
             double value = 1;
@@ -263,9 +273,15 @@ message Value {
         }
 
         message Flow {
+            /* Unit of volume per time. */
             enum FlowUnit {
-                CUBIC_METER_PER_HOUR = 0;
-                BARRELS_PER_DAY = 1;
+                CUBIC_METER_PER_HOUR = 0; // m³/h
+                BARRELS_PER_DAY = 1; // bbl/d
+                CUBIC_METER_PER_SECOND = 2; // m³/s
+                CUBIC_FEET_PER_HOUR = 3; // ft³/h
+                CUBIC_FEET_PER_SECOND = 4; // ft³/s
+                LITER_PER_HOUR = 5; // l/h
+                LITER_PER_SECOND = 6; // l/s
             }
 
             double value = 1;
@@ -293,13 +309,14 @@ message Value {
         }
 
         message Duration {
+            /* Unit of duration. */
             enum DurationUnit {
-                MILLISECONDS = 0;
-                SECONDS = 1;
-                MINUTES = 2;
-                HOURS = 3;
-                DAYS = 4;
-                WEEKS = 5;
+                MILLISECONDS = 0; // ms
+                SECONDS = 1; // s
+                MINUTES = 2; // min
+                HOURS = 3; // h
+                DAYS = 4; // d
+                WEEKS = 5; // w
             }
 
             google.protobuf.Duration duration = 1;

@@ -1,5 +1,21 @@
 # Changelog Hiber API
 
+### 0.183 (2024-02-27)
+
+##### ValueService
+
+- Added a number of Flow units and a Speed unit, with conversion
+- Fixed a bug in the conversion from bbl/d to m^3/h
+- Improved documentation for units
+- Fixed a bug where precision could be lost when units were converted 
+  - This was mostly unnoticable with the rounding in the UI, but still a bug
+  - This bug could be seen when using unit conversion in alarms
+
+##### UserService
+
+- Added `child_organizations` to `ListUsersRequest` to list users from child organizations.
+  - Added `organization` to `User` to support this feature.
+
 ### 0.181 (2024-02-13)
 
 ##### Value
