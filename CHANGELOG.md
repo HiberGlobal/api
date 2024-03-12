@@ -1,5 +1,22 @@
 # Changelog Hiber API
 
+### 0.185 (2024-03-12)
+
+##### AlarmService
+
+- Add `BlockedRangeCheck` as an explicit inverted `ThresholdCheck`.
+  - Creating a `ThresholdCheck` where `minimum` > `maximum` automatically creates a `BlockedRangeCheck`.
+  - Creating a `BlockedRangeCheck` where `minimum` > `maximum` automatically creates a `ThresholdCheck`.
+
+##### UserService
+
+- Fixed a bug where a user that was invited and removed from an organization could not be invited again.
+
+##### ModemService
+
+- Added a new lifecycle: `READY_TO_INSTALL` to `Modem.Lifecycle`.
+- Updated the documentation for `Modem.Lifecycle` to be more clear.
+
 ### 0.183 (2024-02-27)
 
 ##### ValueService

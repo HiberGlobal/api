@@ -328,6 +328,8 @@ message ModemAlarm {
                 MaximumCheck maximum = 8;
                 /* Check that a field is within a given numeric range. */
                 ThresholdCheck threshold = 5;
+                /* Check that a field is not in a given numeric range. */
+                BlockedRangeCheck blocked_range = 11;
                 /* Check that a field's difference in value over a given period is within a specified numeric range. */
                 DeltaCheck delta = 6;
             }
@@ -363,15 +365,11 @@ message ModemAlarm {
             }
 
             /* Check that the field is above a minimum threshold and under a maximum threshold.
-             * If minimum <= maximum, this means that the value must be between minimum and maximum.
-             * If minimum > maximum, however, this means that the value must NOT be between maximum and minimum
-             * (i.e. minimum 100 with maximum 50 means it cannot be between 50 and 100).
+             * If the minimum is higher than the maximum (i.e. 30..10), this is automatically converted into a
+             * BlockedRangeCheck.
              */
             message ThresholdCheck {
-                /* The range the value must be in.
-                 * If maximum < minimum, the value must effectively be outside the inverted range, i.e.
-                 * 20..10 implies the value must not be in 10..20.
-                 */
+                /* The range the value must be in. */
                 DoubleRange expected = 1;
 
                 /* The minimum expected value, available separately for convenience and check parameters. */
@@ -379,6 +377,15 @@ message ModemAlarm {
 
                 /* The maximum expected value, available separately for convenience and check parameters. */
                 double maximum = 3;
+            }
+
+            /* Check that the field is outside of a range.
+             * If the minimum is higher than the maximum (i.e. 30..10), this is automatically converted into a
+             * ThresholdCheck.
+             */
+            message BlockedRangeCheck {
+                /* The range the value must not be in. */
+                DoubleRange blocked = 1;
             }
 
             /* A check that evaluates the differences in values over time, for the selected field(s) in the parsed body.

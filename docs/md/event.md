@@ -232,6 +232,7 @@
   - [hiber.modem.alarm.ModemAlarm.Check.FieldCheck](#hibermodemalarmmodemalarmcheckfieldcheck)
   - [hiber.modem.alarm.ModemAlarm.Check.FieldCheck.AllowedCheck](#hibermodemalarmmodemalarmcheckfieldcheckallowedcheck)
   - [hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedCheck](#hibermodemalarmmodemalarmcheckfieldcheckblockedcheck)
+  - [hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedRangeCheck](#hibermodemalarmmodemalarmcheckfieldcheckblockedrangecheck)
   - [hiber.modem.alarm.ModemAlarm.Check.FieldCheck.DeltaCheck](#hibermodemalarmmodemalarmcheckfieldcheckdeltacheck)
   - [hiber.modem.alarm.ModemAlarm.Check.FieldCheck.EqualsCheck](#hibermodemalarmmodemalarmcheckfieldcheckequalscheck)
   - [hiber.modem.alarm.ModemAlarm.Check.FieldCheck.MaximumCheck](#hibermodemalarmmodemalarmcheckfieldcheckmaximumcheck)
@@ -2748,12 +2749,13 @@ Sorting options for the results.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| ACCEPTANCE_TESTING | Device is deployed, but not active yet. Invisible for customer. | 0 |
-| INSTALLED | Device is active and sending messages. See health for more details on its health, based on the past messages. | 1 |
-| PAUSED | Device is paused and not sending messages. This should be of a temporary nature. (e.g. a change to the installation is being made) | 6 |
-| DISABLED | Device is disabled and not sending messages. Invisible for customer. This could be either temporary or become permanent. Used for cases where devices is being serviced and customer should not be burdened with the health of this device. | 5 |
-| DECOMMISSIONED | Device is (going to be) removed from installation and will not return to installed status again. | 4 |
-| DEFECTIVE | Device is defective and should not be used anymore. | 7 |
+| ACCEPTANCE_TESTING | Device is being tested by Hiber. Devices in this state are not visible to customers. | 0 |
+| READY_TO_INSTALL | Device has passed Acceptance Testing and is ready be installed. When it sends it first message, it will automatically go to INSTALLED. Devices in this state are not visible to customers. | 8 |
+| INSTALLED | Device is active and sending messages. | 1 |
+| PAUSED | Device is paused and not sending messages. This should be of a temporary nature (e.g. a change to the installation is being made). On its next message, it will automatically go back to INSTALLED. Offline alarm checks will not be triggered for devices in this lifecycle. | 6 |
+| DISABLED | Device is disabled and not sending messages. This is a more permanent version of PAUSED. Devices in this state are not visible to customers. | 5 |
+| DECOMMISSIONED | Device is (going to be) removed from installation and will not return to installed status again. Devices in this state are not visible to customers. | 4 |
+| DEFECTIVE | Device is defective and should not be used anymore. Devices in this state are typically RMA-ed and (should be) transferred to the RMA organization. Devices in this state are not visible to customers. | 7 |
 
 #### hiber.modem.Modem.Type
 The effective type of this modem.
@@ -3085,6 +3087,7 @@ The delta check also adds a few additional error message variables:
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.minimum | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.MinimumCheck](#hibermodemalarmmodemalarmcheckfieldcheckminimumcheck) | Chech that a field is higher than the given value. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.maximum | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.MaximumCheck](#hibermodemalarmmodemalarmcheckfieldcheckmaximumcheck) | Check that a field is lower than the given value. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.threshold | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.ThresholdCheck](#hibermodemalarmmodemalarmcheckfieldcheckthresholdcheck) | Check that a field is within a given numeric range. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.blocked_range | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedRangeCheck](#hibermodemalarmmodemalarmcheckfieldcheckblockedrangecheck) | Check that a field is not in a given numeric range. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.delta | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.DeltaCheck](#hibermodemalarmmodemalarmcheckfieldcheckdeltacheck) | Check that a field's difference in value over a given period is within a specified numeric range. |
 
 ### hiber.modem.alarm.ModemAlarm.Check.FieldCheck.AllowedCheck
@@ -3102,6 +3105,16 @@ Check that the field is not in a set of blocked values.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | blocked | [repeated google.protobuf.Value](#googleprotobufvalue) | The list of blocked values; the field should not match any of them. |
+
+### hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedRangeCheck
+
+Check that the field is outside of a range.
+If the minimum is higher than the maximum (i.e. 30..10), this is automatically converted into a
+ThresholdCheck.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| blocked | [ hiber.DoubleRange](#hiberdoublerange) | The range the value must not be in. |
 
 ### hiber.modem.alarm.ModemAlarm.Check.FieldCheck.DeltaCheck
 
@@ -3141,13 +3154,12 @@ Check that the field is higher than the given value.
 ### hiber.modem.alarm.ModemAlarm.Check.FieldCheck.ThresholdCheck
 
 Check that the field is above a minimum threshold and under a maximum threshold.
-If minimum <= maximum, this means that the value must be between minimum and maximum.
-If minimum > maximum, however, this means that the value must NOT be between maximum and minimum
-(i.e. minimum 100 with maximum 50 means it cannot be between 50 and 100).
+If the minimum is higher than the maximum (i.e. 30..10), this is automatically converted into a
+BlockedRangeCheck.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| expected | [ hiber.DoubleRange](#hiberdoublerange) | The range the value must be in. If maximum < minimum, the value must effectively be outside the inverted range, i.e. 20..10 implies the value must not be in 10..20. |
+| expected | [ hiber.DoubleRange](#hiberdoublerange) | The range the value must be in. |
 | minimum | [ double](#double) | The minimum expected value, available separately for convenience and check parameters. |
 | maximum | [ double](#double) | The maximum expected value, available separately for convenience and check parameters. |
 
