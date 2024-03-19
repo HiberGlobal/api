@@ -8,7 +8,7 @@
       }
     },
     "title": "Event configuration was updated.",
-    "description": "The event configuration for your-organization was updated:\n\n- The message summary period was updated from PT24H to PT12H.",
+    "description": "The event configuration for your-organization was updated:\n\n- The message summary period was updated from PT24H to PT12H.\n\n- Empty message summarizes will not be sent.",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
       "textual": "2020-06-01T05:15:25.355Z",
@@ -16,7 +16,7 @@
     }
   },
   "title": "Event configuration was updated.",
-  "description": "The event configuration for your-organization was updated:\n\n- The message summary period was updated from PT24H to PT12H.",
+  "description": "The event configuration for your-organization was updated:\n\n- The message summary period was updated from PT24H to PT12H.\n\n- Empty message summarizes will not be sent.",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
     "textual": "2020-06-01T05:15:25.355Z",

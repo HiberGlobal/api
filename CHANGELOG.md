@@ -1,5 +1,13 @@
 # Changelog Hiber API
 
+### 0.186 (2024-03-19)
+
+##### ModemService
+
+- `Modem.lifecycle` will now automatically switch to `INSTALLED` on a new message, when the `lifecycle` was:
+  - `PAUSED`
+  - `READY_TO_INSTALL`
+
 ### 0.185 (2024-03-12)
 
 ##### AlarmService
