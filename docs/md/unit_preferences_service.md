@@ -96,17 +96,17 @@ The preferred units for the current user.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_distance_preference**.distance_preference | [optional UnitPreferences.DistancePreference](#unitpreferencesdistancepreference) | Optional distance preference for the current user. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_flow_preference**.flow_preference | [optional UnitPreferences.FlowPreference](#unitpreferencesflowpreference) | Optional mass preference for the current user. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_fuel_efficiency_preference**.fuel_efficiency_preference | [optional UnitPreferences.FuelEfficiencyPreference](#unitpreferencesfuelefficiencypreference) | Optional fuel efficiency preference for the current user. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_mass_preference**.mass_preference | [optional UnitPreferences.MassPreference](#unitpreferencesmasspreference) | Optional mass preference for the current user. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_percentage_preference**.percentage_preference | [optional UnitPreferences.PercentagePreference](#unitpreferencespercentagepreference) | Optional percentage preference for the current user. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_pressure_preference**.pressure_preference | [optional UnitPreferences.PressurePreference](#unitpreferencespressurepreference) | Optional pressure preference for the current user. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_speed_preference**.speed_preference | [optional UnitPreferences.SpeedPreference](#unitpreferencesspeedpreference) | Optional speed preference for the current user. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_temperature_preference**.temperature_preference | [optional UnitPreferences.TemperaturePreference](#unitpreferencestemperaturepreference) | Optional temperature preference for the current user. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_voltage_preference**.voltage_preference | [optional UnitPreferences.VoltagePreference](#unitpreferencesvoltagepreference) | Optional voltage preference for the current user. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_volume_preference**.volume_preference | [optional UnitPreferences.VolumePreference](#unitpreferencesvolumepreference) | Optional volume preference for the current user. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_rotation_speed_preference**.rotation_speed_preference | [optional UnitPreferences.RotationSpeedPreference](#unitpreferencesrotationspeedpreference) |  |
+|  **optional** distance_preference | [optional UnitPreferences.DistancePreference](#unitpreferencesdistancepreference) | Optional distance preference for the current user. |
+|  **optional** flow_preference | [optional UnitPreferences.FlowPreference](#unitpreferencesflowpreference) | Optional mass preference for the current user. |
+|  **optional** fuel_efficiency_preference | [optional UnitPreferences.FuelEfficiencyPreference](#unitpreferencesfuelefficiencypreference) | Optional fuel efficiency preference for the current user. |
+|  **optional** mass_preference | [optional UnitPreferences.MassPreference](#unitpreferencesmasspreference) | Optional mass preference for the current user. |
+|  **optional** percentage_preference | [optional UnitPreferences.PercentagePreference](#unitpreferencespercentagepreference) | Optional percentage preference for the current user. |
+|  **optional** pressure_preference | [optional UnitPreferences.PressurePreference](#unitpreferencespressurepreference) | Optional pressure preference for the current user. |
+|  **optional** speed_preference | [optional UnitPreferences.SpeedPreference](#unitpreferencesspeedpreference) | Optional speed preference for the current user. |
+|  **optional** temperature_preference | [optional UnitPreferences.TemperaturePreference](#unitpreferencestemperaturepreference) | Optional temperature preference for the current user. |
+|  **optional** voltage_preference | [optional UnitPreferences.VoltagePreference](#unitpreferencesvoltagepreference) | Optional voltage preference for the current user. |
+|  **optional** volume_preference | [optional UnitPreferences.VolumePreference](#unitpreferencesvolumepreference) | Optional volume preference for the current user. |
+|  **optional** rotation_speed_preference | [optional UnitPreferences.RotationSpeedPreference](#unitpreferencesrotationspeedpreference) |  |
 
 ### UnitPreferences.DistancePreference
 
@@ -270,16 +270,16 @@ so not all messages listed here are referenced.)
 | ----- | ---- | ----------- |
 | identifier | [ string](#string) | Unique identifier for this field. |
 | field | [ string](#string) | The name of the field (if in the root structure) or a JsonPath to the field. |
-| display_name | [ string](#string) | An optional display name for the field. |
+|  **optional** display_name | [optional string](#string) | An optional display name for the field. |
 | priority | [ int32](#int32) | Priority of the field, typically used for ordering. |
 | type | [ hiber.value.Value.Type](#hibervaluevaluetype) | The type of value the field contains. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.numeric | [ hiber.field.Field.Numeric](#hiberfieldfieldnumeric) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.enum | [ hiber.field.Field.Enum](#hiberfieldfieldenum) |  |
 | encrypted | [ bool](#bool) | Whether this field should be stored encrypted or not. If it is, some processing options may be unavailable or slower. |
 | optional | [ bool](#bool) | Whether this field should be validated from the parser output. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_operational**.operational | [optional bool](#bool) | Field contains values relevant for operating the device. |
-| unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | <strong>Deprecated.</strong> If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
-| unit_symbol | [ string](#string) | <strong>Deprecated.</strong> The symbol for the unit. Deprecated: use numeric.symbol instead |
+| operational | [ bool](#bool) | Field contains values relevant for operating the device. |
+|  **optional** unit_of_measurement | [optional hiber.UnitOfMeasurement](#hiberunitofmeasurement) | <strong>Deprecated.</strong> If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
+|  **optional** unit_symbol | [optional string](#string) | <strong>Deprecated.</strong> The symbol for the unit. Deprecated: use numeric.symbol instead |
 
 ### hiber.field.Field.Enum
 
@@ -299,7 +299,7 @@ If the field is numeric, this specifies the unit and formatting details for the 
 | symbol | [ string](#string) | The symbol to use for the field's unit. |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | How to format the values (number of decimals, rounding, etc.). |
 | unit | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | The unit for the field, depending on the type. |
-| converted_from | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | If the unit preferences were applied, and the unit is different, the field will be converted to the preferred unit, from the original unit specified in this field. |
+|  **optional** converted_from | [optional hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | If the unit preferences were applied, and the unit is different, the field will be converted to the preferred unit, from the original unit specified in this field. |
 
 ### hiber.field.Field.Numeric.Format
 

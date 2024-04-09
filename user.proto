@@ -52,18 +52,18 @@ message User {
 
 message UserSelection {
     repeated string user_ids = 3;
-    string by_email = 1;
-    string by_name = 2;
-    string search = 4;
+    optional string by_email = 1;
+    optional string by_name = 2;
+    optional string search = 4;
 
     /* Select users by roles for the current organization. */
-    Filter.Roles roles = 5;
+    optional Filter.Roles roles = 5;
 
     /* Select users by permissions for the current organization. */
-    Filter.OrganizationPermissions permissions = 6;
+    optional Filter.OrganizationPermissions permissions = 6;
 
     /* Select users by permissions for customer support. */
-    Filter.SupportPermissions support_permissions = 7;
+    optional Filter.SupportPermissions support_permissions = 7;
 }
 
 enum UserSort {
@@ -85,11 +85,13 @@ message ListUsersRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    UserSelection selection = 2;
-    Pagination pagination = 3;
+    optional string organization = 1;
+
+    /* Select the users to list. Optional, when omitted or empty everything is included. */
+    optional UserSelection selection = 2;
+    optional Pagination pagination = 3;
     UserSort sort = 4;
-    Filter.ChildOrganizations child_organizations = 5;
+    optional Filter.ChildOrganizations child_organizations = 5;
 }
 
 message ListAccessRequestsRequest {
@@ -100,9 +102,11 @@ message ListAccessRequestsRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    UserSelection selection = 2;
-    Pagination pagination = 3;
+    optional string organization = 1;
+
+    /* Select the users to list. Optional, when omitted or empty everything is included. */
+    optional UserSelection selection = 2;
+    optional Pagination pagination = 3;
     UserSort sort = 4;
 }
 
@@ -111,7 +115,7 @@ message ApproveUserRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     repeated string user_ids = 2;
 
     /* Roles the new user should get. */
@@ -120,7 +124,7 @@ message ApproveUserRequest {
     /* By default, the server returns an error when you don't specify any roles.
      * Set this to true to allow it.
      */
-    bool override_allow_no_roles = 4;
+    optional bool override_allow_no_roles = 4;
 
     reserved 3;
 }
@@ -130,11 +134,11 @@ message RemoveUserRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     repeated string user_ids = 2;
 
     /* Remove all tokens created by this user. If this is not set, only the tokens with user permissions are removed. */
-    bool remove_all_tokens = 3;
+    optional bool remove_all_tokens = 3;
 }
 
 /* List all invited users (email addresses). */
@@ -144,13 +148,13 @@ message ListInvitationsRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     /* Search the invited email addresses. */
-    string search = 2;
+    optional string search = 2;
 
     /* Whether to include invitations that were already accepted. */
-    bool include_accepted = 3;
+    optional bool include_accepted = 3;
 }
 
 /* Accept an invitation to an organization. */
@@ -159,13 +163,13 @@ message InviteUserRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     /* The email address of the user you want to invite. */
     string email = 2;
 
     /* Invite the user again, even if there is an open invite. This can be done a limited amount of times. */
-    bool retry = 3;
+    optional bool retry = 3;
 
     /* Roles the new user should get. */
     Filter.Roles roles = 6;
@@ -173,37 +177,38 @@ message InviteUserRequest {
     /* By default, the server returns an error when you don't specify any roles.
      * Set this to true to allow it.
      */
-    bool override_allow_no_roles = 5;
+    optional bool override_allow_no_roles = 5;
 
     reserved 4;
 }
 
 message CreateUserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
+
     string email = 2;
     string name = 3;
 
     /* Optional. If no password is given, the account can only be accessed using a password reset. */
-    string password = 4;
+    optional string password = 4;
 
     /* Roles the new user should get. */
     Filter.Roles roles = 10;
 
     /* Send an automated email prompting the user to verify their email address. */
-    bool send_verification_mail = 6;
+    optional bool send_verification_mail = 6;
 
     /* Send an automated email prompting the user to set a password. Recommended when password is not set. */
-    bool send_password_reset_mail = 7;
+    optional bool send_password_reset_mail = 7;
 
     /* When the user cannot be created, (i.e. they already exist because they are in a different organization)
      * we can send an invite instead, effectively calling InviteUserRequest with the email and roles.
      * Set this to true to allow this behaviour.
      */
-    bool allow_invite_instead = 8;
+    optional bool allow_invite_instead = 8;
 
     /* By default, the server returns an error when you don't specify any roles. Set this to true to allow it. */
-    bool override_allow_no_roles = 9;
+    optional bool override_allow_no_roles = 9;
 
     reserved 5;
 }
@@ -214,7 +219,7 @@ message CreateUsersRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     /* Users to create. Allows for individual impersonation and mail settings. */
     repeated CreateUserRequest users = 2;
@@ -223,10 +228,10 @@ message CreateUsersRequest {
     Filter.Roles roles = 6;
 
     /* Send an automated email prompting the users to verify their email addresses. If true, applies to all users. */
-    bool send_verification_mail = 4;
+    optional bool send_verification_mail = 4;
 
     /* Send an automated email prompting the users to set their password. If true, applies to all users. */
-    bool send_password_reset_mail = 5;
+    optional bool send_password_reset_mail = 5;
 }
 
 message ResetUserPasswordRequest {
@@ -234,14 +239,14 @@ message ResetUserPasswordRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     string user_id = 2;
 }
 
 message UpdateUserRoles {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
         repeated string user_ids = 2;
 
         /* Grant and remove roles on the current roles the users have. */
@@ -274,12 +279,12 @@ message UpdateUserRoles {
 
 message GetUserValidationRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 }
 
 message UpdateUserValidationRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     UpdateClearableString email_validation_regex = 2;
 }
@@ -289,7 +294,7 @@ message TestUserValidationRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     oneof validate {
         /* Test with existing user(s). */
@@ -317,7 +322,7 @@ message UserActivitySummaryRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     /* The user to request activity for. */
     string user_id = 2;

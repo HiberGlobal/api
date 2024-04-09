@@ -10,11 +10,6 @@ Message management.
   - [MessageService](#messageservice)
 
 - Messages
-  - [AvailableMessageBodyFields](#availablemessagebodyfields)
-  - [AvailableMessageBodyFields.Request](#availablemessagebodyfieldsrequest)
-  - [AvailableMessageBodyFields.Response](#availablemessagebodyfieldsresponse)
-  - [AvailableMessageBodyFields.Response.FieldWrapperDeprecated](#availablemessagebodyfieldsresponsefieldwrapperdeprecated)
-  - [AvailableMessageBodyFields.Response.ModemWithFields](#availablemessagebodyfieldsresponsemodemwithfields)
   - [CountMessages](#countmessages)
   - [CountMessages.Request](#countmessagesrequest)
   - [CountMessages.Response](#countmessagesresponse)
@@ -34,15 +29,6 @@ Message management.
 - Enums
   - [MessageBodyFieldHistory.Request.Aggregation](#messagebodyfieldhistoryrequestaggregation)
   - [MessageBodyFieldHistory.Request.Sort](#messagebodyfieldhistoryrequestsort)
-
-- Referenced messages from [field.proto](#referenced-messages-from-fieldproto)
-  - [hiber.field.Field](#hiberfieldfield)
-  - [hiber.field.Field.Enum](#hiberfieldfieldenum)
-  - [hiber.field.Field.Numeric](#hiberfieldfieldnumeric)
-  - [hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat)
-  - [hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit)
-
-    - [hiber.field.Field.Numeric.Format.RoundingMode](#hiberfieldfieldnumericformatroundingmode)
 
 - Referenced messages from [modem.proto](#referenced-messages-from-modemproto)
   - [hiber.modem.Modem](#hibermodemmodem)
@@ -168,12 +154,6 @@ List messages for the selected modems.
 
 Count messages for the selected modems.
 
-### AvailableBodyFields
-> **rpc** AvailableBodyFields([AvailableMessageBodyFields.Request](#availablemessagebodyfieldsrequest))
-    [AvailableMessageBodyFields.Response](#availablemessagebodyfieldsresponse)
-
-<strong>Deprecated.</strong> 
-
 ### History
 > **rpc** History([MessageBodyFieldHistory.Request](#messagebodyfieldhistoryrequest))
     [MessageBodyFieldHistory.Response](#messagebodyfieldhistoryresponse)
@@ -182,51 +162,6 @@ Count messages for the selected modems.
 
 
 ## Messages
-
-### AvailableMessageBodyFields
-
-<strong>Deprecated.</strong> 
-
-
-### AvailableMessageBodyFields.Request
-
-<strong>Deprecated.</strong> 
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
-| include_total | [ bool](#bool) | Whether to also calculate the total fields for all selected modems, and return them as a single list in the response. This can be useful to display table columns, for example. |
-
-### AvailableMessageBodyFields.Response
-
-<strong>Deprecated.</strong> 
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| modems | [repeated AvailableMessageBodyFields.Response.ModemWithFields](#availablemessagebodyfieldsresponsemodemwithfields) |  |
-| request | [ AvailableMessageBodyFields.Request](#availablemessagebodyfieldsrequest) |  |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
-| total | [repeated hiber.field.Field](#hiberfieldfield) | A merged result of all fields, for all modems. This can be useful to display table columns, for example. |
-
-### AvailableMessageBodyFields.Response.FieldWrapperDeprecated
-
-<strong>Deprecated.</strong> Deprecated wrapper for backwards compatibility
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| field | [ hiber.field.Field](#hiberfieldfield) |  |
-
-### AvailableMessageBodyFields.Response.ModemWithFields
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| modem | [ string](#string) |  |
-| message_body_fields_deprecated | [repeated AvailableMessageBodyFields.Response.FieldWrapperDeprecated](#availablemessagebodyfieldsresponsefieldwrapperdeprecated) | <strong>Deprecated.</strong>  |
-| message_body_fields | [repeated hiber.field.Field](#hiberfieldfield) |  |
 
 ### CountMessages
 
@@ -239,10 +174,10 @@ Count messages for the selected modems.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ MessageSelection](#messageselection) |  |
-| time_zone_offset | [ int32](#int32) | Numeric timezone offset for day grouping. Optional. |
-| time_zone | [ string](#string) | Timezone string for day grouping. Optional. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional MessageSelection](#messageselection) | Select the messages to count. Optional, when omitted or empty everything is included. |
+|  **optional** time_zone_offset | [optional int32](#int32) | Numeric timezone offset for day grouping. Optional. |
+|  **optional** time_zone | [optional string](#string) | Timezone string for day grouping. Optional. |
 
 ### CountMessages.Response
 
@@ -273,9 +208,9 @@ Count messages for the selected modems.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ MessageSelection](#messageselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional MessageSelection](#messageselection) | Select the messages to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### ListMessages.Response
 
@@ -338,17 +273,17 @@ The result is stored either as a json object or an error string.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the modem(s) to get the history for. |
-| pagination | [ hiber.Pagination](#hiberpagination) | Paginate the returned values. This may not be relevant, depending on the aggregation (which may result in a single value) and the time range. |
-| time_range | [ hiber.TimeRange](#hibertimerange) | The time to view the history for. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the modem(s) to get the history for. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Paginate the returned values. This may not be relevant, depending on the aggregation (which may result in a single value) and the time range. |
+|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) | The time to view the history for. |
 | aggregation | [ MessageBodyFieldHistory.Request.Aggregation](#messagebodyfieldhistoryrequestaggregation) | How to aggregate the data. |
 | sort | [ MessageBodyFieldHistory.Request.Sort](#messagebodyfieldhistoryrequestsort) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **group**.split_by_duration | [ hiber.Duration](#hiberduration) | Split up the data in time block of the given size. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **group**.reduce_to_max_size | [ uint32](#uint32) | Limit the results to the given amount of data points, applying the function to each chunk. |
 | message_body_fields | [repeated string](#string) | Get the history for the selected fields. Text and Enum fields cannot be summed, or averaged, they always use LAST aggregation when aggregating. |
-| include_location | [ bool](#bool) | Get the history for the location. Locations cannot be summed, or averaged, they always use LAST aggregation when aggregating. |
-| exclude_empty_groups | [ bool](#bool) | Whether to exclude empty groups when grouping. Empty groups are included by default. |
+|  **optional** include_location | [optional bool](#bool) | Get the history for the location. Locations cannot be summed, or averaged, they always use LAST aggregation when aggregating. |
+|  **optional** exclude_empty_groups | [optional bool](#bool) | Whether to exclude empty groups when grouping. Empty groups are included by default. |
 
 ### MessageBodyFieldHistory.Response
 
@@ -388,10 +323,10 @@ Filter messages by modem and time sent (note that this is not the time the messa
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modem_selection | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the modems to return messages for. |
-| time_range | [ hiber.TimeRange](#hibertimerange) | Filter message by time range. This field is required, to limit the amount of messages. |
+|  **optional** modem_selection | [optional hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the modems to return messages for. Optional, when omitted or empty everything is included. |
+|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) | Filter message by time range. |
 | modem_message_ids | [repeated int64](#int64) | Include messages by id |
-| override_time_range_with_modem_time_zone | [ bool](#bool) | Replace whatever time zone was specified in the start and end time with the modem time zone. This means you may get values outside of the original time range, but can be useful when requesting data for a date, for example. For example: start.textual = 2022-01-01, end.textual = 2022-02-01 would return a month of data in UTC time. When combined with this flag, it would return that month of data in the time zone of the modem, which may even be different per modem. |
+|  **optional** override_time_range_with_modem_time_zone | [optional bool](#bool) | Replace whatever time zone was specified in the start and end time with the modem time zone. This means you may get values outside of the original time range, but can be useful when requesting data for a date, for example. For example: start.textual = 2022-01-01, end.textual = 2022-02-01 would return a month of data in UTC time. When combined with this flag, it would return that month of data in the time zone of the modem, which may even be different per modem. |
 
 
 ## Enums
@@ -414,103 +349,6 @@ How to sort the returned values.
 | ---- | ----------- | ------ |
 | TIME_DESCENDING |  | 0 |
 | TIME_ASCENDING |  | 1 |
-
-
-
-## Referenced messages from field.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
-
-#### This section was generated from [field.proto](https://github.com/HiberGlobal/api/blob/master/field.proto).
-
-
-### hiber.field.Field
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifier | [ string](#string) | Unique identifier for this field. |
-| field | [ string](#string) | The name of the field (if in the root structure) or a JsonPath to the field. |
-| display_name | [ string](#string) | An optional display name for the field. |
-| priority | [ int32](#int32) | Priority of the field, typically used for ordering. |
-| type | [ hiber.value.Value.Type](#hibervaluevaluetype) | The type of value the field contains. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.numeric | [ hiber.field.Field.Numeric](#hiberfieldfieldnumeric) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.enum | [ hiber.field.Field.Enum](#hiberfieldfieldenum) |  |
-| encrypted | [ bool](#bool) | Whether this field should be stored encrypted or not. If it is, some processing options may be unavailable or slower. |
-| optional | [ bool](#bool) | Whether this field should be validated from the parser output. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_operational**.operational | [optional bool](#bool) | Field contains values relevant for operating the device. |
-| unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | <strong>Deprecated.</strong> If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
-| unit_symbol | [ string](#string) | <strong>Deprecated.</strong> The symbol for the unit. Deprecated: use numeric.symbol instead |
-
-### hiber.field.Field.Enum
-
-If the field is an enum, this specifies the enum values for the field.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| values | [repeated hiber.value.Value.Enum](#hibervaluevalueenum) |  |
-
-### hiber.field.Field.Numeric
-
-If the field is numeric, this specifies the unit and formatting details for the field.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| type | [ hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The type of numeric value. |
-| symbol | [ string](#string) | The symbol to use for the field's unit. |
-| format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | How to format the values (number of decimals, rounding, etc.). |
-| unit | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | The unit for the field, depending on the type. |
-| converted_from | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | If the unit preferences were applied, and the unit is different, the field will be converted to the preferred unit, from the original unit specified in this field. |
-
-### hiber.field.Field.Numeric.Format
-
-Formatting options for the field.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **round**.round_to_integer | [ bool](#bool) | Round to an integer. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **round**.round_to_scale | [ uint32](#uint32) | Round to a number of decimals (at least 1). |
-| rounding_mode | [ hiber.field.Field.Numeric.Format.RoundingMode](#hiberfieldfieldnumericformatroundingmode) | How to round the value when scale is applied. |
-
-### hiber.field.Field.Numeric.Unit
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.battery_level | [ hiber.value.Value.Numeric.BatteryLevel.BatteryLevelUnit](#hibervaluevaluenumericbatterylevelbatterylevelunit) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.distance | [ hiber.value.Value.Numeric.Distance.DistanceUnit](#hibervaluevaluenumericdistancedistanceunit) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.duration | [ hiber.value.Value.Numeric.Duration.DurationUnit](#hibervaluevaluenumericdurationdurationunit) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.fuel_efficiency | [ hiber.value.Value.Numeric.FuelEfficiency.FuelEfficiencyUnit](#hibervaluevaluenumericfuelefficiencyfuelefficiencyunit) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.flow | [ hiber.value.Value.Numeric.Flow.FlowUnit](#hibervaluevaluenumericflowflowunit) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.percentage | [ hiber.value.Value.Numeric.Percentage.PercentageUnit](#hibervaluevaluenumericpercentagepercentageunit) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.pressure | [ hiber.value.Value.Numeric.Pressure.PressureUnit](#hibervaluevaluenumericpressurepressureunit) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.speed | [ hiber.value.Value.Numeric.Speed.SpeedUnit](#hibervaluevaluenumericspeedspeedunit) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.temperature | [ hiber.value.Value.Numeric.Temperature.TemperatureUnit](#hibervaluevaluenumerictemperaturetemperatureunit) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.voltage | [ hiber.value.Value.Numeric.Voltage.VoltageUnit](#hibervaluevaluenumericvoltagevoltageunit) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.volume | [ hiber.value.Value.Numeric.Volume.VolumeUnit](#hibervaluevaluenumericvolumevolumeunit) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.mass | [ hiber.value.Value.Numeric.Mass.MassUnit](#hibervaluevaluenumericmassmassunit) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed.RotationSpeedUnit](#hibervaluevaluenumericrotationspeedrotationspeedunit) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rate | [ hiber.value.Value.Numeric.Rate.RateUnit](#hibervaluevaluenumericraterateunit) |  |
-
-
-### Enums
-#### hiber.field.Field.Numeric.Format.RoundingMode
-How to round the value when scale is applied.
-For example, a value of 3.1415 with scale 3 could be
-  4.141 (DOWN, HALF_DOWN, FLOOR) or
-  4.142 (HALF_UP, UP, CEILING).
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| HALF_UP | Round towards nearest neighbor unless both neighbors are equidistant, in which case round up Effectively round up when >= .5, otherwise round down. | 0 |
-| HALF_DOWN | Round towards nearest neighbor unless both neighbors are equidistant, in which case round down. Effectively round up when > .5, otherwise round down. | 1 |
-| UP | Round away from zero: 1.1 -> 2, while -1.1 -> -2. | 3 |
-| DOWN | Round towards zero: 1.1 -> 1, while -1.1 -> -1. | 4 |
-| CEILING | Round towards positive infinity. | 5 |
-| FLOOR | Round towards negative infinity. | 6 |
-| HALF_EVEN | Round towards the nearest neighbor unless both neighbors are equidistant, in which case, round towards the even neighbor. Effectively round up when >= .5 and next integer value is even, otherwise round down. | 7 |
 
 
 
@@ -555,7 +393,7 @@ when the modem is registered into the system or when a subscription is authorize
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
 | time_zone | [ string](#string) | The timezone configured for the modem. |
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_transmission_rate**.expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
+|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
 
 ### hiber.modem.ModemSelection
 
@@ -564,28 +402,28 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modems | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
-| free_text_search | [ string](#string) |  |
-| only_active | [ bool](#bool) | <strong>Deprecated.</strong> Use lifecycle filter instead. |
-| activated_in | [ hiber.TimeRange](#hibertimerange) | <strong>Deprecated.</strong>  |
-| with_last_message_in | [ hiber.TimeRange](#hibertimerange) |  |
+|  **optional** modems | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** free_text_search | [optional string](#string) |  |
+|  **optional** only_active | [optional bool](#bool) | <strong>Deprecated.</strong> Use lifecycle filter instead. |
+|  **optional** activated_in | [optional hiber.TimeRange](#hibertimerange) | <strong>Deprecated.</strong>  |
+|  **optional** with_last_message_in | [optional hiber.TimeRange](#hibertimerange) |  |
 | health_levels | [repeated string](#string) | Filter modems by health level. |
 | lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
-| transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) |  |
+|  **optional** transfers | [optional hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) |  |
 | include_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Only include modems that have a type listed in types. In other words, when providing multiple types, this is an "OR" relationship. |
 | exclude_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Exclude modems that have a type listed in types. |
-| device_types | [ hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
-| sensorBrands | [ hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
-| identifiers | [ hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
-| only_gateways | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
-| only_has_external_device_ids | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
-| connected_to_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** device_types | [optional hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
+|  **optional** sensorBrands | [optional hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
+|  **optional** identifiers | [optional hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
+|  **optional** only_gateways | [optional bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
+|  **optional** only_has_external_device_ids | [optional bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
+|  **optional** connected_to_gateways | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
 | external_device_ids | [repeated string](#string) | <strong>Deprecated.</strong>  |
-| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+|  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ hiber.modem.ModemSelection.Peripherals](#hibermodemmodemselectionperipherals) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.only_without_peripheral | [ bool](#bool) | When set to true, only modems that do not have any peripheral will be included in the result. |
-| only_connected_to_gateway | [ bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
-| not_connected_to_gateway | [ bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
+|  **optional** only_connected_to_gateway | [optional bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
+|  **optional** not_connected_to_gateway | [optional bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
 
 
 ### Enums
@@ -690,7 +528,7 @@ so not all messages listed here are referenced.)
 | ----- | ---- | ----------- |
 | search | [repeated string](#string) |  |
 | names | [repeated string](#string) |  |
-| filter | [ hiber.Filter.Tags](#hiberfiltertags) |  |
+|  **optional** filter | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 | types | [repeated string](#string) |  |
 
 
@@ -1122,7 +960,7 @@ When sending an Area to the api, the center location is ignored.
 | center | [ hiber.Location](#hiberlocation) |  |
 | bottom_left | [ hiber.Location](#hiberlocation) |  |
 | top_right | [ hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
 
@@ -1148,8 +986,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) |  |
-| hex | [ string](#string) |  |
+|  **optional** bytes | [optional bytes](#bytes) |  |
+|  **optional** hex | [optional string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -1175,10 +1013,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) |  |
-| month | [ uint32](#uint32) |  |
-| day | [ uint32](#uint32) |  |
-| textual | [ string](#string) |  |
+|  **optional** year | [optional uint32](#uint32) |  |
+|  **optional** month | [optional uint32](#uint32) |  |
+|  **optional** day | [optional uint32](#uint32) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -1195,8 +1033,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| textual | [ string](#string) |  |
+|  **optional** duration | [optional google.protobuf.Duration](#googleprotobufduration) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.Filter
 
@@ -1426,7 +1264,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 | ----- | ---- | ----------- |
 | latitude | [ double](#double) | Decimal degrees north. |
 | longitude | [ double](#double) | Decimal degrees east. |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.LocationSelection
 
@@ -1537,8 +1375,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) |  |
-| page | [ int32](#int32) |  |
+|  **optional** size | [optional int32](#int32) |  |
+|  **optional** page | [optional int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -1565,7 +1403,7 @@ while a rectangular region is easier to define using Area.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | path | [repeated hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
 
@@ -1601,9 +1439,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
-| time_zone | [ string](#string) |  |
-| textual | [ string](#string) |  |
+|  **optional** timestamp | [optional google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+|  **optional** time_zone | [optional string](#string) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.UpdateBoolean
 

@@ -27,20 +27,12 @@ used to identify them.
   - [ListModemsGrouped.Response.Total](#listmodemsgroupedresponsetotal)
   - [ListModemsRequest](#listmodemsrequest)
   - [ListModemsRequest.Response](#listmodemsrequestresponse)
-  - [MessageCountRequest](#messagecountrequest)
-  - [MessageCountRequest.Response](#messagecountrequestresponse)
-  - [MessageCountRequest.Response.MessageCount](#messagecountrequestresponsemessagecount)
   - [Modem](#modem)
   - [Modem.ConnectedDeviceInfo](#modemconnecteddeviceinfo)
   - [Modem.GatewayInfo](#modemgatewayinfo)
   - [Modem.Peripherals](#modemperipherals)
   - [Modem.Peripherals.PeripheralsEntry](#modemperipheralsperipheralsentry)
   - [Modem.TechnicalData](#modemtechnicaldata)
-  - [ModemHealthCount](#modemhealthcount)
-  - [ModemHealthCount.HealthCount](#modemhealthcounthealthcount)
-  - [ModemHealthCount.HealthCountGroupedPerTag](#modemhealthcounthealthcountgroupedpertag)
-  - [ModemHealthCount.Request](#modemhealthcountrequest)
-  - [ModemHealthCount.Response](#modemhealthcountresponse)
   - [ModemMessage](#modemmessage)
   - [ModemMessage.ParsedBody](#modemmessageparsedbody)
   - [ModemMessageSelection](#modemmessageselection)
@@ -51,21 +43,11 @@ used to identify them.
   - [ModemSelection.Peripherals.IncludeAndEntry](#modemselectionperipheralsincludeandentry)
   - [ModemSelection.Peripherals.OneOfValues](#modemselectionperipheralsoneofvalues)
   - [ModemSelection.Transfers](#modemselectiontransfers)
-  - [RenameModemRequest](#renamemodemrequest)
   - [TagCount](#tagcount)
   - [TagCount.Request](#tagcountrequest)
   - [TagCount.Response](#tagcountresponse)
-  - [UpdateModemLifecycleRequest](#updatemodemlifecyclerequest)
-  - [UpdateModemLifecycleRequest.Response](#updatemodemlifecyclerequestresponse)
-  - [UpdateModemNotesRequest](#updatemodemnotesrequest)
-  - [UpdateModemNotesRequest.Response](#updatemodemnotesrequestresponse)
-  - [UpdateModemSecureNotesRequest](#updatemodemsecurenotesrequest)
-  - [UpdateModemSecureNotesRequest.Response](#updatemodemsecurenotesrequestresponse)
   - [UpdateModemTagsRequest](#updatemodemtagsrequest)
   - [UpdateModemTagsRequest.Response](#updatemodemtagsrequestresponse)
-  - [UpdatePeripheralsRequest](#updateperipheralsrequest)
-  - [UpdatePeripheralsRequest.AddPeripheralsEntry](#updateperipheralsrequestaddperipheralsentry)
-  - [UpdatePeripheralsRequest.Response](#updateperipheralsrequestresponse)
 
 - Enums
   - [ListModemsRequest.Sort](#listmodemsrequestsort)
@@ -238,53 +220,11 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
 
 <strong>Deprecated.</strong> List messages for the selected modems.
 
-### MessageCount
-> **rpc** MessageCount([MessageCountRequest](#messagecountrequest))
-    [MessageCountRequest.Response](#messagecountrequestresponse)
-
-<strong>Deprecated.</strong> Count messages for the selected modems.
-
-### Rename
-> **rpc** Rename([RenameModemRequest](#renamemodemrequest))
-    [Modem](#modem)
-
-<strong>Deprecated.</strong> Change the name of a modem to the given value.
-
 ### UpdateTags
 > **rpc** UpdateTags([UpdateModemTagsRequest](#updatemodemtagsrequest))
     [UpdateModemTagsRequest.Response](#updatemodemtagsrequestresponse)
 
 Add, remove and create new tags for the selected modems.
-
-### UpdateNotes
-> **rpc** UpdateNotes([UpdateModemNotesRequest](#updatemodemnotesrequest))
-    [UpdateModemNotesRequest.Response](#updatemodemnotesrequestresponse)
-
-<strong>Deprecated.</strong> Change the notes for the selected modems to the given value.
-
-### UpdateSecureNotes
-> **rpc** UpdateSecureNotes([UpdateModemSecureNotesRequest](#updatemodemsecurenotesrequest))
-    [UpdateModemSecureNotesRequest.Response](#updatemodemsecurenotesrequestresponse)
-
-<strong>Deprecated.</strong> Change the secure notes for the selected modems to the given value, if you have permission.
-
-### UpdateStatus
-> **rpc** UpdateStatus([UpdateModemLifecycleRequest](#updatemodemlifecyclerequest))
-    [UpdateModemLifecycleRequest.Response](#updatemodemlifecyclerequestresponse)
-
-<strong>Deprecated.</strong> Change the status of the selected modems to the given value.
-
-### UpdatePeripherals
-> **rpc** UpdatePeripherals([UpdatePeripheralsRequest](#updateperipheralsrequest))
-    [UpdatePeripheralsRequest.Response](#updateperipheralsrequestresponse)
-
-<strong>Deprecated.</strong> Add and remove peripherals for the selected modems.
-
-### HealthCount
-> **rpc** HealthCount([ModemHealthCount.Request](#modemhealthcountrequest))
-    [ModemHealthCount.Response](#modemhealthcountresponse)
-
-<strong>Deprecated.</strong> Count the modems in your organization by health.
 
 ### TagCount
 > **rpc** TagCount([TagCount.Request](#tagcountrequest))
@@ -308,19 +248,19 @@ when you want to connect a device to the API using just the API calls in the Tes
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | amount | [ uint32](#uint32) | The amount of modems to create. |
 | names | [repeated string](#string) | The name(s) to give the new modem(s). Must not contain more values than the amount of modems to create. |
 | external_device_identifiers | [repeated string](#string) | The external device identifiers for the new modems. Must not contain more values than the amount of modems to create. The order of this list matches the order of the name, values in the same index are applied to the same modem. |
-| lifecycle | [ Modem.Lifecycle](#modemlifecycle) | The status for the new modems. |
-| technical | [ Modem.TechnicalData](#modemtechnicaldata) | The technical data, such as manufacturer and hardware information for the new modems. |
+|  **optional** lifecycle | [optional Modem.Lifecycle](#modemlifecycle) | The status for the new modems. |
+|  **optional** technical | [optional Modem.TechnicalData](#modemtechnicaldata) | The technical data, such as manufacturer and hardware information for the new modems. |
 | peripherals | [map CreateModem.Request.PeripheralsEntry](#createmodemrequestperipheralsentry) | The peripherals for the new modems. |
-| notes | [ string](#string) | Notes for all new modems. |
+|  **optional** notes | [optional string](#string) | Notes for all new modems. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **initial_location**.location | [ hiber.Location](#hiberlocation) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **initial_location**.random_location_in_area | [ hiber.Area](#hiberarea) |  |
-| tags | [ hiber.tag.UpdateTagsForItem](#hibertagupdatetagsforitem) | The tags to set to the new modems, either existing or created by this call. |
-| include_modems_in_response | [ bool](#bool) | Whether to return the full Modem in addition to the modem number and verification code. |
-| include_verification_code | [ bool](#bool) | Whether to return the verification code for the modem. |
+|  **optional** tags | [optional hiber.tag.UpdateTagsForItem](#hibertagupdatetagsforitem) | The tags to set to the new modems, either existing or created by this call. |
+|  **optional** include_modems_in_response | [optional bool](#bool) | Whether to return the full Modem in addition to the modem number and verification code. |
+|  **optional** include_verification_code | [optional bool](#bool) | Whether to return the verification code for the modem. |
 
 ### CreateModem.Request.PeripheralsEntry
 
@@ -359,7 +299,7 @@ when you want to connect a device to the API using just the API calls in the Tes
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **where**.organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **where**.in_organizations | [ hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) | If set, look up the modem in multiple organizations, instead of in the given or default organization. This can be used to find a modem if you do not know in which organization it is. Since this is a selection object, an empty selection searches in all accessible organizations, but the organizations can be limited using the fields in the OrganizationSelection. |
 | modem_number | [ string](#string) | The modem to get. |
-| child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | <strong>Deprecated.</strong> Look for the modem in child organizations. DEPRECATED: use the in_organizations flag instead. |
+|  **optional** child_organizations | [optional hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | <strong>Deprecated.</strong> Look for the modem in child organizations. DEPRECATED: use the in_organizations flag instead. |
 
 ### ListModemMessagesRequest
 
@@ -398,7 +338,7 @@ list method.
 | ----- | ---- | ----------- |
 | group_content | [ ListModemsRequest](#listmodemsrequest) | The modems you want to display in the groups. This is a ListModemsRequest that is used to fetch the modems for each group, with the added limitation that the modems must be in the group. |
 | groups | [ ListModemsRequest](#listmodemsrequest) | Select the parents for the groups to display. Anything selected here that cannot have any connected modems (i.e. a direct modem) wil be omitted unless allow_any_group_parent is set to true. Only gateways will have connected devices, so unless allow_any_group_parent is true, type is replaced with GATEWAY. This may change in the future if more grouping options are introduced. |
-| allow_any_group_parent | [ bool](#bool) | Set to true to allow group request to return modems that can never be the parent of a group. - If this flag is false, the modems for the groups are automatically filtered on being a parent of a group. Note that the group may still be empty, i.e. when a gateway has no connected devices. - If this flag is true, the group parents can include modems which cannot be a parent and for which the group can only be empty. |
+|  **optional** allow_any_group_parent | [optional bool](#bool) | Set to true to allow group request to return modems that can never be the parent of a group. - If this flag is false, the modems for the groups are automatically filtered on being a parent of a group. Note that the group may still be empty, i.e. when a gateway has no connected devices. - If this flag is true, the group parents can include modems which cannot be a parent and for which the group can only be empty. |
 
 ### ListModemsGrouped.Response
 
@@ -431,13 +371,13 @@ list method.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ ModemSelection](#modemselection) | Select which modems to return. |
-| pagination | [ hiber.Pagination](#hiberpagination) | Paginate through results. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional ModemSelection](#modemselection) | Select which modems to return. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Paginate through results. |
 | sort_by | [repeated ListModemsRequest.Sort](#listmodemsrequestsort) | Sort the modem with the given sort options. |
-| child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Include modems from the selected child organizations. |
-| location_selection | [ hiber.LocationSelection](#hiberlocationselection) | Filter modems by location. |
-| include_missing_group_parents | [ bool](#bool) | Set this to true to populate the group_parents field in the response. This will be populated with missing group parents (i.e. gateways) for the the modems on this page. Any group parent that is on the current page is not included in this list to avoid duplicate data. |
+|  **optional** child_organizations | [optional hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Include modems from the selected child organizations. |
+|  **optional** location_selection | [optional hiber.LocationSelection](#hiberlocationselection) | Filter modems by location. |
+|  **optional** include_missing_group_parents | [optional bool](#bool) | Set this to true to populate the group_parents field in the response. This will be populated with missing group parents (i.e. gateways) for the the modems on this page. Any group parent that is on the current page is not included in this list to avoid duplicate data. |
 
 ### ListModemsRequest.Response
 
@@ -450,35 +390,6 @@ list method.
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 | sorted_by | [repeated ListModemsRequest.Sort](#listmodemsrequestsort) |  |
 | group_parents | [repeated Modem](#modem) | This will be populated with missing group parents (i.e. gateways) for the the modems on this page. Any group parent that is on the current page is not included in this list to avoid duplicate data. Only set when include_missing_group_parents is true in the request. |
-
-### MessageCountRequest
-
-<strong>Deprecated.</strong> 
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ ModemMessageSelection](#modemmessageselection) |  |
-| time_zone_offset | [ int32](#int32) | Numeric timezone offset for day grouping. Optional. |
-| time_zone | [ string](#string) | Timezone string for day grouping. Optional. |
-
-### MessageCountRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| message_count_per_day | [repeated MessageCountRequest.Response.MessageCount](#messagecountrequestresponsemessagecount) |  |
-| request | [ MessageCountRequest](#messagecountrequest) |  |
-
-### MessageCountRequest.Response.MessageCount
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| date | [ hiber.Date](#hiberdate) |  |
-| count | [ int32](#int32) |  |
 
 ### Modem
 
@@ -514,7 +425,7 @@ when the modem is registered into the system or when a subscription is authorize
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
 | time_zone | [ string](#string) | The timezone configured for the modem. |
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_transmission_rate**.expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
+|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
 
 ### Modem.ConnectedDeviceInfo
 
@@ -565,50 +476,6 @@ open field for peripherals like battery, sensors, etc.
 | ----- | ---- | ----------- |
 | hardware_production_batch | [ string](#string) |  |
 | manufacturer | [ string](#string) |  |
-
-### ModemHealthCount
-
-<strong>Deprecated.</strong> Deprecated: replaced with simpler calls in TagService.TagHealth and ModemService.TagCount.
-
-
-### ModemHealthCount.HealthCount
-
-<strong>Deprecated.</strong> 
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
-| count | [ uint32](#uint32) | The number of modems matching the modem selection with this health level |
-
-### ModemHealthCount.HealthCountGroupedPerTag
-
-<strong>Deprecated.</strong> 
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| tag | [ hiber.tag.Tag](#hibertagtag) | The tag this count is for. |
-| health_counts | [repeated ModemHealthCount.HealthCount](#modemhealthcounthealthcount) |  |
-
-### ModemHealthCount.Request
-
-<strong>Deprecated.</strong> 
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| modem_selection | [ ModemSelection](#modemselection) | Selection of modems to count. If default, all modems are counted. |
-| include_tag_count | [ bool](#bool) | Whether to return specific counts for tags, selected using the tag_count_selection. |
-| tag_count_selection | [ hiber.tag.TagSelection](#hibertagtagselection) | Selection of tags to return specific counts for. If default, count is calculated for all tags. |
-
-### ModemHealthCount.Response
-
-<strong>Deprecated.</strong> 
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| health_totals | [repeated ModemHealthCount.HealthCount](#modemhealthcounthealthcount) |  |
-| health_grouped_per_tag | [repeated ModemHealthCount.HealthCountGroupedPerTag](#modemhealthcounthealthcountgroupedpertag) |  |
-| request | [ ModemHealthCount.Request](#modemhealthcountrequest) |  |
 
 ### ModemMessage
 
@@ -679,28 +546,28 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modems | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
-| free_text_search | [ string](#string) |  |
-| only_active | [ bool](#bool) | <strong>Deprecated.</strong> Use lifecycle filter instead. |
-| activated_in | [ hiber.TimeRange](#hibertimerange) | <strong>Deprecated.</strong>  |
-| with_last_message_in | [ hiber.TimeRange](#hibertimerange) |  |
+|  **optional** modems | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** free_text_search | [optional string](#string) |  |
+|  **optional** only_active | [optional bool](#bool) | <strong>Deprecated.</strong> Use lifecycle filter instead. |
+|  **optional** activated_in | [optional hiber.TimeRange](#hibertimerange) | <strong>Deprecated.</strong>  |
+|  **optional** with_last_message_in | [optional hiber.TimeRange](#hibertimerange) |  |
 | health_levels | [repeated string](#string) | Filter modems by health level. |
 | lifecycles | [repeated Modem.Lifecycle](#modemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
-| transfers | [ ModemSelection.Transfers](#modemselectiontransfers) |  |
+|  **optional** transfers | [optional ModemSelection.Transfers](#modemselectiontransfers) |  |
 | include_types | [repeated Modem.Type](#modemtype) | Only include modems that have a type listed in types. In other words, when providing multiple types, this is an "OR" relationship. |
 | exclude_types | [repeated Modem.Type](#modemtype) | Exclude modems that have a type listed in types. |
-| device_types | [ hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
-| sensorBrands | [ hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
-| identifiers | [ hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
-| only_gateways | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
-| only_has_external_device_ids | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
-| connected_to_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** device_types | [optional hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
+|  **optional** sensorBrands | [optional hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
+|  **optional** identifiers | [optional hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
+|  **optional** only_gateways | [optional bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
+|  **optional** only_has_external_device_ids | [optional bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
+|  **optional** connected_to_gateways | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
 | external_device_ids | [repeated string](#string) | <strong>Deprecated.</strong>  |
-| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+|  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ ModemSelection.Peripherals](#modemselectionperipherals) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.only_without_peripheral | [ bool](#bool) | When set to true, only modems that do not have any peripheral will be included in the result. |
-| only_connected_to_gateway | [ bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
-| not_connected_to_gateway | [ bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
+|  **optional** only_connected_to_gateway | [optional bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
+|  **optional** not_connected_to_gateway | [optional bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
 
 ### ModemSelection.Peripherals
 
@@ -771,16 +638,6 @@ For example:
 | ----- | ---- | ----------- |
 | transfers_identifiers | [repeated string](#string) |  |
 
-### RenameModemRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| modem_number | [ string](#string) |  |
-| name | [ string](#string) |  |
-
 ### TagCount
 
 
@@ -796,9 +653,9 @@ For example:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ ModemSelection](#modemselection) |  |
-| tag_selection | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional ModemSelection](#modemselection) | Select the modems to count. Optional, when omitted or empty everything is included. |
+|  **optional** tag_selection | [optional hiber.tag.TagSelection](#hibertagtagselection) | Select the tags to list. Optional, when omitted or empty everything is included. |
 
 ### TagCount.Response
 
@@ -809,80 +666,16 @@ For example:
 | tags | [repeated TagCount](#tagcount) |  |
 | request | [ TagCount.Request](#tagcountrequest) |  |
 
-### UpdateModemLifecycleRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| modem_number | [ string](#string) | <strong>Deprecated.</strong> Either pick a single modem to update. DEPRECATED, since ModemSelection is more flexible. |
-| modem_selection | [ ModemSelection](#modemselection) | Or a modem selection. |
-| update_lifecycle | [ Modem.Lifecycle](#modemlifecycle) | The new status for the modem(s). |
-| pagination | [ hiber.Pagination](#hiberpagination) | Pagination for the modems in the Response. |
-
-### UpdateModemLifecycleRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| modem | [ Modem](#modem) | <strong>Deprecated.</strong>  |
-| modems | [repeated Modem](#modem) |  |
-| request | [ UpdateModemLifecycleRequest](#updatemodemlifecyclerequest) |  |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
-
-### UpdateModemNotesRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ ModemSelection](#modemselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
-| notes | [ string](#string) | Notes content |
-| allow_override_existing_notes | [ bool](#bool) | When you try to set a new notes value to multiple modems, the API returns an error if their previous values were different. Set this to true to apply it anyway. |
-
-### UpdateModemNotesRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| modems | [repeated Modem](#modem) |  |
-| request | [ UpdateModemNotesRequest](#updatemodemnotesrequest) |  |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
-
-### UpdateModemSecureNotesRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| modem_number | [ string](#string) |  |
-| secure_notes | [ string](#string) |  |
-
-### UpdateModemSecureNotesRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| modem | [ Modem](#modem) |  |
-| request | [ UpdateModemSecureNotesRequest](#updatemodemsecurenotesrequest) |  |
-
 ### UpdateModemTagsRequest
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | update | [ hiber.tag.UpdateTagsForItem](#hibertagupdatetagsforitem) |  |
 | selection | [ ModemSelection](#modemselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### UpdateModemTagsRequest.Response
 
@@ -892,43 +685,6 @@ For example:
 | ----- | ---- | ----------- |
 | modems | [repeated Modem](#modem) |  |
 | request | [ UpdateModemTagsRequest](#updatemodemtagsrequest) |  |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
-
-### UpdatePeripheralsRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ ModemSelection](#modemselection) |  |
-| gps | [ hiber.UpdateBoolean](#hiberupdateboolean) |  |
-| hardcoded_gps_location | [ hiber.Location](#hiberlocation) |  |
-| add_peripherals | [map UpdatePeripheralsRequest.AddPeripheralsEntry](#updateperipheralsrequestaddperipheralsentry) |  |
-| remove_peripherals | [repeated string](#string) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
-| custom_antenna | [ string](#string) |  |
-| time_zone | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
-| update_transmission_interval | [ hiber.Duration](#hiberduration) |  |
-| remove_transmission_interval | [ bool](#bool) |  |
-
-### UpdatePeripheralsRequest.AddPeripheralsEntry
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| key | [ string](#string) |  |
-| value | [ string](#string) |  |
-
-### UpdatePeripheralsRequest.Response
-
-The result is paginated if affecting more than 100 modems. Use the list call to paginate further.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| request | [ UpdatePeripheralsRequest](#updateperipheralsrequest) |  |
-| modems | [repeated Modem](#modem) |  |
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 
@@ -1084,7 +840,7 @@ Error will change:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| search | [ string](#string) | Search for the given string in the levels and colors. |
+|  **optional** search | [optional string](#string) | Search for the given string in the levels and colors. |
 | levels | [repeated string](#string) | Filter by exact levels. |
 
 
@@ -1106,15 +862,15 @@ so not all messages listed here are referenced.)
 | ----- | ---- | ----------- |
 | parent_organization | [ string](#string) | Pick the organization to use as parent. If unset, your default organization is used. If you have no organization, an organization_creation_token is required. |
 | new_organization | [ string](#string) | The name for the new organization. Lowercase, letters, numbers, dashes and underscores only. Required. Used as an identifier for the organization. |
-| display_name | [ string](#string) | The name to display for your organization (i.e. capitalized, with spaces, etc.). Default to the name above. |
-| avatar | [ hiber.Avatar](#hiberavatar) | The avatar image representing this organization. Usually the logo. |
-| is_business | [ bool](#bool) | Whether this organization is created for a business. |
-| vat_number | [ string](#string) | Whether this organization is created for a business, provide a VAT number. |
-| address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | Postal address for your organization. |
-| billing_name | [ string](#string) | Billing information for your organization. Optional, but required if you want active modems. |
-| billing_address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | Billing address for your organization. Optional, but required if you want active modems. |
+|  **optional** display_name | [optional string](#string) | The name to display for your organization (i.e. capitalized, with spaces, etc.). Default to the name above. |
+|  **optional** avatar | [optional hiber.Avatar](#hiberavatar) | The avatar image representing this organization. Usually the logo. |
+|  **optional** is_business | [optional bool](#bool) | Whether this organization is created for a business. |
+|  **optional** vat_number | [optional string](#string) | Whether this organization is created for a business, provide a VAT number. |
+|  **optional** address | [optional hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | Postal address for your organization. |
+|  **optional** billing_name | [optional string](#string) | Billing information for your organization. Optional, but required if you want active modems. |
+|  **optional** billing_address | [optional hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | Billing address for your organization. Optional, but required if you want active modems. |
 | contact | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) | Contact information for your organization. Required. |
-| organization_creation_token | [ string](#string) | A token that allows you to create an organization without having an organization. |
+|  **optional** organization_creation_token | [optional string](#string) | A token that allows you to create an organization without having an organization. |
 
 ### hiber.organization.DeleteOrganizationRequest
 
@@ -1146,7 +902,7 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organizations | [repeated string](#string) | The slug for this organization, used to identify organizations |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### hiber.organization.GetOrganizationAvatar.Response
 
@@ -1172,7 +928,7 @@ Get your current organization's data
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to get the details for. If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to get the details for. If unset, your default organization is used. |
 
 ### hiber.organization.ListChildOrganizationsRequest
 
@@ -1180,10 +936,10 @@ List the child organizations for the given organization
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
-| include_details | [ bool](#bool) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) | Select the organizations to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+|  **optional** include_details | [optional bool](#bool) |  |
 
 ### hiber.organization.ListChildOrganizationsRequest.Response
 
@@ -1214,7 +970,7 @@ of any modems and related data.
 | updated_at | [ hiber.Timestamp](#hibertimestamp) |  |
 | features | [repeated hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature) |  |
 | database_info | [ string](#string) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_defaults**.defaults | [optional hiber.organization.Organization.Defaults](#hiberorganizationorganizationdefaults) |  |
+|  **optional** defaults | [optional hiber.organization.Organization.Defaults](#hiberorganizationorganizationdefaults) |  |
 
 ### hiber.organization.Organization.Address
 
@@ -1244,7 +1000,7 @@ Default settings for this organization.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_device_transmission_rate**.expected_device_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The default expected transmission interval for devices in this organization. |
+|  **optional** expected_device_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The default expected transmission interval for devices in this organization. |
 
 ### hiber.organization.OrganizationSelection
 
@@ -1253,8 +1009,8 @@ User for child organization list and tree.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organizations | [ hiber.Filter.Organizations](#hiberfilterorganizations) |  |
-| search | [ string](#string) |  |
+|  **optional** organizations | [optional hiber.Filter.Organizations](#hiberfilterorganizations) |  |
+|  **optional** search | [optional string](#string) |  |
 
 ### hiber.organization.OrganizationTree
 
@@ -1272,7 +1028,7 @@ The organization tree contains your current organization as the root of the tree
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate) for this call, overriding your default organization |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate) for this call, overriding your default organization |
 | selection | [ hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) |  |
 
 ### hiber.organization.OrganizationTreeRequest.Response
@@ -1293,7 +1049,7 @@ Note that the organization field specifies the organization, it is not used to u
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) |  |
+|  **optional** organization | [optional string](#string) |  |
 | display_name | [ string](#string) |  |
 | vat_number | [ string](#string) |  |
 | address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) |  |
@@ -1368,7 +1124,7 @@ so not all messages listed here are referenced.)
 | ----- | ---- | ----------- |
 | search | [repeated string](#string) |  |
 | names | [repeated string](#string) |  |
-| filter | [ hiber.Filter.Tags](#hiberfiltertags) |  |
+|  **optional** filter | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 | types | [repeated string](#string) |  |
 
 
@@ -1800,7 +1556,7 @@ When sending an Area to the api, the center location is ignored.
 | center | [ hiber.Location](#hiberlocation) |  |
 | bottom_left | [ hiber.Location](#hiberlocation) |  |
 | top_right | [ hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
 
@@ -1826,8 +1582,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) |  |
-| hex | [ string](#string) |  |
+|  **optional** bytes | [optional bytes](#bytes) |  |
+|  **optional** hex | [optional string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -1853,10 +1609,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) |  |
-| month | [ uint32](#uint32) |  |
-| day | [ uint32](#uint32) |  |
-| textual | [ string](#string) |  |
+|  **optional** year | [optional uint32](#uint32) |  |
+|  **optional** month | [optional uint32](#uint32) |  |
+|  **optional** day | [optional uint32](#uint32) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -1873,8 +1629,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| textual | [ string](#string) |  |
+|  **optional** duration | [optional google.protobuf.Duration](#googleprotobufduration) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.Filter
 
@@ -2104,7 +1860,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 | ----- | ---- | ----------- |
 | latitude | [ double](#double) | Decimal degrees north. |
 | longitude | [ double](#double) | Decimal degrees east. |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.LocationSelection
 
@@ -2215,8 +1971,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) |  |
-| page | [ int32](#int32) |  |
+|  **optional** size | [optional int32](#int32) |  |
+|  **optional** page | [optional int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -2243,7 +1999,7 @@ while a rectangular region is easier to define using Area.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | path | [repeated hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
 
@@ -2279,9 +2035,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
-| time_zone | [ string](#string) |  |
-| textual | [ string](#string) |  |
+|  **optional** timestamp | [optional google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+|  **optional** time_zone | [optional string](#string) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.UpdateBoolean
 

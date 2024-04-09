@@ -164,7 +164,7 @@ When sending an Area to the api, the center location is ignored.
 | center | [ hiber.Location](#hiberlocation) |  |
 | bottom_left | [ hiber.Location](#hiberlocation) |  |
 | top_right | [ hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
 
@@ -190,8 +190,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) |  |
-| hex | [ string](#string) |  |
+|  **optional** bytes | [optional bytes](#bytes) |  |
+|  **optional** hex | [optional string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -217,10 +217,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) |  |
-| month | [ uint32](#uint32) |  |
-| day | [ uint32](#uint32) |  |
-| textual | [ string](#string) |  |
+|  **optional** year | [optional uint32](#uint32) |  |
+|  **optional** month | [optional uint32](#uint32) |  |
+|  **optional** day | [optional uint32](#uint32) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -237,8 +237,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| textual | [ string](#string) |  |
+|  **optional** duration | [optional google.protobuf.Duration](#googleprotobufduration) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.Filter
 
@@ -468,7 +468,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 | ----- | ---- | ----------- |
 | latitude | [ double](#double) | Decimal degrees north. |
 | longitude | [ double](#double) | Decimal degrees east. |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.LocationSelection
 
@@ -579,8 +579,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) |  |
-| page | [ int32](#int32) |  |
+|  **optional** size | [optional int32](#int32) |  |
+|  **optional** page | [optional int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -607,7 +607,7 @@ while a rectangular region is easier to define using Area.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | path | [repeated hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
 
@@ -643,9 +643,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
-| time_zone | [ string](#string) |  |
-| textual | [ string](#string) |  |
+|  **optional** timestamp | [optional google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+|  **optional** time_zone | [optional string](#string) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.UpdateBoolean
 

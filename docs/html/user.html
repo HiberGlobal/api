@@ -556,7 +556,7 @@
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -577,7 +577,7 @@
                 <tr>
                   <td>override_allow_no_roles</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>By default, the server returns an error when you don&#39;t specify any roles.
 Set this to true to allow it. </p></td>
                 </tr>
@@ -609,7 +609,7 @@ Set this to true to allow it. </p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -630,7 +630,7 @@ Set this to true to allow it. </p></td>
                 <tr>
                   <td>password</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Optional. If no password is given, the account can only be accessed using a password reset. </p></td>
                 </tr>
               
@@ -644,21 +644,21 @@ Set this to true to allow it. </p></td>
                 <tr>
                   <td>send_verification_mail</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Send an automated email prompting the user to verify their email address. </p></td>
                 </tr>
               
                 <tr>
                   <td>send_password_reset_mail</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Send an automated email prompting the user to set a password. Recommended when password is not set. </p></td>
                 </tr>
               
                 <tr>
                   <td>allow_invite_instead</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>When the user cannot be created, (i.e. they already exist because they are in a different organization)
 we can send an invite instead, effectively calling InviteUserRequest with the email and roles.
 Set this to true to allow this behaviour. </p></td>
@@ -667,7 +667,7 @@ Set this to true to allow this behaviour. </p></td>
                 <tr>
                   <td>override_allow_no_roles</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>By default, the server returns an error when you don&#39;t specify any roles. Set this to true to allow it. </p></td>
                 </tr>
               
@@ -691,7 +691,7 @@ Set this to true to allow this behaviour. </p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -712,14 +712,14 @@ Set this to true to allow this behaviour. </p></td>
                 <tr>
                   <td>send_verification_mail</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Send an automated email prompting the users to verify their email addresses. If true, applies to all users. </p></td>
                 </tr>
               
                 <tr>
                   <td>send_password_reset_mail</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Send an automated email prompting the users to set their password. If true, applies to all users. </p></td>
                 </tr>
               
@@ -767,7 +767,7 @@ Set this to true to allow this behaviour. </p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -791,7 +791,7 @@ Set this to true to allow this behaviour. </p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -805,7 +805,7 @@ Set this to true to allow this behaviour. </p></td>
                 <tr>
                   <td>retry</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Invite the user again, even if there is an open invite. This can be done a limited amount of times. </p></td>
                 </tr>
               
@@ -819,7 +819,7 @@ Set this to true to allow this behaviour. </p></td>
                 <tr>
                   <td>override_allow_no_roles</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>By default, the server returns an error when you don&#39;t specify any roles.
 Set this to true to allow it. </p></td>
                 </tr>
@@ -851,21 +851,21 @@ Set this to true to allow it. </p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
                 <tr>
                   <td>selection</td>
                   <td><a href="#hiber.user.UserSelection">UserSelection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>optional</td>
+                  <td><p>Select the users to list. Optional, when omitted or empty everything is included. </p></td>
                 </tr>
               
                 <tr>
                   <td>pagination</td>
                   <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -934,21 +934,21 @@ Set this to true to allow it. </p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
                 <tr>
                   <td>search</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Search the invited email addresses. </p></td>
                 </tr>
               
                 <tr>
                   <td>include_accepted</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Whether to include invitations that were already accepted. </p></td>
                 </tr>
               
@@ -996,21 +996,21 @@ Set this to true to allow it. </p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
                 <tr>
                   <td>selection</td>
                   <td><a href="#hiber.user.UserSelection">UserSelection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>optional</td>
+                  <td><p>Select the users to list. Optional, when omitted or empty everything is included. </p></td>
                 </tr>
               
                 <tr>
                   <td>pagination</td>
                   <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1024,7 +1024,7 @@ Set this to true to allow it. </p></td>
                 <tr>
                   <td>child_organizations</td>
                   <td><a href="#hiber.Filter.ChildOrganizations">hiber.Filter.ChildOrganizations</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1086,7 +1086,7 @@ Set this to true to allow it. </p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -1100,7 +1100,7 @@ Set this to true to allow it. </p></td>
                 <tr>
                   <td>remove_all_tokens</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Remove all tokens created by this user. If this is not set, only the tokens with user permissions are removed. </p></td>
                 </tr>
               
@@ -1131,7 +1131,7 @@ Set this to true to allow it. </p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -1169,7 +1169,7 @@ Set this to true to allow it. </p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -1228,7 +1228,7 @@ Set this to true to allow it. </p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -1343,7 +1343,7 @@ Set this to true to allow it. </p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -1442,7 +1442,7 @@ when used by a customer support operator. </p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -1570,42 +1570,42 @@ when used by a customer support operator. </p></td>
                 <tr>
                   <td>by_email</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>by_name</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>search</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>roles</td>
                   <td><a href="#hiber.Filter.Roles">hiber.Filter.Roles</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Select users by roles for the current organization. </p></td>
                 </tr>
               
                 <tr>
                   <td>permissions</td>
                   <td><a href="#hiber.Filter.OrganizationPermissions">hiber.Filter.OrganizationPermissions</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Select users by permissions for the current organization. </p></td>
                 </tr>
               
                 <tr>
                   <td>support_permissions</td>
                   <td><a href="#hiber.Filter.SupportPermissions">hiber.Filter.SupportPermissions</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Select users by permissions for customer support. </p></td>
                 </tr>
               
@@ -1833,7 +1833,7 @@ when used by a customer support operator. </p></td>
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Text representation. Can be used as an alternative input in a request, filled in by the API in responses. </p></td>
                 </tr>
               
@@ -1888,14 +1888,14 @@ when used by a customer support operator. </p></td>
                 <tr>
                   <td>bytes</td>
                   <td><a href="#bytes">bytes</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>hex</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1950,28 +1950,28 @@ when used by a customer support operator. </p></td>
                 <tr>
                   <td>year</td>
                   <td><a href="#uint32">uint32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>month</td>
                   <td><a href="#uint32">uint32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>day</td>
                   <td><a href="#uint32">uint32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -2026,14 +2026,14 @@ when used by a customer support operator. </p></td>
                 <tr>
                   <td>duration</td>
                   <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -2803,7 +2803,7 @@ Exclude takes precedence over include. </p></td>
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Text representation. Can be used as an alternative input in a request, filled in by the API in responses. </p></td>
                 </tr>
               
@@ -3013,14 +3013,14 @@ Exclude takes precedence over include. </p></td>
                 <tr>
                   <td>size</td>
                   <td><a href="#int32">int32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>page</td>
                   <td><a href="#int32">int32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -3119,7 +3119,7 @@ For example, unbundled events are likely to return an approximated total, but no
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Text representation. Can be used as an alternative input in a request, filled in by the API in responses. </p></td>
                 </tr>
               
@@ -3174,21 +3174,21 @@ For example, unbundled events are likely to return an approximated total, but no
                 <tr>
                   <td>timestamp</td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>time_zone</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               

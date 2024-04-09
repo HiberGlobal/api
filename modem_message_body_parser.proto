@@ -284,16 +284,16 @@ message ModemMessageBodyParserSelection {
     repeated string identifiers = 8;
 
     /* Find parsers by searching for this text in the name, content_ksy, data fields or simple parser definition. */
-    string search = 2;
+    optional string search = 2;
 
     /* Only return simple parsers, created using SimpleModemMessageBodyParser. */
-    bool only_simple = 3;
+    optional bool only_simple = 3;
 
     /* Only return parsers created from an uploaded .ksy file. */
-    bool only_ksy_file = 4;
+    optional bool only_ksy_file = 4;
 
     /* Exclude parsers that are not owned by your organization (those that you did not create yourself). */
-    bool only_owned_parsers = 5;
+    optional bool only_owned_parsers = 5;
 
     /* Only return parsers that were created by the given parent organizations. */
     repeated string owner_organizations = 6;
@@ -319,18 +319,20 @@ message ListModemMessageBodyParsersRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    ModemMessageBodyParserSelection selection = 2;
-    Pagination pagination = 3;
+    optional string organization = 1;
+
+    /* Select the parsers to list. Optional, when omitted or empty everything is included. */
+    optional ModemMessageBodyParserSelection selection = 2;
+    optional Pagination pagination = 3;
 
     /* Whether to omit the content in the resulting ModemMessageBodyParsers. */
-    bool exclude_content = 4;
+    optional bool exclude_content = 4;
 }
 
 /* Upload a new body parser from a .ksy file. */
 message UploadModemMessageBodyParserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     /* A descriptive name for this parser. */
     string name = 2;
@@ -344,7 +346,7 @@ message UploadModemMessageBodyParserRequest {
     repeated field.Field data_fields = 5;
 
     /* Fields in the parsed result that match special things that can be processed by the system, like a location. */
-    ModemMessageBodyParser.MetadataFields metadata_fields = 10;
+    optional ModemMessageBodyParser.MetadataFields metadata_fields = 10;
 
     repeated ModemMessageBodyParser.PostProcessing post_processing = 6;
 
@@ -361,7 +363,7 @@ message UploadModemMessageBodyParserRequest {
 message UpdateUploadedModemMessageBodyParserRequest {
     message MetadataFields {
         /* Update the location fields. */
-        ModemMessageBodyParser.MetadataFields.LocationFields update_location_fields = 3;
+        optional ModemMessageBodyParser.MetadataFields.LocationFields update_location_fields = 3;
 
         /* Add fields to the message metadata fields list. */
         repeated string add_message_metadata_fields = 1;
@@ -402,7 +404,7 @@ message UpdateUploadedModemMessageBodyParserRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     /* The identifier of the parser that should be updated. */
     string identifier = 4;
@@ -433,14 +435,14 @@ message UpdateUploadedModemMessageBodyParserRequest {
 /* Create a simple modem message parser, which generates a .ksy specification. */
 message CreateSimpleModemMessageBodyParserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     SimpleModemMessageBodyParser parser = 2;
 }
 
 /* Update a simple modem message parser, updating the generated .ksy specification. */
 message UpdateSimpleModemMessageBodyParserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     /* The identifier of the parser that should be updated. */
     string identifier = 4;
@@ -452,7 +454,7 @@ message UpdateSimpleModemMessageBodyParserRequest {
 
 message RenameModemMessageBodyParserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     /* The identifier of the parser that should be updated. */
     string identifier = 4;
@@ -469,7 +471,7 @@ message RenameModemMessageBodyParserRequest {
  */
 message UpdateChildOrganizationAvailabilityRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     /* The identifier of the parser that should be updated. */
     string identifier = 4;
@@ -488,7 +490,7 @@ message UpdateChildOrganizationAvailabilityRequest {
  */
 message MakeModemMessageBodyParserAvailableToChildOrganizationRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     /* The identifier of the parser that should be updated. */
     string identifier = 2;
@@ -505,7 +507,7 @@ message MakeModemMessageBodyParserAvailableToChildOrganizationRequest {
  */
 message MakeModemMessageBodyParserUnavailableToChildOrganizationRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     /* The identifier of the parser that should be updated. */
     string identifier = 2;
@@ -519,7 +521,7 @@ message DeleteModemMessageBodyParserRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     /* A selection of parsers to be deleted. */
     ModemMessageBodyParserSelection selection = 2;
@@ -543,7 +545,7 @@ message TestModemMessageBodyParserRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     /* Either an existing parser, an uploaded ksy definition or a simple parser definition to test. */
     oneof parser {
@@ -575,7 +577,7 @@ message TestModemMessageBodyParserRequest {
 message RetryModemMessageBodyParsing {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
         /* The messages to parse. */
         repeated uint64 modem_message_ids = 2;
@@ -606,7 +608,7 @@ message AssignedModemMessageBodyParser {
 message AssignModemMessageBodyParsers {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
         ModemMessageBodyParserSelection assign_parsers = 2;
         modem.ModemSelection to_modems = 3;
     }
@@ -624,7 +626,7 @@ message AssignModemMessageBodyParsers {
 message UnassignModemMessageBodyParsers {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
         ModemMessageBodyParserSelection unassign_parsers = 2;
         modem.ModemSelection from_modems = 3;
     }

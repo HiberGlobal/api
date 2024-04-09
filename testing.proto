@@ -17,7 +17,6 @@ option go_package = "hiber";
  */
 service TestingService {
     rpc PushModemMessages (PushModemMessagesRequest) returns (PushModemMessagesRequest.Response);
-    rpc PushModemMessagesFromDebugPort (PushModemMessagesFromDebugPortRequest) returns (PushModemMessagesFromDebugPortRequest.Response);
 }
 
 /* Simulation service to manage active simulations.
@@ -44,30 +43,17 @@ message PushModemMessagesRequest {
 
     message MessageToPush {
         string modem_number = 1;
-        Timestamp time = 2;
-        Location location = 3;
-        bytes content = 4;
+        optional Timestamp time = 2;
+        optional Location location = 3;
+        optional bytes content = 4;
 
         /* Metadata for this message. For example: LoRaWAN values like fPort. */
-        google.protobuf.Struct metadata = 5;
+        optional google.protobuf.Struct metadata = 5;
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     repeated MessageToPush messages = 2;
-}
-
-/* Push a message using the data gotten from the modem debug port.
- * This means the message is an encrypted string, which the server can parse.
- */
-message PushModemMessagesFromDebugPortRequest {
-    message Response {
-        PushModemMessagesFromDebugPortRequest request = 1;
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    repeated string encoded_messages = 2;
 }
 
 /* Simulation settings for this organization.
@@ -125,16 +111,16 @@ message Simulation {
 
     message GetRequest {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
     }
 
     message UpdateRequest {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
         UpdateBoolean enabled = 2;
-        ModemInactivitySimulation simulate_modem_inactivity = 3;
-        DelayedMessageSimulation simulate_delayed_messages = 4;
-        ModemMessageSimulation.Defaults modem_message_simulation_defaults = 5;
+        optional ModemInactivitySimulation simulate_modem_inactivity = 3;
+        optional DelayedMessageSimulation simulate_delayed_messages = 4;
+        optional ModemMessageSimulation.Defaults modem_message_simulation_defaults = 5;
     }
 
     message ModemMessageSimulation {
@@ -215,9 +201,9 @@ message Simulation {
         message List {
             message Request {
                 /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-                string organization = 1;
+                optional string organization = 1;
                 modem.ModemSelection modems = 2;
-                Pagination pagination = 3;
+                optional Pagination pagination = 3;
 
                 /* Include modems for which message simulation is disabled. */
                 bool include_disabled = 4;
@@ -234,7 +220,7 @@ message Simulation {
             message Request {
 
                 /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-                string organization = 1;
+                optional string organization = 1;
 
                 /* Modems to create or update the message simulation for. */
                 modem.ModemSelection modems = 2;
@@ -278,7 +264,7 @@ message Simulation {
                 /* Disable the message simulation until the given date (UTC). */
                 Timestamp set_inactive_until = 8;
 
-                Pagination pagination = 10;
+                optional Pagination pagination = 10;
             }
             message Response {
                 repeated ModemMessageSimulation modems = 1;
@@ -290,7 +276,7 @@ message Simulation {
         message Delete {
             message Request {
                 /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-                string organization = 1;
+                optional string organization = 1;
                 modem.ModemSelection modems = 2;
             }
             message Response {

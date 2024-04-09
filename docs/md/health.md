@@ -135,7 +135,7 @@ Remove a health level. Any events with that level are redirected to the catch-al
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | new_health_level | [ HealthLevel](#healthlevel) | Add the given level to the organizations health levels. The new health level will be added with the highest severity (at the bottom of the health levels list). |
 
 ### AddHealthLevel.Response
@@ -231,7 +231,7 @@ Error will change:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| search | [ string](#string) | Search for the given string in the levels and colors. |
+|  **optional** search | [optional string](#string) | Search for the given string in the levels and colors. |
 | levels | [repeated string](#string) | Filter by exact levels. |
 
 ### ListHealthLevels
@@ -245,8 +245,8 @@ Error will change:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ HealthLevelSelection](#healthlevelselection) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional HealthLevelSelection](#healthlevelselection) | Select the health levels to list. Optional, when omitted or empty everything is included. |
 
 ### ListHealthLevels.Response
 
@@ -268,7 +268,7 @@ Error will change:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | level | [ string](#string) |  |
 
 ### RemoveHealthLevel.Response
@@ -290,7 +290,7 @@ Re-order the health levels for your organization.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | levels | [repeated string](#string) | The health levels for the organization, ordered by severity (low to high). This list must include _all_ health levels, or the call will fail. The implication is, that if someone adds, removes or renames a level just before this call is sent, then this call will fail to protect against strange results. |
 
 ### ReorderHealthLevels.Response
@@ -312,10 +312,10 @@ Re-order the health levels for your organization.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | level | [ string](#string) |  |
-| rename | [ string](#string) | Optionally, rename this health level. NOTE! Don't use this to change the semantics of a health level. All historic events that have this health-level will change with it. (Unless you are very sure you want to change history, that is) |
-| update_color | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong> Optionally, set or update the color for this health level. DEPRECATED, use add_colors with name "text". Vice versa, this field will also update the "text" color in the color_data field of HealthLevel. |
+|  **optional** rename | [optional string](#string) | Optionally, rename this health level. NOTE! Don't use this to change the semantics of a health level. All historic events that have this health-level will change with it. (Unless you are very sure you want to change history, that is) |
+|  **optional** update_color | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong> Optionally, set or update the color for this health level. DEPRECATED, use add_colors with name "text". Vice versa, this field will also update the "text" color in the color_data field of HealthLevel. |
 | remove_colors | [repeated string](#string) | Remove colors by name. Will remove the named color from the color_data field in HealthLevel. |
 | add_colors | [map UpdateHealthLevel.Request.AddColorsEntry](#updatehealthlevelrequestaddcolorsentry) | Add colors by name. Will add the named color from the color_data field in HealthLevel. For backwards compatibility reasons, if add_colors contains a color named "text", it will also update the field color in HealthLevel |
 | update_catch_all | [ hiber.UpdateBoolean](#hiberupdateboolean) | Optionally, set or unset the catch all flag. |
@@ -360,7 +360,7 @@ When sending an Area to the api, the center location is ignored.
 | center | [ hiber.Location](#hiberlocation) |  |
 | bottom_left | [ hiber.Location](#hiberlocation) |  |
 | top_right | [ hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
 
@@ -386,8 +386,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) |  |
-| hex | [ string](#string) |  |
+|  **optional** bytes | [optional bytes](#bytes) |  |
+|  **optional** hex | [optional string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -413,10 +413,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) |  |
-| month | [ uint32](#uint32) |  |
-| day | [ uint32](#uint32) |  |
-| textual | [ string](#string) |  |
+|  **optional** year | [optional uint32](#uint32) |  |
+|  **optional** month | [optional uint32](#uint32) |  |
+|  **optional** day | [optional uint32](#uint32) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -433,8 +433,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| textual | [ string](#string) |  |
+|  **optional** duration | [optional google.protobuf.Duration](#googleprotobufduration) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.Filter
 
@@ -664,7 +664,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 | ----- | ---- | ----------- |
 | latitude | [ double](#double) | Decimal degrees north. |
 | longitude | [ double](#double) | Decimal degrees east. |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.LocationSelection
 
@@ -775,8 +775,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) |  |
-| page | [ int32](#int32) |  |
+|  **optional** size | [optional int32](#int32) |  |
+|  **optional** page | [optional int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -803,7 +803,7 @@ while a rectangular region is easier to define using Area.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | path | [repeated hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
 
@@ -839,9 +839,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
-| time_zone | [ string](#string) |  |
-| textual | [ string](#string) |  |
+|  **optional** timestamp | [optional google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+|  **optional** time_zone | [optional string](#string) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.UpdateBoolean
 

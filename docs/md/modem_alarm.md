@@ -224,7 +224,7 @@ Simplified version of assign.AssignDirectly.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarms | [ ModemAlarmSelection](#modemalarmselection) |  |
 | modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 | parameters | [map AssignModemAlarms.Request.ParametersEntry](#assignmodemalarmsrequestparametersentry) | The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
@@ -272,13 +272,13 @@ This is a shortcut for creating an alarm and then adding checks, and as such can
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | name | [ string](#string) | A name for the alarm. |
-| description | [ string](#string) | A short description of what the alarm should do. |
+|  **optional** description | [optional string](#string) | A short description of what the alarm should do. |
 | trigger_condition | [ ModemAlarm.TriggerCondition](#modemalarmtriggercondition) | Condition determining when an alarm is triggered if it has multiple checks. |
 | checks | [repeated ModemAlarm.Check](#modemalarmcheck) | The checks to add to this alarm. Shortcut for creating an alarm and then adding checks to it. |
-| default_health_level | [ string](#string) | The default health level for this alarm. See ModemAlarm.default_health_level for more information. |
-| health_level_after_resolved | [ ModemAlarm.HealthLevelAfterResolved](#modemalarmhealthlevelafterresolved) | The health level this alarm should cause after it is resolved. See ModemAlarm.health_level_after_resolved for more information. |
+|  **optional** default_health_level | [optional string](#string) | The default health level for this alarm. See ModemAlarm.default_health_level for more information. |
+|  **optional** health_level_after_resolved | [optional ModemAlarm.HealthLevelAfterResolved](#modemalarmhealthlevelafterresolved) | The health level this alarm should cause after it is resolved. See ModemAlarm.health_level_after_resolved for more information. |
 
 ### CreateModemAlarm.Response
 
@@ -299,7 +299,7 @@ Delete an alarm.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | Identifier of the modem alarm to delete. |
 
 ### DeleteModemAlarm.Response
@@ -318,10 +318,10 @@ List modem alarms in an organization.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ ModemAlarmSelection](#modemalarmselection) | Selection criteria for listing modem alarms. |
-| pagination | [ hiber.Pagination](#hiberpagination) | Pagination for the returned alarms. |
-| apply_unit_preferences | [ bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional ModemAlarmSelection](#modemalarmselection) | Selection criteria for listing modem alarms. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Pagination for the returned alarms. |
+|  **optional** apply_unit_preferences | [optional bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
 
 ### ListModemAlarms.Response
 
@@ -424,9 +424,9 @@ Numeric values can be formatted with an extra postfix on the parameters
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | name | [ string](#string) | Name of this check, unique within the alarm. This is used to update or remove the check, and to determine the destination for any parameters. If omitted, a random name is generated based on the type of check. |
-| description | [ string](#string) | Longer description for this check (optional). |
-| health_level | [ string](#string) | The health level that this check would cause for a modem, when it fails. If not set, the alarm default is used. |
-| error_message_template | [ string](#string) | The error message template for this check, with parameters that will be filled in based on the check. |
+|  **optional** description | [optional string](#string) | Longer description for this check (optional). |
+|  **optional** health_level | [optional string](#string) | The health level that this check would cause for a modem, when it fails. If not set, the alarm default is used. |
+|  **optional** error_message_template | [optional string](#string) | The error message template for this check, with parameters that will be filled in based on the check. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.location | [ ModemAlarm.Check.LocationCheck](#modemalarmchecklocationcheck) | Check whether the device is in a given location. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.field | [ ModemAlarm.Check.FieldCheck](#modemalarmcheckfieldcheck) | Check that a message body field has a specified value. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.inactivity | [ ModemAlarm.Check.InactivityCheck](#modemalarmcheckinactivitycheck) | Check whether the device exceeds inactivity limits. |
@@ -503,7 +503,7 @@ The delta check also adds a few additional error message variables:
 | ----- | ---- | ----------- |
 | path | [ string](#string) | Select the field(s) that this check is applied to, using a json path. |
 | ignore_field_not_found | [ bool](#bool) | Whether to ignore this check if the field is not found. This can be useful if your path selects multiple values in an array, like my_array[*].value, and not all entries have the field, or when fields are omitted if they have a default value. |
-| unit | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | The unit that this alarm check is using. The field's values will automatically be converted into this unit before the check is applied. Note: unit is not currently available in the alarm_parameters. |
+|  **optional** unit | [optional hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | The unit that this alarm check is using. The field's values will automatically be converted into this unit before the check is applied. Note: unit is not currently available in the alarm_parameters. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.equals | [ ModemAlarm.Check.FieldCheck.EqualsCheck](#modemalarmcheckfieldcheckequalscheck) | Check that a field equals a value. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.allowed | [ ModemAlarm.Check.FieldCheck.AllowedCheck](#modemalarmcheckfieldcheckallowedcheck) | Check that a field equals one of a set of values. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.blocked | [ ModemAlarm.Check.FieldCheck.BlockedCheck](#modemalarmcheckfieldcheckblockedcheck) | Check that a field does not equal one of a set of values. |
@@ -596,7 +596,6 @@ Has the following parameters:
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | maximum | [ hiber.Duration](#hiberduration) | The maximum value for the modem's inactivity (time since last message was received on the server). |
-| deprecated_maximum | [ hiber.Duration](#hiberduration) | <strong>Deprecated.</strong>  |
 
 ### ModemAlarm.Check.LocationCheck
 
@@ -635,7 +634,7 @@ If values are provided both for identifiers and search, then only alarms are sel
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifiers | [repeated string](#string) | Selects alarms by the given list of alarm identifiers. |
-| search | [ string](#string) | Search for the given string in identifier, description, fields and values. |
+|  **optional** search | [optional string](#string) | Search for the given string in identifier, description, fields and values. |
 
 ### TestModemAlarmTestParameters
 
@@ -648,7 +647,7 @@ Test a set of parameters on a modem alarm, to see the result when they are appli
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarm_identifier | [ string](#string) | The identifier of the alarm on which to test parameters. |
 | parameters | [ google.protobuf.Struct](#googleprotobufstruct) | The parameters of the alarm that are changed. |
 
@@ -674,7 +673,7 @@ Simplified version of assign.UnassignDirectly.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarms | [ ModemAlarmSelection](#modemalarmselection) |  |
 | modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 
@@ -704,14 +703,14 @@ and as such can result in multiple events:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifiers of the alarm to update |
-| update_name | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the name, optionally. |
-| update_description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the description, optionally. |
-| update_trigger_condition | [ ModemAlarm.TriggerCondition](#modemalarmtriggercondition) | Update the trigger condition, optionally. |
-| update_default_health_level | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the default health level, optionally. |
-| update_health_level_after_resolved | [ ModemAlarm.HealthLevelAfterResolved](#modemalarmhealthlevelafterresolved) | Update the health after resolved, optionally. |
-| remove_health_level_after_resolved | [ bool](#bool) | Remove the health after resolved, optionally. |
+|  **optional** update_name | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the name, optionally. |
+|  **optional** update_description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the description, optionally. |
+|  **optional** update_trigger_condition | [optional ModemAlarm.TriggerCondition](#modemalarmtriggercondition) | Update the trigger condition, optionally. |
+|  **optional** update_default_health_level | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the default health level, optionally. |
+|  **optional** update_health_level_after_resolved | [optional ModemAlarm.HealthLevelAfterResolved](#modemalarmhealthlevelafterresolved) | Update the health after resolved, optionally. |
+|  **optional** remove_health_level_after_resolved | [optional bool](#bool) | Remove the health after resolved, optionally. |
 | add_checks | [repeated ModemAlarm.Check](#modemalarmcheck) | The checks to add to this alarm. Shortcut for updating an alarm and then adding checks to it. |
 | update_checks | [map UpdateModemAlarm.Request.UpdateChecksEntry](#updatemodemalarmrequestupdatechecksentry) | The checks to update in this alarm. Shortcut for updating an alarm and then updating checks. |
 | delete_checks | [repeated string](#string) | The checks to remove from this alarm. Shortcut for updating an alarm and then removing checks. |
@@ -744,7 +743,7 @@ Add a check to the alarm, iff you are the owner or can impersonate the owner org
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarm_identifier | [ string](#string) | The identifier of the alarm to which the check is added. |
 | check | [ ModemAlarm.Check](#modemalarmcheck) | The check to add to the Modem Alarm. Identifier of the check must be unique within the alarm. |
 
@@ -767,7 +766,7 @@ Remove a check from an alarm.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarm_identifier | [ string](#string) | The identifier of the alarm from which to remove the check. |
 | check_identifier | [ string](#string) | The identifier of the check to remove. |
 
@@ -793,7 +792,7 @@ check.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarm_identifier | [ string](#string) | The identifier of the alarm of which to update the check. |
 | check_identifier | [ string](#string) | The identifier of the check to update. |
 | update_check | [ ModemAlarm.Check](#modemalarmcheck) | The new values for the check of this alarm. |
@@ -835,16 +834,16 @@ so not all messages listed here are referenced.)
 | ----- | ---- | ----------- |
 | identifier | [ string](#string) | Unique identifier for this field. |
 | field | [ string](#string) | The name of the field (if in the root structure) or a JsonPath to the field. |
-| display_name | [ string](#string) | An optional display name for the field. |
+|  **optional** display_name | [optional string](#string) | An optional display name for the field. |
 | priority | [ int32](#int32) | Priority of the field, typically used for ordering. |
 | type | [ hiber.value.Value.Type](#hibervaluevaluetype) | The type of value the field contains. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.numeric | [ hiber.field.Field.Numeric](#hiberfieldfieldnumeric) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.enum | [ hiber.field.Field.Enum](#hiberfieldfieldenum) |  |
 | encrypted | [ bool](#bool) | Whether this field should be stored encrypted or not. If it is, some processing options may be unavailable or slower. |
 | optional | [ bool](#bool) | Whether this field should be validated from the parser output. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_operational**.operational | [optional bool](#bool) | Field contains values relevant for operating the device. |
-| unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | <strong>Deprecated.</strong> If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
-| unit_symbol | [ string](#string) | <strong>Deprecated.</strong> The symbol for the unit. Deprecated: use numeric.symbol instead |
+| operational | [ bool](#bool) | Field contains values relevant for operating the device. |
+|  **optional** unit_of_measurement | [optional hiber.UnitOfMeasurement](#hiberunitofmeasurement) | <strong>Deprecated.</strong> If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
+|  **optional** unit_symbol | [optional string](#string) | <strong>Deprecated.</strong> The symbol for the unit. Deprecated: use numeric.symbol instead |
 
 ### hiber.field.Field.Enum
 
@@ -864,7 +863,7 @@ If the field is numeric, this specifies the unit and formatting details for the 
 | symbol | [ string](#string) | The symbol to use for the field's unit. |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | How to format the values (number of decimals, rounding, etc.). |
 | unit | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | The unit for the field, depending on the type. |
-| converted_from | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | If the unit preferences were applied, and the unit is different, the field will be converted to the preferred unit, from the original unit specified in this field. |
+|  **optional** converted_from | [optional hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | If the unit preferences were applied, and the unit is different, the field will be converted to the preferred unit, from the original unit specified in this field. |
 
 ### hiber.field.Field.Numeric.Format
 
@@ -958,7 +957,7 @@ when the modem is registered into the system or when a subscription is authorize
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
 | time_zone | [ string](#string) | The timezone configured for the modem. |
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_transmission_rate**.expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
+|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
 
 ### hiber.modem.ModemSelection
 
@@ -967,28 +966,28 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modems | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
-| free_text_search | [ string](#string) |  |
-| only_active | [ bool](#bool) | <strong>Deprecated.</strong> Use lifecycle filter instead. |
-| activated_in | [ hiber.TimeRange](#hibertimerange) | <strong>Deprecated.</strong>  |
-| with_last_message_in | [ hiber.TimeRange](#hibertimerange) |  |
+|  **optional** modems | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** free_text_search | [optional string](#string) |  |
+|  **optional** only_active | [optional bool](#bool) | <strong>Deprecated.</strong> Use lifecycle filter instead. |
+|  **optional** activated_in | [optional hiber.TimeRange](#hibertimerange) | <strong>Deprecated.</strong>  |
+|  **optional** with_last_message_in | [optional hiber.TimeRange](#hibertimerange) |  |
 | health_levels | [repeated string](#string) | Filter modems by health level. |
 | lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
-| transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) |  |
+|  **optional** transfers | [optional hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) |  |
 | include_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Only include modems that have a type listed in types. In other words, when providing multiple types, this is an "OR" relationship. |
 | exclude_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Exclude modems that have a type listed in types. |
-| device_types | [ hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
-| sensorBrands | [ hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
-| identifiers | [ hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
-| only_gateways | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
-| only_has_external_device_ids | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
-| connected_to_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** device_types | [optional hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
+|  **optional** sensorBrands | [optional hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
+|  **optional** identifiers | [optional hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
+|  **optional** only_gateways | [optional bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
+|  **optional** only_has_external_device_ids | [optional bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
+|  **optional** connected_to_gateways | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
 | external_device_ids | [repeated string](#string) | <strong>Deprecated.</strong>  |
-| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+|  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ hiber.modem.ModemSelection.Peripherals](#hibermodemmodemselectionperipherals) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.only_without_peripheral | [ bool](#bool) | When set to true, only modems that do not have any peripheral will be included in the result. |
-| only_connected_to_gateway | [ bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
-| not_connected_to_gateway | [ bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
+|  **optional** only_connected_to_gateway | [optional bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
+|  **optional** not_connected_to_gateway | [optional bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
 
 
 ### Enums
@@ -1079,7 +1078,7 @@ When sending an Area to the api, the center location is ignored.
 | center | [ hiber.Location](#hiberlocation) |  |
 | bottom_left | [ hiber.Location](#hiberlocation) |  |
 | top_right | [ hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
 
@@ -1105,8 +1104,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) |  |
-| hex | [ string](#string) |  |
+|  **optional** bytes | [optional bytes](#bytes) |  |
+|  **optional** hex | [optional string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -1132,10 +1131,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) |  |
-| month | [ uint32](#uint32) |  |
-| day | [ uint32](#uint32) |  |
-| textual | [ string](#string) |  |
+|  **optional** year | [optional uint32](#uint32) |  |
+|  **optional** month | [optional uint32](#uint32) |  |
+|  **optional** day | [optional uint32](#uint32) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -1152,8 +1151,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| textual | [ string](#string) |  |
+|  **optional** duration | [optional google.protobuf.Duration](#googleprotobufduration) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.Filter
 
@@ -1383,7 +1382,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 | ----- | ---- | ----------- |
 | latitude | [ double](#double) | Decimal degrees north. |
 | longitude | [ double](#double) | Decimal degrees east. |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.LocationSelection
 
@@ -1494,8 +1493,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) |  |
-| page | [ int32](#int32) |  |
+|  **optional** size | [optional int32](#int32) |  |
+|  **optional** page | [optional int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -1522,7 +1521,7 @@ while a rectangular region is easier to define using Area.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | path | [repeated hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
 
@@ -1558,9 +1557,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
-| time_zone | [ string](#string) |  |
-| textual | [ string](#string) |  |
+|  **optional** timestamp | [optional google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+|  **optional** time_zone | [optional string](#string) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.UpdateBoolean
 

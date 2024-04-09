@@ -90,8 +90,8 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ RoleSelection](#roleselection) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional RoleSelection](#roleselection) | Select the roles to list. Optional, when omitted or empty everything is included. |
 
 ### ListRoles.Response
 
@@ -120,7 +120,7 @@ Accept an invitation to an organization.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) |  |
-| default_organization | [ bool](#bool) | Set to true to mark the organization as your default organization. |
+|  **optional** default_organization | [optional bool](#bool) | Set to true to mark the organization as your default organization. |
 
 ### hiber.user.AcceptOrganizationInviteRequest.Response
 
@@ -146,10 +146,10 @@ List all organizations that can be impersonated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| search | [ string](#string) | Search accessible organizations by name. |
-| member_only | [ bool](#bool) | Only list organizations of which you are a member (exclude organizations that you can only impersonate). |
-| default_only | [ bool](#bool) | Only list your default organization. |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** search | [optional string](#string) | Search accessible organizations by name. |
+|  **optional** member_only | [optional bool](#bool) | Only list organizations of which you are a member (exclude organizations that you can only impersonate). |
+|  **optional** default_only | [optional bool](#bool) | Only list your default organization. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### hiber.user.AccessibleOrganizationsRequest.AccessibleOrganization
 
@@ -212,7 +212,7 @@ Get your personal data.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 
 ### hiber.user.DeleteCurrentUserRequest
 
@@ -231,7 +231,7 @@ List all invitations from organizations.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| search | [ string](#string) |  |
+|  **optional** search | [optional string](#string) |  |
 
 ### hiber.user.ListOrganizationInvitesRequest.Invite
 
@@ -262,8 +262,8 @@ List all invitations from organizations.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.role.RoleSelection](#hiberroleroleselection) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional hiber.role.RoleSelection](#hiberroleroleselection) | Select the roles to list. Optional, when omitted or empty everything is included. |
 
 ### hiber.user.OverrideRoles.Response
 
@@ -373,8 +373,8 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| search | [ string](#string) |  |
-| roles | [ hiber.Filter.Roles](#hiberfilterroles) |  |
+|  **optional** search | [optional string](#string) |  |
+|  **optional** roles | [optional hiber.Filter.Roles](#hiberfilterroles) |  |
 
 
 ### Enums

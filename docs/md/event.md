@@ -823,11 +823,9 @@ device's location is updated
 | number | [ string](#string) |  |
 | external_device_id | [ string](#string) | External device id for this device (e.g. a MAC address). |
 | display_name | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
-| custom_antenna | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
-| gps | [ hiber.UpdateBoolean](#hiberupdateboolean) |  |
-| location | [ hiber.Location](#hiberlocation) |  |
 | peripherals | [map Event.DeviceEvent.DeviceUpdatedEvent.PeripheralsEntry](#eventdeviceeventdeviceupdatedeventperipheralsentry) |  |
 | notes | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+|  **optional** device_type | [optional string](#string) |  |
 | secure_notes_updated | [ bool](#bool) |  |
 | health_warning_period | [ hiber.Duration](#hiberduration) |  |
 | time | [ hiber.Timestamp](#hibertimestamp) |  |
@@ -1432,7 +1430,7 @@ For example, you can configure the message summary to be a daily message, aligne
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 
 ### EventHistory
 
@@ -1450,9 +1448,9 @@ The Pagination object will let you limit the number of events returned.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ EventSelection](#eventselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional EventSelection](#eventselection) | Select the events to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### EventHistory.Response
 
@@ -1473,16 +1471,16 @@ one per event type, with the count.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| events | [ hiber.Filter.Events](#hiberfilterevents) |  |
-| modems | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
-| publishers | [ hiber.Filter.Publishers](#hiberfilterpublishers) |  |
-| tags | [ hiber.Filter.Tags](#hiberfiltertags) |  |
-| time_range | [ hiber.TimeRange](#hibertimerange) |  |
+|  **optional** events | [optional hiber.Filter.Events](#hiberfilterevents) |  |
+|  **optional** modems | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** publishers | [optional hiber.Filter.Publishers](#hiberfilterpublishers) |  |
+|  **optional** tags | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
+|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) |  |
 | health_levels | [repeated string](#string) | Filter events by actual configured health level. |
-| include_resolved_events | [ bool](#bool) | By default, events that have been resolved are not listed. |
-| unbundled_events | [ bool](#bool) | <strong>Deprecated.</strong> When not set, no unbundled events are returned. When set, returns unbundled events per type, paginated per type. Deprecated: use unbundled_events on ListEventsRequest |
-| errors_only | [ bool](#bool) | <strong>Deprecated.</strong> Return only events that cause the default Error health. Deprecated: use health_levels with custom health levels instead. |
-| warnings_only | [ bool](#bool) | <strong>Deprecated.</strong> Return only events that cause the default Warning health. Deprecated: use health_levels with custom health levels instead. |
+|  **optional** include_resolved_events | [optional bool](#bool) | By default, events that have been resolved are not listed. |
+|  **optional** unbundled_events | [optional bool](#bool) | <strong>Deprecated.</strong> When not set, no unbundled events are returned. When set, returns unbundled events per type, paginated per type. Deprecated: use unbundled_events on ListEventsRequest |
+|  **optional** errors_only | [optional bool](#bool) | <strong>Deprecated.</strong> Return only events that cause the default Error health. Deprecated: use health_levels with custom health levels instead. |
+|  **optional** warnings_only | [optional bool](#bool) | <strong>Deprecated.</strong> Return only events that cause the default Warning health. Deprecated: use health_levels with custom health levels instead. |
 
 ### EventStreamRequest
 
@@ -1492,9 +1490,9 @@ Note: streams are limited to one per user due to GRPC limitations.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ EventSelection](#eventselection) | The selection for the events. |
-| child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Include events from child organizations, if requested. This is only available for streaming, listing events can only be listed per organization. Keep in mind that filtering events using the selection is limited. Filtering on tags or publishers, for example, can only apply to the parent organization. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional EventSelection](#eventselection) | Select the events to stream. Optional, when omitted or empty everything is included. |
+|  **optional** child_organizations | [optional hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Include events from child organizations, if requested. This is only available for streaming, listing events can only be listed per organization. Keep in mind that filtering events using the selection is limited. Filtering on tags or publishers, for example, can only apply to the parent organization. |
 
 ### ListEventsRequest
 
@@ -1508,11 +1506,11 @@ see the most recent events of each type on the first page.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ EventSelection](#eventselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) | Pagination is applied per event type on unbundled events. It is not necessary for bundled events. |
-| sort | [ ListEventsRequest.Sort](#listeventsrequestsort) |  |
-| unbundled_events | [ bool](#bool) | When not set, bundled/grouped events are returned. When set, returns unbundled events per type, paginated per type. Overrides unbundled_events in EventSelection message. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional EventSelection](#eventselection) | Select the events to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Pagination is applied per event type on unbundled events. It is not necessary for bundled events. |
+|  **optional** sort | [optional ListEventsRequest.Sort](#listeventsrequestsort) |  |
+|  **optional** unbundled_events | [optional bool](#bool) | When not set, bundled/grouped events are returned. When set, returns unbundled events per type, paginated per type. Overrides unbundled_events in EventSelection message. |
 
 ### ListEventsRequest.Response
 
@@ -1545,7 +1543,7 @@ Mark a selection of events as resolved.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | selection | [ EventSelection](#eventselection) | Selection of events to resolve. |
 
 ### MarkEventsResolved.Response
@@ -1571,9 +1569,9 @@ Only returns the Event with first-level fields set, event details are not includ
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ EventSelection](#eventselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional EventSelection](#eventselection) | Select the events to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### ModemHealthEvents.Response
 
@@ -1596,7 +1594,7 @@ Resolve a resolvable event using its resolve_identifier.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | resolve_identifier | [ string](#string) | The resolve identifier of the event you wish to resolve. |
 
 ### ResolveEvent.Response
@@ -1618,7 +1616,7 @@ Resolve a resolvable event using its resolve_identifier.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | updates | [repeated UpdateEventHealthConfiguration.UpdateEventHealth](#updateeventhealthconfigurationupdateeventhealth) | List of event-types to update health for. When listing same event twice, behaviour is undefined. |
 
 ### UpdateEventHealthConfiguration.Response
@@ -1675,7 +1673,7 @@ Add assignments.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
@@ -1747,11 +1745,11 @@ the tag.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the modems to return the assignments for. |
-| modem_alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) | Select the alarms to return the assignments for. |
-| modem_message_body_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | Select the message body parsers to return the assignments for. |
-| tags | [ hiber.tag.TagSelection](#hibertagtagselection) | Select the tags to return the assignments for. |
-| types | [ hiber.assign.AssignmentSelection.AssignmentTypes](#hiberassignassignmentselectionassignmenttypes) | Select by type of assignment. |
+|  **optional** modems | [optional hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the modems to return the assignments for. Optional, when omitted or empty everything is included. |
+|  **optional** modem_alarms | [optional hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) | Select the alarms to return the assignments for. Optional, when omitted or empty everything is included. |
+|  **optional** modem_message_body_parsers | [optional hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | Select the message body parsers to return the assignments for. Optional, when omitted or empty everything is included. |
+|  **optional** tags | [optional hiber.tag.TagSelection](#hibertagtagselection) | Select the tags to return the assignments for. Optional, when omitted or empty everything is included. |
+|  **optional** types | [optional hiber.assign.AssignmentSelection.AssignmentTypes](#hiberassignassignmentselectionassignmenttypes) | Select by type of assignment. |
 
 ### hiber.assign.AssignmentSelection.AssignmentTypes
 
@@ -1773,12 +1771,12 @@ the tag.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.assign.AssignmentSelection](#hiberassignassignmentselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
-| include_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Whether to include modems from child organizations in this list (and which organizations). |
-| include_alarms_without_assignments | [ bool](#bool) | Whether to include alarms that are in the selection and have no assignments. |
-| apply_unit_preferences | [ bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional hiber.assign.AssignmentSelection](#hiberassignassignmentselection) | Select the assignments to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+|  **optional** include_child_organizations | [optional hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Whether to include modems from child organizations in this list (and which organizations). |
+|  **optional** include_alarms_without_assignments | [optional bool](#bool) | Whether to include alarms that are in the selection and have no assignments. |
+|  **optional** apply_unit_preferences | [optional bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
 
 ### hiber.assign.ListAlarmAssignments.Response
 
@@ -1830,9 +1828,9 @@ Things that an alarm is assigned to.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.assign.AssignmentSelection](#hiberassignassignmentselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional hiber.assign.AssignmentSelection](#hiberassignassignmentselection) | Select the assignments to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### hiber.assign.ListAssignments.Response
 
@@ -1855,14 +1853,14 @@ Things that an alarm is assigned to.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.assign.AssignmentSelection](#hiberassignassignmentselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
-| include_alarm_details | [ bool](#bool) | Whether to include the full alarms that are assigned, instead of just assignment. |
-| include_message_body_parser_details | [ bool](#bool) | Whether to include the full parsers that are assigned, instead of just assignment. |
-| include_message_body_parser_content | [ bool](#bool) | Whether to include, for example, the message body parser ksy content in the result. Excluded by default to save data. |
-| include_modems_without_assignments | [ bool](#bool) | Whether to include modems that are in the selection and have no assignments. |
-| apply_unit_preferences | [ bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional hiber.assign.AssignmentSelection](#hiberassignassignmentselection) | Select the assignments to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+|  **optional** include_alarm_details | [optional bool](#bool) | Whether to include the full alarms that are assigned, instead of just assignment. |
+|  **optional** include_message_body_parser_details | [optional bool](#bool) | Whether to include the full parsers that are assigned, instead of just assignment. |
+|  **optional** include_message_body_parser_content | [optional bool](#bool) | Whether to include, for example, the message body parser ksy content in the result. Excluded by default to save data. |
+|  **optional** include_modems_without_assignments | [optional bool](#bool) | Whether to include modems that are in the selection and have no assignments. |
+|  **optional** apply_unit_preferences | [optional bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
 
 ### hiber.assign.ListModemAssignments.Response
 
@@ -1899,11 +1897,11 @@ Things that are assigned to a modem.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.assign.AssignmentSelection](#hiberassignassignmentselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
-| include_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Whether to include modems from child organizations in this list (and which organizations). |
-| include_parser_without_assignments | [ bool](#bool) | Whether to include alarms that are in the selection and have no assignments. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional hiber.assign.AssignmentSelection](#hiberassignassignmentselection) | Select the assignments to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+|  **optional** include_child_organizations | [optional hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Whether to include modems from child organizations in this list (and which organizations). |
+|  **optional** include_parser_without_assignments | [optional bool](#bool) | Whether to include alarms that are in the selection and have no assignments. |
 
 ### hiber.assign.ListModemMessageBodyParserAssignments.Response
 
@@ -1937,14 +1935,14 @@ Things that an alarm is assigned to.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.assign.AssignmentSelection](#hiberassignassignmentselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
-| include_alarm_details | [ bool](#bool) | Whether to include the full alarms that are assigned, instead of just assignment. |
-| include_message_body_parser_details | [ bool](#bool) | Whether to include the full parsers that are assigned, instead of just assignment. |
-| include_message_body_parser_content | [ bool](#bool) | Whether to include, for example, the message body parser ksy content in the result. Excluded by default to save data. |
-| include_tags_without_assignments | [ bool](#bool) | Whether to include alarms that are in the selection and have no assignments. |
-| apply_unit_preferences | [ bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional hiber.assign.AssignmentSelection](#hiberassignassignmentselection) | Select the assignments to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+|  **optional** include_alarm_details | [optional bool](#bool) | Whether to include the full alarms that are assigned, instead of just assignment. |
+|  **optional** include_message_body_parser_details | [optional bool](#bool) | Whether to include the full parsers that are assigned, instead of just assignment. |
+|  **optional** include_message_body_parser_content | [optional bool](#bool) | Whether to include, for example, the message body parser ksy content in the result. Excluded by default to save data. |
+|  **optional** include_tags_without_assignments | [optional bool](#bool) | Whether to include alarms that are in the selection and have no assignments. |
+|  **optional** apply_unit_preferences | [optional bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
 
 ### hiber.assign.ListTagAssignments.Response
 
@@ -1981,7 +1979,7 @@ Remove a assignment.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
@@ -2031,7 +2029,7 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **configuration**.modem_message | [ hiber.export.Export.Configuration.ModemMessages](#hiberexportexportconfigurationmodemmessages) | Get the fields for modem messages, with optional specific fields for the selected modems, based on assigned parsers. Time range is ignored for this request. |
 
 ### hiber.export.AvailableFieldsForExport.Response
@@ -2054,11 +2052,11 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | name | [ string](#string) |  |
 | format | [ hiber.export.Export.Format](#hiberexportexportformat) | The format for the export. |
 | configuration | [ hiber.export.Export.Configuration](#hiberexportexportconfiguration) | Specific configuration for the export. |
-| email_subscribe | [ bool](#bool) | Subscribe to email updates to get an email with links when the export is ready. |
+|  **optional** email_subscribe | [optional bool](#bool) | Subscribe to email updates to get an email with links when the export is ready. |
 
 ### hiber.export.CreateExport.Response
 
@@ -2080,7 +2078,7 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) |  |
 
 ### hiber.export.DeleteExport.Response
@@ -2147,10 +2145,10 @@ CSV (comma separated values) format for export.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | columns | [repeated hiber.export.Export.Format.Csv.Column](#hiberexportexportformatcsvcolumn) | The columns in the CSV, with their mapping. Columns in CSV are a flat structure, while the data is generally nested, so a mapping is required to flatten it to simple columns. |
-| separator | [ string](#string) | The separator character to use in the CSV. |
-| quote | [ string](#string) | The quote character to use in the CSV. |
-| escape | [ string](#string) | The escape character to use in the CSV. |
-| newline | [ string](#string) | The newlines to use in the CSV. |
+|  **optional** separator | [optional string](#string) | The separator character to use in the CSV. Default: , |
+|  **optional** quote | [optional string](#string) | The quote character to use in the CSV. Default: " |
+|  **optional** escape | [optional string](#string) | The escape character to use in the CSV. Default: " |
+|  **optional** newline | [optional string](#string) | The newlines to use in the CSV. Default: \n |
 
 ### hiber.export.Export.Format.Csv.Column
 
@@ -2186,8 +2184,8 @@ Json format for export.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifiers | [repeated string](#string) | Select by identifiers |
-| search | [ string](#string) | Search through identifiers and urls |
-| include_expired | [ bool](#bool) | Whether to include expired exports. |
+|  **optional** search | [optional string](#string) | Search through identifiers and urls |
+|  **optional** include_expired | [optional bool](#bool) | Whether to include expired exports. |
 
 ### hiber.export.ExtendExportDownloadExpiry
 
@@ -2200,7 +2198,7 @@ Json format for export.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | Export identifier |
 | extend_by | [ hiber.Duration](#hiberduration) | The time to extend the expiry with. |
 | file | [repeated string](#string) | Extend the expiry for a specific file. If empty, all files are extended. |
@@ -2224,9 +2222,9 @@ Json format for export.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.export.ExportSelection](#hiberexportexportselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional hiber.export.ExportSelection](#hiberexportexportselection) | Select the exports to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### hiber.export.ListExports.Response
 
@@ -2344,7 +2342,7 @@ Error will change:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| search | [ string](#string) | Search for the given string in the levels and colors. |
+|  **optional** search | [optional string](#string) | Search for the given string in the levels and colors. |
 | levels | [repeated string](#string) | Filter by exact levels. |
 
 
@@ -2364,21 +2362,21 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| description | [ string](#string) |  |
-| filter_event_types | [ hiber.Filter.Events](#hiberfilterevents) |  |
-| filter_modem_numbers | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
-| filter_tags | [ hiber.Filter.Tags](#hiberfiltertags) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** description | [optional string](#string) |  |
+|  **optional** filter_event_types | [optional hiber.Filter.Events](#hiberfilterevents) |  |
+|  **optional** filter_modem_numbers | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** filter_tags | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 | url | [ string](#string) | The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 |
 | content_type | [ hiber.integration.mqtt.MQTTPublisher.ContentType](#hiberintegrationmqttmqttpublishercontenttype) |  |
 | topic | [ string](#string) | The MQTT topic to send to on the receiving server. |
 | qos | [ hiber.integration.mqtt.MQTTPublisher.Data.QoS](#hiberintegrationmqttmqttpublisherdataqos) | MQTT QoS value. |
-| identifier | [ string](#string) | Identifier used by the MQTT client. Defaults to "hiber". |
-| username | [ string](#string) | Optional username to authenticate with. |
-| password | [ string](#string) | Optional password to authenticate with. Requires username to be set. |
-| certificate_id | [ int64](#int64) | Client certificate to use when connecting to the MQTT server. |
-| server_ca_certificate_id | [ int64](#int64) | Server CA certificate to use when connecting to the MQTT server. |
-| disabled | [ bool](#bool) | Disable the MQTT publisher after creation, so it needs to be enabled before it is active. |
+|  **optional** identifier | [optional string](#string) | Identifier used by the MQTT client. Defaults to "hiber". |
+|  **optional** username | [optional string](#string) | Optional username to authenticate with. |
+|  **optional** password | [optional string](#string) | Optional password to authenticate with. Requires username to be set. |
+|  **optional** certificate_id | [optional int64](#int64) | Client certificate to use when connecting to the MQTT server. |
+|  **optional** server_ca_certificate_id | [optional int64](#int64) | Server CA certificate to use when connecting to the MQTT server. |
+|  **optional** disabled | [optional bool](#bool) | Disable the MQTT publisher after creation, so it needs to be enabled before it is active. |
 | tags | [repeated int64](#int64) |  |
 
 ### hiber.integration.mqtt.DeleteMQTTPublisherRequest
@@ -2387,7 +2385,7 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | id | [ int64](#int64) |  |
 
 ### hiber.integration.mqtt.DeleteMQTTPublisherRequest.Response
@@ -2401,7 +2399,7 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | selection | [ hiber.integration.mqtt.MQTTPublisherSelection](#hiberintegrationmqttmqttpublisherselection) |  |
 
 ### hiber.integration.mqtt.DisableMQTTPublisherRequest.Response
@@ -2419,7 +2417,7 @@ Enable a disabled publisher or re-enable a publisher that's failed and is in coo
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | selection | [ hiber.integration.mqtt.MQTTPublisherSelection](#hiberintegrationmqttmqttpublisherselection) |  |
 
 ### hiber.integration.mqtt.EnableMQTTPublisherRequest.Response
@@ -2437,9 +2435,9 @@ Enable a disabled publisher or re-enable a publisher that's failed and is in coo
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.integration.mqtt.MQTTPublisherSelection](#hiberintegrationmqttmqttpublisherselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional hiber.integration.mqtt.MQTTPublisherSelection](#hiberintegrationmqttmqttpublisherselection) |  |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 | sort | [repeated hiber.integration.mqtt.ListMQTTPublishersRequest.Sort](#hiberintegrationmqttlistmqttpublishersrequestsort) |  |
 
 ### hiber.integration.mqtt.ListMQTTPublishersRequest.Response
@@ -2517,10 +2515,10 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | id | [ int64](#int64) |  |
-| selection | [ hiber.integration.mqtt.MQTTPublisherHistorySelection](#hiberintegrationmqttmqttpublisherhistoryselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** selection | [optional hiber.integration.mqtt.MQTTPublisherHistorySelection](#hiberintegrationmqttmqttpublisherhistoryselection) |  |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### hiber.integration.mqtt.MQTTPublisherHistoryRequest.Response
 
@@ -2538,8 +2536,8 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| time_range | [ hiber.TimeRange](#hibertimerange) |  |
-| only_failures | [ bool](#bool) |  |
+|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) |  |
+|  **optional** only_failures | [optional bool](#bool) |  |
 
 ### hiber.integration.mqtt.MQTTPublisherSelection
 
@@ -2547,13 +2545,13 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| publishers | [ hiber.Filter.Publishers](#hiberfilterpublishers) | Filter by id. |
-| description | [ string](#string) | Partial text match on the description. |
-| search_url | [ string](#string) | Partial text match on the url. |
-| search_topic | [ string](#string) | Partial text match on the topic. |
+|  **optional** publishers | [optional hiber.Filter.Publishers](#hiberfilterpublishers) | Filter by id. |
+|  **optional** description | [optional string](#string) | Partial text match on the description. |
+|  **optional** search_url | [optional string](#string) | Partial text match on the url. |
+|  **optional** search_topic | [optional string](#string) | Partial text match on the topic. |
 | content_types | [repeated hiber.integration.mqtt.MQTTPublisher.ContentType](#hiberintegrationmqttmqttpublishercontenttype) | Only return MQTT integrations that use the given content types. |
 | certificate_ids | [repeated int64](#int64) | Filter by referenced certificate (id), either as client or server certificate. |
-| tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+|  **optional** tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
 | health | [repeated hiber.Health](#hiberhealth) |  |
 
 ### hiber.integration.mqtt.UpdateMQTTPublisherRequest
@@ -2562,24 +2560,24 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | id | [ int64](#int64) |  |
-| filter_event_types | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
-| filter_modem_numbers | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
-| filter_tags | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
-| description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
-| url | [ string](#string) | The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 |
-| content_type | [ hiber.integration.mqtt.MQTTPublisher.ContentType](#hiberintegrationmqttmqttpublishercontenttype) |  |
-| topic | [ string](#string) | The MQTT topic to send to on the receiving server. |
-| qos | [ hiber.integration.mqtt.MQTTPublisher.Data.QoS](#hiberintegrationmqttmqttpublisherdataqos) | MQTT QoS value. |
-| identifier | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Identifier used by the MQTT client. Defaults to "hiber". |
-| username | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Optional username to authenticate with. |
-| password | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Optional password to authenticate with. Requires username to be set. |
-| certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | Update or remove the client certificate to use when connecting to the MQTT server. |
-| server_ca_certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | Update or remove the server CA certificate to use when connecting to the MQTT server. |
-| active | [ hiber.UpdateBoolean](#hiberupdateboolean) | Disable the MQTT publisher, so it needs to be enabled again before it is active. |
-| health_warning_period | [ hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
-| health_warning_failure_percentage | [ hiber.UpdateZeroableInt](#hiberupdatezeroableint) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
+|  **optional** filter_event_types | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
+|  **optional** filter_modem_numbers | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
+|  **optional** filter_tags | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
+|  **optional** description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+|  **optional** url | [optional string](#string) | The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 |
+|  **optional** content_type | [optional hiber.integration.mqtt.MQTTPublisher.ContentType](#hiberintegrationmqttmqttpublishercontenttype) |  |
+|  **optional** topic | [optional string](#string) | The MQTT topic to send to on the receiving server. |
+|  **optional** qos | [optional hiber.integration.mqtt.MQTTPublisher.Data.QoS](#hiberintegrationmqttmqttpublisherdataqos) | MQTT QoS value. |
+|  **optional** identifier | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Identifier used by the MQTT client. Defaults to "hiber". |
+|  **optional** username | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Optional username to authenticate with. |
+|  **optional** password | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Optional password to authenticate with. Requires username to be set. |
+|  **optional** certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | Update or remove the client certificate to use when connecting to the MQTT server. |
+|  **optional** server_ca_certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | Update or remove the server CA certificate to use when connecting to the MQTT server. |
+|  **optional** active | [optional hiber.UpdateBoolean](#hiberupdateboolean) | Disable the MQTT publisher, so it needs to be enabled again before it is active. |
+|  **optional** health_warning_period | [optional hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
+|  **optional** health_warning_failure_percentage | [optional hiber.UpdateZeroableInt](#hiberupdatezeroableint) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
 
 ### hiber.integration.mqtt.UpdateMQTTPublisherTagsRequest
 
@@ -2587,7 +2585,7 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) |  |
+|  **optional** organization | [optional string](#string) |  |
 | selection | [ hiber.integration.mqtt.MQTTPublisherSelection](#hiberintegrationmqttmqttpublisherselection) |  |
 | update | [ hiber.tag.UpdateTagsForItem](#hibertagupdatetagsforitem) |  |
 
@@ -2678,7 +2676,7 @@ when the modem is registered into the system or when a subscription is authorize
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
 | time_zone | [ string](#string) | The timezone configured for the modem. |
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_transmission_rate**.expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
+|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
 
 ### hiber.modem.ModemSelection
 
@@ -2687,28 +2685,28 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modems | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
-| free_text_search | [ string](#string) |  |
-| only_active | [ bool](#bool) | <strong>Deprecated.</strong> Use lifecycle filter instead. |
-| activated_in | [ hiber.TimeRange](#hibertimerange) | <strong>Deprecated.</strong>  |
-| with_last_message_in | [ hiber.TimeRange](#hibertimerange) |  |
+|  **optional** modems | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** free_text_search | [optional string](#string) |  |
+|  **optional** only_active | [optional bool](#bool) | <strong>Deprecated.</strong> Use lifecycle filter instead. |
+|  **optional** activated_in | [optional hiber.TimeRange](#hibertimerange) | <strong>Deprecated.</strong>  |
+|  **optional** with_last_message_in | [optional hiber.TimeRange](#hibertimerange) |  |
 | health_levels | [repeated string](#string) | Filter modems by health level. |
 | lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
-| transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) |  |
+|  **optional** transfers | [optional hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) |  |
 | include_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Only include modems that have a type listed in types. In other words, when providing multiple types, this is an "OR" relationship. |
 | exclude_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Exclude modems that have a type listed in types. |
-| device_types | [ hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
-| sensorBrands | [ hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
-| identifiers | [ hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
-| only_gateways | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
-| only_has_external_device_ids | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
-| connected_to_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** device_types | [optional hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
+|  **optional** sensorBrands | [optional hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
+|  **optional** identifiers | [optional hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
+|  **optional** only_gateways | [optional bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
+|  **optional** only_has_external_device_ids | [optional bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
+|  **optional** connected_to_gateways | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
 | external_device_ids | [repeated string](#string) | <strong>Deprecated.</strong>  |
-| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+|  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ hiber.modem.ModemSelection.Peripherals](#hibermodemmodemselectionperipherals) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.only_without_peripheral | [ bool](#bool) | When set to true, only modems that do not have any peripheral will be included in the result. |
-| only_connected_to_gateway | [ bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
-| not_connected_to_gateway | [ bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
+|  **optional** only_connected_to_gateway | [optional bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
+|  **optional** not_connected_to_gateway | [optional bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
 
 
 ### Enums
@@ -2801,7 +2799,7 @@ Simplified version of assign.AssignDirectly.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
 | modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 | parameters | [map hiber.modem.alarm.AssignModemAlarms.Request.ParametersEntry](#hibermodemalarmassignmodemalarmsrequestparametersentry) | The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
@@ -2849,13 +2847,13 @@ This is a shortcut for creating an alarm and then adding checks, and as such can
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | name | [ string](#string) | A name for the alarm. |
-| description | [ string](#string) | A short description of what the alarm should do. |
+|  **optional** description | [optional string](#string) | A short description of what the alarm should do. |
 | trigger_condition | [ hiber.modem.alarm.ModemAlarm.TriggerCondition](#hibermodemalarmmodemalarmtriggercondition) | Condition determining when an alarm is triggered if it has multiple checks. |
 | checks | [repeated hiber.modem.alarm.ModemAlarm.Check](#hibermodemalarmmodemalarmcheck) | The checks to add to this alarm. Shortcut for creating an alarm and then adding checks to it. |
-| default_health_level | [ string](#string) | The default health level for this alarm. See ModemAlarm.default_health_level for more information. |
-| health_level_after_resolved | [ hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved](#hibermodemalarmmodemalarmhealthlevelafterresolved) | The health level this alarm should cause after it is resolved. See ModemAlarm.health_level_after_resolved for more information. |
+|  **optional** default_health_level | [optional string](#string) | The default health level for this alarm. See ModemAlarm.default_health_level for more information. |
+|  **optional** health_level_after_resolved | [optional hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved](#hibermodemalarmmodemalarmhealthlevelafterresolved) | The health level this alarm should cause after it is resolved. See ModemAlarm.health_level_after_resolved for more information. |
 
 ### hiber.modem.alarm.CreateModemAlarm.Response
 
@@ -2876,7 +2874,7 @@ Delete an alarm.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | Identifier of the modem alarm to delete. |
 
 ### hiber.modem.alarm.DeleteModemAlarm.Response
@@ -2895,10 +2893,10 @@ List modem alarms in an organization.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) | Selection criteria for listing modem alarms. |
-| pagination | [ hiber.Pagination](#hiberpagination) | Pagination for the returned alarms. |
-| apply_unit_preferences | [ bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) | Selection criteria for listing modem alarms. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Pagination for the returned alarms. |
+|  **optional** apply_unit_preferences | [optional bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
 
 ### hiber.modem.alarm.ListModemAlarms.Response
 
@@ -3001,9 +2999,9 @@ Numeric values can be formatted with an extra postfix on the parameters
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | name | [ string](#string) | Name of this check, unique within the alarm. This is used to update or remove the check, and to determine the destination for any parameters. If omitted, a random name is generated based on the type of check. |
-| description | [ string](#string) | Longer description for this check (optional). |
-| health_level | [ string](#string) | The health level that this check would cause for a modem, when it fails. If not set, the alarm default is used. |
-| error_message_template | [ string](#string) | The error message template for this check, with parameters that will be filled in based on the check. |
+|  **optional** description | [optional string](#string) | Longer description for this check (optional). |
+|  **optional** health_level | [optional string](#string) | The health level that this check would cause for a modem, when it fails. If not set, the alarm default is used. |
+|  **optional** error_message_template | [optional string](#string) | The error message template for this check, with parameters that will be filled in based on the check. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.location | [ hiber.modem.alarm.ModemAlarm.Check.LocationCheck](#hibermodemalarmmodemalarmchecklocationcheck) | Check whether the device is in a given location. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.field | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck](#hibermodemalarmmodemalarmcheckfieldcheck) | Check that a message body field has a specified value. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.inactivity | [ hiber.modem.alarm.ModemAlarm.Check.InactivityCheck](#hibermodemalarmmodemalarmcheckinactivitycheck) | Check whether the device exceeds inactivity limits. |
@@ -3080,7 +3078,7 @@ The delta check also adds a few additional error message variables:
 | ----- | ---- | ----------- |
 | path | [ string](#string) | Select the field(s) that this check is applied to, using a json path. |
 | ignore_field_not_found | [ bool](#bool) | Whether to ignore this check if the field is not found. This can be useful if your path selects multiple values in an array, like my_array[*].value, and not all entries have the field, or when fields are omitted if they have a default value. |
-| unit | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | The unit that this alarm check is using. The field's values will automatically be converted into this unit before the check is applied. Note: unit is not currently available in the alarm_parameters. |
+|  **optional** unit | [optional hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | The unit that this alarm check is using. The field's values will automatically be converted into this unit before the check is applied. Note: unit is not currently available in the alarm_parameters. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.equals | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.EqualsCheck](#hibermodemalarmmodemalarmcheckfieldcheckequalscheck) | Check that a field equals a value. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.allowed | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.AllowedCheck](#hibermodemalarmmodemalarmcheckfieldcheckallowedcheck) | Check that a field equals one of a set of values. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **check**.blocked | [ hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedCheck](#hibermodemalarmmodemalarmcheckfieldcheckblockedcheck) | Check that a field does not equal one of a set of values. |
@@ -3173,7 +3171,6 @@ Has the following parameters:
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | maximum | [ hiber.Duration](#hiberduration) | The maximum value for the modem's inactivity (time since last message was received on the server). |
-| deprecated_maximum | [ hiber.Duration](#hiberduration) | <strong>Deprecated.</strong>  |
 
 ### hiber.modem.alarm.ModemAlarm.Check.LocationCheck
 
@@ -3212,7 +3209,7 @@ If values are provided both for identifiers and search, then only alarms are sel
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifiers | [repeated string](#string) | Selects alarms by the given list of alarm identifiers. |
-| search | [ string](#string) | Search for the given string in identifier, description, fields and values. |
+|  **optional** search | [optional string](#string) | Search for the given string in identifier, description, fields and values. |
 
 ### hiber.modem.alarm.TestModemAlarmTestParameters
 
@@ -3225,7 +3222,7 @@ Test a set of parameters on a modem alarm, to see the result when they are appli
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarm_identifier | [ string](#string) | The identifier of the alarm on which to test parameters. |
 | parameters | [ google.protobuf.Struct](#googleprotobufstruct) | The parameters of the alarm that are changed. |
 
@@ -3251,7 +3248,7 @@ Simplified version of assign.UnassignDirectly.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
 | modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 
@@ -3281,14 +3278,14 @@ and as such can result in multiple events:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifiers of the alarm to update |
-| update_name | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the name, optionally. |
-| update_description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the description, optionally. |
-| update_trigger_condition | [ hiber.modem.alarm.ModemAlarm.TriggerCondition](#hibermodemalarmmodemalarmtriggercondition) | Update the trigger condition, optionally. |
-| update_default_health_level | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the default health level, optionally. |
-| update_health_level_after_resolved | [ hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved](#hibermodemalarmmodemalarmhealthlevelafterresolved) | Update the health after resolved, optionally. |
-| remove_health_level_after_resolved | [ bool](#bool) | Remove the health after resolved, optionally. |
+|  **optional** update_name | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the name, optionally. |
+|  **optional** update_description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the description, optionally. |
+|  **optional** update_trigger_condition | [optional hiber.modem.alarm.ModemAlarm.TriggerCondition](#hibermodemalarmmodemalarmtriggercondition) | Update the trigger condition, optionally. |
+|  **optional** update_default_health_level | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the default health level, optionally. |
+|  **optional** update_health_level_after_resolved | [optional hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved](#hibermodemalarmmodemalarmhealthlevelafterresolved) | Update the health after resolved, optionally. |
+|  **optional** remove_health_level_after_resolved | [optional bool](#bool) | Remove the health after resolved, optionally. |
 | add_checks | [repeated hiber.modem.alarm.ModemAlarm.Check](#hibermodemalarmmodemalarmcheck) | The checks to add to this alarm. Shortcut for updating an alarm and then adding checks to it. |
 | update_checks | [map hiber.modem.alarm.UpdateModemAlarm.Request.UpdateChecksEntry](#hibermodemalarmupdatemodemalarmrequestupdatechecksentry) | The checks to update in this alarm. Shortcut for updating an alarm and then updating checks. |
 | delete_checks | [repeated string](#string) | The checks to remove from this alarm. Shortcut for updating an alarm and then removing checks. |
@@ -3321,7 +3318,7 @@ Add a check to the alarm, iff you are the owner or can impersonate the owner org
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarm_identifier | [ string](#string) | The identifier of the alarm to which the check is added. |
 | check | [ hiber.modem.alarm.ModemAlarm.Check](#hibermodemalarmmodemalarmcheck) | The check to add to the Modem Alarm. Identifier of the check must be unique within the alarm. |
 
@@ -3344,7 +3341,7 @@ Remove a check from an alarm.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarm_identifier | [ string](#string) | The identifier of the alarm from which to remove the check. |
 | check_identifier | [ string](#string) | The identifier of the check to remove. |
 
@@ -3370,7 +3367,7 @@ check.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarm_identifier | [ string](#string) | The identifier of the alarm of which to update the check. |
 | check_identifier | [ string](#string) | The identifier of the check to update. |
 | update_check | [ hiber.modem.alarm.ModemAlarm.Check](#hibermodemalarmmodemalarmcheck) | The new values for the check of this alarm. |
@@ -3418,7 +3415,7 @@ Simplified version of assign.AssignDirectly.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | assign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
 | to_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 
@@ -3446,7 +3443,7 @@ Create a simple modem message parser, which generates a .ksy specification.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) |  |
 
 ### hiber.modem.message.bodyparser.DeleteModemMessageBodyParserRequest
@@ -3455,7 +3452,7 @@ Create a simple modem message parser, which generates a .ksy specification.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | selection | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | A selection of parsers to be deleted. |
 
 ### hiber.modem.message.bodyparser.DeleteModemMessageBodyParserRequest.Response
@@ -3472,10 +3469,10 @@ typically larger multi-line strings.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
-| exclude_content | [ bool](#bool) | Whether to omit the content in the resulting ModemMessageBodyParsers. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | Select the parsers to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+|  **optional** exclude_content | [optional bool](#bool) | Whether to omit the content in the resulting ModemMessageBodyParsers. |
 
 ### hiber.modem.message.bodyparser.ListModemMessageBodyParsersRequest.Response
 
@@ -3497,7 +3494,7 @@ This will
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifier of the parser that should be updated. |
 | available_to | [repeated string](#string) | The child organization(s) that the parser should be available to. |
 
@@ -3511,7 +3508,7 @@ This will
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifier of the parser that should be updated. |
 | unavailable_to | [repeated string](#string) | The child organization(s) that the parser should be unavailable to. |
 
@@ -3590,10 +3587,10 @@ Selection object for parsers. Used to select which parser to list, assign, etc.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifiers | [repeated string](#string) | Filter parsers by their identifiers. |
-| search | [ string](#string) | Find parsers by searching for this text in the name, content_ksy, data fields or simple parser definition. |
-| only_simple | [ bool](#bool) | Only return simple parsers, created using SimpleModemMessageBodyParser. |
-| only_ksy_file | [ bool](#bool) | Only return parsers created from an uploaded .ksy file. |
-| only_owned_parsers | [ bool](#bool) | Exclude parsers that are not owned by your organization (those that you did not create yourself). |
+|  **optional** search | [optional string](#string) | Find parsers by searching for this text in the name, content_ksy, data fields or simple parser definition. |
+|  **optional** only_simple | [optional bool](#bool) | Only return simple parsers, created using SimpleModemMessageBodyParser. |
+|  **optional** only_ksy_file | [optional bool](#bool) | Only return parsers created from an uploaded .ksy file. |
+|  **optional** only_owned_parsers | [optional bool](#bool) | Exclude parsers that are not owned by your organization (those that you did not create yourself). |
 | owner_organizations | [repeated string](#string) | Only return parsers that were created by the given parent organizations. |
 | has_data_fields | [repeated string](#string) | Only return parsers that have one of the given data fields This only works when the fields are marked explicitly using the data fields option. |
 
@@ -3603,7 +3600,7 @@ Selection object for parsers. Used to select which parser to list, assign, etc.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifier of the parser that should be updated. |
 | name | [ string](#string) | The new name for this parser. |
 
@@ -3619,7 +3616,7 @@ If the message was previously parsed by any of those parsers, the previous resul
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | modem_message_ids | [repeated uint64](#uint64) | The messages to parse. |
 | parser_selection | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | A selection of parsers to apply, if they are assigned. |
 | suppress_events | [ bool](#bool) | Re-parsing messages causes new events to be sent out. Set suppress_events to true to prevent that. |
@@ -3720,7 +3717,7 @@ or while developing a parser to validate it with an expected body.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **parser**.identifier | [ string](#string) | The identifier of the parser you want to test. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **parser**.content_ksy | [ string](#string) | A ksy definition you want to test. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **parser**.simple_parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) | A simple parser definition you want to test. |
@@ -3750,7 +3747,7 @@ Simplified version of assign.UnassignDirectly.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | unassign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
 | from_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 
@@ -3771,7 +3768,7 @@ and assigned to modems in, child organizations.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifier of the parser that should be updated. |
 | available_to_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | The new child organization availability filter for this parser. |
 
@@ -3781,7 +3778,7 @@ Update a simple modem message parser, updating the generated .ksy specification.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifier of the parser that should be updated. |
 | parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) |  |
 
@@ -3791,13 +3788,13 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifier of the parser that should be updated. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_name**.name | [optional string](#string) | If set, changes the name of the parser. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_content_ksy**.content_ksy | [optional string](#string) | The new ksy definition for this parser. |
+|  **optional** name | [optional string](#string) | If set, changes the name of the parser. |
+|  **optional** content_ksy | [optional string](#string) | The new ksy definition for this parser. |
 | add_data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Add fields to the data fields list. |
 | remove_data_fields | [repeated string](#string) | Remove fields from the data fields list. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_metadata_fields**.metadata_fields | [optional hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
+|  **optional** metadata_fields | [optional hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
 | add_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | <strong>Deprecated.</strong> Add a post-processing step to the result of this parser. |
 | remove_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | <strong>Deprecated.</strong> Remove a post-processing step to the result of this parser. |
 
@@ -3807,7 +3804,7 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| update_location_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafieldslocationfields) | Update the location fields. |
+|  **optional** update_location_fields | [optional hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafieldslocationfields) | Update the location fields. |
 | add_message_metadata_fields | [repeated string](#string) | Add fields to the message metadata fields list. |
 | remove_message_metadata_fields | [repeated string](#string) | Remove fields from the message metadata fields list. |
 | replace_message_metadata_fields | [repeated string](#string) | Replace the message metadata fields list. |
@@ -3844,11 +3841,11 @@ Upload a new body parser from a .ksy file.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | name | [ string](#string) | A descriptive name for this parser. |
 | content_ksy | [ string](#string) | The ksy definition for this parser. |
 | data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Fields in the parsed result that contain data. This can be useful to track which fields could be plotted, etc. |
-| metadata_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
+|  **optional** metadata_fields | [optional hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
 | post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) |  |
 | require_message_metadata | [map hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest.RequireMessageMetadataEntry](#hibermodemmessagebodyparseruploadmodemmessagebodyparserrequestrequiremessagemetadataentry) | In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. |
 
@@ -3896,15 +3893,15 @@ so not all messages listed here are referenced.)
 | ----- | ---- | ----------- |
 | parent_organization | [ string](#string) | Pick the organization to use as parent. If unset, your default organization is used. If you have no organization, an organization_creation_token is required. |
 | new_organization | [ string](#string) | The name for the new organization. Lowercase, letters, numbers, dashes and underscores only. Required. Used as an identifier for the organization. |
-| display_name | [ string](#string) | The name to display for your organization (i.e. capitalized, with spaces, etc.). Default to the name above. |
-| avatar | [ hiber.Avatar](#hiberavatar) | The avatar image representing this organization. Usually the logo. |
-| is_business | [ bool](#bool) | Whether this organization is created for a business. |
-| vat_number | [ string](#string) | Whether this organization is created for a business, provide a VAT number. |
-| address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | Postal address for your organization. |
-| billing_name | [ string](#string) | Billing information for your organization. Optional, but required if you want active modems. |
-| billing_address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | Billing address for your organization. Optional, but required if you want active modems. |
+|  **optional** display_name | [optional string](#string) | The name to display for your organization (i.e. capitalized, with spaces, etc.). Default to the name above. |
+|  **optional** avatar | [optional hiber.Avatar](#hiberavatar) | The avatar image representing this organization. Usually the logo. |
+|  **optional** is_business | [optional bool](#bool) | Whether this organization is created for a business. |
+|  **optional** vat_number | [optional string](#string) | Whether this organization is created for a business, provide a VAT number. |
+|  **optional** address | [optional hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | Postal address for your organization. |
+|  **optional** billing_name | [optional string](#string) | Billing information for your organization. Optional, but required if you want active modems. |
+|  **optional** billing_address | [optional hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | Billing address for your organization. Optional, but required if you want active modems. |
 | contact | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) | Contact information for your organization. Required. |
-| organization_creation_token | [ string](#string) | A token that allows you to create an organization without having an organization. |
+|  **optional** organization_creation_token | [optional string](#string) | A token that allows you to create an organization without having an organization. |
 
 ### hiber.organization.DeleteOrganizationRequest
 
@@ -3936,7 +3933,7 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organizations | [repeated string](#string) | The slug for this organization, used to identify organizations |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### hiber.organization.GetOrganizationAvatar.Response
 
@@ -3962,7 +3959,7 @@ Get your current organization's data
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to get the details for. If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to get the details for. If unset, your default organization is used. |
 
 ### hiber.organization.ListChildOrganizationsRequest
 
@@ -3970,10 +3967,10 @@ List the child organizations for the given organization
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
-| include_details | [ bool](#bool) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) | Select the organizations to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+|  **optional** include_details | [optional bool](#bool) |  |
 
 ### hiber.organization.ListChildOrganizationsRequest.Response
 
@@ -4004,7 +4001,7 @@ of any modems and related data.
 | updated_at | [ hiber.Timestamp](#hibertimestamp) |  |
 | features | [repeated hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature) |  |
 | database_info | [ string](#string) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_defaults**.defaults | [optional hiber.organization.Organization.Defaults](#hiberorganizationorganizationdefaults) |  |
+|  **optional** defaults | [optional hiber.organization.Organization.Defaults](#hiberorganizationorganizationdefaults) |  |
 
 ### hiber.organization.Organization.Address
 
@@ -4034,7 +4031,7 @@ Default settings for this organization.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_device_transmission_rate**.expected_device_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The default expected transmission interval for devices in this organization. |
+|  **optional** expected_device_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The default expected transmission interval for devices in this organization. |
 
 ### hiber.organization.OrganizationSelection
 
@@ -4043,8 +4040,8 @@ User for child organization list and tree.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organizations | [ hiber.Filter.Organizations](#hiberfilterorganizations) |  |
-| search | [ string](#string) |  |
+|  **optional** organizations | [optional hiber.Filter.Organizations](#hiberfilterorganizations) |  |
+|  **optional** search | [optional string](#string) |  |
 
 ### hiber.organization.OrganizationTree
 
@@ -4062,7 +4059,7 @@ The organization tree contains your current organization as the root of the tree
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate) for this call, overriding your default organization |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate) for this call, overriding your default organization |
 | selection | [ hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) |  |
 
 ### hiber.organization.OrganizationTreeRequest.Response
@@ -4083,7 +4080,7 @@ Note that the organization field specifies the organization, it is not used to u
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) |  |
+|  **optional** organization | [optional string](#string) |  |
 | display_name | [ string](#string) |  |
 | vat_number | [ string](#string) |  |
 | address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) |  |
@@ -4303,7 +4300,7 @@ so not all messages listed here are referenced.)
 | ----- | ---- | ----------- |
 | search | [repeated string](#string) |  |
 | names | [repeated string](#string) |  |
-| filter | [ hiber.Filter.Tags](#hiberfiltertags) |  |
+|  **optional** filter | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 | types | [repeated string](#string) |  |
 
 
@@ -4323,14 +4320,14 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | name | [ string](#string) |  |
 | type | [ hiber.token.Token.Type](#hibertokentokentype) |  |
 | expires_at | [ hiber.Timestamp](#hibertimestamp) |  |
-| user_permissions | [ hiber.Filter.UserPermissions](#hiberfilteruserpermissions) |  |
+|  **optional** user_permissions | [optional hiber.Filter.UserPermissions](#hiberfilteruserpermissions) |  |
 | organization_permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new token should get. |
-| roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new token should get. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_for_user_id**.for_user_id | [optional string](#string) | Optionally, if you have the USERS_MANAGE permission, you can make a token for another user. If you do, you cannot grant it permissions they do not have, not can you grant it any user permissions. |
+|  **optional** roles | [optional hiber.Filter.Roles](#hiberfilterroles) | Roles the new token should get. |
+|  **optional** for_user_id | [optional string](#string) | Optionally, if you have the USERS_MANAGE permission, you can make a token for another user. If you do, you cannot grant it permissions they do not have, not can you grant it any user permissions. |
 
 ### hiber.token.CreateTokenRequest.Response
 
@@ -4347,7 +4344,7 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | token_id | [ int64](#int64) |  |
 
 ### hiber.token.DeleteTokenRequest.Response
@@ -4361,9 +4358,9 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.token.TokenSelection](#hibertokentokenselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional hiber.token.TokenSelection](#hibertokentokenselection) | Select the tokens to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### hiber.token.ListTokensRequest.Response
 
@@ -4408,10 +4405,10 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| users | [ hiber.Filter.Users](#hiberfilterusers) |  |
-| name | [ string](#string) |  |
-| include_expired | [ bool](#bool) |  |
-| roles | [ hiber.Filter.Roles](#hiberfilterroles) |  |
+|  **optional** users | [optional hiber.Filter.Users](#hiberfilterusers) |  |
+|  **optional** name | [optional string](#string) |  |
+|  **optional** include_expired | [optional bool](#bool) |  |
+|  **optional** roles | [optional hiber.Filter.Roles](#hiberfilterroles) |  |
 | type | [repeated hiber.token.Token.Type](#hibertokentokentype) |  |
 
 ### hiber.token.UpdateTokenOrganizationPermissionsRequest
@@ -4420,9 +4417,9 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | token_ids | [repeated int64](#int64) |  |
-| replace_organization_permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Completely replace the organization permission for the selected token(s) with this set. |
+|  **optional** replace_organization_permissions | [optional hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Completely replace the organization permission for the selected token(s) with this set. |
 | add_organization_permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | Add organization permissions to the token. |
 | remove_organization_permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | Remove organization permissions from the token. Ensures the permissions is no longer on the token (even if you also add it using add_organization_permissions). |
 
@@ -4442,7 +4439,7 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | token_ids | [repeated int64](#int64) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update**.modify | [ hiber.token.UpdateTokenRoles.Request.ModifyRoles](#hibertokenupdatetokenrolesrequestmodifyroles) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update**.replace | [ hiber.token.UpdateTokenRoles.Request.ReplaceRoles](#hibertokenupdatetokenrolesrequestreplaceroles) |  |
@@ -4475,9 +4472,9 @@ Completely replace the roles the tokens have.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | token_ids | [repeated int64](#int64) |  |
-| replace_user_permissions | [ hiber.Filter.UserPermissions](#hiberfilteruserpermissions) | Completely replace the user permission for the selected token(s) with this set. |
+|  **optional** replace_user_permissions | [optional hiber.Filter.UserPermissions](#hiberfilteruserpermissions) | Completely replace the user permission for the selected token(s) with this set. |
 | add_user_permissions | [repeated hiber.UserPermission](#hiberuserpermission) | Add user permissions to the token. |
 | remove_user_permissions | [repeated hiber.UserPermission](#hiberuserpermission) | Remove user permissions from the token. |
 
@@ -4551,13 +4548,13 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | description | [ string](#string) |  |
 | data | [ hiber.webhook.Webhook.WebhookData](#hiberwebhookwebhookwebhookdata) |  |
-| filters | [ hiber.webhook.Webhook.WebhookFilters](#hiberwebhookwebhookwebhookfilters) |  |
+|  **optional** filters | [optional hiber.webhook.Webhook.WebhookFilters](#hiberwebhookwebhookwebhookfilters) |  |
 | health_levels | [repeated string](#string) | Filter events by health level caused. |
 | tags | [repeated int64](#int64) |  |
-| certificate_id | [ int64](#int64) | Optionally, a client certificate can be used for the webhook call. See the CertificateService for certificate management options. |
+|  **optional** certificate_id | [optional int64](#int64) | Optionally, a client certificate can be used for the webhook call. See the CertificateService for certificate management options. |
 
 ### hiber.webhook.DeleteWebhookRequest
 
@@ -4606,9 +4603,9 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.webhook.WebhookSelection](#hiberwebhookwebhookselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional hiber.webhook.WebhookSelection](#hiberwebhookwebhookselection) | Select the webhooks to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 | sort | [repeated hiber.webhook.ListWebhooksRequest.Sort](#hiberwebhooklistwebhooksrequestsort) |  |
 
 ### hiber.webhook.ListWebhooksRequest.Response
@@ -4629,12 +4626,12 @@ so not all messages listed here are referenced.)
 | ----- | ---- | ----------- |
 | id | [ int64](#int64) |  |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| deprecated_event_filter | [ hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents](#hiberwebhookupdatewebhookfilterrequestupdateevents) | <strong>Deprecated.</strong>  |
-| deprecated_modem_filter | [ hiber.webhook.UpdateWebhookFilterRequest.UpdateModems](#hiberwebhookupdatewebhookfilterrequestupdatemodems) | <strong>Deprecated.</strong>  |
-| deprecated_tag_filter | [ hiber.webhook.UpdateWebhookFilterRequest.UpdateTags](#hiberwebhookupdatewebhookfilterrequestupdatetags) | <strong>Deprecated.</strong>  |
-| event_filter | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
-| modem_filter | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
-| tag_filter | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
+|  **optional** deprecated_event_filter | [optional hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents](#hiberwebhookupdatewebhookfilterrequestupdateevents) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_modem_filter | [optional hiber.webhook.UpdateWebhookFilterRequest.UpdateModems](#hiberwebhookupdatewebhookfilterrequestupdatemodems) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_tag_filter | [optional hiber.webhook.UpdateWebhookFilterRequest.UpdateTags](#hiberwebhookupdatewebhookfilterrequestupdatetags) | <strong>Deprecated.</strong>  |
+|  **optional** event_filter | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
+|  **optional** modem_filter | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
+|  **optional** tag_filter | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
 | add_health_levels_to_filter | [repeated string](#string) | Add health levels to the health levels filter. |
 | remove_health_levels_from_filter | [repeated string](#string) | Remove health levels from the health levels filter. |
 
@@ -4682,22 +4679,22 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | url | [ string](#string) |  |
-| secret | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
-| content_type | [ hiber.webhook.Webhook.ContentType](#hiberwebhookwebhookcontenttype) |  |
-| description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
-| deprecated_event_filter | [ hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents](#hiberwebhookupdatewebhookrequestupdatewebhookupdateevents) | <strong>Deprecated.</strong>  |
-| deprecated_modem_filter | [ hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems](#hiberwebhookupdatewebhookrequestupdatewebhookupdatemodems) | <strong>Deprecated.</strong>  |
-| deprecated_tag_filter | [ hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags](#hiberwebhookupdatewebhookrequestupdatewebhookupdatetags) | <strong>Deprecated.</strong>  |
-| event_filter | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
-| modem_filter | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
-| tag_filter | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
+|  **optional** secret | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+|  **optional** content_type | [optional hiber.webhook.Webhook.ContentType](#hiberwebhookwebhookcontenttype) |  |
+|  **optional** description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+|  **optional** deprecated_event_filter | [optional hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents](#hiberwebhookupdatewebhookrequestupdatewebhookupdateevents) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_modem_filter | [optional hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems](#hiberwebhookupdatewebhookrequestupdatewebhookupdatemodems) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_tag_filter | [optional hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags](#hiberwebhookupdatewebhookrequestupdatewebhookupdatetags) | <strong>Deprecated.</strong>  |
+|  **optional** event_filter | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
+|  **optional** modem_filter | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
+|  **optional** tag_filter | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
 | add_health_levels | [repeated string](#string) | Add health levels to the health levels filter. |
 | remove_health_levels | [repeated string](#string) | Remove health levels from the health levels filter. |
-| active | [ hiber.UpdateBoolean](#hiberupdateboolean) |  |
-| certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | A value of 0 removes the certificate |
-| health_warning_period | [ hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
-| health_warning_failure_percentage | [ hiber.UpdateZeroableInt](#hiberupdatezeroableint) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
-| update_hmac_header_name | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the custom hmac header, or clear to reset to default. |
+|  **optional** active | [optional hiber.UpdateBoolean](#hiberupdateboolean) |  |
+|  **optional** certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | A value of 0 removes the certificate |
+|  **optional** health_warning_period | [optional hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
+|  **optional** health_warning_failure_percentage | [optional hiber.UpdateZeroableInt](#hiberupdatezeroableint) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
+|  **optional** update_hmac_header_name | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the custom hmac header, or clear to reset to default. |
 | add_custom_headers | [map hiber.webhook.UpdateWebhookRequest.UpdateWebhook.AddCustomHeadersEntry](#hiberwebhookupdatewebhookrequestupdatewebhookaddcustomheadersentry) | Custom headers to add to every call. |
 | remove_custom_headers | [repeated string](#string) | Remove previously configured custom headers. |
 | replace_custom_headers | [map hiber.webhook.UpdateWebhookRequest.UpdateWebhook.ReplaceCustomHeadersEntry](#hiberwebhookupdatewebhookrequestupdatewebhookreplacecustomheadersentry) | Replace the custom headers to add to every call. If set, remove_custom_headers is ignored. |
@@ -4753,7 +4750,7 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) |  |
+|  **optional** organization | [optional string](#string) |  |
 | webhook_ids | [repeated int64](#int64) |  |
 | update | [ hiber.tag.UpdateTagsForItem](#hibertagupdatetagsforitem) |  |
 
@@ -4771,7 +4768,7 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | webhook_updates | [repeated hiber.webhook.UpdateWebhooksRequest.Update](#hiberwebhookupdatewebhooksrequestupdate) |  |
 
 ### hiber.webhook.UpdateWebhooksRequest.Response
@@ -4832,14 +4829,14 @@ Health configuration for the webhook. Defines how the health is calculated.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | url | [ string](#string) |  |
-| secret | [ string](#string) | Used to generate the HMAC-SHA256 header on every webhook call, which you can use to verify the message. The HMAC-SHA256 header is calculated with the message body and this secret. There are many examples of how to do this in different languages, for example: https://github.com/danharper/hmac-examples |
+|  **optional** secret | [optional string](#string) | Used to generate the HMAC-SHA256 header on every webhook call, which you can use to verify the message. The HMAC-SHA256 header is calculated with the message body and this secret. There are many examples of how to do this in different languages, for example: https://github.com/danharper/hmac-examples |
 | hmac_header_name | [ string](#string) | The header that the hmac value is placed in. Defaults to X-Hub-Signature. |
 | content_type | [ hiber.webhook.Webhook.ContentType](#hiberwebhookwebhookcontenttype) |  |
 | disabled | [ bool](#bool) |  |
-| certificate_id | [ int64](#int64) |  |
-| certificate_name | [ string](#string) |  |
-| ca_certificate_id | [ int64](#int64) |  |
-| ca_certificate_name | [ string](#string) |  |
+|  **optional** certificate_id | [optional int64](#int64) |  |
+|  **optional** certificate_name | [optional string](#string) |  |
+|  **optional** ca_certificate_id | [optional int64](#int64) |  |
+|  **optional** ca_certificate_name | [optional string](#string) |  |
 | custom_headers | [map hiber.webhook.Webhook.WebhookData.CustomHeadersEntry](#hiberwebhookwebhookwebhookdatacustomheadersentry) | Custom headers to add to every call. |
 
 ### hiber.webhook.Webhook.WebhookData.CustomHeadersEntry
@@ -4857,9 +4854,9 @@ Health configuration for the webhook. Defines how the health is calculated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| event_types | [ hiber.Filter.Events](#hiberfilterevents) |  |
-| modem_numbers | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
-| tags | [ hiber.Filter.Tags](#hiberfiltertags) |  |
+|  **optional** event_types | [optional hiber.Filter.Events](#hiberfilterevents) |  |
+|  **optional** modem_numbers | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** tags | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 | health_levels | [repeated string](#string) | Filter events by health level caused. |
 
 ### hiber.webhook.WebhookCall
@@ -4891,10 +4888,10 @@ Health configuration for the webhook. Defines how the health is calculated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | webhook_id | [ int64](#int64) |  |
-| selection | [ hiber.webhook.WebhookHistorySelection](#hiberwebhookwebhookhistoryselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** selection | [optional hiber.webhook.WebhookHistorySelection](#hiberwebhookwebhookhistoryselection) |  |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### hiber.webhook.WebhookHistoryRequest.Response
 
@@ -4912,8 +4909,8 @@ Health configuration for the webhook. Defines how the health is calculated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| only_failures | [ bool](#bool) |  |
-| time_range | [ hiber.TimeRange](#hibertimerange) |  |
+|  **optional** only_failures | [optional bool](#bool) |  |
+|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) |  |
 
 ### hiber.webhook.WebhookSelection
 
@@ -4921,13 +4918,13 @@ Health configuration for the webhook. Defines how the health is calculated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| description | [ string](#string) |  |
-| url | [ string](#string) |  |
-| webhooks | [ hiber.Filter.Webhooks](#hiberfilterwebhooks) |  |
-| tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+|  **optional** description | [optional string](#string) |  |
+|  **optional** url | [optional string](#string) |  |
+|  **optional** webhooks | [optional hiber.Filter.Webhooks](#hiberfilterwebhooks) |  |
+|  **optional** tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
 | health | [repeated hiber.Health](#hiberhealth) |  |
 | certificate_ids | [repeated int64](#int64) |  |
-| search | [ string](#string) | Search in the all available text, like description and url. |
+|  **optional** search | [optional string](#string) | Search in the all available text, like description and url. |
 
 
 ### Enums
@@ -4974,7 +4971,7 @@ When sending an Area to the api, the center location is ignored.
 | center | [ hiber.Location](#hiberlocation) |  |
 | bottom_left | [ hiber.Location](#hiberlocation) |  |
 | top_right | [ hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
 
@@ -5000,8 +4997,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) |  |
-| hex | [ string](#string) |  |
+|  **optional** bytes | [optional bytes](#bytes) |  |
+|  **optional** hex | [optional string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -5027,10 +5024,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) |  |
-| month | [ uint32](#uint32) |  |
-| day | [ uint32](#uint32) |  |
-| textual | [ string](#string) |  |
+|  **optional** year | [optional uint32](#uint32) |  |
+|  **optional** month | [optional uint32](#uint32) |  |
+|  **optional** day | [optional uint32](#uint32) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -5047,8 +5044,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| textual | [ string](#string) |  |
+|  **optional** duration | [optional google.protobuf.Duration](#googleprotobufduration) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.Filter
 
@@ -5278,7 +5275,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 | ----- | ---- | ----------- |
 | latitude | [ double](#double) | Decimal degrees north. |
 | longitude | [ double](#double) | Decimal degrees east. |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.LocationSelection
 
@@ -5389,8 +5386,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) |  |
-| page | [ int32](#int32) |  |
+|  **optional** size | [optional int32](#int32) |  |
+|  **optional** page | [optional int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -5417,7 +5414,7 @@ while a rectangular region is easier to define using Area.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | path | [repeated hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
 
@@ -5453,9 +5450,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
-| time_zone | [ string](#string) |  |
-| textual | [ string](#string) |  |
+|  **optional** timestamp | [optional google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+|  **optional** time_zone | [optional string](#string) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.UpdateBoolean
 

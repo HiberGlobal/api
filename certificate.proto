@@ -27,7 +27,7 @@ message Certificate {
 
 message CertificateSelection {
     repeated int64 certificate_ids = 1;
-    string search = 2;
+    optional string search = 2;
     repeated int64 ca_certificate_ids = 3;
 }
 
@@ -39,12 +39,14 @@ message ListCertificatesRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    CertificateSelection selection = 2;
-    Pagination pagination = 3;
+    optional string organization = 1;
+
+    /* Select the certificates to list. Optional, when omitted or empty everything is included. */
+    optional CertificateSelection selection = 2;
+    optional Pagination pagination = 3;
 
     /* Include the actual certificate content in the response. */
-    bool include_certificate_content_in_response = 4;
+    optional bool include_certificate_content_in_response = 4;
 }
 
 message UploadCertificateRequest {
@@ -61,15 +63,17 @@ message UploadCertificateRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     UploadCertificate upload_certificate = 2;
+
     /* Optionally, either upload a CA certificate or provide the id of a previously uploaded CA certificate. */
-    UploadCertificate upload_ca_certificate = 3;
-    /* Optionally, either upload a CA certificate or provide the id of a previously uploaded CA certificate. */
-    int64 ca_certificate_id = 4;
+    oneof ca_certificate {
+        UploadCertificate upload_ca_certificate = 3;
+        int64 ca_certificate_id = 4;
+    }
 
     /* Include the actual certificate content in the response. */
-    bool include_certificate_content_in_response = 5;
+    optional bool include_certificate_content_in_response = 5;
 }
 
 message RenameCertificateRequest {
@@ -80,12 +84,12 @@ message RenameCertificateRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     CertificateSelection selection = 2;
     string new_name = 3;
 
     /* Include the actual certificate content in the response. */
-    bool include_certificate_content_in_response = 4;
+    optional bool include_certificate_content_in_response = 4;
 }
 
 message DeleteCertificateRequest {
@@ -95,6 +99,6 @@ message DeleteCertificateRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     CertificateSelection selection = 2;
 }

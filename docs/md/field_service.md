@@ -250,7 +250,7 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | parser_identifier | [ string](#string) | The identifier for the parser to remove the field from. |
 | fields | [repeated Field](#field) | The fields to add to the parser. |
 
@@ -260,7 +260,7 @@ Delete the given fields from a parser.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | parser_identifier | [ string](#string) | The identifier for the parser to remove the field from. |
 | field_identifiers | [repeated string](#string) | The name or JsonPath of the field to remove. |
 
@@ -270,12 +270,12 @@ Delete the given fields from a parser.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| search | [ string](#string) | Search the fields (matches field, display_name and parser identifier). |
-| only_owned | [ bool](#bool) | Only return the fields owned by your organization (exclude fields from inherited parsers). |
+|  **optional** search | [optional string](#string) | Search the fields (matches field, display_name and parser identifier). |
+|  **optional** only_owned | [optional bool](#bool) | Only return the fields owned by your organization (exclude fields from inherited parsers). |
 | types | [repeated hiber.value.Value.Type](#hibervaluevaluetype) | Filter fields by type. |
 | numeric_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | Filter fields by numeric type. Limits field types to numeric. |
 | field_identifiers | [repeated string](#string) | Filter fields by field identifiers. |
-| include_operational | [ bool](#bool) | Include operational fields as well (e.g. battery, device status). |
+|  **optional** include_operational | [optional bool](#bool) | Include operational fields as well (e.g. battery, device status). |
 
 ### ListFields
 
@@ -288,11 +288,11 @@ Delete the given fields from a parser.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ FieldSelection](#fieldselection) | Select which fields to return. |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
-| sort | [ ListFields.Sort](#listfieldssort) |  |
-| apply_unit_preferences | [ bool](#bool) | Whether to apply the unit preferences to the fields. This will convert any fields into your preferred unit, for convenience. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional FieldSelection](#fieldselection) | Select which fields to return. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+|  **optional** sort | [optional ListFields.Sort](#listfieldssort) |  |
+|  **optional** apply_unit_preferences | [optional bool](#bool) | Whether to apply the unit preferences to the fields. This will convert any fields into your preferred unit, for convenience. |
 
 ### ListFields.Response
 
@@ -315,13 +315,13 @@ Delete the given fields from a parser.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| modem_selection | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the modems to fetch the fields for. |
-| field_selection | [ FieldSelection](#fieldselection) | Select which fields to return. |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** modem_selection | [optional hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the modems to fetch the fields for. Optional, when omitted or empty everything is included. |
+|  **optional** field_selection | [optional FieldSelection](#fieldselection) | Select which fields to return. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 | sort | [ ListFields.Sort](#listfieldssort) |  |
-| apply_unit_preferences | [ bool](#bool) | Whether to apply the unit preferences to the fields. This will convert any fields into you preferred unit, for convenience. |
-| include_total | [ bool](#bool) | Whether to also calculate the total fields for all selected modems, and return them as a single list in the response. This can be useful to display table columns, for example. |
+|  **optional** apply_unit_preferences | [optional bool](#bool) | Whether to apply the unit preferences to the fields. This will convert any fields into you preferred unit, for convenience. |
+|  **optional** include_total | [optional bool](#bool) | Whether to also calculate the total fields for all selected modems, and return them as a single list in the response. This can be useful to display table columns, for example. |
 
 ### ListFieldsForModem.Response
 
@@ -351,7 +351,7 @@ Replace all fields for a parser with the fields given.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | parser_identifier | [ string](#string) | The identifier for the parser to remove the field from. |
 | replace_with_fields | [repeated Field](#field) | The fields to add to the parser, replacing all previous fields. |
 
@@ -372,7 +372,7 @@ Replace all fields for a parser with the fields given.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | field_identifier | [ string](#string) | The identifier for the field. |
 | update | [ UpdateFieldEnumValues](#updatefieldenumvalues) |  |
 
@@ -394,9 +394,9 @@ Replace all fields for a parser with the fields given.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| replace_unit | [ Field.Numeric.Unit](#fieldnumericunit) | Replace the unit for this field. Automatically replaces the type and the symbol based on the unit. |
-| replace_format | [ Field.Numeric.Format](#fieldnumericformat) | Replace the formatting for this field. The entire object must be configured. |
-| replace_unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | <strong>Deprecated.</strong> Replace the unit for this field. Automatically replaces the type and the symbol based on the unit. Deprecated: use replace_unit instead |
+|  **optional** replace_unit | [optional Field.Numeric.Unit](#fieldnumericunit) | Replace the unit for this field. Automatically replaces the type and the symbol based on the unit. |
+|  **optional** replace_format | [optional Field.Numeric.Format](#fieldnumericformat) | Replace the formatting for this field. The entire object must be configured. |
+|  **optional** replace_unit_of_measurement | [optional hiber.UnitOfMeasurement](#hiberunitofmeasurement) | <strong>Deprecated.</strong> Replace the unit for this field. Automatically replaces the type and the symbol based on the unit. Deprecated: use replace_unit instead |
 
 ### UpdateFieldNumericDetails.Request
 
@@ -404,7 +404,7 @@ Replace all fields for a parser with the fields given.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | field_identifier | [ string](#string) | The identifier for the field. |
 | update | [ UpdateFieldNumericDetails](#updatefieldnumericdetails) |  |
 
@@ -414,13 +414,13 @@ Replace all fields for a parser with the fields given.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | field_identifier | [ string](#string) | The identifier for the field. |
-| display_name | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | An optional display name for the field. |
-| priority | [ hiber.UpdateZeroableInt](#hiberupdatezeroableint) | Priority of the field, typically used for ordering. |
-| encrypted | [ hiber.UpdateBoolean](#hiberupdateboolean) | Whether this field should be stored encrypted or not. When set to true at a later point, earlier values are not encrypted retro-actively. |
-| optional | [ hiber.UpdateBoolean](#hiberupdateboolean) | Whether this field is optional or not. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_operational**.operational | [optional bool](#bool) | If the field is used by operations and does not produce process values. |
+|  **optional** display_name | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | An optional display name for the field. |
+|  **optional** priority | [optional hiber.UpdateZeroableInt](#hiberupdatezeroableint) | Priority of the field, typically used for ordering. |
+|  **optional** encrypted | [optional hiber.UpdateBoolean](#hiberupdateboolean) | Whether this field should be stored encrypted or not. When set to true at a later point, earlier values are not encrypted retro-actively. |
+|  **optional** optional | [optional hiber.UpdateBoolean](#hiberupdateboolean) | Whether this field is optional or not. |
+|  **optional** operational | [optional bool](#bool) | If the field is used by operations and does not produce process values. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update_details**.numeric | [ UpdateFieldNumericDetails](#updatefieldnumericdetails) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update_details**.enum | [ UpdateFieldEnumValues](#updatefieldenumvalues) |  |
 
@@ -452,16 +452,16 @@ so not all messages listed here are referenced.)
 | ----- | ---- | ----------- |
 | identifier | [ string](#string) | Unique identifier for this field. |
 | field | [ string](#string) | The name of the field (if in the root structure) or a JsonPath to the field. |
-| display_name | [ string](#string) | An optional display name for the field. |
+|  **optional** display_name | [optional string](#string) | An optional display name for the field. |
 | priority | [ int32](#int32) | Priority of the field, typically used for ordering. |
 | type | [ hiber.value.Value.Type](#hibervaluevaluetype) | The type of value the field contains. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.numeric | [ hiber.field.Field.Numeric](#hiberfieldfieldnumeric) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **details**.enum | [ hiber.field.Field.Enum](#hiberfieldfieldenum) |  |
 | encrypted | [ bool](#bool) | Whether this field should be stored encrypted or not. If it is, some processing options may be unavailable or slower. |
 | optional | [ bool](#bool) | Whether this field should be validated from the parser output. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_operational**.operational | [optional bool](#bool) | Field contains values relevant for operating the device. |
-| unit_of_measurement | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | <strong>Deprecated.</strong> If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
-| unit_symbol | [ string](#string) | <strong>Deprecated.</strong> The symbol for the unit. Deprecated: use numeric.symbol instead |
+| operational | [ bool](#bool) | Field contains values relevant for operating the device. |
+|  **optional** unit_of_measurement | [optional hiber.UnitOfMeasurement](#hiberunitofmeasurement) | <strong>Deprecated.</strong> If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
+|  **optional** unit_symbol | [optional string](#string) | <strong>Deprecated.</strong> The symbol for the unit. Deprecated: use numeric.symbol instead |
 
 ### hiber.field.Field.Enum
 
@@ -481,7 +481,7 @@ If the field is numeric, this specifies the unit and formatting details for the 
 | symbol | [ string](#string) | The symbol to use for the field's unit. |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | How to format the values (number of decimals, rounding, etc.). |
 | unit | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | The unit for the field, depending on the type. |
-| converted_from | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | If the unit preferences were applied, and the unit is different, the field will be converted to the preferred unit, from the original unit specified in this field. |
+|  **optional** converted_from | [optional hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | If the unit preferences were applied, and the unit is different, the field will be converted to the preferred unit, from the original unit specified in this field. |
 
 ### hiber.field.Field.Numeric.Format
 
@@ -575,7 +575,7 @@ when the modem is registered into the system or when a subscription is authorize
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
 | time_zone | [ string](#string) | The timezone configured for the modem. |
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_transmission_rate**.expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
+|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
 
 ### hiber.modem.ModemSelection
 
@@ -584,28 +584,28 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modems | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
-| free_text_search | [ string](#string) |  |
-| only_active | [ bool](#bool) | <strong>Deprecated.</strong> Use lifecycle filter instead. |
-| activated_in | [ hiber.TimeRange](#hibertimerange) | <strong>Deprecated.</strong>  |
-| with_last_message_in | [ hiber.TimeRange](#hibertimerange) |  |
+|  **optional** modems | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** free_text_search | [optional string](#string) |  |
+|  **optional** only_active | [optional bool](#bool) | <strong>Deprecated.</strong> Use lifecycle filter instead. |
+|  **optional** activated_in | [optional hiber.TimeRange](#hibertimerange) | <strong>Deprecated.</strong>  |
+|  **optional** with_last_message_in | [optional hiber.TimeRange](#hibertimerange) |  |
 | health_levels | [repeated string](#string) | Filter modems by health level. |
 | lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
-| transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) |  |
+|  **optional** transfers | [optional hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) |  |
 | include_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Only include modems that have a type listed in types. In other words, when providing multiple types, this is an "OR" relationship. |
 | exclude_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Exclude modems that have a type listed in types. |
-| device_types | [ hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
-| sensorBrands | [ hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
-| identifiers | [ hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
-| only_gateways | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
-| only_has_external_device_ids | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
-| connected_to_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** device_types | [optional hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
+|  **optional** sensorBrands | [optional hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
+|  **optional** identifiers | [optional hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
+|  **optional** only_gateways | [optional bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
+|  **optional** only_has_external_device_ids | [optional bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
+|  **optional** connected_to_gateways | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
 | external_device_ids | [repeated string](#string) | <strong>Deprecated.</strong>  |
-| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+|  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ hiber.modem.ModemSelection.Peripherals](#hibermodemmodemselectionperipherals) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.only_without_peripheral | [ bool](#bool) | When set to true, only modems that do not have any peripheral will be included in the result. |
-| only_connected_to_gateway | [ bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
-| not_connected_to_gateway | [ bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
+|  **optional** only_connected_to_gateway | [optional bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
+|  **optional** not_connected_to_gateway | [optional bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
 
 
 ### Enums
@@ -698,7 +698,7 @@ Simplified version of assign.AssignDirectly.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | assign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
 | to_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 
@@ -726,7 +726,7 @@ Create a simple modem message parser, which generates a .ksy specification.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) |  |
 
 ### hiber.modem.message.bodyparser.DeleteModemMessageBodyParserRequest
@@ -735,7 +735,7 @@ Create a simple modem message parser, which generates a .ksy specification.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | selection | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | A selection of parsers to be deleted. |
 
 ### hiber.modem.message.bodyparser.DeleteModemMessageBodyParserRequest.Response
@@ -752,10 +752,10 @@ typically larger multi-line strings.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
-| exclude_content | [ bool](#bool) | Whether to omit the content in the resulting ModemMessageBodyParsers. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | Select the parsers to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+|  **optional** exclude_content | [optional bool](#bool) | Whether to omit the content in the resulting ModemMessageBodyParsers. |
 
 ### hiber.modem.message.bodyparser.ListModemMessageBodyParsersRequest.Response
 
@@ -777,7 +777,7 @@ This will
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifier of the parser that should be updated. |
 | available_to | [repeated string](#string) | The child organization(s) that the parser should be available to. |
 
@@ -791,7 +791,7 @@ This will
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifier of the parser that should be updated. |
 | unavailable_to | [repeated string](#string) | The child organization(s) that the parser should be unavailable to. |
 
@@ -870,10 +870,10 @@ Selection object for parsers. Used to select which parser to list, assign, etc.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifiers | [repeated string](#string) | Filter parsers by their identifiers. |
-| search | [ string](#string) | Find parsers by searching for this text in the name, content_ksy, data fields or simple parser definition. |
-| only_simple | [ bool](#bool) | Only return simple parsers, created using SimpleModemMessageBodyParser. |
-| only_ksy_file | [ bool](#bool) | Only return parsers created from an uploaded .ksy file. |
-| only_owned_parsers | [ bool](#bool) | Exclude parsers that are not owned by your organization (those that you did not create yourself). |
+|  **optional** search | [optional string](#string) | Find parsers by searching for this text in the name, content_ksy, data fields or simple parser definition. |
+|  **optional** only_simple | [optional bool](#bool) | Only return simple parsers, created using SimpleModemMessageBodyParser. |
+|  **optional** only_ksy_file | [optional bool](#bool) | Only return parsers created from an uploaded .ksy file. |
+|  **optional** only_owned_parsers | [optional bool](#bool) | Exclude parsers that are not owned by your organization (those that you did not create yourself). |
 | owner_organizations | [repeated string](#string) | Only return parsers that were created by the given parent organizations. |
 | has_data_fields | [repeated string](#string) | Only return parsers that have one of the given data fields This only works when the fields are marked explicitly using the data fields option. |
 
@@ -883,7 +883,7 @@ Selection object for parsers. Used to select which parser to list, assign, etc.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifier of the parser that should be updated. |
 | name | [ string](#string) | The new name for this parser. |
 
@@ -899,7 +899,7 @@ If the message was previously parsed by any of those parsers, the previous resul
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | modem_message_ids | [repeated uint64](#uint64) | The messages to parse. |
 | parser_selection | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | A selection of parsers to apply, if they are assigned. |
 | suppress_events | [ bool](#bool) | Re-parsing messages causes new events to be sent out. Set suppress_events to true to prevent that. |
@@ -1000,7 +1000,7 @@ or while developing a parser to validate it with an expected body.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **parser**.identifier | [ string](#string) | The identifier of the parser you want to test. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **parser**.content_ksy | [ string](#string) | A ksy definition you want to test. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **parser**.simple_parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) | A simple parser definition you want to test. |
@@ -1030,7 +1030,7 @@ Simplified version of assign.UnassignDirectly.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | unassign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
 | from_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 
@@ -1051,7 +1051,7 @@ and assigned to modems in, child organizations.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifier of the parser that should be updated. |
 | available_to_child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | The new child organization availability filter for this parser. |
 
@@ -1061,7 +1061,7 @@ Update a simple modem message parser, updating the generated .ksy specification.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifier of the parser that should be updated. |
 | parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) |  |
 
@@ -1071,13 +1071,13 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifier of the parser that should be updated. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_name**.name | [optional string](#string) | If set, changes the name of the parser. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_content_ksy**.content_ksy | [optional string](#string) | The new ksy definition for this parser. |
+|  **optional** name | [optional string](#string) | If set, changes the name of the parser. |
+|  **optional** content_ksy | [optional string](#string) | The new ksy definition for this parser. |
 | add_data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Add fields to the data fields list. |
 | remove_data_fields | [repeated string](#string) | Remove fields from the data fields list. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_metadata_fields**.metadata_fields | [optional hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
+|  **optional** metadata_fields | [optional hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
 | add_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | <strong>Deprecated.</strong> Add a post-processing step to the result of this parser. |
 | remove_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | <strong>Deprecated.</strong> Remove a post-processing step to the result of this parser. |
 
@@ -1087,7 +1087,7 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| update_location_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafieldslocationfields) | Update the location fields. |
+|  **optional** update_location_fields | [optional hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafieldslocationfields) | Update the location fields. |
 | add_message_metadata_fields | [repeated string](#string) | Add fields to the message metadata fields list. |
 | remove_message_metadata_fields | [repeated string](#string) | Remove fields from the message metadata fields list. |
 | replace_message_metadata_fields | [repeated string](#string) | Replace the message metadata fields list. |
@@ -1124,11 +1124,11 @@ Upload a new body parser from a .ksy file.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | name | [ string](#string) | A descriptive name for this parser. |
 | content_ksy | [ string](#string) | The ksy definition for this parser. |
 | data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Fields in the parsed result that contain data. This can be useful to track which fields could be plotted, etc. |
-| metadata_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
+|  **optional** metadata_fields | [optional hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
 | post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) |  |
 | require_message_metadata | [map hiber.modem.message.bodyparser.UploadModemMessageBodyParserRequest.RequireMessageMetadataEntry](#hibermodemmessagebodyparseruploadmodemmessagebodyparserrequestrequiremessagemetadataentry) | In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. |
 
@@ -1586,7 +1586,7 @@ When sending an Area to the api, the center location is ignored.
 | center | [ hiber.Location](#hiberlocation) |  |
 | bottom_left | [ hiber.Location](#hiberlocation) |  |
 | top_right | [ hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
 
@@ -1612,8 +1612,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) |  |
-| hex | [ string](#string) |  |
+|  **optional** bytes | [optional bytes](#bytes) |  |
+|  **optional** hex | [optional string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -1639,10 +1639,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) |  |
-| month | [ uint32](#uint32) |  |
-| day | [ uint32](#uint32) |  |
-| textual | [ string](#string) |  |
+|  **optional** year | [optional uint32](#uint32) |  |
+|  **optional** month | [optional uint32](#uint32) |  |
+|  **optional** day | [optional uint32](#uint32) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -1659,8 +1659,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| textual | [ string](#string) |  |
+|  **optional** duration | [optional google.protobuf.Duration](#googleprotobufduration) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.Filter
 
@@ -1890,7 +1890,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 | ----- | ---- | ----------- |
 | latitude | [ double](#double) | Decimal degrees north. |
 | longitude | [ double](#double) | Decimal degrees east. |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.LocationSelection
 
@@ -2001,8 +2001,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) |  |
-| page | [ int32](#int32) |  |
+|  **optional** size | [optional int32](#int32) |  |
+|  **optional** page | [optional int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -2029,7 +2029,7 @@ while a rectangular region is easier to define using Area.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | path | [repeated hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
 
@@ -2065,9 +2065,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
-| time_zone | [ string](#string) |  |
-| textual | [ string](#string) |  |
+|  **optional** timestamp | [optional google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+|  **optional** time_zone | [optional string](#string) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.UpdateBoolean
 

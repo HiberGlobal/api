@@ -142,14 +142,14 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | name | [ string](#string) |  |
 | type | [ Token.Type](#tokentype) |  |
 | expires_at | [ hiber.Timestamp](#hibertimestamp) |  |
-| user_permissions | [ hiber.Filter.UserPermissions](#hiberfilteruserpermissions) |  |
+|  **optional** user_permissions | [optional hiber.Filter.UserPermissions](#hiberfilteruserpermissions) |  |
 | organization_permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new token should get. |
-| roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new token should get. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_for_user_id**.for_user_id | [optional string](#string) | Optionally, if you have the USERS_MANAGE permission, you can make a token for another user. If you do, you cannot grant it permissions they do not have, not can you grant it any user permissions. |
+|  **optional** roles | [optional hiber.Filter.Roles](#hiberfilterroles) | Roles the new token should get. |
+|  **optional** for_user_id | [optional string](#string) | Optionally, if you have the USERS_MANAGE permission, you can make a token for another user. If you do, you cannot grant it permissions they do not have, not can you grant it any user permissions. |
 
 ### CreateTokenRequest.Response
 
@@ -166,7 +166,7 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | token_id | [ int64](#int64) |  |
 
 ### DeleteTokenRequest.Response
@@ -180,9 +180,9 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ TokenSelection](#tokenselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional TokenSelection](#tokenselection) | Select the tokens to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### ListTokensRequest.Response
 
@@ -227,10 +227,10 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| users | [ hiber.Filter.Users](#hiberfilterusers) |  |
-| name | [ string](#string) |  |
-| include_expired | [ bool](#bool) |  |
-| roles | [ hiber.Filter.Roles](#hiberfilterroles) |  |
+|  **optional** users | [optional hiber.Filter.Users](#hiberfilterusers) |  |
+|  **optional** name | [optional string](#string) |  |
+|  **optional** include_expired | [optional bool](#bool) |  |
+|  **optional** roles | [optional hiber.Filter.Roles](#hiberfilterroles) |  |
 | type | [repeated Token.Type](#tokentype) |  |
 
 ### UpdateTokenOrganizationPermissionsRequest
@@ -239,9 +239,9 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | token_ids | [repeated int64](#int64) |  |
-| replace_organization_permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Completely replace the organization permission for the selected token(s) with this set. |
+|  **optional** replace_organization_permissions | [optional hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Completely replace the organization permission for the selected token(s) with this set. |
 | add_organization_permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | Add organization permissions to the token. |
 | remove_organization_permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | Remove organization permissions from the token. Ensures the permissions is no longer on the token (even if you also add it using add_organization_permissions). |
 
@@ -261,7 +261,7 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | token_ids | [repeated int64](#int64) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update**.modify | [ UpdateTokenRoles.Request.ModifyRoles](#updatetokenrolesrequestmodifyroles) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update**.replace | [ UpdateTokenRoles.Request.ReplaceRoles](#updatetokenrolesrequestreplaceroles) |  |
@@ -294,9 +294,9 @@ Completely replace the roles the tokens have.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | token_ids | [repeated int64](#int64) |  |
-| replace_user_permissions | [ hiber.Filter.UserPermissions](#hiberfilteruserpermissions) | Completely replace the user permission for the selected token(s) with this set. |
+|  **optional** replace_user_permissions | [optional hiber.Filter.UserPermissions](#hiberfilteruserpermissions) | Completely replace the user permission for the selected token(s) with this set. |
 | add_user_permissions | [repeated hiber.UserPermission](#hiberuserpermission) | Add user permissions to the token. |
 | remove_user_permissions | [repeated hiber.UserPermission](#hiberuserpermission) | Remove user permissions from the token. |
 
@@ -413,7 +413,7 @@ When sending an Area to the api, the center location is ignored.
 | center | [ hiber.Location](#hiberlocation) |  |
 | bottom_left | [ hiber.Location](#hiberlocation) |  |
 | top_right | [ hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
 
@@ -439,8 +439,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) |  |
-| hex | [ string](#string) |  |
+|  **optional** bytes | [optional bytes](#bytes) |  |
+|  **optional** hex | [optional string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -466,10 +466,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) |  |
-| month | [ uint32](#uint32) |  |
-| day | [ uint32](#uint32) |  |
-| textual | [ string](#string) |  |
+|  **optional** year | [optional uint32](#uint32) |  |
+|  **optional** month | [optional uint32](#uint32) |  |
+|  **optional** day | [optional uint32](#uint32) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -486,8 +486,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| textual | [ string](#string) |  |
+|  **optional** duration | [optional google.protobuf.Duration](#googleprotobufduration) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.Filter
 
@@ -717,7 +717,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 | ----- | ---- | ----------- |
 | latitude | [ double](#double) | Decimal degrees north. |
 | longitude | [ double](#double) | Decimal degrees east. |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.LocationSelection
 
@@ -828,8 +828,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) |  |
-| page | [ int32](#int32) |  |
+|  **optional** size | [optional int32](#int32) |  |
+|  **optional** page | [optional int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -856,7 +856,7 @@ while a rectangular region is easier to define using Area.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | path | [repeated hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
 
@@ -892,9 +892,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
-| time_zone | [ string](#string) |  |
-| textual | [ string](#string) |  |
+|  **optional** timestamp | [optional google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+|  **optional** time_zone | [optional string](#string) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.UpdateBoolean
 

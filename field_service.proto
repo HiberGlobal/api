@@ -28,10 +28,10 @@ service FieldService {
 
 message FieldSelection {
     /* Search the fields (matches field, display_name and parser identifier). */
-    string search = 1;
+    optional string search = 1;
 
     /* Only return the fields owned by your organization (exclude fields from inherited parsers). */
-    bool only_owned = 2;
+    optional bool only_owned = 2;
 
     /* Filter fields by type. */
     repeated value.Value.Type types = 3;
@@ -43,7 +43,7 @@ message FieldSelection {
     repeated string field_identifiers = 5;
 
     /* Include operational fields as well (e.g. battery, device status). */
-    bool include_operational = 6;
+    optional bool include_operational = 6;
 }
 
 message ListFields {
@@ -60,18 +60,18 @@ message ListFields {
 
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
-        /* Select which fields to return. */
-        FieldSelection selection = 2;
+        /* Select which fields to return. Optional, when omitted or empty everything is included. */
+        optional FieldSelection selection = 2;
 
-        Pagination pagination = 3;
-        Sort sort = 4;
+        optional Pagination pagination = 3;
+        optional Sort sort = 4;
 
         /* Whether to apply the unit preferences to the fields.
          * This will convert any fields into your preferred unit, for convenience.
          */
-        bool apply_unit_preferences = 5;
+        optional bool apply_unit_preferences = 5;
     }
 
     message Response {
@@ -84,27 +84,27 @@ message ListFields {
 message ListFieldsForModem {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
-        /* Select the modems to fetch the fields for. */
-        modem.ModemSelection modem_selection = 2;
+        /* Select the modems to fetch the fields for. Optional, when omitted or empty everything is included. */
+        optional modem.ModemSelection modem_selection = 2;
 
-        /* Select which fields to return. */
-        FieldSelection field_selection = 3;
+        /* Select which fields to return. Optional, when omitted or empty everything is included. */
+        optional FieldSelection field_selection = 3;
 
-        Pagination pagination = 4;
+        optional Pagination pagination = 4;
         ListFields.Sort sort = 5;
 
         /* Whether to apply the unit preferences to the fields.
          * This will convert any fields into you preferred unit, for convenience.
          */
-        bool apply_unit_preferences = 6;
+        optional bool apply_unit_preferences = 6;
 
         /* Whether to also calculate the total fields for all selected modems,
          * and return them as a single list in the response.
          * This can be useful to display table columns, for example.
          */
-        bool include_total = 7;
+        optional bool include_total = 7;
     }
 
     message Response {
@@ -127,7 +127,7 @@ message ListFieldsForModem {
 
 message AddFieldsRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     /* The identifier for the parser to remove the field from. */
     string parser_identifier = 2;
@@ -139,7 +139,7 @@ message AddFieldsRequest {
 /* Replace all fields for a parser with the fields given. */
 message ReplaceAllFieldsRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     /* The identifier for the parser to remove the field from. */
     string parser_identifier = 2;
@@ -151,7 +151,7 @@ message ReplaceAllFieldsRequest {
 /* Delete the given fields from a parser. */
 message DeleteFieldsRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     /* The identifier for the parser to remove the field from. */
     string parser_identifier = 2;
@@ -162,24 +162,24 @@ message DeleteFieldsRequest {
 
 message UpdateFieldRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
     /* The identifier for the field. */
     string field_identifier = 2;
 
     /* An optional display name for the field. */
-    UpdateClearableString display_name = 3;
+    optional UpdateClearableString display_name = 3;
 
     /* Priority of the field, typically used for ordering. */
-    UpdateZeroableInt priority = 4;
+    optional UpdateZeroableInt priority = 4;
 
     /* Whether this field should be stored encrypted or not.
      * When set to true at a later point, earlier values are not encrypted retro-actively.
      */
-    UpdateBoolean encrypted = 5;
+    optional UpdateBoolean encrypted = 5;
 
     /* Whether this field is optional or not. */
-    UpdateBoolean optional = 8;
+    optional UpdateBoolean optional = 8;
 
     /* If the field is used by operations and does not produce process values. */
     optional bool operational = 9;
@@ -194,7 +194,7 @@ message UpdateFieldRequest {
 message UpdateFieldNumericDetails {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
         /* The identifier for the field. */
         string field_identifier = 2;
@@ -203,22 +203,22 @@ message UpdateFieldNumericDetails {
     }
 
     /* Replace the unit for this field. Automatically replaces the type and the symbol based on the unit. */
-    Field.Numeric.Unit replace_unit = 4;
+    optional Field.Numeric.Unit replace_unit = 4;
 
     /* Replace the formatting for this field. The entire object must be configured. */
-    Field.Numeric.Format replace_format = 5;
+    optional Field.Numeric.Format replace_format = 5;
 
     /* Replace the unit for this field. Automatically replaces the type and the symbol based on the unit.
      * Deprecated: use replace_unit instead
      */
-    UnitOfMeasurement replace_unit_of_measurement = 6 [deprecated = true];
+    optional UnitOfMeasurement replace_unit_of_measurement = 6 [deprecated = true];
 }
 
 message UpdateFieldEnumValues {
     message Request {
 
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
         /* The identifier for the field. */
         string field_identifier = 2;

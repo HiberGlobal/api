@@ -190,13 +190,13 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | description | [ string](#string) |  |
 | data | [ Webhook.WebhookData](#webhookwebhookdata) |  |
-| filters | [ Webhook.WebhookFilters](#webhookwebhookfilters) |  |
+|  **optional** filters | [optional Webhook.WebhookFilters](#webhookwebhookfilters) |  |
 | health_levels | [repeated string](#string) | Filter events by health level caused. |
 | tags | [repeated int64](#int64) |  |
-| certificate_id | [ int64](#int64) | Optionally, a client certificate can be used for the webhook call. See the CertificateService for certificate management options. |
+|  **optional** certificate_id | [optional int64](#int64) | Optionally, a client certificate can be used for the webhook call. See the CertificateService for certificate management options. |
 
 ### DeleteWebhookRequest
 
@@ -245,9 +245,9 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ WebhookSelection](#webhookselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional WebhookSelection](#webhookselection) | Select the webhooks to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 | sort | [repeated ListWebhooksRequest.Sort](#listwebhooksrequestsort) |  |
 
 ### ListWebhooksRequest.Response
@@ -268,12 +268,12 @@
 | ----- | ---- | ----------- |
 | id | [ int64](#int64) |  |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| deprecated_event_filter | [ UpdateWebhookFilterRequest.UpdateEvents](#updatewebhookfilterrequestupdateevents) | <strong>Deprecated.</strong>  |
-| deprecated_modem_filter | [ UpdateWebhookFilterRequest.UpdateModems](#updatewebhookfilterrequestupdatemodems) | <strong>Deprecated.</strong>  |
-| deprecated_tag_filter | [ UpdateWebhookFilterRequest.UpdateTags](#updatewebhookfilterrequestupdatetags) | <strong>Deprecated.</strong>  |
-| event_filter | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
-| modem_filter | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
-| tag_filter | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
+|  **optional** deprecated_event_filter | [optional UpdateWebhookFilterRequest.UpdateEvents](#updatewebhookfilterrequestupdateevents) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_modem_filter | [optional UpdateWebhookFilterRequest.UpdateModems](#updatewebhookfilterrequestupdatemodems) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_tag_filter | [optional UpdateWebhookFilterRequest.UpdateTags](#updatewebhookfilterrequestupdatetags) | <strong>Deprecated.</strong>  |
+|  **optional** event_filter | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
+|  **optional** modem_filter | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
+|  **optional** tag_filter | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
 | add_health_levels_to_filter | [repeated string](#string) | Add health levels to the health levels filter. |
 | remove_health_levels_from_filter | [repeated string](#string) | Remove health levels from the health levels filter. |
 
@@ -321,22 +321,22 @@
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | url | [ string](#string) |  |
-| secret | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
-| content_type | [ Webhook.ContentType](#webhookcontenttype) |  |
-| description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
-| deprecated_event_filter | [ UpdateWebhookRequest.UpdateWebhook.UpdateEvents](#updatewebhookrequestupdatewebhookupdateevents) | <strong>Deprecated.</strong>  |
-| deprecated_modem_filter | [ UpdateWebhookRequest.UpdateWebhook.UpdateModems](#updatewebhookrequestupdatewebhookupdatemodems) | <strong>Deprecated.</strong>  |
-| deprecated_tag_filter | [ UpdateWebhookRequest.UpdateWebhook.UpdateTags](#updatewebhookrequestupdatewebhookupdatetags) | <strong>Deprecated.</strong>  |
-| event_filter | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
-| modem_filter | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
-| tag_filter | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
+|  **optional** secret | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+|  **optional** content_type | [optional Webhook.ContentType](#webhookcontenttype) |  |
+|  **optional** description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+|  **optional** deprecated_event_filter | [optional UpdateWebhookRequest.UpdateWebhook.UpdateEvents](#updatewebhookrequestupdatewebhookupdateevents) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_modem_filter | [optional UpdateWebhookRequest.UpdateWebhook.UpdateModems](#updatewebhookrequestupdatewebhookupdatemodems) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_tag_filter | [optional UpdateWebhookRequest.UpdateWebhook.UpdateTags](#updatewebhookrequestupdatewebhookupdatetags) | <strong>Deprecated.</strong>  |
+|  **optional** event_filter | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
+|  **optional** modem_filter | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
+|  **optional** tag_filter | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
 | add_health_levels | [repeated string](#string) | Add health levels to the health levels filter. |
 | remove_health_levels | [repeated string](#string) | Remove health levels from the health levels filter. |
-| active | [ hiber.UpdateBoolean](#hiberupdateboolean) |  |
-| certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | A value of 0 removes the certificate |
-| health_warning_period | [ hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
-| health_warning_failure_percentage | [ hiber.UpdateZeroableInt](#hiberupdatezeroableint) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
-| update_hmac_header_name | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the custom hmac header, or clear to reset to default. |
+|  **optional** active | [optional hiber.UpdateBoolean](#hiberupdateboolean) |  |
+|  **optional** certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | A value of 0 removes the certificate |
+|  **optional** health_warning_period | [optional hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
+|  **optional** health_warning_failure_percentage | [optional hiber.UpdateZeroableInt](#hiberupdatezeroableint) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
+|  **optional** update_hmac_header_name | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the custom hmac header, or clear to reset to default. |
 | add_custom_headers | [map UpdateWebhookRequest.UpdateWebhook.AddCustomHeadersEntry](#updatewebhookrequestupdatewebhookaddcustomheadersentry) | Custom headers to add to every call. |
 | remove_custom_headers | [repeated string](#string) | Remove previously configured custom headers. |
 | replace_custom_headers | [map UpdateWebhookRequest.UpdateWebhook.ReplaceCustomHeadersEntry](#updatewebhookrequestupdatewebhookreplacecustomheadersentry) | Replace the custom headers to add to every call. If set, remove_custom_headers is ignored. |
@@ -392,7 +392,7 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) |  |
+|  **optional** organization | [optional string](#string) |  |
 | webhook_ids | [repeated int64](#int64) |  |
 | update | [ hiber.tag.UpdateTagsForItem](#hibertagupdatetagsforitem) |  |
 
@@ -410,7 +410,7 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | webhook_updates | [repeated UpdateWebhooksRequest.Update](#updatewebhooksrequestupdate) |  |
 
 ### UpdateWebhooksRequest.Response
@@ -471,14 +471,14 @@ Health configuration for the webhook. Defines how the health is calculated.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | url | [ string](#string) |  |
-| secret | [ string](#string) | Used to generate the HMAC-SHA256 header on every webhook call, which you can use to verify the message. The HMAC-SHA256 header is calculated with the message body and this secret. There are many examples of how to do this in different languages, for example: https://github.com/danharper/hmac-examples |
+|  **optional** secret | [optional string](#string) | Used to generate the HMAC-SHA256 header on every webhook call, which you can use to verify the message. The HMAC-SHA256 header is calculated with the message body and this secret. There are many examples of how to do this in different languages, for example: https://github.com/danharper/hmac-examples |
 | hmac_header_name | [ string](#string) | The header that the hmac value is placed in. Defaults to X-Hub-Signature. |
 | content_type | [ Webhook.ContentType](#webhookcontenttype) |  |
 | disabled | [ bool](#bool) |  |
-| certificate_id | [ int64](#int64) |  |
-| certificate_name | [ string](#string) |  |
-| ca_certificate_id | [ int64](#int64) |  |
-| ca_certificate_name | [ string](#string) |  |
+|  **optional** certificate_id | [optional int64](#int64) |  |
+|  **optional** certificate_name | [optional string](#string) |  |
+|  **optional** ca_certificate_id | [optional int64](#int64) |  |
+|  **optional** ca_certificate_name | [optional string](#string) |  |
 | custom_headers | [map Webhook.WebhookData.CustomHeadersEntry](#webhookwebhookdatacustomheadersentry) | Custom headers to add to every call. |
 
 ### Webhook.WebhookData.CustomHeadersEntry
@@ -496,9 +496,9 @@ Health configuration for the webhook. Defines how the health is calculated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| event_types | [ hiber.Filter.Events](#hiberfilterevents) |  |
-| modem_numbers | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
-| tags | [ hiber.Filter.Tags](#hiberfiltertags) |  |
+|  **optional** event_types | [optional hiber.Filter.Events](#hiberfilterevents) |  |
+|  **optional** modem_numbers | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** tags | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 | health_levels | [repeated string](#string) | Filter events by health level caused. |
 
 ### WebhookCall
@@ -530,10 +530,10 @@ Health configuration for the webhook. Defines how the health is calculated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | webhook_id | [ int64](#int64) |  |
-| selection | [ WebhookHistorySelection](#webhookhistoryselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** selection | [optional WebhookHistorySelection](#webhookhistoryselection) |  |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### WebhookHistoryRequest.Response
 
@@ -551,8 +551,8 @@ Health configuration for the webhook. Defines how the health is calculated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| only_failures | [ bool](#bool) |  |
-| time_range | [ hiber.TimeRange](#hibertimerange) |  |
+|  **optional** only_failures | [optional bool](#bool) |  |
+|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) |  |
 
 ### WebhookSelection
 
@@ -560,13 +560,13 @@ Health configuration for the webhook. Defines how the health is calculated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| description | [ string](#string) |  |
-| url | [ string](#string) |  |
-| webhooks | [ hiber.Filter.Webhooks](#hiberfilterwebhooks) |  |
-| tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+|  **optional** description | [optional string](#string) |  |
+|  **optional** url | [optional string](#string) |  |
+|  **optional** webhooks | [optional hiber.Filter.Webhooks](#hiberfilterwebhooks) |  |
+|  **optional** tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
 | health | [repeated hiber.Health](#hiberhealth) |  |
 | certificate_ids | [repeated int64](#int64) |  |
-| search | [ string](#string) | Search in the all available text, like description and url. |
+|  **optional** search | [optional string](#string) | Search in the all available text, like description and url. |
 
 
 ## Enums
@@ -627,7 +627,7 @@ so not all messages listed here are referenced.)
 | ----- | ---- | ----------- |
 | search | [repeated string](#string) |  |
 | names | [repeated string](#string) |  |
-| filter | [ hiber.Filter.Tags](#hiberfiltertags) |  |
+|  **optional** filter | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 | types | [repeated string](#string) |  |
 
 
@@ -653,7 +653,7 @@ When sending an Area to the api, the center location is ignored.
 | center | [ hiber.Location](#hiberlocation) |  |
 | bottom_left | [ hiber.Location](#hiberlocation) |  |
 | top_right | [ hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
 
@@ -679,8 +679,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) |  |
-| hex | [ string](#string) |  |
+|  **optional** bytes | [optional bytes](#bytes) |  |
+|  **optional** hex | [optional string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -706,10 +706,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) |  |
-| month | [ uint32](#uint32) |  |
-| day | [ uint32](#uint32) |  |
-| textual | [ string](#string) |  |
+|  **optional** year | [optional uint32](#uint32) |  |
+|  **optional** month | [optional uint32](#uint32) |  |
+|  **optional** day | [optional uint32](#uint32) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -726,8 +726,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| textual | [ string](#string) |  |
+|  **optional** duration | [optional google.protobuf.Duration](#googleprotobufduration) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.Filter
 
@@ -957,7 +957,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 | ----- | ---- | ----------- |
 | latitude | [ double](#double) | Decimal degrees north. |
 | longitude | [ double](#double) | Decimal degrees east. |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.LocationSelection
 
@@ -1068,8 +1068,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) |  |
-| page | [ int32](#int32) |  |
+|  **optional** size | [optional int32](#int32) |  |
+|  **optional** page | [optional int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -1096,7 +1096,7 @@ while a rectangular region is easier to define using Area.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | path | [repeated hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
 
@@ -1132,9 +1132,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
-| time_zone | [ string](#string) |  |
-| textual | [ string](#string) |  |
+|  **optional** timestamp | [optional google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+|  **optional** time_zone | [optional string](#string) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.UpdateBoolean
 

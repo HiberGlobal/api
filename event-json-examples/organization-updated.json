@@ -13,10 +13,6 @@
       "state": "your-state",
       "country": "NL"
     },
-    "isBusinessUpdated": {
-    },
-    "billingAddressUpdated": {
-    },
     "contactUpdated": {
       "name": "your-name",
       "email": "new-email",

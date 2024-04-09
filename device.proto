@@ -91,20 +91,20 @@ message Device {
  * Filter devices by device number, tags, etc.
  */
 message DeviceSelection {
-    string free_text_search = 1;
+    optional string free_text_search = 1;
 
-    Filter.Modems modems = 2;
-    Filter.ModemIdentifiers identifiers = 3;
-    Filter.HealthLevels health_level = 4;
-    ModemFilter.Lifecycles lifecycles = 5;
-    Filter.Modems with_gateways = 6;
-    Filter.Properties peripherals = 7;
-    Filter.DeviceTypes device_types = 10;
-    Filter.SensorBrands sensorBrands = 11;
+    optional Filter.Modems modems = 2;
+    optional Filter.ModemIdentifiers identifiers = 3;
+    optional Filter.HealthLevels health_level = 4;
+    optional ModemFilter.Lifecycles lifecycles = 5;
+    optional Filter.Modems with_gateways = 6;
+    optional Filter.Properties peripherals = 7;
+    optional Filter.DeviceTypes device_types = 10;
+    optional Filter.SensorBrands sensorBrands = 11;
 
-    hiber.tag.TagSelection filter_by_tags = 8;
+    optional hiber.tag.TagSelection filter_by_tags = 8;
 
-    TimeRange with_last_message_in = 9;
+    optional TimeRange with_last_message_in = 9;
 }
 
 /* Sorting options for the results. */

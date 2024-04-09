@@ -45,26 +45,29 @@ message UpdateDevice {
      * but probably something you don't want.
      */
     optional string name = 2;
+
     /* Allow a rename that results in multiple devices with the same name.
      * Could be useful if you have different sites with devices that fulfill
      * a similar job but are located at different sites.
      * It is advised to make sure those devices have different tags/groups.
      */
-    bool allow_bulk_rename = 3;
+    optional bool allow_bulk_rename = 3;
 
     /* Change the notes for the selected devices. */
     optional string notes = 4;
+
     /* Allow changing notes in bulk if the notes are different.
      * Must set this explicitly to prevent accidental loss of notes.
      */
-    bool allow_bulk_notes = 5;
+    optional bool allow_bulk_notes = 5;
 
     /* Change the notes for the selected devices. */
     optional string secure_notes = 6;
+
     /* Allow changing notes in bulk if the notes are different.
      * Must set this explicitly to prevent accidental loss of notes.
      */
-    bool allow_bulk_secure_notes = 7;
+    optional bool allow_bulk_secure_notes = 7;
 
     /* Updates the devices peripherals, by adding, removing or replacing. */
     optional UpdatePeripherals peripherals = 8;
@@ -109,7 +112,8 @@ message UpdateDevice {
 
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
+
         /* Multiple different updates can be made.
          * Every update contains a device selection (historically modem selection)
          * which targets the devices that should be updated.
@@ -125,25 +129,25 @@ message UpdateDevice {
 message ListDevice {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
-        /* Select which devices to return. Uses ModemSelection, which is the historical name for device. */
-        hiber.device.DeviceSelection selection = 2;
+        /* Select which devices to return. Optional, when omitted or empty everything is included. */
+        optional hiber.device.DeviceSelection selection = 2;
 
         /* Paginate through results. */
-        Pagination pagination = 3;
+        optional Pagination pagination = 3;
 
         /* Sort the devices with the given sort options. */
         repeated hiber.device.Sort sort_by = 4;
 
         /* Filter devices by location. */
-        LocationSelection location_selection = 5;
+        optional LocationSelection location_selection = 5;
 
         /* Set this to true to populate the gateways field in the response.
          * This will be populated with missing gateways for the the devices on this page.
          * Any gateway that is on the current page is not included in this list to avoid duplicate data.
          */
-        bool include_missing_gateways = 6;
+        optional bool include_missing_gateways = 6;
     }
     message Response {
         repeated Device devices = 1;

@@ -28,13 +28,13 @@ message ListDeviceTypes {
 
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
-        /* Select which device types to return. */
-        DeviceTypeSelection selection = 2;
+        /* Select which device types to return. Optional, when omitted or empty everything is included. */
+        optional DeviceTypeSelection selection = 2;
 
         /* Paginate through results. */
-        Pagination pagination = 3;
+        optional Pagination pagination = 3;
 
         /* Sort the devices with the given sort options. */
         repeated Sort sort_by = 4;

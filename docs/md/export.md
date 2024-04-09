@@ -143,7 +143,7 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **configuration**.modem_message | [ Export.Configuration.ModemMessages](#exportconfigurationmodemmessages) | Get the fields for modem messages, with optional specific fields for the selected modems, based on assigned parsers. Time range is ignored for this request. |
 
 ### AvailableFieldsForExport.Response
@@ -166,11 +166,11 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | name | [ string](#string) |  |
 | format | [ Export.Format](#exportformat) | The format for the export. |
 | configuration | [ Export.Configuration](#exportconfiguration) | Specific configuration for the export. |
-| email_subscribe | [ bool](#bool) | Subscribe to email updates to get an email with links when the export is ready. |
+|  **optional** email_subscribe | [optional bool](#bool) | Subscribe to email updates to get an email with links when the export is ready. |
 
 ### CreateExport.Response
 
@@ -192,7 +192,7 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) |  |
 
 ### DeleteExport.Response
@@ -259,10 +259,10 @@ CSV (comma separated values) format for export.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | columns | [repeated Export.Format.Csv.Column](#exportformatcsvcolumn) | The columns in the CSV, with their mapping. Columns in CSV are a flat structure, while the data is generally nested, so a mapping is required to flatten it to simple columns. |
-| separator | [ string](#string) | The separator character to use in the CSV. |
-| quote | [ string](#string) | The quote character to use in the CSV. |
-| escape | [ string](#string) | The escape character to use in the CSV. |
-| newline | [ string](#string) | The newlines to use in the CSV. |
+|  **optional** separator | [optional string](#string) | The separator character to use in the CSV. Default: , |
+|  **optional** quote | [optional string](#string) | The quote character to use in the CSV. Default: " |
+|  **optional** escape | [optional string](#string) | The escape character to use in the CSV. Default: " |
+|  **optional** newline | [optional string](#string) | The newlines to use in the CSV. Default: \n |
 
 ### Export.Format.Csv.Column
 
@@ -298,8 +298,8 @@ Json format for export.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifiers | [repeated string](#string) | Select by identifiers |
-| search | [ string](#string) | Search through identifiers and urls |
-| include_expired | [ bool](#bool) | Whether to include expired exports. |
+|  **optional** search | [optional string](#string) | Search through identifiers and urls |
+|  **optional** include_expired | [optional bool](#bool) | Whether to include expired exports. |
 
 ### ExtendExportDownloadExpiry
 
@@ -312,7 +312,7 @@ Json format for export.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | Export identifier |
 | extend_by | [ hiber.Duration](#hiberduration) | The time to extend the expiry with. |
 | file | [repeated string](#string) | Extend the expiry for a specific file. If empty, all files are extended. |
@@ -336,9 +336,9 @@ Json format for export.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ ExportSelection](#exportselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional ExportSelection](#exportselection) | Select the exports to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### ListExports.Response
 
@@ -392,7 +392,7 @@ When sending an Area to the api, the center location is ignored.
 | center | [ hiber.Location](#hiberlocation) |  |
 | bottom_left | [ hiber.Location](#hiberlocation) |  |
 | top_right | [ hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
 
@@ -418,8 +418,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) |  |
-| hex | [ string](#string) |  |
+|  **optional** bytes | [optional bytes](#bytes) |  |
+|  **optional** hex | [optional string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -445,10 +445,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) |  |
-| month | [ uint32](#uint32) |  |
-| day | [ uint32](#uint32) |  |
-| textual | [ string](#string) |  |
+|  **optional** year | [optional uint32](#uint32) |  |
+|  **optional** month | [optional uint32](#uint32) |  |
+|  **optional** day | [optional uint32](#uint32) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -465,8 +465,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| textual | [ string](#string) |  |
+|  **optional** duration | [optional google.protobuf.Duration](#googleprotobufduration) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.Filter
 
@@ -696,7 +696,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 | ----- | ---- | ----------- |
 | latitude | [ double](#double) | Decimal degrees north. |
 | longitude | [ double](#double) | Decimal degrees east. |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.LocationSelection
 
@@ -807,8 +807,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) |  |
-| page | [ int32](#int32) |  |
+|  **optional** size | [optional int32](#int32) |  |
+|  **optional** page | [optional int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -835,7 +835,7 @@ while a rectangular region is easier to define using Area.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | path | [repeated hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
 
@@ -871,9 +871,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
-| time_zone | [ string](#string) |  |
-| textual | [ string](#string) |  |
+|  **optional** timestamp | [optional google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+|  **optional** time_zone | [optional string](#string) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.UpdateBoolean
 

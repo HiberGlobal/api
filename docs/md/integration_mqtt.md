@@ -158,21 +158,21 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| description | [ string](#string) |  |
-| filter_event_types | [ hiber.Filter.Events](#hiberfilterevents) |  |
-| filter_modem_numbers | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
-| filter_tags | [ hiber.Filter.Tags](#hiberfiltertags) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** description | [optional string](#string) |  |
+|  **optional** filter_event_types | [optional hiber.Filter.Events](#hiberfilterevents) |  |
+|  **optional** filter_modem_numbers | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** filter_tags | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 | url | [ string](#string) | The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 |
 | content_type | [ MQTTPublisher.ContentType](#mqttpublishercontenttype) |  |
 | topic | [ string](#string) | The MQTT topic to send to on the receiving server. |
 | qos | [ MQTTPublisher.Data.QoS](#mqttpublisherdataqos) | MQTT QoS value. |
-| identifier | [ string](#string) | Identifier used by the MQTT client. Defaults to "hiber". |
-| username | [ string](#string) | Optional username to authenticate with. |
-| password | [ string](#string) | Optional password to authenticate with. Requires username to be set. |
-| certificate_id | [ int64](#int64) | Client certificate to use when connecting to the MQTT server. |
-| server_ca_certificate_id | [ int64](#int64) | Server CA certificate to use when connecting to the MQTT server. |
-| disabled | [ bool](#bool) | Disable the MQTT publisher after creation, so it needs to be enabled before it is active. |
+|  **optional** identifier | [optional string](#string) | Identifier used by the MQTT client. Defaults to "hiber". |
+|  **optional** username | [optional string](#string) | Optional username to authenticate with. |
+|  **optional** password | [optional string](#string) | Optional password to authenticate with. Requires username to be set. |
+|  **optional** certificate_id | [optional int64](#int64) | Client certificate to use when connecting to the MQTT server. |
+|  **optional** server_ca_certificate_id | [optional int64](#int64) | Server CA certificate to use when connecting to the MQTT server. |
+|  **optional** disabled | [optional bool](#bool) | Disable the MQTT publisher after creation, so it needs to be enabled before it is active. |
 | tags | [repeated int64](#int64) |  |
 
 ### DeleteMQTTPublisherRequest
@@ -181,7 +181,7 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | id | [ int64](#int64) |  |
 
 ### DeleteMQTTPublisherRequest.Response
@@ -195,7 +195,7 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | selection | [ MQTTPublisherSelection](#mqttpublisherselection) |  |
 
 ### DisableMQTTPublisherRequest.Response
@@ -213,7 +213,7 @@ Enable a disabled publisher or re-enable a publisher that's failed and is in coo
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | selection | [ MQTTPublisherSelection](#mqttpublisherselection) |  |
 
 ### EnableMQTTPublisherRequest.Response
@@ -231,9 +231,9 @@ Enable a disabled publisher or re-enable a publisher that's failed and is in coo
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ MQTTPublisherSelection](#mqttpublisherselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional MQTTPublisherSelection](#mqttpublisherselection) |  |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 | sort | [repeated ListMQTTPublishersRequest.Sort](#listmqttpublishersrequestsort) |  |
 
 ### ListMQTTPublishersRequest.Response
@@ -311,10 +311,10 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | id | [ int64](#int64) |  |
-| selection | [ MQTTPublisherHistorySelection](#mqttpublisherhistoryselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** selection | [optional MQTTPublisherHistorySelection](#mqttpublisherhistoryselection) |  |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### MQTTPublisherHistoryRequest.Response
 
@@ -332,8 +332,8 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| time_range | [ hiber.TimeRange](#hibertimerange) |  |
-| only_failures | [ bool](#bool) |  |
+|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) |  |
+|  **optional** only_failures | [optional bool](#bool) |  |
 
 ### MQTTPublisherSelection
 
@@ -341,13 +341,13 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| publishers | [ hiber.Filter.Publishers](#hiberfilterpublishers) | Filter by id. |
-| description | [ string](#string) | Partial text match on the description. |
-| search_url | [ string](#string) | Partial text match on the url. |
-| search_topic | [ string](#string) | Partial text match on the topic. |
+|  **optional** publishers | [optional hiber.Filter.Publishers](#hiberfilterpublishers) | Filter by id. |
+|  **optional** description | [optional string](#string) | Partial text match on the description. |
+|  **optional** search_url | [optional string](#string) | Partial text match on the url. |
+|  **optional** search_topic | [optional string](#string) | Partial text match on the topic. |
 | content_types | [repeated MQTTPublisher.ContentType](#mqttpublishercontenttype) | Only return MQTT integrations that use the given content types. |
 | certificate_ids | [repeated int64](#int64) | Filter by referenced certificate (id), either as client or server certificate. |
-| tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+|  **optional** tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
 | health | [repeated hiber.Health](#hiberhealth) |  |
 
 ### UpdateMQTTPublisherRequest
@@ -356,24 +356,24 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | id | [ int64](#int64) |  |
-| filter_event_types | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
-| filter_modem_numbers | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
-| filter_tags | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
-| description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
-| url | [ string](#string) | The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 |
-| content_type | [ MQTTPublisher.ContentType](#mqttpublishercontenttype) |  |
-| topic | [ string](#string) | The MQTT topic to send to on the receiving server. |
-| qos | [ MQTTPublisher.Data.QoS](#mqttpublisherdataqos) | MQTT QoS value. |
-| identifier | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Identifier used by the MQTT client. Defaults to "hiber". |
-| username | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Optional username to authenticate with. |
-| password | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Optional password to authenticate with. Requires username to be set. |
-| certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | Update or remove the client certificate to use when connecting to the MQTT server. |
-| server_ca_certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | Update or remove the server CA certificate to use when connecting to the MQTT server. |
-| active | [ hiber.UpdateBoolean](#hiberupdateboolean) | Disable the MQTT publisher, so it needs to be enabled again before it is active. |
-| health_warning_period | [ hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
-| health_warning_failure_percentage | [ hiber.UpdateZeroableInt](#hiberupdatezeroableint) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
+|  **optional** filter_event_types | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
+|  **optional** filter_modem_numbers | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
+|  **optional** filter_tags | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
+|  **optional** description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+|  **optional** url | [optional string](#string) | The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 |
+|  **optional** content_type | [optional MQTTPublisher.ContentType](#mqttpublishercontenttype) |  |
+|  **optional** topic | [optional string](#string) | The MQTT topic to send to on the receiving server. |
+|  **optional** qos | [optional MQTTPublisher.Data.QoS](#mqttpublisherdataqos) | MQTT QoS value. |
+|  **optional** identifier | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Identifier used by the MQTT client. Defaults to "hiber". |
+|  **optional** username | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Optional username to authenticate with. |
+|  **optional** password | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Optional password to authenticate with. Requires username to be set. |
+|  **optional** certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | Update or remove the client certificate to use when connecting to the MQTT server. |
+|  **optional** server_ca_certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | Update or remove the server CA certificate to use when connecting to the MQTT server. |
+|  **optional** active | [optional hiber.UpdateBoolean](#hiberupdateboolean) | Disable the MQTT publisher, so it needs to be enabled again before it is active. |
+|  **optional** health_warning_period | [optional hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
+|  **optional** health_warning_failure_percentage | [optional hiber.UpdateZeroableInt](#hiberupdatezeroableint) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
 
 ### UpdateMQTTPublisherTagsRequest
 
@@ -381,7 +381,7 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) |  |
+|  **optional** organization | [optional string](#string) |  |
 | selection | [ MQTTPublisherSelection](#mqttpublisherselection) |  |
 | update | [ hiber.tag.UpdateTagsForItem](#hibertagupdatetagsforitem) |  |
 
@@ -464,7 +464,7 @@ so not all messages listed here are referenced.)
 | ----- | ---- | ----------- |
 | search | [repeated string](#string) |  |
 | names | [repeated string](#string) |  |
-| filter | [ hiber.Filter.Tags](#hiberfiltertags) |  |
+|  **optional** filter | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 | types | [repeated string](#string) |  |
 
 
@@ -490,7 +490,7 @@ When sending an Area to the api, the center location is ignored.
 | center | [ hiber.Location](#hiberlocation) |  |
 | bottom_left | [ hiber.Location](#hiberlocation) |  |
 | top_right | [ hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
 
@@ -516,8 +516,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) |  |
-| hex | [ string](#string) |  |
+|  **optional** bytes | [optional bytes](#bytes) |  |
+|  **optional** hex | [optional string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -543,10 +543,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) |  |
-| month | [ uint32](#uint32) |  |
-| day | [ uint32](#uint32) |  |
-| textual | [ string](#string) |  |
+|  **optional** year | [optional uint32](#uint32) |  |
+|  **optional** month | [optional uint32](#uint32) |  |
+|  **optional** day | [optional uint32](#uint32) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -563,8 +563,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| textual | [ string](#string) |  |
+|  **optional** duration | [optional google.protobuf.Duration](#googleprotobufduration) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.Filter
 
@@ -794,7 +794,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 | ----- | ---- | ----------- |
 | latitude | [ double](#double) | Decimal degrees north. |
 | longitude | [ double](#double) | Decimal degrees east. |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.LocationSelection
 
@@ -905,8 +905,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) |  |
-| page | [ int32](#int32) |  |
+|  **optional** size | [optional int32](#int32) |  |
+|  **optional** page | [optional int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -933,7 +933,7 @@ while a rectangular region is easier to define using Area.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | path | [repeated hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
 
@@ -969,9 +969,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
-| time_zone | [ string](#string) |  |
-| textual | [ string](#string) |  |
+|  **optional** timestamp | [optional google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+|  **optional** time_zone | [optional string](#string) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.UpdateBoolean
 

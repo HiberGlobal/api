@@ -170,12 +170,12 @@ Update a device.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ DeviceSelection](#deviceselection) | Select which devices to return. Uses ModemSelection, which is the historical name for device. |
-| pagination | [ hiber.Pagination](#hiberpagination) | Paginate through results. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional DeviceSelection](#deviceselection) | Select which devices to return. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Paginate through results. |
 | sort_by | [repeated Sort](#sort) | Sort the devices with the given sort options. |
-| location_selection | [ hiber.LocationSelection](#hiberlocationselection) | Filter devices by location. |
-| include_missing_gateways | [ bool](#bool) | Set this to true to populate the gateways field in the response. This will be populated with missing gateways for the the devices on this page. Any gateway that is on the current page is not included in this list to avoid duplicate data. |
+|  **optional** location_selection | [optional hiber.LocationSelection](#hiberlocationselection) | Filter devices by location. |
+|  **optional** include_missing_gateways | [optional bool](#bool) | Set this to true to populate the gateways field in the response. This will be populated with missing gateways for the the devices on this page. Any gateway that is on the current page is not included in this list to avoid duplicate data. |
 
 ### ListDevice.Response
 
@@ -200,17 +200,17 @@ When updating a device, all optional fields will be handled as follows:
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | selection | [ DeviceSelection](#deviceselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_name**.name | [optional string](#string) | Change the name for the selected devices. To prevent confusion, the selection can only effectively target 1 device when changing the name. Unless you specifically set `allow_bulk_rename`. You'd be left with multiple devices with the same name (technically allowed), but probably something you don't want. |
-| allow_bulk_rename | [ bool](#bool) | Allow a rename that results in multiple devices with the same name. Could be useful if you have different sites with devices that fulfill a similar job but are located at different sites. It is advised to make sure those devices have different tags/groups. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_notes**.notes | [optional string](#string) | Change the notes for the selected devices. |
-| allow_bulk_notes | [ bool](#bool) | Allow changing notes in bulk if the notes are different. Must set this explicitly to prevent accidental loss of notes. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_secure_notes**.secure_notes | [optional string](#string) | Change the notes for the selected devices. |
-| allow_bulk_secure_notes | [ bool](#bool) | Allow changing notes in bulk if the notes are different. Must set this explicitly to prevent accidental loss of notes. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_peripherals**.peripherals | [optional UpdateDevice.UpdatePeripherals](#updatedeviceupdateperipherals) | Updates the devices peripherals, by adding, removing or replacing. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_time_zone**.time_zone | [optional string](#string) | Set the timezone the device is located in. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_lifecycle**.lifecycle | [optional hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Update the lifecycle for this device. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_transmission_interval**.transmission_interval | [optional hiber.Duration](#hiberduration) | Sets the interval this devices is transmitting on. Mainly useful for devices that have a regular interval for transmissions. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_transmission_rate**.expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | Update the expected transmission rate. Expected transmission rate differs from transmission interval in that the device might be sending every hour, but we might just expect a transmission every six hours because network unreliability. This can help with reaching SLA goals, where if we want to have 1 message per day as per the SLA, the device sends every hour to make sure we meet the SLA. |
+|  **optional** name | [optional string](#string) | Change the name for the selected devices. To prevent confusion, the selection can only effectively target 1 device when changing the name. Unless you specifically set `allow_bulk_rename`. You'd be left with multiple devices with the same name (technically allowed), but probably something you don't want. |
+|  **optional** allow_bulk_rename | [optional bool](#bool) | Allow a rename that results in multiple devices with the same name. Could be useful if you have different sites with devices that fulfill a similar job but are located at different sites. It is advised to make sure those devices have different tags/groups. |
+|  **optional** notes | [optional string](#string) | Change the notes for the selected devices. |
+|  **optional** allow_bulk_notes | [optional bool](#bool) | Allow changing notes in bulk if the notes are different. Must set this explicitly to prevent accidental loss of notes. |
+|  **optional** secure_notes | [optional string](#string) | Change the notes for the selected devices. |
+|  **optional** allow_bulk_secure_notes | [optional bool](#bool) | Allow changing notes in bulk if the notes are different. Must set this explicitly to prevent accidental loss of notes. |
+|  **optional** peripherals | [optional UpdateDevice.UpdatePeripherals](#updatedeviceupdateperipherals) | Updates the devices peripherals, by adding, removing or replacing. |
+|  **optional** time_zone | [optional string](#string) | Set the timezone the device is located in. |
+|  **optional** lifecycle | [optional hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Update the lifecycle for this device. |
+|  **optional** transmission_interval | [optional hiber.Duration](#hiberduration) | Sets the interval this devices is transmitting on. Mainly useful for devices that have a regular interval for transmissions. |
+|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | Update the expected transmission rate. Expected transmission rate differs from transmission interval in that the device might be sending every hour, but we might just expect a transmission every six hours because network unreliability. This can help with reaching SLA goals, where if we want to have 1 message per day as per the SLA, the device sends every hour to make sure we meet the SLA. |
 
 ### UpdateDevice.Request
 
@@ -218,7 +218,7 @@ When updating a device, all optional fields will be handled as follows:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | devices | [repeated UpdateDevice](#updatedevice) | Multiple different updates can be made. Every update contains a device selection (historically modem selection) which targets the devices that should be updated. |
 
 ### UpdateDevice.Response
@@ -298,18 +298,18 @@ They have a unique device number in our system, used to identify them.
 | organization | [ string](#string) | The organization that owns this device |
 | name | [ string](#string) | A descriptor given to the device, defaults to it's number. |
 | location | [ hiber.Location](#hiberlocation) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_inactivity**.inactivity | [optional hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
+|  **optional** inactivity | [optional hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
 | health | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health based on the modem alarm and some always-present alarms. |
 | lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | The current lifecycle the modem is in. |
 | peripherals | [map hiber.device.Device.PeripheralsEntry](#hiberdevicedeviceperipheralsentry) | additional information |
 | notes | [ string](#string) | Notes field that can be used to add additional information to a modem. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_secure_notes**.secure_notes | [optional string](#string) | Secure notes field that can be used to add additional information to a modem, with limited accessibility. |
+|  **optional** secure_notes | [optional string](#string) | Secure notes field that can be used to add additional information to a modem, with limited accessibility. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_link**.link | [optional hiber.device.Device.Links](#hiberdevicedevicelinks) | Optional information about what other devices this devices is linked to. |
+|  **optional** link | [optional hiber.device.Device.Links](#hiberdevicedevicelinks) | Optional information about what other devices this devices is linked to. |
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_time_zone**.time_zone | [optional string](#string) | The timezone configured for the modem. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_transmission_interval**.transmission_interval | [optional hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_transmission_rate**.expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this device. |
+|  **optional** time_zone | [optional string](#string) | The timezone configured for the modem. |
+|  **optional** transmission_interval | [optional hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
+|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this device. |
 | type | [ string](#string) | The DeviceType for this device. See DeviceType for more information. |
 | sensor_brand | [ string](#string) | The DeviceType for this device. See DeviceType for more information. |
 
@@ -320,7 +320,7 @@ Collection of data about the devices it is connected to.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifiers | [repeated string](#string) | Other identifiers for this devices. Could include data like its MAC-address or otherwise unique identifier. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_gateway**.gateway | [optional string](#string) | The gateway directly upstream from this device (in the direction of Mission Control). This device sends its data directly to its gateway, which in turn relays it to Mission Control. |
+|  **optional** gateway | [optional string](#string) | The gateway directly upstream from this device (in the direction of Mission Control). This device sends its data directly to its gateway, which in turn relays it to Mission Control. |
 
 ### hiber.device.Device.PeripheralsEntry
 
@@ -338,17 +338,17 @@ Filter devices by device number, tags, etc.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| free_text_search | [ string](#string) |  |
-| modems | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
-| identifiers | [ hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
-| health_level | [ hiber.Filter.HealthLevels](#hiberfilterhealthlevels) |  |
-| lifecycles | [ hiber.device.ModemFilter.Lifecycles](#hiberdevicemodemfilterlifecycles) |  |
-| with_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
-| peripherals | [ hiber.Filter.Properties](#hiberfilterproperties) |  |
-| device_types | [ hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
-| sensorBrands | [ hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
-| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
-| with_last_message_in | [ hiber.TimeRange](#hibertimerange) |  |
+|  **optional** free_text_search | [optional string](#string) |  |
+|  **optional** modems | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** identifiers | [optional hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
+|  **optional** health_level | [optional hiber.Filter.HealthLevels](#hiberfilterhealthlevels) |  |
+|  **optional** lifecycles | [optional hiber.device.ModemFilter.Lifecycles](#hiberdevicemodemfilterlifecycles) |  |
+|  **optional** with_gateways | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** peripherals | [optional hiber.Filter.Properties](#hiberfilterproperties) |  |
+|  **optional** device_types | [optional hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
+|  **optional** sensorBrands | [optional hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
+|  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
+|  **optional** with_last_message_in | [optional hiber.TimeRange](#hibertimerange) |  |
 
 ### hiber.device.ModemFilter
 
@@ -441,7 +441,7 @@ when the modem is registered into the system or when a subscription is authorize
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
 | time_zone | [ string](#string) | The timezone configured for the modem. |
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_transmission_rate**.expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
+|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
 
 ### hiber.modem.ModemSelection
 
@@ -450,28 +450,28 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modems | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
-| free_text_search | [ string](#string) |  |
-| only_active | [ bool](#bool) | <strong>Deprecated.</strong> Use lifecycle filter instead. |
-| activated_in | [ hiber.TimeRange](#hibertimerange) | <strong>Deprecated.</strong>  |
-| with_last_message_in | [ hiber.TimeRange](#hibertimerange) |  |
+|  **optional** modems | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** free_text_search | [optional string](#string) |  |
+|  **optional** only_active | [optional bool](#bool) | <strong>Deprecated.</strong> Use lifecycle filter instead. |
+|  **optional** activated_in | [optional hiber.TimeRange](#hibertimerange) | <strong>Deprecated.</strong>  |
+|  **optional** with_last_message_in | [optional hiber.TimeRange](#hibertimerange) |  |
 | health_levels | [repeated string](#string) | Filter modems by health level. |
 | lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
-| transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) |  |
+|  **optional** transfers | [optional hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) |  |
 | include_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Only include modems that have a type listed in types. In other words, when providing multiple types, this is an "OR" relationship. |
 | exclude_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Exclude modems that have a type listed in types. |
-| device_types | [ hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
-| sensorBrands | [ hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
-| identifiers | [ hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
-| only_gateways | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
-| only_has_external_device_ids | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
-| connected_to_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** device_types | [optional hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
+|  **optional** sensorBrands | [optional hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
+|  **optional** identifiers | [optional hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
+|  **optional** only_gateways | [optional bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
+|  **optional** only_has_external_device_ids | [optional bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
+|  **optional** connected_to_gateways | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
 | external_device_ids | [repeated string](#string) | <strong>Deprecated.</strong>  |
-| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+|  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ hiber.modem.ModemSelection.Peripherals](#hibermodemmodemselectionperipherals) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.only_without_peripheral | [ bool](#bool) | When set to true, only modems that do not have any peripheral will be included in the result. |
-| only_connected_to_gateway | [ bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
-| not_connected_to_gateway | [ bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
+|  **optional** only_connected_to_gateway | [optional bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
+|  **optional** not_connected_to_gateway | [optional bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
 
 
 ### Enums
@@ -968,7 +968,7 @@ When sending an Area to the api, the center location is ignored.
 | center | [ hiber.Location](#hiberlocation) |  |
 | bottom_left | [ hiber.Location](#hiberlocation) |  |
 | top_right | [ hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
 
@@ -994,8 +994,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) |  |
-| hex | [ string](#string) |  |
+|  **optional** bytes | [optional bytes](#bytes) |  |
+|  **optional** hex | [optional string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -1021,10 +1021,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) |  |
-| month | [ uint32](#uint32) |  |
-| day | [ uint32](#uint32) |  |
-| textual | [ string](#string) |  |
+|  **optional** year | [optional uint32](#uint32) |  |
+|  **optional** month | [optional uint32](#uint32) |  |
+|  **optional** day | [optional uint32](#uint32) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -1041,8 +1041,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| textual | [ string](#string) |  |
+|  **optional** duration | [optional google.protobuf.Duration](#googleprotobufduration) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.Filter
 
@@ -1272,7 +1272,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 | ----- | ---- | ----------- |
 | latitude | [ double](#double) | Decimal degrees north. |
 | longitude | [ double](#double) | Decimal degrees east. |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.LocationSelection
 
@@ -1383,8 +1383,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) |  |
-| page | [ int32](#int32) |  |
+|  **optional** size | [optional int32](#int32) |  |
+|  **optional** page | [optional int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -1411,7 +1411,7 @@ while a rectangular region is easier to define using Area.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | path | [repeated hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
 
@@ -1447,9 +1447,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
-| time_zone | [ string](#string) |  |
-| textual | [ string](#string) |  |
+|  **optional** timestamp | [optional google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+|  **optional** time_zone | [optional string](#string) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.UpdateBoolean
 

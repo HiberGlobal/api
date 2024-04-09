@@ -1152,7 +1152,7 @@
                 <tr>
                   <td>display_name</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>An optional display name for the field. </p></td>
                 </tr>
               
@@ -1202,14 +1202,14 @@ If it is, some processing options may be unavailable or slower. </p></td>
                 <tr>
                   <td>operational</td>
                   <td><a href="#bool">bool</a></td>
-                  <td>optional</td>
+                  <td></td>
                   <td><p>Field contains values relevant for operating the device. </p></td>
                 </tr>
               
                 <tr>
                   <td>unit_of_measurement</td>
                   <td><a href="#hiber.UnitOfMeasurement">hiber.UnitOfMeasurement</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p><strong>Deprecated.</strong> If numeric, the unit of the field.
 Deprecated: use numeric.numeric_unit oneof instead </p></td>
                 </tr>
@@ -1217,7 +1217,7 @@ Deprecated: use numeric.numeric_unit oneof instead </p></td>
                 <tr>
                   <td>unit_symbol</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p><strong>Deprecated.</strong> The symbol for the unit.
 Deprecated: use numeric.symbol instead </p></td>
                 </tr>
@@ -1320,7 +1320,7 @@ Deprecated: use numeric.symbol instead </p></td>
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.field.Field.Numeric.Unit">Field.Numeric.Unit</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>If the unit preferences were applied, and the unit is different, the field will be converted to the preferred
 unit, from the original unit specified in this field. </p></td>
                 </tr>

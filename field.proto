@@ -96,7 +96,7 @@ message Field {
         /* If the unit preferences were applied, and the unit is different, the field will be converted to the preferred
          * unit, from the original unit specified in this field.
          */
-        Unit converted_from = 5;
+        optional Unit converted_from = 5;
     }
 
     /* If the field is an enum, this specifies the enum values for the field. */
@@ -111,7 +111,7 @@ message Field {
     string field = 1;
 
     /* An optional display name for the field. */
-    string display_name = 2;
+    optional string display_name = 2;
 
     /* Priority of the field, typically used for ordering. */
     int32 priority = 7;
@@ -136,17 +136,17 @@ message Field {
     bool optional = 12;
 
     /* Field contains values relevant for operating the device. */
-    optional bool operational = 13;
+    bool operational = 13;
 
     /* If numeric, the unit of the field.
      * Deprecated: use numeric.numeric_unit oneof instead
      */
-    UnitOfMeasurement unit_of_measurement = 4 [deprecated = true];
+    optional UnitOfMeasurement unit_of_measurement = 4 [deprecated = true];
 
     /* The symbol for the unit.
      * Deprecated: use numeric.symbol instead
      */
-    string unit_symbol = 6 [deprecated = true];
+    optional string unit_symbol = 6 [deprecated = true];
 
     reserved 8;
 }

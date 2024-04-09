@@ -100,9 +100,9 @@ message DoubleRange {
  * - "now": converted to the current timestamp at the time of the request
  */
 message Timestamp {
-    google.protobuf.Timestamp timestamp = 1;
-    string time_zone = 2;
-    string textual = 4;
+    optional google.protobuf.Timestamp timestamp = 1;
+    optional string time_zone = 2;
+    optional string textual = 4;
 }
 
 /* Date type for convenience.
@@ -117,15 +117,15 @@ message Timestamp {
  * If both are specified, the textual field will be discarded.
  */
 message Date {
-    uint32 year = 1;
-    uint32 month = 2;
-    uint32 day = 3;
-    string textual = 4;
+    optional uint32 year = 1;
+    optional uint32 month = 2;
+    optional uint32 day = 3;
+    optional string textual = 4;
 }
 
 message Duration {
-    google.protobuf.Duration duration = 1;
-    string textual = 2;
+    optional google.protobuf.Duration duration = 1;
+    optional string textual = 2;
 }
 
 /* Geographic latitude and longitude coordinates specified in decimal degrees.
@@ -138,7 +138,7 @@ message Location {
     double longitude = 2;
 
     /* Text representation. Can be used as an alternative input in a request, filled in by the API in responses. */
-    string textual = 5;
+    optional string textual = 5;
 }
 
 /* Rectangular area between two locations, normalized to bottom-left and top-right points.
@@ -152,7 +152,7 @@ message Area {
     Location top_right = 4;
 
     /* Text representation. Can be used as an alternative input in a request, filled in by the API in responses. */
-    string textual = 5;
+    optional string textual = 5;
 }
 
 /* Polygon shape defined by a list of locations, which draw a shape on the map.
@@ -165,7 +165,7 @@ message Shape {
     repeated Location path = 1;
 
     /* Text representation. Can be used as an alternative input in a request, filled in by the API in responses. */
-    string textual = 5;
+    optional string textual = 5;
 }
 
 /* Selection object for map data.
@@ -187,8 +187,8 @@ message LocationSelection {
  * When you receive this from the api, both fields are set. When sending it to the api, only one field is required.
  */
 message BytesOrHex {
-    bytes bytes = 1;
-    string hex = 2;
+    optional bytes bytes = 1;
+    optional string hex = 2;
 
     message Update {
         bool updated = 1;
@@ -221,8 +221,8 @@ message Pagination {
          */
         bool approximated_total = 8;
     }
-    int32 size = 1;
-    int32 page = 2;
+    optional int32 size = 1;
+    optional int32 page = 2;
 }
 
 /* Enum of api-accessible events.

@@ -647,7 +647,7 @@
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -668,7 +668,7 @@
                 <tr>
                   <td>filters</td>
                   <td><a href="#hiber.webhook.Webhook.WebhookFilters">Webhook.WebhookFilters</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -689,7 +689,7 @@
                 <tr>
                   <td>certificate_id</td>
                   <td><a href="#int64">int64</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Optionally, a client certificate can be used for the webhook call.
 See the CertificateService for certificate management options. </p></td>
                 </tr>
@@ -845,21 +845,21 @@ See the CertificateService for certificate management options. </p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
                 <tr>
                   <td>selection</td>
                   <td><a href="#hiber.webhook.WebhookSelection">WebhookSelection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>optional</td>
+                  <td><p>Select the webhooks to list. Optional, when omitted or empty everything is included. </p></td>
                 </tr>
               
                 <tr>
                   <td>pagination</td>
                   <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -942,42 +942,42 @@ See the CertificateService for certificate management options. </p></td>
                 <tr>
                   <td>deprecated_event_filter</td>
                   <td><a href="#hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents">UpdateWebhookFilterRequest.UpdateEvents</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>deprecated_modem_filter</td>
                   <td><a href="#hiber.webhook.UpdateWebhookFilterRequest.UpdateModems">UpdateWebhookFilterRequest.UpdateModems</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>deprecated_tag_filter</td>
                   <td><a href="#hiber.webhook.UpdateWebhookFilterRequest.UpdateTags">UpdateWebhookFilterRequest.UpdateTags</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>event_filter</td>
                   <td><a href="#hiber.Filter.Events.Update">hiber.Filter.Events.Update</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>modem_filter</td>
                   <td><a href="#hiber.Filter.Modems.Update">hiber.Filter.Modems.Update</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>tag_filter</td>
                   <td><a href="#hiber.Filter.Tags.Update">hiber.Filter.Tags.Update</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1184,63 +1184,63 @@ See the CertificateService for certificate management options. </p></td>
                 <tr>
                   <td>secret</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>content_type</td>
                   <td><a href="#hiber.webhook.Webhook.ContentType">Webhook.ContentType</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>description</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>deprecated_event_filter</td>
                   <td><a href="#hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents">UpdateWebhookRequest.UpdateWebhook.UpdateEvents</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>deprecated_modem_filter</td>
                   <td><a href="#hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems">UpdateWebhookRequest.UpdateWebhook.UpdateModems</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>deprecated_tag_filter</td>
                   <td><a href="#hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags">UpdateWebhookRequest.UpdateWebhook.UpdateTags</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>event_filter</td>
                   <td><a href="#hiber.Filter.Events.Update">hiber.Filter.Events.Update</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>modem_filter</td>
                   <td><a href="#hiber.Filter.Modems.Update">hiber.Filter.Modems.Update</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>tag_filter</td>
                   <td><a href="#hiber.Filter.Tags.Update">hiber.Filter.Tags.Update</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1261,21 +1261,21 @@ See the CertificateService for certificate management options. </p></td>
                 <tr>
                   <td>active</td>
                   <td><a href="#hiber.UpdateBoolean">hiber.UpdateBoolean</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>certificate_id</td>
                   <td><a href="#hiber.UpdateOptionalId">hiber.UpdateOptionalId</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>A value of 0 removes the certificate </p></td>
                 </tr>
               
                 <tr>
                   <td>health_warning_period</td>
                   <td><a href="#hiber.Duration">hiber.Duration</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Period to consider when determining health from warning events. Warning events cannot be resolved.
 Set this to 0 to disable warnings based on failure percentage. </p></td>
                 </tr>
@@ -1283,7 +1283,7 @@ Set this to 0 to disable warnings based on failure percentage. </p></td>
                 <tr>
                   <td>health_warning_failure_percentage</td>
                   <td><a href="#hiber.UpdateZeroableInt">hiber.UpdateZeroableInt</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Allowed percentage of call failures.
 If the failure percentage is higher, within the warning period, the health is switched to WARNING. </p></td>
                 </tr>
@@ -1291,7 +1291,7 @@ If the failure percentage is higher, within the warning period, the health is sw
                 <tr>
                   <td>update_hmac_header_name</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Update the custom hmac header, or clear to reset to default. </p></td>
                 </tr>
               
@@ -1522,7 +1522,7 @@ If the failure percentage is higher, within the warning period, the health is sw
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1584,7 +1584,7 @@ If the failure percentage is higher, within the warning period, the health is sw
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -1803,7 +1803,7 @@ If the failure percentage is higher, within the warning period, the health is sw
                 <tr>
                   <td>secret</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Used to generate the HMAC-SHA256 header on every webhook call, which you can use to verify the message.
 The HMAC-SHA256 header is calculated with the message body and this secret.
 There are many examples of how to do this in different languages, for example:
@@ -1834,28 +1834,28 @@ https://github.com/danharper/hmac-examples </p></td>
                 <tr>
                   <td>certificate_id</td>
                   <td><a href="#int64">int64</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>certificate_name</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>ca_certificate_id</td>
                   <td><a href="#int64">int64</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>ca_certificate_name</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1917,21 +1917,21 @@ https://github.com/danharper/hmac-examples </p></td>
                 <tr>
                   <td>event_types</td>
                   <td><a href="#hiber.Filter.Events">hiber.Filter.Events</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>modem_numbers</td>
                   <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>tags</td>
                   <td><a href="#hiber.Filter.Tags">hiber.Filter.Tags</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -2059,7 +2059,7 @@ https://github.com/danharper/hmac-examples </p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -2073,14 +2073,14 @@ https://github.com/danharper/hmac-examples </p></td>
                 <tr>
                   <td>selection</td>
                   <td><a href="#hiber.webhook.WebhookHistorySelection">WebhookHistorySelection</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>pagination</td>
                   <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -2142,14 +2142,14 @@ https://github.com/danharper/hmac-examples </p></td>
                 <tr>
                   <td>only_failures</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>time_range</td>
                   <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -2173,28 +2173,28 @@ https://github.com/danharper/hmac-examples </p></td>
                 <tr>
                   <td>description</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>url</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>webhooks</td>
                   <td><a href="#hiber.Filter.Webhooks">hiber.Filter.Webhooks</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>tags</td>
                   <td><a href="#hiber.tag.TagSelection">hiber.tag.TagSelection</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -2215,7 +2215,7 @@ https://github.com/danharper/hmac-examples </p></td>
                 <tr>
                   <td>search</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Search in the all available text, like description and url. </p></td>
                 </tr>
               
@@ -2445,7 +2445,7 @@ https://github.com/danharper/hmac-examples </p></td>
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Text representation. Can be used as an alternative input in a request, filled in by the API in responses. </p></td>
                 </tr>
               
@@ -2500,14 +2500,14 @@ https://github.com/danharper/hmac-examples </p></td>
                 <tr>
                   <td>bytes</td>
                   <td><a href="#bytes">bytes</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>hex</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -2562,28 +2562,28 @@ https://github.com/danharper/hmac-examples </p></td>
                 <tr>
                   <td>year</td>
                   <td><a href="#uint32">uint32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>month</td>
                   <td><a href="#uint32">uint32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>day</td>
                   <td><a href="#uint32">uint32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -2638,14 +2638,14 @@ https://github.com/danharper/hmac-examples </p></td>
                 <tr>
                   <td>duration</td>
                   <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -3415,7 +3415,7 @@ Exclude takes precedence over include. </p></td>
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Text representation. Can be used as an alternative input in a request, filled in by the API in responses. </p></td>
                 </tr>
               
@@ -3625,14 +3625,14 @@ Exclude takes precedence over include. </p></td>
                 <tr>
                   <td>size</td>
                   <td><a href="#int32">int32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>page</td>
                   <td><a href="#int32">int32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -3731,7 +3731,7 @@ For example, unbundled events are likely to return an approximated total, but no
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Text representation. Can be used as an alternative input in a request, filled in by the API in responses. </p></td>
                 </tr>
               
@@ -3786,21 +3786,21 @@ For example, unbundled events are likely to return an approximated total, but no
                 <tr>
                   <td>timestamp</td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>time_zone</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -4631,7 +4631,7 @@ is ready to be downloaded.</p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -4662,7 +4662,7 @@ is ready to be downloaded.</p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -4700,28 +4700,28 @@ is ready to be downloaded.</p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
                 <tr>
                   <td>selection</td>
                   <td><a href="#hiber.tag.TagSelection">TagSelection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>optional</td>
+                  <td><p>Select the tags to list. Optional, when omitted or empty everything is included. </p></td>
                 </tr>
               
                 <tr>
                   <td>modem_count</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>webhook_count</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -4952,15 +4952,15 @@ is ready to be downloaded.</p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
                 <tr>
                   <td>selection</td>
                   <td><a href="#hiber.tag.TagSelection">TagSelection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>optional</td>
+                  <td><p>Select the tags to list. Optional, when omitted or empty everything is included. </p></td>
                 </tr>
               
             </tbody>
@@ -5028,7 +5028,7 @@ is ready to be downloaded.</p></td>
                 <tr>
                   <td>filter</td>
                   <td><a href="#hiber.Filter.Tags">hiber.Filter.Tags</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -5059,7 +5059,7 @@ is ready to be downloaded.</p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               

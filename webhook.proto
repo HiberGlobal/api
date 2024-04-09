@@ -62,26 +62,26 @@ message Webhook {
          * There are many examples of how to do this in different languages, for example:
          * https://github.com/danharper/hmac-examples
          */
-        string secret = 2;
+        optional string secret = 2;
 
         /* The header that the hmac value is placed in. Defaults to X-Hub-Signature. */
         string hmac_header_name = 9;
 
         ContentType content_type = 3;
         bool disabled = 4;
-        int64 certificate_id = 5;
-        string certificate_name = 6;
-        int64 ca_certificate_id = 7;
-        string ca_certificate_name = 8;
+        optional int64 certificate_id = 5;
+        optional string certificate_name = 6;
+        optional int64 ca_certificate_id = 7;
+        optional string ca_certificate_name = 8;
 
         /* Custom headers to add to every call. */
         map<string, string> custom_headers = 10;
     }
 
     message WebhookFilters {
-        Filter.Events event_types = 1;
-        Filter.Modems modem_numbers = 2;
-        Filter.Tags tags = 3;
+        optional Filter.Events event_types = 1;
+        optional Filter.Modems modem_numbers = 2;
+        optional Filter.Tags tags = 3;
 
         /* Filter events by health level caused. */
         repeated string health_levels = 4;
@@ -102,15 +102,15 @@ message Webhook {
 }
 
 message WebhookSelection {
-    string description = 1;
-    string url = 2;
-    Filter.Webhooks webhooks = 3;
-    hiber.tag.TagSelection tags = 4;
+    optional string description = 1;
+    optional string url = 2;
+    optional Filter.Webhooks webhooks = 3;
+    optional hiber.tag.TagSelection tags = 4;
     repeated Health health = 5;
     repeated int64 certificate_ids = 6;
 
     /* Search in the all available text, like description and url. */
-    string search = 7;
+    optional string search = 7;
 }
 
 message WebhookCall {
@@ -124,8 +124,8 @@ message WebhookCall {
 }
 
 message WebhookHistorySelection {
-    bool only_failures = 2;
-    TimeRange time_range = 3;
+    optional bool only_failures = 2;
+    optional TimeRange time_range = 3;
 }
 
 message ListWebhooksRequest {
@@ -159,9 +159,11 @@ message ListWebhooksRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    WebhookSelection selection = 2;
-    Pagination pagination = 3;
+    optional string organization = 1;
+
+    /* Select the webhooks to list. Optional, when omitted or empty everything is included. */
+    optional WebhookSelection selection = 2;
+    optional Pagination pagination = 3;
     repeated Sort sort = 4;
 }
 
@@ -173,27 +175,28 @@ message WebhookHistoryRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     int64 webhook_id = 2;
-    WebhookHistorySelection selection = 3;
-    Pagination pagination = 4;
+    optional WebhookHistorySelection selection = 3;
+    optional Pagination pagination = 4;
 }
 
 message CreateWebhookRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     string description = 2;
     Webhook.WebhookData data = 3;
-    Webhook.WebhookFilters filters = 4;
+    optional Webhook.WebhookFilters filters = 4;
 
     /* Filter events by health level caused. */
     repeated string health_levels = 7;
 
     repeated int64 tags = 5;
+
     /* Optionally, a client certificate can be used for the webhook call.
      * See the CertificateService for certificate management options.
      */
-    int64 certificate_id = 6;
+    optional int64 certificate_id = 6;
 }
 
 message GetWebhookRequest {
@@ -240,13 +243,13 @@ message UpdateWebhookFilterRequest {
     int64 id = 1;
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 2;
-    UpdateEvents deprecated_event_filter = 3 [deprecated = true];
-    UpdateModems deprecated_modem_filter = 4 [deprecated = true];
-    UpdateTags deprecated_tag_filter = 5 [deprecated = true];
+    optional UpdateEvents deprecated_event_filter = 3 [deprecated = true];
+    optional UpdateModems deprecated_modem_filter = 4 [deprecated = true];
+    optional UpdateTags deprecated_tag_filter = 5 [deprecated = true];
     reserved 6;
-    Filter.Events.Update event_filter = 7;
-    Filter.Modems.Update modem_filter = 8;
-    Filter.Tags.Update tag_filter = 9;
+    optional Filter.Events.Update event_filter = 7;
+    optional Filter.Modems.Update modem_filter = 8;
+    optional Filter.Tags.Update tag_filter = 9;
 
     /* Add health levels to the health levels filter. */
     repeated string add_health_levels_to_filter = 10;
@@ -277,17 +280,17 @@ message UpdateWebhookRequest {
         }
 
         string url = 1;
-        UpdateClearableString secret = 2;
-        Webhook.ContentType content_type = 3;
-        UpdateClearableString description = 4;
+        optional UpdateClearableString secret = 2;
+        optional Webhook.ContentType content_type = 3;
+        optional UpdateClearableString description = 4;
 
-        UpdateEvents deprecated_event_filter = 5 [deprecated = true];
-        UpdateModems deprecated_modem_filter = 6 [deprecated = true];
-        UpdateTags deprecated_tag_filter = 7 [deprecated = true];
+        optional UpdateEvents deprecated_event_filter = 5 [deprecated = true];
+        optional UpdateModems deprecated_modem_filter = 6 [deprecated = true];
+        optional UpdateTags deprecated_tag_filter = 7 [deprecated = true];
 
-        Filter.Events.Update event_filter = 10;
-        Filter.Modems.Update modem_filter = 11;
-        Filter.Tags.Update tag_filter = 12;
+        optional Filter.Events.Update event_filter = 10;
+        optional Filter.Modems.Update modem_filter = 11;
+        optional Filter.Tags.Update tag_filter = 12;
 
         /* Add health levels to the health levels filter. */
         repeated string add_health_levels = 16;
@@ -295,25 +298,25 @@ message UpdateWebhookRequest {
         /* Remove health levels from the health levels filter. */
         repeated string remove_health_levels = 17;
 
-        UpdateBoolean active = 8;
+        optional UpdateBoolean active = 8;
 
         /* A value of 0 removes the certificate */
-        UpdateOptionalId certificate_id = 9;
+        optional UpdateOptionalId certificate_id = 9;
 
         reserved 13;
 
         /* Period to consider when determining health from warning events. Warning events cannot be resolved.
          * Set this to 0 to disable warnings based on failure percentage.
          */
-        Duration health_warning_period = 14;
+        optional Duration health_warning_period = 14;
 
         /* Allowed percentage of call failures.
          * If the failure percentage is higher, within the warning period, the health is switched to WARNING.
          */
-        UpdateZeroableInt health_warning_failure_percentage = 15;
+        optional UpdateZeroableInt health_warning_failure_percentage = 15;
 
         /* Update the custom hmac header, or clear to reset to default. */
-        UpdateClearableString update_hmac_header_name = 18;
+        optional UpdateClearableString update_hmac_header_name = 18;
 
         /* Custom headers to add to every call. */
         map<string, string> add_custom_headers = 19;
@@ -344,7 +347,7 @@ message UpdateWebhooksRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     repeated Update webhook_updates = 2;
 }
 
@@ -353,7 +356,7 @@ message UpdateWebhookTagsRequest {
         repeated Webhook webhooks = 1;
     }
 
-    string organization = 1;
+    optional string organization = 1;
     repeated int64 webhook_ids = 2;
     hiber.tag.UpdateTagsForItem update = 3;
     reserved 4;

@@ -466,21 +466,21 @@
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
                 <tr>
                   <td>selection</td>
                   <td><a href="#hiber.device.type.DeviceTypeSelection">DeviceTypeSelection</a></td>
-                  <td></td>
-                  <td><p>Select which device types to return. </p></td>
+                  <td>optional</td>
+                  <td><p>Select which device types to return. Optional, when omitted or empty everything is included. </p></td>
                 </tr>
               
                 <tr>
                   <td>pagination</td>
                   <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Paginate through results. </p></td>
                 </tr>
               
@@ -638,7 +638,7 @@
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Text representation. Can be used as an alternative input in a request, filled in by the API in responses. </p></td>
                 </tr>
               
@@ -693,14 +693,14 @@
                 <tr>
                   <td>bytes</td>
                   <td><a href="#bytes">bytes</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>hex</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -755,28 +755,28 @@
                 <tr>
                   <td>year</td>
                   <td><a href="#uint32">uint32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>month</td>
                   <td><a href="#uint32">uint32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>day</td>
                   <td><a href="#uint32">uint32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -831,14 +831,14 @@
                 <tr>
                   <td>duration</td>
                   <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1608,7 +1608,7 @@ Exclude takes precedence over include. </p></td>
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Text representation. Can be used as an alternative input in a request, filled in by the API in responses. </p></td>
                 </tr>
               
@@ -1818,14 +1818,14 @@ Exclude takes precedence over include. </p></td>
                 <tr>
                   <td>size</td>
                   <td><a href="#int32">int32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>page</td>
                   <td><a href="#int32">int32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1924,7 +1924,7 @@ For example, unbundled events are likely to return an approximated total, but no
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Text representation. Can be used as an alternative input in a request, filled in by the API in responses. </p></td>
                 </tr>
               
@@ -1979,21 +1979,21 @@ For example, unbundled events are likely to return an approximated total, but no
                 <tr>
                   <td>timestamp</td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>time_zone</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -2832,42 +2832,42 @@ is ready to be downloaded.</p></td>
                   <td>brand</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Brand that produces this device type. </p></td>
                 </tr>
               
                 <tr>
                   <td>application</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>What this devices is meant for, i.e. measuring pressure. </p></td>
                 </tr>
               
                 <tr>
                   <td>category</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>A category specific to this device type (for example, based on device configuration). </p></td>
                 </tr>
               
                 <tr>
                   <td>version</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>A version specific to this device type (typically based on firmware version). </p></td>
                 </tr>
               
                 <tr>
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Textual description of the device type, for display purposes. </p></td>
                 </tr>
               
                 <tr>
                   <td>gateway</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Whether this device type represents a gateway or a device. </p></td>
                 </tr>
               
             </tbody>
@@ -2890,22 +2890,22 @@ is ready to be downloaded.</p></td>
                 <tr>
                   <td>search</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>optional</td>
+                  <td><p>Search all the text of the device type (identifier, brand, application, category, version, description). </p></td>
                 </tr>
               
                 <tr>
                   <td>only_gateways</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>optional</td>
+                  <td><p>Limit the results to just device types where gateway is true. </p></td>
                 </tr>
               
                 <tr>
                   <td>exclude_gateways</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>optional</td>
+                  <td><p>Limit the results to just device types where gateway is false. </p></td>
                 </tr>
               
             </tbody>

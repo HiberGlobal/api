@@ -50,10 +50,10 @@ message Token {
 }
 
 message TokenSelection {
-    Filter.Users users = 1;
-    string name = 3;
-    bool include_expired = 4;
-    Filter.Roles roles = 5;
+    optional Filter.Users users = 1;
+    optional string name = 3;
+    optional bool include_expired = 4;
+    optional Filter.Roles roles = 5;
     repeated Token.Type type = 6;
 }
 
@@ -65,9 +65,11 @@ message ListTokensRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    TokenSelection selection = 2;
-    Pagination pagination = 3;
+    optional string organization = 1;
+
+    /* Select the tokens to list. Optional, when omitted or empty everything is included. */
+    optional TokenSelection selection = 2;
+    optional Pagination pagination = 3;
 }
 
 message CreateTokenRequest {
@@ -77,17 +79,17 @@ message CreateTokenRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     string name = 2;
     Token.Type type = 9;
     Timestamp expires_at = 4;
-    Filter.UserPermissions user_permissions = 5;
+    optional Filter.UserPermissions user_permissions = 5;
 
     /* Permissions the new token should get. */
     Filter.OrganizationPermissions organization_permissions = 6;
 
     /* Roles the new token should get. */
-    Filter.Roles roles = 8;
+    optional Filter.Roles roles = 8;
 
     /* Optionally, if you have the USERS_MANAGE permission, you can make a token for another user.
      * If you do, you cannot grant it permissions they do not have, not can you grant it any user permissions.
@@ -102,7 +104,7 @@ message DeleteTokenRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     int64 token_id = 2;
 }
 
@@ -111,11 +113,11 @@ message UpdateTokenOrganizationPermissionsRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     repeated int64 token_ids = 2;
 
     /* Completely replace the organization permission for the selected token(s) with this set. */
-    Filter.OrganizationPermissions replace_organization_permissions = 3;
+    optional Filter.OrganizationPermissions replace_organization_permissions = 3;
 
     /* Add organization permissions to the token. */
     repeated OrganizationPermission add_organization_permissions = 5;
@@ -133,11 +135,11 @@ message UpdateTokenUserPermissionsRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     repeated int64 token_ids = 2;
 
     /* Completely replace the user permission for the selected token(s) with this set. */
-    Filter.UserPermissions replace_user_permissions = 4;
+    optional Filter.UserPermissions replace_user_permissions = 4;
 
     /* Add user permissions to the token. */
     repeated UserPermission add_user_permissions = 5;
@@ -149,7 +151,7 @@ message UpdateTokenUserPermissionsRequest {
 message UpdateTokenRoles {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
         repeated int64 token_ids = 2;
 
         /* Grant and remove roles on the current roles the tokens have. */

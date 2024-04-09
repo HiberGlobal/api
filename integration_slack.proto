@@ -76,22 +76,22 @@ message SlackMessage {
 
 message SlackPublisherSelection {
     /* Filter by id. */
-    Filter.Publishers publishers = 1;
+    optional Filter.Publishers publishers = 1;
 
     /* Partial text match on the description. */
-    string description = 2;
+    optional string description = 2;
 
     /* Partial text match on the url. */
-    string search_url = 3;
+    optional string search_url = 3;
 
     /* Partial text match on the channel. */
-    string search_channel = 4;
+    optional string search_channel = 4;
 
-    hiber.tag.TagSelection tags = 5;
+    optional hiber.tag.TagSelection tags = 5;
     repeated Health health = 6;
 
     /* Search in the all available text, like description and url. */
-    string search =7;
+    optional string search =7;
 }
 
 message ListSlackPublishersRequest {
@@ -131,15 +131,15 @@ message ListSlackPublishersRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    SlackPublisherSelection selection = 2;
-    Pagination pagination = 3;
+    optional string organization = 1;
+    optional SlackPublisherSelection selection = 2;
+    optional Pagination pagination = 3;
     repeated Sort sort = 4;
 }
 
 message SlackPublisherHistorySelection {
-    TimeRange time_range = 1;
-    bool only_failures = 2;
+    optional TimeRange time_range = 1;
+    optional bool only_failures = 2;
 }
 
 message SlackPublisherHistoryRequest {
@@ -150,27 +150,27 @@ message SlackPublisherHistoryRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     int64 id = 2;
-    SlackPublisherHistorySelection selection = 3;
-    Pagination pagination = 4;
+    optional SlackPublisherHistorySelection selection = 3;
+    optional Pagination pagination = 4;
 }
 
 message CreateSlackPublisherRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     string description = 2;
 
-    Filter.Events filter_event_types = 3;
-    Filter.Modems filter_modem_numbers = 4;
-    Filter.Tags filter_tags = 5;
+    optional Filter.Events filter_event_types = 3;
+    optional Filter.Modems filter_modem_numbers = 4;
+    optional Filter.Tags filter_tags = 5;
 
     /* Filter events by health level caused. */
     repeated string filter_health_levels = 11;
 
     string url = 6;
-    string channel = 7;
-    bool disabled = 8;
+    optional string channel = 7;
+    optional bool disabled = 8;
 
     repeated int64 tags = 10;
 }
@@ -183,7 +183,7 @@ message EnableSlackPublisherRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     SlackPublisherSelection selection = 2;
 }
 
@@ -194,18 +194,18 @@ message DisableSlackPublisherRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     SlackPublisherSelection selection = 2;
 }
 
 message UpdateSlackPublisherRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     int64 id = 2;
 
-    Filter.Events.Update filter_event_types = 3;
-    Filter.Modems.Update filter_modem_numbers = 4;
-    Filter.Tags.Update filter_tags = 5;
+    optional Filter.Events.Update filter_event_types = 3;
+    optional Filter.Modems.Update filter_modem_numbers = 4;
+    optional Filter.Tags.Update filter_tags = 5;
 
     /* Add health levels to the health levels filter. */
     repeated string add_health_levels_to_filter = 6;
@@ -213,24 +213,24 @@ message UpdateSlackPublisherRequest {
     /* Remove health levels from the health levels filter. */
     repeated string remove_health_levels_from_filter = 7;
 
-    UpdateClearableString description = 10;
+    optional UpdateClearableString description = 10;
 
-    string url = 11;
-    UpdateClearableString channel = 12;
+    optional string url = 11;
+    optional UpdateClearableString channel = 12;
 
-    UpdateBoolean active = 15;
+    optional UpdateBoolean active = 15;
 
     reserved 16;
 
     /* Period to consider when determining health from warning events. Warning events cannot be resolved.
      * Set this to 0 to disable warnings based on failure percentage.
      */
-    Duration health_warning_period = 17;
+    optional Duration health_warning_period = 17;
 
     /* Allowed percentage of call failures.
      * If the failure percentage is higher, within the warning period, the health is switched to WARNING.
      */
-    UpdateZeroableInt health_warning_failure_percentage = 18;
+    optional UpdateZeroableInt health_warning_failure_percentage = 18;
 }
 
 message UpdateSlackPublisherTagsRequest {
@@ -238,7 +238,7 @@ message UpdateSlackPublisherTagsRequest {
         repeated SlackPublisher slack_publishers = 1;
     }
 
-    string organization = 1;
+    optional string organization = 1;
     SlackPublisherSelection selection = 2;
     hiber.tag.UpdateTagsForItem update = 3;
 }
@@ -248,6 +248,6 @@ message DeleteSlackPublisherRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     int64 id = 2;
 }

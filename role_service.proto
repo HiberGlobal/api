@@ -19,8 +19,10 @@ service RoleService {
 message ListRoles {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
-        RoleSelection selection = 2;
+        optional string organization = 1;
+
+        /* Select the roles to list. Optional, when omitted or empty everything is included. */
+        optional RoleSelection selection = 2;
     }
 
     message Response {

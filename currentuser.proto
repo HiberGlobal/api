@@ -82,7 +82,7 @@ message CurrentUser {
 /* Get your personal data. */
 message CurrentUserRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 }
 
 /* Request access to an organization by name, if it exists.
@@ -116,7 +116,7 @@ message ListOrganizationInvitesRequest {
         repeated Invite organizations = 1;
     }
 
-    string search = 1;
+    optional string search = 1;
 }
 
 /* Accept an invitation to an organization. */
@@ -127,7 +127,7 @@ message AcceptOrganizationInviteRequest {
     string organization = 1;
 
     /* Set to true to mark the organization as your default organization. */
-    bool default_organization = 2;
+    optional bool default_organization = 2;
 }
 
 /* Delete yourself.
@@ -195,22 +195,24 @@ message AccessibleOrganizationsRequest {
     }
 
     /* Search accessible organizations by name. */
-    string search = 1;
+    optional string search = 1;
 
     /* Only list organizations of which you are a member (exclude organizations that you can only impersonate). */
-    bool member_only = 3;
+    optional bool member_only = 3;
 
     /* Only list your default organization. */
-    bool default_only = 4;
+    optional bool default_only = 4;
 
-    Pagination pagination = 2;
+    optional Pagination pagination = 2;
 }
 
 message OverrideRoles {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
-        role.RoleSelection selection = 2;
+        optional string organization = 1;
+
+        /* Select the roles to list. Optional, when omitted or empty everything is included. */
+        optional role.RoleSelection selection = 2;
     }
 
     message Response {

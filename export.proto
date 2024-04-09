@@ -104,17 +104,17 @@ message Export {
              */
             repeated Column columns = 1;
 
-            /* The separator character to use in the CSV. */
-            string separator = 2;
+            /* The separator character to use in the CSV. Default: , */
+            optional string separator = 2;
 
-            /* The quote character to use in the CSV. */
-            string quote = 3;
+            /* The quote character to use in the CSV. Default: " */
+            optional string quote = 3;
 
-            /* The escape character to use in the CSV. */
-            string escape = 4;
+            /* The escape character to use in the CSV. Default: " */
+            optional string escape = 4;
 
-            /* The newlines to use in the CSV. */
-            string newline = 5;
+            /* The newlines to use in the CSV. Default: \n */
+            optional string newline = 5;
         }
     }
 
@@ -140,18 +140,20 @@ message ExportSelection {
     repeated string identifiers = 1;
 
     /* Search through identifiers and urls */
-    string search = 2;
+    optional string search = 2;
 
     /* Whether to include expired exports. */
-    bool include_expired = 3;
+    optional bool include_expired = 3;
 }
 
 message ListExports {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
-        ExportSelection selection = 2;
-        Pagination pagination = 3;
+        optional string organization = 1;
+
+        /* Select the exports to list. Optional, when omitted or empty everything is included. */
+        optional ExportSelection selection = 2;
+        optional Pagination pagination = 3;
     }
 
     message Response {
@@ -164,7 +166,7 @@ message ListExports {
 message CreateExport {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
         string name = 2;
 
         /* The format for the export. */
@@ -174,7 +176,7 @@ message CreateExport {
         Export.Configuration configuration = 4;
 
         /* Subscribe to email updates to get an email with links when the export is ready. */
-        bool email_subscribe = 5;
+        optional bool email_subscribe = 5;
     }
 
     message Response {
@@ -186,7 +188,7 @@ message CreateExport {
 message AvailableFieldsForExport {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
         /* Specific configuration to get the fields for. */
         oneof configuration {
@@ -210,7 +212,7 @@ message AvailableFieldsForExport {
 message ExtendExportDownloadExpiry {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
         /* Export identifier */
         string identifier = 2;
@@ -230,7 +232,7 @@ message ExtendExportDownloadExpiry {
 message DeleteExport {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
         string identifier = 2;
     }
 

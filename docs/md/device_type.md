@@ -25,12 +25,12 @@ Preconfigured device type.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifier | [ string](#string) |  |
-| brand | [ string](#string) |  |
-| application | [ string](#string) |  |
-| category | [ string](#string) |  |
-| version | [ string](#string) |  |
-| description | [ string](#string) |  |
-| gateway | [ bool](#bool) |  |
+| brand | [ string](#string) | Brand that produces this device type. |
+| application | [ string](#string) | What this devices is meant for, i.e. measuring pressure. |
+| category | [ string](#string) | A category specific to this device type (for example, based on device configuration). |
+| version | [ string](#string) | A version specific to this device type (typically based on firmware version). |
+| description | [ string](#string) | Textual description of the device type, for display purposes. |
+| gateway | [ bool](#bool) | Whether this device type represents a gateway or a device. |
 
 ### DeviceTypeSelection
 
@@ -38,9 +38,9 @@ Selection object for device types.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| search | [ string](#string) |  |
-| only_gateways | [ bool](#bool) |  |
-| exclude_gateways | [ bool](#bool) |  |
+|  **optional** search | [optional string](#string) | Search all the text of the device type (identifier, brand, application, category, version, description). |
+|  **optional** only_gateways | [optional bool](#bool) | Limit the results to just device types where gateway is true. |
+|  **optional** exclude_gateways | [optional bool](#bool) | Limit the results to just device types where gateway is false. |
 
 
 ## Enums

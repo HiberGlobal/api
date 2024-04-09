@@ -25,7 +25,7 @@ service TransferService {
 message PerformTransfer {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
         /* The organization to receive the transfer. */
         oneof recipient_organization_or_create {
@@ -57,13 +57,13 @@ message TransferHistory {
     message Request {
         message TransferSelection {
             /* Search transfers by identifier, organizations, device, etc. */
-            string search = 1;
+            optional string search = 1;
 
             /* Select transfers by transfer identifier. */
             repeated string identifiers = 2;
 
             /* Select transfers that were performed within this time. */
-            TimeRange time_range = 3;
+            optional TimeRange time_range = 3;
 
             oneof selection {
                 /* Select device transfers with specific devices. */
@@ -71,16 +71,18 @@ message TransferHistory {
             }
 
             /* Only show transfer that your organization received. */
-            bool received_only = 7;
+            optional bool received_only = 7;
 
             /* Only show transfer that your organization sent. */
-            bool sent_only = 8;
+            optional bool sent_only = 8;
         }
 
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
-        TransferSelection selection = 2;
-        Pagination pagination = 3;
+        optional string organization = 1;
+
+        /* Select the transfers to list. Optional, when omitted or empty everything is included. */
+        optional TransferSelection selection = 2;
+        optional Pagination pagination = 3;
     }
     message Response {
         repeated Transfer transfer_history = 1;

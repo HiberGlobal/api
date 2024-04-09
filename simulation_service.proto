@@ -24,9 +24,11 @@ service ValueSimulationService {
 message List {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
-        modem.ModemSelection modems = 2;
-        Pagination pagination = 3;
+        optional string organization = 1;
+
+        /* Select the modems to list. Optional, when omitted or empty everything is included. */
+        optional modem.ModemSelection modems = 2;
+        optional Pagination pagination = 3;
     }
     message Response {
         repeated ValueSimulation simulations = 1;
@@ -39,7 +41,7 @@ message List {
 message Update {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
         /* Modems to create or update the value simulation for. */
         modem.ModemSelection modems = 2;
@@ -70,7 +72,8 @@ message Update {
 message Delete {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
+
         /* Apply deletion on simulations for devices/modems referenced by this ModemSelection. */
         modem.ModemSelection modems = 2;
 
@@ -90,6 +93,7 @@ message Delete {
 message ValueSimulationSelection {
     /* Include only the listed specific fields */
     repeated string fields = 1;
+
     /* When set to true, includes location simulation */
-    bool location = 2;
+    optional bool location = 2;
 }

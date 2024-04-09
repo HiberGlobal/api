@@ -112,16 +112,16 @@ message MQTTMessage {
 
 message MQTTPublisherSelection {
     /* Filter by id. */
-    Filter.Publishers publishers = 1;
+    optional Filter.Publishers publishers = 1;
 
     /* Partial text match on the description. */
-    string description = 2;
+    optional string description = 2;
 
     /* Partial text match on the url. */
-    string search_url = 3;
+    optional string search_url = 3;
 
     /* Partial text match on the topic. */
-    string search_topic = 4;
+    optional string search_topic = 4;
 
     /* Only return MQTT integrations that use the given content types. */
     repeated MQTTPublisher.ContentType content_types = 5;
@@ -129,7 +129,7 @@ message MQTTPublisherSelection {
     /* Filter by referenced certificate (id), either as client or server certificate. */
     repeated int64 certificate_ids = 6;
 
-    hiber.tag.TagSelection tags = 7;
+    optional hiber.tag.TagSelection tags = 7;
     repeated Health health = 8;
 }
 
@@ -170,15 +170,15 @@ message ListMQTTPublishersRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    MQTTPublisherSelection selection = 2;
-    Pagination pagination = 3;
+    optional string organization = 1;
+    optional MQTTPublisherSelection selection = 2;
+    optional Pagination pagination = 3;
     repeated Sort sort = 4;
 }
 
 message MQTTPublisherHistorySelection {
-    TimeRange time_range = 1;
-    bool only_failures = 2;
+    optional TimeRange time_range = 1;
+    optional bool only_failures = 2;
 }
 
 message MQTTPublisherHistoryRequest {
@@ -189,20 +189,20 @@ message MQTTPublisherHistoryRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     int64 id = 2;
-    MQTTPublisherHistorySelection selection = 3;
-    Pagination pagination = 4;
+    optional MQTTPublisherHistorySelection selection = 3;
+    optional Pagination pagination = 4;
 }
 
 message CreateMQTTPublisherRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    string description = 2;
+    optional string organization = 1;
+    optional string description = 2;
 
-    Filter.Events filter_event_types = 3;
-    Filter.Modems filter_modem_numbers = 4;
-    Filter.Tags filter_tags = 5;
+    optional Filter.Events filter_event_types = 3;
+    optional Filter.Modems filter_modem_numbers = 4;
+    optional Filter.Tags filter_tags = 5;
 
     /* The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 */
     string url = 10;
@@ -215,22 +215,22 @@ message CreateMQTTPublisherRequest {
     MQTTPublisher.Data.QoS qos = 13;
 
     /* Identifier used by the MQTT client. Defaults to "hiber". */
-    string identifier = 14;
+    optional string identifier = 14;
 
     /* Optional username to authenticate with. */
-    string username = 15;
+    optional string username = 15;
 
     /* Optional password to authenticate with. Requires username to be set. */
-    string password = 16;
+    optional string password = 16;
 
     /* Client certificate to use when connecting to the MQTT server. */
-    int64 certificate_id = 17;
+    optional int64 certificate_id = 17;
 
     /* Server CA certificate to use when connecting to the MQTT server. */
-    int64 server_ca_certificate_id = 21;
+    optional int64 server_ca_certificate_id = 21;
 
     /* Disable the MQTT publisher after creation, so it needs to be enabled before it is active. */
-    bool disabled = 18;
+    optional bool disabled = 18;
 
     repeated int64 tags = 20;
 
@@ -245,7 +245,7 @@ message EnableMQTTPublisherRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     MQTTPublisherSelection selection = 2;
 }
 
@@ -256,60 +256,60 @@ message DisableMQTTPublisherRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     MQTTPublisherSelection selection = 2;
 }
 
 message UpdateMQTTPublisherRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     int64 id = 2;
 
-    Filter.Events.Update filter_event_types = 3;
-    Filter.Modems.Update filter_modem_numbers = 4;
-    Filter.Tags.Update filter_tags = 5;
+    optional Filter.Events.Update filter_event_types = 3;
+    optional Filter.Modems.Update filter_modem_numbers = 4;
+    optional Filter.Tags.Update filter_tags = 5;
 
-    UpdateClearableString description = 10;
+    optional UpdateClearableString description = 10;
 
     /* The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 */
-    string url = 11;
-    MQTTPublisher.ContentType content_type = 12;
+    optional string url = 11;
+    optional MQTTPublisher.ContentType content_type = 12;
 
     /* The MQTT topic to send to on the receiving server. */
-    string topic = 13;
+    optional string topic = 13;
 
     /* MQTT QoS value. */
-    MQTTPublisher.Data.QoS qos = 14;
+    optional MQTTPublisher.Data.QoS qos = 14;
 
     /* Identifier used by the MQTT client. Defaults to "hiber". */
-    UpdateClearableString identifier = 15;
+    optional UpdateClearableString identifier = 15;
 
     /* Optional username to authenticate with. */
-    UpdateClearableString username = 16;
+    optional UpdateClearableString username = 16;
 
     /* Optional password to authenticate with. Requires username to be set. */
-    UpdateClearableString password = 17;
+    optional UpdateClearableString password = 17;
 
     /* Update or remove the client certificate to use when connecting to the MQTT server. */
-    UpdateOptionalId certificate_id = 18;
+    optional UpdateOptionalId certificate_id = 18;
 
     /* Update or remove the server CA certificate to use when connecting to the MQTT server. */
-    UpdateOptionalId server_ca_certificate_id = 23;
+    optional UpdateOptionalId server_ca_certificate_id = 23;
 
     /* Disable the MQTT publisher, so it needs to be enabled again before it is active. */
-    UpdateBoolean active = 19;
+    optional UpdateBoolean active = 19;
 
     reserved 20;
 
     /* Period to consider when determining health from warning events. Warning events cannot be resolved.
      * Set this to 0 to disable warnings based on failure percentage.
      */
-    Duration health_warning_period = 21;
+    optional Duration health_warning_period = 21;
 
     /* Allowed percentage of call failures.
      * If the failure percentage is higher, within the warning period, the health is switched to WARNING.
      */
-    UpdateZeroableInt health_warning_failure_percentage = 22;
+    optional UpdateZeroableInt health_warning_failure_percentage = 22;
 }
 
 message UpdateMQTTPublisherTagsRequest {
@@ -317,7 +317,7 @@ message UpdateMQTTPublisherTagsRequest {
         repeated MQTTPublisher mqtt_publishers = 1;
     }
 
-    string organization = 1;
+    optional string organization = 1;
     MQTTPublisherSelection selection = 2;
     hiber.tag.UpdateTagsForItem update = 3;
 }
@@ -327,6 +327,6 @@ message DeleteMQTTPublisherRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     int64 id = 2;
 }

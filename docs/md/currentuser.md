@@ -213,7 +213,7 @@ Accept an invitation to an organization.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) |  |
-| default_organization | [ bool](#bool) | Set to true to mark the organization as your default organization. |
+|  **optional** default_organization | [optional bool](#bool) | Set to true to mark the organization as your default organization. |
 
 ### AcceptOrganizationInviteRequest.Response
 
@@ -239,10 +239,10 @@ List all organizations that can be impersonated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| search | [ string](#string) | Search accessible organizations by name. |
-| member_only | [ bool](#bool) | Only list organizations of which you are a member (exclude organizations that you can only impersonate). |
-| default_only | [ bool](#bool) | Only list your default organization. |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** search | [optional string](#string) | Search accessible organizations by name. |
+|  **optional** member_only | [optional bool](#bool) | Only list organizations of which you are a member (exclude organizations that you can only impersonate). |
+|  **optional** default_only | [optional bool](#bool) | Only list your default organization. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### AccessibleOrganizationsRequest.AccessibleOrganization
 
@@ -305,7 +305,7 @@ Get your personal data.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 
 ### DeleteCurrentUserRequest
 
@@ -324,7 +324,7 @@ List all invitations from organizations.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| search | [ string](#string) |  |
+|  **optional** search | [optional string](#string) |  |
 
 ### ListOrganizationInvitesRequest.Invite
 
@@ -355,8 +355,8 @@ List all invitations from organizations.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.role.RoleSelection](#hiberroleroleselection) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional hiber.role.RoleSelection](#hiberroleroleselection) | Select the roles to list. Optional, when omitted or empty everything is included. |
 
 ### OverrideRoles.Response
 
@@ -456,15 +456,15 @@ so not all messages listed here are referenced.)
 | ----- | ---- | ----------- |
 | parent_organization | [ string](#string) | Pick the organization to use as parent. If unset, your default organization is used. If you have no organization, an organization_creation_token is required. |
 | new_organization | [ string](#string) | The name for the new organization. Lowercase, letters, numbers, dashes and underscores only. Required. Used as an identifier for the organization. |
-| display_name | [ string](#string) | The name to display for your organization (i.e. capitalized, with spaces, etc.). Default to the name above. |
-| avatar | [ hiber.Avatar](#hiberavatar) | The avatar image representing this organization. Usually the logo. |
-| is_business | [ bool](#bool) | Whether this organization is created for a business. |
-| vat_number | [ string](#string) | Whether this organization is created for a business, provide a VAT number. |
-| address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | Postal address for your organization. |
-| billing_name | [ string](#string) | Billing information for your organization. Optional, but required if you want active modems. |
-| billing_address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | Billing address for your organization. Optional, but required if you want active modems. |
+|  **optional** display_name | [optional string](#string) | The name to display for your organization (i.e. capitalized, with spaces, etc.). Default to the name above. |
+|  **optional** avatar | [optional hiber.Avatar](#hiberavatar) | The avatar image representing this organization. Usually the logo. |
+|  **optional** is_business | [optional bool](#bool) | Whether this organization is created for a business. |
+|  **optional** vat_number | [optional string](#string) | Whether this organization is created for a business, provide a VAT number. |
+|  **optional** address | [optional hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | Postal address for your organization. |
+|  **optional** billing_name | [optional string](#string) | Billing information for your organization. Optional, but required if you want active modems. |
+|  **optional** billing_address | [optional hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) | Billing address for your organization. Optional, but required if you want active modems. |
 | contact | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) | Contact information for your organization. Required. |
-| organization_creation_token | [ string](#string) | A token that allows you to create an organization without having an organization. |
+|  **optional** organization_creation_token | [optional string](#string) | A token that allows you to create an organization without having an organization. |
 
 ### hiber.organization.DeleteOrganizationRequest
 
@@ -496,7 +496,7 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organizations | [repeated string](#string) | The slug for this organization, used to identify organizations |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### hiber.organization.GetOrganizationAvatar.Response
 
@@ -522,7 +522,7 @@ Get your current organization's data
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to get the details for. If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to get the details for. If unset, your default organization is used. |
 
 ### hiber.organization.ListChildOrganizationsRequest
 
@@ -530,10 +530,10 @@ List the child organizations for the given organization
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
-| include_details | [ bool](#bool) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) | Select the organizations to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+|  **optional** include_details | [optional bool](#bool) |  |
 
 ### hiber.organization.ListChildOrganizationsRequest.Response
 
@@ -564,7 +564,7 @@ of any modems and related data.
 | updated_at | [ hiber.Timestamp](#hibertimestamp) |  |
 | features | [repeated hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature) |  |
 | database_info | [ string](#string) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_defaults**.defaults | [optional hiber.organization.Organization.Defaults](#hiberorganizationorganizationdefaults) |  |
+|  **optional** defaults | [optional hiber.organization.Organization.Defaults](#hiberorganizationorganizationdefaults) |  |
 
 ### hiber.organization.Organization.Address
 
@@ -594,7 +594,7 @@ Default settings for this organization.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_device_transmission_rate**.expected_device_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The default expected transmission interval for devices in this organization. |
+|  **optional** expected_device_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The default expected transmission interval for devices in this organization. |
 
 ### hiber.organization.OrganizationSelection
 
@@ -603,8 +603,8 @@ User for child organization list and tree.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organizations | [ hiber.Filter.Organizations](#hiberfilterorganizations) |  |
-| search | [ string](#string) |  |
+|  **optional** organizations | [optional hiber.Filter.Organizations](#hiberfilterorganizations) |  |
+|  **optional** search | [optional string](#string) |  |
 
 ### hiber.organization.OrganizationTree
 
@@ -622,7 +622,7 @@ The organization tree contains your current organization as the root of the tree
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate) for this call, overriding your default organization |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate) for this call, overriding your default organization |
 | selection | [ hiber.organization.OrganizationSelection](#hiberorganizationorganizationselection) |  |
 
 ### hiber.organization.OrganizationTreeRequest.Response
@@ -643,7 +643,7 @@ Note that the organization field specifies the organization, it is not used to u
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) |  |
+|  **optional** organization | [optional string](#string) |  |
 | display_name | [ string](#string) |  |
 | vat_number | [ string](#string) |  |
 | address | [ hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) |  |
@@ -710,8 +710,8 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| search | [ string](#string) |  |
-| roles | [ hiber.Filter.Roles](#hiberfilterroles) |  |
+|  **optional** search | [optional string](#string) |  |
+|  **optional** roles | [optional hiber.Filter.Roles](#hiberfilterroles) |  |
 
 
 ### Enums
@@ -736,7 +736,7 @@ When sending an Area to the api, the center location is ignored.
 | center | [ hiber.Location](#hiberlocation) |  |
 | bottom_left | [ hiber.Location](#hiberlocation) |  |
 | top_right | [ hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
 
@@ -762,8 +762,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) |  |
-| hex | [ string](#string) |  |
+|  **optional** bytes | [optional bytes](#bytes) |  |
+|  **optional** hex | [optional string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -789,10 +789,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) |  |
-| month | [ uint32](#uint32) |  |
-| day | [ uint32](#uint32) |  |
-| textual | [ string](#string) |  |
+|  **optional** year | [optional uint32](#uint32) |  |
+|  **optional** month | [optional uint32](#uint32) |  |
+|  **optional** day | [optional uint32](#uint32) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -809,8 +809,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| textual | [ string](#string) |  |
+|  **optional** duration | [optional google.protobuf.Duration](#googleprotobufduration) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.Filter
 
@@ -1040,7 +1040,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 | ----- | ---- | ----------- |
 | latitude | [ double](#double) | Decimal degrees north. |
 | longitude | [ double](#double) | Decimal degrees east. |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.LocationSelection
 
@@ -1151,8 +1151,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) |  |
-| page | [ int32](#int32) |  |
+|  **optional** size | [optional int32](#int32) |  |
+|  **optional** page | [optional int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -1179,7 +1179,7 @@ while a rectangular region is easier to define using Area.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | path | [repeated hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
 
@@ -1215,9 +1215,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
-| time_zone | [ string](#string) |  |
-| textual | [ string](#string) |  |
+|  **optional** timestamp | [optional google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+|  **optional** time_zone | [optional string](#string) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.UpdateBoolean
 

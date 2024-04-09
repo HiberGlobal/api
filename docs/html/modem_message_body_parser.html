@@ -672,18 +672,6 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.MessageCountRequest"><span class="badge">M</span>MessageCountRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.MessageCountRequest.Response"><span class="badge">M</span>MessageCountRequest.Response</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.MessageCountRequest.Response.MessageCount"><span class="badge">M</span>MessageCountRequest.Response.MessageCount</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.modem.Modem"><span class="badge">M</span>Modem</a>
                 </li>
               
@@ -705,26 +693,6 @@
               
                 <li>
                   <a href="#hiber.modem.Modem.TechnicalData"><span class="badge">M</span>Modem.TechnicalData</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.ModemHealthCount"><span class="badge">M</span>ModemHealthCount</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.ModemHealthCount.HealthCount"><span class="badge">M</span>ModemHealthCount.HealthCount</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.ModemHealthCount.HealthCountGroupedPerTag"><span class="badge">M</span>ModemHealthCount.HealthCountGroupedPerTag</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.ModemHealthCount.Request"><span class="badge">M</span>ModemHealthCount.Request</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.ModemHealthCount.Response"><span class="badge">M</span>ModemHealthCount.Response</a>
                 </li>
               
                 <li>
@@ -768,10 +736,6 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.RenameModemRequest"><span class="badge">M</span>RenameModemRequest</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.modem.TagCount"><span class="badge">M</span>TagCount</a>
                 </li>
               
@@ -784,47 +748,11 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.modem.UpdateModemLifecycleRequest"><span class="badge">M</span>UpdateModemLifecycleRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.UpdateModemLifecycleRequest.Response"><span class="badge">M</span>UpdateModemLifecycleRequest.Response</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.UpdateModemNotesRequest"><span class="badge">M</span>UpdateModemNotesRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.UpdateModemNotesRequest.Response"><span class="badge">M</span>UpdateModemNotesRequest.Response</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.UpdateModemSecureNotesRequest"><span class="badge">M</span>UpdateModemSecureNotesRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.UpdateModemSecureNotesRequest.Response"><span class="badge">M</span>UpdateModemSecureNotesRequest.Response</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.modem.UpdateModemTagsRequest"><span class="badge">M</span>UpdateModemTagsRequest</a>
                 </li>
               
                 <li>
                   <a href="#hiber.modem.UpdateModemTagsRequest.Response"><span class="badge">M</span>UpdateModemTagsRequest.Response</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.UpdatePeripheralsRequest"><span class="badge">M</span>UpdatePeripheralsRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.UpdatePeripheralsRequest.AddPeripheralsEntry"><span class="badge">M</span>UpdatePeripheralsRequest.AddPeripheralsEntry</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.modem.UpdatePeripheralsRequest.Response"><span class="badge">M</span>UpdatePeripheralsRequest.Response</a>
                 </li>
               
               
@@ -885,7 +813,7 @@
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -985,7 +913,7 @@
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -1016,7 +944,7 @@
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -1054,28 +982,28 @@
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
                 <tr>
                   <td>selection</td>
                   <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParserSelection">ModemMessageBodyParserSelection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>optional</td>
+                  <td><p>Select the parsers to list. Optional, when omitted or empty everything is included. </p></td>
                 </tr>
               
                 <tr>
                   <td>pagination</td>
                   <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>exclude_content</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Whether to omit the content in the resulting ModemMessageBodyParsers. </p></td>
                 </tr>
               
@@ -1137,7 +1065,7 @@
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -1175,7 +1103,7 @@
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -1523,28 +1451,28 @@ the value of the map is the json to expect at that json-path. </p></td>
                 <tr>
                   <td>search</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Find parsers by searching for this text in the name, content_ksy, data fields or simple parser definition. </p></td>
                 </tr>
               
                 <tr>
                   <td>only_simple</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Only return simple parsers, created using SimpleModemMessageBodyParser. </p></td>
                 </tr>
               
                 <tr>
                   <td>only_ksy_file</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Only return parsers created from an uploaded .ksy file. </p></td>
                 </tr>
               
                 <tr>
                   <td>only_owned_parsers</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Exclude parsers that are not owned by your organization (those that you did not create yourself). </p></td>
                 </tr>
               
@@ -1583,7 +1511,7 @@ This only works when the fields are marked explicitly using the data fields opti
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -1628,7 +1556,7 @@ This only works when the fields are marked explicitly using the data fields opti
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -2006,7 +1934,7 @@ This can be combined with a size to limit the amounts of bytes that are parsed. 
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -2103,7 +2031,7 @@ This can be combined with a size to limit the amounts of bytes that are parsed. 
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -2172,7 +2100,7 @@ This can be combined with a size to limit the amounts of bytes that are parsed. 
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -2210,7 +2138,7 @@ This can be combined with a size to limit the amounts of bytes that are parsed. 
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -2248,7 +2176,7 @@ This can be combined with a size to limit the amounts of bytes that are parsed. 
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -2354,7 +2282,7 @@ This can be combined with a size to limit the amounts of bytes that are parsed. 
                 <tr>
                   <td>update_location_fields</td>
                   <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields.LocationFields">ModemMessageBodyParser.MetadataFields.LocationFields</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Update the location fields. </p></td>
                 </tr>
               
@@ -2520,7 +2448,7 @@ the value of the map is the json to expect at that json-path. </p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -2549,7 +2477,7 @@ This can be useful to track which fields could be plotted, etc. </p></td>
                 <tr>
                   <td>metadata_fields</td>
                   <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields">ModemMessageBodyParser.MetadataFields</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Fields in the parsed result that match special things that can be processed by the system, like a location. </p></td>
                 </tr>
               
@@ -2813,7 +2741,7 @@ This can also be used without an existing parser by uploading a .ksy file or spe
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Text representation. Can be used as an alternative input in a request, filled in by the API in responses. </p></td>
                 </tr>
               
@@ -2868,14 +2796,14 @@ This can also be used without an existing parser by uploading a .ksy file or spe
                 <tr>
                   <td>bytes</td>
                   <td><a href="#bytes">bytes</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>hex</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -2930,28 +2858,28 @@ This can also be used without an existing parser by uploading a .ksy file or spe
                 <tr>
                   <td>year</td>
                   <td><a href="#uint32">uint32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>month</td>
                   <td><a href="#uint32">uint32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>day</td>
                   <td><a href="#uint32">uint32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -3006,14 +2934,14 @@ This can also be used without an existing parser by uploading a .ksy file or spe
                 <tr>
                   <td>duration</td>
                   <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -3783,7 +3711,7 @@ Exclude takes precedence over include. </p></td>
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Text representation. Can be used as an alternative input in a request, filled in by the API in responses. </p></td>
                 </tr>
               
@@ -3993,14 +3921,14 @@ Exclude takes precedence over include. </p></td>
                 <tr>
                   <td>size</td>
                   <td><a href="#int32">int32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>page</td>
                   <td><a href="#int32">int32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -4099,7 +4027,7 @@ For example, unbundled events are likely to return an approximated total, but no
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Text representation. Can be used as an alternative input in a request, filled in by the API in responses. </p></td>
                 </tr>
               
@@ -4154,21 +4082,21 @@ For example, unbundled events are likely to return an approximated total, but no
                 <tr>
                   <td>timestamp</td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>time_zone</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -5013,7 +4941,7 @@ is ready to be downloaded.</p></td>
                 <tr>
                   <td>display_name</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>An optional display name for the field. </p></td>
                 </tr>
               
@@ -5063,14 +4991,14 @@ If it is, some processing options may be unavailable or slower. </p></td>
                 <tr>
                   <td>operational</td>
                   <td><a href="#bool">bool</a></td>
-                  <td>optional</td>
+                  <td></td>
                   <td><p>Field contains values relevant for operating the device. </p></td>
                 </tr>
               
                 <tr>
                   <td>unit_of_measurement</td>
                   <td><a href="#hiber.UnitOfMeasurement">hiber.UnitOfMeasurement</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p><strong>Deprecated.</strong> If numeric, the unit of the field.
 Deprecated: use numeric.numeric_unit oneof instead </p></td>
                 </tr>
@@ -5078,7 +5006,7 @@ Deprecated: use numeric.numeric_unit oneof instead </p></td>
                 <tr>
                   <td>unit_symbol</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p><strong>Deprecated.</strong> The symbol for the unit.
 Deprecated: use numeric.symbol instead </p></td>
                 </tr>
@@ -5181,7 +5109,7 @@ Deprecated: use numeric.symbol instead </p></td>
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.field.Field.Numeric.Unit">Field.Numeric.Unit</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>If the unit preferences were applied, and the unit is different, the field will be converted to the preferred
 unit, from the original unit specified in this field. </p></td>
                 </tr>
@@ -5437,7 +5365,7 @@ Effectively round up when &gt;= .5 and next integer value is even, otherwise rou
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -5468,14 +5396,14 @@ The order of this list matches the order of the name, values in the same index a
                 <tr>
                   <td>lifecycle</td>
                   <td><a href="#hiber.modem.Modem.Lifecycle">Modem.Lifecycle</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>The status for the new modems. </p></td>
                 </tr>
               
                 <tr>
                   <td>technical</td>
                   <td><a href="#hiber.modem.Modem.TechnicalData">Modem.TechnicalData</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>The technical data, such as manufacturer and hardware information for the new modems. </p></td>
                 </tr>
               
@@ -5489,7 +5417,7 @@ The order of this list matches the order of the name, values in the same index a
                 <tr>
                   <td>notes</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Notes for all new modems. </p></td>
                 </tr>
               
@@ -5510,21 +5438,21 @@ The order of this list matches the order of the name, values in the same index a
                 <tr>
                   <td>tags</td>
                   <td><a href="#hiber.tag.UpdateTagsForItem">hiber.tag.UpdateTagsForItem</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>The tags to set to the new modems, either existing or created by this call. </p></td>
                 </tr>
               
                 <tr>
                   <td>include_modems_in_response</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Whether to return the full Modem in addition to the modem number and verification code. </p></td>
                 </tr>
               
                 <tr>
                   <td>include_verification_code</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Whether to return the verification code for the modem. </p></td>
                 </tr>
               
@@ -5673,7 +5601,7 @@ the organizations can be limited using the fields in the OrganizationSelection. 
                 <tr>
                   <td>child_organizations</td>
                   <td><a href="#hiber.Filter.ChildOrganizations">hiber.Filter.ChildOrganizations</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p><strong>Deprecated.</strong> Look for the modem in child organizations.
 DEPRECATED: use the in_organizations flag instead. </p></td>
                 </tr>
@@ -5822,7 +5750,7 @@ type is replaced with GATEWAY. This may change in the future if more grouping op
                 <tr>
                   <td>allow_any_group_parent</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Set to true to allow group request to return modems that can never be the parent of a group.
 - If this flag is false, the modems for the groups are automatically filtered on being a parent of a group.
   Note that the group may still be empty, i.e. when a gateway has no connected devices.
@@ -5942,21 +5870,21 @@ the group parent in the group_parents field. </p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
                 <tr>
                   <td>selection</td>
                   <td><a href="#hiber.modem.ModemSelection">ModemSelection</a></td>
-                  <td></td>
-                  <td><p>Select which modems to return. </p></td>
+                  <td>optional</td>
+                  <td><p>Select which modems to return. Optional, when omitted or empty everything is included. </p></td>
                 </tr>
               
                 <tr>
                   <td>pagination</td>
                   <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Paginate through results. </p></td>
                 </tr>
               
@@ -5970,21 +5898,21 @@ the group parent in the group_parents field. </p></td>
                 <tr>
                   <td>child_organizations</td>
                   <td><a href="#hiber.Filter.ChildOrganizations">hiber.Filter.ChildOrganizations</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Include modems from the selected child organizations. </p></td>
                 </tr>
               
                 <tr>
                   <td>location_selection</td>
                   <td><a href="#hiber.LocationSelection">hiber.LocationSelection</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Filter modems by location. </p></td>
                 </tr>
               
                 <tr>
                   <td>include_missing_group_parents</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Set this to true to populate the group_parents field in the response.
 This will be populated with missing group parents (i.e. gateways) for the the modems on this page.
 Any group parent that is on the current page is not included in this list to avoid duplicate data. </p></td>
@@ -6042,113 +5970,6 @@ Any group parent that is on the current page is not included in this list to avo
                   <td><p>This will be populated with missing group parents (i.e. gateways) for the the modems on this page.
 Any group parent that is on the current page is not included in this list to avoid duplicate data.
 Only set when include_missing_group_parents is true in the request. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.MessageCountRequest">MessageCountRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>selection</td>
-                  <td><a href="#hiber.modem.ModemMessageSelection">ModemMessageSelection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>time_zone_offset</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>Numeric timezone offset for day grouping. Optional. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>time_zone</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Timezone string for day grouping. Optional. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.MessageCountRequest.Response">MessageCountRequest.Response</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>message_count_per_day</td>
-                  <td><a href="#hiber.modem.MessageCountRequest.Response.MessageCount">MessageCountRequest.Response.MessageCount</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>request</td>
-                  <td><a href="#hiber.modem.MessageCountRequest">MessageCountRequest</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.MessageCountRequest.Response.MessageCount">MessageCountRequest.Response.MessageCount</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>date</td>
-                  <td><a href="#hiber.Date">hiber.Date</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>count</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -6590,158 +6411,6 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
 
         
       
-        <h3 id="hiber.modem.ModemHealthCount">ModemHealthCount</h3>
-        <p>Deprecated: replaced with simpler calls in TagService.TagHealth and ModemService.TagCount.</p>
-
-        
-
-        
-      
-        <h3 id="hiber.modem.ModemHealthCount.HealthCount">ModemHealthCount.HealthCount</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>health_level</td>
-                  <td><a href="#hiber.health.HealthLevel">hiber.health.HealthLevel</a></td>
-                  <td></td>
-                  <td><p>Health level based on the modem alarm and some always-present alarms. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>count</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>The number of modems matching the modem selection with this health level </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.ModemHealthCount.HealthCountGroupedPerTag">ModemHealthCount.HealthCountGroupedPerTag</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>tag</td>
-                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
-                  <td></td>
-                  <td><p>The tag this count is for. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>health_counts</td>
-                  <td><a href="#hiber.modem.ModemHealthCount.HealthCount">ModemHealthCount.HealthCount</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.ModemHealthCount.Request">ModemHealthCount.Request</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modem_selection</td>
-                  <td><a href="#hiber.modem.ModemSelection">ModemSelection</a></td>
-                  <td></td>
-                  <td><p>Selection of modems to count. If default, all modems are counted. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>include_tag_count</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Whether to return specific counts for tags, selected using the tag_count_selection. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tag_count_selection</td>
-                  <td><a href="#hiber.tag.TagSelection">hiber.tag.TagSelection</a></td>
-                  <td></td>
-                  <td><p>Selection of tags to return specific counts for. If default, count is calculated for all tags. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.ModemHealthCount.Response">ModemHealthCount.Response</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>health_totals</td>
-                  <td><a href="#hiber.modem.ModemHealthCount.HealthCount">ModemHealthCount.HealthCount</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>health_grouped_per_tag</td>
-                  <td><a href="#hiber.modem.ModemHealthCount.HealthCountGroupedPerTag">ModemHealthCount.HealthCountGroupedPerTag</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>request</td>
-                  <td><a href="#hiber.modem.ModemHealthCount.Request">ModemHealthCount.Request</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="hiber.modem.ModemMessage">ModemMessage</h3>
         <p>Decrypted modem message. Messages are received encrypted and decrypted asynchronously, which adds the location</p><p>data and message body. (Your message body is, of course, still encrypted if you've encrypted it yourself)</p>
 
@@ -7084,35 +6753,35 @@ and excluding [HIBERBAND] will filter out the message, even though it also has D
                 <tr>
                   <td>modems</td>
                   <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>free_text_search</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>only_active</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p><strong>Deprecated.</strong> Use lifecycle filter instead. </p></td>
                 </tr>
               
                 <tr>
                   <td>activated_in</td>
                   <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>with_last_message_in</td>
                   <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -7134,7 +6803,7 @@ Defaults to nominal lifecycles, excluding disabled or decommissioned modems. </p
                 <tr>
                   <td>transfers</td>
                   <td><a href="#hiber.modem.ModemSelection.Transfers">ModemSelection.Transfers</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -7156,28 +6825,28 @@ In other words, when providing multiple types, this is an &#34;OR&#34; relations
                 <tr>
                   <td>device_types</td>
                   <td><a href="#hiber.Filter.DeviceTypes">hiber.Filter.DeviceTypes</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>sensorBrands</td>
                   <td><a href="#hiber.Filter.SensorBrands">hiber.Filter.SensorBrands</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>identifiers</td>
                   <td><a href="#hiber.Filter.ModemIdentifiers">hiber.Filter.ModemIdentifiers</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>only_gateways</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p><strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway.
 Replaced by `types`.
 If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. </p></td>
@@ -7186,7 +6855,7 @@ If you only want to have gateways in the result, create a selection with only `M
                 <tr>
                   <td>only_has_external_device_ids</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p><strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors.
 Replaced by `types`.
 If you only want to have connected devices in the result,
@@ -7196,7 +6865,7 @@ create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. </p></td
                 <tr>
                   <td>connected_to_gateways</td>
                   <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -7210,7 +6879,7 @@ create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. </p></td
                 <tr>
                   <td>filter_by_tags</td>
                   <td><a href="#hiber.tag.TagSelection">hiber.tag.TagSelection</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -7231,14 +6900,14 @@ create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. </p></td
                 <tr>
                   <td>only_connected_to_gateway</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Only select modems that are connected to a gateway (connected devices). </p></td>
                 </tr>
               
                 <tr>
                   <td>not_connected_to_gateway</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Only select modems that are not connected to a gateway (i.e. gateways). </p></td>
                 </tr>
               
@@ -7437,44 +7106,6 @@ add the name of the peripheral as a map-key and add a repeated list of versions 
 
         
       
-        <h3 id="hiber.modem.RenameModemRequest">RenameModemRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modem_number</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="hiber.modem.TagCount">TagCount</h3>
         <p></p>
 
@@ -7519,22 +7150,22 @@ add the name of the peripheral as a map-key and add a repeated list of versions 
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
                 <tr>
                   <td>selection</td>
                   <td><a href="#hiber.modem.ModemSelection">ModemSelection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>optional</td>
+                  <td><p>Select the modems to count. Optional, when omitted or empty everything is included. </p></td>
                 </tr>
               
                 <tr>
                   <td>tag_selection</td>
                   <td><a href="#hiber.tag.TagSelection">hiber.tag.TagSelection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>optional</td>
+                  <td><p>Select the tags to list. Optional, when omitted or empty everything is included. </p></td>
                 </tr>
               
             </tbody>
@@ -7575,305 +7206,6 @@ add the name of the peripheral as a map-key and add a repeated list of versions 
 
         
       
-        <h3 id="hiber.modem.UpdateModemLifecycleRequest">UpdateModemLifecycleRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modem_number</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong> Either pick a single modem to update. DEPRECATED, since ModemSelection is more flexible. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modem_selection</td>
-                  <td><a href="#hiber.modem.ModemSelection">ModemSelection</a></td>
-                  <td></td>
-                  <td><p>Or a modem selection. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>update_lifecycle</td>
-                  <td><a href="#hiber.modem.Modem.Lifecycle">Modem.Lifecycle</a></td>
-                  <td></td>
-                  <td><p>The new status for the modem(s). </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pagination</td>
-                  <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
-                  <td></td>
-                  <td><p>Pagination for the modems in the Response. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>modem_number</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
-          
-
-        
-      
-        <h3 id="hiber.modem.UpdateModemLifecycleRequest.Response">UpdateModemLifecycleRequest.Response</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>modem</td>
-                  <td><a href="#hiber.modem.Modem">Modem</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modems</td>
-                  <td><a href="#hiber.modem.Modem">Modem</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>request</td>
-                  <td><a href="#hiber.modem.UpdateModemLifecycleRequest">UpdateModemLifecycleRequest</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pagination</td>
-                  <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>modem</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
-          
-
-        
-      
-        <h3 id="hiber.modem.UpdateModemNotesRequest">UpdateModemNotesRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>selection</td>
-                  <td><a href="#hiber.modem.ModemSelection">ModemSelection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pagination</td>
-                  <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>notes</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Notes content </p></td>
-                </tr>
-              
-                <tr>
-                  <td>allow_override_existing_notes</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>When you try to set a new notes value to multiple modems, the API returns an error if their previous
-values were different. Set this to true to apply it anyway. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.UpdateModemNotesRequest.Response">UpdateModemNotesRequest.Response</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>modems</td>
-                  <td><a href="#hiber.modem.Modem">Modem</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>request</td>
-                  <td><a href="#hiber.modem.UpdateModemNotesRequest">UpdateModemNotesRequest</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pagination</td>
-                  <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.UpdateModemSecureNotesRequest">UpdateModemSecureNotesRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modem_number</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>secure_notes</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.UpdateModemSecureNotesRequest.Response">UpdateModemSecureNotesRequest.Response</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>modem</td>
-                  <td><a href="#hiber.modem.Modem">Modem</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>request</td>
-                  <td><a href="#hiber.modem.UpdateModemSecureNotesRequest">UpdateModemSecureNotesRequest</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="hiber.modem.UpdateModemTagsRequest">UpdateModemTagsRequest</h3>
         <p></p>
 
@@ -7887,7 +7219,7 @@ values were different. Set this to true to apply it anyway. </p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -7908,7 +7240,7 @@ values were different. Set this to true to apply it anyway. </p></td>
                 <tr>
                   <td>pagination</td>
                   <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -7940,169 +7272,6 @@ values were different. Set this to true to apply it anyway. </p></td>
                   <td>request</td>
                   <td><a href="#hiber.modem.UpdateModemTagsRequest">UpdateModemTagsRequest</a></td>
                   <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pagination</td>
-                  <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.UpdatePeripheralsRequest">UpdatePeripheralsRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>selection</td>
-                  <td><a href="#hiber.modem.ModemSelection">ModemSelection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>gps</td>
-                  <td><a href="#hiber.UpdateBoolean">hiber.UpdateBoolean</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>hardcoded_gps_location</td>
-                  <td><a href="#hiber.Location">hiber.Location</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>add_peripherals</td>
-                  <td><a href="#hiber.modem.UpdatePeripheralsRequest.AddPeripheralsEntry">UpdatePeripheralsRequest.AddPeripheralsEntry</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>remove_peripherals</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pagination</td>
-                  <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>custom_antenna</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>time_zone</td>
-                  <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>update_transmission_interval</td>
-                  <td><a href="#hiber.Duration">hiber.Duration</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>remove_transmission_interval</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.UpdatePeripheralsRequest.AddPeripheralsEntry">UpdatePeripheralsRequest.AddPeripheralsEntry</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.modem.UpdatePeripheralsRequest.Response">UpdatePeripheralsRequest.Response</h3>
-        <p>The result is paginated if affecting more than 100 modems. Use the list call to paginate further.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>request</td>
-                  <td><a href="#hiber.modem.UpdatePeripheralsRequest">UpdatePeripheralsRequest</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>modems</td>
-                  <td><a href="#hiber.modem.Modem">Modem</a></td>
-                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -8474,59 +7643,10 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
               </tr>
             
               <tr>
-                <td>MessageCount</td>
-                <td><a href="#hiber.modem.MessageCountRequest">MessageCountRequest</a></td>
-                <td><a href="#hiber.modem.MessageCountRequest.Response">MessageCountRequest.Response</a></td>
-                <td><p>Count messages for the selected modems.</p></td>
-              </tr>
-            
-              <tr>
-                <td>Rename</td>
-                <td><a href="#hiber.modem.RenameModemRequest">RenameModemRequest</a></td>
-                <td><a href="#hiber.modem.Modem">Modem</a></td>
-                <td><p>Change the name of a modem to the given value.</p></td>
-              </tr>
-            
-              <tr>
                 <td>UpdateTags</td>
                 <td><a href="#hiber.modem.UpdateModemTagsRequest">UpdateModemTagsRequest</a></td>
                 <td><a href="#hiber.modem.UpdateModemTagsRequest.Response">UpdateModemTagsRequest.Response</a></td>
                 <td><p>Add, remove and create new tags for the selected modems.</p></td>
-              </tr>
-            
-              <tr>
-                <td>UpdateNotes</td>
-                <td><a href="#hiber.modem.UpdateModemNotesRequest">UpdateModemNotesRequest</a></td>
-                <td><a href="#hiber.modem.UpdateModemNotesRequest.Response">UpdateModemNotesRequest.Response</a></td>
-                <td><p>Change the notes for the selected modems to the given value.</p></td>
-              </tr>
-            
-              <tr>
-                <td>UpdateSecureNotes</td>
-                <td><a href="#hiber.modem.UpdateModemSecureNotesRequest">UpdateModemSecureNotesRequest</a></td>
-                <td><a href="#hiber.modem.UpdateModemSecureNotesRequest.Response">UpdateModemSecureNotesRequest.Response</a></td>
-                <td><p>Change the secure notes for the selected modems to the given value, if you have permission.</p></td>
-              </tr>
-            
-              <tr>
-                <td>UpdateStatus</td>
-                <td><a href="#hiber.modem.UpdateModemLifecycleRequest">UpdateModemLifecycleRequest</a></td>
-                <td><a href="#hiber.modem.UpdateModemLifecycleRequest.Response">UpdateModemLifecycleRequest.Response</a></td>
-                <td><p>Change the status of the selected modems to the given value.</p></td>
-              </tr>
-            
-              <tr>
-                <td>UpdatePeripherals</td>
-                <td><a href="#hiber.modem.UpdatePeripheralsRequest">UpdatePeripheralsRequest</a></td>
-                <td><a href="#hiber.modem.UpdatePeripheralsRequest.Response">UpdatePeripheralsRequest.Response</a></td>
-                <td><p>Add and remove peripherals for the selected modems.</p></td>
-              </tr>
-            
-              <tr>
-                <td>HealthCount</td>
-                <td><a href="#hiber.modem.ModemHealthCount.Request">ModemHealthCount.Request</a></td>
-                <td><a href="#hiber.modem.ModemHealthCount.Response">ModemHealthCount.Response</a></td>
-                <td><p>Count the modems in your organization by health.</p></td>
               </tr>
             
               <tr>
@@ -8554,41 +7674,6 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
             
               <tr>
                 <td>Messages</td>
-                <td><p>true</p></td>
-              </tr>
-            
-              <tr>
-                <td>MessageCount</td>
-                <td><p>true</p></td>
-              </tr>
-            
-              <tr>
-                <td>Rename</td>
-                <td><p>true</p></td>
-              </tr>
-            
-              <tr>
-                <td>UpdateNotes</td>
-                <td><p>true</p></td>
-              </tr>
-            
-              <tr>
-                <td>UpdateSecureNotes</td>
-                <td><p>true</p></td>
-              </tr>
-            
-              <tr>
-                <td>UpdateStatus</td>
-                <td><p>true</p></td>
-              </tr>
-            
-              <tr>
-                <td>UpdatePeripherals</td>
-                <td><p>true</p></td>
-              </tr>
-            
-              <tr>
-                <td>HealthCount</td>
                 <td><p>true</p></td>
               </tr>
             

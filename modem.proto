@@ -43,43 +43,8 @@ service ModemService {
         option deprecated = true;
     };
 
-    /* Count messages for the selected modems. */
-    rpc MessageCount (MessageCountRequest) returns (MessageCountRequest.Response){
-        option deprecated = true;
-    };
-
-    /* Change the name of a modem to the given value. */
-    rpc Rename (RenameModemRequest) returns (Modem) {
-        option deprecated = true;
-    };
-
     /* Add, remove and create new tags for the selected modems. */
     rpc UpdateTags (UpdateModemTagsRequest) returns (UpdateModemTagsRequest.Response);
-
-    /* Change the notes for the selected modems to the given value. */
-    rpc UpdateNotes (UpdateModemNotesRequest) returns (UpdateModemNotesRequest.Response) {
-        option deprecated = true;
-    };
-
-    /* Change the secure notes for the selected modems to the given value, if you have permission. */
-    rpc UpdateSecureNotes (UpdateModemSecureNotesRequest) returns (UpdateModemSecureNotesRequest.Response) {
-        option deprecated = true;
-    };
-
-    /* Change the status of the selected modems to the given value. */
-    rpc UpdateStatus (UpdateModemLifecycleRequest) returns (UpdateModemLifecycleRequest.Response) {
-        option deprecated = true;
-    };
-
-    /* Add and remove peripherals for the selected modems. */
-    rpc UpdatePeripherals (UpdatePeripheralsRequest) returns (UpdatePeripheralsRequest.Response) {
-        option deprecated = true;
-    };
-
-    /* Count the modems in your organization by health. */
-    rpc HealthCount (ModemHealthCount.Request) returns (ModemHealthCount.Response){
-        option deprecated = true;
-    };
 
     rpc TagCount (TagCount.Request) returns (TagCount.Response);
 }
@@ -336,13 +301,13 @@ message ModemSelection {
         map<string, OneOfValues> exclude = 2;
     }
 
-    Filter.Modems modems = 1;
-    string free_text_search = 8;
+    optional Filter.Modems modems = 1;
+    optional string free_text_search = 8;
 
     /* Use lifecycle filter instead. */
-    bool only_active = 4 [deprecated = true];
-    TimeRange activated_in = 5 [deprecated = true];
-    TimeRange with_last_message_in = 7;
+    optional bool only_active = 4 [deprecated = true];
+    optional TimeRange activated_in = 5 [deprecated = true];
+    optional TimeRange with_last_message_in = 7;
 
     /* Filter modems by health level. */
     repeated string health_levels = 18;
@@ -351,7 +316,7 @@ message ModemSelection {
      * Defaults to nominal lifecycles, excluding disabled or decommissioned modems.
      */
     repeated Modem.Lifecycle lifecycles = 10;
-    Transfers transfers = 11;
+    optional Transfers transfers = 11;
 
     /* Only include modems that have a type listed in types.
      * In other words, when providing multiple types, this is an "OR" relationship.
@@ -361,25 +326,27 @@ message ModemSelection {
     /* Exclude modems that have a type listed in types. */
     repeated Modem.Type exclude_types = 19;
 
-    Filter.DeviceTypes device_types = 22;
-    Filter.SensorBrands sensorBrands = 23;
-    Filter.ModemIdentifiers identifiers = 24;
+    optional Filter.DeviceTypes device_types = 22;
+    optional Filter.SensorBrands sensorBrands = 23;
+    optional Filter.ModemIdentifiers identifiers = 24;
 
     /* [DEPRECATED] Only list devices that are a gateway.
      * Replaced by `types`.
      * If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`.
      */
-    bool only_gateways = 12 [deprecated = true];
+    optional bool only_gateways = 12 [deprecated = true];
+
     /* [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors.
      * Replaced by `types`.
      * If you only want to have connected devices in the result,
      * create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`.
      */
-    bool only_has_external_device_ids = 13 [deprecated = true];
-    Filter.Modems connected_to_gateways = 14;
+    optional bool only_has_external_device_ids = 13 [deprecated = true];
+
+    optional Filter.Modems connected_to_gateways = 14;
     repeated string external_device_ids = 15 [deprecated = true];
 
-    hiber.tag.TagSelection filter_by_tags = 2;
+    optional hiber.tag.TagSelection filter_by_tags = 2;
 
     /* Filter modem result on specific peripherals. */
     oneof peripheral_selection {
@@ -389,10 +356,10 @@ message ModemSelection {
     }
 
     /* Only select modems that are connected to a gateway (connected devices). */
-    bool only_connected_to_gateway = 25;
+    optional bool only_connected_to_gateway = 25;
 
     /* Only select modems that are not connected to a gateway (i.e. gateways). */
-    bool not_connected_to_gateway = 26;
+    optional bool not_connected_to_gateway = 26;
 
     reserved 3, 6, 9, 17;
 }
@@ -558,7 +525,7 @@ message GetModemRequest {
     /* Look for the modem in child organizations.
      * DEPRECATED: use the in_organizations flag instead.
      */
-    Filter.ChildOrganizations child_organizations = 4 [deprecated = true];
+    optional Filter.ChildOrganizations child_organizations = 4 [deprecated = true];
 }
 
 message ListModemsRequest {
@@ -640,28 +607,28 @@ message ListModemsRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
-    /* Select which modems to return. */
-    ModemSelection selection = 2;
+    /* Select which modems to return. Optional, when omitted or empty everything is included. */
+    optional ModemSelection selection = 2;
 
     /* Paginate through results. */
-    Pagination pagination = 3;
+    optional Pagination pagination = 3;
 
     /* Sort the modem with the given sort options. */
     repeated Sort sort_by = 4 [packed = false];
 
     /* Include modems from the selected child organizations. */
-    Filter.ChildOrganizations child_organizations = 8;
+    optional Filter.ChildOrganizations child_organizations = 8;
 
     /* Filter modems by location. */
-    LocationSelection location_selection = 9;
+    optional LocationSelection location_selection = 9;
 
     /* Set this to true to populate the group_parents field in the response.
      * This will be populated with missing group parents (i.e. gateways) for the the modems on this page.
      * Any group parent that is on the current page is not included in this list to avoid duplicate data.
      */
-    bool include_missing_group_parents = 10;
+    optional bool include_missing_group_parents = 10;
 
     reserved 5 to 7;
 }
@@ -696,7 +663,7 @@ message ListModemsGrouped {
          * - If this flag is true, the group parents can include modems which cannot be a parent and for which
          *   the group can only be empty.
          */
-        bool allow_any_group_parent = 3;
+        optional bool allow_any_group_parent = 3;
     }
 
     /* The usage of ListModemsRequest and ListModemsRequest.Response in the Response.Group was intentionally
@@ -740,28 +707,6 @@ message ListModemMessagesRequest {
     reserved 4;
 }
 
-message MessageCountRequest {
-    option deprecated = true; // moved to modem_message.proto as CountMessages
-
-    message Response {
-        message MessageCount {
-            Date date = 1;
-            int32 count = 2;
-        }
-
-        repeated MessageCount message_count_per_day = 1;
-        MessageCountRequest request = 2;
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    ModemMessageSelection selection = 2;
-    /* Numeric timezone offset for day grouping. Optional. */
-    int32 time_zone_offset = 5;
-    /* Timezone string for day grouping. Optional. */
-    string time_zone = 6;
-}
-
 /* Create modems for your organization.
  * This call is not available to all organizations, and is typically used to create modems for testing or
  * when you want to connect a device to the API using just the API calls in the TestingService.
@@ -769,7 +714,7 @@ message MessageCountRequest {
 message CreateModem {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
         /* The amount of modems to create. */
         uint32 amount = 2;
@@ -786,16 +731,16 @@ message CreateModem {
         repeated string external_device_identifiers = 4;
 
         /* The status for the new modems. */
-        Modem.Lifecycle lifecycle = 5;
+        optional Modem.Lifecycle lifecycle = 5;
 
         /* The technical data, such as manufacturer and hardware information for the new modems. */
-        Modem.TechnicalData technical = 6;
+        optional Modem.TechnicalData technical = 6;
 
         /* The peripherals for the new modems. */
         map<string, string> peripherals = 7;
 
         /* Notes for all new modems. */
-        string notes = 8;
+        optional string notes = 8;
 
         /* The location for the new modems, either set or randomly within an area. */
         oneof initial_location {
@@ -804,13 +749,13 @@ message CreateModem {
         }
 
         /* The tags to set to the new modems, either existing or created by this call. */
-        hiber.tag.UpdateTagsForItem tags = 11;
+        optional hiber.tag.UpdateTagsForItem tags = 11;
 
         /* Whether to return the full Modem in addition to the modem number and verification code. */
-        bool include_modems_in_response = 12;
+        optional bool include_modems_in_response = 12;
 
         /* Whether to return the verification code for the modem. */
-        bool include_verification_code = 13;
+        optional bool include_verification_code = 13;
     }
 
     message Response {
@@ -832,14 +777,6 @@ message CreateModem {
     }
 }
 
-message RenameModemRequest {
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    string modem_number = 2;
-    string name = 3;
-    reserved 4;
-}
-
 message UpdateModemTagsRequest {
     message Response {
         repeated Modem modems = 1;
@@ -848,144 +785,10 @@ message UpdateModemTagsRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     hiber.tag.UpdateTagsForItem update = 3;
     ModemSelection selection = 5;
-    Pagination pagination = 6;
-}
-
-message UpdateModemNotesRequest {
-    message Response {
-        repeated Modem modems = 1;
-        UpdateModemNotesRequest request = 2;
-        Pagination.Result pagination = 3;
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    ModemSelection selection = 2;
-    Pagination pagination = 3;
-
-    /* Notes content */
-    string notes = 4;
-
-    /* When you try to set a new notes value to multiple modems, the API returns an error if their previous
-     * values were different. Set this to true to apply it anyway.
-     */
-    bool allow_override_existing_notes = 5;
-}
-
-message UpdateModemSecureNotesRequest {
-    message Response {
-        Modem modem = 1;
-        UpdateModemSecureNotesRequest request = 2;
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    string modem_number = 2;
-    string secure_notes = 3;
-}
-
-message UpdateModemLifecycleRequest {
-    message Response {
-        Modem modem = 1 [deprecated = true];
-        repeated Modem modems = 3;
-        UpdateModemLifecycleRequest request = 2;
-        Pagination.Result pagination = 4;
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-
-    /* Either pick a single modem to update. DEPRECATED, since ModemSelection is more flexible. */
-    string modem_number = 2 [deprecated = true];
-
-    /* Or a modem selection. */
-    ModemSelection modem_selection = 4;
-
-    /* The new status for the modem(s). */
-    Modem.Lifecycle update_lifecycle = 3;
-
-    /* Pagination for the modems in the Response. */
-    Pagination pagination = 5;
-}
-
-message UpdatePeripheralsRequest {
-    /* The result is paginated if affecting more than 100 modems. Use the list call to paginate further.
-     */
-    message Response {
-        UpdatePeripheralsRequest request = 1;
-        repeated Modem modems = 2;
-        Pagination.Result pagination = 3;
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    ModemSelection selection = 2;
-    UpdateBoolean gps = 4;
-    Location hardcoded_gps_location = 5;
-    map<string, string> add_peripherals = 6;
-    repeated string remove_peripherals = 7;
-    reserved 8;
-    Pagination pagination = 9;
-    string custom_antenna = 10;
-    UpdateClearableString time_zone = 11;
-    Duration update_transmission_interval = 12;
-    bool remove_transmission_interval = 13;
-
-    reserved 3;
-}
-
-/* Deprecated: replaced with simpler calls in TagService.TagHealth and ModemService.TagCount. */
-message ModemHealthCount {
-    option deprecated = true;
-
-    message Request {
-        option deprecated = true;
-
-        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
-
-        /* Selection of modems to count. If default, all modems are counted. */
-        ModemSelection modem_selection = 2;
-
-        /* Whether to return specific counts for tags, selected using the tag_count_selection. */
-        bool include_tag_count = 3;
-
-        /* Selection of tags to return specific counts for. If default, count is calculated for all tags. */
-        tag.TagSelection tag_count_selection = 4;
-    }
-
-    message HealthCount {
-        option deprecated = true;
-
-        /* Health level based on the modem alarm and some always-present alarms. */
-        health.HealthLevel health_level = 1;
-
-        /* The number of modems matching the modem selection with this health level */
-        uint32 count = 2;
-
-        reserved 3;
-    }
-
-    message HealthCountGroupedPerTag {
-        option deprecated = true;
-
-        /* The tag this count is for. */
-        hiber.tag.Tag tag = 1;
-        repeated HealthCount health_counts = 2;
-    }
-
-    message Response {
-        option deprecated = true;
-
-        repeated HealthCount health_totals = 1;
-        repeated HealthCountGroupedPerTag health_grouped_per_tag = 4;
-        Request request = 3;
-
-        reserved 2;
-    }
+    optional Pagination pagination = 6;
 }
 
 message TagCount {
@@ -994,9 +797,13 @@ message TagCount {
 
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
-        ModemSelection selection = 2;
-        tag.TagSelection tag_selection = 3;
+        optional string organization = 1;
+
+        /* Select the modems to count. Optional, when omitted or empty everything is included. */
+        optional ModemSelection selection = 2;
+
+        /* Select the tags to list. Optional, when omitted or empty everything is included. */
+        optional tag.TagSelection tag_selection = 3;
     }
 
     message Response {

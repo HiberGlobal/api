@@ -190,15 +190,15 @@ message ModemAlarm {
         string name = 1;
 
         /* Longer description for this check (optional). */
-        string description = 8;
+        optional string description = 8;
 
         /* The health level that this check would cause for a modem, when it fails.
          * If not set, the alarm default is used.
          */
-        string health_level = 2;
+        optional string health_level = 2;
 
         /* The error message template for this check, with parameters that will be filled in based on the check. */
-        string error_message_template = 3;
+        optional string error_message_template = 3;
 
         oneof check {
             /* Check whether the device is in a given location. */
@@ -232,7 +232,6 @@ message ModemAlarm {
         message InactivityCheck {
             /* The maximum value for the modem's inactivity (time since last message was received on the server). */
             Duration maximum = 1;
-            Duration deprecated_maximum = 29 [deprecated = true];
         }
 
         /* Check whether the message was delayed more than a configured limit.
@@ -313,7 +312,7 @@ message ModemAlarm {
              * The field's values will automatically be converted into this unit before the check is applied.
              * Note: unit is not currently available in the alarm_parameters.
              */
-            field.Field.Numeric.Unit unit = 9;
+            optional field.Field.Numeric.Unit unit = 9;
 
             oneof check {
                 /* Check that a field equals a value. */
@@ -441,7 +440,7 @@ message ModemAlarmSelection {
     repeated string identifiers = 1;
 
     /* Search for the given string in identifier, description, fields and values. */
-    string search = 2;
+    optional string search = 2;
 
     reserved 3, 4;
 }
@@ -452,18 +451,19 @@ message ModemAlarmSelection {
 message ListModemAlarms {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
-        /* Selection criteria for listing modem alarms. */
-        ModemAlarmSelection selection = 2;
+        /* Selection criteria for listing modem alarms. Optional, when omitted or empty everything is included. */
+        optional ModemAlarmSelection selection = 2;
+
         /* Pagination for the returned alarms. */
-        Pagination pagination = 3;
+        optional Pagination pagination = 3;
 
         /* Apply your UnitPreferences to the alarm checks.
          * For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for
          * temperature, the check value will be converted to celsius instead.
          */
-        bool apply_unit_preferences = 4;
+        optional bool apply_unit_preferences = 4;
     }
     message Response {
         /* A list of modem alarms. */
@@ -485,13 +485,13 @@ message ListModemAlarms {
 message CreateModemAlarm {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
         /* A name for the alarm. */
         string name = 7;
 
         /* A short description of what the alarm should do. */
-        string description = 2;
+        optional string description = 2;
 
         /* Condition determining when an alarm is triggered if it has multiple checks. */
         ModemAlarm.TriggerCondition trigger_condition = 3;
@@ -500,12 +500,12 @@ message CreateModemAlarm {
         repeated ModemAlarm.Check checks = 4;
 
         /* The default health level for this alarm. See ModemAlarm.default_health_level for more information. */
-        string default_health_level = 5;
+        optional string default_health_level = 5;
 
         /* The health level this alarm should cause after it is resolved.
          * See ModemAlarm.health_level_after_resolved for more information.
          */
-        ModemAlarm.HealthLevelAfterResolved health_level_after_resolved = 6;
+        optional ModemAlarm.HealthLevelAfterResolved health_level_after_resolved = 6;
     }
     message Response {
         /* The created modem alarm. */
@@ -524,28 +524,28 @@ message CreateModemAlarm {
 message UpdateModemAlarm {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
         /* The identifiers of the alarm to update */
         string identifier = 2;
 
         /* Update the name, optionally. */
-        UpdateClearableString update_name = 11;
+        optional UpdateClearableString update_name = 11;
 
         /* Update the description, optionally. */
-        UpdateClearableString update_description = 3;
+        optional UpdateClearableString update_description = 3;
 
         /* Update the trigger condition, optionally. */
-        ModemAlarm.TriggerCondition update_trigger_condition = 4;
+        optional ModemAlarm.TriggerCondition update_trigger_condition = 4;
 
         /* Update the default health level, optionally. */
-        UpdateClearableString update_default_health_level = 5;
+        optional UpdateClearableString update_default_health_level = 5;
 
         /* Update the health after resolved, optionally. */
-        ModemAlarm.HealthLevelAfterResolved update_health_level_after_resolved = 6;
+        optional ModemAlarm.HealthLevelAfterResolved update_health_level_after_resolved = 6;
 
         /* Remove the health after resolved, optionally. */
-        bool remove_health_level_after_resolved = 7;
+        optional bool remove_health_level_after_resolved = 7;
 
         /* The checks to add to this alarm. Shortcut for updating an alarm and then adding checks to it. */
         repeated ModemAlarm.Check add_checks = 8;
@@ -565,7 +565,7 @@ message UpdateModemAlarm {
 message UpdateModemAlarmAddCheck {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
         /* The identifier of the alarm to which the check is added. */
         string alarm_identifier = 2;
 
@@ -585,7 +585,7 @@ message UpdateModemAlarmAddCheck {
 message UpdateModemAlarmUpdateCheck {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
         /* The identifier of the alarm of which to update the check. */
         string alarm_identifier = 2;
         /* The identifier of the check to update. */
@@ -609,7 +609,7 @@ message UpdateModemAlarmUpdateCheck {
 message UpdateModemAlarmRemoveCheck {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
         /* The identifier of the alarm from which to remove the check. */
         string alarm_identifier = 2;
         /* The identifier of the check to remove. */
@@ -624,7 +624,7 @@ message UpdateModemAlarmRemoveCheck {
 message DeleteModemAlarm {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
         /* Identifier of the modem alarm to delete. */
         string identifier = 2;
     }
@@ -636,7 +636,7 @@ message DeleteModemAlarm {
 message TestModemAlarmTestParameters {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
         /* The identifier of the alarm on which to test parameters. */
         string alarm_identifier = 2;
         /* The parameters of the alarm that are changed. */
@@ -661,7 +661,7 @@ message AssignedModemAlarm {
 message AssignModemAlarms {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
         ModemAlarmSelection alarms = 2;
         modem.ModemSelection modems = 3;
 
@@ -682,7 +682,7 @@ message AssignModemAlarms {
 message UnassignModemAlarms {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
         ModemAlarmSelection alarms = 2;
         modem.ModemSelection modems = 3;
     }

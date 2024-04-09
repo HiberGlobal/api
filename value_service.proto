@@ -31,10 +31,10 @@ message ValueSelection {
     repeated string fields = 2;
 
     /* The time to view the values for. */
-    TimeRange time_range = 3;
+    optional TimeRange time_range = 3;
 
     /* Include the location (which is not a field). */
-    bool include_location = 4;
+    optional bool include_location = 4;
 
     /* Filter the values for enum fields. */
     repeated Filter.FieldEnumValues filter_enum_values = 6;
@@ -96,9 +96,9 @@ message ListValues {
 
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
         ValueSelection selection = 2;
-        Pagination pagination = 3;
+        optional Pagination pagination = 3;
         Sort sort = 4;
 
         /* Transform the values for a field into a derived value.
@@ -135,7 +135,7 @@ message AggregatedValues {
     /* Request aggregated values, reducing the selected time range to a single value per field. */
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
         /* The values to return. */
         ValueSelection selection = 2;
@@ -173,7 +173,7 @@ message AggregatedValues {
             }
 
             /* Paginate the returned partitions of the time range. */
-            Pagination pagination = 3;
+            optional Pagination pagination = 3;
 
             /* How to sort the returned values. */
             ListValues.Sort sort = 4;
@@ -197,19 +197,19 @@ message DownsampledValues {
     /* Request downsampled values, reducing the selected time range to a single value per field. */
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
         /* The values to downsample.
          * When multiple modems are given, the data is downsampled separately and merged together in the response,
          * sorted by time.
          */
-        ValueSelection selection = 2;
+        optional ValueSelection selection = 2;
 
         /* Downsample the values to the given amount of data points. */
-        uint32 points = 3;
+        optional uint32 points = 3;
 
         /* Paginate the downsampled values, if needed. */
-        Pagination pagination = 4;
+        optional Pagination pagination = 4;
 
         /* How to sort the downsampled values. */
         ListValues.Sort sort = 5;

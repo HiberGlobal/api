@@ -198,10 +198,10 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | user_ids | [repeated string](#string) |  |
 | roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new user should get. |
-| override_allow_no_roles | [ bool](#bool) | By default, the server returns an error when you don't specify any roles. Set this to true to allow it. |
+|  **optional** override_allow_no_roles | [optional bool](#bool) | By default, the server returns an error when you don't specify any roles. Set this to true to allow it. |
 
 ### ApproveUserRequest.Response
 
@@ -214,15 +214,15 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | email | [ string](#string) |  |
 | name | [ string](#string) |  |
-| password | [ string](#string) | Optional. If no password is given, the account can only be accessed using a password reset. |
+|  **optional** password | [optional string](#string) | Optional. If no password is given, the account can only be accessed using a password reset. |
 | roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new user should get. |
-| send_verification_mail | [ bool](#bool) | Send an automated email prompting the user to verify their email address. |
-| send_password_reset_mail | [ bool](#bool) | Send an automated email prompting the user to set a password. Recommended when password is not set. |
-| allow_invite_instead | [ bool](#bool) | When the user cannot be created, (i.e. they already exist because they are in a different organization) we can send an invite instead, effectively calling InviteUserRequest with the email and roles. Set this to true to allow this behaviour. |
-| override_allow_no_roles | [ bool](#bool) | By default, the server returns an error when you don't specify any roles. Set this to true to allow it. |
+|  **optional** send_verification_mail | [optional bool](#bool) | Send an automated email prompting the user to verify their email address. |
+|  **optional** send_password_reset_mail | [optional bool](#bool) | Send an automated email prompting the user to set a password. Recommended when password is not set. |
+|  **optional** allow_invite_instead | [optional bool](#bool) | When the user cannot be created, (i.e. they already exist because they are in a different organization) we can send an invite instead, effectively calling InviteUserRequest with the email and roles. Set this to true to allow this behaviour. |
+|  **optional** override_allow_no_roles | [optional bool](#bool) | By default, the server returns an error when you don't specify any roles. Set this to true to allow it. |
 
 ### CreateUsersRequest
 
@@ -230,11 +230,11 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | users | [repeated CreateUserRequest](#createuserrequest) | Users to create. Allows for individual impersonation and mail settings. |
 | roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new users should get. Can be replaced for specific settings in the CreateUserRequest. |
-| send_verification_mail | [ bool](#bool) | Send an automated email prompting the users to verify their email addresses. If true, applies to all users. |
-| send_password_reset_mail | [ bool](#bool) | Send an automated email prompting the users to set their password. If true, applies to all users. |
+|  **optional** send_verification_mail | [optional bool](#bool) | Send an automated email prompting the users to verify their email addresses. If true, applies to all users. |
+|  **optional** send_password_reset_mail | [optional bool](#bool) | Send an automated email prompting the users to set their password. If true, applies to all users. |
 
 ### CreateUsersRequest.Response
 
@@ -250,7 +250,7 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 
 ### InviteUserRequest
 
@@ -258,11 +258,11 @@ Accept an invitation to an organization.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | email | [ string](#string) | The email address of the user you want to invite. |
-| retry | [ bool](#bool) | Invite the user again, even if there is an open invite. This can be done a limited amount of times. |
+|  **optional** retry | [optional bool](#bool) | Invite the user again, even if there is an open invite. This can be done a limited amount of times. |
 | roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new user should get. |
-| override_allow_no_roles | [ bool](#bool) | By default, the server returns an error when you don't specify any roles. Set this to true to allow it. |
+|  **optional** override_allow_no_roles | [optional bool](#bool) | By default, the server returns an error when you don't specify any roles. Set this to true to allow it. |
 
 ### InviteUserRequest.Response
 
@@ -275,9 +275,9 @@ Accept an invitation to an organization.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ UserSelection](#userselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional UserSelection](#userselection) | Select the users to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 | sort | [ UserSort](#usersort) |  |
 
 ### ListAccessRequestsRequest.Response
@@ -296,9 +296,9 @@ List all invited users (email addresses).
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| search | [ string](#string) | Search the invited email addresses. |
-| include_accepted | [ bool](#bool) | Whether to include invitations that were already accepted. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** search | [optional string](#string) | Search the invited email addresses. |
+|  **optional** include_accepted | [optional bool](#bool) | Whether to include invitations that were already accepted. |
 
 ### ListInvitationsRequest.Response
 
@@ -314,11 +314,11 @@ List all invited users (email addresses).
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ UserSelection](#userselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional UserSelection](#userselection) | Select the users to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 | sort | [ UserSort](#usersort) |  |
-| child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) |  |
+|  **optional** child_organizations | [optional hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) |  |
 
 ### ListUsersRequest.Response
 
@@ -336,9 +336,9 @@ List all invited users (email addresses).
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | user_ids | [repeated string](#string) |  |
-| remove_all_tokens | [ bool](#bool) | Remove all tokens created by this user. If this is not set, only the tokens with user permissions are removed. |
+|  **optional** remove_all_tokens | [optional bool](#bool) | Remove all tokens created by this user. If this is not set, only the tokens with user permissions are removed. |
 
 ### RemoveUserRequest.Response
 
@@ -351,7 +351,7 @@ List all invited users (email addresses).
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | user_id | [ string](#string) |  |
 
 ### ResetUserPasswordRequest.Response
@@ -365,7 +365,7 @@ List all invited users (email addresses).
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **validate**.selection | [ UserSelection](#userselection) | Test with existing user(s). |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **validate**.email_address | [ string](#string) | Test with a given email address. |
 | custom_validation | [ UserValidation](#uservalidation) | Test the given validation instead of the validation configured for your organization. |
@@ -386,7 +386,7 @@ List all invited users (email addresses).
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | user_ids | [repeated string](#string) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update**.modify | [ UpdateUserRoles.Request.ModifyRoles](#updateuserrolesrequestmodifyroles) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **update**.replace | [ UpdateUserRoles.Request.ReplaceRoles](#updateuserrolesrequestreplaceroles) |  |
@@ -420,7 +420,7 @@ Completely replace the roles the users have.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | email_validation_regex | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
 
 ### User
@@ -443,7 +443,7 @@ Completely replace the roles the users have.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | user_id | [ string](#string) | The user to request activity for. |
 | dates | [repeated hiber.Date](#hiberdate) | The dates to request user activity for. |
 | child_organizations | [ hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Include activity for child organizations. |
@@ -475,12 +475,12 @@ Completely replace the roles the users have.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | user_ids | [repeated string](#string) |  |
-| by_email | [ string](#string) |  |
-| by_name | [ string](#string) |  |
-| search | [ string](#string) |  |
-| roles | [ hiber.Filter.Roles](#hiberfilterroles) | Select users by roles for the current organization. |
-| permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Select users by permissions for the current organization. |
-| support_permissions | [ hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions) | Select users by permissions for customer support. |
+|  **optional** by_email | [optional string](#string) |  |
+|  **optional** by_name | [optional string](#string) |  |
+|  **optional** search | [optional string](#string) |  |
+|  **optional** roles | [optional hiber.Filter.Roles](#hiberfilterroles) | Select users by roles for the current organization. |
+|  **optional** permissions | [optional hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Select users by permissions for the current organization. |
+|  **optional** support_permissions | [optional hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions) | Select users by permissions for customer support. |
 
 ### UserValidation
 
@@ -523,7 +523,7 @@ When sending an Area to the api, the center location is ignored.
 | center | [ hiber.Location](#hiberlocation) |  |
 | bottom_left | [ hiber.Location](#hiberlocation) |  |
 | top_right | [ hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
 
@@ -549,8 +549,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) |  |
-| hex | [ string](#string) |  |
+|  **optional** bytes | [optional bytes](#bytes) |  |
+|  **optional** hex | [optional string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -576,10 +576,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) |  |
-| month | [ uint32](#uint32) |  |
-| day | [ uint32](#uint32) |  |
-| textual | [ string](#string) |  |
+|  **optional** year | [optional uint32](#uint32) |  |
+|  **optional** month | [optional uint32](#uint32) |  |
+|  **optional** day | [optional uint32](#uint32) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -596,8 +596,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| textual | [ string](#string) |  |
+|  **optional** duration | [optional google.protobuf.Duration](#googleprotobufduration) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.Filter
 
@@ -827,7 +827,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 | ----- | ---- | ----------- |
 | latitude | [ double](#double) | Decimal degrees north. |
 | longitude | [ double](#double) | Decimal degrees east. |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.LocationSelection
 
@@ -938,8 +938,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) |  |
-| page | [ int32](#int32) |  |
+|  **optional** size | [optional int32](#int32) |  |
+|  **optional** page | [optional int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -966,7 +966,7 @@ while a rectangular region is easier to define using Area.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | path | [repeated hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
 
@@ -1002,9 +1002,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
-| time_zone | [ string](#string) |  |
-| textual | [ string](#string) |  |
+|  **optional** timestamp | [optional google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+|  **optional** time_zone | [optional string](#string) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.UpdateBoolean
 

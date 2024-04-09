@@ -99,15 +99,15 @@ message Organization {
  * User for child organization list and tree.
  */
 message OrganizationSelection {
-    Filter.Organizations organizations = 1;
-    string search = 2;
+    optional Filter.Organizations organizations = 1;
+    optional string search = 2;
 }
 
 /* Get your current organization's data
  */
 message GetOrganizationRequest {
     /* Pick the organization to get the details for. If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 }
 
 /* Update organization data.
@@ -116,7 +116,7 @@ message GetOrganizationRequest {
  * Note that the organization field specifies the organization, it is not used to update the current organization identifier.
  */
 message UpdateOrganizationRequest {
-    string organization = 1;
+    optional string organization = 1;
     string display_name = 2;
     string vat_number = 3;
     Organization.Address address = 4;
@@ -136,7 +136,7 @@ message OrganizationTreeRequest {
     }
 
     /* Pick the organization to use (/impersonate) for this call, overriding your default organization */
-    string organization = 1;
+    optional string organization = 1;
     OrganizationSelection selection = 2;
 }
 
@@ -155,10 +155,12 @@ message ListChildOrganizationsRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    OrganizationSelection selection = 2;
-    Pagination pagination = 3;
-    bool include_details = 4;
+    optional string organization = 1;
+
+    /* Select the organizations to list. Optional, when omitted or empty everything is included. */
+    optional OrganizationSelection selection = 2;
+    optional Pagination pagination = 3;
+    optional bool include_details = 4;
 }
 
 message CreateOrganizationRequest {
@@ -173,31 +175,31 @@ message CreateOrganizationRequest {
     string new_organization = 2;
 
     /* The name to display for your organization (i.e. capitalized, with spaces, etc.). Default to the name above. */
-    string display_name = 3;
+    optional string display_name = 3;
 
     /* The avatar image representing this organization. Usually the logo. */
-    Avatar avatar = 11;
+    optional Avatar avatar = 11;
 
     /* Whether this organization is created for a business. */
-    bool is_business = 4;
+    optional bool is_business = 4;
 
     /* Whether this organization is created for a business, provide a VAT number. */
-    string vat_number = 5;
+    optional string vat_number = 5;
 
     /* Postal address for your organization. */
-    Organization.Address address = 6;
+    optional Organization.Address address = 6;
 
     /* Billing information for your organization. Optional, but required if you want active modems. */
-    string billing_name = 7;
+    optional string billing_name = 7;
 
     /* Billing address for your organization. Optional, but required if you want active modems. */
-    Organization.Address billing_address = 8;
+    optional Organization.Address billing_address = 8;
 
     /* Contact information for your organization. Required. */
     Organization.Contact contact = 9;
 
     /* A token that allows you to create an organization without having an organization. */
-    string organization_creation_token = 10;
+    optional string organization_creation_token = 10;
 }
 
 message DeleteOrganizationRequest {
@@ -231,7 +233,7 @@ message GetOrganizationAvatar {
         /* The slug for this organization, used to identify organizations */
         repeated string organizations = 1;
 
-        Pagination pagination = 2;
+        optional Pagination pagination = 2;
     }
     message Response {
         /* Avatars, indexed by organization slug */

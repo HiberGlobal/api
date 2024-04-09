@@ -591,35 +591,35 @@
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
                 <tr>
                   <td>description</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>filter_event_types</td>
                   <td><a href="#hiber.Filter.Events">hiber.Filter.Events</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>filter_modem_numbers</td>
                   <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>filter_tags</td>
                   <td><a href="#hiber.Filter.Tags">hiber.Filter.Tags</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -654,42 +654,42 @@
                 <tr>
                   <td>identifier</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Identifier used by the MQTT client. Defaults to &#34;hiber&#34;. </p></td>
                 </tr>
               
                 <tr>
                   <td>username</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Optional username to authenticate with. </p></td>
                 </tr>
               
                 <tr>
                   <td>password</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Optional password to authenticate with. Requires username to be set. </p></td>
                 </tr>
               
                 <tr>
                   <td>certificate_id</td>
                   <td><a href="#int64">int64</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Client certificate to use when connecting to the MQTT server. </p></td>
                 </tr>
               
                 <tr>
                   <td>server_ca_certificate_id</td>
                   <td><a href="#int64">int64</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Server CA certificate to use when connecting to the MQTT server. </p></td>
                 </tr>
               
                 <tr>
                   <td>disabled</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Disable the MQTT publisher after creation, so it needs to be enabled before it is active. </p></td>
                 </tr>
               
@@ -720,7 +720,7 @@
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -758,7 +758,7 @@
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -820,7 +820,7 @@
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -882,21 +882,21 @@
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
                 <tr>
                   <td>selection</td>
                   <td><a href="#hiber.integration.mqtt.MQTTPublisherSelection">MQTTPublisherSelection</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>pagination</td>
                   <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1251,7 +1251,7 @@ If the failure percentage is higher, within the warning period, the health is sw
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -1265,14 +1265,14 @@ If the failure percentage is higher, within the warning period, the health is sw
                 <tr>
                   <td>selection</td>
                   <td><a href="#hiber.integration.mqtt.MQTTPublisherHistorySelection">MQTTPublisherHistorySelection</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>pagination</td>
                   <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1334,14 +1334,14 @@ If the failure percentage is higher, within the warning period, the health is sw
                 <tr>
                   <td>time_range</td>
                   <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>only_failures</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1365,28 +1365,28 @@ If the failure percentage is higher, within the warning period, the health is sw
                 <tr>
                   <td>publishers</td>
                   <td><a href="#hiber.Filter.Publishers">hiber.Filter.Publishers</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Filter by id. </p></td>
                 </tr>
               
                 <tr>
                   <td>description</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Partial text match on the description. </p></td>
                 </tr>
               
                 <tr>
                   <td>search_url</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Partial text match on the url. </p></td>
                 </tr>
               
                 <tr>
                   <td>search_topic</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Partial text match on the topic. </p></td>
                 </tr>
               
@@ -1407,7 +1407,7 @@ If the failure percentage is higher, within the warning period, the health is sw
                 <tr>
                   <td>tags</td>
                   <td><a href="#hiber.tag.TagSelection">hiber.tag.TagSelection</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1438,7 +1438,7 @@ If the failure percentage is higher, within the warning period, the health is sw
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -1452,105 +1452,105 @@ If the failure percentage is higher, within the warning period, the health is sw
                 <tr>
                   <td>filter_event_types</td>
                   <td><a href="#hiber.Filter.Events.Update">hiber.Filter.Events.Update</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>filter_modem_numbers</td>
                   <td><a href="#hiber.Filter.Modems.Update">hiber.Filter.Modems.Update</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>filter_tags</td>
                   <td><a href="#hiber.Filter.Tags.Update">hiber.Filter.Tags.Update</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>description</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>url</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 </p></td>
                 </tr>
               
                 <tr>
                   <td>content_type</td>
                   <td><a href="#hiber.integration.mqtt.MQTTPublisher.ContentType">MQTTPublisher.ContentType</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>topic</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>The MQTT topic to send to on the receiving server. </p></td>
                 </tr>
               
                 <tr>
                   <td>qos</td>
                   <td><a href="#hiber.integration.mqtt.MQTTPublisher.Data.QoS">MQTTPublisher.Data.QoS</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>MQTT QoS value. </p></td>
                 </tr>
               
                 <tr>
                   <td>identifier</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Identifier used by the MQTT client. Defaults to &#34;hiber&#34;. </p></td>
                 </tr>
               
                 <tr>
                   <td>username</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Optional username to authenticate with. </p></td>
                 </tr>
               
                 <tr>
                   <td>password</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Optional password to authenticate with. Requires username to be set. </p></td>
                 </tr>
               
                 <tr>
                   <td>certificate_id</td>
                   <td><a href="#hiber.UpdateOptionalId">hiber.UpdateOptionalId</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Update or remove the client certificate to use when connecting to the MQTT server. </p></td>
                 </tr>
               
                 <tr>
                   <td>server_ca_certificate_id</td>
                   <td><a href="#hiber.UpdateOptionalId">hiber.UpdateOptionalId</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Update or remove the server CA certificate to use when connecting to the MQTT server. </p></td>
                 </tr>
               
                 <tr>
                   <td>active</td>
                   <td><a href="#hiber.UpdateBoolean">hiber.UpdateBoolean</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Disable the MQTT publisher, so it needs to be enabled again before it is active. </p></td>
                 </tr>
               
                 <tr>
                   <td>health_warning_period</td>
                   <td><a href="#hiber.Duration">hiber.Duration</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Period to consider when determining health from warning events. Warning events cannot be resolved.
 Set this to 0 to disable warnings based on failure percentage. </p></td>
                 </tr>
@@ -1558,7 +1558,7 @@ Set this to 0 to disable warnings based on failure percentage. </p></td>
                 <tr>
                   <td>health_warning_failure_percentage</td>
                   <td><a href="#hiber.UpdateZeroableInt">hiber.UpdateZeroableInt</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Allowed percentage of call failures.
 If the failure percentage is higher, within the warning period, the health is switched to WARNING. </p></td>
                 </tr>
@@ -1583,7 +1583,7 @@ If the failure percentage is higher, within the warning period, the health is sw
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1877,7 +1877,7 @@ If the failure percentage is higher, within the warning period, the health is sw
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Text representation. Can be used as an alternative input in a request, filled in by the API in responses. </p></td>
                 </tr>
               
@@ -1932,14 +1932,14 @@ If the failure percentage is higher, within the warning period, the health is sw
                 <tr>
                   <td>bytes</td>
                   <td><a href="#bytes">bytes</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>hex</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1994,28 +1994,28 @@ If the failure percentage is higher, within the warning period, the health is sw
                 <tr>
                   <td>year</td>
                   <td><a href="#uint32">uint32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>month</td>
                   <td><a href="#uint32">uint32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>day</td>
                   <td><a href="#uint32">uint32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -2070,14 +2070,14 @@ If the failure percentage is higher, within the warning period, the health is sw
                 <tr>
                   <td>duration</td>
                   <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -2847,7 +2847,7 @@ Exclude takes precedence over include. </p></td>
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Text representation. Can be used as an alternative input in a request, filled in by the API in responses. </p></td>
                 </tr>
               
@@ -3057,14 +3057,14 @@ Exclude takes precedence over include. </p></td>
                 <tr>
                   <td>size</td>
                   <td><a href="#int32">int32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>page</td>
                   <td><a href="#int32">int32</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -3163,7 +3163,7 @@ For example, unbundled events are likely to return an approximated total, but no
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Text representation. Can be used as an alternative input in a request, filled in by the API in responses. </p></td>
                 </tr>
               
@@ -3218,21 +3218,21 @@ For example, unbundled events are likely to return an approximated total, but no
                 <tr>
                   <td>timestamp</td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>time_zone</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -4063,7 +4063,7 @@ is ready to be downloaded.</p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -4094,7 +4094,7 @@ is ready to be downloaded.</p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
@@ -4132,28 +4132,28 @@ is ready to be downloaded.</p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
                 <tr>
                   <td>selection</td>
                   <td><a href="#hiber.tag.TagSelection">TagSelection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>optional</td>
+                  <td><p>Select the tags to list. Optional, when omitted or empty everything is included. </p></td>
                 </tr>
               
                 <tr>
                   <td>modem_count</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>webhook_count</td>
                   <td><a href="#bool">bool</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -4384,15 +4384,15 @@ is ready to be downloaded.</p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               
                 <tr>
                   <td>selection</td>
                   <td><a href="#hiber.tag.TagSelection">TagSelection</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>optional</td>
+                  <td><p>Select the tags to list. Optional, when omitted or empty everything is included. </p></td>
                 </tr>
               
             </tbody>
@@ -4460,7 +4460,7 @@ is ready to be downloaded.</p></td>
                 <tr>
                   <td>filter</td>
                   <td><a href="#hiber.Filter.Tags">hiber.Filter.Tags</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -4491,7 +4491,7 @@ is ready to be downloaded.</p></td>
                 <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
                 </tr>
               

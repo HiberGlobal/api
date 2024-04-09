@@ -36,7 +36,7 @@ message Tag {
 message TagSelection {
     repeated string search = 1;
     repeated string names = 2;
-    Filter.Tags filter = 3;
+    optional Filter.Tags filter = 3;
     repeated string types = 4;
 }
 
@@ -57,21 +57,23 @@ message ListTagsRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    TagSelection selection = 2;
-    bool modem_count = 3;
-    bool webhook_count = 4;
+    optional string organization = 1;
+
+    /* Select the tags to list. Optional, when omitted or empty everything is included. */
+    optional TagSelection selection = 2;
+    optional bool modem_count = 3;
+    optional bool webhook_count = 4;
 }
 
 message CreateTagRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     Tag.Label create = 2;
 }
 
 message UpdateTagRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     int64 id = 2;
     Tag.Label update = 3;
 }
@@ -81,7 +83,7 @@ message DeleteTagRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
     int64 id = 2;
 }
 
@@ -92,8 +94,10 @@ message TagHealth {
 
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
-        TagSelection selection = 2;
+        optional string organization = 1;
+
+        /* Select the tags to list. Optional, when omitted or empty everything is included. */
+        optional TagSelection selection = 2;
     }
 
     message Response {

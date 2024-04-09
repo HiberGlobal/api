@@ -156,15 +156,15 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | description | [ string](#string) |  |
-| filter_event_types | [ hiber.Filter.Events](#hiberfilterevents) |  |
-| filter_modem_numbers | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
-| filter_tags | [ hiber.Filter.Tags](#hiberfiltertags) |  |
+|  **optional** filter_event_types | [optional hiber.Filter.Events](#hiberfilterevents) |  |
+|  **optional** filter_modem_numbers | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** filter_tags | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 | filter_health_levels | [repeated string](#string) | Filter events by health level caused. |
 | url | [ string](#string) |  |
-| channel | [ string](#string) |  |
-| disabled | [ bool](#bool) |  |
+|  **optional** channel | [optional string](#string) |  |
+|  **optional** disabled | [optional bool](#bool) |  |
 | tags | [repeated int64](#int64) |  |
 
 ### DeleteSlackPublisherRequest
@@ -173,7 +173,7 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | id | [ int64](#int64) |  |
 
 ### DeleteSlackPublisherRequest.Response
@@ -187,7 +187,7 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | selection | [ SlackPublisherSelection](#slackpublisherselection) |  |
 
 ### DisableSlackPublisherRequest.Response
@@ -205,7 +205,7 @@ Enable a disabled publisher or re-enable a publisher that's failed and is in coo
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | selection | [ SlackPublisherSelection](#slackpublisherselection) |  |
 
 ### EnableSlackPublisherRequest.Response
@@ -223,9 +223,9 @@ Enable a disabled publisher or re-enable a publisher that's failed and is in coo
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ SlackPublisherSelection](#slackpublisherselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional SlackPublisherSelection](#slackpublisherselection) |  |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 | sort | [repeated ListSlackPublishersRequest.Sort](#listslackpublishersrequestsort) |  |
 
 ### ListSlackPublishersRequest.Response
@@ -293,10 +293,10 @@ Health configuration for the slack integration. Defines how the health is calcul
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | id | [ int64](#int64) |  |
-| selection | [ SlackPublisherHistorySelection](#slackpublisherhistoryselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** selection | [optional SlackPublisherHistorySelection](#slackpublisherhistoryselection) |  |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### SlackPublisherHistoryRequest.Response
 
@@ -314,8 +314,8 @@ Health configuration for the slack integration. Defines how the health is calcul
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| time_range | [ hiber.TimeRange](#hibertimerange) |  |
-| only_failures | [ bool](#bool) |  |
+|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) |  |
+|  **optional** only_failures | [optional bool](#bool) |  |
 
 ### SlackPublisherSelection
 
@@ -323,13 +323,13 @@ Health configuration for the slack integration. Defines how the health is calcul
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| publishers | [ hiber.Filter.Publishers](#hiberfilterpublishers) | Filter by id. |
-| description | [ string](#string) | Partial text match on the description. |
-| search_url | [ string](#string) | Partial text match on the url. |
-| search_channel | [ string](#string) | Partial text match on the channel. |
-| tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+|  **optional** publishers | [optional hiber.Filter.Publishers](#hiberfilterpublishers) | Filter by id. |
+|  **optional** description | [optional string](#string) | Partial text match on the description. |
+|  **optional** search_url | [optional string](#string) | Partial text match on the url. |
+|  **optional** search_channel | [optional string](#string) | Partial text match on the channel. |
+|  **optional** tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
 | health | [repeated hiber.Health](#hiberhealth) |  |
-| search | [ string](#string) | Search in the all available text, like description and url. |
+|  **optional** search | [optional string](#string) | Search in the all available text, like description and url. |
 
 ### UpdateSlackPublisherRequest
 
@@ -337,19 +337,19 @@ Health configuration for the slack integration. Defines how the health is calcul
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | id | [ int64](#int64) |  |
-| filter_event_types | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
-| filter_modem_numbers | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
-| filter_tags | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
+|  **optional** filter_event_types | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
+|  **optional** filter_modem_numbers | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
+|  **optional** filter_tags | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
 | add_health_levels_to_filter | [repeated string](#string) | Add health levels to the health levels filter. |
 | remove_health_levels_from_filter | [repeated string](#string) | Remove health levels from the health levels filter. |
-| description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
-| url | [ string](#string) |  |
-| channel | [ hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
-| active | [ hiber.UpdateBoolean](#hiberupdateboolean) |  |
-| health_warning_period | [ hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
-| health_warning_failure_percentage | [ hiber.UpdateZeroableInt](#hiberupdatezeroableint) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
+|  **optional** description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+|  **optional** url | [optional string](#string) |  |
+|  **optional** channel | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+|  **optional** active | [optional hiber.UpdateBoolean](#hiberupdateboolean) |  |
+|  **optional** health_warning_period | [optional hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
+|  **optional** health_warning_failure_percentage | [optional hiber.UpdateZeroableInt](#hiberupdatezeroableint) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
 
 ### UpdateSlackPublisherTagsRequest
 
@@ -357,7 +357,7 @@ Health configuration for the slack integration. Defines how the health is calcul
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) |  |
+|  **optional** organization | [optional string](#string) |  |
 | selection | [ SlackPublisherSelection](#slackpublisherselection) |  |
 | update | [ hiber.tag.UpdateTagsForItem](#hibertagupdatetagsforitem) |  |
 
@@ -421,7 +421,7 @@ so not all messages listed here are referenced.)
 | ----- | ---- | ----------- |
 | search | [repeated string](#string) |  |
 | names | [repeated string](#string) |  |
-| filter | [ hiber.Filter.Tags](#hiberfiltertags) |  |
+|  **optional** filter | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 | types | [repeated string](#string) |  |
 
 
@@ -447,7 +447,7 @@ When sending an Area to the api, the center location is ignored.
 | center | [ hiber.Location](#hiberlocation) |  |
 | bottom_left | [ hiber.Location](#hiberlocation) |  |
 | top_right | [ hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
 
@@ -473,8 +473,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) |  |
-| hex | [ string](#string) |  |
+|  **optional** bytes | [optional bytes](#bytes) |  |
+|  **optional** hex | [optional string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -500,10 +500,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) |  |
-| month | [ uint32](#uint32) |  |
-| day | [ uint32](#uint32) |  |
-| textual | [ string](#string) |  |
+|  **optional** year | [optional uint32](#uint32) |  |
+|  **optional** month | [optional uint32](#uint32) |  |
+|  **optional** day | [optional uint32](#uint32) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -520,8 +520,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| textual | [ string](#string) |  |
+|  **optional** duration | [optional google.protobuf.Duration](#googleprotobufduration) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.Filter
 
@@ -751,7 +751,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 | ----- | ---- | ----------- |
 | latitude | [ double](#double) | Decimal degrees north. |
 | longitude | [ double](#double) | Decimal degrees east. |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.LocationSelection
 
@@ -862,8 +862,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) |  |
-| page | [ int32](#int32) |  |
+|  **optional** size | [optional int32](#int32) |  |
+|  **optional** page | [optional int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -890,7 +890,7 @@ while a rectangular region is easier to define using Area.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | path | [repeated hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
 
@@ -926,9 +926,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
-| time_zone | [ string](#string) |  |
-| textual | [ string](#string) |  |
+|  **optional** timestamp | [optional google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+|  **optional** time_zone | [optional string](#string) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.UpdateBoolean
 

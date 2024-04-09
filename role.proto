@@ -29,6 +29,6 @@ message Role {
 }
 
 message RoleSelection {
-    string search = 1;
-    Filter.Roles roles = 2;
+    optional string search = 1;
+    optional Filter.Roles roles = 2;
 }

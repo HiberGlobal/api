@@ -11,8 +11,6 @@
   - [TestingService](#testingservice)
 
 - Messages
-  - [PushModemMessagesFromDebugPortRequest](#pushmodemmessagesfromdebugportrequest)
-  - [PushModemMessagesFromDebugPortRequest.Response](#pushmodemmessagesfromdebugportrequestresponse)
   - [PushModemMessagesRequest](#pushmodemmessagesrequest)
   - [PushModemMessagesRequest.MessageToPush](#pushmodemmessagesrequestmessagetopush)
   - [PushModemMessagesRequest.Response](#pushmodemmessagesrequestresponse)
@@ -149,32 +147,8 @@ whether everything works from message to webhook call, and further in your own s
 
 
 
-### PushModemMessagesFromDebugPort
-> **rpc** PushModemMessagesFromDebugPort([PushModemMessagesFromDebugPortRequest](#pushmodemmessagesfromdebugportrequest))
-    [PushModemMessagesFromDebugPortRequest.Response](#pushmodemmessagesfromdebugportrequestresponse)
-
-
-
 
 ## Messages
-
-### PushModemMessagesFromDebugPortRequest
-
-Push a message using the data gotten from the modem debug port.
-This means the message is an encrypted string, which the server can parse.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| encoded_messages | [repeated string](#string) |  |
-
-### PushModemMessagesFromDebugPortRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| request | [ PushModemMessagesFromDebugPortRequest](#pushmodemmessagesfromdebugportrequest) |  |
 
 ### PushModemMessagesRequest
 
@@ -185,7 +159,7 @@ the decryption process and all relevant events are triggered (including webhooks
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | messages | [repeated PushModemMessagesRequest.MessageToPush](#pushmodemmessagesrequestmessagetopush) |  |
 
 ### PushModemMessagesRequest.MessageToPush
@@ -195,10 +169,10 @@ the decryption process and all relevant events are triggered (including webhooks
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | modem_number | [ string](#string) |  |
-| time | [ hiber.Timestamp](#hibertimestamp) |  |
-| location | [ hiber.Location](#hiberlocation) |  |
-| content | [ bytes](#bytes) |  |
-| metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Metadata for this message. For example: LoRaWAN values like fPort. |
+|  **optional** time | [optional hiber.Timestamp](#hibertimestamp) |  |
+|  **optional** location | [optional hiber.Location](#hiberlocation) |  |
+|  **optional** content | [optional bytes](#bytes) |  |
+|  **optional** metadata | [optional google.protobuf.Struct](#googleprotobufstruct) | Metadata for this message. For example: LoRaWAN values like fPort. |
 
 ### PushModemMessagesRequest.Response
 
@@ -246,7 +220,7 @@ The messages themselves are not actually delayed; this just sets the sent time f
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 
 ### Simulation.ModemInactivitySimulation
 
@@ -302,7 +276,7 @@ This does not affect messages that are not simulated (like test messages or real
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 
 ### Simulation.ModemMessageSimulation.Delete.Response
@@ -325,9 +299,9 @@ This does not affect messages that are not simulated (like test messages or real
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 | include_disabled | [ bool](#bool) | Include modems for which message simulation is disabled. |
 
 ### Simulation.ModemMessageSimulation.List.Response
@@ -379,7 +353,7 @@ Create or update the modem message simulation for a selection of modems.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Modems to create or update the message simulation for. |
 | messages_per_interval | [ uint32](#uint32) | The number of simulated messages per simulation interval for these modems. This value is either the custom amount per day for these modems or the default value |
 | simulation_interval | [ hiber.Duration](#hiberduration) | Interval messages should be simulated at (i.e. once every hour). |
@@ -390,7 +364,7 @@ Create or update the modem message simulation for a selection of modems.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.random_location_in_area | [ hiber.Area](#hiberarea) | Randomize modem location within the given area. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.replace_location_rotation | [ Simulation.ModemMessageSimulation.LocationRotation](#simulationmodemmessagesimulationlocationrotation) | Replace the list of locations to rotate through. This does not have to match the length of the message body rotation, if any. Note that this **replaces** the entire list of values, to ensure the order is maintained. |
 | set_inactive_until | [ hiber.Timestamp](#hibertimestamp) | Disable the message simulation until the given date (UTC). |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### Simulation.ModemMessageSimulation.Update.Response
 
@@ -408,11 +382,11 @@ Create or update the modem message simulation for a selection of modems.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | enabled | [ hiber.UpdateBoolean](#hiberupdateboolean) |  |
-| simulate_modem_inactivity | [ Simulation.ModemInactivitySimulation](#simulationmodeminactivitysimulation) |  |
-| simulate_delayed_messages | [ Simulation.DelayedMessageSimulation](#simulationdelayedmessagesimulation) |  |
-| modem_message_simulation_defaults | [ Simulation.ModemMessageSimulation.Defaults](#simulationmodemmessagesimulationdefaults) |  |
+|  **optional** simulate_modem_inactivity | [optional Simulation.ModemInactivitySimulation](#simulationmodeminactivitysimulation) |  |
+|  **optional** simulate_delayed_messages | [optional Simulation.DelayedMessageSimulation](#simulationdelayedmessagesimulation) |  |
+|  **optional** modem_message_simulation_defaults | [optional Simulation.ModemMessageSimulation.Defaults](#simulationmodemmessagesimulationdefaults) |  |
 
 
 ## Enums
@@ -459,7 +433,7 @@ when the modem is registered into the system or when a subscription is authorize
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
 | time_zone | [ string](#string) | The timezone configured for the modem. |
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **_expected_transmission_rate**.expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
+|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
 
 ### hiber.modem.ModemSelection
 
@@ -468,28 +442,28 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modems | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
-| free_text_search | [ string](#string) |  |
-| only_active | [ bool](#bool) | <strong>Deprecated.</strong> Use lifecycle filter instead. |
-| activated_in | [ hiber.TimeRange](#hibertimerange) | <strong>Deprecated.</strong>  |
-| with_last_message_in | [ hiber.TimeRange](#hibertimerange) |  |
+|  **optional** modems | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** free_text_search | [optional string](#string) |  |
+|  **optional** only_active | [optional bool](#bool) | <strong>Deprecated.</strong> Use lifecycle filter instead. |
+|  **optional** activated_in | [optional hiber.TimeRange](#hibertimerange) | <strong>Deprecated.</strong>  |
+|  **optional** with_last_message_in | [optional hiber.TimeRange](#hibertimerange) |  |
 | health_levels | [repeated string](#string) | Filter modems by health level. |
 | lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
-| transfers | [ hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) |  |
+|  **optional** transfers | [optional hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) |  |
 | include_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Only include modems that have a type listed in types. In other words, when providing multiple types, this is an "OR" relationship. |
 | exclude_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Exclude modems that have a type listed in types. |
-| device_types | [ hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
-| sensorBrands | [ hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
-| identifiers | [ hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
-| only_gateways | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
-| only_has_external_device_ids | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
-| connected_to_gateways | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** device_types | [optional hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
+|  **optional** sensorBrands | [optional hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
+|  **optional** identifiers | [optional hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
+|  **optional** only_gateways | [optional bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
+|  **optional** only_has_external_device_ids | [optional bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
+|  **optional** connected_to_gateways | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
 | external_device_ids | [repeated string](#string) | <strong>Deprecated.</strong>  |
-| filter_by_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+|  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ hiber.modem.ModemSelection.Peripherals](#hibermodemmodemselectionperipherals) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.only_without_peripheral | [ bool](#bool) | When set to true, only modems that do not have any peripheral will be included in the result. |
-| only_connected_to_gateway | [ bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
-| not_connected_to_gateway | [ bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
+|  **optional** only_connected_to_gateway | [optional bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
+|  **optional** not_connected_to_gateway | [optional bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
 
 
 ### Enums
@@ -580,7 +554,7 @@ When sending an Area to the api, the center location is ignored.
 | center | [ hiber.Location](#hiberlocation) |  |
 | bottom_left | [ hiber.Location](#hiberlocation) |  |
 | top_right | [ hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
 
@@ -606,8 +580,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) |  |
-| hex | [ string](#string) |  |
+|  **optional** bytes | [optional bytes](#bytes) |  |
+|  **optional** hex | [optional string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -633,10 +607,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) |  |
-| month | [ uint32](#uint32) |  |
-| day | [ uint32](#uint32) |  |
-| textual | [ string](#string) |  |
+|  **optional** year | [optional uint32](#uint32) |  |
+|  **optional** month | [optional uint32](#uint32) |  |
+|  **optional** day | [optional uint32](#uint32) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -653,8 +627,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| textual | [ string](#string) |  |
+|  **optional** duration | [optional google.protobuf.Duration](#googleprotobufduration) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.Filter
 
@@ -884,7 +858,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 | ----- | ---- | ----------- |
 | latitude | [ double](#double) | Decimal degrees north. |
 | longitude | [ double](#double) | Decimal degrees east. |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.LocationSelection
 
@@ -995,8 +969,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) |  |
-| page | [ int32](#int32) |  |
+|  **optional** size | [optional int32](#int32) |  |
+|  **optional** page | [optional int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -1023,7 +997,7 @@ while a rectangular region is easier to define using Area.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | path | [repeated hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
 
@@ -1059,9 +1033,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
-| time_zone | [ string](#string) |  |
-| textual | [ string](#string) |  |
+|  **optional** timestamp | [optional google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+|  **optional** time_zone | [optional string](#string) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.UpdateBoolean
 

@@ -118,7 +118,7 @@ message HealthLevel {
 
 message HealthLevelSelection {
     /* Search for the given string in the levels and colors. */
-    string search = 1;
+    optional string search = 1;
 
     /* Filter by exact levels. */
     repeated string levels = 2;
@@ -127,8 +127,10 @@ message HealthLevelSelection {
 message ListHealthLevels {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
-        HealthLevelSelection selection = 2;
+        optional string organization = 1;
+
+        /* Select the health levels to list. Optional, when omitted or empty everything is included. */
+        optional HealthLevelSelection selection = 2;
     }
     message Response {
         repeated HealthLevel health_levels = 1;
@@ -140,7 +142,7 @@ message ListHealthLevels {
 message ReorderHealthLevels {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
         /* The health levels for the organization, ordered by severity (low to high).
          * This list must include _all_ health levels, or the call will fail.
@@ -157,7 +159,7 @@ message ReorderHealthLevels {
 message AddHealthLevel {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
         /* Add the given level to the organizations health levels.
          * The new health level will be added with the highest severity (at the bottom of the health levels list).
@@ -172,7 +174,7 @@ message AddHealthLevel {
 message UpdateHealthLevel {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
         string level = 2;
 
         /* Optionally, rename this health level.
@@ -180,13 +182,13 @@ message UpdateHealthLevel {
          * All historic events that have this health-level will change with it.
          * (Unless you are very sure you want to change history, that is)
          */
-        string rename = 3;
+        optional string rename = 3;
 
         /* Optionally, set or update the color for this health level.
          * DEPRECATED, use add_colors with name "text".
          * Vice versa, this field will also update the "text" color in the color_data field of HealthLevel.
          */
-        UpdateClearableString update_color = 4 [deprecated = true];
+        optional UpdateClearableString update_color = 4 [deprecated = true];
 
         /* Remove colors by name. Will remove the named color from the color_data field in HealthLevel. */
         repeated string remove_colors = 7;
@@ -208,7 +210,7 @@ message UpdateHealthLevel {
 message RemoveHealthLevel {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
         string level = 2;
     }
     message Response {

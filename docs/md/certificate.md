@@ -130,7 +130,7 @@
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | certificate_ids | [repeated int64](#int64) |  |
-| search | [ string](#string) |  |
+|  **optional** search | [optional string](#string) |  |
 | ca_certificate_ids | [repeated int64](#int64) |  |
 
 ### DeleteCertificateRequest
@@ -139,7 +139,7 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | selection | [ CertificateSelection](#certificateselection) |  |
 
 ### DeleteCertificateRequest.Response
@@ -157,10 +157,10 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ CertificateSelection](#certificateselection) |  |
-| pagination | [ hiber.Pagination](#hiberpagination) |  |
-| include_certificate_content_in_response | [ bool](#bool) | Include the actual certificate content in the response. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional CertificateSelection](#certificateselection) | Select the certificates to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+|  **optional** include_certificate_content_in_response | [optional bool](#bool) | Include the actual certificate content in the response. |
 
 ### ListCertificatesRequest.Response
 
@@ -178,10 +178,10 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | selection | [ CertificateSelection](#certificateselection) |  |
 | new_name | [ string](#string) |  |
-| include_certificate_content_in_response | [ bool](#bool) | Include the actual certificate content in the response. |
+|  **optional** include_certificate_content_in_response | [optional bool](#bool) | Include the actual certificate content in the response. |
 
 ### RenameCertificateRequest.Response
 
@@ -199,11 +199,11 @@
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | upload_certificate | [ UploadCertificateRequest.UploadCertificate](#uploadcertificaterequestuploadcertificate) |  |
-| upload_ca_certificate | [ UploadCertificateRequest.UploadCertificate](#uploadcertificaterequestuploadcertificate) | Optionally, either upload a CA certificate or provide the id of a previously uploaded CA certificate. |
-| ca_certificate_id | [ int64](#int64) | Optionally, either upload a CA certificate or provide the id of a previously uploaded CA certificate. |
-| include_certificate_content_in_response | [ bool](#bool) | Include the actual certificate content in the response. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **ca_certificate**.upload_ca_certificate | [ UploadCertificateRequest.UploadCertificate](#uploadcertificaterequestuploadcertificate) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **ca_certificate**.ca_certificate_id | [ int64](#int64) |  |
+|  **optional** include_certificate_content_in_response | [optional bool](#bool) | Include the actual certificate content in the response. |
 
 ### UploadCertificateRequest.Response
 
@@ -247,7 +247,7 @@ When sending an Area to the api, the center location is ignored.
 | center | [ hiber.Location](#hiberlocation) |  |
 | bottom_left | [ hiber.Location](#hiberlocation) |  |
 | top_right | [ hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.Avatar
 
@@ -273,8 +273,8 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| bytes | [ bytes](#bytes) |  |
-| hex | [ string](#string) |  |
+|  **optional** bytes | [optional bytes](#bytes) |  |
+|  **optional** hex | [optional string](#string) |  |
 
 ### hiber.BytesOrHex.Update
 
@@ -300,10 +300,10 @@ If both are specified, the textual field will be discarded.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| year | [ uint32](#uint32) |  |
-| month | [ uint32](#uint32) |  |
-| day | [ uint32](#uint32) |  |
-| textual | [ string](#string) |  |
+|  **optional** year | [optional uint32](#uint32) |  |
+|  **optional** month | [optional uint32](#uint32) |  |
+|  **optional** day | [optional uint32](#uint32) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.DoubleRange
 
@@ -320,8 +320,8 @@ Decimal range.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| textual | [ string](#string) |  |
+|  **optional** duration | [optional google.protobuf.Duration](#googleprotobufduration) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.Filter
 
@@ -551,7 +551,7 @@ For more information, see the WGS-84 coordinate system, which is used for most G
 | ----- | ---- | ----------- |
 | latitude | [ double](#double) | Decimal degrees north. |
 | longitude | [ double](#double) | Decimal degrees east. |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.LocationSelection
 
@@ -662,8 +662,8 @@ start at the first page and continue to the next, they can use the provided Pagi
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| size | [ int32](#int32) |  |
-| page | [ int32](#int32) |  |
+|  **optional** size | [optional int32](#int32) |  |
+|  **optional** page | [optional int32](#int32) |  |
 
 ### hiber.Pagination.Result
 
@@ -690,7 +690,7 @@ while a rectangular region is easier to define using Area.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | path | [repeated hiber.Location](#hiberlocation) |  |
-| textual | [ string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
+|  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
 
 ### hiber.TimeRange
 
@@ -726,9 +726,9 @@ timestamps:
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| timestamp | [ google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
-| time_zone | [ string](#string) |  |
-| textual | [ string](#string) |  |
+|  **optional** timestamp | [optional google.protobuf.Timestamp](#googleprotobuftimestamp) |  |
+|  **optional** time_zone | [optional string](#string) |  |
+|  **optional** textual | [optional string](#string) |  |
 
 ### hiber.UpdateBoolean
 

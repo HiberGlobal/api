@@ -1,5 +1,30 @@
 # Changelog Hiber API
 
+### 0.188 (2024-04-09)
+
+##### All proto files
+
+- Added optional flag in many places to explicitly indicate optionality.
+- Deleted a large number of deprecated rpc and messages:
+  - `MesageService/AvailableBodyFields` - use FieldService/List instead
+  - `ModemService/MessageCount` - no longer in use
+  - `ModemService/RenameModem` - use DeviceService/Update instead
+  - `ModemService/UpdateNotes` - use DeviceService/Update instead
+  - `ModemService/UpdateSecureNotes` - use DeviceService/Update instead
+  - `ModemService/UpdateLifecycle` - use DeviceService/Update instead
+  - `ModemService/UpdatePeripherals` - use DeviceService/Update instead
+  - `ModemService/HealthCount` - no longer in use
+  - `Testingservice/PushModemMessagesFromDebugPort` - no longer in use
+
+##### EventService
+
+- `DeviceUpdatedEvents` are now also generated for device type changes.
+
+##### ModemService
+
+- When your device sends an info message (typically on startup) we automatically assign the device type.
+  - If the device already has a device type, it will not be replaced.
+
 ### 0.186 (2024-03-19)
 
 ##### ModemService

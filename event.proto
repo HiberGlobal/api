@@ -178,11 +178,9 @@ message Event {
             string external_device_id = 20;
 
             UpdateClearableString display_name = 10;
-            UpdateClearableString custom_antenna = 12;
-            UpdateBoolean gps = 13;
-            Location location = 14;
             map<string, string> peripherals = 15;
             UpdateClearableString notes = 16;
+            optional string device_type = 21;
             bool secure_notes_updated = 17;
             reserved 18;
             Duration health_warning_period = 19;
@@ -191,7 +189,7 @@ message Event {
             string title = 6;
             string description = 7;
 
-            reserved 11;
+            reserved 11, 12, 13, 14;
         }
 
         /* When a message comes in, the device's location is updated automatically. This event is generated whenever the
@@ -827,34 +825,33 @@ message BundledEvent {
  * one per event type, with the count.
  */
 message EventSelection {
-    Filter.Events events = 1;
-    Filter.Modems modems = 2;
-    Filter.Publishers publishers = 3;
-    Filter.Tags tags = 4;
-    TimeRange time_range = 6;
+    optional Filter.Events events = 1;
+    optional Filter.Modems modems = 2;
+    optional Filter.Publishers publishers = 3;
+    optional Filter.Tags tags = 4;
+    optional TimeRange time_range = 6;
 
     /* Filter events by actual configured health level. */
     repeated string health_levels = 11;
 
     /* By default, events that have been resolved are not listed. */
-    bool include_resolved_events = 9;
+    optional bool include_resolved_events = 9;
 
     /* When not set, no unbundled events are returned.
      * When set, returns unbundled events per type, paginated per type.
      * Deprecated: use unbundled_events on ListEventsRequest
      */
-    bool unbundled_events = 8 [deprecated = true];
-
+    optional bool unbundled_events = 8 [deprecated = true];
 
     /* Return only events that cause the default Error health.
      * Deprecated: use health_levels with custom health levels instead.
      */
-    bool errors_only = 7 [deprecated = true];
+    optional bool errors_only = 7 [deprecated = true];
 
     /* Return only events that cause the default Warning health.
      * Deprecated: use health_levels with custom health levels instead.
      */
-    bool warnings_only = 10 [deprecated = true];
+    optional bool warnings_only = 10 [deprecated = true];
 }
 
 /* Lists all events matching the given criteria.
@@ -888,16 +885,21 @@ message ListEventsRequest {
     }
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
-    EventSelection selection = 2;
+    optional string organization = 1;
+
+    /* Select the events to list. Optional, when omitted or empty everything is included. */
+    optional EventSelection selection = 2;
+
     /* Pagination is applied per event type on unbundled events. It is not necessary for bundled events. */
-    Pagination pagination = 3;
-    Sort sort = 4;
+    optional Pagination pagination = 3;
+
+    optional Sort sort = 4;
+
     /* When not set, bundled/grouped events are returned.
      * When set, returns unbundled events per type, paginated per type.
      * Overrides unbundled_events in EventSelection message.
      */
-    bool unbundled_events = 5;
+    optional bool unbundled_events = 5;
 }
 
 /* Get the history of events that match the given filter, chronologically (by default, from now backwards in time).
@@ -912,9 +914,11 @@ message EventHistory {
      */
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
-        EventSelection selection = 2;
-        Pagination pagination = 3;
+        optional string organization = 1;
+
+        /* Select the events to list. Optional, when omitted or empty everything is included. */
+        optional EventSelection selection = 2;
+        optional Pagination pagination = 3;
     }
 
     message Response {
@@ -930,17 +934,17 @@ message EventHistory {
  */
 message EventStreamRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    string organization = 1;
+    optional string organization = 1;
 
-    /* The selection for the events. */
-    EventSelection selection = 2;
+    /* Select the events to stream. Optional, when omitted or empty everything is included. */
+    optional EventSelection selection = 2;
 
     /* Include events from child organizations, if requested.
      * This is only available for streaming, listing events can only be listed per organization.
      * Keep in mind that filtering events using the selection is limited.
      * Filtering on tags or publishers, for example, can only apply to the parent organization.
      */
-    Filter.ChildOrganizations child_organizations = 3;
+    optional Filter.ChildOrganizations child_organizations = 3;
 }
 
 /* Get the list of events that affect device health, chronologically (by default, from now backwards in time).
@@ -951,9 +955,11 @@ message EventStreamRequest {
 message ModemHealthEvents {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
-        EventSelection selection = 2;
-        Pagination pagination = 3;
+        optional string organization = 1;
+
+        /* Select the events to list. Optional, when omitted or empty everything is included. */
+        optional EventSelection selection = 2;
+        optional Pagination pagination = 3;
     }
     message Response {
         Request request = 1;
@@ -966,7 +972,7 @@ message ModemHealthEvents {
 message ResolveEvent {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
         /* The resolve identifier of the event you wish to resolve. */
         string resolve_identifier = 2;
@@ -980,7 +986,7 @@ message ResolveEvent {
 message MarkEventsResolved {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
 
         /* Selection of events to resolve. */
         EventSelection selection = 3;
@@ -1064,7 +1070,7 @@ message EventConfiguration {
     repeated EventHealthLevelConfiguration event_health_level_configuration = 3;
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
     }
 }
 
@@ -1085,7 +1091,7 @@ message UpdateEventHealthConfiguration {
 
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        string organization = 1;
+        optional string organization = 1;
         /* List of event-types to update health for. When listing same event twice, behaviour is undefined. */
         repeated UpdateEventHealth updates = 2;
     }
