@@ -203,9 +203,12 @@ message UpdateSlackPublisherRequest {
     optional string organization = 1;
     int64 id = 2;
 
-    optional Filter.Events.Update filter_event_types = 3;
-    optional Filter.Modems.Update filter_modem_numbers = 4;
-    optional Filter.Tags.Update filter_tags = 5;
+    optional Filter.Events.Update deprecated_filter_event_types = 3 [deprecated = true];
+    optional Filter.Events filter_event_types = 23;
+    optional Filter.Modems.Update deprecated_filter_modem_numbers = 4 [deprecated = true];
+    optional Filter.Modems filter_modem_numbers = 24;
+    optional Filter.Tags.Update deprecated_filter_tags = 5 [deprecated = true];
+    optional Filter.Tags filter_tags = 25;
 
     /* Add health levels to the health levels filter. */
     repeated string add_health_levels_to_filter = 6;
@@ -213,12 +216,15 @@ message UpdateSlackPublisherRequest {
     /* Remove health levels from the health levels filter. */
     repeated string remove_health_levels_from_filter = 7;
 
-    optional UpdateClearableString description = 10;
+    optional string description = 19;
+    optional UpdateClearableString deprecated_description = 10 [deprecated = true];
 
     optional string url = 11;
-    optional UpdateClearableString channel = 12;
+    optional string channel = 20;
+    optional UpdateClearableString deprecated_channel = 12 [deprecated = true];
 
-    optional UpdateBoolean active = 15;
+    optional bool active = 21;
+    optional UpdateBoolean deprecated_active = 15 [deprecated = true];
 
     reserved 16;
 
@@ -230,7 +236,8 @@ message UpdateSlackPublisherRequest {
     /* Allowed percentage of call failures.
      * If the failure percentage is higher, within the warning period, the health is switched to WARNING.
      */
-    optional UpdateZeroableInt health_warning_failure_percentage = 18;
+    optional uint32 health_warning_failure_percentage = 26;
+    optional UpdateZeroableInt deprecated_health_warning_failure_percentage = 18 [deprecated = true];
 }
 
 message UpdateSlackPublisherTagsRequest {

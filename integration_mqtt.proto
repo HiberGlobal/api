@@ -265,11 +265,15 @@ message UpdateMQTTPublisherRequest {
     optional string organization = 1;
     int64 id = 2;
 
-    optional Filter.Events.Update filter_event_types = 3;
-    optional Filter.Modems.Update filter_modem_numbers = 4;
-    optional Filter.Tags.Update filter_tags = 5;
+    optional Filter.Events.Update deprecated_filter_event_types = 3 [deprecated = true];
+    optional Filter.Events filter_event_types = 24;
+    optional Filter.Modems.Update deprecated_filter_modem_numbers = 4 [deprecated = true];
+    optional Filter.Modems filter_modem_numbers = 25;
+    optional Filter.Tags.Update deprecated_filter_tags = 5 [deprecated = true];
+    optional Filter.Tags filter_tags = 26;
 
-    optional UpdateClearableString description = 10;
+    optional UpdateClearableString deprecated_description = 10 [deprecated = true];
+    optional string description = 27;
 
     /* The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 */
     optional string url = 11;
@@ -282,22 +286,28 @@ message UpdateMQTTPublisherRequest {
     optional MQTTPublisher.Data.QoS qos = 14;
 
     /* Identifier used by the MQTT client. Defaults to "hiber". */
-    optional UpdateClearableString identifier = 15;
+    optional string identifier = 28;
+    optional UpdateClearableString deprecated_identifier = 15 [deprecated = true];
 
     /* Optional username to authenticate with. */
-    optional UpdateClearableString username = 16;
+    optional string username = 29;
+    optional UpdateClearableString deprecated_username = 16 [deprecated = true];
 
     /* Optional password to authenticate with. Requires username to be set. */
-    optional UpdateClearableString password = 17;
+    optional string password = 30;
+    optional UpdateClearableString deprecated_password = 17 [deprecated = true];
 
     /* Update or remove the client certificate to use when connecting to the MQTT server. */
-    optional UpdateOptionalId certificate_id = 18;
+    optional int64 certificate_id = 31;
+    optional UpdateOptionalId deprecated_certificate_id = 18 [deprecated = true];
 
     /* Update or remove the server CA certificate to use when connecting to the MQTT server. */
-    optional UpdateOptionalId server_ca_certificate_id = 23;
+    optional int64 server_ca_certificate_id = 32;
+    optional UpdateOptionalId deprecated_server_ca_certificate_id = 23 [deprecated = true];
 
     /* Disable the MQTT publisher, so it needs to be enabled again before it is active. */
-    optional UpdateBoolean active = 19;
+    optional bool active = 33;
+    optional UpdateBoolean deprecated_active = 19 [deprecated = true];
 
     reserved 20;
 
@@ -309,7 +319,8 @@ message UpdateMQTTPublisherRequest {
     /* Allowed percentage of call failures.
      * If the failure percentage is higher, within the warning period, the health is switched to WARNING.
      */
-    optional UpdateZeroableInt health_warning_failure_percentage = 22;
+    optional uint32 health_warning_failure_percentage = 34;
+    optional UpdateZeroableInt deprecated_health_warning_failure_percentage = 22 [deprecated = true];
 }
 
 message UpdateMQTTPublisherTagsRequest {

@@ -117,7 +117,8 @@ message Simulation {
     message UpdateRequest {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         optional string organization = 1;
-        UpdateBoolean enabled = 2;
+        UpdateBoolean deprecated_enabled = 2 [deprecated = true];
+        optional bool enabled = 6;
         optional ModemInactivitySimulation simulate_modem_inactivity = 3;
         optional DelayedMessageSimulation simulate_delayed_messages = 4;
         optional ModemMessageSimulation.Defaults modem_message_simulation_defaults = 5;
@@ -235,7 +236,7 @@ message Simulation {
 
                 oneof message_body {
                     /* A message body to use for the simulated messages. */
-                    BytesOrHex.Update update_message_body = 5;
+                    BytesOrHex.Update update_message_body = 5 [deprecated = true];
 
                     /* Replace the list of message bodies to rotate through.
                      * This does not have to match the length of the location rotation, if any.

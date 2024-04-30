@@ -3,9 +3,9 @@
   "description": "",
   "values": {
     "DEFAULT": "Fills a tile with 8x8 icons."
-    ,"DENSE": "Fills a tile with 16x16 icons."
-    ,"SPARSE": "Fills a tile with 4x4 icons."
-    ,"VERY_SPARSE": "Fills a tile with 2x2 icons."
-    ,"SINGLE": "Fills a tile with 1 icon."
+    , "DENSE": "Fills a tile with 16x16 icons."
+    , "SPARSE": "Fills a tile with 4x4 icons."
+    , "VERY_SPARSE": "Fills a tile with 2x2 icons."
+    , "SINGLE": "Fills a tile with 1 icon."
     }
 }]

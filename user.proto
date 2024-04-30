@@ -286,7 +286,8 @@ message UpdateUserValidationRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     optional string organization = 1;
 
-    UpdateClearableString email_validation_regex = 2;
+    UpdateClearableString deprecated_email_validation_regex = 2 [deprecated = true];
+    string email_validation_regex = 3;
 }
 
 message TestUserValidationRequest {

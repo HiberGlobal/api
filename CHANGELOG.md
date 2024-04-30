@@ -1,5 +1,39 @@
 # Changelog Hiber API
 
+### 0.191 (2024-04-30)
+
+##### AssetService
+
+- Introducing `Asset`s as the conceptual counterpart of the devices.
+  - Assets are abstractions managed by the customer and linked to devices.
+  - Assets will own data (values) produced by devices, but when a device is replaced, the asset's values will just
+    continue with the data from the new device.
+  - Assets have type for common use cases (currently well-related Annulus A/B/C/D and tubing head pressure).
+    - Asset are not limited to the predefined types, they can be anything that is required to collect data
+      into one place.
+  - Assets will get SLA configuration and calculate SLAs.
+    - We will phase out SLA configuration on devices slowly.
+
+##### base.proto
+
+- Deprecated the `Update*` types in favor of using `optional` fields.
+  - Deprecated `UpdateZeroableInt`.
+  - Deprecated `UpdateClearableString`.
+  - Deprecated `UpdateOptionalId`.
+  - Deprecated `UpdateOptionalDuration`.
+  - Deprecated `UpdateBoolean`.
+  - Deprecated `Filter.ChildOrganizations.Update`.
+  - Deprecated `Filter.Events.Update`.
+  - Deprecated `Filter.Modems.Update`.
+  - Deprecated `Filter.Tags.Update`.
+  - Deprecated `BytesOrHex.Update`.
+  - Updated a lot of services to use `optional` instead of `Update*` types.
+
+##### Organization Permissions
+
+- Split the `MODEMS_ALARMS` permission to manage alarms into a view permission `MODEMS_ALARMS` and manage permission `MODEMS_ALARMS_UPDATE`.
+  - Roles have been updated to keep effective permissions consistent, but new roles will have more granularity.
+
 ### 0.188 (2024-04-09)
 
 ##### All proto files

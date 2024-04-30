@@ -215,18 +215,6 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents"><span class="badge">M</span>UpdateWebhookFilterRequest.UpdateEvents</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.webhook.UpdateWebhookFilterRequest.UpdateModems"><span class="badge">M</span>UpdateWebhookFilterRequest.UpdateModems</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.webhook.UpdateWebhookFilterRequest.UpdateTags"><span class="badge">M</span>UpdateWebhookFilterRequest.UpdateTags</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.webhook.UpdateWebhookRequest"><span class="badge">M</span>UpdateWebhookRequest</a>
                 </li>
               
@@ -941,42 +929,42 @@ See the CertificateService for certificate management options. </p></td>
               
                 <tr>
                   <td>deprecated_event_filter</td>
-                  <td><a href="#hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents">UpdateWebhookFilterRequest.UpdateEvents</a></td>
-                  <td>optional</td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
-                  <td>deprecated_modem_filter</td>
-                  <td><a href="#hiber.webhook.UpdateWebhookFilterRequest.UpdateModems">UpdateWebhookFilterRequest.UpdateModems</a></td>
-                  <td>optional</td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
-                  <td>deprecated_tag_filter</td>
-                  <td><a href="#hiber.webhook.UpdateWebhookFilterRequest.UpdateTags">UpdateWebhookFilterRequest.UpdateTags</a></td>
+                  <td><a href="#hiber.Filter.Events.Update">hiber.Filter.Events.Update</a></td>
                   <td>optional</td>
                   <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>event_filter</td>
-                  <td><a href="#hiber.Filter.Events.Update">hiber.Filter.Events.Update</a></td>
+                  <td><a href="#hiber.Filter.Events">hiber.Filter.Events</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_modem_filter</td>
+                  <td><a href="#hiber.Filter.Modems.Update">hiber.Filter.Modems.Update</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>modem_filter</td>
-                  <td><a href="#hiber.Filter.Modems.Update">hiber.Filter.Modems.Update</a></td>
+                  <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>tag_filter</td>
+                  <td>deprecated_tag_filter</td>
                   <td><a href="#hiber.Filter.Tags.Update">hiber.Filter.Tags.Update</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tag_filter</td>
+                  <td><a href="#hiber.Filter.Tags">hiber.Filter.Tags</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>
@@ -1029,99 +1017,6 @@ See the CertificateService for certificate management options. </p></td>
               </tbody>
             </table>
             
-          
-
-        
-      
-        <h3 id="hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents">UpdateWebhookFilterRequest.UpdateEvents</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>updated</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#hiber.Filter.Events">hiber.Filter.Events</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.webhook.UpdateWebhookFilterRequest.UpdateModems">UpdateWebhookFilterRequest.UpdateModems</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>updated</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.webhook.UpdateWebhookFilterRequest.UpdateTags">UpdateWebhookFilterRequest.UpdateTags</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>updated</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#hiber.Filter.Tags">hiber.Filter.Tags</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
           
 
         
@@ -1182,8 +1077,15 @@ See the CertificateService for certificate management options. </p></td>
                 </tr>
               
                 <tr>
-                  <td>secret</td>
+                  <td>deprecated_secret</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>secret</td>
+                  <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>
@@ -1196,50 +1098,57 @@ See the CertificateService for certificate management options. </p></td>
                 </tr>
               
                 <tr>
-                  <td>description</td>
+                  <td>deprecated_description</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>deprecated_event_filter</td>
-                  <td><a href="#hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents">UpdateWebhookRequest.UpdateWebhook.UpdateEvents</a></td>
-                  <td>optional</td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
-                  <td>deprecated_modem_filter</td>
-                  <td><a href="#hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems">UpdateWebhookRequest.UpdateWebhook.UpdateModems</a></td>
-                  <td>optional</td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
-                  <td>deprecated_tag_filter</td>
-                  <td><a href="#hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags">UpdateWebhookRequest.UpdateWebhook.UpdateTags</a></td>
+                  <td><a href="#hiber.Filter.Events.Update">hiber.Filter.Events.Update</a></td>
                   <td>optional</td>
                   <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>event_filter</td>
-                  <td><a href="#hiber.Filter.Events.Update">hiber.Filter.Events.Update</a></td>
+                  <td><a href="#hiber.Filter.Events">hiber.Filter.Events</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_modem_filter</td>
+                  <td><a href="#hiber.Filter.Modems.Update">hiber.Filter.Modems.Update</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>modem_filter</td>
-                  <td><a href="#hiber.Filter.Modems.Update">hiber.Filter.Modems.Update</a></td>
+                  <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>tag_filter</td>
+                  <td>deprecated_tag_filter</td>
                   <td><a href="#hiber.Filter.Tags.Update">hiber.Filter.Tags.Update</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tag_filter</td>
+                  <td><a href="#hiber.Filter.Tags">hiber.Filter.Tags</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>
@@ -1259,17 +1168,31 @@ See the CertificateService for certificate management options. </p></td>
                 </tr>
               
                 <tr>
-                  <td>active</td>
+                  <td>deprecated_active</td>
                   <td><a href="#hiber.UpdateBoolean">hiber.UpdateBoolean</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>active</td>
+                  <td><a href="#bool">bool</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>certificate_id</td>
+                  <td>deprecated_certificate_id</td>
                   <td><a href="#hiber.UpdateOptionalId">hiber.UpdateOptionalId</a></td>
                   <td>optional</td>
-                  <td><p>A value of 0 removes the certificate </p></td>
+                  <td><p><strong>Deprecated.</strong> A value of 0 removes the certificate </p></td>
+                </tr>
+              
+                <tr>
+                  <td>certificate_id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
                 </tr>
               
                 <tr>
@@ -1282,17 +1205,31 @@ Set this to 0 to disable warnings based on failure percentage. </p></td>
               
                 <tr>
                   <td>health_warning_failure_percentage</td>
-                  <td><a href="#hiber.UpdateZeroableInt">hiber.UpdateZeroableInt</a></td>
+                  <td><a href="#uint32">uint32</a></td>
                   <td>optional</td>
                   <td><p>Allowed percentage of call failures.
 If the failure percentage is higher, within the warning period, the health is switched to WARNING. </p></td>
                 </tr>
               
                 <tr>
+                  <td>deprecated_health_warning_failure_percentage</td>
+                  <td><a href="#hiber.UpdateZeroableInt">hiber.UpdateZeroableInt</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
                   <td>update_hmac_header_name</td>
-                  <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p>Update the custom hmac header, or clear to reset to default. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_update_hmac_header_name</td>
+                  <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
@@ -1333,6 +1270,16 @@ If the failure percentage is higher, within the warning period, the health is sw
               <tbody>
               
                 <tr>
+                  <td>deprecated_secret</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_description</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
                   <td>deprecated_event_filter</td>
                   <td><p>true</p></td>
                 </tr>
@@ -1344,6 +1291,26 @@ If the failure percentage is higher, within the warning period, the health is sw
               
                 <tr>
                   <td>deprecated_tag_filter</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_active</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_certificate_id</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_health_warning_failure_percentage</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_update_hmac_header_name</td>
                   <td><p>true</p></td>
                 </tr>
               
@@ -3812,7 +3779,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.UpdateBoolean">UpdateBoolean</h3>
-        <p>Update object for a boolean.</p><p>Since false is the default value, we need to distinguish between an omitted value and setting the value to false,</p><p>in an update object.</p><p>To use this to update, set a value and set updated to true</p>
+        <p>Update object for a boolean.</p><p>Since false is the default value, we need to distinguish between an omitted value and setting the value to false,</p><p>in an update object.</p><p>To use this to update, set a value and set updated to true</p><p>DEPRECATED: use alternative optional fields in the relevant places instead.</p>
 
         
           <table class="field-table">
@@ -3843,7 +3810,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.UpdateClearableString">UpdateClearableString</h3>
-        <p>Update object for a string that can be empty.</p><p>Since an empty string is also the default value, we need to distinguish between an omitted value and</p><p>setting the value to an empty string, in an update object.</p><p>To use this to update, set a value and set updated to true</p>
+        <p>Update object for a string that can be empty.</p><p>Since an empty string is also the default value, we need to distinguish between an omitted value and</p><p>setting the value to an empty string, in an update object.</p><p>To use this to update, set a value and set updated to true</p><p>DEPRECATED: use alternative optional fields in the relevant places instead.</p>
 
         
           <table class="field-table">
@@ -3874,7 +3841,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.UpdateOptionalDuration">UpdateOptionalDuration</h3>
-        <p>Update object for an optional Duration.</p><p>To use this to update, set a value and set updated to true.</p><p>To clear the duration, set updated to true, but set no value.</p>
+        <p>Update object for an optional Duration.</p><p>To use this to update, set a value and set updated to true.</p><p>To clear the duration, set updated to true, but set no value.</p><p>DEPRECATED: use alternative optional fields in the relevant places instead.</p>
 
         
           <table class="field-table">
@@ -3905,7 +3872,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.UpdateOptionalId">UpdateOptionalId</h3>
-        <p>Update object for an optional id.</p><p>To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.</p>
+        <p>Update object for an optional id.</p><p>To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.</p><p>DEPRECATED: use alternative optional fields in the relevant places instead.</p>
 
         
           <table class="field-table">
@@ -3936,7 +3903,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.UpdateZeroableInt">UpdateZeroableInt</h3>
-        <p>Update object for an int that can be set to 0.</p><p>Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,</p><p>in an update object.</p><p>To use this to update, set a value and set updated to true</p>
+        <p>Update object for an int that can be set to 0.</p><p>Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,</p><p>in an update object.</p><p>To use this to update, set a value and set updated to true</p><p>DEPRECATED: use alternative optional fields in the relevant places instead.</p>
 
         
           <table class="field-table">
@@ -4006,6 +3973,24 @@ This deals with things like display name and contact information, not users and 
                 <td>43</td>
                 <td><p>Your organization&#39;s event configuration was updated.
 This refers to things like message summary configuration.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSET_CREATED</td>
+                <td>70</td>
+                <td><p>A new asset was created in your organization.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSET_UPDATED</td>
+                <td>71</td>
+                <td><p>An asset in your organization was updated (i.e. renamed, tagged).</p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSET_DELETED</td>
+                <td>72</td>
+                <td><p>An asset in your organization was deleted.</p></td>
               </tr>
             
               <tr>

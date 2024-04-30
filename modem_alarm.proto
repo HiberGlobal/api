@@ -530,16 +530,19 @@ message UpdateModemAlarm {
         string identifier = 2;
 
         /* Update the name, optionally. */
-        optional UpdateClearableString update_name = 11;
+        optional UpdateClearableString update_name = 11 [deprecated = true];
+        optional string name = 12;
 
         /* Update the description, optionally. */
-        optional UpdateClearableString update_description = 3;
+        optional UpdateClearableString update_description = 3 [deprecated = true];
+        optional string description = 13;
 
         /* Update the trigger condition, optionally. */
         optional ModemAlarm.TriggerCondition update_trigger_condition = 4;
 
         /* Update the default health level, optionally. */
-        optional UpdateClearableString update_default_health_level = 5;
+        optional UpdateClearableString update_default_health_level = 5 [deprecated = true];
+        optional string default_health_level = 14;
 
         /* Update the health after resolved, optionally. */
         optional ModemAlarm.HealthLevelAfterResolved update_health_level_after_resolved = 6;

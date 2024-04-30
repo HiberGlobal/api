@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package hiber.asset;
+
+import "google/protobuf/struct.proto";
+import "tag.proto";
+import "value.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.asset";
+option java_outer_classname = "AssetApi";
+option go_package = "hiber";
+
+/* Assets are things that collect the data produced by devices.
+ * Devices are assigned to assets to handle data ownership.
+ * When a device is replaced, the data flow for the asset continues with the data from the new device.
+ * Multiple devices can be assigned to an asset, though it is advisable to only do so when they send
+ * different type of data (i.e. one sensor for pressure and one for flow).
+ *
+ * For example, if you have a Well, you might have assets for Annulus A and the tubing head.
+ */
+message Asset {
+    /* Predefined assets types that can be used to say something about the data.
+     * Currently a limited list, but more may be added in the future.
+     */
+    enum Type {
+        UNKNOWN = 0;
+        WELL_ANNULUS_A = 1;
+        WELL_ANNULUS_B = 2;
+        WELL_ANNULUS_C = 3;
+        WELL_ANNULUS_D = 4;
+        WELL_TUBING_HEAD = 5;
+    }
+
+    /* A device assigned to an asset.
+     * Non-operational values that the device produces will be linked to this asset
+     * (i.e. pressure, but not battery level).
+     */
+    message AssignedDevice {
+        string number = 1;
+        repeated string identifiers = 2;
+        string name = 3;
+        string type = 4;
+    }
+
+    string identifier = 1;
+
+    /* Name of the asset */
+    string name = 2;
+
+    /* Type of the asset, if any of the predefined types applies. */
+    optional Type type = 3;
+
+    /* Longer detailed description of the asset. */
+    optional string description = 4;
+
+    /* Multiline notes field that can be used to add additional information to an asset. */
+    optional string notes = 5;
+
+    /* Optional time zone for the asset.
+     * This can, for example, be used to calculate SLAs on a daily basis, adjusted by time zone.
+     */
+    optional string time_zone = 6;
+
+    /* The expected transmission rate for this asset. */
+    optional value.Value.Numeric.Rate expected_transmission_rate = 7;
+
+    /* Metadata for the asset.
+     * This can be automatically populated from linked devices or manually added.
+     */
+    google.protobuf.Struct metadata = 8;
+
+    /* Tags assigned to this asset */
+    repeated tag.Tag tags = 9;
+
+    /* Devices assigned to this asset */
+    repeated AssignedDevice devices = 10;
+}
+
+/* Selection object for assets. */
+message AssetSelection {
+    /* Select assets by identifier. */
+    repeated string identifiers = 1;
+
+    /* Search assets by (partial, case insensitive) identifier, name, description, notes and time zone. */
+    repeated string search = 2;
+
+    /* Select assets by type. */
+    repeated Asset.Type types = 3;
+
+    /* Select assets by tags */
+    optional hiber.tag.TagSelection filter_by_tags = 4;
+}

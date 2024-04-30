@@ -1,26 +1,13 @@
 {
   "publisherUpdated": {
     "organization": "your-organization",
-    "updatedDescription": {
+    "updatedDescription": "updated",
+    "deprecatedUpdatedDescription": {
       "updated": true,
       "value": "updated"
     },
     "partialUpdateData": {
       "url": "https://example.com/updated-webhook"
-    },
-    "updatedEventFilter": {
-      "value": {
-      }
-    },
-    "updatedModemFilter": {
-      "value": {
-      }
-    },
-    "updatedTagFilter": {
-      "value": {
-      }
-    },
-    "updatedActiveState": {
     },
     "tags": [
       {

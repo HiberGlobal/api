@@ -3,60 +3,60 @@
   "description": "Sorting options for the results.",
   "values": {
     "LAST_MESSAGE_RECEIVED": "Sorts messages in descending time order."
-    ,"LAST_MESSAGE_RECEIVED_INVERTED": "Sorts messages in ascending time order."
-    ,"MODEM_NUMBER_ASC": "Sort numerically on the number of the modem, in ascending order."
-    ,"MODEM_NUMBER_DESC": "Sort numerically on the number of the modem, in descending order."
-    ,"STATUS_ASC": "Sort modem on its Status."
-    ,"STATUS_DESC": "Sort modem on its Status in reverse order."
-    ,"STATUS_ASC_ALPHABETICAL": "Status sorted alphabetically by Status name."
-    ,"STATUS_DESC_ALPHABETICAL": "Status sorted alphabetically by Status name, descending order."
-    ,"MODEM_NAME_ASC": "Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in ascending order."
-    ,"MODEM_NAME_DESC": "Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in descending order."
-    ,"ORGANIZATION_ASC": "Sort alphabetically on the name of the organization that owns the modem, in ascending order."
-    ,"ORGANIZATION_DESC": "Sort alphabetically on the name of the organization that owns the modem, in descending order."
-    ,"HEALTH": "Health sorted from least to most severe (i.e. OK, WARNING, ERROR)."
-    ,"HEALTH_DESC": "Health sorted from most to least severe (i.e. ERROR, WARNING, OK)."
-    ,"HEALTH_ASC_ALPHABETICAL": "Health sorted alphabetically by health level name."
-    ,"HEALTH_DESC_ALPHABETICAL": "Health sorted alphabetically by health level name, descending order."
-    ,"SENSOR_BRAND_ASC": "Sort alphabetically on the brand of the sensor, in ascending order."
-    ,"SENSOR_BRAND_DESC": "Sort alphabetically on the brand of the sensor, in descending order."
-    ,"DEVICE_TYPE_ASC": "Sort alphabetically on the device type, in ascending order."
-    ,"DEVICE_TYPE_DESC": "Sort alphabetically on the device type, in descending order."
-    ,"TAG_TYPE_WELL_ASC": "Sort alphabetically on any tags of type 'well', in ascending order."
-    ,"TAG_TYPE_WELL_DESC": "Sort alphabetically on any tags of type 'well', in descending order."
-    ,"TAG_TYPE_SITE_ASC": "Sort alphabetically on any tags of type 'site', in ascending order."
-    ,"TAG_TYPE_SITE_DESC": "Sort alphabetically on any tags of type 'site', in descending order."
-    ,"TAG_TYPE_PRODUCTION_AREA_ASC": "Sort alphabetically on any tags of type 'production_area', in ascending order."
-    ,"TAG_TYPE_PRODUCTION_AREA_DESC": "Sort alphabetically on any tags of type 'production_area', in descending order."
+    , "LAST_MESSAGE_RECEIVED_INVERTED": "Sorts messages in ascending time order."
+    , "MODEM_NUMBER_ASC": "Sort numerically on the number of the modem, in ascending order."
+    , "MODEM_NUMBER_DESC": "Sort numerically on the number of the modem, in descending order."
+    , "STATUS_ASC": "Sort modem on its Status."
+    , "STATUS_DESC": "Sort modem on its Status in reverse order."
+    , "STATUS_ASC_ALPHABETICAL": "Status sorted alphabetically by Status name."
+    , "STATUS_DESC_ALPHABETICAL": "Status sorted alphabetically by Status name, descending order."
+    , "MODEM_NAME_ASC": "Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in ascending order."
+    , "MODEM_NAME_DESC": "Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in descending order."
+    , "ORGANIZATION_ASC": "Sort alphabetically on the name of the organization that owns the modem, in ascending order."
+    , "ORGANIZATION_DESC": "Sort alphabetically on the name of the organization that owns the modem, in descending order."
+    , "HEALTH": "Health sorted from least to most severe (i.e. OK, WARNING, ERROR)."
+    , "HEALTH_DESC": "Health sorted from most to least severe (i.e. ERROR, WARNING, OK)."
+    , "HEALTH_ASC_ALPHABETICAL": "Health sorted alphabetically by health level name."
+    , "HEALTH_DESC_ALPHABETICAL": "Health sorted alphabetically by health level name, descending order."
+    , "SENSOR_BRAND_ASC": "Sort alphabetically on the brand of the sensor, in ascending order."
+    , "SENSOR_BRAND_DESC": "Sort alphabetically on the brand of the sensor, in descending order."
+    , "DEVICE_TYPE_ASC": "Sort alphabetically on the device type, in ascending order."
+    , "DEVICE_TYPE_DESC": "Sort alphabetically on the device type, in descending order."
+    , "TAG_TYPE_WELL_ASC": "Sort alphabetically on any tags of type 'well', in ascending order."
+    , "TAG_TYPE_WELL_DESC": "Sort alphabetically on any tags of type 'well', in descending order."
+    , "TAG_TYPE_SITE_ASC": "Sort alphabetically on any tags of type 'site', in ascending order."
+    , "TAG_TYPE_SITE_DESC": "Sort alphabetically on any tags of type 'site', in descending order."
+    , "TAG_TYPE_PRODUCTION_AREA_ASC": "Sort alphabetically on any tags of type 'production_area', in ascending order."
+    , "TAG_TYPE_PRODUCTION_AREA_DESC": "Sort alphabetically on any tags of type 'production_area', in descending order."
     }
 },{
   "name": "Lifecycle",
   "description": "",
   "values": {
     "ACCEPTANCE_TESTING": "Device is being tested by Hiber. Devices in this state are not visible to customers."
-    ,"READY_TO_INSTALL": "Device has passed Acceptance Testing and is ready be installed. When it sends it first message, it will automatically go to INSTALLED. Devices in this state are not visible to customers."
-    ,"INSTALLED": "Device is active and sending messages."
-    ,"PAUSED": "Device is paused and not sending messages. This should be of a temporary nature (e.g. a change to the installation is being made). On its next message, it will automatically go back to INSTALLED. Offline alarm checks will not be triggered for devices in this lifecycle."
-    ,"DISABLED": "Device is disabled and not sending messages. This is a more permanent version of PAUSED. Devices in this state are not visible to customers."
-    ,"DECOMMISSIONED": "Device is (going to be) removed from installation and will not return to installed status again. Devices in this state are not visible to customers."
-    ,"DEFECTIVE": "Device is defective and should not be used anymore. Devices in this state are typically RMA-ed and (should be) transferred to the RMA organization. Devices in this state are not visible to customers."
+    , "READY_TO_INSTALL": "Device has passed Acceptance Testing and is ready be installed. When it sends it first message, it will automatically go to INSTALLED. Devices in this state are not visible to customers."
+    , "INSTALLED": "Device is active and sending messages."
+    , "PAUSED": "Device is paused and not sending messages. This should be of a temporary nature (e.g. a change to the installation is being made). On its next message, it will automatically go back to INSTALLED. Offline alarm checks will not be triggered for devices in this lifecycle."
+    , "DISABLED": "Device is disabled and not sending messages. This is a more permanent version of PAUSED. Devices in this state are not visible to customers."
+    , "DECOMMISSIONED": "Device is (going to be) removed from installation and will not return to installed status again. Devices in this state are not visible to customers."
+    , "DEFECTIVE": "Device is defective and should not be used anymore. Devices in this state are typically RMA-ed and (should be) transferred to the RMA organization. Devices in this state are not visible to customers."
     }
 },{
   "name": "Type",
   "description": "The effective type of this modem. Type can depend on the hardware itself as well as network topology.",
   "values": {
     "OTHER": "A device of which the specific type is not known"
-    ,"DISCONNECTED_SENSOR": "A device that is not currently connected to a gateway."
-    ,"GATEWAY": "A device that can receive messages from sensors in the field and relay them (directly) to the satellite. Typically a LoRaWAN hub. Note that gateways also send messages themselves (e.g. a daily heartbeat)."
-    ,"SENSOR": "A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection."
+    , "DISCONNECTED_SENSOR": "A device that is not currently connected to a gateway."
+    , "GATEWAY": "A device that can receive messages from sensors in the field and relay them (directly) to the satellite. Typically a LoRaWAN hub. Note that gateways also send messages themselves (e.g. a daily heartbeat)."
+    , "SENSOR": "A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection."
     }
 },{
   "name": "Source",
   "description": "",
   "values": {
     "HIBERBAND": "A real message from a modem or gateway, sent over Hiberband to the server."
-    ,"DIRECT_TO_API": "A real message from a modem or gateway, sent directly to the API using a persistent connection."
-    ,"TEST": "A test message sent to the testing API."
-    ,"SIMULATION": "A simulated message, generated by the server."
+    , "DIRECT_TO_API": "A real message from a modem or gateway, sent directly to the API using a persistent connection."
+    , "TEST": "A test message sent to the testing API."
+    , "SIMULATION": "A simulated message, generated by the server."
     }
 }]

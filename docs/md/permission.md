@@ -31,13 +31,17 @@ By default, everyone who has access to an organization, can access basic organiz
 | ORGANIZATION_CREATE | Create a new child organization. | 1 |
 | ORGANIZATION_UPDATE | Update the organizations data, such as billing information, address, and contact. | 2 |
 | ORGANIZATION_DELETE | Delete child organizations. You cannot delete your own organization. To delete your organization, contact support. | 3 |
+| ASSETS | List assets, see their details | 53 |
+| ASSETS_UPDATE | Create and update assets, such as their display name and tags. Includes ASSETS permission. | 54 |
+| ASSETS_VALUES | Read asset values, i.e. pressure measurements. | 55 |
 | MODEMS | List modems, see their details and health | 10 |
 | MODEMS_CREATE | Create new modems. Includes MODEMS permission. | 50 |
 | MODEMS_UPDATE | Update modems, such as their peripherals, display name and tags. Includes MODEMS permission. | 11 |
 | MODEMS_LICENSE_KEYS | Show and regenerate license keys. Includes MODEMS permission. | 12 |
 | MODEMS_MESSAGE_BODY_PARSERS | Manage and assign message body parsers. Includes MODEMS permission. | 43 |
 | MODEMS_SECURE_NOTES | Show and update secure notes. Includes MODEMS permission. | 42 |
-| MODEMS_ALARMS | Manage and assign message alerts. Includes MODEMS permission. | 44 |
+| MODEMS_ALARMS | View and assign (with the ASSIGNMENTS permission) alarms. Includes MODEMS permission. | 44 |
+| MODEMS_ALARMS_UPDATE | Manage alarms. Includes MODEMS permission. | 56 |
 | MODEM_VALUES | Read modem values. | 17 |
 | MODEM_MESSAGES | Read modem messages. | 15 |
 | MODEM_MESSAGES_SEND_TEST_MESSAGES | Send modem messages using the TestingService. Does not include MODEMS or MESSAGES permission. | 16 |

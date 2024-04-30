@@ -3,15 +3,17 @@
     "organization": "your-organization",
     "alarmIdentifier": "example-identifier",
     "updated": {
-      "description": {
+      "deprecatedDescription": {
         "updated": true,
         "value": "updated-example"
       },
+      "description": "updated-example",
       "triggerCondition": "ALL",
       "updateDefaultHealthLevel": {
         "updated": true,
         "value": "Build up"
       },
+      "updatedDefaultHealthLevel": "Build up",
       "updateHealthLevelAfterResolved": {
         "healthLevel": "INSPECT",
         "period": {

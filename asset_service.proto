@@ -1,0 +1,269 @@
+syntax = "proto3";
+
+package hiber.asset;
+
+import "google/protobuf/struct.proto";
+
+import "base.proto";
+import "asset.proto";
+import "device.proto";
+import "tag.proto";
+import "value.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.asset";
+option java_outer_classname = "AssetServiceApi";
+option go_package = "hiber";
+
+/* Manage Assets in your organization, creating new assets,
+ * updating or deleting them in bulk and changing assigned tags and devices.
+ */
+service AssetService {
+    /* List the assets in your organization. */
+    rpc List (ListAsset.Request) returns (ListAsset.Response);
+
+    /* Create assets in your organization. */
+    rpc Create (CreateAsset.Request) returns (CreateAsset.Response);
+
+    /* Update assets in your organization. */
+    rpc Update(UpdateAsset.Request) returns (UpdateAsset.Response);
+
+    /* Delete assets in your organization. */
+    rpc Delete(DeleteAsset.Request) returns (DeleteAsset.Response);
+
+    /* Assign (a) tag(s) to an asset. */
+    rpc AssignTag (AssignAssetTags.Request) returns (AssignAssetTags.Response);
+
+    /* Unassign (a) tag(s) from an asset. */
+    rpc UnassignTag (UnassignAssetTags.Request) returns (UnassignAssetTags.Response);
+
+    /* Assign (a) device(s) to an asset. */
+    rpc AssignDevice (AssignAssetDevices.Request) returns (AssignAssetDevices.Response);
+
+    /* Unassign (a) device(s) from an asset. */
+    rpc UnassignDevice (UnassignAssetDevices.Request) returns (UnassignAssetDevices.Response);
+}
+
+/* List the assets in your (selected) organization.
+ */
+message ListAsset {
+    enum Sort {
+        /* Sort alphabetically on the name of the asset, in ascending order. Default. */
+        NAME_ASC = 0;
+        /* Sort alphabetically on the name of the asset, in descending order. */
+        NAME_DESC = 1;
+
+        /* Sort assets on most recent activity first (e.g. newest value received). */
+        ACTIVITY = 2;
+        /* Sort assets on least recent activity first (e.g. longest no value received). */
+        INACTIVITY = 3;
+
+        /* Sort alphabetically on the asset type, in ascending order. */
+        TYPE_ASC = 4;
+        /* Sort alphabetically on the asset type, in descending order. */
+        TYPE_DESC = 5;
+
+        /* Sort alphabetically on any tags of type 'well', in ascending order. */
+        TAG_TYPE_WELL_ASC = 6;
+        /* Sort alphabetically on any tags of type 'well', in descending order. */
+        TAG_TYPE_WELL_DESC = 7;
+        /* Sort alphabetically on any tags of type 'site', in ascending order. */
+        TAG_TYPE_SITE_ASC = 8;
+        /* Sort alphabetically on any tags of type 'site', in descending order. */
+        TAG_TYPE_SITE_DESC = 9;
+        /* Sort alphabetically on any tags of type 'production_area', in ascending order. */
+        TAG_TYPE_PRODUCTION_AREA_ASC = 10;
+        /* Sort alphabetically on any tags of type 'production_area', in descending order. */
+        TAG_TYPE_PRODUCTION_AREA_DESC = 11;
+    }
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select which assets to return.
+         * Optional, when omitted or empty everything is included.
+         */
+        optional asset.AssetSelection selection = 2;
+
+        /* Paginate through results. */
+        optional Pagination pagination = 3;
+
+        /* Sort the assets with the given sort options. */
+        repeated Sort sort_by = 4;
+    }
+    message Response {
+        repeated Asset assets = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}
+
+/* Create one or more assets in your (selected) organization.
+ */
+message CreateAsset {
+    optional string name = 1;
+    optional Asset.Type type = 2;
+    optional string description = 3;
+    optional string notes = 4;
+    optional string time_zone = 5;
+    optional value.Value.Numeric.Rate expected_transmission_rate = 6;
+    optional google.protobuf.Struct metadata = 7;
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Assets to create. */
+        repeated CreateAsset create = 2;
+    }
+    message Response {
+        repeated Asset created = 1;
+        Request request = 2;
+    }
+}
+
+/* Update one or more assets in your (selected) organization. */
+message UpdateAsset {
+    optional string update_name = 1;
+    optional Asset.Type update_type = 2;
+    optional string update_description = 3;
+    optional string update_notes = 4;
+    optional string update_time_zone = 5;
+    optional value.Value.Numeric.Rate update_expected_transmission_rate = 6;
+    map<string, google.protobuf.Value> add_metadata = 7;
+    map<string, string> add_metadata_text = 8;
+    repeated string remove_metadata_keys = 9;
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select which assets to update. Not optional and cannot be empty. */
+        asset.AssetSelection selection = 2;
+
+        /* The update to apply to the selected assets. */
+        UpdateAsset update = 3;
+
+        /* Paginate through results (for the Response, not the actual update).
+         * To get the next pages, use the List call with the same selection and pagination for the next page.
+         */
+        optional Pagination pagination = 4;
+    }
+    message Response {
+        repeated Asset assets = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}
+
+/* Delete assets in your (selected) organization. */
+message DeleteAsset {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select which assets to delete. Not optional and cannot be empty. */
+        asset.AssetSelection selection = 2;
+    }
+    message Response {
+        uint32 deleted = 1;
+        Request request = 2;
+    }
+}
+
+/* Change the assigned tags for a selection of assets in your (selected) organization. */
+message AssignAssetTags {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select which assets to assign. Not optional and cannot be empty. */
+        asset.AssetSelection selection = 2;
+
+        /* Select which tags to assign this asset to. */
+        tag.TagSelection tags = 3;
+
+        /* Paginate through results (for the Response, not the actual update).
+         * To get the next pages, use the List call with the same selection and pagination for the next page.
+         */
+        optional Pagination pagination = 4;
+    }
+    message Response {
+        repeated Asset assets = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}
+
+/* Change the assigned tags for a selection of assets in your (selected) organization. */
+message UnassignAssetTags {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select which assets to unassign. Not optional and cannot be empty. */
+        asset.AssetSelection selection = 2;
+
+        /* Select which tags to unassign this asset from. */
+        tag.TagSelection tags = 3;
+
+        /* Paginate through results (for the Response, not the actual update).
+         * To get the next pages, use the List call with the same selection and pagination for the next page.
+         */
+        optional Pagination pagination = 4;
+    }
+    message Response {
+        repeated Asset assets = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}
+
+/* Change the assigned devices for a selection of assets in your (selected) organization. */
+message AssignAssetDevices {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select which assets to assign. Not optional and cannot be empty. */
+        asset.AssetSelection selection = 2;
+
+        /* Select which devices to assign this asset to. */
+        device.DeviceSelection devices = 3;
+
+        /* Paginate through results (for the Response, not the actual update).
+         * To get the next pages, use the List call with the same selection and pagination for the next page.
+         */
+        optional Pagination pagination = 4;
+    }
+    message Response {
+        repeated Asset assets = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}
+
+/* Change the assigned devices for a selection of assets in your (selected) organization. */
+message UnassignAssetDevices {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select which assets to unassign. Not optional and cannot be empty. */
+        asset.AssetSelection selection = 2;
+
+        /* Select which devices to unassign this asset from. */
+        device.DeviceSelection devices = 3;
+
+        /* Paginate through results (for the Response, not the actual update).
+         * To get the next pages, use the List call with the same selection and pagination for the next page.
+         */
+        optional Pagination pagination = 4;
+    }
+    message Response {
+        repeated Asset assets = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}

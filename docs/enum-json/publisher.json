@@ -3,26 +3,26 @@
   "description": "This type remains for backwards compatibility, but it should not be used.",
   "values": {
     "DEFAULT": ""
-    ,"JSON": ""
-    ,"PROTO": ""
+    , "JSON": ""
+    , "PROTO": ""
     }
 },{
   "name": "QoS",
   "description": "",
   "values": {
     "DEFAULT": ""
-    ,"AT_MOST_ONCE": "Qos level 0"
-    ,"AT_LEAST_ONCE": "Qos level 1"
-    ,"EXACTLY_ONCE": "Qos level 2"
+    , "AT_MOST_ONCE": "Qos level 0"
+    , "AT_LEAST_ONCE": "Qos level 1"
+    , "EXACTLY_ONCE": "Qos level 2"
     }
 },{
   "name": "Type",
   "description": "",
   "values": {
     "HTTP": ""
-    ,"MQTT": ""
-    ,"EMAIL": ""
-    ,"SLACK": ""
-    ,"SHELL_SSIP": ""
+    , "MQTT": ""
+    , "EMAIL": ""
+    , "SLACK": ""
+    , "SHELL_SSIP": ""
     }
 }]

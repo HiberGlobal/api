@@ -5,6 +5,7 @@ package hiber.assign;
 import "google/protobuf/struct.proto";
 
 import "base.proto";
+import "asset.proto";
 import "modem.proto";
 import "modem_alarm.proto";
 import "modem_message_body_parser.proto";
@@ -24,6 +25,9 @@ service AssignmentService {
 
     /* Remove an assignment, like an alarm to a modem. */
     rpc Unassign (Unassign.Request) returns (Unassign.Response);
+
+    /* List assets with the devices and tags they are assigned to. */
+    rpc AssetAssignments (ListAssetAssignments.Request) returns (ListAssetAssignments.Response);
 
     /* List modems with tags, alarms and parsers assigned to them. */
     rpc ModemAssignments (ListModemAssignments.Request) returns (ListModemAssignments.Response);
@@ -56,6 +60,12 @@ enum AssignmentType {
 
     /* Assignment that assigns a modem alarm to a tag, effectively assigning it to all modems with that tag. */
     ASSIGNS_ALARM_TO_TAG = 6;
+
+    /* Assignment that assigns an asset to a tag. */
+    ASSIGNS_ASSET_TO_TAG = 7;
+
+    /* Assignment that assigns an asset to a device. */
+    ASSIGNS_ASSET_TO_DEVICE = 8;
 
     reserved 3;
 }
@@ -90,6 +100,7 @@ message Assignment {
         ModemMessageBodyParserAssignment assign_parser = 3;
         ModemAlarmAssignment assign_alarm = 5;
         string assign_modem = 6;
+        string assign_asset = 8;
     }
 
     oneof to {
@@ -104,6 +115,9 @@ message AssignmentSelection {
         repeated AssignmentType include = 1;
         repeated AssignmentType exclude = 2;
     }
+
+    /* Select the assets to return the assignments for. Optional, when omitted or empty everything is included. */
+    optional asset.AssetSelection assets = 6;
 
     /* Select the modems to return the assignments for. Optional, when omitted or empty everything is included. */
     optional modem.ModemSelection modems = 1;
@@ -151,6 +165,7 @@ message Assign {
             modem.message.bodyparser.ModemMessageBodyParserSelection assign_parsers = 2;
             modem.alarm.ModemAlarmSelection assign_alarms = 4;
             modem.ModemSelection assign_modems = 7;
+            asset.AssetSelection assign_assets = 9;
         }
 
         oneof to {
@@ -179,6 +194,7 @@ message Unassign {
             modem.message.bodyparser.ModemMessageBodyParserSelection unassign_parsers = 2;
             modem.alarm.ModemAlarmSelection unassign_alarms = 4;
             modem.ModemSelection unassign_modems = 6;
+            asset.AssetSelection unassign_assets = 9;
         }
 
         oneof from {
@@ -191,6 +207,38 @@ message Unassign {
     message Response {
         repeated Assignment unassigned = 1;
         Request request = 2;
+    }
+}
+
+message ListAssetAssignments {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select the assignments to list. Optional, when omitted or empty everything is included. */
+        optional AssignmentSelection selection = 2;
+        optional Pagination pagination = 3;
+
+        /* Whether to include assets that are in the selection and have no assignments. */
+        optional bool include_assets_without_assignments = 4;
+    }
+
+    message Response {
+        /* Things that an alarm is assigned to. */
+        message AssetAssignment {
+            string organization = 1;
+            string asset_identifier = 2;
+
+            /* The devices assigned to this asset. */
+            repeated string devices = 3;
+
+            /* The tags for this asset. */
+            repeated tag.Tag tags = 4;
+        }
+
+        repeated AssetAssignment assets = 1;
+        Request request = 2;
+        Pagination.Result pagination = 3;
     }
 }
 
@@ -247,6 +295,9 @@ message ListModemAssignments {
             /* The alarms that are assigned to this modem, if you have permission to view them. */
             repeated modem.alarm.ModemAlarm alarm_details = 7;
 
+            /* The assets assigned to this device. */
+            repeated string asset_identifiers = 9;
+
             reserved 3;
         }
 
@@ -297,17 +348,20 @@ message ListTagAssignments {
             /* The modems with this tag. */
             repeated string modems = 3;
 
-            /* The identifiers of the message body parsers that are assigned to this modem. */
+            /* The identifiers of the message body parsers that are assigned to this tag. */
             repeated Assignment.ModemMessageBodyParserAssignment message_body_parsers = 4;
 
-            /* The identifiers and parameters of the alarms that are assigned to this modem. */
+            /* The identifiers and parameters of the alarms that are assigned to this tag. */
             repeated Assignment.ModemAlarmAssignment alarms = 5;
 
-            /* The details of the parsers assigned to this modem. */
+            /* The details of the parsers assigned to this tag. */
             repeated modem.message.bodyparser.ModemMessageBodyParser message_body_parser_details = 6;
 
-            /* The alarms that are assigned to this modem, if you have permission to view them. */
+            /* The alarms that are assigned to this tag, if you have permission to view them. */
             repeated modem.alarm.ModemAlarm alarm_details = 7;
+
+            /* The assets assigned to this tag. */
+            repeated string asset_identifiers = 8;
         }
 
         repeated TagAssignment tags = 1;

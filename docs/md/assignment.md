@@ -25,6 +25,10 @@
   - [ListAlarmAssignments.Response.AlarmAssignment](#listalarmassignmentsresponsealarmassignment)
   - [ListAlarmAssignments.Response.AlarmAssignment.ToModem](#listalarmassignmentsresponsealarmassignmenttomodem)
   - [ListAlarmAssignments.Response.AlarmAssignment.ToTag](#listalarmassignmentsresponsealarmassignmenttotag)
+  - [ListAssetAssignments](#listassetassignments)
+  - [ListAssetAssignments.Request](#listassetassignmentsrequest)
+  - [ListAssetAssignments.Response](#listassetassignmentsresponse)
+  - [ListAssetAssignments.Response.AssetAssignment](#listassetassignmentsresponseassetassignment)
   - [ListAssignments](#listassignments)
   - [ListAssignments.Request](#listassignmentsrequest)
   - [ListAssignments.Response](#listassignmentsresponse)
@@ -46,6 +50,13 @@
 
 - Enums
   - [AssignmentType](#assignmenttype)
+
+- Referenced messages from [asset.proto](#referenced-messages-from-assetproto)
+  - [hiber.asset.Asset](#hiberassetasset)
+  - [hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice)
+  - [hiber.asset.AssetSelection](#hiberassetassetselection)
+
+    - [hiber.asset.Asset.Type](#hiberassetassettype)
 
 - Referenced messages from [modem.proto](#referenced-messages-from-modemproto)
   - [hiber.modem.Modem](#hibermodemmodem)
@@ -239,6 +250,12 @@ Assign something, like an alarm to a modem.
 
 Remove an assignment, like an alarm to a modem.
 
+### AssetAssignments
+> **rpc** AssetAssignments([ListAssetAssignments.Request](#listassetassignmentsrequest))
+    [ListAssetAssignments.Response](#listassetassignmentsresponse)
+
+List assets with the devices and tags they are assigned to.
+
 ### ModemAssignments
 > **rpc** ModemAssignments([ListModemAssignments.Request](#listmodemassignmentsrequest))
     [ListModemAssignments.Response](#listmodemassignmentsresponse)
@@ -281,6 +298,7 @@ Add assignments.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
 | alarm_parameters | [map Assign.Request.AlarmParametersEntry](#assignrequestalarmparametersentry) | The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
@@ -318,6 +336,7 @@ the tag.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_parser | [ Assignment.ModemMessageBodyParserAssignment](#assignmentmodemmessagebodyparserassignment) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_alarm | [ Assignment.ModemAlarmAssignment](#assignmentmodemalarmassignment) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_modem | [ string](#string) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_asset | [ string](#string) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_modem | [ string](#string) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_parser | [ Assignment.ModemMessageBodyParserAssignment](#assignmentmodemmessagebodyparserassignment) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_tag | [ hiber.tag.Tag](#hibertagtag) |  |
@@ -349,6 +368,7 @@ the tag.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
+|  **optional** assets | [optional hiber.asset.AssetSelection](#hiberassetassetselection) | Select the assets to return the assignments for. Optional, when omitted or empty everything is included. |
 |  **optional** modems | [optional hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the modems to return the assignments for. Optional, when omitted or empty everything is included. |
 |  **optional** modem_alarms | [optional hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) | Select the alarms to return the assignments for. Optional, when omitted or empty everything is included. |
 |  **optional** modem_message_body_parsers | [optional hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) | Select the message body parsers to return the assignments for. Optional, when omitted or empty everything is included. |
@@ -421,6 +441,43 @@ Things that an alarm is assigned to.
 | tag | [ hiber.tag.Tag](#hibertagtag) |  |
 | parameters | [ google.protobuf.Struct](#googleprotobufstruct) |  |
 
+### ListAssetAssignments
+
+
+
+
+### ListAssetAssignments.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional AssignmentSelection](#assignmentselection) | Select the assignments to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+|  **optional** include_assets_without_assignments | [optional bool](#bool) | Whether to include assets that are in the selection and have no assignments. |
+
+### ListAssetAssignments.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| assets | [repeated ListAssetAssignments.Response.AssetAssignment](#listassetassignmentsresponseassetassignment) |  |
+| request | [ ListAssetAssignments.Request](#listassetassignmentsrequest) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
+
+### ListAssetAssignments.Response.AssetAssignment
+
+Things that an alarm is assigned to.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) |  |
+| asset_identifier | [ string](#string) |  |
+| devices | [repeated string](#string) | The devices assigned to this asset. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | The tags for this asset. |
+
 ### ListAssignments
 
 
@@ -489,6 +546,7 @@ Things that are assigned to a modem.
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | The tags for this modem. |
 | message_body_parser_details | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) | The details of the parsers assigned to this modem. |
 | alarm_details | [repeated hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | The alarms that are assigned to this modem, if you have permission to view them. |
+| asset_identifiers | [repeated string](#string) | The assets assigned to this device. |
 
 ### ListModemMessageBodyParserAssignments
 
@@ -567,10 +625,11 @@ Things that an alarm is assigned to.
 | organization | [ string](#string) |  |
 | tag | [ hiber.tag.Tag](#hibertagtag) |  |
 | modems | [repeated string](#string) | The modems with this tag. |
-| message_body_parsers | [repeated Assignment.ModemMessageBodyParserAssignment](#assignmentmodemmessagebodyparserassignment) | The identifiers of the message body parsers that are assigned to this modem. |
-| alarms | [repeated Assignment.ModemAlarmAssignment](#assignmentmodemalarmassignment) | The identifiers and parameters of the alarms that are assigned to this modem. |
-| message_body_parser_details | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) | The details of the parsers assigned to this modem. |
-| alarm_details | [repeated hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | The alarms that are assigned to this modem, if you have permission to view them. |
+| message_body_parsers | [repeated Assignment.ModemMessageBodyParserAssignment](#assignmentmodemmessagebodyparserassignment) | The identifiers of the message body parsers that are assigned to this tag. |
+| alarms | [repeated Assignment.ModemAlarmAssignment](#assignmentmodemalarmassignment) | The identifiers and parameters of the alarms that are assigned to this tag. |
+| message_body_parser_details | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) | The details of the parsers assigned to this tag. |
+| alarm_details | [repeated hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | The alarms that are assigned to this tag, if you have permission to view them. |
+| asset_identifiers | [repeated string](#string) | The assets assigned to this tag. |
 
 ### Unassign
 
@@ -587,6 +646,7 @@ Remove a assignment.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
 
@@ -612,6 +672,79 @@ The types of assignment available, like assigning a message body parser to a mod
 | ASSIGNS_MODEM_TO_TAG | Assignment that assigns a modem to a tag. | 4 |
 | ASSIGNS_MESSAGE_BODY_PARSER_TO_TAG | Assignment that assigns a message body parser to a tag, effectively assigning it to all modems with that tag. | 5 |
 | ASSIGNS_ALARM_TO_TAG | Assignment that assigns a modem alarm to a tag, effectively assigning it to all modems with that tag. | 6 |
+| ASSIGNS_ASSET_TO_TAG | Assignment that assigns an asset to a tag. | 7 |
+| ASSIGNS_ASSET_TO_DEVICE | Assignment that assigns an asset to a device. | 8 |
+
+
+
+## Referenced messages from asset.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [asset.proto](https://github.com/HiberGlobal/api/blob/master/asset.proto).
+
+
+### hiber.asset.Asset
+
+Assets are things that collect the data produced by devices.
+Devices are assigned to assets to handle data ownership.
+When a device is replaced, the data flow for the asset continues with the data from the new device.
+Multiple devices can be assigned to an asset, though it is advisable to only do so when they send
+different type of data (i.e. one sensor for pressure and one for flow).
+
+For example, if you have a Well, you might have assets for Annulus A and the tubing head.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifier | [ string](#string) |  |
+| name | [ string](#string) | Name of the asset |
+|  **optional** type | [optional hiber.asset.Asset.Type](#hiberassetassettype) | Type of the asset, if any of the predefined types applies. |
+|  **optional** description | [optional string](#string) | Longer detailed description of the asset. |
+|  **optional** notes | [optional string](#string) | Multiline notes field that can be used to add additional information to an asset. |
+|  **optional** time_zone | [optional string](#string) | Optional time zone for the asset. This can, for example, be used to calculate SLAs on a daily basis, adjusted by time zone. |
+|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this asset. |
+| metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Metadata for the asset. This can be automatically populated from linked devices or manually added. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | Tags assigned to this asset |
+| devices | [repeated hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice) | Devices assigned to this asset |
+
+### hiber.asset.Asset.AssignedDevice
+
+A device assigned to an asset.
+Non-operational values that the device produces will be linked to this asset
+(i.e. pressure, but not battery level).
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| number | [ string](#string) |  |
+| identifiers | [repeated string](#string) |  |
+| name | [ string](#string) |  |
+| type | [ string](#string) |  |
+
+### hiber.asset.AssetSelection
+
+Selection object for assets.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifiers | [repeated string](#string) | Select assets by identifier. |
+| search | [repeated string](#string) | Search assets by (partial, case insensitive) identifier, name, description, notes and time zone. |
+| types | [repeated hiber.asset.Asset.Type](#hiberassetassettype) | Select assets by type. |
+|  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) | Select assets by tags |
+
+
+### Enums
+#### hiber.asset.Asset.Type
+Predefined assets types that can be used to say something about the data.
+Currently a limited list, but more may be added in the future.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| UNKNOWN |  | 0 |
+| WELL_ANNULUS_A |  | 1 |
+| WELL_ANNULUS_B |  | 2 |
+| WELL_ANNULUS_C |  | 3 |
+| WELL_ANNULUS_D |  | 4 |
+| WELL_TUBING_HEAD |  | 5 |
 
 
 
@@ -1260,10 +1393,13 @@ and as such can result in multiple events:
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifiers of the alarm to update |
-|  **optional** update_name | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the name, optionally. |
-|  **optional** update_description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the description, optionally. |
+|  **optional** update_name | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong> Update the name, optionally. |
+|  **optional** name | [optional string](#string) |  |
+|  **optional** update_description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong> Update the description, optionally. |
+|  **optional** description | [optional string](#string) |  |
 |  **optional** update_trigger_condition | [optional hiber.modem.alarm.ModemAlarm.TriggerCondition](#hibermodemalarmmodemalarmtriggercondition) | Update the trigger condition, optionally. |
-|  **optional** update_default_health_level | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the default health level, optionally. |
+|  **optional** update_default_health_level | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong> Update the default health level, optionally. |
+|  **optional** default_health_level | [optional string](#string) |  |
 |  **optional** update_health_level_after_resolved | [optional hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved](#hibermodemalarmmodemalarmhealthlevelafterresolved) | Update the health after resolved, optionally. |
 |  **optional** remove_health_level_after_resolved | [optional bool](#bool) | Remove the health after resolved, optionally. |
 | add_checks | [repeated hiber.modem.alarm.ModemAlarm.Check](#hibermodemalarmmodemalarmcheck) | The checks to add to this alarm. Shortcut for updating an alarm and then adding checks to it. |
@@ -1791,8 +1927,10 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 | add_modem_metadata_fields | [repeated string](#string) | Add fields to the modem metadata fields list. |
 | remove_modem_metadata_fields | [repeated string](#string) | Remove fields from the modem metadata fields list. |
 | replace_modem_metadata_fields | [repeated string](#string) | Replace the modem metadata fields list. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_time_field | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the custom field to extract to measured_at time. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_offset_field | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the custom field to extract to measured_at offset from the sent_at time in seconds. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_time_field | [ string](#string) | Update the custom field to extract to measured_at time. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.deprecated_measured_at_time_field | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_offset_field | [ string](#string) | Update the custom field to extract to measured_at offset from the sent_at time in seconds. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.deprecated_measured_at_offset_field | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
 | add_require_message_metadata | [map hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields.AddRequireMessageMetadataEntry](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafieldsaddrequiremessagemetadataentry) | In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. |
 | remove_require_message_metadata | [repeated string](#string) | Remove a requirement for the metadata. Remove by listing the json-path here. |
 | replace_require_message_metadata | [map hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields.ReplaceRequireMessageMetadataEntry](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafieldsreplacerequiremessagemetadataentry) | Replaces the entire configuration for required message metadata. |
@@ -1948,7 +2086,7 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 ### hiber.BytesOrHex.Update
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -2020,7 +2158,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.ChildOrganizations.Update
 
-Update object to update a Filter.ChildOrganizations field.
+<strong>Deprecated.</strong> Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -2047,7 +2185,7 @@ Update object to update a Filter.ChildOrganizations field.
 
 ### hiber.Filter.Events.Update
 
-Update object to update a Filter.Events field.
+<strong>Deprecated.</strong> Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -2093,7 +2231,7 @@ Update object to update a Filter.Events field.
 
 ### hiber.Filter.Modems.Update
 
-Update object to update a Filter.Modems field.
+<strong>Deprecated.</strong> Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -2176,7 +2314,7 @@ Filter result on specific properties encoded in map-value pairs.
 
 ### hiber.Filter.Tags.Update
 
-Update object to update a Filter.Tags field.
+<strong>Deprecated.</strong> Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -2402,12 +2540,14 @@ timestamps:
 
 ### hiber.UpdateBoolean
 
-Update object for a boolean.
+<strong>Deprecated.</strong> Update object for a boolean.
 
 Since false is the default value, we need to distinguish between an omitted value and setting the value to false,
 in an update object.
 
 To use this to update, set a value and set updated to true
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -2416,12 +2556,14 @@ To use this to update, set a value and set updated to true
 
 ### hiber.UpdateClearableString
 
-Update object for a string that can be empty.
+<strong>Deprecated.</strong> Update object for a string that can be empty.
 
 Since an empty string is also the default value, we need to distinguish between an omitted value and
 setting the value to an empty string, in an update object.
 
 To use this to update, set a value and set updated to true
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -2430,10 +2572,12 @@ To use this to update, set a value and set updated to true
 
 ### hiber.UpdateOptionalDuration
 
-Update object for an optional Duration.
+<strong>Deprecated.</strong> Update object for an optional Duration.
 
 To use this to update, set a value and set updated to true.
 To clear the duration, set updated to true, but set no value.
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -2442,9 +2586,11 @@ To clear the duration, set updated to true, but set no value.
 
 ### hiber.UpdateOptionalId
 
-Update object for an optional id.
+<strong>Deprecated.</strong> Update object for an optional id.
 
 To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -2453,12 +2599,14 @@ To use this to update, set a value and set updated to true. To clear the id, set
 
 ### hiber.UpdateZeroableInt
 
-Update object for an int that can be set to 0.
+<strong>Deprecated.</strong> Update object for an int that can be set to 0.
 
 Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,
 in an update object.
 
 To use this to update, set a value and set updated to true
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -2479,6 +2627,9 @@ api event stream and publishers.
 | ORGANIZATION_UPDATED | Your organization information was updated. This deals with things like display name and contact information, not users and devices. | 12 |
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
+| ASSET_CREATED | A new asset was created in your organization. | 70 |
+| ASSET_UPDATED | An asset in your organization was updated (i.e. renamed, tagged). | 71 |
+| ASSET_DELETED | An asset in your organization was deleted. | 72 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
 | DEVICE_UPDATED | A device in your organization was manually updated (i.e. renamed, tagged). | 36 |
 | DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |

@@ -3,16 +3,16 @@
   "description": "",
   "values": {
     "DEFAULT": ""
-    ,"JSON": ""
-    ,"CSV": ""
+    , "JSON": ""
+    , "CSV": ""
     }
 },{
   "name": "Status",
   "description": "",
   "values": {
     "READY": "Files can be downloaded now"
-    ,"EXPIRED": "Export has expired and is no longer available."
-    ,"PROCESSING": "Data is still being processed to create the export."
-    ,"FAILED": "The export failed. See the error message for more details."
+    , "EXPIRED": "Export has expired and is no longer available."
+    , "PROCESSING": "Data is still being processed to create the export."
+    , "FAILED": "The export failed. See the error message for more details."
     }
 }]

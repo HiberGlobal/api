@@ -3,17 +3,17 @@
   "description": "Options to aggregate the history data points (in a group).",
   "values": {
     "NONE": "Do not aggregate the history data points, just list all of them."
-    ,"AVERAGE": "Average value of all history data points (in a group)."
-    ,"SUM": "Sum all history data points (in a group)."
-    ,"LAST": "Just take the last value (in a group)."
-    ,"MINIMUM": "Take the lowest value (in a group)."
-    ,"MAXIMUM": "Take the highest value (in a group)."
+    , "AVERAGE": "Average value of all history data points (in a group)."
+    , "SUM": "Sum all history data points (in a group)."
+    , "LAST": "Just take the last value (in a group)."
+    , "MINIMUM": "Take the lowest value (in a group)."
+    , "MAXIMUM": "Take the highest value (in a group)."
     }
 },{
   "name": "Sort",
   "description": "How to sort the returned values.",
   "values": {
     "TIME_DESCENDING": ""
-    ,"TIME_ASCENDING": ""
+    , "TIME_ASCENDING": ""
     }
 }]

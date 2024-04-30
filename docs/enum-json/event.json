@@ -3,9 +3,9 @@
   "description": "",
   "values": {
     "TIME_DESCENDING": ""
-    ,"TIME_ASCENDING": ""
-    ,"DEVICE_NUMBER_ASC": ""
-    ,"DEVICE_NUMBER_DESC": ""
-    ,"DEVICE_NUMBER_SPECIFIED": ""
+    , "TIME_ASCENDING": ""
+    , "DEVICE_NUMBER_ASC": ""
+    , "DEVICE_NUMBER_DESC": ""
+    , "DEVICE_NUMBER_SPECIFIED": ""
     }
 }]

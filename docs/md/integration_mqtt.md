@@ -358,22 +358,33 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | id | [ int64](#int64) |  |
-|  **optional** filter_event_types | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) |  |
-|  **optional** filter_modem_numbers | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) |  |
-|  **optional** filter_tags | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) |  |
-|  **optional** description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) |  |
+|  **optional** deprecated_filter_event_types | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) | <strong>Deprecated.</strong>  |
+|  **optional** filter_event_types | [optional hiber.Filter.Events](#hiberfilterevents) |  |
+|  **optional** deprecated_filter_modem_numbers | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | <strong>Deprecated.</strong>  |
+|  **optional** filter_modem_numbers | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** deprecated_filter_tags | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | <strong>Deprecated.</strong>  |
+|  **optional** filter_tags | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
+|  **optional** deprecated_description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+|  **optional** description | [optional string](#string) |  |
 |  **optional** url | [optional string](#string) | The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 |
 |  **optional** content_type | [optional MQTTPublisher.ContentType](#mqttpublishercontenttype) |  |
 |  **optional** topic | [optional string](#string) | The MQTT topic to send to on the receiving server. |
 |  **optional** qos | [optional MQTTPublisher.Data.QoS](#mqttpublisherdataqos) | MQTT QoS value. |
-|  **optional** identifier | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Identifier used by the MQTT client. Defaults to "hiber". |
-|  **optional** username | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Optional username to authenticate with. |
-|  **optional** password | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Optional password to authenticate with. Requires username to be set. |
-|  **optional** certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | Update or remove the client certificate to use when connecting to the MQTT server. |
-|  **optional** server_ca_certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | Update or remove the server CA certificate to use when connecting to the MQTT server. |
-|  **optional** active | [optional hiber.UpdateBoolean](#hiberupdateboolean) | Disable the MQTT publisher, so it needs to be enabled again before it is active. |
+|  **optional** identifier | [optional string](#string) | Identifier used by the MQTT client. Defaults to "hiber". |
+|  **optional** deprecated_identifier | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+|  **optional** username | [optional string](#string) | Optional username to authenticate with. |
+|  **optional** deprecated_username | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+|  **optional** password | [optional string](#string) | Optional password to authenticate with. Requires username to be set. |
+|  **optional** deprecated_password | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+|  **optional** certificate_id | [optional int64](#int64) | Update or remove the client certificate to use when connecting to the MQTT server. |
+|  **optional** deprecated_certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | <strong>Deprecated.</strong>  |
+|  **optional** server_ca_certificate_id | [optional int64](#int64) | Update or remove the server CA certificate to use when connecting to the MQTT server. |
+|  **optional** deprecated_server_ca_certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | <strong>Deprecated.</strong>  |
+|  **optional** active | [optional bool](#bool) | Disable the MQTT publisher, so it needs to be enabled again before it is active. |
+|  **optional** deprecated_active | [optional hiber.UpdateBoolean](#hiberupdateboolean) | <strong>Deprecated.</strong>  |
 |  **optional** health_warning_period | [optional hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
-|  **optional** health_warning_failure_percentage | [optional hiber.UpdateZeroableInt](#hiberupdatezeroableint) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
+|  **optional** health_warning_failure_percentage | [optional uint32](#uint32) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
+|  **optional** deprecated_health_warning_failure_percentage | [optional hiber.UpdateZeroableInt](#hiberupdatezeroableint) | <strong>Deprecated.</strong>  |
 
 ### UpdateMQTTPublisherTagsRequest
 
@@ -521,7 +532,7 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 ### hiber.BytesOrHex.Update
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -593,7 +604,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.ChildOrganizations.Update
 
-Update object to update a Filter.ChildOrganizations field.
+<strong>Deprecated.</strong> Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -620,7 +631,7 @@ Update object to update a Filter.ChildOrganizations field.
 
 ### hiber.Filter.Events.Update
 
-Update object to update a Filter.Events field.
+<strong>Deprecated.</strong> Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -666,7 +677,7 @@ Update object to update a Filter.Events field.
 
 ### hiber.Filter.Modems.Update
 
-Update object to update a Filter.Modems field.
+<strong>Deprecated.</strong> Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -749,7 +760,7 @@ Filter result on specific properties encoded in map-value pairs.
 
 ### hiber.Filter.Tags.Update
 
-Update object to update a Filter.Tags field.
+<strong>Deprecated.</strong> Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -975,12 +986,14 @@ timestamps:
 
 ### hiber.UpdateBoolean
 
-Update object for a boolean.
+<strong>Deprecated.</strong> Update object for a boolean.
 
 Since false is the default value, we need to distinguish between an omitted value and setting the value to false,
 in an update object.
 
 To use this to update, set a value and set updated to true
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -989,12 +1002,14 @@ To use this to update, set a value and set updated to true
 
 ### hiber.UpdateClearableString
 
-Update object for a string that can be empty.
+<strong>Deprecated.</strong> Update object for a string that can be empty.
 
 Since an empty string is also the default value, we need to distinguish between an omitted value and
 setting the value to an empty string, in an update object.
 
 To use this to update, set a value and set updated to true
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1003,10 +1018,12 @@ To use this to update, set a value and set updated to true
 
 ### hiber.UpdateOptionalDuration
 
-Update object for an optional Duration.
+<strong>Deprecated.</strong> Update object for an optional Duration.
 
 To use this to update, set a value and set updated to true.
 To clear the duration, set updated to true, but set no value.
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1015,9 +1032,11 @@ To clear the duration, set updated to true, but set no value.
 
 ### hiber.UpdateOptionalId
 
-Update object for an optional id.
+<strong>Deprecated.</strong> Update object for an optional id.
 
 To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1026,12 +1045,14 @@ To use this to update, set a value and set updated to true. To clear the id, set
 
 ### hiber.UpdateZeroableInt
 
-Update object for an int that can be set to 0.
+<strong>Deprecated.</strong> Update object for an int that can be set to 0.
 
 Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,
 in an update object.
 
 To use this to update, set a value and set updated to true
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1052,6 +1073,9 @@ api event stream and publishers.
 | ORGANIZATION_UPDATED | Your organization information was updated. This deals with things like display name and contact information, not users and devices. | 12 |
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
+| ASSET_CREATED | A new asset was created in your organization. | 70 |
+| ASSET_UPDATED | An asset in your organization was updated (i.e. renamed, tagged). | 71 |
+| ASSET_DELETED | An asset in your organization was deleted. | 72 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
 | DEVICE_UPDATED | A device in your organization was manually updated (i.e. renamed, tagged). | 36 |
 | DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |

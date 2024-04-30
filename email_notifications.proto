@@ -92,13 +92,16 @@ message UpdateEmailNotificationPreferencesRequest {
     optional EmailNotificationPreferences.CustomRecipient custom = 2;
 
     /* Events to receive by email. An empty value enables email for all events. */
-    optional Filter.Events.Update enabled_notifications = 3;
+    optional Filter.Events enabled_notifications = 8;
+    optional Filter.Events.Update deprecated_enabled_notifications = 3 [deprecated = true];
 
     /* Filter events by modems. An empty value enables email for every modem's events. */
-    optional Filter.Modems.Update filter_modems = 4;
+    optional Filter.Modems filter_modems = 9;
+    optional Filter.Modems.Update deprecated_filter_modems = 4 [deprecated = true];
 
     /* Filter events by tags. An empty value enables email for all tags. */
-    optional Filter.Tags.Update filter_tags = 5;
+    optional Filter.Tags filter_tags = 10;
+    optional Filter.Tags.Update deprecated_filter_tags = 5 [deprecated = true];
 
     /* Add health levels to the health levels filter. */
     repeated string add_health_levels_to_filter = 6;

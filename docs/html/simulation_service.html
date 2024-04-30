@@ -2401,7 +2401,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.UpdateBoolean">UpdateBoolean</h3>
-        <p>Update object for a boolean.</p><p>Since false is the default value, we need to distinguish between an omitted value and setting the value to false,</p><p>in an update object.</p><p>To use this to update, set a value and set updated to true</p>
+        <p>Update object for a boolean.</p><p>Since false is the default value, we need to distinguish between an omitted value and setting the value to false,</p><p>in an update object.</p><p>To use this to update, set a value and set updated to true</p><p>DEPRECATED: use alternative optional fields in the relevant places instead.</p>
 
         
           <table class="field-table">
@@ -2432,7 +2432,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.UpdateClearableString">UpdateClearableString</h3>
-        <p>Update object for a string that can be empty.</p><p>Since an empty string is also the default value, we need to distinguish between an omitted value and</p><p>setting the value to an empty string, in an update object.</p><p>To use this to update, set a value and set updated to true</p>
+        <p>Update object for a string that can be empty.</p><p>Since an empty string is also the default value, we need to distinguish between an omitted value and</p><p>setting the value to an empty string, in an update object.</p><p>To use this to update, set a value and set updated to true</p><p>DEPRECATED: use alternative optional fields in the relevant places instead.</p>
 
         
           <table class="field-table">
@@ -2463,7 +2463,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.UpdateOptionalDuration">UpdateOptionalDuration</h3>
-        <p>Update object for an optional Duration.</p><p>To use this to update, set a value and set updated to true.</p><p>To clear the duration, set updated to true, but set no value.</p>
+        <p>Update object for an optional Duration.</p><p>To use this to update, set a value and set updated to true.</p><p>To clear the duration, set updated to true, but set no value.</p><p>DEPRECATED: use alternative optional fields in the relevant places instead.</p>
 
         
           <table class="field-table">
@@ -2494,7 +2494,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.UpdateOptionalId">UpdateOptionalId</h3>
-        <p>Update object for an optional id.</p><p>To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.</p>
+        <p>Update object for an optional id.</p><p>To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.</p><p>DEPRECATED: use alternative optional fields in the relevant places instead.</p>
 
         
           <table class="field-table">
@@ -2525,7 +2525,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.UpdateZeroableInt">UpdateZeroableInt</h3>
-        <p>Update object for an int that can be set to 0.</p><p>Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,</p><p>in an update object.</p><p>To use this to update, set a value and set updated to true</p>
+        <p>Update object for an int that can be set to 0.</p><p>Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,</p><p>in an update object.</p><p>To use this to update, set a value and set updated to true</p><p>DEPRECATED: use alternative optional fields in the relevant places instead.</p>
 
         
           <table class="field-table">
@@ -2595,6 +2595,24 @@ This deals with things like display name and contact information, not users and 
                 <td>43</td>
                 <td><p>Your organization&#39;s event configuration was updated.
 This refers to things like message summary configuration.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSET_CREATED</td>
+                <td>70</td>
+                <td><p>A new asset was created in your organization.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSET_UPDATED</td>
+                <td>71</td>
+                <td><p>An asset in your organization was updated (i.e. renamed, tagged).</p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSET_DELETED</td>
+                <td>72</td>
+                <td><p>An asset in your organization was deleted.</p></td>
               </tr>
             
               <tr>

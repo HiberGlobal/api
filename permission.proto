@@ -23,6 +23,15 @@ enum OrganizationPermission {
      */
     ORGANIZATION_DELETE = 3;
 
+    /* List assets, see their details */
+    ASSETS = 53;
+
+    /* Create and update assets, such as their display name and tags. Includes ASSETS permission. */
+    ASSETS_UPDATE = 54;
+
+    /* Read asset values, i.e. pressure measurements. */
+    ASSETS_VALUES = 55;
+
     /* List modems, see their details and health */
     MODEMS = 10;
     /* Create new modems. Includes MODEMS permission. */
@@ -35,8 +44,11 @@ enum OrganizationPermission {
     MODEMS_MESSAGE_BODY_PARSERS = 43;
     /* Show and update secure notes. Includes MODEMS permission. */
     MODEMS_SECURE_NOTES = 42;
-    /* Manage and assign message alerts. Includes MODEMS permission. */
+
+    /* View and assign (with the ASSIGNMENTS permission) alarms. Includes MODEMS permission. */
     MODEMS_ALARMS = 44;
+    /* Manage alarms. Includes MODEMS permission. */
+    MODEMS_ALARMS_UPDATE = 56;
 
     /* Read modem values. */
     MODEM_VALUES = 17;

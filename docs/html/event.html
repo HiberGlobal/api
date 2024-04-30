@@ -223,6 +223,26 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.event.Event.AssetEvent"><span class="badge">M</span>Event.AssetEvent</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.event.Event.AssetEvent.AssetCreatedEvent"><span class="badge">M</span>Event.AssetEvent.AssetCreatedEvent</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.event.Event.AssetEvent.AssetDeletedEvent"><span class="badge">M</span>Event.AssetEvent.AssetDeletedEvent</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.event.Event.AssetEvent.AssetUpdatedEvent"><span class="badge">M</span>Event.AssetEvent.AssetUpdatedEvent</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.event.Event.AssetEvent.AssetUpdatedEvent.Update"><span class="badge">M</span>Event.AssetEvent.AssetUpdatedEvent.Update</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.event.Event.AssignmentEvent"><span class="badge">M</span>Event.AssignmentEvent</a>
                 </li>
               
@@ -618,6 +638,22 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.assign.ListAssetAssignments"><span class="badge">M</span>ListAssetAssignments</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.assign.ListAssetAssignments.Request"><span class="badge">M</span>ListAssetAssignments.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.assign.ListAssetAssignments.Response"><span class="badge">M</span>ListAssetAssignments.Response</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.assign.ListAssetAssignments.Response.AssetAssignment"><span class="badge">M</span>ListAssetAssignments.Response.AssetAssignment</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.assign.ListAssignments"><span class="badge">M</span>ListAssignments</a>
                 </li>
               
@@ -699,6 +735,33 @@
                 <li>
                   <a href="#hiber.assign.AssignmentService"><span class="badge">S</span>AssignmentService</a>
                 </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#asset.proto">asset.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#hiber.asset.Asset"><span class="badge">M</span>Asset</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.asset.Asset.AssignedDevice"><span class="badge">M</span>Asset.AssignedDevice</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.asset.AssetSelection"><span class="badge">M</span>AssetSelection</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#hiber.asset.Asset.Type"><span class="badge">E</span>Asset.Type</a>
+                </li>
+              
+              
               
             </ul>
           </li>
@@ -2201,18 +2264,6 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents"><span class="badge">M</span>UpdateWebhookFilterRequest.UpdateEvents</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.webhook.UpdateWebhookFilterRequest.UpdateModems"><span class="badge">M</span>UpdateWebhookFilterRequest.UpdateModems</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.webhook.UpdateWebhookFilterRequest.UpdateTags"><span class="badge">M</span>UpdateWebhookFilterRequest.UpdateTags</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.webhook.UpdateWebhookRequest"><span class="badge">M</span>UpdateWebhookRequest</a>
                 </li>
               
@@ -2590,6 +2641,27 @@ Only present when not resolved, and only available for some event types. </p></t
                   <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
                   <td>repeated</td>
                   <td><p>The tags for this event, if any. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_created</td>
+                  <td><a href="#hiber.event.Event.AssetEvent.AssetCreatedEvent">Event.AssetEvent.AssetCreatedEvent</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_updated</td>
+                  <td><a href="#hiber.event.Event.AssetEvent.AssetUpdatedEvent">Event.AssetEvent.AssetUpdatedEvent</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_deleted</td>
+                  <td><a href="#hiber.event.Event.AssetEvent.AssetDeletedEvent">Event.AssetEvent.AssetDeletedEvent</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
                 <tr>
@@ -3240,9 +3312,16 @@ for the device (and organization). </p></td>
             <tbody>
               
                 <tr>
-                  <td>description</td>
+                  <td>deprecated_description</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -3264,6 +3343,13 @@ for the device (and organization). </p></td>
                   <td>update_default_health_level</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>updated_default_health_level</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -3271,6 +3357,296 @@ for the device (and organization). </p></td>
                   <td>update_health_level_after_resolved</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved">hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved</a></td>
                   <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>deprecated_description</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>update_default_health_level</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
+        <h3 id="hiber.event.Event.AssetEvent">Event.AssetEvent</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.event.Event.AssetEvent.AssetCreatedEvent">Event.AssetEvent.AssetCreatedEvent</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset</td>
+                  <td><a href="#hiber.asset.Asset">hiber.asset.Asset</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.event.Event.AssetEvent.AssetDeletedEvent">Event.AssetEvent.AssetDeletedEvent</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deleted</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.event.Event.AssetEvent.AssetUpdatedEvent">Event.AssetEvent.AssetUpdatedEvent</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>updated</td>
+                  <td><a href="#hiber.event.Event.AssetEvent.AssetUpdatedEvent.Update">Event.AssetEvent.AssetUpdatedEvent.Update</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.event.Event.AssetEvent.AssetUpdatedEvent.Update">Event.AssetEvent.AssetUpdatedEvent.Update</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>notes</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time_zone</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expected_transmission_rate</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#hiber.asset.Asset.Type">hiber.asset.Asset.Type</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -3698,6 +4074,13 @@ for the device (and organization). </p></td>
                   <td>display_name</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>updated_display_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -3712,6 +4095,13 @@ for the device (and organization). </p></td>
                   <td>notes</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>updated_notes</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -3767,6 +4157,32 @@ for the device (and organization). </p></td>
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>display_name</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>notes</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -4097,6 +4513,13 @@ for the device (and organization). </p></td>
                   <td>updated_name</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -4104,6 +4527,13 @@ for the device (and organization). </p></td>
                   <td>updated_content_ksy</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content_ksy</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -4118,6 +4548,13 @@ for the device (and organization). </p></td>
                   <td>updated_available_to_child_organizations</td>
                   <td><a href="#hiber.Filter.ChildOrganizations.Update">hiber.Filter.ChildOrganizations.Update</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>available_to_child_organizations</td>
+                  <td><a href="#hiber.Filter.ChildOrganizations">hiber.Filter.ChildOrganizations</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -4145,6 +4582,37 @@ for the device (and organization). </p></td>
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>updated_name</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>updated_content_ksy</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>updated_available_to_child_organizations</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -4624,26 +5092,54 @@ This could be, for example:
                   <td>enabled</td>
                   <td><a href="#hiber.UpdateBoolean">hiber.UpdateBoolean</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>state</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>period</td>
                   <td><a href="#hiber.Duration">hiber.Duration</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>align_to_time</td>
                   <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>enabled</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -4876,21 +5372,21 @@ This could be, for example:
                 <tr>
                   <td>display_name_updated</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>vat_number_updated</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>address_updated</td>
                   <td><a href="#hiber.organization.Organization.Address">hiber.organization.Organization.Address</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -4898,27 +5394,34 @@ This could be, for example:
                   <td>is_business_updated</td>
                   <td><a href="#hiber.UpdateBoolean">hiber.UpdateBoolean</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>business_updated</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>billing_name_updated</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>billing_address_updated</td>
                   <td><a href="#hiber.organization.Organization.Address">hiber.organization.Organization.Address</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>contact_updated</td>
                   <td><a href="#hiber.organization.Organization.Contact">hiber.organization.Organization.Contact</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -4960,6 +5463,27 @@ This could be, for example:
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>is_business_updated</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -5246,9 +5770,16 @@ This could be, for example:
                 </tr>
               
                 <tr>
-                  <td>updated_description</td>
+                  <td>deprecated_updated_description</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>updated_description</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -5295,30 +5826,58 @@ This could be, for example:
                 </tr>
               
                 <tr>
-                  <td>updated_event_filter</td>
+                  <td>deprecated_updated_event_filter</td>
                   <td><a href="#hiber.Filter.Events.Update">hiber.Filter.Events.Update</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>updated_event_filter</td>
+                  <td><a href="#hiber.Filter.Events">hiber.Filter.Events</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_updated_modem_filter</td>
+                  <td><a href="#hiber.Filter.Modems.Update">hiber.Filter.Modems.Update</a></td>
+                  <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>updated_modem_filter</td>
-                  <td><a href="#hiber.Filter.Modems.Update">hiber.Filter.Modems.Update</a></td>
-                  <td></td>
+                  <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_updated_tag_filter</td>
+                  <td><a href="#hiber.Filter.Tags.Update">hiber.Filter.Tags.Update</a></td>
+                  <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>updated_tag_filter</td>
-                  <td><a href="#hiber.Filter.Tags.Update">hiber.Filter.Tags.Update</a></td>
-                  <td></td>
+                  <td><a href="#hiber.Filter.Tags">hiber.Filter.Tags</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>updated_active_state</td>
+                  <td>deprecated_updated_active_state</td>
                   <td><a href="#hiber.UpdateBoolean">hiber.UpdateBoolean</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>updated_active_state</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -5374,7 +5933,32 @@ This could be, for example:
               <tbody>
               
                 <tr>
+                  <td>deprecated_updated_description</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
                   <td>partial_update_data</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_updated_event_filter</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_updated_modem_filter</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_updated_tag_filter</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_updated_active_state</td>
                   <td><p>true</p></td>
                 </tr>
               
@@ -5431,36 +6015,100 @@ This could be, for example:
                 </tr>
               
                 <tr>
-                  <td>identifier</td>
+                  <td>deprecated_identifier</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_username</td>
+                  <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>username</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_password</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>password</td>
-                  <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
-                  <td></td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>certificate_id</td>
+                  <td>deprecated_certificate_id</td>
                   <td><a href="#hiber.UpdateOptionalId">hiber.UpdateOptionalId</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>certificate_id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>deprecated_identifier</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_username</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_password</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_certificate_id</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -5492,34 +6140,74 @@ This could be, for example:
                 <tr>
                   <td>url</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>secret</td>
+                  <td>deprecated_secret</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>secret</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>content_type</td>
                   <td><a href="#hiber.webhook.Webhook.ContentType">hiber.webhook.Webhook.ContentType</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>certificate_id</td>
+                  <td>deprecated_certificate_id</td>
                   <td><a href="#hiber.UpdateOptionalId">hiber.UpdateOptionalId</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>certificate_id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>deprecated_secret</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_certificate_id</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -6920,14 +7608,42 @@ Overrides unbundled_events in EventSelection message. </p></td>
               
                 <tr>
                   <td>expiry</td>
+                  <td><a href="#hiber.Duration">hiber.Duration</a></td>
+                  <td>optional</td>
+                  <td><p>After the expiry duration, the event will not affect health anymore. Clear for manual resolving of events. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_expiry</td>
                   <td><a href="#hiber.UpdateOptionalDuration">hiber.UpdateOptionalDuration</a></td>
                   <td></td>
-                  <td><p>After the expiry duration, the event will not affect health anymore. Clear for manual resolving of events. </p></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>deprecated_expiry</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7108,6 +7824,13 @@ Overrides unbundled_events in EventSelection message. </p></td>
                 </tr>
               
                 <tr>
+                  <td>assign_assets</td>
+                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>to_modems</td>
                   <td><a href="#hiber.modem.ModemSelection">hiber.modem.ModemSelection</a></td>
                   <td></td>
@@ -7236,6 +7959,13 @@ Overrides unbundled_events in EventSelection message. </p></td>
                 </tr>
               
                 <tr>
+                  <td>assign_asset</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>to_modem</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -7355,6 +8085,13 @@ Overrides unbundled_events in EventSelection message. </p></td>
               <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
             </thead>
             <tbody>
+              
+                <tr>
+                  <td>assets</td>
+                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
+                  <td>optional</td>
+                  <td><p>Select the assets to return the assignments for. Optional, when omitted or empty everything is included. </p></td>
+                </tr>
               
                 <tr>
                   <td>modems</td>
@@ -7643,6 +8380,141 @@ temperature, the check value will be converted to celsius instead. </p></td>
 
         
       
+        <h3 id="hiber.assign.ListAssetAssignments">ListAssetAssignments</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.assign.ListAssetAssignments.Request">ListAssetAssignments.Request</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>selection</td>
+                  <td><a href="#hiber.assign.AssignmentSelection">AssignmentSelection</a></td>
+                  <td>optional</td>
+                  <td><p>Select the assignments to list. Optional, when omitted or empty everything is included. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>include_assets_without_assignments</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Whether to include assets that are in the selection and have no assignments. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.assign.ListAssetAssignments.Response">ListAssetAssignments.Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>assets</td>
+                  <td><a href="#hiber.assign.ListAssetAssignments.Response.AssetAssignment">ListAssetAssignments.Response.AssetAssignment</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#hiber.assign.ListAssetAssignments.Request">ListAssetAssignments.Request</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.assign.ListAssetAssignments.Response.AssetAssignment">ListAssetAssignments.Response.AssetAssignment</h3>
+        <p>Things that an alarm is assigned to.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>devices</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>The devices assigned to this asset. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
+                  <td>repeated</td>
+                  <td><p>The tags for this asset. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="hiber.assign.ListAssignments">ListAssignments</h3>
         <p></p>
 
@@ -7904,6 +8776,13 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm">hiber.modem.alarm.ModemAlarm</a></td>
                   <td>repeated</td>
                   <td><p>The alarms that are assigned to this modem, if you have permission to view them. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>The assets assigned to this device. </p></td>
                 </tr>
               
             </tbody>
@@ -8211,28 +9090,35 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td>message_body_parsers</td>
                   <td><a href="#hiber.assign.Assignment.ModemMessageBodyParserAssignment">Assignment.ModemMessageBodyParserAssignment</a></td>
                   <td>repeated</td>
-                  <td><p>The identifiers of the message body parsers that are assigned to this modem. </p></td>
+                  <td><p>The identifiers of the message body parsers that are assigned to this tag. </p></td>
                 </tr>
               
                 <tr>
                   <td>alarms</td>
                   <td><a href="#hiber.assign.Assignment.ModemAlarmAssignment">Assignment.ModemAlarmAssignment</a></td>
                   <td>repeated</td>
-                  <td><p>The identifiers and parameters of the alarms that are assigned to this modem. </p></td>
+                  <td><p>The identifiers and parameters of the alarms that are assigned to this tag. </p></td>
                 </tr>
               
                 <tr>
                   <td>message_body_parser_details</td>
                   <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParser">hiber.modem.message.bodyparser.ModemMessageBodyParser</a></td>
                   <td>repeated</td>
-                  <td><p>The details of the parsers assigned to this modem. </p></td>
+                  <td><p>The details of the parsers assigned to this tag. </p></td>
                 </tr>
               
                 <tr>
                   <td>alarm_details</td>
                   <td><a href="#hiber.modem.alarm.ModemAlarm">hiber.modem.alarm.ModemAlarm</a></td>
                   <td>repeated</td>
-                  <td><p>The alarms that are assigned to this modem, if you have permission to view them. </p></td>
+                  <td><p>The alarms that are assigned to this tag, if you have permission to view them. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>The assets assigned to this tag. </p></td>
                 </tr>
               
             </tbody>
@@ -8283,6 +9169,13 @@ temperature, the check value will be converted to celsius instead. </p></td>
                 <tr>
                   <td>unassign_modems</td>
                   <td><a href="#hiber.modem.ModemSelection">hiber.modem.ModemSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>unassign_assets</td>
+                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -8385,6 +9278,18 @@ temperature, the check value will be converted to celsius instead. </p></td>
                 <td><p>Assignment that assigns a modem alarm to a tag, effectively assigning it to all modems with that tag.</p></td>
               </tr>
             
+              <tr>
+                <td>ASSIGNS_ASSET_TO_TAG</td>
+                <td>7</td>
+                <td><p>Assignment that assigns an asset to a tag.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSIGNS_ASSET_TO_DEVICE</td>
+                <td>8</td>
+                <td><p>Assignment that assigns an asset to a device.</p></td>
+              </tr>
+            
           </tbody>
         </table>
       
@@ -8422,6 +9327,13 @@ temperature, the check value will be converted to celsius instead. </p></td>
               </tr>
             
               <tr>
+                <td>AssetAssignments</td>
+                <td><a href="#hiber.assign.ListAssetAssignments.Request">ListAssetAssignments.Request</a></td>
+                <td><a href="#hiber.assign.ListAssetAssignments.Response">ListAssetAssignments.Response</a></td>
+                <td><p>List assets with the devices and tags they are assigned to.</p></td>
+              </tr>
+            
+              <tr>
                 <td>ModemAssignments</td>
                 <td><a href="#hiber.assign.ListModemAssignments.Request">ListModemAssignments.Request</a></td>
                 <td><a href="#hiber.assign.ListModemAssignments.Response">ListModemAssignments.Response</a></td>
@@ -8453,6 +9365,246 @@ temperature, the check value will be converted to celsius instead. </p></td>
         </table>
 
         
+    
+      
+      <div class="file-heading">
+        <h2 id="asset.proto">asset.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="hiber.asset.Asset">Asset</h3>
+        <p>Assets are things that collect the data produced by devices.</p><p>Devices are assigned to assets to handle data ownership.</p><p>When a device is replaced, the data flow for the asset continues with the data from the new device.</p><p>Multiple devices can be assigned to an asset, though it is advisable to only do so when they send</p><p>different type of data (i.e. one sensor for pressure and one for flow).</p><p>For example, if you have a Well, you might have assets for Annulus A and the tubing head.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of the asset </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#hiber.asset.Asset.Type">Asset.Type</a></td>
+                  <td>optional</td>
+                  <td><p>Type of the asset, if any of the predefined types applies. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Longer detailed description of the asset. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>notes</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Multiline notes field that can be used to add additional information to an asset. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time_zone</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional time zone for the asset.
+This can, for example, be used to calculate SLAs on a daily basis, adjusted by time zone. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expected_transmission_rate</td>
+                  <td><a href="#hiber.value.Value.Numeric.Rate">hiber.value.Value.Numeric.Rate</a></td>
+                  <td>optional</td>
+                  <td><p>The expected transmission rate for this asset. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>Metadata for the asset.
+This can be automatically populated from linked devices or manually added. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
+                  <td>repeated</td>
+                  <td><p>Tags assigned to this asset </p></td>
+                </tr>
+              
+                <tr>
+                  <td>devices</td>
+                  <td><a href="#hiber.asset.Asset.AssignedDevice">Asset.AssignedDevice</a></td>
+                  <td>repeated</td>
+                  <td><p>Devices assigned to this asset </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.asset.Asset.AssignedDevice">Asset.AssignedDevice</h3>
+        <p>A device assigned to an asset.</p><p>Non-operational values that the device produces will be linked to this asset</p><p>(i.e. pressure, but not battery level).</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.asset.AssetSelection">AssetSelection</h3>
+        <p>Selection object for assets.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Select assets by identifier. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>search</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Search assets by (partial, case insensitive) identifier, name, description, notes and time zone. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>types</td>
+                  <td><a href="#hiber.asset.Asset.Type">Asset.Type</a></td>
+                  <td>repeated</td>
+                  <td><p>Select assets by type. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>filter_by_tags</td>
+                  <td><a href="#hiber.tag.TagSelection">hiber.tag.TagSelection</a></td>
+                  <td>optional</td>
+                  <td><p>Select assets by tags </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="hiber.asset.Asset.Type">Asset.Type</h3>
+        <p>Predefined assets types that can be used to say something about the data.</p><p>Currently a limited list, but more may be added in the future.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWN</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_ANNULUS_A</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_ANNULUS_B</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_ANNULUS_C</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_ANNULUS_D</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_TUBING_HEAD</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
     
       
       <div class="file-heading">
@@ -9862,7 +11014,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.UpdateBoolean">UpdateBoolean</h3>
-        <p>Update object for a boolean.</p><p>Since false is the default value, we need to distinguish between an omitted value and setting the value to false,</p><p>in an update object.</p><p>To use this to update, set a value and set updated to true</p>
+        <p>Update object for a boolean.</p><p>Since false is the default value, we need to distinguish between an omitted value and setting the value to false,</p><p>in an update object.</p><p>To use this to update, set a value and set updated to true</p><p>DEPRECATED: use alternative optional fields in the relevant places instead.</p>
 
         
           <table class="field-table">
@@ -9893,7 +11045,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.UpdateClearableString">UpdateClearableString</h3>
-        <p>Update object for a string that can be empty.</p><p>Since an empty string is also the default value, we need to distinguish between an omitted value and</p><p>setting the value to an empty string, in an update object.</p><p>To use this to update, set a value and set updated to true</p>
+        <p>Update object for a string that can be empty.</p><p>Since an empty string is also the default value, we need to distinguish between an omitted value and</p><p>setting the value to an empty string, in an update object.</p><p>To use this to update, set a value and set updated to true</p><p>DEPRECATED: use alternative optional fields in the relevant places instead.</p>
 
         
           <table class="field-table">
@@ -9924,7 +11076,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.UpdateOptionalDuration">UpdateOptionalDuration</h3>
-        <p>Update object for an optional Duration.</p><p>To use this to update, set a value and set updated to true.</p><p>To clear the duration, set updated to true, but set no value.</p>
+        <p>Update object for an optional Duration.</p><p>To use this to update, set a value and set updated to true.</p><p>To clear the duration, set updated to true, but set no value.</p><p>DEPRECATED: use alternative optional fields in the relevant places instead.</p>
 
         
           <table class="field-table">
@@ -9955,7 +11107,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.UpdateOptionalId">UpdateOptionalId</h3>
-        <p>Update object for an optional id.</p><p>To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.</p>
+        <p>Update object for an optional id.</p><p>To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.</p><p>DEPRECATED: use alternative optional fields in the relevant places instead.</p>
 
         
           <table class="field-table">
@@ -9986,7 +11138,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.UpdateZeroableInt">UpdateZeroableInt</h3>
-        <p>Update object for an int that can be set to 0.</p><p>Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,</p><p>in an update object.</p><p>To use this to update, set a value and set updated to true</p>
+        <p>Update object for an int that can be set to 0.</p><p>Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,</p><p>in an update object.</p><p>To use this to update, set a value and set updated to true</p><p>DEPRECATED: use alternative optional fields in the relevant places instead.</p>
 
         
           <table class="field-table">
@@ -10056,6 +11208,24 @@ This deals with things like display name and contact information, not users and 
                 <td>43</td>
                 <td><p>Your organization&#39;s event configuration was updated.
 This refers to things like message summary configuration.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSET_CREATED</td>
+                <td>70</td>
+                <td><p>A new asset was created in your organization.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSET_UPDATED</td>
+                <td>71</td>
+                <td><p>An asset in your organization was updated (i.e. renamed, tagged).</p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSET_DELETED</td>
+                <td>72</td>
+                <td><p>An asset in your organization was deleted.</p></td>
               </tr>
             
               <tr>
@@ -12018,9 +13188,16 @@ the field color in HealthLevel </p></td>
                 </tr>
               
                 <tr>
-                  <td>update_catch_all</td>
+                  <td>deprecated_update_catch_all</td>
                   <td><a href="#hiber.UpdateBoolean">hiber.UpdateBoolean</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong> Optionally, set or unset the catch all flag. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>update_catch_all</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
                   <td><p>Optionally, set or unset the catch all flag. </p></td>
                 </tr>
               
@@ -12042,6 +13219,11 @@ the field color in HealthLevel </p></td>
               
                 <tr>
                   <td>update_color</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_update_catch_all</td>
                   <td><p>true</p></td>
                 </tr>
               
@@ -13040,29 +14222,57 @@ If the failure percentage is higher, within the warning period, the health is sw
                 </tr>
               
                 <tr>
-                  <td>filter_event_types</td>
+                  <td>deprecated_filter_event_types</td>
                   <td><a href="#hiber.Filter.Events.Update">hiber.Filter.Events.Update</a></td>
                   <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>filter_event_types</td>
+                  <td><a href="#hiber.Filter.Events">hiber.Filter.Events</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_filter_modem_numbers</td>
+                  <td><a href="#hiber.Filter.Modems.Update">hiber.Filter.Modems.Update</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>filter_modem_numbers</td>
-                  <td><a href="#hiber.Filter.Modems.Update">hiber.Filter.Modems.Update</a></td>
+                  <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_filter_tags</td>
+                  <td><a href="#hiber.Filter.Tags.Update">hiber.Filter.Tags.Update</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>filter_tags</td>
-                  <td><a href="#hiber.Filter.Tags.Update">hiber.Filter.Tags.Update</a></td>
+                  <td><a href="#hiber.Filter.Tags">hiber.Filter.Tags</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>description</td>
+                  <td>deprecated_description</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>
@@ -13097,44 +14307,86 @@ If the failure percentage is higher, within the warning period, the health is sw
               
                 <tr>
                   <td>identifier</td>
-                  <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p>Identifier used by the MQTT client. Defaults to &#34;hiber&#34;. </p></td>
                 </tr>
               
                 <tr>
-                  <td>username</td>
+                  <td>deprecated_identifier</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>username</td>
+                  <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p>Optional username to authenticate with. </p></td>
                 </tr>
               
                 <tr>
-                  <td>password</td>
+                  <td>deprecated_username</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>password</td>
+                  <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p>Optional password to authenticate with. Requires username to be set. </p></td>
                 </tr>
               
                 <tr>
+                  <td>deprecated_password</td>
+                  <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
                   <td>certificate_id</td>
-                  <td><a href="#hiber.UpdateOptionalId">hiber.UpdateOptionalId</a></td>
+                  <td><a href="#int64">int64</a></td>
                   <td>optional</td>
                   <td><p>Update or remove the client certificate to use when connecting to the MQTT server. </p></td>
                 </tr>
               
                 <tr>
-                  <td>server_ca_certificate_id</td>
+                  <td>deprecated_certificate_id</td>
                   <td><a href="#hiber.UpdateOptionalId">hiber.UpdateOptionalId</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>server_ca_certificate_id</td>
+                  <td><a href="#int64">int64</a></td>
                   <td>optional</td>
                   <td><p>Update or remove the server CA certificate to use when connecting to the MQTT server. </p></td>
                 </tr>
               
                 <tr>
+                  <td>deprecated_server_ca_certificate_id</td>
+                  <td><a href="#hiber.UpdateOptionalId">hiber.UpdateOptionalId</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
                   <td>active</td>
-                  <td><a href="#hiber.UpdateBoolean">hiber.UpdateBoolean</a></td>
+                  <td><a href="#bool">bool</a></td>
                   <td>optional</td>
                   <td><p>Disable the MQTT publisher, so it needs to be enabled again before it is active. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_active</td>
+                  <td><a href="#hiber.UpdateBoolean">hiber.UpdateBoolean</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
@@ -13147,15 +14399,93 @@ Set this to 0 to disable warnings based on failure percentage. </p></td>
               
                 <tr>
                   <td>health_warning_failure_percentage</td>
-                  <td><a href="#hiber.UpdateZeroableInt">hiber.UpdateZeroableInt</a></td>
+                  <td><a href="#uint32">uint32</a></td>
                   <td>optional</td>
                   <td><p>Allowed percentage of call failures.
 If the failure percentage is higher, within the warning period, the health is switched to WARNING. </p></td>
                 </tr>
               
+                <tr>
+                  <td>deprecated_health_warning_failure_percentage</td>
+                  <td><a href="#hiber.UpdateZeroableInt">hiber.UpdateZeroableInt</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>deprecated_filter_event_types</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_filter_modem_numbers</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_filter_tags</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_description</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_identifier</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_username</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_password</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_certificate_id</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_server_ca_certificate_id</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_active</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_health_warning_failure_percentage</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -16968,14 +18298,28 @@ be available to unencrypted values due to performance issues. </p></td>
                   <td>update_name</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
                   <td>optional</td>
-                  <td><p>Update the name, optionally. </p></td>
+                  <td><p><strong>Deprecated.</strong> Update the name, optionally. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>update_description</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
                   <td>optional</td>
-                  <td><p>Update the description, optionally. </p></td>
+                  <td><p><strong>Deprecated.</strong> Update the description, optionally. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
                 </tr>
               
                 <tr>
@@ -16989,7 +18333,14 @@ be available to unencrypted values due to performance issues. </p></td>
                   <td>update_default_health_level</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
                   <td>optional</td>
-                  <td><p>Update the default health level, optionally. </p></td>
+                  <td><p><strong>Deprecated.</strong> Update the default health level, optionally. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>default_health_level</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
                 </tr>
               
                 <tr>
@@ -17030,6 +18381,37 @@ be available to unencrypted values due to performance issues. </p></td>
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>update_name</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>update_description</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>update_default_health_level</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -18978,16 +20360,30 @@ This can be combined with a size to limit the amounts of bytes that are parsed. 
               
                 <tr>
                   <td>measured_at_time_field</td>
-                  <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Update the custom field to extract to measured_at time. </p></td>
                 </tr>
               
                 <tr>
-                  <td>measured_at_offset_field</td>
+                  <td>deprecated_measured_at_time_field</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>measured_at_offset_field</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
                   <td><p>Update the custom field to extract to measured_at offset from the sent_at time in seconds. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_measured_at_offset_field</td>
+                  <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
@@ -19017,6 +20413,32 @@ the value of the map is the json to expect at that json-path. </p></td>
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>deprecated_measured_at_time_field</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_measured_at_offset_field</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -22571,42 +23993,42 @@ See the CertificateService for certificate management options. </p></td>
               
                 <tr>
                   <td>deprecated_event_filter</td>
-                  <td><a href="#hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents">UpdateWebhookFilterRequest.UpdateEvents</a></td>
-                  <td>optional</td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
-                  <td>deprecated_modem_filter</td>
-                  <td><a href="#hiber.webhook.UpdateWebhookFilterRequest.UpdateModems">UpdateWebhookFilterRequest.UpdateModems</a></td>
-                  <td>optional</td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
-                  <td>deprecated_tag_filter</td>
-                  <td><a href="#hiber.webhook.UpdateWebhookFilterRequest.UpdateTags">UpdateWebhookFilterRequest.UpdateTags</a></td>
+                  <td><a href="#hiber.Filter.Events.Update">hiber.Filter.Events.Update</a></td>
                   <td>optional</td>
                   <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>event_filter</td>
-                  <td><a href="#hiber.Filter.Events.Update">hiber.Filter.Events.Update</a></td>
+                  <td><a href="#hiber.Filter.Events">hiber.Filter.Events</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_modem_filter</td>
+                  <td><a href="#hiber.Filter.Modems.Update">hiber.Filter.Modems.Update</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>modem_filter</td>
-                  <td><a href="#hiber.Filter.Modems.Update">hiber.Filter.Modems.Update</a></td>
+                  <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>tag_filter</td>
+                  <td>deprecated_tag_filter</td>
                   <td><a href="#hiber.Filter.Tags.Update">hiber.Filter.Tags.Update</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tag_filter</td>
+                  <td><a href="#hiber.Filter.Tags">hiber.Filter.Tags</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>
@@ -22659,99 +24081,6 @@ See the CertificateService for certificate management options. </p></td>
               </tbody>
             </table>
             
-          
-
-        
-      
-        <h3 id="hiber.webhook.UpdateWebhookFilterRequest.UpdateEvents">UpdateWebhookFilterRequest.UpdateEvents</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>updated</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#hiber.Filter.Events">hiber.Filter.Events</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.webhook.UpdateWebhookFilterRequest.UpdateModems">UpdateWebhookFilterRequest.UpdateModems</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>updated</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.webhook.UpdateWebhookFilterRequest.UpdateTags">UpdateWebhookFilterRequest.UpdateTags</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>updated</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#hiber.Filter.Tags">hiber.Filter.Tags</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
           
 
         
@@ -22812,8 +24141,15 @@ See the CertificateService for certificate management options. </p></td>
                 </tr>
               
                 <tr>
-                  <td>secret</td>
+                  <td>deprecated_secret</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>secret</td>
+                  <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>
@@ -22826,50 +24162,57 @@ See the CertificateService for certificate management options. </p></td>
                 </tr>
               
                 <tr>
-                  <td>description</td>
+                  <td>deprecated_description</td>
                   <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>deprecated_event_filter</td>
-                  <td><a href="#hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents">UpdateWebhookRequest.UpdateWebhook.UpdateEvents</a></td>
-                  <td>optional</td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
-                  <td>deprecated_modem_filter</td>
-                  <td><a href="#hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems">UpdateWebhookRequest.UpdateWebhook.UpdateModems</a></td>
-                  <td>optional</td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
-                  <td>deprecated_tag_filter</td>
-                  <td><a href="#hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags">UpdateWebhookRequest.UpdateWebhook.UpdateTags</a></td>
+                  <td><a href="#hiber.Filter.Events.Update">hiber.Filter.Events.Update</a></td>
                   <td>optional</td>
                   <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>event_filter</td>
-                  <td><a href="#hiber.Filter.Events.Update">hiber.Filter.Events.Update</a></td>
+                  <td><a href="#hiber.Filter.Events">hiber.Filter.Events</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_modem_filter</td>
+                  <td><a href="#hiber.Filter.Modems.Update">hiber.Filter.Modems.Update</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
                   <td>modem_filter</td>
-                  <td><a href="#hiber.Filter.Modems.Update">hiber.Filter.Modems.Update</a></td>
+                  <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>tag_filter</td>
+                  <td>deprecated_tag_filter</td>
                   <td><a href="#hiber.Filter.Tags.Update">hiber.Filter.Tags.Update</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tag_filter</td>
+                  <td><a href="#hiber.Filter.Tags">hiber.Filter.Tags</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>
@@ -22889,17 +24232,31 @@ See the CertificateService for certificate management options. </p></td>
                 </tr>
               
                 <tr>
-                  <td>active</td>
+                  <td>deprecated_active</td>
                   <td><a href="#hiber.UpdateBoolean">hiber.UpdateBoolean</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>active</td>
+                  <td><a href="#bool">bool</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>certificate_id</td>
+                  <td>deprecated_certificate_id</td>
                   <td><a href="#hiber.UpdateOptionalId">hiber.UpdateOptionalId</a></td>
                   <td>optional</td>
-                  <td><p>A value of 0 removes the certificate </p></td>
+                  <td><p><strong>Deprecated.</strong> A value of 0 removes the certificate </p></td>
+                </tr>
+              
+                <tr>
+                  <td>certificate_id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
                 </tr>
               
                 <tr>
@@ -22912,17 +24269,31 @@ Set this to 0 to disable warnings based on failure percentage. </p></td>
               
                 <tr>
                   <td>health_warning_failure_percentage</td>
-                  <td><a href="#hiber.UpdateZeroableInt">hiber.UpdateZeroableInt</a></td>
+                  <td><a href="#uint32">uint32</a></td>
                   <td>optional</td>
                   <td><p>Allowed percentage of call failures.
 If the failure percentage is higher, within the warning period, the health is switched to WARNING. </p></td>
                 </tr>
               
                 <tr>
+                  <td>deprecated_health_warning_failure_percentage</td>
+                  <td><a href="#hiber.UpdateZeroableInt">hiber.UpdateZeroableInt</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
                   <td>update_hmac_header_name</td>
-                  <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p>Update the custom hmac header, or clear to reset to default. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_update_hmac_header_name</td>
+                  <td><a href="#hiber.UpdateClearableString">hiber.UpdateClearableString</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
                 <tr>
@@ -22963,6 +24334,16 @@ If the failure percentage is higher, within the warning period, the health is sw
               <tbody>
               
                 <tr>
+                  <td>deprecated_secret</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_description</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
                   <td>deprecated_event_filter</td>
                   <td><p>true</p></td>
                 </tr>
@@ -22974,6 +24355,26 @@ If the failure percentage is higher, within the warning period, the health is sw
               
                 <tr>
                   <td>deprecated_tag_filter</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_active</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_certificate_id</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_health_warning_failure_percentage</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>deprecated_update_hmac_header_name</td>
                   <td><p>true</p></td>
                 </tr>
               

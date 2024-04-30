@@ -221,35 +221,16 @@ message DisableWebhookRequest {
 }
 
 message UpdateWebhookFilterRequest {
-    message UpdateEvents {
-        option deprecated = true;
-
-        bool updated = 1;
-        Filter.Events value = 2;
-    }
-    message UpdateModems {
-        option deprecated = true;
-
-        bool updated = 1;
-        Filter.Modems value = 2;
-    }
-    message UpdateTags {
-        option deprecated = true;
-
-        bool updated = 1;
-        Filter.Tags value = 2;
-    }
-
     int64 id = 1;
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     string organization = 2;
-    optional UpdateEvents deprecated_event_filter = 3 [deprecated = true];
-    optional UpdateModems deprecated_modem_filter = 4 [deprecated = true];
-    optional UpdateTags deprecated_tag_filter = 5 [deprecated = true];
     reserved 6;
-    optional Filter.Events.Update event_filter = 7;
-    optional Filter.Modems.Update modem_filter = 8;
-    optional Filter.Tags.Update tag_filter = 9;
+    optional Filter.Events.Update deprecated_event_filter = 7 [deprecated = true];
+    optional Filter.Events event_filter = 12;
+    optional Filter.Modems.Update deprecated_modem_filter = 8 [deprecated = true];
+    optional Filter.Modems modem_filter = 13;
+    optional Filter.Tags.Update deprecated_tag_filter = 9 [deprecated = true];
+    optional Filter.Tags tag_filter = 14;
 
     /* Add health levels to the health levels filter. */
     repeated string add_health_levels_to_filter = 10;
@@ -280,17 +261,21 @@ message UpdateWebhookRequest {
         }
 
         string url = 1;
-        optional UpdateClearableString secret = 2;
+
+        optional UpdateClearableString deprecated_secret = 2 [deprecated = true];
+        optional string secret = 22;
+
         optional Webhook.ContentType content_type = 3;
-        optional UpdateClearableString description = 4;
 
-        optional UpdateEvents deprecated_event_filter = 5 [deprecated = true];
-        optional UpdateModems deprecated_modem_filter = 6 [deprecated = true];
-        optional UpdateTags deprecated_tag_filter = 7 [deprecated = true];
+        optional UpdateClearableString deprecated_description = 4 [deprecated = true];
+        optional string description = 23;
 
-        optional Filter.Events.Update event_filter = 10;
-        optional Filter.Modems.Update modem_filter = 11;
-        optional Filter.Tags.Update tag_filter = 12;
+        optional Filter.Events.Update deprecated_event_filter = 10 [deprecated = true];
+        optional Filter.Events event_filter = 24;
+        optional Filter.Modems.Update deprecated_modem_filter = 11 [deprecated = true];
+        optional Filter.Modems modem_filter = 25;
+        optional Filter.Tags.Update deprecated_tag_filter = 12 [deprecated = true];
+        optional Filter.Tags tag_filter = 26;
 
         /* Add health levels to the health levels filter. */
         repeated string add_health_levels = 16;
@@ -298,10 +283,12 @@ message UpdateWebhookRequest {
         /* Remove health levels from the health levels filter. */
         repeated string remove_health_levels = 17;
 
-        optional UpdateBoolean active = 8;
+        optional UpdateBoolean deprecated_active = 8 [deprecated = true];
+        optional bool active = 27;
 
         /* A value of 0 removes the certificate */
-        optional UpdateOptionalId certificate_id = 9;
+        optional UpdateOptionalId deprecated_certificate_id = 9 [deprecated = true];
+        optional int64 certificate_id = 28;
 
         reserved 13;
 
@@ -313,10 +300,12 @@ message UpdateWebhookRequest {
         /* Allowed percentage of call failures.
          * If the failure percentage is higher, within the warning period, the health is switched to WARNING.
          */
-        optional UpdateZeroableInt health_warning_failure_percentage = 15;
+        optional uint32 health_warning_failure_percentage = 29;
+        optional UpdateZeroableInt deprecated_health_warning_failure_percentage = 15 [deprecated = true];
 
         /* Update the custom hmac header, or clear to reset to default. */
-        optional UpdateClearableString update_hmac_header_name = 18;
+        optional string update_hmac_header_name = 30;
+        optional UpdateClearableString deprecated_update_hmac_header_name = 18 [deprecated = true];
 
         /* Custom headers to add to every call. */
         map<string, string> add_custom_headers = 19;

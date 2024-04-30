@@ -3,8 +3,8 @@
   "description": "",
   "values": {
     "IDENTIFIER_ASC": ""
-    ,"IDENTIFIER_DESC": ""
-    ,"BRAND_ASC": ""
-    ,"BRAND_DESC": ""
+    , "IDENTIFIER_DESC": ""
+    , "BRAND_ASC": ""
+    , "BRAND_DESC": ""
     }
 }]

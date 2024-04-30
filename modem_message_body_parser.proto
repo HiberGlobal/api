@@ -385,10 +385,12 @@ message UpdateUploadedModemMessageBodyParserRequest {
 
         oneof measured_at_field {
             /* Update the custom field to extract to measured_at time. */
-            UpdateClearableString measured_at_time_field = 8;
+            string measured_at_time_field = 13;
+            UpdateClearableString deprecated_measured_at_time_field = 8 [deprecated = true];
 
             /* Update the custom field to extract to measured_at offset from the sent_at time in seconds. */
-            UpdateClearableString measured_at_offset_field = 9;
+            string measured_at_offset_field = 14;
+            UpdateClearableString deprecated_measured_at_offset_field = 9 [deprecated = true];
         }
 
         /* In order to use this parser on a message,

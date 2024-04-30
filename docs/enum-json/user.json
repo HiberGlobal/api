@@ -3,8 +3,8 @@
   "description": "",
   "values": {
     "EMAIL_ASC": ""
-    ,"EMAIL_DESC": ""
-    ,"NAME_ASC": ""
-    ,"NAME_DESC": ""
+    , "EMAIL_DESC": ""
+    , "NAME_ASC": ""
+    , "NAME_DESC": ""
     }
 }]

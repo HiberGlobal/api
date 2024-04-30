@@ -168,18 +168,22 @@ message UpdateFieldRequest {
     string field_identifier = 2;
 
     /* An optional display name for the field. */
-    optional UpdateClearableString display_name = 3;
+    optional string display_name = 10;
+    optional UpdateClearableString deprecated_display_name = 3 [deprecated = true];
 
     /* Priority of the field, typically used for ordering. */
-    optional UpdateZeroableInt priority = 4;
+    optional uint32 priority = 11;
+    optional UpdateZeroableInt deprecated_priority = 4 [deprecated = true];
 
     /* Whether this field should be stored encrypted or not.
      * When set to true at a later point, earlier values are not encrypted retro-actively.
      */
-    optional UpdateBoolean encrypted = 5;
+    optional bool encrypted = 12;
+    optional UpdateBoolean deprecated_encrypted = 5 [deprecated = true];
 
     /* Whether this field is optional or not. */
-    optional UpdateBoolean optional = 8;
+    optional bool optional = 13;
+    optional UpdateBoolean deprecated_optional = 8 [deprecated = true];
 
     /* If the field is used by operations and does not produce process values. */
     optional bool operational = 9;
@@ -231,16 +235,20 @@ message UpdateFieldEnumValues {
         string value = 1;
 
         /* Update the user-facing name for this value. */
-        UpdateClearableString update_display_name = 2;
+        optional string display_name = 6;
+        UpdateClearableString update_display_name = 2 [deprecated = true];
 
         /* Update the description for this enum value. */
-        UpdateClearableString update_description = 3;
+        optional string description = 7;
+        UpdateClearableString update_description = 3 [deprecated = true];
 
         /* Update the color for this enum value. */
-        UpdateClearableString update_color = 4;
+        optional string color = 8;
+        UpdateClearableString update_color = 4 [deprecated = true];
 
         /* Update the priority, which is used to sort the enum values. */
-        UpdateZeroableInt update_priority = 5;
+        optional uint32 priority = 9;
+        UpdateZeroableInt update_priority = 5 [deprecated = true];
     }
 
     /* Add new enum values to this field. Fails when any already exist. */

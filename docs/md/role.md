@@ -121,13 +121,17 @@ By default, everyone who has access to an organization, can access basic organiz
 | ORGANIZATION_CREATE | Create a new child organization. | 1 |
 | ORGANIZATION_UPDATE | Update the organizations data, such as billing information, address, and contact. | 2 |
 | ORGANIZATION_DELETE | Delete child organizations. You cannot delete your own organization. To delete your organization, contact support. | 3 |
+| ASSETS | List assets, see their details | 53 |
+| ASSETS_UPDATE | Create and update assets, such as their display name and tags. Includes ASSETS permission. | 54 |
+| ASSETS_VALUES | Read asset values, i.e. pressure measurements. | 55 |
 | MODEMS | List modems, see their details and health | 10 |
 | MODEMS_CREATE | Create new modems. Includes MODEMS permission. | 50 |
 | MODEMS_UPDATE | Update modems, such as their peripherals, display name and tags. Includes MODEMS permission. | 11 |
 | MODEMS_LICENSE_KEYS | Show and regenerate license keys. Includes MODEMS permission. | 12 |
 | MODEMS_MESSAGE_BODY_PARSERS | Manage and assign message body parsers. Includes MODEMS permission. | 43 |
 | MODEMS_SECURE_NOTES | Show and update secure notes. Includes MODEMS permission. | 42 |
-| MODEMS_ALARMS | Manage and assign message alerts. Includes MODEMS permission. | 44 |
+| MODEMS_ALARMS | View and assign (with the ASSIGNMENTS permission) alarms. Includes MODEMS permission. | 44 |
+| MODEMS_ALARMS_UPDATE | Manage alarms. Includes MODEMS permission. | 56 |
 | MODEM_VALUES | Read modem values. | 17 |
 | MODEM_MESSAGES | Read modem messages. | 15 |
 | MODEM_MESSAGES_SEND_TEST_MESSAGES | Send modem messages using the TestingService. Does not include MODEMS or MESSAGES permission. | 16 |
@@ -229,7 +233,7 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 ### hiber.BytesOrHex.Update
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -301,7 +305,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.ChildOrganizations.Update
 
-Update object to update a Filter.ChildOrganizations field.
+<strong>Deprecated.</strong> Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -328,7 +332,7 @@ Update object to update a Filter.ChildOrganizations field.
 
 ### hiber.Filter.Events.Update
 
-Update object to update a Filter.Events field.
+<strong>Deprecated.</strong> Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -374,7 +378,7 @@ Update object to update a Filter.Events field.
 
 ### hiber.Filter.Modems.Update
 
-Update object to update a Filter.Modems field.
+<strong>Deprecated.</strong> Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -457,7 +461,7 @@ Filter result on specific properties encoded in map-value pairs.
 
 ### hiber.Filter.Tags.Update
 
-Update object to update a Filter.Tags field.
+<strong>Deprecated.</strong> Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -683,12 +687,14 @@ timestamps:
 
 ### hiber.UpdateBoolean
 
-Update object for a boolean.
+<strong>Deprecated.</strong> Update object for a boolean.
 
 Since false is the default value, we need to distinguish between an omitted value and setting the value to false,
 in an update object.
 
 To use this to update, set a value and set updated to true
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -697,12 +703,14 @@ To use this to update, set a value and set updated to true
 
 ### hiber.UpdateClearableString
 
-Update object for a string that can be empty.
+<strong>Deprecated.</strong> Update object for a string that can be empty.
 
 Since an empty string is also the default value, we need to distinguish between an omitted value and
 setting the value to an empty string, in an update object.
 
 To use this to update, set a value and set updated to true
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -711,10 +719,12 @@ To use this to update, set a value and set updated to true
 
 ### hiber.UpdateOptionalDuration
 
-Update object for an optional Duration.
+<strong>Deprecated.</strong> Update object for an optional Duration.
 
 To use this to update, set a value and set updated to true.
 To clear the duration, set updated to true, but set no value.
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -723,9 +733,11 @@ To clear the duration, set updated to true, but set no value.
 
 ### hiber.UpdateOptionalId
 
-Update object for an optional id.
+<strong>Deprecated.</strong> Update object for an optional id.
 
 To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -734,12 +746,14 @@ To use this to update, set a value and set updated to true. To clear the id, set
 
 ### hiber.UpdateZeroableInt
 
-Update object for an int that can be set to 0.
+<strong>Deprecated.</strong> Update object for an int that can be set to 0.
 
 Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,
 in an update object.
 
 To use this to update, set a value and set updated to true
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -760,6 +774,9 @@ api event stream and publishers.
 | ORGANIZATION_UPDATED | Your organization information was updated. This deals with things like display name and contact information, not users and devices. | 12 |
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
+| ASSET_CREATED | A new asset was created in your organization. | 70 |
+| ASSET_UPDATED | An asset in your organization was updated (i.e. renamed, tagged). | 71 |
+| ASSET_DELETED | An asset in your organization was deleted. | 72 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
 | DEVICE_UPDATED | A device in your organization was manually updated (i.e. renamed, tagged). | 36 |
 | DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |

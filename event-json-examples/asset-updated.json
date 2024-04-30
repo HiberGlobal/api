@@ -1,0 +1,63 @@
+{
+  "assetUpdated": {
+    "organization": "your-organization",
+    "updated": {
+      "name": "updated name example",
+      "description": "updated description example",
+      "notes": "updated note example",
+      "expectedTransmissionRate": 144,
+      "type": "WELL_ANNULUS_B",
+      "metadata": {
+        "example": "test"
+      }
+    },
+    "assetIdentifier": "example-identifier",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC",
+      "textual": "2020-06-01T05:15:25.355Z"
+    },
+    "tags": [
+      {
+        "id": "1",
+        "label": {
+          "name": "example-tag",
+          "type": "well"
+        }
+      },
+      {
+        "id": "2",
+        "label": {
+          "name": "example-tag-2",
+          "type": "well"
+        }
+      }
+    ],
+    "title": "Asset example-identifier was updated.",
+    "description": "Asset example-identifier was updated:\n\n- Name was changed from \u0027name example\u0027 to \u0027updated name example\u0027.\n\n- Description was changed from \u0027description example\u0027 to \u0027updated description example\u0027.\n\n- Notes were changed from \u0027note example\u0027 to \u0027updated note example\u0027.\n\n- Asset Type was updated.\n\n- SLA expected transmission rate was changed from \u002724\u0027 to \u0027144\u0027.\n\n- Metadata was updated."
+  },
+  "type": "ASSET_UPDATED",
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC",
+    "textual": "2020-06-01T05:15:25.355Z"
+  },
+  "title": "Asset example-identifier was updated.",
+  "description": "Asset example-identifier was updated:\n\n- Name was changed from \u0027name example\u0027 to \u0027updated name example\u0027.\n\n- Description was changed from \u0027description example\u0027 to \u0027updated description example\u0027.\n\n- Notes were changed from \u0027note example\u0027 to \u0027updated note example\u0027.\n\n- Asset Type was updated.\n\n- SLA expected transmission rate was changed from \u002724\u0027 to \u0027144\u0027.\n\n- Metadata was updated.",
+  "tags": [
+    {
+      "id": "1",
+      "label": {
+        "name": "example-tag",
+        "type": "well"
+      }
+    },
+    {
+      "id": "2",
+      "label": {
+        "name": "example-tag-2",
+        "type": "well"
+      }
+    }
+  ]
+}

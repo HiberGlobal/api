@@ -16,8 +16,12 @@ option go_package = "hiber";
  * in an update object.
  *
  * To use this to update, set a value and set updated to true
+ *
+ * DEPRECATED: use alternative optional fields in the relevant places instead.
  */
 message UpdateZeroableInt {
+    option deprecated = true;
+
     bool updated = 1;
     uint32 value = 2;
 }
@@ -28,8 +32,12 @@ message UpdateZeroableInt {
  * setting the value to an empty string, in an update object.
  *
  * To use this to update, set a value and set updated to true
+ *
+ * DEPRECATED: use alternative optional fields in the relevant places instead.
  */
 message UpdateClearableString {
+    option deprecated = true;
+
     bool updated = 1;
     string value = 2;
 }
@@ -37,8 +45,12 @@ message UpdateClearableString {
 /* Update object for an optional id.
  *
  * To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.
+ *
+ * DEPRECATED: use alternative optional fields in the relevant places instead.
  */
 message UpdateOptionalId {
+    option deprecated = true;
+
     bool updated = 1;
     int64 value = 2;
 }
@@ -47,8 +59,12 @@ message UpdateOptionalId {
  *
  * To use this to update, set a value and set updated to true.
  * To clear the duration, set updated to true, but set no value.
+ *
+ * DEPRECATED: use alternative optional fields in the relevant places instead.
  */
 message UpdateOptionalDuration {
+    option deprecated = true;
+
     bool updated = 1;
     Duration value = 2;
 }
@@ -59,8 +75,12 @@ message UpdateOptionalDuration {
  * in an update object.
  *
  * To use this to update, set a value and set updated to true
+ *
+ * DEPRECATED: use alternative optional fields in the relevant places instead.
  */
 message UpdateBoolean {
+    option deprecated = true;
+
     bool updated = 1;
     bool value = 2;
 }
@@ -191,6 +211,8 @@ message BytesOrHex {
     optional string hex = 2;
 
     message Update {
+        option deprecated = true;
+
         bool updated = 1;
         BytesOrHex value = 2;
     }
@@ -247,6 +269,15 @@ enum EventType {
      * This refers to things like message summary configuration.
      */
     ORGANIZATION_EVENT_CONFIGURATION_UPDATED = 43;
+
+    /* A new asset was created in your organization. */
+    ASSET_CREATED = 70;
+
+    /* An asset in your organization was updated (i.e. renamed, tagged). */
+    ASSET_UPDATED = 71;
+
+    /* An asset in your organization was deleted. */
+    ASSET_DELETED = 72;
 
     /* A new device was created in your organization, either manually or by a gateway. */
     DEVICE_CREATED = 55;
@@ -425,6 +456,8 @@ message Filter {
 
         /* Update object to update a Filter.ChildOrganizations field. */
         message Update {
+            option deprecated = true;
+
             bool updated = 1;
             Filter.ChildOrganizations value = 2;
         }
@@ -441,6 +474,8 @@ message Filter {
 
         /* Update object to update a Filter.Events field. */
         message Update {
+            option deprecated = true;
+
             bool updated = 1;
             Filter.Events value = 2;
         }
@@ -457,6 +492,8 @@ message Filter {
 
         /* Update object to update a Filter.Modems field. */
         message Update {
+            option deprecated = true;
+
             bool updated = 1;
             Filter.Modems value = 2;
         }
@@ -483,6 +520,8 @@ message Filter {
 
         /* Update object to update a Filter.Tags field. */
         message Update {
+            option deprecated = true;
+
             bool updated = 1;
             Filter.Tags value = 2;
         }

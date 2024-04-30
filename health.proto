@@ -200,7 +200,10 @@ message UpdateHealthLevel {
 
 
         /* Optionally, set or unset the catch all flag. */
-        UpdateBoolean update_catch_all = 5;
+        UpdateBoolean deprecated_update_catch_all = 5 [deprecated = true];
+
+        /* Optionally, set or unset the catch all flag. */
+        optional bool update_catch_all = 8;
     }
     message Response {
         repeated HealthLevel health_levels = 1;

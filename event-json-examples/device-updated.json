@@ -29,6 +29,7 @@
       "updated": true,
       "value": "custom-name"
     },
+    "updatedDisplayName": "custom-name",
     "peripherals": {
       "peripheral-type-1": "peripheral-name-1",
       "peripheral-type-2": "peripheral-name-2",
@@ -38,6 +39,7 @@
       "updated": true,
       "value": "my-updated-notes"
     },
+    "updatedNotes": "my-updated-notes",
     "externalDeviceId": "00 11 22 33 AA BB CC DD"
   },
   "title": "Device AAAA AAAA was updated.",

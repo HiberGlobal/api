@@ -5,6 +5,7 @@ package hiber.event;
 import "google/protobuf/struct.proto";
 
 import "assignment.proto";
+import "asset.proto";
 import "base.proto";
 import "export.proto";
 import "health.proto";
@@ -103,6 +104,10 @@ message Event {
     repeated tag.Tag tags = 105;
 
     oneof event {
+        AssetEvent.AssetCreatedEvent asset_created = 70;
+        AssetEvent.AssetUpdatedEvent asset_updated = 71;
+        AssetEvent.AssetDeletedEvent asset_deleted = 72;
+
         DeviceEvent.DeviceCreatedEvent device_created = 55;
         DeviceEvent.DeviceUpdatedEvent device_updated = 39;
         DeviceEvent.DeviceLocationUpdatedEvent device_location_updated = 2;
@@ -156,6 +161,47 @@ message Event {
     }
     reserved 3, 6, 11 to 16, 18 to 22, 26 to 29, 49 to 53, 60 to 64;
 
+    message AssetEvent {
+        message AssetCreatedEvent {
+            string organization = 1;
+            string asset_identifier = 2;
+            asset.Asset asset = 3;
+            Timestamp time = 4;
+            repeated tag.Tag tags = 5;
+            string title = 6;
+            string description = 7;
+        }
+
+        message AssetUpdatedEvent {
+            message Update {
+                optional string name = 1;
+                optional string description = 2;
+                optional string notes = 3;
+                optional string time_zone = 4;
+                optional uint32 expected_transmission_rate = 5;
+                optional asset.Asset.Type type = 6;
+                optional google.protobuf.Struct metadata = 7;
+            }
+
+            string organization = 1;
+            Update updated = 2;
+            string asset_identifier = 3;
+            Timestamp time = 4;
+            repeated tag.Tag tags = 5;
+            string title = 6;
+            string description = 7;
+        }
+
+        message AssetDeletedEvent {
+            string organization = 1;
+            string deleted = 2;
+            Timestamp time = 3;
+            repeated tag.Tag tags = 4;
+            string title = 5;
+            string description = 6;
+        }
+    }
+
     message DeviceEvent {
         message DeviceCreatedEvent {
             string organization = 1;
@@ -177,9 +223,14 @@ message Event {
             /* External device id for this device (e.g. a MAC address). */
             string external_device_id = 20;
 
-            UpdateClearableString display_name = 10;
+            UpdateClearableString display_name = 10 [deprecated = true];
+            optional string updated_display_name = 22;
+
             map<string, string> peripherals = 15;
-            UpdateClearableString notes = 16;
+
+            UpdateClearableString notes = 16 [deprecated = true];
+            optional string updated_notes = 23;
+
             optional string device_type = 21;
             bool secure_notes_updated = 17;
             reserved 18;
@@ -377,10 +428,18 @@ message Event {
 
         message UpdatedEvent {
             string organization = 1;
-            UpdateClearableString updated_name = 2;
-            UpdateClearableString updated_content_ksy = 3;
+
+            UpdateClearableString updated_name = 2 [deprecated = true];
+            optional string name = 9;
+
+            UpdateClearableString updated_content_ksy = 3 [deprecated = true];
+            optional string content_ksy = 10;
+
             modem.message.bodyparser.SimpleModemMessageBodyParser updated_simple_parser = 4;
-            Filter.ChildOrganizations.Update updated_available_to_child_organizations = 5;
+
+            Filter.ChildOrganizations.Update updated_available_to_child_organizations = 5 [deprecated = true];
+            optional Filter.ChildOrganizations available_to_child_organizations = 11;
+
             string title = 6;
             string description = 7;
             Timestamp time = 8;
@@ -443,10 +502,12 @@ message Event {
 
         message UpdatedEvent {
             message Update {
-                UpdateClearableString description = 1;
+                UpdateClearableString deprecated_description = 1 [deprecated = true];
+                optional string description = 7;
                 string trigger_condition = 2;
                 google.protobuf.Struct checks = 4;
-                UpdateClearableString update_default_health_level = 5;
+                UpdateClearableString update_default_health_level = 5 [deprecated = true];
+                optional string updated_default_health_level = 8;
                 modem.alarm.ModemAlarm.HealthLevelAfterResolved update_health_level_after_resolved = 6;
 
                 reserved 3;
@@ -555,10 +616,12 @@ message Event {
 
         message UpdatedEvent {
             message WebhookUpdate {
-                string url = 1;
-                UpdateClearableString secret = 2;
-                webhook.Webhook.ContentType content_type = 3;
-                UpdateOptionalId certificate_id = 9;
+                optional string url = 1;
+                UpdateClearableString deprecated_secret = 2 [deprecated = true];
+                optional string secret = 4;
+                optional webhook.Webhook.ContentType content_type = 3;
+                UpdateOptionalId deprecated_certificate_id = 9 [deprecated = true];
+                optional int64 certificate_id = 5;
             }
 
             message MQTTUpdate {
@@ -566,10 +629,18 @@ message Event {
                 integration.mqtt.MQTTPublisher.ContentType content_type = 2;
                 string topic = 3;
                 integration.mqtt.MQTTPublisher.Data.QoS qos = 4;
-                UpdateClearableString identifier = 5;
-                UpdateClearableString username = 6;
-                UpdateClearableString password = 7;
-                UpdateOptionalId certificate_id = 8;
+
+                UpdateClearableString deprecated_identifier = 5 [deprecated = true];
+                optional string identifier = 9;
+
+                UpdateClearableString deprecated_username = 6 [deprecated = true];
+                optional string username = 10;
+
+                UpdateClearableString deprecated_password = 7 [deprecated = true];
+                optional string password = 11;
+
+                UpdateOptionalId deprecated_certificate_id = 8 [deprecated = true];
+                optional int64 certificate_id = 12;
             }
 
             message EmailUpdate {
@@ -582,7 +653,8 @@ message Event {
             }
 
             string organization = 1;
-            UpdateClearableString updated_description = 2;
+            UpdateClearableString deprecated_updated_description = 2 [deprecated = true];
+            optional string updated_description = 24;
 
             /* Deprecated in favor of the new updated_data field */
             publisher.Publisher.Data partial_update_data = 3 [deprecated = true];
@@ -595,11 +667,18 @@ message Event {
                 ShellSsipUpdate shell_ssip = 23;
             }
 
-            Filter.Events.Update updated_event_filter = 4;
-            Filter.Modems.Update updated_modem_filter = 5;
-            Filter.Tags.Update updated_tag_filter = 6;
+            Filter.Events.Update deprecated_updated_event_filter = 4 [deprecated = true];
+            optional Filter.Events updated_event_filter = 25;
 
-            UpdateBoolean updated_active_state = 7;
+            Filter.Modems.Update deprecated_updated_modem_filter = 5 [deprecated = true];
+            optional Filter.Modems updated_modem_filter = 26;
+
+            Filter.Tags.Update deprecated_updated_tag_filter = 6 [deprecated = true];
+            optional Filter.Tags updated_tag_filter = 27;
+
+            UpdateBoolean deprecated_updated_active_state = 7 [deprecated = true];
+            optional bool updated_active_state = 28;
+
             reserved 20;
             Duration health_warning_period = 21;
 
@@ -695,13 +774,14 @@ message Event {
 
         message OrganizationUpdatedEvent {
             string organization = 1;
-            string display_name_updated = 2;
-            string vat_number_updated = 3;
-            organization.Organization.Address address_updated = 4;
-            UpdateBoolean is_business_updated = 5;
-            string billing_name_updated = 6;
-            organization.Organization.Address billing_address_updated = 7;
-            organization.Organization.Contact contact_updated = 8;
+            optional string display_name_updated = 2;
+            optional string vat_number_updated = 3;
+            optional organization.Organization.Address address_updated = 4;
+            UpdateBoolean is_business_updated = 5 [deprecated = true];
+            optional bool business_updated = 14;
+            optional string billing_name_updated = 6;
+            optional organization.Organization.Address billing_address_updated = 7;
+            optional organization.Organization.Contact contact_updated = 8;
             string title = 9;
             string description = 10;
             Timestamp time = 11;
@@ -719,9 +799,10 @@ message Event {
 
         message EventConfigurationUpdated {
             message MessageSummaryUpdate {
-                UpdateBoolean enabled = 1;
-                Duration period = 2;
-                Timestamp align_to_time = 3;
+                UpdateBoolean enabled = 1 [deprecated = true];
+                optional bool state = 4;
+                optional Duration period = 2;
+                optional Timestamp align_to_time = 3;
             }
 
             string organization = 1;
@@ -1083,10 +1164,13 @@ message UpdateEventHealthConfiguration {
     message UpdateEventHealth {
         /* When set, events of this type will affect the system with the configured health level. */
         EventType type = 1;
+
         /* The health level to produce when the event happens, by name. */
         string level = 2;
+
         /* After the expiry duration, the event will not affect health anymore. Clear for manual resolving of events. */
-        UpdateOptionalDuration expiry = 3;
+        optional Duration expiry = 4;
+        UpdateOptionalDuration deprecated_expiry = 3 [deprecated = true];
     }
 
     message Request {

@@ -3,11 +3,11 @@
   "description": "How to round the value when scale is applied. For example, a value of 3.1415 with scale 3 could be 4.141 (DOWN, HALF_DOWN, FLOOR) or 4.142 (HALF_UP, UP, CEILING).",
   "values": {
     "HALF_UP": "Round towards nearest neighbor unless both neighbors are equidistant, in which case round up Effectively round up when >= .5, otherwise round down."
-    ,"HALF_DOWN": "Round towards nearest neighbor unless both neighbors are equidistant, in which case round down. Effectively round up when > .5, otherwise round down."
-    ,"UP": "Round away from zero: 1.1 -> 2, while -1.1 -> -2."
-    ,"DOWN": "Round towards zero: 1.1 -> 1, while -1.1 -> -1."
-    ,"CEILING": "Round towards positive infinity."
-    ,"FLOOR": "Round towards negative infinity."
-    ,"HALF_EVEN": "Round towards the nearest neighbor unless both neighbors are equidistant, in which case, round towards the even neighbor. Effectively round up when >= .5 and next integer value is even, otherwise round down."
+    , "HALF_DOWN": "Round towards nearest neighbor unless both neighbors are equidistant, in which case round down. Effectively round up when > .5, otherwise round down."
+    , "UP": "Round away from zero: 1.1 -> 2, while -1.1 -> -2."
+    , "DOWN": "Round towards zero: 1.1 -> 1, while -1.1 -> -1."
+    , "CEILING": "Round towards positive infinity."
+    , "FLOOR": "Round towards negative infinity."
+    , "HALF_EVEN": "Round towards the nearest neighbor unless both neighbors are equidistant, in which case, round towards the even neighbor. Effectively round up when >= .5 and next integer value is even, otherwise round down."
     }
 }]

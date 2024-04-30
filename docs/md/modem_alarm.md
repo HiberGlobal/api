@@ -705,10 +705,13 @@ and as such can result in multiple events:
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifiers of the alarm to update |
-|  **optional** update_name | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the name, optionally. |
-|  **optional** update_description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the description, optionally. |
+|  **optional** update_name | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong> Update the name, optionally. |
+|  **optional** name | [optional string](#string) |  |
+|  **optional** update_description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong> Update the description, optionally. |
+|  **optional** description | [optional string](#string) |  |
 |  **optional** update_trigger_condition | [optional ModemAlarm.TriggerCondition](#modemalarmtriggercondition) | Update the trigger condition, optionally. |
-|  **optional** update_default_health_level | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | Update the default health level, optionally. |
+|  **optional** update_default_health_level | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong> Update the default health level, optionally. |
+|  **optional** default_health_level | [optional string](#string) |  |
 |  **optional** update_health_level_after_resolved | [optional ModemAlarm.HealthLevelAfterResolved](#modemalarmhealthlevelafterresolved) | Update the health after resolved, optionally. |
 |  **optional** remove_health_level_after_resolved | [optional bool](#bool) | Remove the health after resolved, optionally. |
 | add_checks | [repeated ModemAlarm.Check](#modemalarmcheck) | The checks to add to this alarm. Shortcut for updating an alarm and then adding checks to it. |
@@ -1109,7 +1112,7 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 ### hiber.BytesOrHex.Update
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1181,7 +1184,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.ChildOrganizations.Update
 
-Update object to update a Filter.ChildOrganizations field.
+<strong>Deprecated.</strong> Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1208,7 +1211,7 @@ Update object to update a Filter.ChildOrganizations field.
 
 ### hiber.Filter.Events.Update
 
-Update object to update a Filter.Events field.
+<strong>Deprecated.</strong> Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1254,7 +1257,7 @@ Update object to update a Filter.Events field.
 
 ### hiber.Filter.Modems.Update
 
-Update object to update a Filter.Modems field.
+<strong>Deprecated.</strong> Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1337,7 +1340,7 @@ Filter result on specific properties encoded in map-value pairs.
 
 ### hiber.Filter.Tags.Update
 
-Update object to update a Filter.Tags field.
+<strong>Deprecated.</strong> Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1563,12 +1566,14 @@ timestamps:
 
 ### hiber.UpdateBoolean
 
-Update object for a boolean.
+<strong>Deprecated.</strong> Update object for a boolean.
 
 Since false is the default value, we need to distinguish between an omitted value and setting the value to false,
 in an update object.
 
 To use this to update, set a value and set updated to true
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1577,12 +1582,14 @@ To use this to update, set a value and set updated to true
 
 ### hiber.UpdateClearableString
 
-Update object for a string that can be empty.
+<strong>Deprecated.</strong> Update object for a string that can be empty.
 
 Since an empty string is also the default value, we need to distinguish between an omitted value and
 setting the value to an empty string, in an update object.
 
 To use this to update, set a value and set updated to true
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1591,10 +1598,12 @@ To use this to update, set a value and set updated to true
 
 ### hiber.UpdateOptionalDuration
 
-Update object for an optional Duration.
+<strong>Deprecated.</strong> Update object for an optional Duration.
 
 To use this to update, set a value and set updated to true.
 To clear the duration, set updated to true, but set no value.
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1603,9 +1612,11 @@ To clear the duration, set updated to true, but set no value.
 
 ### hiber.UpdateOptionalId
 
-Update object for an optional id.
+<strong>Deprecated.</strong> Update object for an optional id.
 
 To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1614,12 +1625,14 @@ To use this to update, set a value and set updated to true. To clear the id, set
 
 ### hiber.UpdateZeroableInt
 
-Update object for an int that can be set to 0.
+<strong>Deprecated.</strong> Update object for an int that can be set to 0.
 
 Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,
 in an update object.
 
 To use this to update, set a value and set updated to true
+
+DEPRECATED: use alternative optional fields in the relevant places instead.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1640,6 +1653,9 @@ api event stream and publishers.
 | ORGANIZATION_UPDATED | Your organization information was updated. This deals with things like display name and contact information, not users and devices. | 12 |
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
+| ASSET_CREATED | A new asset was created in your organization. | 70 |
+| ASSET_UPDATED | An asset in your organization was updated (i.e. renamed, tagged). | 71 |
+| ASSET_DELETED | An asset in your organization was deleted. | 72 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
 | DEVICE_UPDATED | A device in your organization was manually updated (i.e. renamed, tagged). | 36 |
 | DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |

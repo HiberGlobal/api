@@ -9,56 +9,56 @@
   "description": "Unit of distance",
   "values": {
     "METER": "m"
-    ,"MILLIMETER": "mm"
-    ,"CENTIMETER": "cm"
-    ,"KILOMETER": "km"
-    ,"YARD": "yd"
-    ,"MILE": "mi"
-    ,"FOOT": "'"
-    ,"INCH": "″"
-    ,"NAUTICAL_MILE": "NM. This is a special case unit and may not be auto-converted to your UnitPreference."
+    , "MILLIMETER": "mm"
+    , "CENTIMETER": "cm"
+    , "KILOMETER": "km"
+    , "YARD": "yd"
+    , "MILE": "mi"
+    , "FOOT": "'"
+    , "INCH": "″"
+    , "NAUTICAL_MILE": "NM. This is a special case unit and may not be auto-converted to your UnitPreference."
     }
 },{
   "name": "DurationUnit",
   "description": "Unit of duration.",
   "values": {
     "MILLISECONDS": "ms"
-    ,"SECONDS": "s"
-    ,"MINUTES": "min"
-    ,"HOURS": "h"
-    ,"DAYS": "d"
-    ,"WEEKS": "w"
+    , "SECONDS": "s"
+    , "MINUTES": "min"
+    , "HOURS": "h"
+    , "DAYS": "d"
+    , "WEEKS": "w"
     }
 },{
   "name": "FlowUnit",
   "description": "Unit of volume per time.",
   "values": {
     "CUBIC_METER_PER_HOUR": "m³/h"
-    ,"BARRELS_PER_DAY": "bbl/d"
-    ,"CUBIC_METER_PER_SECOND": "m³/s"
-    ,"CUBIC_FEET_PER_HOUR": "ft³/h"
-    ,"CUBIC_FEET_PER_SECOND": "ft³/s"
-    ,"LITER_PER_HOUR": "l/h"
-    ,"LITER_PER_SECOND": "l/s"
+    , "BARRELS_PER_DAY": "bbl/d"
+    , "CUBIC_METER_PER_SECOND": "m³/s"
+    , "CUBIC_FEET_PER_HOUR": "ft³/h"
+    , "CUBIC_FEET_PER_SECOND": "ft³/s"
+    , "LITER_PER_HOUR": "l/h"
+    , "LITER_PER_SECOND": "l/s"
     }
 },{
   "name": "FuelEfficiencyUnit",
   "description": "Unit of fuel efficiency",
   "values": {
     "LITER_PER_100_KILOMETER": "l/100km"
-    ,"KILOMETER_PER_LITER": "km/l"
-    ,"KILOMETER_PER_GALLON": "km/gal (US)"
-    ,"KILOMETER_PER_IMPERIAL_GALLON": "km/gal (imp)"
-    ,"MILES_PER_GALLON": "mpg (US)"
-    ,"MILES_PER_IMPERIAL_GALLON": "mpg (imp)"
-    ,"MILES_PER_LITER": "mpl"
+    , "KILOMETER_PER_LITER": "km/l"
+    , "KILOMETER_PER_GALLON": "km/gal (US)"
+    , "KILOMETER_PER_IMPERIAL_GALLON": "km/gal (imp)"
+    , "MILES_PER_GALLON": "mpg (US)"
+    , "MILES_PER_IMPERIAL_GALLON": "mpg (imp)"
+    , "MILES_PER_LITER": "mpl"
     }
 },{
   "name": "MassUnit",
   "description": "Unit of mass.",
   "values": {
     "KILOGRAMS": "kg"
-    ,"POUNDS": "lb"
+    , "POUNDS": "lb"
     }
 },{
   "name": "PercentageUnit",
@@ -71,8 +71,8 @@
   "description": "Unit of pressure.",
   "values": {
     "BAR": "bar"
-    ,"PSI": "psi"
-    ,"K_PA": "kPa"
+    , "PSI": "psi"
+    , "K_PA": "kPa"
     }
 },{
   "name": "RateUnit",
@@ -91,38 +91,38 @@
   "description": "Unit of speed.",
   "values": {
     "KILOMETERS_PER_HOUR": "km/h"
-    ,"KNOTS": "kn. This is a special case unit and may not be auto-converted to your UnitPreference."
-    ,"METERS_PER_SECOND": "m/s"
-    ,"MILES_PER_HOUR": "mph"
-    ,"FEET_PER_SECOND": "ft/s"
+    , "KNOTS": "kn. This is a special case unit and may not be auto-converted to your UnitPreference."
+    , "METERS_PER_SECOND": "m/s"
+    , "MILES_PER_HOUR": "mph"
+    , "FEET_PER_SECOND": "ft/s"
     }
 },{
   "name": "TemperatureUnit",
   "description": "Unit of temperature.",
   "values": {
     "KELVIN": "K"
-    ,"DEGREES_CELSIUS": "°C"
-    ,"DEGREES_FAHRENHEIT": "°F"
+    , "DEGREES_CELSIUS": "°C"
+    , "DEGREES_FAHRENHEIT": "°F"
     }
 },{
   "name": "Type",
   "description": "The type of numeric value that is represented. Supported types will automatically convert to the preferred unit (based on the user settings).",
   "values": {
     "TYPE_UNKNOWN": ""
-    ,"PERCENTAGE": ""
-    ,"TEMPERATURE": ""
-    ,"DISTANCE": ""
-    ,"PRESSURE": ""
-    ,"VOLTAGE": ""
-    ,"SPEED": ""
-    ,"VOLUME": ""
-    ,"DURATION": ""
-    ,"FUEL_EFFICIENCY": ""
-    ,"MASS": ""
-    ,"BATTERY_LEVEL": ""
-    ,"FLOW": ""
-    ,"ROTATION_SPEED": ""
-    ,"RATE": ""
+    , "PERCENTAGE": ""
+    , "TEMPERATURE": ""
+    , "DISTANCE": ""
+    , "PRESSURE": ""
+    , "VOLTAGE": ""
+    , "SPEED": ""
+    , "VOLUME": ""
+    , "DURATION": ""
+    , "FUEL_EFFICIENCY": ""
+    , "MASS": ""
+    , "BATTERY_LEVEL": ""
+    , "FLOW": ""
+    , "ROTATION_SPEED": ""
+    , "RATE": ""
     }
 },{
   "name": "VoltageUnit",
@@ -135,36 +135,36 @@
   "description": "Unit of volume.",
   "values": {
     "LITER": "l"
-    ,"GALLON_US": "gal (US)"
-    ,"GALLON_IMPERIAL": "gal (imp)"
-    ,"CUBIC_METER": "m³"
-    ,"CUBIC_FEET": "ft³"
+    , "GALLON_US": "gal (US)"
+    , "GALLON_IMPERIAL": "gal (imp)"
+    , "CUBIC_METER": "m³"
+    , "CUBIC_FEET": "ft³"
     }
 },{
   "name": "Type",
   "description": "The type of value that is represented.",
   "values": {
     "OTHER": ""
-    ,"NUMERIC": "This field contains numeric values, with an optional unit of measurement defined below."
-    ,"TEXT": "This field contains text to be displayed."
-    ,"ENUM": "This field switches between several predefined values. Typically used for status fields."
+    , "NUMERIC": "This field contains numeric values, with an optional unit of measurement defined below."
+    , "TEXT": "This field contains text to be displayed."
+    , "ENUM": "This field switches between several predefined values. Typically used for status fields."
     }
 },{
   "name": "ValueAggregation",
   "description": "Get an aggregated value for the selected data (e.g. average). Text fields can only use the LAST aggregation. Enum fields support a subset of aggregations: - DEFAULT and LAST return the last value; - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order; - AVERAGE and SUM are not supported.",
   "values": {
     "DEFAULT": ""
-    ,"AVERAGE": "Return the average value. Not supported for textual and enum fields. When used with these fields, LAST is used instead."
-    ,"SUM": "Return the sum all values. Not supported for textual and enum fields. When used with these fields, LAST is used instead."
-    ,"LAST": "Just take the last value."
-    ,"MINIMUM": "Return the lowest value. For enum fields, the order of values is used to determine the MINIMUM. Not supported for textual fields. When used with these fields, LAST is used instead."
-    ,"MAXIMUM": "Return the highest value. For enum fields, the order of values is used to determine the MAXIMUM. Not supported for textual fields. When used with these fields, LAST is used instead."
+    , "AVERAGE": "Return the average value. Not supported for textual and enum fields. When used with these fields, LAST is used instead."
+    , "SUM": "Return the sum all values. Not supported for textual and enum fields. When used with these fields, LAST is used instead."
+    , "LAST": "Just take the last value."
+    , "MINIMUM": "Return the lowest value. For enum fields, the order of values is used to determine the MINIMUM. Not supported for textual fields. When used with these fields, LAST is used instead."
+    , "MAXIMUM": "Return the highest value. For enum fields, the order of values is used to determine the MAXIMUM. Not supported for textual fields. When used with these fields, LAST is used instead."
     }
 },{
   "name": "ValueTransformation",
   "description": "Transform the values into a derived value.",
   "values": {
     "DURATION": "Instead of returning the value, return the amount of time a value was active. Aggregation (if applicable) is applied afterwards on the duration value."
-    ,"DELTA": "Instead of returning the value, return the difference between the value and the previous value. Aggregation (if applicable) is applied before the delta is calculated."
+    , "DELTA": "Instead of returning the value, return the difference between the value and the previous value. Aggregation (if applicable) is applied before the delta is calculated."
     }
 }]
