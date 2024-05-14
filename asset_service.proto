@@ -236,6 +236,17 @@ message AssignAssetDevices {
          * To get the next pages, use the List call with the same selection and pagination for the next page.
          */
         optional Pagination pagination = 4;
+
+        /* Time that the assignment should be active.
+         * This can extend into the past, but would not have effect in the past for assignments like parsers.
+         * It would however work for assets having access to device data.
+         */
+        optional Timestamp override_time = 5;
+
+        /* Time that the assignment should no longer be active.
+         * This will not produce an Unassigned event, but would end the assignment at the planned time.
+         */
+        optional Timestamp schedule_end_time = 6;
     }
     message Response {
         repeated Asset assets = 1;
@@ -260,6 +271,14 @@ message UnassignAssetDevices {
          * To get the next pages, use the List call with the same selection and pagination for the next page.
          */
         optional Pagination pagination = 4;
+
+        /* Time that the assignment should end.
+         * This can extend into the past, but would not have effect in the past for assignments like parsers.
+         * It would however work for assets having access to device data.
+         * This can also extend into the future, but while the unassigned event will be produced, the assignment will
+         * still be visible until the given time.
+         */
+        optional Timestamp override_time = 5;
     }
     message Response {
         repeated Asset assets = 1;

@@ -857,6 +857,23 @@
 To get the next pages, use the List call with the same selection and pagination for the next page. </p></td>
                 </tr>
               
+                <tr>
+                  <td>override_time</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>Time that the assignment should be active.
+This can extend into the past, but would not have effect in the past for assignments like parsers.
+It would however work for assets having access to device data. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>schedule_end_time</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>Time that the assignment should no longer be active.
+This will not produce an Unassigned event, but would end the assignment at the planned time. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -1325,6 +1342,17 @@ Optional, when omitted or empty everything is included. </p></td>
                   <td>optional</td>
                   <td><p>Paginate through results (for the Response, not the actual update).
 To get the next pages, use the List call with the same selection and pagination for the next page. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>override_time</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>Time that the assignment should end.
+This can extend into the past, but would not have effect in the past for assignments like parsers.
+It would however work for assets having access to device data.
+This can also extend into the future, but while the unassigned event will be produced, the assignment will
+still be visible until the given time. </p></td>
                 </tr>
               
             </tbody>

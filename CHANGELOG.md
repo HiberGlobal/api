@@ -1,5 +1,14 @@
 # Changelog Hiber API
 
+### 0.192 (2024-05-14)
+
+##### AssignmentService
+
+- Added `override_time` and `schedule_end_time` to `Assign.Request` to customize the assignment time.
+- Added `override_time` to `Unassign.Request` to customize the unassignment time.
+- Added `include_inactive_assignments` to `ListAssignments.Request` to list inactive assignments.
+  - Assignments that no longer have an effect while inactive may be removed automatically.
+
 ### 0.191 (2024-04-30)
 
 ##### AssetService

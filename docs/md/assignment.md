@@ -302,6 +302,8 @@ Add assignments.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
 | alarm_parameters | [map Assign.Request.AlarmParametersEntry](#assignrequestalarmparametersentry) | The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
+|  **optional** override_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment should be active. This can extend into the past, but would not have effect in the past for assignments like parsers. It would however work for assets having access to device data. |
+|  **optional** schedule_end_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment should no longer be active. This will not produce an Unassigned event, but would end the assignment at the planned time. |
 
 ### Assign.Request.AlarmParametersEntry
 
@@ -330,9 +332,20 @@ Assignment is transitive: when an alarm or parser is assigned to a tag, and the 
 This only works in one direction, though. Assigning the alarm or parser to the modem directly does not also assign
 the tag.
 
+Assignment can have a custom start and end time.
+This can extend into the past, but would not have effect in the past for assignments like parsers.
+It would however work for assets having access to device data.
+This can also extend into the future, but while the unassigned event will be produced, the assignment will
+still be visible until the given time.
+
+Assignments that are no longer active (end time is in the past) and that no longer have an effect
+(currently only asset device assignment has an ongoing effect) may be cleaned up automatically.
+
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | type | [ AssignmentType](#assignmenttype) | The type of assignment. This is a helper enum to indicate which fields are set. |
+| start | [ hiber.Timestamp](#hibertimestamp) | Time this assignment started (or is configured to start). |
+|  **optional** end | [optional hiber.Timestamp](#hibertimestamp) | Time this assignment ended (or is configured to end). Inactive assignments that no longer have an effect may be cleaned up automatically. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_parser | [ Assignment.ModemMessageBodyParserAssignment](#assignmentmodemmessagebodyparserassignment) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_alarm | [ Assignment.ModemAlarmAssignment](#assignmentmodemalarmassignment) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_modem | [ string](#string) |  |
@@ -492,6 +505,7 @@ Things that an alarm is assigned to.
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 |  **optional** selection | [optional AssignmentSelection](#assignmentselection) | Select the assignments to list. Optional, when omitted or empty everything is included. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+|  **optional** include_inactive_assignments | [optional bool](#bool) | Include assignments that are no longer or not yet active. |
 
 ### ListAssignments.Response
 
@@ -649,6 +663,7 @@ Remove a assignment.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+|  **optional** override_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment should end. This can extend into the past, but would not have effect in the past for assignments like parsers. It would however work for assets having access to device data. This can also extend into the future, but while the unassigned event will be produced, the assignment will still be visible until the given time. |
 
 ### Unassign.Response
 

@@ -7,6 +7,11 @@
       "assignParser": {
         "identifier": "example-identifier",
         "name": "example"
+      },
+      "start": {
+        "timestamp": "2020-06-01T05:15:25.355Z",
+        "timeZone": "UTC",
+        "textual": "2020-06-01T05:15:25.355Z"
       }
     },
     "title": "Assignment of example-identifier to AAAA AAAA was removed.",

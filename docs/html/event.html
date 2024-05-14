@@ -7851,6 +7851,23 @@ Overrides unbundled_events in EventSelection message. </p></td>
                   <td><p>The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). </p></td>
                 </tr>
               
+                <tr>
+                  <td>override_time</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>Time that the assignment should be active.
+This can extend into the past, but would not have effect in the past for assignments like parsers.
+It would however work for assets having access to device data. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>schedule_end_time</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>Time that the assignment should no longer be active.
+This will not produce an Unassigned event, but would end the assignment at the planned time. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -7921,7 +7938,7 @@ Overrides unbundled_events in EventSelection message. </p></td>
         
       
         <h3 id="hiber.assign.Assignment">Assignment</h3>
-        <p>An assignment assigning one thing to another.</p><p>Assignment is transitive: when an alarm or parser is assigned to a tag, and the tag is assigned to a modem,</p><p>the alarm or parser is considered assigned to that modem.</p><p>This only works in one direction, though. Assigning the alarm or parser to the modem directly does not also assign</p><p>the tag.</p>
+        <p>An assignment assigning one thing to another.</p><p>Assignment is transitive: when an alarm or parser is assigned to a tag, and the tag is assigned to a modem,</p><p>the alarm or parser is considered assigned to that modem.</p><p>This only works in one direction, though. Assigning the alarm or parser to the modem directly does not also assign</p><p>the tag.</p><p>Assignment can have a custom start and end time.</p><p>This can extend into the past, but would not have effect in the past for assignments like parsers.</p><p>It would however work for assets having access to device data.</p><p>This can also extend into the future, but while the unassigned event will be produced, the assignment will</p><p>still be visible until the given time.</p><p>Assignments that are no longer active (end time is in the past) and that no longer have an effect</p><p>(currently only asset device assignment has an ongoing effect) may be cleaned up automatically.</p>
 
         
           <table class="field-table">
@@ -7935,6 +7952,21 @@ Overrides unbundled_events in EventSelection message. </p></td>
                   <td><a href="#hiber.assign.AssignmentType">AssignmentType</a></td>
                   <td></td>
                   <td><p>The type of assignment. This is a helper enum to indicate which fields are set. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>start</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td></td>
+                  <td><p>Time this assignment started (or is configured to start). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>end</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>Time this assignment ended (or is configured to end).
+Inactive assignments that no longer have an effect may be cleaned up automatically. </p></td>
                 </tr>
               
                 <tr>
@@ -8551,6 +8583,13 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>include_inactive_assignments</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Include assignments that are no longer or not yet active. </p></td>
                 </tr>
               
             </tbody>
@@ -9192,6 +9231,17 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td><a href="#hiber.tag.TagSelection">hiber.tag.TagSelection</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>override_time</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>Time that the assignment should end.
+This can extend into the past, but would not have effect in the past for assignments like parsers.
+It would however work for assets having access to device data.
+This can also extend into the future, but while the unassigned event will be produced, the assignment will
+still be visible until the given time. </p></td>
                 </tr>
               
             </tbody>

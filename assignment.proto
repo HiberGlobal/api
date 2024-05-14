@@ -76,6 +76,15 @@ enum AssignmentType {
  *   the alarm or parser is considered assigned to that modem.
  * This only works in one direction, though. Assigning the alarm or parser to the modem directly does not also assign
  * the tag.
+ *
+ * Assignment can have a custom start and end time.
+ * This can extend into the past, but would not have effect in the past for assignments like parsers.
+ * It would however work for assets having access to device data.
+ * This can also extend into the future, but while the unassigned event will be produced, the assignment will
+ * still be visible until the given time.
+ *
+ * Assignments that are no longer active (end time is in the past) and that no longer have an effect
+ * (currently only asset device assignment has an ongoing effect) may be cleaned up automatically.
  */
 message Assignment {
     message ModemAlarmAssignment {
@@ -95,6 +104,14 @@ message Assignment {
 
     /* The type of assignment. This is a helper enum to indicate which fields are set. */
     AssignmentType type = 1;
+
+    /* Time this assignment started (or is configured to start). */
+    Timestamp start = 9;
+
+    /* Time this assignment ended (or is configured to end).
+     * Inactive assignments that no longer have an effect may be cleaned up automatically.
+     */
+    optional Timestamp end = 10;
 
     oneof assign {
         ModemMessageBodyParserAssignment assign_parser = 3;
@@ -145,6 +162,9 @@ message ListAssignments {
         /* Select the assignments to list. Optional, when omitted or empty everything is included. */
         optional AssignmentSelection selection = 2;
         optional Pagination pagination = 3;
+
+        /* Include assignments that are no longer or not yet active. */
+        optional bool include_inactive_assignments = 4;
     }
 
     message Response {
@@ -176,6 +196,17 @@ message Assign {
         /* The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). */
         map<string, google.protobuf.Struct> alarm_parameters = 6;
 
+        /* Time that the assignment should be active.
+         * This can extend into the past, but would not have effect in the past for assignments like parsers.
+         * It would however work for assets having access to device data.
+         */
+        optional Timestamp override_time = 10;
+
+        /* Time that the assignment should no longer be active.
+         * This will not produce an Unassigned event, but would end the assignment at the planned time.
+         */
+        optional Timestamp schedule_end_time = 11;
+
         reserved 3;
     }
     message Response {
@@ -201,6 +232,14 @@ message Unassign {
             modem.ModemSelection from_modems = 5;
             tag.TagSelection from_tags = 7;
         }
+
+        /* Time that the assignment should end.
+         * This can extend into the past, but would not have effect in the past for assignments like parsers.
+         * It would however work for assets having access to device data.
+         * This can also extend into the future, but while the unassigned event will be produced, the assignment will
+         * still be visible until the given time.
+         */
+        optional Timestamp override_time = 10;
 
         reserved 3;
     }
