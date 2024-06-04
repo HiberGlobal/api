@@ -28,6 +28,7 @@ Messages are parsed to a number of values (depending on the parser), which can b
   - [ListValues.Request.TransformFieldsEntry](#listvaluesrequesttransformfieldsentry)
   - [ListValues.Response](#listvaluesresponse)
   - [ValueContext](#valuecontext)
+  - [ValueContext.ValueAssetContext](#valuecontextvalueassetcontext)
   - [ValueContext.ValueDelta](#valuecontextvaluedelta)
   - [ValueContext.ValueDuration](#valuecontextvalueduration)
   - [ValueContext.ValueDurations](#valuecontextvaluedurations)
@@ -35,6 +36,13 @@ Messages are parsed to a number of values (depending on the parser), which can b
 
 - Enums
   - [ListValues.Sort](#listvaluessort)
+
+- Referenced messages from [asset.proto](#referenced-messages-from-assetproto)
+  - [hiber.asset.Asset](#hiberassetasset)
+  - [hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice)
+  - [hiber.asset.AssetSelection](#hiberassetassetselection)
+
+    - [hiber.asset.Asset.Type](#hiberassetassettype)
 
 - Referenced messages from [modem.proto](#referenced-messages-from-modemproto)
   - [hiber.modem.Modem](#hibermodemmodem)
@@ -171,7 +179,7 @@ Aggregate values for a (set of) modem(s), filtering by field and time.
 | ----- | ---- | ----------- |
 | time_range | [ hiber.TimeRange](#hibertimerange) | The time range that was aggregated. |
 | values | [repeated ValueContext](#valuecontext) | The aggregated values for the requested fields, where timestamp is only set if the aggregation can return an exact data point (i.e. LAST, MAXIMUM, MINIMUM aggregation, or a single value). |
-| location | [ hiber.Location](#hiberlocation) | <strong>Deprecated.</strong> The last location in the time range. Deprecated: only set if a single modem is selected. |
+|  **optional** location | [optional hiber.Location](#hiberlocation) | The last location in the time range. Optional: only set if a single modem is selected. |
 | locations | [map AggregatedValues.LocationsEntry](#aggregatedvalueslocationsentry) | The last know location, in the time range, for each given modem. |
 
 ### AggregatedValues.LocationsEntry
@@ -309,12 +317,23 @@ A Value at a time, for a given modem and field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modem | [ string](#string) |  |
-| field | [ string](#string) |  |
+| device | [ string](#string) | The device that produced this value. |
+| assets | [repeated ValueContext.ValueAssetContext](#valuecontextvalueassetcontext) | The asset(s) that own this value, if any. Assets own this value if they were assigned to the device that produced this value at the time it was produced. |
+| field | [ string](#string) | The field that this value was produced for. |
 | time | [ hiber.Timestamp](#hibertimestamp) | The time for this value. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value_type**.value | [ Value](#value) | The value at this time, if no ValueTransformation was specified for this field. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value_type**.value_durations | [ ValueContext.ValueDurations](#valuecontextvaluedurations) | The output of the DURATION ValueTransformation, if it was specified for this field. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value_type**.delta | [ ValueContext.ValueDelta](#valuecontextvaluedelta) | The output of the DELTA ValueTransformation, if it was specified for this field. |
+
+### ValueContext.ValueAssetContext
+
+Information about the asset that owns the value.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifier | [ string](#string) |  |
+| name | [ string](#string) |  |
+| type | [ hiber.asset.Asset.Type](#hiberassetassettype) |  |
 
 ### ValueContext.ValueDelta
 
@@ -349,7 +368,8 @@ Select the values to return.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the modem(s) to get the values for. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **owner_selection**.devices | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the devices(s) to get the values for. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **owner_selection**.assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | Select the asset(s) to get the values for. |
 | fields | [repeated string](#string) | Get the values for the selected fields. |
 |  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) | The time to view the values for. |
 |  **optional** include_location | [optional bool](#bool) | Include the location (which is not a field). |
@@ -364,6 +384,77 @@ How to sort the values.
 | ---- | ----------- | ------ |
 | TIME_ASCENDING |  | 0 |
 | TIME_DESCENDING |  | 1 |
+
+
+
+## Referenced messages from asset.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [asset.proto](https://github.com/HiberGlobal/api/blob/master/asset.proto).
+
+
+### hiber.asset.Asset
+
+Assets are things that collect the data produced by devices.
+Devices are assigned to assets to handle data ownership.
+When a device is replaced, the data flow for the asset continues with the data from the new device.
+Multiple devices can be assigned to an asset, though it is advisable to only do so when they send
+different type of data (i.e. one sensor for pressure and one for flow).
+
+For example, if you have a Well, you might have assets for Annulus A and the tubing head.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifier | [ string](#string) |  |
+| name | [ string](#string) | Name of the asset |
+|  **optional** type | [optional hiber.asset.Asset.Type](#hiberassetassettype) | Type of the asset, if any of the predefined types applies. |
+|  **optional** description | [optional string](#string) | Longer detailed description of the asset. |
+|  **optional** notes | [optional string](#string) | Multiline notes field that can be used to add additional information to an asset. |
+|  **optional** time_zone | [optional string](#string) | Optional time zone for the asset. This can, for example, be used to calculate SLAs on a daily basis, adjusted by time zone. |
+|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this asset. |
+| metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Metadata for the asset. This can be automatically populated from linked devices or manually added. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | Tags assigned to this asset |
+| devices | [repeated hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice) | Devices assigned to this asset |
+
+### hiber.asset.Asset.AssignedDevice
+
+A device assigned to an asset.
+Non-operational values that the device produces will be linked to this asset
+(i.e. pressure, but not battery level).
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| number | [ string](#string) |  |
+| identifiers | [repeated string](#string) |  |
+| name | [ string](#string) |  |
+| type | [ string](#string) |  |
+
+### hiber.asset.AssetSelection
+
+Selection object for assets.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifiers | [repeated string](#string) | Select assets by identifier. |
+| search | [repeated string](#string) | Search assets by (partial, case insensitive) identifier, name, description, notes and time zone. |
+| types | [repeated hiber.asset.Asset.Type](#hiberassetassettype) | Select assets by type. |
+|  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) | Select assets by tags |
+
+
+### Enums
+#### hiber.asset.Asset.Type
+Predefined assets types that can be used to say something about the data.
+Currently a limited list, but more may be added in the future.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| UNKNOWN |  | 0 |
+| WELL_ANNULUS_A |  | 1 |
+| WELL_ANNULUS_B |  | 2 |
+| WELL_ANNULUS_C |  | 3 |
+| WELL_ANNULUS_D |  | 4 |
+| WELL_TUBING_HEAD |  | 5 |
 
 
 

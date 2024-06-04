@@ -1,5 +1,27 @@
 # Changelog Hiber API
 
+### 0.195 (2024-06-04)
+
+##### FieldService
+
+- Added `ForAsset` to list the fields for an asset.
+
+##### ValueService
+
+- Added `assets` to `ValueSelection`, in a `oneof`, so a selection selects either assets or devices.
+  - Renamed `modems` to `devices`.
+- Added `assets` to `ValueContext` for values for assets.
+- Renamed `modem` to `device` in `ValueContext`.
+- Marked `AggregatedValues.location` optional instead of deprecated.
+
+##### AssignmentService
+
+- Removed the option for future time values for assignment, since it has unintended consequences.
+
+##### AssetService
+
+- Removed the option for future time values for assignment, since it has unintended consequences.
+
 ### 0.192 (2024-05-14)
 
 ##### AssignmentService
@@ -100,7 +122,7 @@
 - Added a number of Flow units and a Speed unit, with conversion
 - Fixed a bug in the conversion from bbl/d to m^3/h
 - Improved documentation for units
-- Fixed a bug where precision could be lost when units were converted 
+- Fixed a bug where precision could be lost when units were converted
   - This was mostly unnoticable with the rounding in the UI, but still a bug
   - This bug could be seen when using unit conversion in alarms
 

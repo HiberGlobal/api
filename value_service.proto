@@ -8,6 +8,7 @@ syntax = "proto3";
 package hiber.value;
 
 import "base.proto";
+import "asset.proto";
 import "modem.proto";
 import "value.proto";
 
@@ -24,8 +25,14 @@ service ValueService {
 
 /* Select the values to return. */
 message ValueSelection {
-    /* Select the modem(s) to get the values for. */
-    modem.ModemSelection modems = 1;
+    /* Select the owners (either assets or devices) to get the values for. */
+    oneof owner_selection {
+        /* Select the devices(s) to get the values for. */
+        modem.ModemSelection devices = 1;
+
+        /* Select the asset(s) to get the values for. */
+        asset.AssetSelection assets = 7;
+    }
 
     /* Get the values for the selected fields. */
     repeated string fields = 2;
@@ -42,7 +49,15 @@ message ValueSelection {
 
 /* A Value at a time, for a given modem and field. */
 message ValueContext {
-    string modem = 1;
+    /* The device that produced this value. */
+    string device = 1;
+
+    /* The asset(s) that own this value, if any.
+     * Assets own this value if they were assigned to the device that produced this value at the time it was produced.
+     */
+    repeated ValueAssetContext assets = 7;
+
+    /* The field that this value was produced for. */
     string field = 2;
 
     /* The time for this value. */
@@ -57,6 +72,13 @@ message ValueContext {
 
         /* The output of the DELTA ValueTransformation, if it was specified for this field. */
         ValueDelta delta = 6;
+    }
+
+    /* Information about the asset that owns the value. */
+    message ValueAssetContext {
+        string identifier = 1;
+        string name = 2;
+        asset.Asset.Type type = 3;
     }
 
     /* The amount of time a field for a modem was at different values. */
@@ -125,9 +147,9 @@ message AggregatedValues {
     repeated ValueContext values = 2;
 
     /* The last location in the time range.
-     * Deprecated: only set if a single modem is selected.
+     * Optional: only set if a single modem is selected.
      */
-    Location location = 3 [deprecated = true];
+    optional Location location = 3;
 
     /* The last know location, in the time range, for each given modem. */
     map<string, Location> locations = 4;

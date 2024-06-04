@@ -16,6 +16,10 @@
   - [ListFields](#listfields)
   - [ListFields.Request](#listfieldsrequest)
   - [ListFields.Response](#listfieldsresponse)
+  - [ListFieldsForAsset](#listfieldsforasset)
+  - [ListFieldsForAsset.Request](#listfieldsforassetrequest)
+  - [ListFieldsForAsset.Response](#listfieldsforassetresponse)
+  - [ListFieldsForAsset.Response.AssetWithFields](#listfieldsforassetresponseassetwithfields)
   - [ListFieldsForModem](#listfieldsformodem)
   - [ListFieldsForModem.Request](#listfieldsformodemrequest)
   - [ListFieldsForModem.Response](#listfieldsformodemresponse)
@@ -30,6 +34,13 @@
 
 - Enums
   - [ListFields.Sort](#listfieldssort)
+
+- Referenced messages from [asset.proto](#referenced-messages-from-assetproto)
+  - [hiber.asset.Asset](#hiberassetasset)
+  - [hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice)
+  - [hiber.asset.AssetSelection](#hiberassetassetselection)
+
+    - [hiber.asset.Asset.Type](#hiberassetassettype)
 
 - Referenced messages from [field.proto](#referenced-messages-from-fieldproto)
   - [hiber.field.Field](#hiberfieldfield)
@@ -199,6 +210,12 @@
 
 
 
+### ForAsset
+> **rpc** ForAsset([ListFieldsForAsset.Request](#listfieldsforassetrequest))
+    [ListFieldsForAsset.Response](#listfieldsforassetresponse)
+
+
+
 ### ForModem
 > **rpc** ForModem([ListFieldsForModem.Request](#listfieldsformodemrequest))
     [ListFieldsForModem.Response](#listfieldsformodemresponse)
@@ -303,6 +320,45 @@ Delete the given fields from a parser.
 | fields | [repeated Field](#field) |  |
 | request | [ ListFields.Request](#listfieldsrequest) |  |
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
+
+### ListFieldsForAsset
+
+
+
+
+### ListFieldsForAsset.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** asset_selection | [optional hiber.asset.AssetSelection](#hiberassetassetselection) | Select the assets to fetch the fields for. Optional, when omitted or empty everything is included. |
+|  **optional** field_selection | [optional FieldSelection](#fieldselection) | Select which fields to return. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+| sort | [ ListFields.Sort](#listfieldssort) |  |
+|  **optional** apply_unit_preferences | [optional bool](#bool) | Whether to apply the unit preferences to the fields. This will convert any fields into you preferred unit, for convenience. |
+|  **optional** include_total | [optional bool](#bool) | Whether to also calculate the total fields for all selected assets, and return them as a single list in the response. This can be useful to display table columns, for example. |
+
+### ListFieldsForAsset.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| asset_fields | [repeated ListFieldsForAsset.Response.AssetWithFields](#listfieldsforassetresponseassetwithfields) |  |
+| request | [ ListFieldsForAsset.Request](#listfieldsforassetrequest) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
+| total | [repeated Field](#field) | A merged result of all fields, for all assets. This can be useful to display table columns, for example. |
+
+### ListFieldsForAsset.Response.AssetWithFields
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| asset_identifier | [ string](#string) |  |
+| fields | [repeated Field](#field) |  |
 
 ### ListFieldsForModem
 
@@ -442,6 +498,77 @@ Replace all fields for a parser with the fields given.
 | PARSER_PRIORITY | Sort by parser and priority in the parser. | 0 |
 | DISPLAY_NAME | Sort by display_name. | 1 |
 | FIELD_PATH | Sort by json path only. | 2 |
+
+
+
+## Referenced messages from asset.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [asset.proto](https://github.com/HiberGlobal/api/blob/master/asset.proto).
+
+
+### hiber.asset.Asset
+
+Assets are things that collect the data produced by devices.
+Devices are assigned to assets to handle data ownership.
+When a device is replaced, the data flow for the asset continues with the data from the new device.
+Multiple devices can be assigned to an asset, though it is advisable to only do so when they send
+different type of data (i.e. one sensor for pressure and one for flow).
+
+For example, if you have a Well, you might have assets for Annulus A and the tubing head.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifier | [ string](#string) |  |
+| name | [ string](#string) | Name of the asset |
+|  **optional** type | [optional hiber.asset.Asset.Type](#hiberassetassettype) | Type of the asset, if any of the predefined types applies. |
+|  **optional** description | [optional string](#string) | Longer detailed description of the asset. |
+|  **optional** notes | [optional string](#string) | Multiline notes field that can be used to add additional information to an asset. |
+|  **optional** time_zone | [optional string](#string) | Optional time zone for the asset. This can, for example, be used to calculate SLAs on a daily basis, adjusted by time zone. |
+|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this asset. |
+| metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Metadata for the asset. This can be automatically populated from linked devices or manually added. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | Tags assigned to this asset |
+| devices | [repeated hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice) | Devices assigned to this asset |
+
+### hiber.asset.Asset.AssignedDevice
+
+A device assigned to an asset.
+Non-operational values that the device produces will be linked to this asset
+(i.e. pressure, but not battery level).
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| number | [ string](#string) |  |
+| identifiers | [repeated string](#string) |  |
+| name | [ string](#string) |  |
+| type | [ string](#string) |  |
+
+### hiber.asset.AssetSelection
+
+Selection object for assets.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifiers | [repeated string](#string) | Select assets by identifier. |
+| search | [repeated string](#string) | Search assets by (partial, case insensitive) identifier, name, description, notes and time zone. |
+| types | [repeated hiber.asset.Asset.Type](#hiberassetassettype) | Select assets by type. |
+|  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) | Select assets by tags |
+
+
+### Enums
+#### hiber.asset.Asset.Type
+Predefined assets types that can be used to say something about the data.
+Currently a limited list, but more may be added in the future.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| UNKNOWN |  | 0 |
+| WELL_ANNULUS_A |  | 1 |
+| WELL_ANNULUS_B |  | 2 |
+| WELL_ANNULUS_C |  | 3 |
+| WELL_ANNULUS_D |  | 4 |
+| WELL_TUBING_HEAD |  | 5 |
 
 
 

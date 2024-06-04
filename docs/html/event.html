@@ -7856,16 +7856,21 @@ Overrides unbundled_events in EventSelection message. </p></td>
                   <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
                   <td>optional</td>
                   <td><p>Time that the assignment should be active.
-This can extend into the past, but would not have effect in the past for assignments like parsers.
-It would however work for assets having access to device data. </p></td>
+This sets the assignment to start in the past, but would not have effect in the past for assignments like
+parsers and alarms (they will only be triggered for new messages / values).
+It would however work for assets having access to device data.
+This is not allowed to be a value in the future at the moment. </p></td>
                 </tr>
               
                 <tr>
-                  <td>schedule_end_time</td>
+                  <td>end_time</td>
                   <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
                   <td>optional</td>
-                  <td><p>Time that the assignment should no longer be active.
-This will not produce an Unassigned event, but would end the assignment at the planned time. </p></td>
+                  <td><p>Time that the assignment ended.
+This marks the assignment as ended at the given moment in the past, but would not have effect in the past
+for assignments like parsers and alarms (i.e. no alarm events are removed).
+It would however work for assets having access to device data.
+This is not allowed to be a value in the future at the moment. </p></td>
                 </tr>
               
             </tbody>
@@ -7958,14 +7963,14 @@ This will not produce an Unassigned event, but would end the assignment at the p
                   <td>start</td>
                   <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
                   <td></td>
-                  <td><p>Time this assignment started (or is configured to start). </p></td>
+                  <td><p>Time this assignment started. This is always in the past. </p></td>
                 </tr>
               
                 <tr>
                   <td>end</td>
                   <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
                   <td>optional</td>
-                  <td><p>Time this assignment ended (or is configured to end).
+                  <td><p>Time this assignment ended, if it has ended.
 Inactive assignments that no longer have an effect may be cleaned up automatically. </p></td>
                 </tr>
               
@@ -8589,7 +8594,7 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td>include_inactive_assignments</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Include assignments that are no longer or not yet active. </p></td>
+                  <td><p>Include assignments that are no longer active. </p></td>
                 </tr>
               
             </tbody>
@@ -9237,11 +9242,11 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td>override_time</td>
                   <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
                   <td>optional</td>
-                  <td><p>Time that the assignment should end.
-This can extend into the past, but would not have effect in the past for assignments like parsers.
+                  <td><p>Time that the assignment ended.
+This marks the assignment as ended at the given moment in the past, but would not have effect in the past
+for assignments like parsers and alarms (i.e. no alarm events are removed).
 It would however work for assets having access to device data.
-This can also extend into the future, but while the unassigned event will be produced, the assignment will
-still be visible until the given time. </p></td>
+This is not allowed to be a value in the future at the moment. </p></td>
                 </tr>
               
             </tbody>

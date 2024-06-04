@@ -239,6 +239,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.value.ValueContext.ValueAssetContext"><span class="badge">M</span>ValueContext.ValueAssetContext</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.value.ValueContext.ValueDelta"><span class="badge">M</span>ValueContext.ValueDelta</a>
                 </li>
               
@@ -472,6 +476,33 @@
               
                 <li>
                   <a href="#hiber.UnitOfMeasurement"><span class="badge">E</span>UnitOfMeasurement</a>
+                </li>
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#asset.proto">asset.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#hiber.asset.Asset"><span class="badge">M</span>Asset</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.asset.Asset.AssignedDevice"><span class="badge">M</span>Asset.AssignedDevice</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.asset.AssetSelection"><span class="badge">M</span>AssetSelection</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#hiber.asset.Asset.Type"><span class="badge">E</span>Asset.Type</a>
                 </li>
               
               
@@ -841,9 +872,9 @@ exact data point (i.e. LAST, MAXIMUM, MINIMUM aggregation, or a single value). <
                 <tr>
                   <td>location</td>
                   <td><a href="#hiber.Location">hiber.Location</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong> The last location in the time range.
-Deprecated: only set if a single modem is selected. </p></td>
+                  <td>optional</td>
+                  <td><p>The last location in the time range.
+Optional: only set if a single modem is selected. </p></td>
                 </tr>
               
                 <tr>
@@ -856,27 +887,6 @@ Deprecated: only set if a single modem is selected. </p></td>
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>location</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -1359,17 +1369,25 @@ Fields specified here must have been specified in the selection. </p></td>
             <tbody>
               
                 <tr>
-                  <td>modem</td>
+                  <td>device</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The device that produced this value. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>assets</td>
+                  <td><a href="#hiber.value.ValueContext.ValueAssetContext">ValueContext.ValueAssetContext</a></td>
+                  <td>repeated</td>
+                  <td><p>The asset(s) that own this value, if any.
+Assets own this value if they were assigned to the device that produced this value at the time it was produced. </p></td>
                 </tr>
               
                 <tr>
                   <td>field</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The field that this value was produced for. </p></td>
                 </tr>
               
                 <tr>
@@ -1398,6 +1416,44 @@ Fields specified here must have been specified in the selection. </p></td>
                   <td><a href="#hiber.value.ValueContext.ValueDelta">ValueContext.ValueDelta</a></td>
                   <td></td>
                   <td><p>The output of the DELTA ValueTransformation, if it was specified for this field. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.value.ValueContext.ValueAssetContext">ValueContext.ValueAssetContext</h3>
+        <p>Information about the asset that owns the value.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#hiber.asset.Asset.Type">hiber.asset.Asset.Type</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -1511,10 +1567,17 @@ Fields specified here must have been specified in the selection. </p></td>
             <tbody>
               
                 <tr>
-                  <td>modems</td>
+                  <td>devices</td>
                   <td><a href="#hiber.modem.ModemSelection">hiber.modem.ModemSelection</a></td>
                   <td></td>
-                  <td><p>Select the modem(s) to get the values for. </p></td>
+                  <td><p>Select the devices(s) to get the values for. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>assets</td>
+                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
+                  <td></td>
+                  <td><p>Select the asset(s) to get the values for. </p></td>
                 </tr>
               
                 <tr>
@@ -3829,6 +3892,246 @@ is ready to be downloaded.</p></td>
               <tr>
                 <td>ITEMS_PER_24_HOURS</td>
                 <td>45</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="asset.proto">asset.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="hiber.asset.Asset">Asset</h3>
+        <p>Assets are things that collect the data produced by devices.</p><p>Devices are assigned to assets to handle data ownership.</p><p>When a device is replaced, the data flow for the asset continues with the data from the new device.</p><p>Multiple devices can be assigned to an asset, though it is advisable to only do so when they send</p><p>different type of data (i.e. one sensor for pressure and one for flow).</p><p>For example, if you have a Well, you might have assets for Annulus A and the tubing head.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of the asset </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#hiber.asset.Asset.Type">Asset.Type</a></td>
+                  <td>optional</td>
+                  <td><p>Type of the asset, if any of the predefined types applies. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Longer detailed description of the asset. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>notes</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Multiline notes field that can be used to add additional information to an asset. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time_zone</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional time zone for the asset.
+This can, for example, be used to calculate SLAs on a daily basis, adjusted by time zone. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expected_transmission_rate</td>
+                  <td><a href="#hiber.value.Value.Numeric.Rate">hiber.value.Value.Numeric.Rate</a></td>
+                  <td>optional</td>
+                  <td><p>The expected transmission rate for this asset. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>Metadata for the asset.
+This can be automatically populated from linked devices or manually added. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
+                  <td>repeated</td>
+                  <td><p>Tags assigned to this asset </p></td>
+                </tr>
+              
+                <tr>
+                  <td>devices</td>
+                  <td><a href="#hiber.asset.Asset.AssignedDevice">Asset.AssignedDevice</a></td>
+                  <td>repeated</td>
+                  <td><p>Devices assigned to this asset </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.asset.Asset.AssignedDevice">Asset.AssignedDevice</h3>
+        <p>A device assigned to an asset.</p><p>Non-operational values that the device produces will be linked to this asset</p><p>(i.e. pressure, but not battery level).</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.asset.AssetSelection">AssetSelection</h3>
+        <p>Selection object for assets.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Select assets by identifier. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>search</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Search assets by (partial, case insensitive) identifier, name, description, notes and time zone. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>types</td>
+                  <td><a href="#hiber.asset.Asset.Type">Asset.Type</a></td>
+                  <td>repeated</td>
+                  <td><p>Select assets by type. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>filter_by_tags</td>
+                  <td><a href="#hiber.tag.TagSelection">hiber.tag.TagSelection</a></td>
+                  <td>optional</td>
+                  <td><p>Select assets by tags </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="hiber.asset.Asset.Type">Asset.Type</h3>
+        <p>Predefined assets types that can be used to say something about the data.</p><p>Currently a limited list, but more may be added in the future.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWN</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_ANNULUS_A</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_ANNULUS_B</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_ANNULUS_C</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_ANNULUS_D</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_TUBING_HEAD</td>
+                <td>5</td>
                 <td><p></p></td>
               </tr>
             

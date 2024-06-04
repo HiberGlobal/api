@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package hiber.field;
 
+import "asset.proto";
 import "base.proto";
 import "field.proto";
 import "modem.proto";
@@ -15,6 +16,7 @@ option go_package = "hiber";
 
 service FieldService {
     rpc List (ListFields.Request) returns (ListFields.Response);
+    rpc ForAsset (ListFieldsForAsset.Request) returns (ListFieldsForAsset.Response);
     rpc ForModem (ListFieldsForModem.Request) returns (ListFieldsForModem.Response);
 
     rpc Add (AddFieldsRequest) returns (modem.message.bodyparser.ModemMessageBodyParser);
@@ -81,6 +83,47 @@ message ListFields {
     }
 }
 
+message ListFieldsForAsset {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select the assets to fetch the fields for. Optional, when omitted or empty everything is included. */
+        optional asset.AssetSelection asset_selection = 2;
+
+        /* Select which fields to return. Optional, when omitted or empty everything is included. */
+        optional FieldSelection field_selection = 3;
+
+        optional Pagination pagination = 4;
+        ListFields.Sort sort = 5;
+
+        /* Whether to apply the unit preferences to the fields.
+         * This will convert any fields into you preferred unit, for convenience.
+         */
+        optional bool apply_unit_preferences = 6;
+
+        /* Whether to also calculate the total fields for all selected assets,
+         * and return them as a single list in the response.
+         * This can be useful to display table columns, for example.
+         */
+        optional bool include_total = 7;
+    }
+
+    message Response {
+        message AssetWithFields {
+            string asset_identifier = 1;
+            repeated Field fields = 2;
+        }
+
+        repeated AssetWithFields asset_fields = 1;
+        Request request = 2;
+        Pagination.Result pagination = 3;
+
+        /* A merged result of all fields, for all assets. This can be useful to display table columns, for example. */
+        repeated field.Field total = 4;
+    }
+}
+
 message ListFieldsForModem {
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
@@ -123,7 +166,6 @@ message ListFieldsForModem {
         repeated field.Field total = 4;
     }
 }
-
 
 message AddFieldsRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */

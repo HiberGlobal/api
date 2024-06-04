@@ -105,10 +105,10 @@ message Assignment {
     /* The type of assignment. This is a helper enum to indicate which fields are set. */
     AssignmentType type = 1;
 
-    /* Time this assignment started (or is configured to start). */
+    /* Time this assignment started. This is always in the past. */
     Timestamp start = 9;
 
-    /* Time this assignment ended (or is configured to end).
+    /* Time this assignment ended, if it has ended.
      * Inactive assignments that no longer have an effect may be cleaned up automatically.
      */
     optional Timestamp end = 10;
@@ -163,7 +163,7 @@ message ListAssignments {
         optional AssignmentSelection selection = 2;
         optional Pagination pagination = 3;
 
-        /* Include assignments that are no longer or not yet active. */
+        /* Include assignments that are no longer active. */
         optional bool include_inactive_assignments = 4;
     }
 
@@ -197,15 +197,20 @@ message Assign {
         map<string, google.protobuf.Struct> alarm_parameters = 6;
 
         /* Time that the assignment should be active.
-         * This can extend into the past, but would not have effect in the past for assignments like parsers.
+         * This sets the assignment to start in the past, but would not have effect in the past for assignments like
+         * parsers and alarms (they will only be triggered for new messages / values).
          * It would however work for assets having access to device data.
+         * This is not allowed to be a value in the future at the moment.
          */
         optional Timestamp override_time = 10;
 
-        /* Time that the assignment should no longer be active.
-         * This will not produce an Unassigned event, but would end the assignment at the planned time.
+        /* Time that the assignment ended.
+         * This marks the assignment as ended at the given moment in the past, but would not have effect in the past
+         * for assignments like parsers and alarms (i.e. no alarm events are removed).
+         * It would however work for assets having access to device data.
+         * This is not allowed to be a value in the future at the moment.
          */
-        optional Timestamp schedule_end_time = 11;
+        optional Timestamp end_time = 11;
 
         reserved 3;
     }
@@ -233,11 +238,11 @@ message Unassign {
             tag.TagSelection from_tags = 7;
         }
 
-        /* Time that the assignment should end.
-         * This can extend into the past, but would not have effect in the past for assignments like parsers.
+        /* Time that the assignment ended.
+         * This marks the assignment as ended at the given moment in the past, but would not have effect in the past
+         * for assignments like parsers and alarms (i.e. no alarm events are removed).
          * It would however work for assets having access to device data.
-         * This can also extend into the future, but while the unassigned event will be produced, the assignment will
-         * still be visible until the given time.
+         * This is not allowed to be a value in the future at the moment.
          */
         optional Timestamp override_time = 10;
 

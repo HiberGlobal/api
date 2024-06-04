@@ -227,8 +227,8 @@ Change the assigned devices for a selection of assets in your (selected) organiz
 | selection | [ AssetSelection](#assetselection) | Select which assets to assign. Not optional and cannot be empty. |
 | devices | [ hiber.device.DeviceSelection](#hiberdevicedeviceselection) | Select which devices to assign this asset to. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Paginate through results (for the Response, not the actual update). To get the next pages, use the List call with the same selection and pagination for the next page. |
-|  **optional** override_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment should be active. This can extend into the past, but would not have effect in the past for assignments like parsers. It would however work for assets having access to device data. |
-|  **optional** schedule_end_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment should no longer be active. This will not produce an Unassigned event, but would end the assignment at the planned time. |
+|  **optional** override_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment should be active. This sets the assignment to start in the past, but would not have effect in the past for assignments like parsers and alarms (they will only be triggered for new messages / values). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
+|  **optional** end_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (i.e. no alarm events are removed). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
 
 ### AssignAssetDevices.Response
 
@@ -362,7 +362,7 @@ Change the assigned devices for a selection of assets in your (selected) organiz
 | selection | [ AssetSelection](#assetselection) | Select which assets to unassign. Not optional and cannot be empty. |
 | devices | [ hiber.device.DeviceSelection](#hiberdevicedeviceselection) | Select which devices to unassign this asset from. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Paginate through results (for the Response, not the actual update). To get the next pages, use the List call with the same selection and pagination for the next page. |
-|  **optional** override_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment should end. This can extend into the past, but would not have effect in the past for assignments like parsers. It would however work for assets having access to device data. This can also extend into the future, but while the unassigned event will be produced, the assignment will still be visible until the given time. |
+|  **optional** override_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (i.e. no alarm events are removed). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
 
 ### UnassignAssetDevices.Response
 

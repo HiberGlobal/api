@@ -203,6 +203,22 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.field.ListFieldsForAsset"><span class="badge">M</span>ListFieldsForAsset</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.field.ListFieldsForAsset.Request"><span class="badge">M</span>ListFieldsForAsset.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.field.ListFieldsForAsset.Response"><span class="badge">M</span>ListFieldsForAsset.Response</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.field.ListFieldsForAsset.Response.AssetWithFields"><span class="badge">M</span>ListFieldsForAsset.Response.AssetWithFields</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.field.ListFieldsForModem"><span class="badge">M</span>ListFieldsForModem</a>
                 </li>
               
@@ -256,6 +272,33 @@
                 <li>
                   <a href="#hiber.field.FieldService"><span class="badge">S</span>FieldService</a>
                 </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#asset.proto">asset.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#hiber.asset.Asset"><span class="badge">M</span>Asset</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.asset.Asset.AssignedDevice"><span class="badge">M</span>Asset.AssignedDevice</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.asset.AssetSelection"><span class="badge">M</span>AssetSelection</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#hiber.asset.Asset.Type"><span class="badge">E</span>Asset.Type</a>
+                </li>
+              
+              
               
             </ul>
           </li>
@@ -1264,6 +1307,158 @@ This will convert any fields into your preferred unit, for convenience. </p></td
 
         
       
+        <h3 id="hiber.field.ListFieldsForAsset">ListFieldsForAsset</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.field.ListFieldsForAsset.Request">ListFieldsForAsset.Request</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_selection</td>
+                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
+                  <td>optional</td>
+                  <td><p>Select the assets to fetch the fields for. Optional, when omitted or empty everything is included. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>field_selection</td>
+                  <td><a href="#hiber.field.FieldSelection">FieldSelection</a></td>
+                  <td>optional</td>
+                  <td><p>Select which fields to return. Optional, when omitted or empty everything is included. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#hiber.field.ListFields.Sort">ListFields.Sort</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>apply_unit_preferences</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Whether to apply the unit preferences to the fields.
+This will convert any fields into you preferred unit, for convenience. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>include_total</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Whether to also calculate the total fields for all selected assets,
+and return them as a single list in the response.
+This can be useful to display table columns, for example. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.field.ListFieldsForAsset.Response">ListFieldsForAsset.Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>asset_fields</td>
+                  <td><a href="#hiber.field.ListFieldsForAsset.Response.AssetWithFields">ListFieldsForAsset.Response.AssetWithFields</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#hiber.field.ListFieldsForAsset.Request">ListFieldsForAsset.Request</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>total</td>
+                  <td><a href="#hiber.field.Field">Field</a></td>
+                  <td>repeated</td>
+                  <td><p>A merged result of all fields, for all assets. This can be useful to display table columns, for example. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.field.ListFieldsForAsset.Response.AssetWithFields">ListFieldsForAsset.Response.AssetWithFields</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>asset_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fields</td>
+                  <td><a href="#hiber.field.Field">Field</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="hiber.field.ListFieldsForModem">ListFieldsForModem</h3>
         <p></p>
 
@@ -1962,6 +2157,13 @@ When set to true at a later point, earlier values are not encrypted retro-active
               </tr>
             
               <tr>
+                <td>ForAsset</td>
+                <td><a href="#hiber.field.ListFieldsForAsset.Request">ListFieldsForAsset.Request</a></td>
+                <td><a href="#hiber.field.ListFieldsForAsset.Response">ListFieldsForAsset.Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
                 <td>ForModem</td>
                 <td><a href="#hiber.field.ListFieldsForModem.Request">ListFieldsForModem.Request</a></td>
                 <td><a href="#hiber.field.ListFieldsForModem.Response">ListFieldsForModem.Response</a></td>
@@ -2014,6 +2216,246 @@ When set to true at a later point, earlier values are not encrypted retro-active
         </table>
 
         
+    
+      
+      <div class="file-heading">
+        <h2 id="asset.proto">asset.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="hiber.asset.Asset">Asset</h3>
+        <p>Assets are things that collect the data produced by devices.</p><p>Devices are assigned to assets to handle data ownership.</p><p>When a device is replaced, the data flow for the asset continues with the data from the new device.</p><p>Multiple devices can be assigned to an asset, though it is advisable to only do so when they send</p><p>different type of data (i.e. one sensor for pressure and one for flow).</p><p>For example, if you have a Well, you might have assets for Annulus A and the tubing head.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of the asset </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#hiber.asset.Asset.Type">Asset.Type</a></td>
+                  <td>optional</td>
+                  <td><p>Type of the asset, if any of the predefined types applies. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Longer detailed description of the asset. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>notes</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Multiline notes field that can be used to add additional information to an asset. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time_zone</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional time zone for the asset.
+This can, for example, be used to calculate SLAs on a daily basis, adjusted by time zone. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expected_transmission_rate</td>
+                  <td><a href="#hiber.value.Value.Numeric.Rate">hiber.value.Value.Numeric.Rate</a></td>
+                  <td>optional</td>
+                  <td><p>The expected transmission rate for this asset. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>Metadata for the asset.
+This can be automatically populated from linked devices or manually added. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
+                  <td>repeated</td>
+                  <td><p>Tags assigned to this asset </p></td>
+                </tr>
+              
+                <tr>
+                  <td>devices</td>
+                  <td><a href="#hiber.asset.Asset.AssignedDevice">Asset.AssignedDevice</a></td>
+                  <td>repeated</td>
+                  <td><p>Devices assigned to this asset </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.asset.Asset.AssignedDevice">Asset.AssignedDevice</h3>
+        <p>A device assigned to an asset.</p><p>Non-operational values that the device produces will be linked to this asset</p><p>(i.e. pressure, but not battery level).</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.asset.AssetSelection">AssetSelection</h3>
+        <p>Selection object for assets.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Select assets by identifier. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>search</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Search assets by (partial, case insensitive) identifier, name, description, notes and time zone. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>types</td>
+                  <td><a href="#hiber.asset.Asset.Type">Asset.Type</a></td>
+                  <td>repeated</td>
+                  <td><p>Select assets by type. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>filter_by_tags</td>
+                  <td><a href="#hiber.tag.TagSelection">hiber.tag.TagSelection</a></td>
+                  <td>optional</td>
+                  <td><p>Select assets by tags </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="hiber.asset.Asset.Type">Asset.Type</h3>
+        <p>Predefined assets types that can be used to say something about the data.</p><p>Currently a limited list, but more may be added in the future.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWN</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_ANNULUS_A</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_ANNULUS_B</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_ANNULUS_C</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_ANNULUS_D</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_TUBING_HEAD</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
     
       
       <div class="file-heading">
