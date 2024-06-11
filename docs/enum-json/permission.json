@@ -51,6 +51,7 @@
     , "DEVICE_VIEW_ALL_LIFECYCLES": "View all lifecycles. Without this permission, you can only see INSTALLED and PAUSED."
     , "MANAGE_DEVICE_NOTES": "Assign device notes."
     , "MANAGE_DEVICE_TIME_ZONE": "Assign device time zones."
+    , "MANAGE_ORGANIZATION_CONTRACT": "Manage organization contract info."
     }
 },{
   "name": "UserPermission",

@@ -152,4 +152,7 @@ enum SupportPermission {
 
     /* Assign device time zones. */
     MANAGE_DEVICE_TIME_ZONE = 9;
+
+    /* Manage organization contract info. */
+    MANAGE_ORGANIZATION_CONTRACT = 10;
 }

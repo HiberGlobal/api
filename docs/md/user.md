@@ -45,6 +45,7 @@
 
 - Enums
   - [UserSort](#usersort)
+  - [UserValidation.SignInProvider](#uservalidationsigninprovider)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -422,7 +423,8 @@ Completely replace the roles the users have.
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | deprecated_email_validation_regex | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
-| email_validation_regex | [ string](#string) |  |
+|  **optional** email_validation_regex | [optional string](#string) |  |
+| replace_allowed_sign_in_providers | [repeated UserValidation.SignInProvider](#uservalidationsigninprovider) |  |
 
 ### User
 
@@ -490,6 +492,7 @@ Completely replace the roles the users have.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | email_validation_regex | [ string](#string) |  |
+| allowed_sign_in_providers | [repeated UserValidation.SignInProvider](#uservalidationsigninprovider) |  |
 
 
 ## Enums
@@ -502,6 +505,14 @@ Completely replace the roles the users have.
 | EMAIL_DESC |  | 1 |
 | NAME_ASC |  | 2 |
 | NAME_DESC |  | 3 |
+
+### UserValidation.SignInProvider
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| PASSWORD |  | 0 |
+| GOOGLE |  | 1 |
 
 
 

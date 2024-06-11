@@ -311,6 +311,10 @@
                   <a href="#hiber.user.UserSort"><span class="badge">E</span>UserSort</a>
                 </li>
               
+                <li>
+                  <a href="#hiber.user.UserValidation.SignInProvider"><span class="badge">E</span>UserValidation.SignInProvider</a>
+                </li>
+              
               
               
                 <li>
@@ -1357,7 +1361,14 @@ Set this to true to allow it. </p></td>
                 <tr>
                   <td>email_validation_regex</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>replace_allowed_sign_in_providers</td>
+                  <td><a href="#hiber.user.UserValidation.SignInProvider">UserValidation.SignInProvider</a></td>
+                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1661,6 +1672,13 @@ when used by a customer support operator. </p></td>
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>allowed_sign_in_providers</td>
+                  <td><a href="#hiber.user.UserValidation.SignInProvider">UserValidation.SignInProvider</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -1699,6 +1717,29 @@ when used by a customer support operator. </p></td>
               <tr>
                 <td>NAME_DESC</td>
                 <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="hiber.user.UserValidation.SignInProvider">UserValidation.SignInProvider</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>PASSWORD</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GOOGLE</td>
+                <td>1</td>
                 <td><p></p></td>
               </tr>
             

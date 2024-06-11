@@ -1,5 +1,6 @@
 {
   "isWarning": true,
+  "resolved": true,
   "tokenExpiryWarning": {
     "organization": "your-organization",
     "token": {

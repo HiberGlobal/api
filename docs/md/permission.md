@@ -78,6 +78,7 @@ when used by a customer support operator.
 | DEVICE_VIEW_ALL_LIFECYCLES | View all lifecycles. Without this permission, you can only see INSTALLED and PAUSED. | 7 |
 | MANAGE_DEVICE_NOTES | Assign device notes. | 8 |
 | MANAGE_DEVICE_TIME_ZONE | Assign device time zones. | 9 |
+| MANAGE_ORGANIZATION_CONTRACT | Manage organization contract info. | 10 |
 
 ### UserPermission
 UserPermissions are generally used to limit what a token can do to its user.

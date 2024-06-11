@@ -75,6 +75,12 @@ enum UserSort {
 
 message UserValidation {
     string email_validation_regex = 1;
+    repeated SignInProvider allowed_sign_in_providers = 2;
+
+    enum SignInProvider {
+        PASSWORD = 0;
+        GOOGLE = 1;
+    }
 }
 
 message ListUsersRequest {
@@ -287,7 +293,9 @@ message UpdateUserValidationRequest {
     optional string organization = 1;
 
     UpdateClearableString deprecated_email_validation_regex = 2 [deprecated = true];
-    string email_validation_regex = 3;
+    optional string email_validation_regex = 3;
+
+    repeated UserValidation.SignInProvider replace_allowed_sign_in_providers = 4;
 }
 
 message TestUserValidationRequest {

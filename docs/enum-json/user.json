@@ -7,4 +7,11 @@
     , "NAME_ASC": ""
     , "NAME_DESC": ""
     }
+},{
+  "name": "SignInProvider",
+  "description": "",
+  "values": {
+    "PASSWORD": ""
+    , "GOOGLE": ""
+    }
 }]

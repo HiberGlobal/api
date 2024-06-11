@@ -1,5 +1,13 @@
 # Changelog Hiber API
 
+### 0.196 (2024-06-11)
+
+##### UserService
+
+- Added `UserValidation.allowed_sign_in_providers` to limit the sign in providers for an organization.
+  - Added `UserValidation.SignInProvider` list of supported sign in providers.
+    - If any new providers would be added, and a limitation is in place, they are excluded by default.
+
 ### 0.195 (2024-06-04)
 
 ##### FieldService
