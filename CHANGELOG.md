@@ -1,5 +1,12 @@
 # Changelog Hiber API
 
+### 0.197 (2024-06-18)
+
+##### CurrentUserService
+
+- Fixed a bug where `CurrentUser` would return an inaccessible default organization when using a token from a child organization.
+- Adjusted `CurrentUser` to allow it to be used with a token with `UserPermission.READ` by limiting the data returned, but still returning permissions and roles.
+
 ### 0.196 (2024-06-11)
 
 ##### UserService
@@ -7,6 +14,10 @@
 - Added `UserValidation.allowed_sign_in_providers` to limit the sign in providers for an organization.
   - Added `UserValidation.SignInProvider` list of supported sign in providers.
     - If any new providers would be added, and a limitation is in place, they are excluded by default.
+
+##### ValueService
+
+- Fixed a bug where downsampled values were duplicated is mutiple devices were selected.
 
 ### 0.195 (2024-06-04)
 
