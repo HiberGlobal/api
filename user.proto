@@ -76,6 +76,7 @@ enum UserSort {
 message UserValidation {
     string email_validation_regex = 1;
     repeated SignInProvider allowed_sign_in_providers = 2;
+    bool require_verified_email_addresses = 3;
 
     enum SignInProvider {
         PASSWORD = 0;
@@ -293,9 +294,18 @@ message UpdateUserValidationRequest {
     optional string organization = 1;
 
     UpdateClearableString deprecated_email_validation_regex = 2 [deprecated = true];
+
+    /* The email validation regex the all users should match. */
     optional string email_validation_regex = 3;
 
+    /* Set the allowed sign-in providers. */
     repeated UserValidation.SignInProvider replace_allowed_sign_in_providers = 4;
+
+    /* Remove the limitation on sign-in providers. */
+    optional bool allow_all_sign_in_providers = 5;
+
+    /* Whether the users added to this organization should have verified their email addresses. */
+    optional bool require_verified_email_addresses = 6;
 }
 
 message TestUserValidationRequest {

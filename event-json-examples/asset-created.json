@@ -3,6 +3,7 @@
     "organization": "your-organization",
     "assetIdentifier": "example-identifier",
     "asset": {
+      "organization": "your-organization",
       "identifier": "example-identifier",
       "name": "example",
       "type": "WELL_ANNULUS_A",

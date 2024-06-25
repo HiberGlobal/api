@@ -733,6 +733,7 @@ Sorting options for the results.
 | DISABLED | Device is disabled and not sending messages. This is a more permanent version of PAUSED. Devices in this state are not visible to customers. | 5 |
 | DECOMMISSIONED | Device is (going to be) removed from installation and will not return to installed status again. Devices in this state are not visible to customers. | 4 |
 | DEFECTIVE | Device is defective and should not be used anymore. Devices in this state are typically RMA-ed and (should be) transferred to the RMA organization. Devices in this state are not visible to customers. | 7 |
+| SPARE | Spare device sent to customer in case it is needed. | 9 |
 
 ### Modem.Type
 The effective type of this modem.

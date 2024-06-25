@@ -2197,6 +2197,7 @@ For example, if you have a Well, you might have assets for Annulus A and the tub
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Metadata for the asset. This can be automatically populated from linked devices or manually added. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | Tags assigned to this asset |
 | devices | [repeated hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice) | Devices assigned to this asset |
+| organization | [ string](#string) | The organization that owns this asset. Typically only relevant if child organizations are included. |
 
 ### hiber.asset.Asset.AssignedDevice
 
@@ -2993,6 +2994,7 @@ Sorting options for the results.
 | DISABLED | Device is disabled and not sending messages. This is a more permanent version of PAUSED. Devices in this state are not visible to customers. | 5 |
 | DECOMMISSIONED | Device is (going to be) removed from installation and will not return to installed status again. Devices in this state are not visible to customers. | 4 |
 | DEFECTIVE | Device is defective and should not be used anymore. Devices in this state are typically RMA-ed and (should be) transferred to the RMA organization. Devices in this state are not visible to customers. | 7 |
+| SPARE | Spare device sent to customer in case it is needed. | 9 |
 
 #### hiber.modem.Modem.Type
 The effective type of this modem.
@@ -4400,7 +4402,7 @@ Now, this types is only used in the relevant events.
 | type | [ hiber.publisher.Publisher.Type](#hiberpublisherpublishertype) |  |
 | in_cooldown_until | [ hiber.Timestamp](#hibertimestamp) |  |
 | disabled | [ bool](#bool) |  |
-| created_by | [ string](#string) | Firebase uid of the user that created this publisher |
+| created_by | [ string](#string) | Id of the user that created this publisher |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.http | [ hiber.webhook.Webhook.WebhookData](#hiberwebhookwebhookwebhookdata) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.mqtt | [ hiber.integration.mqtt.MQTTPublisher.Data](#hiberintegrationmqttmqttpublisherdata) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.email | [ hiber.email.EmailNotificationPreferences](#hiberemailemailnotificationpreferences) |  |

@@ -75,6 +75,11 @@ message Asset {
 
     /* Devices assigned to this asset */
     repeated AssignedDevice devices = 10;
+
+    /* The organization that owns this asset.
+     * Typically only relevant if child organizations are included.
+     */
+    string organization = 11;
 }
 
 /* Selection object for assets. */

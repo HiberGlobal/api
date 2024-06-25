@@ -1362,14 +1362,28 @@ Set this to true to allow it. </p></td>
                   <td>email_validation_regex</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p> </p></td>
+                  <td><p>The email validation regex the all users should match. </p></td>
                 </tr>
               
                 <tr>
                   <td>replace_allowed_sign_in_providers</td>
                   <td><a href="#hiber.user.UserValidation.SignInProvider">UserValidation.SignInProvider</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>Set the allowed sign-in providers. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>allow_all_sign_in_providers</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Remove the limitation on sign-in providers. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>require_verified_email_addresses</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Whether the users added to this organization should have verified their email addresses. </p></td>
                 </tr>
               
             </tbody>
@@ -1676,6 +1690,13 @@ when used by a customer support operator. </p></td>
                   <td>allowed_sign_in_providers</td>
                   <td><a href="#hiber.user.UserValidation.SignInProvider">UserValidation.SignInProvider</a></td>
                   <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>require_verified_email_addresses</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               

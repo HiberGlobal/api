@@ -9510,6 +9510,14 @@ This can be automatically populated from linked devices or manually added. </p><
                   <td><p>Devices assigned to this asset </p></td>
                 </tr>
               
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The organization that owns this asset.
+Typically only relevant if child organizations are included. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -16992,6 +17000,12 @@ Devices in this state are typically RMA-ed and (should be) transferred to the RM
 Devices in this state are not visible to customers.</p></td>
               </tr>
             
+              <tr>
+                <td>SPARE</td>
+                <td>9</td>
+                <td><p>Spare device sent to customer in case it is needed.</p></td>
+              </tr>
+            
           </tbody>
         </table>
       
@@ -21876,7 +21890,7 @@ Used as an identifier for the organization. </p></td>
                   <td>created_by</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Firebase uid of the user that created this publisher </p></td>
+                  <td><p>Id of the user that created this publisher </p></td>
                 </tr>
               
                 <tr>

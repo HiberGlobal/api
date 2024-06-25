@@ -336,6 +336,7 @@ List the assets in your (selected) organization.
 |  **optional** selection | [optional AssetSelection](#assetselection) | Select which assets to return. Optional, when omitted or empty everything is included. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Paginate through results. |
 | sort_by | [repeated ListAsset.Sort](#listassetsort) | Sort the assets with the given sort options. |
+|  **optional** child_organizations | [optional hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Include assets from the selected child organizations. |
 
 ### ListAsset.Response
 
@@ -506,6 +507,7 @@ For example, if you have a Well, you might have assets for Annulus A and the tub
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Metadata for the asset. This can be automatically populated from linked devices or manually added. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | Tags assigned to this asset |
 | devices | [repeated hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice) | Devices assigned to this asset |
+| organization | [ string](#string) | The organization that owns this asset. Typically only relevant if child organizations are included. |
 
 ### hiber.asset.Asset.AssignedDevice
 

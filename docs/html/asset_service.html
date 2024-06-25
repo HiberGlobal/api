@@ -1258,6 +1258,13 @@ Optional, when omitted or empty everything is included. </p></td>
                   <td><p>Sort the assets with the given sort options. </p></td>
                 </tr>
               
+                <tr>
+                  <td>child_organizations</td>
+                  <td><a href="#hiber.Filter.ChildOrganizations">hiber.Filter.ChildOrganizations</a></td>
+                  <td>optional</td>
+                  <td><p>Include assets from the selected child organizations. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -4192,6 +4199,14 @@ This can be automatically populated from linked devices or manually added. </p><
                   <td><a href="#hiber.asset.Asset.AssignedDevice">Asset.AssignedDevice</a></td>
                   <td>repeated</td>
                   <td><p>Devices assigned to this asset </p></td>
+                </tr>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The organization that owns this asset.
+Typically only relevant if child organizations are included. </p></td>
                 </tr>
               
             </tbody>

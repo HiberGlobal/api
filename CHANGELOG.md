@@ -1,5 +1,26 @@
 # Changelog Hiber API
 
+### 0.198 (2024-06-25)
+
+##### AssetService
+
+- Added `ListAsset.Request.child_organizations` to list assets in child organizations.
+  - Added `Asset.organization` to show the owner organization of an asset.
+
+##### UserService
+
+- Added `UserValidation.require_verified_email_addresses` and
+  `UpdateUserValidationRequest.require_verified_email_addresses` to require all users to have verified
+  their email address in your organization.
+- A few changes to sign-in restrictions:
+  - Added `UpdateUserValidationRequest.allow_all_sign_in_providers` to remove sign-in provider restrictions.
+  - When `UserValidation.allowed_sign_in_providers` does not allow the `SignInProvider.PASSWORD` sign-in method,
+    creating users will not be allowed.
+
+##### ModemService
+
+- Added `Modem.Lifecycle.SPARE`.
+
 ### 0.197 (2024-06-18)
 
 ##### CurrentUserService

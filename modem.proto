@@ -220,6 +220,9 @@ message Modem {
          * Devices in this state are not visible to customers.
          */
         DEFECTIVE = 7;
+
+        /* Spare device sent to customer in case it is needed. */
+        SPARE = 9;
     }
 
     /* The effective type of this modem.

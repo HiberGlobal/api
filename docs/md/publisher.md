@@ -215,7 +215,7 @@ Now, this types is only used in the relevant events.
 | type | [ Publisher.Type](#publishertype) |  |
 | in_cooldown_until | [ hiber.Timestamp](#hibertimestamp) |  |
 | disabled | [ bool](#bool) |  |
-| created_by | [ string](#string) | Firebase uid of the user that created this publisher |
+| created_by | [ string](#string) | Id of the user that created this publisher |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.http | [ hiber.webhook.Webhook.WebhookData](#hiberwebhookwebhookwebhookdata) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.mqtt | [ hiber.integration.mqtt.MQTTPublisher.Data](#hiberintegrationmqttmqttpublisherdata) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data**.email | [ hiber.email.EmailNotificationPreferences](#hiberemailemailnotificationpreferences) |  |

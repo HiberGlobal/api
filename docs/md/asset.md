@@ -86,6 +86,7 @@ For example, if you have a Well, you might have assets for Annulus A and the tub
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Metadata for the asset. This can be automatically populated from linked devices or manually added. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | Tags assigned to this asset |
 | devices | [repeated Asset.AssignedDevice](#assetassigneddevice) | Devices assigned to this asset |
+| organization | [ string](#string) | The organization that owns this asset. Typically only relevant if child organizations are included. |
 
 ### Asset.AssignedDevice
 

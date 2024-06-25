@@ -423,8 +423,10 @@ Completely replace the roles the users have.
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | deprecated_email_validation_regex | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
-|  **optional** email_validation_regex | [optional string](#string) |  |
-| replace_allowed_sign_in_providers | [repeated UserValidation.SignInProvider](#uservalidationsigninprovider) |  |
+|  **optional** email_validation_regex | [optional string](#string) | The email validation regex the all users should match. |
+| replace_allowed_sign_in_providers | [repeated UserValidation.SignInProvider](#uservalidationsigninprovider) | Set the allowed sign-in providers. |
+|  **optional** allow_all_sign_in_providers | [optional bool](#bool) | Remove the limitation on sign-in providers. |
+|  **optional** require_verified_email_addresses | [optional bool](#bool) | Whether the users added to this organization should have verified their email addresses. |
 
 ### User
 
@@ -493,6 +495,7 @@ Completely replace the roles the users have.
 | ----- | ---- | ----------- |
 | email_validation_regex | [ string](#string) |  |
 | allowed_sign_in_providers | [repeated UserValidation.SignInProvider](#uservalidationsigninprovider) |  |
+| require_verified_email_addresses | [ bool](#bool) |  |
 
 
 ## Enums

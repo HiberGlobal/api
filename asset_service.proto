@@ -91,6 +91,9 @@ message ListAsset {
 
         /* Sort the assets with the given sort options. */
         repeated Sort sort_by = 4;
+
+        /* Include assets from the selected child organizations. */
+        optional Filter.ChildOrganizations child_organizations = 5;
     }
     message Response {
         repeated Asset assets = 1;
