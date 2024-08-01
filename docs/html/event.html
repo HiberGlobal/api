@@ -7845,6 +7845,13 @@ Overrides unbundled_events in EventSelection message. </p></td>
                 </tr>
               
                 <tr>
+                  <td>to_assets</td>
+                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>alarm_parameters</td>
                   <td><a href="#hiber.assign.Assign.Request.AlarmParametersEntry">Assign.Request.AlarmParametersEntry</a></td>
                   <td>repeated</td>
@@ -8019,6 +8026,13 @@ Inactive assignments that no longer have an effect may be cleaned up automatical
                 <tr>
                   <td>to_tag</td>
                   <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>to_asset</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -9234,6 +9248,13 @@ temperature, the check value will be converted to celsius instead. </p></td>
                 <tr>
                   <td>from_tags</td>
                   <td><a href="#hiber.tag.TagSelection">hiber.tag.TagSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>from_assets</td>
+                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -13535,6 +13556,13 @@ the field color in HealthLevel </p></td>
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>override_url_validation</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Set this flag to not parse the url or enforce mqtts. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -14473,6 +14501,13 @@ If the failure percentage is higher, within the warning period, the health is sw
                   <td><a href="#hiber.UpdateZeroableInt">hiber.UpdateZeroableInt</a></td>
                   <td>optional</td>
                   <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>override_url_validation</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Set this flag to not parse the url or enforce mqtts. </p></td>
                 </tr>
               
             </tbody>

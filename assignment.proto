@@ -124,6 +124,7 @@ message Assignment {
         string to_modem = 2;
         ModemMessageBodyParserAssignment to_parser = 4;
         tag.Tag to_tag = 7;
+        string to_asset = 11;
     }
 }
 
@@ -191,6 +192,7 @@ message Assign {
         oneof to {
             modem.ModemSelection to_modems = 5;
             tag.TagSelection to_tags = 8;
+            asset.AssetSelection to_assets = 12;
         }
 
         /* The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). */
@@ -236,6 +238,7 @@ message Unassign {
         oneof from {
             modem.ModemSelection from_modems = 5;
             tag.TagSelection from_tags = 7;
+            asset.AssetSelection from_assets = 11;
         }
 
         /* Time that the assignment ended.

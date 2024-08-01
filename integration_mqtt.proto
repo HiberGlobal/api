@@ -234,6 +234,9 @@ message CreateMQTTPublisherRequest {
 
     repeated int64 tags = 20;
 
+    /* Set this flag to not parse the url or enforce mqtts. */
+    optional bool override_url_validation = 22;
+
     reserved 19;
 }
 
@@ -321,6 +324,9 @@ message UpdateMQTTPublisherRequest {
      */
     optional uint32 health_warning_failure_percentage = 34;
     optional UpdateZeroableInt deprecated_health_warning_failure_percentage = 22 [deprecated = true];
+
+    /* Set this flag to not parse the url or enforce mqtts. */
+    optional bool override_url_validation = 35;
 }
 
 message UpdateMQTTPublisherTagsRequest {

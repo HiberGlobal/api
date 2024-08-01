@@ -21,8 +21,8 @@ message Certificate {
     string name = 2;
     BytesOrHex certificate = 3;
     bool has_private_key = 4;
-    string ca_certificate_name = 5;
-    int64 ca_certificate_id = 6;
+    optional string ca_certificate_name = 5;
+    optional int64 ca_certificate_id = 6;
 }
 
 message CertificateSelection {

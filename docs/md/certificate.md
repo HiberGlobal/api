@@ -120,8 +120,8 @@
 | name | [ string](#string) |  |
 | certificate | [ hiber.BytesOrHex](#hiberbytesorhex) |  |
 | has_private_key | [ bool](#bool) |  |
-| ca_certificate_name | [ string](#string) |  |
-| ca_certificate_id | [ int64](#int64) |  |
+|  **optional** ca_certificate_name | [optional string](#string) |  |
+|  **optional** ca_certificate_id | [optional int64](#int64) |  |
 
 ### CertificateSelection
 

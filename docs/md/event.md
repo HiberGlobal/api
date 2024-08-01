@@ -1777,6 +1777,7 @@ Add assignments.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) |  |
 | alarm_parameters | [map hiber.assign.Assign.Request.AlarmParametersEntry](#hiberassignassignrequestalarmparametersentry) | The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
 |  **optional** override_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment should be active. This sets the assignment to start in the past, but would not have effect in the past for assignments like parsers and alarms (they will only be triggered for new messages / values). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
 |  **optional** end_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (i.e. no alarm events are removed). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
@@ -1829,6 +1830,7 @@ Assignments that are no longer active (end time is in the past) and that no long
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_modem | [ string](#string) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_parser | [ hiber.assign.Assignment.ModemMessageBodyParserAssignment](#hiberassignassignmentmodemmessagebodyparserassignment) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_tag | [ hiber.tag.Tag](#hibertagtag) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_asset | [ string](#string) |  |
 
 ### hiber.assign.Assignment.ModemAlarmAssignment
 
@@ -2139,6 +2141,7 @@ Remove a assignment.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) |  |
 |  **optional** override_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (i.e. no alarm events are removed). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
 
 ### hiber.assign.Unassign.Response
@@ -2607,6 +2610,7 @@ so not all messages listed here are referenced.)
 |  **optional** server_ca_certificate_id | [optional int64](#int64) | Server CA certificate to use when connecting to the MQTT server. |
 |  **optional** disabled | [optional bool](#bool) | Disable the MQTT publisher after creation, so it needs to be enabled before it is active. |
 | tags | [repeated int64](#int64) |  |
+|  **optional** override_url_validation | [optional bool](#bool) | Set this flag to not parse the url or enforce mqtts. |
 
 ### hiber.integration.mqtt.DeleteMQTTPublisherRequest
 
@@ -2818,6 +2822,7 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 |  **optional** health_warning_period | [optional hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
 |  **optional** health_warning_failure_percentage | [optional uint32](#uint32) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
 |  **optional** deprecated_health_warning_failure_percentage | [optional hiber.UpdateZeroableInt](#hiberupdatezeroableint) | <strong>Deprecated.</strong>  |
+|  **optional** override_url_validation | [optional bool](#bool) | Set this flag to not parse the url or enforce mqtts. |
 
 ### hiber.integration.mqtt.UpdateMQTTPublisherTagsRequest
 

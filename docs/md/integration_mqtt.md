@@ -174,6 +174,7 @@
 |  **optional** server_ca_certificate_id | [optional int64](#int64) | Server CA certificate to use when connecting to the MQTT server. |
 |  **optional** disabled | [optional bool](#bool) | Disable the MQTT publisher after creation, so it needs to be enabled before it is active. |
 | tags | [repeated int64](#int64) |  |
+|  **optional** override_url_validation | [optional bool](#bool) | Set this flag to not parse the url or enforce mqtts. |
 
 ### DeleteMQTTPublisherRequest
 
@@ -385,6 +386,7 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 |  **optional** health_warning_period | [optional hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
 |  **optional** health_warning_failure_percentage | [optional uint32](#uint32) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
 |  **optional** deprecated_health_warning_failure_percentage | [optional hiber.UpdateZeroableInt](#hiberupdatezeroableint) | <strong>Deprecated.</strong>  |
+|  **optional** override_url_validation | [optional bool](#bool) | Set this flag to not parse the url or enforce mqtts. |
 
 ### UpdateMQTTPublisherTagsRequest
 

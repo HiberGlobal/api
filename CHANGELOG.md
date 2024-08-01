@@ -1,5 +1,21 @@
 # Changelog Hiber API
 
+### 0.203 (2024-07-30)
+
+##### AssignmentService
+
+- Added device to asset assignment in addition to asset to device. They are essentially the same and will be output in the default asset to device format.
+  - Added `Assignment.to_asset`, `Assign.Request.to_asset` and `Unassign.Request.from_asset` to support the device to asset assignment.
+
+##### CertificateService
+
+- Marked `ca_certificate_name` and `ca_certificate_id` in `Certificate` as optional.
+
+##### MQTTService
+
+- We now enforce the use of `mqtts://` for new MQTT integrations.
+  - Added `override_url_validation` to `CreateMQTTPublisherRequest` and `UpdateMQTTPublisherRequest` override this if necessary.
+
 ### 0.198 (2024-06-25)
 
 ##### AssetService
