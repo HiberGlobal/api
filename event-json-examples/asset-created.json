@@ -36,7 +36,17 @@
             "00 11 22 33 AA BB CC DD"
           ],
           "name": "AAAA AAAA",
-          "type": "Pressure Sensor-1 EU"
+          "type": "Pressure Sensor-1 EU",
+          "lastMessageSentAt": {
+            "timestamp": "2020-06-01T05:15:25.355Z",
+            "timeZone": "UTC",
+            "textual": "2020-06-01T05:15:25.355Z"
+          },
+          "lastMessageReceivedAt": {
+            "timestamp": "2020-06-01T05:15:25.355Z",
+            "timeZone": "UTC",
+            "textual": "2020-06-01T05:15:25.355Z"
+          }
         }
       ]
     },

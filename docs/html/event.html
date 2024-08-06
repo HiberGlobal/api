@@ -9532,6 +9532,13 @@ This can be automatically populated from linked devices or manually added. </p><
                 </tr>
               
                 <tr>
+                  <td>inactive_devices</td>
+                  <td><a href="#hiber.asset.Asset.AssignedDevice">Asset.AssignedDevice</a></td>
+                  <td>repeated</td>
+                  <td><p>Devices that were assigned to this asset in the past </p></td>
+                </tr>
+              
+                <tr>
                   <td>organization</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -9547,7 +9554,7 @@ Typically only relevant if child organizations are included. </p></td>
         
       
         <h3 id="hiber.asset.Asset.AssignedDevice">Asset.AssignedDevice</h3>
-        <p>A device assigned to an asset.</p><p>Non-operational values that the device produces will be linked to this asset</p><p>(i.e. pressure, but not battery level).</p>
+        <p>A device assigned to this asset.</p><p>Non-operational values that the device produces will be linked to this asset</p><p>(i.e. pressure, but not battery level).</p>
 
         
           <table class="field-table">
@@ -9573,14 +9580,35 @@ Typically only relevant if child organizations are included. </p></td>
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>type</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_message_sent_at</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_message_received_at</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>assignment_time_range</td>
+                  <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -9679,6 +9707,42 @@ Typically only relevant if child organizations are included. </p></td>
               <tr>
                 <td>WELL_TUBING_HEAD</td>
                 <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_TUBING</td>
+                <td>6</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_FLOW_LINE</td>
+                <td>7</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_CASING</td>
+                <td>8</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_PRODUCTION_CASING_PRESSURE</td>
+                <td>9</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_INTERMITTENT_CASING_PRESSURE</td>
+                <td>10</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PIPELINE</td>
+                <td>11</td>
                 <td><p></p></td>
               </tr>
             

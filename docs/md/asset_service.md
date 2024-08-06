@@ -507,11 +507,12 @@ For example, if you have a Well, you might have assets for Annulus A and the tub
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Metadata for the asset. This can be automatically populated from linked devices or manually added. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | Tags assigned to this asset |
 | devices | [repeated hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice) | Devices assigned to this asset |
+| inactive_devices | [repeated hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice) | Devices that were assigned to this asset in the past |
 | organization | [ string](#string) | The organization that owns this asset. Typically only relevant if child organizations are included. |
 
 ### hiber.asset.Asset.AssignedDevice
 
-A device assigned to an asset.
+A device assigned to this asset.
 Non-operational values that the device produces will be linked to this asset
 (i.e. pressure, but not battery level).
 
@@ -519,8 +520,11 @@ Non-operational values that the device produces will be linked to this asset
 | ----- | ---- | ----------- |
 | number | [ string](#string) |  |
 | identifiers | [repeated string](#string) |  |
-| name | [ string](#string) |  |
-| type | [ string](#string) |  |
+|  **optional** name | [optional string](#string) |  |
+|  **optional** type | [optional string](#string) |  |
+|  **optional** last_message_sent_at | [optional hiber.Timestamp](#hibertimestamp) |  |
+|  **optional** last_message_received_at | [optional hiber.Timestamp](#hibertimestamp) |  |
+|  **optional** assignment_time_range | [optional hiber.TimeRange](#hibertimerange) |  |
 
 ### hiber.asset.AssetSelection
 
@@ -547,6 +551,12 @@ Currently a limited list, but more may be added in the future.
 | WELL_ANNULUS_C |  | 3 |
 | WELL_ANNULUS_D |  | 4 |
 | WELL_TUBING_HEAD |  | 5 |
+| WELL_TUBING |  | 6 |
+| WELL_FLOW_LINE |  | 7 |
+| WELL_CASING |  | 8 |
+| WELL_PRODUCTION_CASING_PRESSURE |  | 9 |
+| WELL_INTERMITTENT_CASING_PRESSURE |  | 10 |
+| PIPELINE |  | 11 |
 
 
 

@@ -3,6 +3,7 @@ syntax = "proto3";
 package hiber.asset;
 
 import "google/protobuf/struct.proto";
+import "base.proto";
 import "tag.proto";
 import "value.proto";
 
@@ -30,17 +31,26 @@ message Asset {
         WELL_ANNULUS_C = 3;
         WELL_ANNULUS_D = 4;
         WELL_TUBING_HEAD = 5;
+        WELL_TUBING = 6;
+        WELL_FLOW_LINE = 7;
+        WELL_CASING = 8;
+        WELL_PRODUCTION_CASING_PRESSURE = 9;
+        WELL_INTERMITTENT_CASING_PRESSURE = 10;
+        PIPELINE = 11;
     }
 
-    /* A device assigned to an asset.
+    /* A device assigned to this asset.
      * Non-operational values that the device produces will be linked to this asset
      * (i.e. pressure, but not battery level).
      */
     message AssignedDevice {
         string number = 1;
         repeated string identifiers = 2;
-        string name = 3;
-        string type = 4;
+        optional string name = 3;
+        optional string type = 4;
+        optional Timestamp last_message_sent_at = 5;
+        optional Timestamp last_message_received_at = 6;
+        optional TimeRange assignment_time_range = 7;
     }
 
     string identifier = 1;
@@ -75,6 +85,9 @@ message Asset {
 
     /* Devices assigned to this asset */
     repeated AssignedDevice devices = 10;
+
+    /* Devices that were assigned to this asset in the past */
+    repeated AssignedDevice inactive_devices = 12;
 
     /* The organization that owns this asset.
      * Typically only relevant if child organizations are included.

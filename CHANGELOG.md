@@ -1,5 +1,15 @@
 # Changelog Hiber API
 
+### 0.204 (2024-08-06)
+
+##### AssetService
+
+- Added extra information to `Asset.AssignedDevice`:
+  - `last_message_sent_at` and `last_message_received_at`
+  - `assignment_time_range`
+- Added `Asset.inactive_devices` to list previously assigned devices. 
+  These have less information available than a currently assigned device, but ues the same object type.
+
 ### 0.203 (2024-07-30)
 
 ##### AssignmentService

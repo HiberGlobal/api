@@ -8,5 +8,11 @@
     , "WELL_ANNULUS_C": ""
     , "WELL_ANNULUS_D": ""
     , "WELL_TUBING_HEAD": ""
+    , "WELL_TUBING": ""
+    , "WELL_FLOW_LINE": ""
+    , "WELL_CASING": ""
+    , "WELL_PRODUCTION_CASING_PRESSURE": ""
+    , "WELL_INTERMITTENT_CASING_PRESSURE": ""
+    , "PIPELINE": ""
     }
 }]
