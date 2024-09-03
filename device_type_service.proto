@@ -11,7 +11,7 @@ import "device_type.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.device.type";
 option java_outer_classname = "DeviceTypeApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 service DeviceTypeService {
     rpc List (ListDeviceTypes.Request) returns (ListDeviceTypes.Response);

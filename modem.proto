@@ -18,7 +18,7 @@ import "value.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.modem";
 option java_outer_classname = "ModemApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 /* The core of the Hiber system, modems are the network nodes that send information and user data.
  * This service contains calls to list and manage them, as well as list their messages.

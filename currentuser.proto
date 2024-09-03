@@ -9,7 +9,7 @@ import "role.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.user";
 option java_outer_classname = "CurrentUserApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 /* Calls related to the current user. Typically, a newly created user only has access to these calls, all
  * others require an organization to be linked.

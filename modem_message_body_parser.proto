@@ -22,7 +22,7 @@ import "modem.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.modem.message.bodyparser";
 option java_outer_classname = "ModemMessageBodyParserApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 service ModemMessageBodyParserService {
     /* List available message body parsers (including inherited from your parent organizations). */

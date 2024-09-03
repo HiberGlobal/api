@@ -8,7 +8,7 @@ import "role.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.role";
 option java_outer_classname = "RoleApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 service RoleService {
     rpc List (ListRoles.Request) returns (ListRoles.Response);

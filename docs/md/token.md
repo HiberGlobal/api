@@ -210,6 +210,8 @@
 | organization_permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) |  |
 | roles | [repeated string](#string) |  |
 | type | [ Token.Type](#tokentype) |  |
+|  **optional** last_used | [optional hiber.Date](#hiberdate) | Date that the token was last used. |
+| used_for_this_call | [ bool](#bool) | Set if the current request is made with this token. |
 
 ### Token.UserDetails
 

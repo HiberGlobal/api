@@ -10,7 +10,7 @@ import "modem.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.testing";
 option java_outer_classname = "TestingApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 /* Method to test the system in different ways, meant for customer access. For example, you can use this to test
  * whether everything works from message to webhook call, and further in your own system.

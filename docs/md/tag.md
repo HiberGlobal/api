@@ -15,6 +15,7 @@
   - [DeleteTagRequest.Response](#deletetagrequestresponse)
   - [ListTagsRequest](#listtagsrequest)
   - [ListTagsRequest.Response](#listtagsrequestresponse)
+  - [ListTagsRequest.Response.TagAssetCountEntry](#listtagsrequestresponsetagassetcountentry)
   - [ListTagsRequest.Response.TagModemCountEntry](#listtagsrequestresponsetagmodemcountentry)
   - [ListTagsRequest.Response.TagWebhookCountEntry](#listtagsrequestresponsetagwebhookcountentry)
   - [Tag](#tag)
@@ -157,8 +158,9 @@ Count the tags in your organization by health.
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 |  **optional** selection | [optional TagSelection](#tagselection) | Select the tags to list. Optional, when omitted or empty everything is included. |
-|  **optional** modem_count | [optional bool](#bool) |  |
-|  **optional** webhook_count | [optional bool](#bool) |  |
+|  **optional** asset_count | [optional bool](#bool) | Count the assets for each tag in the response. |
+|  **optional** modem_count | [optional bool](#bool) | Count the modems for each tag in the response. |
+|  **optional** webhook_count | [optional bool](#bool) | Count the webhooks for each tag in the response. |
 
 ### ListTagsRequest.Response
 
@@ -168,8 +170,18 @@ Count the tags in your organization by health.
 | ----- | ---- | ----------- |
 | tags | [repeated Tag](#tag) |  |
 | request | [ ListTagsRequest](#listtagsrequest) |  |
+| tag_asset_count | [map ListTagsRequest.Response.TagAssetCountEntry](#listtagsrequestresponsetagassetcountentry) | map<tag-id, count> |
 | tag_modem_count | [map ListTagsRequest.Response.TagModemCountEntry](#listtagsrequestresponsetagmodemcountentry) | map<tag-id, count> |
 | tag_webhook_count | [map ListTagsRequest.Response.TagWebhookCountEntry](#listtagsrequestresponsetagwebhookcountentry) | map<webhook-id, count> |
+
+### ListTagsRequest.Response.TagAssetCountEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ int64](#int64) |  |
+| value | [ int32](#int32) |  |
 
 ### ListTagsRequest.Response.TagModemCountEntry
 
@@ -216,6 +228,8 @@ Count the tags in your organization by health.
 | tag | [ Tag](#tag) |  |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) |  |
 | most_severe | [ bool](#bool) |  |
+| asset_count | [ uint32](#uint32) |  |
+| modem_count | [ uint32](#uint32) |  |
 
 ### TagHealth.Request
 
@@ -225,6 +239,8 @@ Count the tags in your organization by health.
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 |  **optional** selection | [optional TagSelection](#tagselection) | Select the tags to list. Optional, when omitted or empty everything is included. |
+|  **optional** asset_count | [optional bool](#bool) | Count the assets for each tag in the response. |
+|  **optional** modem_count | [optional bool](#bool) | Count the modems for each tag in the response. |
 
 ### TagHealth.Response
 

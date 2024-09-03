@@ -1376,11 +1376,12 @@ Fields specified here must have been specified in the selection. </p></td>
                 </tr>
               
                 <tr>
-                  <td>assets</td>
+                  <td>asset</td>
                   <td><a href="#hiber.value.ValueContext.ValueAssetContext">ValueContext.ValueAssetContext</a></td>
-                  <td>repeated</td>
-                  <td><p>The asset(s) that own this value, if any.
-Assets own this value if they were assigned to the device that produced this value at the time it was produced. </p></td>
+                  <td></td>
+                  <td><p>The asset that owns this value, if any.
+Assets own this value if they were assigned to the device that produced this value at the time it was produced.
+If multiple assets were assigned at the same time, this value exists for each asset. </p></td>
                 </tr>
               
                 <tr>
@@ -4069,6 +4070,13 @@ Typically only relevant if child organizations are included. </p></td>
                 <tr>
                   <td>assignment_time_range</td>
                   <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>health</td>
+                  <td><a href="#hiber.health.HealthLevel">hiber.health.HealthLevel</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>

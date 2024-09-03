@@ -8,7 +8,7 @@ import "tag.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.webhook";
 option java_outer_classname = "WebhookApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 service WebhookService {
     rpc List (ListWebhooksRequest) returns (ListWebhooksRequest.Response);

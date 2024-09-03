@@ -318,7 +318,7 @@ A Value at a time, for a given modem and field.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | device | [ string](#string) | The device that produced this value. |
-| assets | [repeated ValueContext.ValueAssetContext](#valuecontextvalueassetcontext) | The asset(s) that own this value, if any. Assets own this value if they were assigned to the device that produced this value at the time it was produced. |
+| asset | [ ValueContext.ValueAssetContext](#valuecontextvalueassetcontext) | The asset that owns this value, if any. Assets own this value if they were assigned to the device that produced this value at the time it was produced. If multiple assets were assigned at the same time, this value exists for each asset. |
 | field | [ string](#string) | The field that this value was produced for. |
 | time | [ hiber.Timestamp](#hibertimestamp) | The time for this value. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value_type**.value | [ Value](#value) | The value at this time, if no ValueTransformation was specified for this field. |
@@ -434,6 +434,7 @@ Non-operational values that the device produces will be linked to this asset
 |  **optional** last_message_sent_at | [optional hiber.Timestamp](#hibertimestamp) |  |
 |  **optional** last_message_received_at | [optional hiber.Timestamp](#hibertimestamp) |  |
 |  **optional** assignment_time_range | [optional hiber.TimeRange](#hibertimerange) |  |
+|  **optional** health | [optional hiber.health.HealthLevel](#hiberhealthhealthlevel) |  |
 
 ### hiber.asset.AssetSelection
 

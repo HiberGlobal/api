@@ -599,6 +599,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.tag.ListTagsRequest.Response.TagAssetCountEntry"><span class="badge">M</span>ListTagsRequest.Response.TagAssetCountEntry</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.tag.ListTagsRequest.Response.TagModemCountEntry"><span class="badge">M</span>ListTagsRequest.Response.TagModemCountEntry</a>
                 </li>
               
@@ -4282,6 +4286,13 @@ Typically only relevant if child organizations are included. </p></td>
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>health</td>
+                  <td><a href="#hiber.health.HealthLevel">hiber.health.HealthLevel</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -5046,17 +5057,24 @@ De default name of the device is its HEX number, in descending order.</p></td>
                 </tr>
               
                 <tr>
+                  <td>asset_count</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Count the assets for each tag in the response. </p></td>
+                </tr>
+              
+                <tr>
                   <td>modem_count</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p> </p></td>
+                  <td><p>Count the modems for each tag in the response. </p></td>
                 </tr>
               
                 <tr>
                   <td>webhook_count</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p> </p></td>
+                  <td><p>Count the webhooks for each tag in the response. </p></td>
                 </tr>
               
             </tbody>
@@ -5091,6 +5109,13 @@ De default name of the device is its HEX number, in descending order.</p></td>
                 </tr>
               
                 <tr>
+                  <td>tag_asset_count</td>
+                  <td><a href="#hiber.tag.ListTagsRequest.Response.TagAssetCountEntry">ListTagsRequest.Response.TagAssetCountEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>map&lt;tag-id, count&gt; </p></td>
+                </tr>
+              
+                <tr>
                   <td>tag_modem_count</td>
                   <td><a href="#hiber.tag.ListTagsRequest.Response.TagModemCountEntry">ListTagsRequest.Response.TagModemCountEntry</a></td>
                   <td>repeated</td>
@@ -5102,6 +5127,37 @@ De default name of the device is its HEX number, in descending order.</p></td>
                   <td><a href="#hiber.tag.ListTagsRequest.Response.TagWebhookCountEntry">ListTagsRequest.Response.TagWebhookCountEntry</a></td>
                   <td>repeated</td>
                   <td><p>map&lt;webhook-id, count&gt; </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.tag.ListTagsRequest.Response.TagAssetCountEntry">ListTagsRequest.Response.TagAssetCountEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -5266,6 +5322,20 @@ De default name of the device is its HEX number, in descending order.</p></td>
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>asset_count</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>modem_count</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -5295,6 +5365,20 @@ De default name of the device is its HEX number, in descending order.</p></td>
                   <td><a href="#hiber.tag.TagSelection">TagSelection</a></td>
                   <td>optional</td>
                   <td><p>Select the tags to list. Optional, when omitted or empty everything is included. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_count</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Count the assets for each tag in the response. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>modem_count</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Count the modems for each tag in the response. </p></td>
                 </tr>
               
             </tbody>

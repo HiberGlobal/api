@@ -7,7 +7,7 @@ import "permission.proto";
 
 option java_multiple_files = true;
 option java_package = "global.hiber.api.grpc.role";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 message Role {
     /* Unique identifier for the role. */

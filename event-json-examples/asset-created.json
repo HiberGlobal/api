@@ -46,6 +46,15 @@
             "timestamp": "2020-06-01T05:15:25.355Z",
             "timeZone": "UTC",
             "textual": "2020-06-01T05:15:25.355Z"
+          },
+          "health": {
+            "level": "Healthy",
+            "color": "white",
+            "colorData": {
+              "fill": "white",
+              "text": "white"
+            },
+            "severity": "1"
           }
         }
       ]

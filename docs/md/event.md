@@ -2218,6 +2218,7 @@ Non-operational values that the device produces will be linked to this asset
 |  **optional** last_message_sent_at | [optional hiber.Timestamp](#hibertimestamp) |  |
 |  **optional** last_message_received_at | [optional hiber.Timestamp](#hibertimestamp) |  |
 |  **optional** assignment_time_range | [optional hiber.TimeRange](#hibertimerange) |  |
+|  **optional** health | [optional hiber.health.HealthLevel](#hiberhealthhealthlevel) |  |
 
 ### hiber.asset.AssetSelection
 
@@ -4649,6 +4650,8 @@ so not all messages listed here are referenced.)
 | organization_permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) |  |
 | roles | [repeated string](#string) |  |
 | type | [ hiber.token.Token.Type](#hibertokentokentype) |  |
+|  **optional** last_used | [optional hiber.Date](#hiberdate) | Date that the token was last used. |
+| used_for_this_call | [ bool](#bool) | Set if the current request is made with this token. |
 
 ### hiber.token.Token.UserDetails
 

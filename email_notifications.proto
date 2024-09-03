@@ -7,7 +7,7 @@ import "base.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.email";
 option java_outer_classname = "EmailNotificationsApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 service EmailNotificationPreferencesService {
     rpc List (ListEmailNotificationPreferencesRequest) returns (ListEmailNotificationPreferencesRequest.Response);

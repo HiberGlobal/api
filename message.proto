@@ -16,7 +16,7 @@ import "value.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.message";
 option java_outer_classname = "MessageApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 /* This service contains calls to list and manage messages. */
 service MessageService {

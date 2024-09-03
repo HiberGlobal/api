@@ -7,7 +7,7 @@ import "base.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.health";
 option java_outer_classname = "HealthManagementApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 service HealthService {
     /* List the health levels. */

@@ -8,7 +8,7 @@ import "permission.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.token";
 option java_outer_classname = "TokenApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 service TokenService {
     rpc List (ListTokensRequest) returns (ListTokensRequest.Response);
@@ -41,6 +41,12 @@ message Token {
     repeated OrganizationPermission organization_permissions = 8;
     repeated string roles = 9;
     Type type = 10;
+
+    /* Date that the token was last used. */
+    optional Date last_used = 13;
+
+    /* Set if the current request is made with this token. */
+    bool used_for_this_call = 12;
 
     message UserDetails {
         string id = 1;

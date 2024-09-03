@@ -8,7 +8,7 @@ import "health.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.tag";
 option java_outer_classname = "TagApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 /* Tag management api calls. You can already get tags for objects when you get their data, and even create new tags
  * when updating them, so these calls are meant for easier tag management if you need it.
@@ -51,6 +51,8 @@ message ListTagsRequest {
         repeated Tag tags = 1;
         ListTagsRequest request = 2;
         /* map<tag-id, count> */
+        map<int64, int32> tag_asset_count = 5;
+        /* map<tag-id, count> */
         map<int64, int32> tag_modem_count = 3;
         /* map<webhook-id, count> */
         map<int64, int32> tag_webhook_count = 4;
@@ -61,7 +63,14 @@ message ListTagsRequest {
 
     /* Select the tags to list. Optional, when omitted or empty everything is included. */
     optional TagSelection selection = 2;
+
+    /* Count the assets for each tag in the response. */
+    optional bool asset_count = 5;
+
+    /* Count the modems for each tag in the response. */
     optional bool modem_count = 3;
+
+    /* Count the webhooks for each tag in the response. */
     optional bool webhook_count = 4;
 }
 
@@ -92,12 +101,21 @@ message TagHealth {
     health.HealthLevel health_level = 2;
     bool most_severe = 3;
 
+    uint32 asset_count = 4;
+    uint32 modem_count = 5;
+
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         optional string organization = 1;
 
         /* Select the tags to list. Optional, when omitted or empty everything is included. */
         optional TagSelection selection = 2;
+
+        /* Count the assets for each tag in the response. */
+        optional bool asset_count = 3;
+
+        /* Count the modems for each tag in the response. */
+        optional bool modem_count = 4;
     }
 
     message Response {

@@ -60,7 +60,7 @@ import "modem.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.map";
 option java_outer_classname = "MapApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 /* Map of modems, in different map levels to enable data to be displayed efficiently */
 service MapService {

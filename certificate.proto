@@ -7,7 +7,7 @@ import "base.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.certificate";
 option java_outer_classname = "CertificateApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 service CertificateService {
     rpc List (ListCertificatesRequest) returns (ListCertificatesRequest.Response);

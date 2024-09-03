@@ -15,7 +15,7 @@ import "value.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.value";
 option java_outer_classname = "ValueServiceApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 service ValueService {
     rpc List (ListValues.Request) returns (ListValues.Response);
@@ -52,10 +52,11 @@ message ValueContext {
     /* The device that produced this value. */
     string device = 1;
 
-    /* The asset(s) that own this value, if any.
+    /* The asset that owns this value, if any.
      * Assets own this value if they were assigned to the device that produced this value at the time it was produced.
+     * If multiple assets were assigned at the same time, this value exists for each asset.
      */
-    repeated ValueAssetContext assets = 7;
+    ValueAssetContext asset = 7;
 
     /* The field that this value was produced for. */
     string field = 2;

@@ -15,7 +15,7 @@ import "value.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.device";
 option java_outer_classname = "DeviceServiceApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 /* At the core of the Hiber system, devices are the network nodes that send information and user data.
  * This service contains calls to list and manage devices.

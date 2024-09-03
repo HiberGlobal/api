@@ -8,7 +8,7 @@ import "permission.proto";
 
 option java_multiple_files = true;
 option java_package = "global.hiber.api.grpc";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 /* Update object for an int that can be set to 0.
  *

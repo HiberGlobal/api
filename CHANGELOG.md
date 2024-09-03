@@ -1,5 +1,26 @@
 # Changelog Hiber API
 
+### 0.207 (2024-09-03)
+
+##### TokenService
+
+- Added `Token.last_used` with the date the token was last used.
+- Added `Token.used_for_this_call` to show that this token was used to make the call that resulted in this list of tokens.
+
+##### TagService
+
+- Added `ListTagsRequest.asset_count` to count the assets for the listed tags.
+  - Added `ListTagsRequest.Response.tag_asset_count` for the result.
+
+##### AssetService
+
+- Added `Asset.AssignedDevice.health` to see the health of assigned device(s).
+
+##### ValueService
+
+- Removed the `repeated` flag on `ValueContext.assets` and renamed the field to `asset`.
+  - Values with multiple assets will be repeated instead.
+
 ### 0.204 (2024-08-06)
 
 ##### AssetService

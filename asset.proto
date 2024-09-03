@@ -4,13 +4,14 @@ package hiber.asset;
 
 import "google/protobuf/struct.proto";
 import "base.proto";
+import "health.proto";
 import "tag.proto";
 import "value.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.asset";
 option java_outer_classname = "AssetApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 /* Assets are things that collect the data produced by devices.
  * Devices are assigned to assets to handle data ownership.
@@ -51,6 +52,7 @@ message Asset {
         optional Timestamp last_message_sent_at = 5;
         optional Timestamp last_message_received_at = 6;
         optional TimeRange assignment_time_range = 7;
+        optional health.HealthLevel health = 8;
     }
 
     string identifier = 1;

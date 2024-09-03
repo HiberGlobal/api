@@ -12,7 +12,7 @@ import "value.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.field";
 option java_outer_classname = "FieldApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 service FieldService {
     rpc List (ListFields.Request) returns (ListFields.Response);
@@ -111,6 +111,7 @@ message ListFieldsForAsset {
 
     message Response {
         message AssetWithFields {
+            string asset_name = 3;
             string asset_identifier = 1;
             repeated Field fields = 2;
         }

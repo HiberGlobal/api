@@ -16,6 +16,11 @@
 - Enums
   - [Asset.Type](#assettype)
 
+- Referenced messages from [health.proto](#referenced-messages-from-healthproto)
+  - [hiber.health.HealthLevel](#hiberhealthhealthlevel)
+  - [hiber.health.HealthLevelSelection](#hiberhealthhealthlevelselection)
+
+
 - Referenced messages from [tag.proto](#referenced-messages-from-tagproto)
   - [hiber.tag.Tag](#hibertagtag)
   - [hiber.tag.Tag.Label](#hibertagtaglabel)
@@ -157,6 +162,7 @@ Non-operational values that the device produces will be linked to this asset
 |  **optional** last_message_sent_at | [optional hiber.Timestamp](#hibertimestamp) |  |
 |  **optional** last_message_received_at | [optional hiber.Timestamp](#hibertimestamp) |  |
 |  **optional** assignment_time_range | [optional hiber.TimeRange](#hibertimerange) |  |
+|  **optional** health | [optional hiber.health.HealthLevel](#hiberhealthhealthlevel) |  |
 
 ### AssetSelection
 
@@ -190,6 +196,96 @@ Currently a limited list, but more may be added in the future.
 | WELL_INTERMITTENT_CASING_PRESSURE |  | 10 |
 | PIPELINE |  | 11 |
 
+
+
+## Referenced messages from health.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [health.proto](https://github.com/HiberGlobal/api/blob/master/health.proto).
+
+
+### hiber.health.HealthLevel
+
+A health level in an organization.
+Health can be customized depending on your need.
+
+The default health levels are:
+- OK (green): no problems detected
+- WARNING (orange): unresolvable problems detected, for example delayed or skipped messages
+- ERROR (red): significant problems detected (that typically can be resolved),
+  for example inactivity or invalid messages (resolved on a successful message)
+
+Health levels can be customized to as many as you need for your operations, for example:
+- INTERVENTION
+- DEFECT
+- BATTERY
+- HIGH
+- LOW
+
+Health levels are ordered by severity (low to high),
+and of all things affecting a modem's health,
+only the most severe level will be returned when retrieving a modem.
+
+Health can be assigned using modems alarms, which specify the health level they will cause on a modem (and for how
+long, if it does not resolve automatically).
+
+Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems),
+which can happen when a device manufacturer has provided alarms to your device (e.g. a low battery alarm).
+By default, any unknown health levels map to the level that is marked catch-all.
+
+Health level have a set of named colors, represented by a map where the key is the name of the color
+and the value is a string that represents a valid CSS3 color.
+Simple examples are: green, red, orange, grey, #FF00FF for fuchsia, etc (Keep in mind that CSS3 allows for many
+ways to define colors, see https://www.w3.org/TR/2003/WD-css3-color-20030214/).
+
+All the following definitions also mean "red":
+ - rgb(255, 0, 0)
+ - rgb(100%, 0, 0)
+ - rgba(100%, 0%, 0%, 100%)
+ - hsl(0, 100%, 50%)
+ - hsla(0, 100%, 50%, 1)
+
+The client is responsible for rendering the correct color from the CSS3 color-space and for setting the colors and
+their names. There is no verification on missing named colors, so the client must set sensible defaults when colors
+are missing.
+
+To assist with sorting, health levels have a numeric severity equal to their index in the sorted list of health
+levels (starting at 1). This means higher numbers denote a more severe health.
+Since these values are noting more than a list index, they should not be cached, compared to another organization or
+compared to values retrieved from the API at another time.
+
+For example, an organization using the default health would have:
+- Ok: severity 1
+- Warning: severity 2
+- Error: severity 3
+
+That organization could then add a new health level in between Ok and Warning, meaning the severity of Warning and
+Error will change:
+- Ok, severity 1
+- ItsComplicated, severity 2
+- Warning, severity 3
+- Error, severity 4
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| level | [ string](#string) | The name of this health level. Levels are identified by their name. The API does support renaming, where the rename is propagated to all the relevant parts of the system. |
+| color | [ string](#string) | <strong>Deprecated.</strong> Default color for the health level, as a string that represents a valid CSS3 color. DEPRECATED: Maps to the color named "text" in color_data. |
+| color_data | [map hiber.health.HealthLevel.ColorDataEntry](#hiberhealthhealthlevelcolordataentry) | Map of named colors, where key is the name and the value is a valid CSS3 color definition. |
+| severity | [ int64](#int64) | A unique numeric value equal to the index of this health level in the list of health levels sorted by ascending severity (starting at 1). This means higher numbers denote a more severe health. This value cannot be used when creating or updating. To change the severity for a health level, reorder all health levels. |
+| catch_all | [ bool](#bool) | Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems), which can happen when a device manufacturer has provided alarms for your device (e.g. a low battery alarm). By default, unknown health levels map to the level of the highest severity, unless another level is marked as catch-all. |
+
+### hiber.health.HealthLevelSelection
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** search | [optional string](#string) | Search for the given string in the levels and colors. |
+| levels | [repeated string](#string) | Filter by exact levels. |
+
+
+### Enums
 
 
 ## Referenced messages from tag.proto

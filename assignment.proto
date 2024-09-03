@@ -14,7 +14,7 @@ import "tag.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.assign";
 option java_outer_classname = "AssignmentApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 service AssignmentService {
     /* List assignments. */

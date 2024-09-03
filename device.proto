@@ -13,7 +13,7 @@ import "value.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.device";
 option java_outer_classname = "DeviceApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 /* Information about a device.
  * A device is anything in the Hiber network that can send data to our systems.

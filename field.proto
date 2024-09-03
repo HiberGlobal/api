@@ -7,7 +7,7 @@ import "value.proto";
 
 option java_multiple_files = true;
 option java_package = "global.hiber.api.grpc.field";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 message Field {
     /* If the field is numeric, this specifies the unit and formatting details for the field. */

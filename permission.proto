@@ -6,7 +6,7 @@ package hiber;
 
 option java_multiple_files = true;
 option java_package = "global.hiber.api.grpc";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 /* OrganizationPermissions limit what a user can do in an Organization.
  * By default, everyone who has access to an organization, can access basic organization data.

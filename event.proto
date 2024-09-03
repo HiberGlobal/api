@@ -23,7 +23,7 @@ import "webhook.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.event";
 option java_outer_classname = "EventApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 /* Events are used in a number of ways in the api. With this service you can
  * search, list and stream them for your own purposes.

@@ -357,6 +357,7 @@ Delete the given fields from a parser.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
+| asset_name | [ string](#string) |  |
 | asset_identifier | [ string](#string) |  |
 | fields | [repeated Field](#field) |  |
 
@@ -548,6 +549,7 @@ Non-operational values that the device produces will be linked to this asset
 |  **optional** last_message_sent_at | [optional hiber.Timestamp](#hibertimestamp) |  |
 |  **optional** last_message_received_at | [optional hiber.Timestamp](#hibertimestamp) |  |
 |  **optional** assignment_time_range | [optional hiber.TimeRange](#hibertimerange) |  |
+|  **optional** health | [optional hiber.health.HealthLevel](#hiberhealthhealthlevel) |  |
 
 ### hiber.asset.AssetSelection
 

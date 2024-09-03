@@ -7,7 +7,7 @@ import "base.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.export";
 option java_outer_classname = "ExportApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 service ExportService {
     rpc List (ListExports.Request) returns (ListExports.Response);

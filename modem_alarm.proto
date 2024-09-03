@@ -20,7 +20,7 @@ import "modem.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.modem.alarm";
 option java_outer_classname = "ModemAlarmApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 service ModemAlarmService {
     /* List available modem alarms (including inherited from your parent organizations). */

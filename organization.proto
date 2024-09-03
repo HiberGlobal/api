@@ -8,7 +8,7 @@ import "value.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.organization";
 option java_outer_classname = "OrganizationApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 /* Organization-related api calls. Currently limited to your own organization; we'll add more for creating and managing
  * sub-organizations later.

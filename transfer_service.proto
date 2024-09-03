@@ -15,7 +15,7 @@ import "transfer.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.transfer";
 option java_outer_classname = "TransferApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 service TransferService {
     rpc Transfer (PerformTransfer.Request) returns (PerformTransfer.Response);

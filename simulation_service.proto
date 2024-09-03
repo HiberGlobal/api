@@ -9,7 +9,7 @@ import "simulation.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.simulation";
 option java_outer_classname = "SimulationServiceApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 /* Service to directly simulate device values.
  * These simulations skip the entire message pipeline and directly insert values for devices.

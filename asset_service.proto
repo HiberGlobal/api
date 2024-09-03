@@ -13,7 +13,7 @@ import "value.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.asset";
 option java_outer_classname = "AssetServiceApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 /* Manage Assets in your organization, creating new assets,
  * updating or deleting them in bulk and changing assigned tags and devices.

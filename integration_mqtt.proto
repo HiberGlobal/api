@@ -8,7 +8,7 @@ import "tag.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.integration.mqtt";
 option java_outer_classname = "MQTTIntegrationApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 service MQTTService {
     rpc List (ListMQTTPublishersRequest) returns (ListMQTTPublishersRequest.Response);

@@ -7,7 +7,7 @@ import "base.proto";
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.organization.location";
 option java_outer_classname = "NamedLocationApi";
-option go_package = "hiber";
+option go_package = ".;hiber";
 
 /* Manage named locations for your organization.
  * This allows you to save locations to be displayed on the map or used in alarms.
