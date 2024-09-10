@@ -3,6 +3,7 @@ syntax = "proto3";
 package hiber.simulation;
 
 import "base.proto";
+import "value.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.simulation";
@@ -59,6 +60,8 @@ message ValueSimulation {
 
         message Numeric {
             repeated double values = 1;
+            optional value.Value.Numeric.Type type = 2;
+            optional UnitOfMeasurement unit = 3;
         }
         message Text {
             repeated string values = 1;

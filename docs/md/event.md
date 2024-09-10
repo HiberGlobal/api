@@ -169,6 +169,7 @@
   - [hiber.export.DeleteExport.Response](#hiberexportdeleteexportresponse)
   - [hiber.export.Export](#hiberexportexport)
   - [hiber.export.Export.Configuration](#hiberexportexportconfiguration)
+  - [hiber.export.Export.Configuration.AssetValues](#hiberexportexportconfigurationassetvalues)
   - [hiber.export.Export.Configuration.ModemMessages](#hiberexportexportconfigurationmodemmessages)
   - [hiber.export.Export.File](#hiberexportexportfile)
   - [hiber.export.Export.Format](#hiberexportexportformat)
@@ -2274,6 +2275,7 @@ so not all messages listed here are referenced.)
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **configuration**.modem_message | [ hiber.export.Export.Configuration.ModemMessages](#hiberexportexportconfigurationmodemmessages) | Get the fields for modem messages, with optional specific fields for the selected modems, based on assigned parsers. Time range is ignored for this request. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **configuration**.asset_values | [ hiber.export.Export.Configuration.AssetValues](#hiberexportexportconfigurationassetvalues) | Get the fields for asset values. Time range is ignored for this request. |
 
 ### hiber.export.AvailableFieldsForExport.Response
 
@@ -2352,6 +2354,16 @@ The configuration for the export, which determines what data is exported.
 | ----- | ---- | ----------- |
 | expires_in | [ hiber.Duration](#hiberduration) | The time urls will be available after the moment the export has the READY status. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.modem_message | [ hiber.export.Export.Configuration.ModemMessages](#hiberexportexportconfigurationmodemmessages) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.asset_values | [ hiber.export.Export.Configuration.AssetValues](#hiberexportexportconfigurationassetvalues) |  |
+
+### hiber.export.Export.Configuration.AssetValues
+
+Export values for a set of assets.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| asset_identifiers | [repeated string](#string) |  |
+| time_range | [ hiber.TimeRange](#hibertimerange) |  |
 
 ### hiber.export.Export.Configuration.ModemMessages
 
@@ -5867,6 +5879,7 @@ Unit of measurement for a numeric value.
 | PRESSURE_BAR |  | 12 |
 | PRESSURE_PSI |  | 14 |
 | PRESSURE_K_PA |  | 17 |
+| PRESSURE_KILOGRAM_PER_CENTIMETER_SQUARED |  | 53 |
 | SPEED_KILOMETERS_PER_HOUR |  | 18 |
 | SPEED_KNOTS |  | 19 |
 | SPEED_METERS_PER_SECOND |  | 20 |

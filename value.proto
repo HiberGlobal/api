@@ -3,6 +3,7 @@ syntax = "proto3";
 package hiber.value;
 
 import "google/protobuf/duration.proto";
+import "base.proto";
 
 option java_multiple_files = true;
 option java_package = "global.hiber.api.grpc.value";
@@ -63,14 +64,19 @@ message Value {
                 PERCENT = 0;
             }
 
-            double value = 1;
+            /* Deprecated in favor of the field in Value.Numeric. */
+            double value = 1 [deprecated = true];
             BatteryLevelUnit unit = 2;
 
-            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
-            string textual = 3;
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            string textual = 3 [deprecated = true];
 
-            /* The original unit, iff this value was converted from another unit because of user preferences. */
-            BatteryLevelUnit converted_from = 4;
+            /* The original unit, iff this value was converted from another unit because of user preferences.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            optional BatteryLevelUnit converted_from = 4 [deprecated = true];
         }
 
         /* The value for rotation speed. The only value is revolutions per minute (RPM), therefore it is not included in
@@ -81,14 +87,19 @@ message Value {
                 REVOLUTIONS_PER_MINUTE = 0; // rpm
             }
 
-            double value = 1;
+            /* Deprecated in favor of the field in Value.Numeric. */
+            double value = 1 [deprecated = true];
             RotationSpeedUnit unit = 2;
 
-            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
-            string textual = 3;
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            string textual = 3 [deprecated = true];
 
-            /* The original unit, iff this value was converted from another unit because of user preferences. */
-            RotationSpeedUnit converted_from = 4;
+            /* The original unit, iff this value was converted from another unit because of user preferences.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            optional RotationSpeedUnit converted_from = 4 [deprecated = true];
         }
 
         /* The value is a distance value, converted to your preferred distance unit. */
@@ -108,14 +119,19 @@ message Value {
                 NAUTICAL_MILE = 8;
             }
 
-            double value = 1;
+            /* Deprecated in favor of the field in Value.Numeric. */
+            double value = 1 [deprecated = true];
             DistanceUnit unit = 2;
 
-            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
-            string textual = 3;
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            string textual = 3 [deprecated = true];
 
-            /* The original unit, iff this value was converted from another unit because of user preferences. */
-            DistanceUnit converted_from = 4;
+            /* The original unit, iff this value was converted from another unit because of user preferences.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            optional DistanceUnit converted_from = 4 [deprecated = true];
         }
 
         /* The value is a distance value, converted to your preferred distance unit. */
@@ -131,14 +147,19 @@ message Value {
                 MILES_PER_LITER = 6; // mpl
             }
 
-            double value = 1;
+            /* Deprecated in favor of the field in Value.Numeric. */
+            double value = 1 [deprecated = true];
             FuelEfficiencyUnit unit = 2;
 
-            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
-            string textual = 3;
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            string textual = 3 [deprecated = true];
 
-            /* The original unit, iff this value was converted from another unit because of user preferences. */
-            FuelEfficiencyUnit converted_from = 4;
+            /* The original unit, iff this value was converted from another unit because of user preferences.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            optional FuelEfficiencyUnit converted_from = 4 [deprecated = true];
         }
 
         /* The value is a percentage. */
@@ -149,7 +170,8 @@ message Value {
                 PERCENT = 0;
             }
 
-            float value = 1;
+            /* Deprecated in favor of the field in Value.Numeric. */
+            float value = 1 [deprecated = true];
             PercentageUnit unit = 3;
 
             /* Textual representation with % symbol, rounded based on the user preferences and field config. */
@@ -163,16 +185,22 @@ message Value {
                 BAR = 0; // bar
                 PSI = 1; // psi
                 K_PA = 2; // kPa
+                KILOGRAM_PER_CENTIMETER_SQUARED = 3; // kg/cm²
             }
 
-            double value = 1;
+            /* Deprecated in favor of the field in Value.Numeric. */
+            double value = 1 [deprecated = true];
             PressureUnit unit = 2;
 
-            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
-            string textual = 3;
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            string textual = 3 [deprecated = true];
 
-            /* The original unit, iff this value was converted from another unit because of user preferences. */
-            PressureUnit converted_from = 4;
+            /* The original unit, iff this value was converted from another unit because of user preferences.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            optional PressureUnit converted_from = 4 [deprecated = true];
         }
 
         /* The value is a speed value, converted to your preferred speed unit. */
@@ -187,14 +215,19 @@ message Value {
                 FEET_PER_SECOND = 4; // ft/s
             }
 
-            double value = 1;
+            /* Deprecated in favor of the field in Value.Numeric. */
+            double value = 1 [deprecated = true];
             SpeedUnit unit = 2;
 
-            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
-            string textual = 3;
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            string textual = 3 [deprecated = true];
 
-            /* The original unit, iff this value was converted from another unit because of user preferences. */
-            SpeedUnit converted_from = 4;
+            /* The original unit, iff this value was converted from another unit because of user preferences.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            optional SpeedUnit converted_from = 4 [deprecated = true];
         }
 
         /* The value is a temperature, converted to your preferred temperature unit. */
@@ -206,14 +239,19 @@ message Value {
                 DEGREES_FAHRENHEIT = 2; // °F
             }
 
-            double value = 1;
+            /* Deprecated in favor of the field in Value.Numeric. */
+            double value = 1 [deprecated = true];
             TemperatureUnit unit = 2;
 
-            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
-            string textual = 3;
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            string textual = 3 [deprecated = true];
 
-            /* The original unit, iff this value was converted from another unit because of user preferences. */
-            TemperatureUnit converted_from = 4;
+            /* The original unit, iff this value was converted from another unit because of user preferences.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            optional TemperatureUnit converted_from = 4 [deprecated = true];
         }
 
         /* The value is a voltage, converted to your preferred voltage unit. */
@@ -223,14 +261,19 @@ message Value {
                 MILLIVOLT = 0; // mV
             }
 
-            double value = 1;
+            /* Deprecated in favor of the field in Value.Numeric. */
+            double value = 1 [deprecated = true];
             VoltageUnit unit = 2;
 
-            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
-            string textual = 3;
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            string textual = 3 [deprecated = true];
 
-            /* The original unit, iff this value was converted from another unit because of user preferences. */
-            VoltageUnit converted_from = 4;
+            /* The original unit, iff this value was converted from another unit because of user preferences.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            optional VoltageUnit converted_from = 4 [deprecated = true];
         }
 
         /* The value is a volume value, converted to your preferred volume unit. */
@@ -244,14 +287,19 @@ message Value {
                 CUBIC_FEET = 4; // ft³
             }
 
-            double value = 1;
+            /* Deprecated in favor of the field in Value.Numeric. */
+            double value = 1 [deprecated = true];
             VolumeUnit unit = 2;
 
-            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
-            string textual = 3;
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            string textual = 3 [deprecated = true];
 
-            /* The original unit, iff this value was converted from another unit because of user preferences. */
-            VolumeUnit converted_from = 4;
+            /* The original unit, iff this value was converted from another unit because of user preferences.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            optional VolumeUnit converted_from = 4 [deprecated = true];
         }
 
         /* The value is a volume value, converted to your preferred volume unit. */
@@ -262,14 +310,19 @@ message Value {
                 POUNDS = 1; // lb
             }
 
-            double value = 1;
+            /* Deprecated in favor of the field in Value.Numeric. */
+            double value = 1 [deprecated = true];
             MassUnit unit = 2;
 
-            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
-            string textual = 3;
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            string textual = 3 [deprecated = true];
 
-            /* The original unit, iff this value was converted from another unit because of user preferences. */
-            MassUnit converted_from = 4;
+            /* The original unit, iff this value was converted from another unit because of user preferences.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            optional MassUnit converted_from = 4 [deprecated = true];
         }
 
         message Flow {
@@ -284,13 +337,18 @@ message Value {
                 LITER_PER_SECOND = 6; // l/s
             }
 
-            double value = 1;
+            /* Deprecated in favor of the field in Value.Numeric. */
+            double value = 1 [deprecated = true];
             FlowUnit unit = 2;
 
-            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
-            string textual = 3;
-            /* The original unit, iff this value was converted from another unit because of user preferences. */
-            FlowUnit converted_from = 4;
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            string textual = 3 [deprecated = true];
+            /* The original unit, iff this value was converted from another unit because of user preferences.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            optional FlowUnit converted_from = 4 [deprecated = true];
         }
 
         message Rate {
@@ -302,10 +360,14 @@ message Value {
             uint32 value = 1;
             RateUnit unit = 2;
 
-            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
-            string textual = 3;
-            /* The original unit, iff this value was converted from another unit because of user preferences. */
-            RateUnit converted_from = 4;
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            string textual = 3 [deprecated = true];
+            /* The original unit, iff this value was converted from another unit because of user preferences.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            optional RateUnit converted_from = 4 [deprecated = true];
         }
 
         message Duration {
@@ -320,17 +382,24 @@ message Value {
             }
 
             google.protobuf.Duration duration = 1;
-            double value = 3;
+
+            /* Deprecated in favor of the field in Value.Numeric. */
+            double value = 3 [deprecated = true];
+
             DurationUnit unit = 4;
 
-            /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
-            string textual = 2;
-            /* The original unit, iff this value was converted from another unit because of user preferences. */
-            DurationUnit converted_from = 5;
+            /* Textual representation including unit symbol, rounded based on the user preferences and field config.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            string textual = 2 [deprecated = true];
+            /* The original unit, iff this value was converted from another unit because of user preferences.
+             * Deprecated in favor of the field in Value.Numeric.
+             */
+            optional DurationUnit converted_from = 5 [deprecated = true];
         }
 
         Type type = 1;
-        oneof value {
+        oneof typed_value {
             BatteryLevel battery_level = 11;
             Distance distance = 3;
             Duration duration = 4;
@@ -348,6 +417,20 @@ message Value {
 
             double unknown = 15;
         }
+
+        double value = 2;
+
+        /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
+        string textual = 18;
+
+        /* Unit of the value, based on the user preferences. */
+        UnitOfMeasurement unit = 19;
+
+        /* Display string of the unit symbol, based on the unit of the value (which is based on user preferences). */
+        string unit_symbol = 21;
+
+        /* The original unit, iff this value was converted from another unit because of user preferences. */
+        optional UnitOfMeasurement converted_from = 20;
     }
 
     /* If this value is an enum, this specifies the value, display name and color for this enum value. */

@@ -421,6 +421,8 @@ Contains a set simulation_interval for which each interval a simulation will be 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | values | [repeated double](#double) |  |
+|  **optional** type | [optional hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) |  |
+|  **optional** unit | [optional hiber.UnitOfMeasurement](#hiberunitofmeasurement) |  |
 
 ### hiber.simulation.ValueSimulation.ValueRotation.Text
 
@@ -1106,6 +1108,7 @@ Unit of measurement for a numeric value.
 | PRESSURE_BAR |  | 12 |
 | PRESSURE_PSI |  | 14 |
 | PRESSURE_K_PA |  | 17 |
+| PRESSURE_KILOGRAM_PER_CENTIMETER_SQUARED |  | 53 |
 | SPEED_KILOMETERS_PER_HOUR |  | 18 |
 | SPEED_KNOTS |  | 19 |
 | SPEED_METERS_PER_SECOND |  | 20 |

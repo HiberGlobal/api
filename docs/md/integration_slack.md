@@ -1107,6 +1107,7 @@ Unit of measurement for a numeric value.
 | PRESSURE_BAR |  | 12 |
 | PRESSURE_PSI |  | 14 |
 | PRESSURE_K_PA |  | 17 |
+| PRESSURE_KILOGRAM_PER_CENTIMETER_SQUARED |  | 53 |
 | SPEED_KILOMETERS_PER_HOUR |  | 18 |
 | SPEED_KNOTS |  | 19 |
 | SPEED_METERS_PER_SECOND |  | 20 |

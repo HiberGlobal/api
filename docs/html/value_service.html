@@ -258,6 +258,14 @@
                   <a href="#hiber.value.ValueSelection"><span class="badge">M</span>ValueSelection</a>
                 </li>
               
+                <li>
+                  <a href="#hiber.value.ValueSelection.ByField"><span class="badge">M</span>ValueSelection.ByField</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.value.ValueSelection.ByNumericValueType"><span class="badge">M</span>ValueSelection.ByNumericValueType</a>
+                </li>
+              
               
                 <li>
                   <a href="#hiber.value.ListValues.Sort"><span class="badge">E</span>ListValues.Sort</a>
@@ -1582,10 +1590,24 @@ If multiple assets were assigned at the same time, this value exists for each as
                 </tr>
               
                 <tr>
+                  <td>numeric_value_type</td>
+                  <td><a href="#hiber.value.ValueSelection.ByNumericValueType">ValueSelection.ByNumericValueType</a></td>
+                  <td></td>
+                  <td><p>Get the values that are of the given numeric value types. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>field</td>
+                  <td><a href="#hiber.value.ValueSelection.ByField">ValueSelection.ByField</a></td>
+                  <td></td>
+                  <td><p>Get the values for the selected fields. </p></td>
+                </tr>
+              
+                <tr>
                   <td>fields</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>Get the values for the selected fields. </p></td>
+                  <td><p><strong>Deprecated.</strong> Get the values for the selected fields. </p></td>
                 </tr>
               
                 <tr>
@@ -1607,6 +1629,75 @@ If multiple assets were assigned at the same time, this value exists for each as
                   <td><a href="#hiber.Filter.FieldEnumValues">hiber.Filter.FieldEnumValues</a></td>
                   <td>repeated</td>
                   <td><p>Filter the values for enum fields. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>fields</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
+        <h3 id="hiber.value.ValueSelection.ByField">ValueSelection.ByField</h3>
+        <p>Select the data by numeric value type.</p><p>If the list is empty, all fields are returned.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>fields</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.value.ValueSelection.ByNumericValueType">ValueSelection.ByNumericValueType</h3>
+        <p>Select the data by numeric value type.</p><p>If the list is empty, all values with a numeric value type are returned.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>numeric_value_type</td>
+                  <td><a href="#hiber.value.Value.Numeric.Type">Value.Numeric.Type</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -3743,6 +3834,12 @@ is ready to be downloaded.</p></td>
               <tr>
                 <td>PRESSURE_K_PA</td>
                 <td>17</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PRESSURE_KILOGRAM_PER_CENTIMETER_SQUARED</td>
+                <td>53</td>
                 <td><p></p></td>
               </tr>
             
@@ -6799,6 +6896,41 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>value</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>textual</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>unit</td>
+                  <td><a href="#hiber.UnitOfMeasurement">hiber.UnitOfMeasurement</a></td>
+                  <td></td>
+                  <td><p>Unit of the value, based on the user preferences. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>unit_symbol</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Display string of the unit symbol, based on the unit of the value (which is based on user preferences). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>converted_from</td>
+                  <td><a href="#hiber.UnitOfMeasurement">hiber.UnitOfMeasurement</a></td>
+                  <td>optional</td>
+                  <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -6820,7 +6952,7 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>value</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
@@ -6834,19 +6966,52 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                  <td><p><strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.value.Value.Numeric.BatteryLevel.BatteryLevelUnit">Value.Numeric.BatteryLevel.BatteryLevelUnit</a></td>
-                  <td></td>
-                  <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>textual</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>converted_from</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -6865,7 +7030,7 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>value</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
@@ -6879,19 +7044,52 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                  <td><p><strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.value.Value.Numeric.Distance.DistanceUnit">Value.Numeric.Distance.DistanceUnit</a></td>
-                  <td></td>
-                  <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>textual</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>converted_from</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -6917,7 +7115,7 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>value</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
@@ -6931,19 +7129,52 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                  <td><p><strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.value.Value.Numeric.Duration.DurationUnit">Value.Numeric.Duration.DurationUnit</a></td>
-                  <td></td>
-                  <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>textual</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>converted_from</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -6962,7 +7193,7 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>value</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
@@ -6976,19 +7207,52 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                  <td><p><strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.value.Value.Numeric.Flow.FlowUnit">Value.Numeric.Flow.FlowUnit</a></td>
-                  <td></td>
-                  <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>textual</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>converted_from</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7007,7 +7271,7 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>value</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
@@ -7021,19 +7285,52 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                  <td><p><strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.value.Value.Numeric.FuelEfficiency.FuelEfficiencyUnit">Value.Numeric.FuelEfficiency.FuelEfficiencyUnit</a></td>
-                  <td></td>
-                  <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>textual</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>converted_from</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7052,7 +7349,7 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>value</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
@@ -7066,19 +7363,52 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                  <td><p><strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.value.Value.Numeric.Mass.MassUnit">Value.Numeric.Mass.MassUnit</a></td>
-                  <td></td>
-                  <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>textual</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>converted_from</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7097,7 +7427,7 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>value</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
@@ -7118,6 +7448,27 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
           </table>
 
           
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
 
         
       
@@ -7135,7 +7486,7 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>value</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
@@ -7149,19 +7500,52 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                  <td><p><strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.value.Value.Numeric.Pressure.PressureUnit">Value.Numeric.Pressure.PressureUnit</a></td>
-                  <td></td>
-                  <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>textual</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>converted_from</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7194,19 +7578,47 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                  <td><p><strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.value.Value.Numeric.Rate.RateUnit">Value.Numeric.Rate.RateUnit</a></td>
-                  <td></td>
-                  <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>textual</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>converted_from</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7225,7 +7637,7 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>value</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
@@ -7239,19 +7651,52 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                  <td><p><strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.value.Value.Numeric.RotationSpeed.RotationSpeedUnit">Value.Numeric.RotationSpeed.RotationSpeedUnit</a></td>
-                  <td></td>
-                  <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>textual</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>converted_from</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7270,7 +7715,7 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>value</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
@@ -7284,19 +7729,52 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                  <td><p><strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.value.Value.Numeric.Speed.SpeedUnit">Value.Numeric.Speed.SpeedUnit</a></td>
-                  <td></td>
-                  <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>textual</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>converted_from</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7315,7 +7793,7 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>value</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
@@ -7329,19 +7807,52 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                  <td><p><strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.value.Value.Numeric.Temperature.TemperatureUnit">Value.Numeric.Temperature.TemperatureUnit</a></td>
-                  <td></td>
-                  <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>textual</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>converted_from</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7360,7 +7871,7 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>value</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
@@ -7374,19 +7885,52 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                  <td><p><strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.value.Value.Numeric.Voltage.VoltageUnit">Value.Numeric.Voltage.VoltageUnit</a></td>
-                  <td></td>
-                  <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>textual</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>converted_from</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7405,7 +7949,7 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>value</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
@@ -7419,19 +7963,52 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                  <td><p><strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
                 <tr>
                   <td>converted_from</td>
                   <td><a href="#hiber.value.Value.Numeric.Volume.VolumeUnit">Value.Numeric.Volume.VolumeUnit</a></td>
-                  <td></td>
-                  <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences.
+Deprecated in favor of the field in Value.Numeric. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>value</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>textual</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>converted_from</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7737,6 +8314,12 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                 <td>K_PA</td>
                 <td>2</td>
                 <td><p>kPa</p></td>
+              </tr>
+            
+              <tr>
+                <td>KILOGRAM_PER_CENTIMETER_SQUARED</td>
+                <td>3</td>
+                <td><p>kg/cm²</p></td>
               </tr>
             
           </tbody>

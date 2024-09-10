@@ -107,6 +107,9 @@ message ListFieldsForAsset {
          * This can be useful to display table columns, for example.
          */
         optional bool include_total = 7;
+
+        /* Whether to include fields that were only present from previously assigned devices. */
+        optional bool include_historic_fields = 8;
     }
 
     message Response {

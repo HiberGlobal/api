@@ -223,6 +223,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.export.Export.Configuration.AssetValues"><span class="badge">M</span>Export.Configuration.AssetValues</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.export.Export.Configuration.ModemMessages"><span class="badge">M</span>Export.Configuration.ModemMessages</a>
                 </li>
               
@@ -552,6 +556,14 @@ based on assigned parsers.
 Time range is ignored for this request. </p></td>
                 </tr>
               
+                <tr>
+                  <td>asset_values</td>
+                  <td><a href="#hiber.export.Export.Configuration.AssetValues">Export.Configuration.AssetValues</a></td>
+                  <td></td>
+                  <td><p>Get the fields for asset values.
+Time range is ignored for this request. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -819,6 +831,44 @@ The file may be a single url, or may be split into multiple parts, each with a u
                 <tr>
                   <td>modem_message</td>
                   <td><a href="#hiber.export.Export.Configuration.ModemMessages">Export.Configuration.ModemMessages</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_values</td>
+                  <td><a href="#hiber.export.Export.Configuration.AssetValues">Export.Configuration.AssetValues</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.export.Export.Configuration.AssetValues">Export.Configuration.AssetValues</h3>
+        <p>Export values for a set of assets.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>asset_identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time_range</td>
+                  <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -3456,6 +3506,12 @@ is ready to be downloaded.</p></td>
               <tr>
                 <td>PRESSURE_K_PA</td>
                 <td>17</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PRESSURE_KILOGRAM_PER_CENTIMETER_SQUARED</td>
+                <td>53</td>
                 <td><p></p></td>
               </tr>
             

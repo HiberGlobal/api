@@ -1,5 +1,58 @@
 # Changelog Hiber API
 
+### 0.208 (2024-09-10)
+
+##### ExportService
+
+- Added `Export.Configuration.AssetValues` (and `Export.Configuration.asset_values`) to export values for assets.
+  - This exports `ValueContext`s for the given `Asset`s in the given `TimeRange`.
+  - Added `AvailableFieldsForExport.Request.asset_values` to get available fields for assets to export.
+
+##### FieldService
+
+- Added `ListFieldsForAsset.Request.include_historic_fields` to include fields that were available to the asset
+  in the past (from devices assigned to it in the past).
+
+##### ValueService
+
+- Added `asset_identifier` to `ValueContext` as the shared owner of the value (optional) and
+  additional asset information, like `asset_name` and `asset_type`, for convenience.
+  - This and other assets own the value, while the value is produced by a device assigned to it.
+  - Removed `assets`, since it does not reflect the reality of how we want to use the data.
+    - Removed `ValueContext.ValueAssetContext` since it is no longer needed.
+- Added convenience fields to `Value.Numeric`:
+  - Added `value` to `Value.Numeric` to get the numeric value regardless of the `Type`.
+    - The typed values still contain the value in the actual type (i.e. pressure)
+    - Renamed the `value` `oneof` to `typed_value` for clarity.
+  - Added `textual` to `Value.Numeric` to get the textual value regardless of the `Type`.
+  - Added `unit` of `UnitOfMeasurement` to `Value.Numeric` to get the textual value regardless of the `Type`.
+    - Note that this `UnitOfMeasurement` contains all possible units, and is different from the specific unit types:
+      - For example: `UnitOfMeasurement.PRESSURE_PSI` versus `Value.Numeric.Pressure.Unit.PSI` which only
+        contains pressure units.
+- Marked all `converted_from` fields in `Value.Numeric.*` types as optional, since they would otherwise
+  default to the first `Unit` value.
+
+##### ValueSimulationService
+
+- Added `unit` and `type` to `ValueSimulation.ValueRotation.Numeric` to specify what is being simulated.
+
+##### ValueService
+
+- Added `ValueSelection.data_selection` to select the type of values to get:
+  - Added `field` in the `data_selection` `oneof` to list values for a given (set of) field(s).
+    - Deprecated the `fields` in the selection, because a `repeated` field cannot be used in a `oneof`.
+  - Added `numeric_value_type` to list values with a specific `Value.Numeric.Type`.
+    - Note that downsampling is done per `Value.Numeric.Type` when multiple are specified.
+  - When no `ValueSelection.data_selection` is made:
+    - `ValueService.List` will return all values.
+    - `ValueService.Downsampled` will apply to all values by `Value.Numeric.Type`.
+      - Values without a known `Value.Numeric.Type` will not be included.
+    - `ValueService.Aggregated` does not currently support `numeric_value_type`, this will be added in the future.
+
+##### ValueService
+
+- Added pressure unit `kg/cm²`.
+
 ### 0.207 (2024-09-03)
 
 ##### TokenService

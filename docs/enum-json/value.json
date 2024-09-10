@@ -73,6 +73,7 @@
     "BAR": "bar"
     , "PSI": "psi"
     , "K_PA": "kPa"
+    , "KILOGRAM_PER_CENTIMETER_SQUARED": "kg/cm²"
     }
 },{
   "name": "RateUnit",

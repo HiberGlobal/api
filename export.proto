@@ -125,11 +125,18 @@ message Export {
 
         oneof type {
             ModemMessages modem_message = 2;
+            AssetValues asset_values = 3;
         }
 
         /* Export modem messages for a set of modems. */
         message ModemMessages {
             repeated string modems = 1;
+            TimeRange time_range = 2;
+        }
+
+        /* Export values for a set of assets. */
+        message AssetValues {
+            repeated string asset_identifiers = 1;
             TimeRange time_range = 2;
         }
     }
@@ -197,6 +204,11 @@ message AvailableFieldsForExport {
              * Time range is ignored for this request.
              */
             Export.Configuration.ModemMessages modem_message = 3;
+
+            /* Get the fields for asset values.
+             * Time range is ignored for this request.
+             */
+            Export.Configuration.AssetValues asset_values = 4;
         }
     }
 

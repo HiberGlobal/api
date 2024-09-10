@@ -25,6 +25,20 @@ service ValueService {
 
 /* Select the values to return. */
 message ValueSelection {
+    /* Select the data by numeric value type.
+     * If the list is empty, all fields are returned.
+     */
+    message ByField {
+        repeated string fields = 1;
+    }
+
+    /* Select the data by numeric value type.
+     * If the list is empty, all values with a numeric value type are returned.
+     */
+    message ByNumericValueType {
+        repeated Value.Numeric.Type numeric_value_type = 1;
+    }
+
     /* Select the owners (either assets or devices) to get the values for. */
     oneof owner_selection {
         /* Select the devices(s) to get the values for. */
@@ -34,8 +48,19 @@ message ValueSelection {
         asset.AssetSelection assets = 7;
     }
 
+    /* Select the type of values (either by field or by numeric value type) to get.
+     * If no option is picked, ByField is assumed.
+     */
+    oneof data_selection {
+        /* Get the values that are of the given numeric value types. */
+        ByNumericValueType numeric_value_type = 8;
+
+        /* Get the values for the selected fields. */
+        ByField field = 9;
+    }
+
     /* Get the values for the selected fields. */
-    repeated string fields = 2;
+    repeated string fields = 2 [deprecated = true];
 
     /* The time to view the values for. */
     optional TimeRange time_range = 3;
