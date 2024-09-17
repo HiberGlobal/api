@@ -11,7 +11,6 @@ import "google/protobuf/struct.proto";
 import "base.proto";
 import "modem.proto";
 import "tag.proto";
-import "value.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.message";
@@ -25,10 +24,6 @@ service MessageService {
 
     /* Count messages for the selected modems. */
     rpc Count (CountMessages.Request) returns (CountMessages.Response);
-
-    rpc History (MessageBodyFieldHistory.Request) returns (MessageBodyFieldHistory.Response) {
-        option deprecated = true;
-    }
 }
 
 /* Message received from a device in the field.
@@ -179,128 +174,5 @@ message CountMessages {
 
         repeated MessageCount message_count_per_day = 1;
         Request request = 2;
-    }
-}
-
-/* List the history for a single field, and optionally apply an aggregation and/or grouping to it. */
-message MessageBodyFieldHistory {
-    option deprecated = true;
-
-    /* Request to get the history of (a) field(s), for the selected modems in the organization. */
-    message Request {
-        option deprecated = true;
-
-        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        optional string organization = 1;
-
-        /* Select the modem(s) to get the history for. Optional, when omitted or empty everything is included. */
-        optional modem.ModemSelection selection = 2;
-
-        /* Paginate the returned values.
-         * This may not be relevant, depending on the aggregation (which may result in a single value) and the
-         * time range.
-         */
-        optional Pagination pagination = 13;
-
-        /* The time to view the history for. */
-        optional TimeRange time_range = 3;
-
-        /* How to aggregate the data. */
-        Aggregation aggregation = 4;
-
-        Sort sort = 5;
-
-        /* Options to group the data, reducing data points to a set of groups.
-         * If no grouping is set, the aggregation typically returns a single value.
-         */
-        oneof group {
-            /* Split up the data in time block of the given size. */
-            Duration split_by_duration = 6;
-
-            /* Limit the results to the given amount of data points, applying the function to each chunk. */
-            uint32 reduce_to_max_size = 7;
-        }
-
-        /* Get the history for the selected fields.
-         * Text and Enum fields cannot be summed, or averaged, they always use LAST aggregation when aggregating.
-         */
-        repeated string message_body_fields = 8;
-
-        /* Get the history for the location.
-         * Locations cannot be summed, or averaged, they always use LAST aggregation when aggregating.
-         */
-        optional bool include_location = 9;
-
-        /* Whether to exclude empty groups when grouping. Empty groups are included by default. */
-        optional bool exclude_empty_groups = 10;
-
-        /* Options to aggregate the history data points (in a group). */
-        enum Aggregation {
-            option deprecated = true;
-
-            /* Do not aggregate the history data points, just list all of them. */
-            NONE = 0;
-
-            /* Average value of all history data points (in a group). */
-            AVERAGE = 1;
-
-            /* Sum all history data points (in a group). */
-            SUM = 2;
-
-            /* Just take the last value (in a group). */
-            LAST = 3;
-
-            /* Take the lowest value (in a group). */
-            MINIMUM = 4;
-
-            /* Take the highest value (in a group). */
-            MAXIMUM = 5;
-        }
-
-        /* How to sort the returned values. */
-        enum Sort {
-            TIME_DESCENDING = 0;
-            TIME_ASCENDING = 1;
-        }
-    }
-
-    /* Response with the (aggregated) history of (a) field(s), for the selected modems in the organization. */
-    message Response {
-        option deprecated = true;
-
-        /* The processed historical data points.
-         * For example, when applying the SUM aggregation to all data points, this list would only contains a
-         * single value, the sum of values.
-         */
-        repeated TimedValue values = 1;
-
-        /* The pagination result, containing information about amounts and pages. */
-        Pagination.Result pagination = 2;
-
-        /* The request that was received, corrected and used to produce this result. */
-        Request request = 3;
-
-        /* Processed historical data point. If this is a group, it will have a time range to denote the group. */
-        message TimedValue {
-            /* When not grouping, time of the individual point.
-             * When grouping would return an exact data point (i.e. not an average), the time of that point.
-             * When grouping would not return an exact data point (i.e. average), the end of the time range.
-             */
-            Timestamp timestamp = 1;
-
-            /* When grouping, the start and end time for the group. */
-            TimeRange time_range = 2;
-
-            /* The values for the given fields (if available).
-             * When the user has unit preferences set, they are applied to these values.
-             */
-            google.protobuf.Struct field_values = 3;
-
-            /* The values for the given fields (if available), with additional unit information. */
-            map<string, value.Value> field_value_details = 5;
-
-            /* The location of the modem at the timestamp, or the last location in the time range. */
-            Location location = 4;
-        }
     }
 }

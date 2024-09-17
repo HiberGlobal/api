@@ -102,6 +102,9 @@ message CreateTokenRequest {
      */
     optional string for_user_id = 10;
 
+    /* Optionally, attempt to minimize the token size as much as possible. */
+    optional bool minimize = 11;
+
     reserved 3, 7;
 }
 

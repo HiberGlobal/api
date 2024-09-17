@@ -150,6 +150,7 @@
 | organization_permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions the new token should get. |
 |  **optional** roles | [optional hiber.Filter.Roles](#hiberfilterroles) | Roles the new token should get. |
 |  **optional** for_user_id | [optional string](#string) | Optionally, if you have the USERS_MANAGE permission, you can make a token for another user. If you do, you cannot grant it permissions they do not have, not can you grant it any user permissions. |
+|  **optional** minimize | [optional bool](#bool) | Optionally, attempt to minimize the token size as much as possible. |
 
 ### CreateTokenRequest.Response
 

@@ -19,7 +19,6 @@ option go_package = ".;hiber";
 
 service ValueService {
     rpc List (ListValues.Request) returns (ListValues.Response);
-    rpc Aggregated (AggregatedValues.Request) returns (AggregatedValues.Response);
     rpc Downsampled (DownsampledValues.Request) returns (DownsampledValues.Response);
 }
 
@@ -157,84 +156,6 @@ message ListValues {
 
     message Response {
         repeated ValueContext values = 1;
-        Pagination.Result pagination = 2;
-        Request request = 3;
-    }
-}
-
-/* Aggregate values for a (set of) modem(s), filtering by field and time. */
-message AggregatedValues {
-    /* The time range that was aggregated. */
-    TimeRange time_range = 1;
-
-    /* The aggregated values for the requested fields, where timestamp is only set if the aggregation can return an
-     * exact data point (i.e. LAST, MAXIMUM, MINIMUM aggregation, or a single value).
-     */
-    repeated ValueContext values = 2;
-
-    /* The last location in the time range.
-     * Optional: only set if a single modem is selected.
-     */
-    optional Location location = 3;
-
-    /* The last know location, in the time range, for each given modem. */
-    map<string, Location> locations = 4;
-
-    /* Request aggregated values, reducing the selected time range to a single value per field. */
-    message Request {
-        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        optional string organization = 1;
-
-        /* The values to return. */
-        ValueSelection selection = 2;
-
-        /* The aggregations to use for the fields, resulting in a single value for each field.
-         * When an aggregation is not specified for a field, the default aggregation for that field type is used.
-         * Fields specified here must have been specified in the selection.
-         */
-        map<string, ValueAggregation> aggregations = 3;
-
-        /* Transform the values for a field into a derived value.
-         * Fields specified here must have been specified in the selection.
-         */
-        map<string, ValueTransformation> transform_fields = 4;
-
-        oneof optional_partition {
-            /* Partition the time range and apply aggregation to each part. */
-            Partition partition = 5;
-        }
-
-        /* Partition the time range and apply aggregation to each part (instead of over all values in the time range).
-         * If no partition is set, the aggregation returns a single value.
-         *
-         * For example:
-         * - get the average value per day for a month
-         * - get the sum of all values per hour in a day
-         */
-        message Partition {
-            oneof partition {
-                /* Split up the time range in equal parts of the given duration. */
-                Duration split_by_duration = 1;
-
-                /* Limit the results to the given amount of data points, applying the function to each chunk. */
-                uint32 reduce_to_max_size = 2;
-            }
-
-            /* Paginate the returned partitions of the time range. */
-            optional Pagination pagination = 3;
-
-            /* How to sort the returned values. */
-            ListValues.Sort sort = 4;
-
-            /* Exclude any partitions that do not have any data from response.
-             * This is especially useful when the amount of partitions exceeds your pagination size.
-             */
-            bool exclude_empty = 5;
-        }
-    }
-
-    message Response {
-        repeated AggregatedValues aggregated_values = 1;
         Pagination.Result pagination = 2;
         Request request = 3;
     }

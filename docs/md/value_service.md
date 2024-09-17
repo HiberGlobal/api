@@ -13,13 +13,6 @@ Messages are parsed to a number of values (depending on the parser), which can b
   - [ValueService](#valueservice)
 
 - Messages
-  - [AggregatedValues](#aggregatedvalues)
-  - [AggregatedValues.LocationsEntry](#aggregatedvalueslocationsentry)
-  - [AggregatedValues.Request](#aggregatedvaluesrequest)
-  - [AggregatedValues.Request.AggregationsEntry](#aggregatedvaluesrequestaggregationsentry)
-  - [AggregatedValues.Request.Partition](#aggregatedvaluesrequestpartition)
-  - [AggregatedValues.Request.TransformFieldsEntry](#aggregatedvaluesrequesttransformfieldsentry)
-  - [AggregatedValues.Response](#aggregatedvaluesresponse)
   - [DownsampledValues](#downsampledvalues)
   - [DownsampledValues.Request](#downsampledvaluesrequest)
   - [DownsampledValues.Response](#downsampledvaluesresponse)
@@ -158,12 +151,6 @@ Messages are parsed to a number of values (depending on the parser), which can b
 
 
 
-### Aggregated
-> **rpc** Aggregated([AggregatedValues.Request](#aggregatedvaluesrequest))
-    [AggregatedValues.Response](#aggregatedvaluesresponse)
-
-
-
 ### Downsampled
 > **rpc** Downsampled([DownsampledValues.Request](#downsampledvaluesrequest))
     [DownsampledValues.Response](#downsampledvaluesresponse)
@@ -172,83 +159,6 @@ Messages are parsed to a number of values (depending on the parser), which can b
 
 
 ## Messages
-
-### AggregatedValues
-
-Aggregate values for a (set of) modem(s), filtering by field and time.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| time_range | [ hiber.TimeRange](#hibertimerange) | The time range that was aggregated. |
-| values | [repeated ValueContext](#valuecontext) | The aggregated values for the requested fields, where timestamp is only set if the aggregation can return an exact data point (i.e. LAST, MAXIMUM, MINIMUM aggregation, or a single value). |
-|  **optional** location | [optional hiber.Location](#hiberlocation) | The last location in the time range. Optional: only set if a single modem is selected. |
-| locations | [map AggregatedValues.LocationsEntry](#aggregatedvalueslocationsentry) | The last know location, in the time range, for each given modem. |
-
-### AggregatedValues.LocationsEntry
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| key | [ string](#string) |  |
-| value | [ hiber.Location](#hiberlocation) |  |
-
-### AggregatedValues.Request
-
-Request aggregated values, reducing the selected time range to a single value per field.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ ValueSelection](#valueselection) | The values to return. |
-| aggregations | [map AggregatedValues.Request.AggregationsEntry](#aggregatedvaluesrequestaggregationsentry) | The aggregations to use for the fields, resulting in a single value for each field. When an aggregation is not specified for a field, the default aggregation for that field type is used. Fields specified here must have been specified in the selection. |
-| transform_fields | [map AggregatedValues.Request.TransformFieldsEntry](#aggregatedvaluesrequesttransformfieldsentry) | Transform the values for a field into a derived value. Fields specified here must have been specified in the selection. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **optional_partition**.partition | [ AggregatedValues.Request.Partition](#aggregatedvaluesrequestpartition) | Partition the time range and apply aggregation to each part. |
-
-### AggregatedValues.Request.AggregationsEntry
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| key | [ string](#string) |  |
-| value | [ ValueAggregation](#valueaggregation) |  |
-
-### AggregatedValues.Request.Partition
-
-Partition the time range and apply aggregation to each part (instead of over all values in the time range).
-If no partition is set, the aggregation returns a single value.
-
-For example:
-- get the average value per day for a month
-- get the sum of all values per hour in a day
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **partition**.split_by_duration | [ hiber.Duration](#hiberduration) | Split up the time range in equal parts of the given duration. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **partition**.reduce_to_max_size | [ uint32](#uint32) | Limit the results to the given amount of data points, applying the function to each chunk. |
-|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Paginate the returned partitions of the time range. |
-| sort | [ ListValues.Sort](#listvaluessort) | How to sort the returned values. |
-| exclude_empty | [ bool](#bool) | Exclude any partitions that do not have any data from response. This is especially useful when the amount of partitions exceeds your pagination size. |
-
-### AggregatedValues.Request.TransformFieldsEntry
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| key | [ string](#string) |  |
-| value | [ ValueTransformation](#valuetransformation) |  |
-
-### AggregatedValues.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| aggregated_values | [repeated AggregatedValues](#aggregatedvalues) |  |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
-| request | [ AggregatedValues.Request](#aggregatedvaluesrequest) |  |
 
 ### DownsampledValues
 

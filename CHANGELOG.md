@@ -1,5 +1,19 @@
 # Changelog Hiber API
 
+### 0.209 (2024-09-17)
+
+##### MessageService
+
+- **[B]** Removed the deprecated `History` rpc.
+
+##### TokenService
+
+- Add an option to `minimize` tokens in `CreateTokenRequest`. This reduces the length of the token significantly.
+
+##### ValueService
+
+- **[B]** Removed the unused `Aggregation` rpc.
+
 ### 0.208 (2024-09-10)
 
 ##### ExportService
@@ -81,7 +95,7 @@
 - Added extra information to `Asset.AssignedDevice`:
   - `last_message_sent_at` and `last_message_received_at`
   - `assignment_time_range`
-- Added `Asset.inactive_devices` to list previously assigned devices. 
+- Added `Asset.inactive_devices` to list previously assigned devices.
   These have less information available than a currently assigned device, but ues the same object type.
 
 ### 0.203 (2024-07-30)
