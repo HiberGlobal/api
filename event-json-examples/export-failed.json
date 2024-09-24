@@ -8,7 +8,10 @@
       "format": {
         "type": "JSON",
         "json": {
-          "compact": true
+          "compact": true,
+          "customFields": {
+            "temperatureCelsius": "$.temperature"
+          }
         }
       },
       "configuration": {
@@ -34,7 +37,8 @@
           }
         }
       },
-      "error": "No messages found in time range."
+      "error": "No messages found in time range.",
+      "urls": []
     },
     "title": "Export example-identifier of messages for device AAAA AAAA has failed.",
     "description": "The export example-identifier of messages for device AAAA AAAA from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z has failed:\n\nNo messages found in time range.\n\nwell: example-tag, example-tag-2\nRequested by: user-identifier for your-organization",
@@ -67,5 +71,7 @@
       }
     }
   ],
-  "type": "EXPORT_FAILED"
+  "type": "EXPORT_FAILED",
+  "isError": false,
+  "isWarning": false
 }

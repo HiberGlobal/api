@@ -65,5 +65,7 @@
       }
     }
   ],
-  "type": "DEVICE_LOCATION_UPDATED"
+  "type": "DEVICE_LOCATION_UPDATED",
+  "isError": false,
+  "isWarning": false
 }

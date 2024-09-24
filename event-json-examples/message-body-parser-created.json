@@ -6,14 +6,18 @@
       "contentKsy": "example",
       "identifier": "example-identifier",
       "organization": "your-organization",
+      "dataFields": [],
       "metadataFields": {
         "requireMessageMetadata": {
           "$.fPort": 10.0
-        }
+        },
+        "messageMetadataFields": [],
+        "modemMetadataFields": []
       },
       "requireMessageMetadata": {
         "$.fPort": 10.0
-      }
+      },
+      "postProcessing": []
     },
     "title": "Message Body Parser example (example-identifier) was created.",
     "description": "Message Body Parser example (example-identifier) was created with the following configuration:\n\nexample",
@@ -30,5 +34,8 @@
     "timeZone": "UTC"
   },
   "title": "Message Body Parser example (example-identifier) was created.",
-  "description": "Message Body Parser example (example-identifier) was created with the following configuration:\n\nexample"
+  "description": "Message Body Parser example (example-identifier) was created with the following configuration:\n\nexample",
+  "isError": false,
+  "isWarning": false,
+  "tags": []
 }

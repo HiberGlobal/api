@@ -2220,6 +2220,7 @@ Non-operational values that the device produces will be linked to this asset
 |  **optional** last_message_received_at | [optional hiber.Timestamp](#hibertimestamp) |  |
 |  **optional** assignment_time_range | [optional hiber.TimeRange](#hibertimerange) |  |
 |  **optional** health | [optional hiber.health.HealthLevel](#hiberhealthhealthlevel) |  |
+| numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) |  |
 
 ### hiber.asset.AssetSelection
 
@@ -2245,6 +2246,7 @@ Currently a limited list, but more may be added in the future.
 | WELL_ANNULUS_B |  | 2 |
 | WELL_ANNULUS_C |  | 3 |
 | WELL_ANNULUS_D |  | 4 |
+| WELL_HEAD |  | 15 |
 | WELL_TUBING_HEAD |  | 5 |
 | WELL_TUBING |  | 6 |
 | WELL_FLOW_LINE |  | 7 |
@@ -2252,6 +2254,9 @@ Currently a limited list, but more may be added in the future.
 | WELL_PRODUCTION_CASING_PRESSURE |  | 9 |
 | WELL_INTERMITTENT_CASING_PRESSURE |  | 10 |
 | PIPELINE |  | 11 |
+| PRODUCTION_LINE |  | 12 |
+| GAS_MANIFOLD |  | 13 |
+| PRODUCTION_MANIFOLD |  | 14 |
 
 
 
@@ -4444,12 +4449,12 @@ Now, this types is only used in the relevant events.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | url | [ string](#string) |  |
-| content_type | [ hiber.publisher.Publisher.ContentType](#hiberpublisherpublishercontenttype) |  |
-| disabled | [ bool](#bool) |  |
-| certificate_id | [ int64](#int64) |  |
-| certificate_name | [ string](#string) |  |
-| ca_certificate_id | [ int64](#int64) |  |
-| ca_certificate_name | [ string](#string) |  |
+|  **optional** content_type | [optional hiber.publisher.Publisher.ContentType](#hiberpublisherpublishercontenttype) |  |
+|  **optional** disabled | [optional bool](#bool) |  |
+|  **optional** certificate_id | [optional int64](#int64) |  |
+|  **optional** certificate_name | [optional string](#string) |  |
+|  **optional** ca_certificate_id | [optional int64](#int64) |  |
+|  **optional** ca_certificate_name | [optional string](#string) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **config**.http | [ hiber.publisher.Publisher.Data.HTTPConfig](#hiberpublisherpublisherdatahttpconfig) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **config**.mqtt | [ hiber.publisher.Publisher.Data.MQTTConfig](#hiberpublisherpublisherdatamqttconfig) |  |
 

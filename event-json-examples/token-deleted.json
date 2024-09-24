@@ -3,6 +3,7 @@
     "organization": "your-organization",
     "token": {
       "id": "1",
+      "type": "SPECIFIC",
       "name": "your-token",
       "userId": "user-identifier",
       "organization": "your-organization",
@@ -20,9 +21,13 @@
         "USERS",
         "USERS_MANAGE"
       ],
+      "roles": [],
       "userDetails": {
-        "id": "user-identifier"
-      }
+        "id": "user-identifier",
+        "name": "",
+        "email": ""
+      },
+      "usedForThisCall": false
     },
     "title": "Token your-token (id 1) was deleted.",
     "description": "Token your-token (id 1) was deleted.",
@@ -39,5 +44,8 @@
     "textual": "2020-06-01T08:15:25.355Z",
     "timeZone": "UTC"
   },
-  "type": "TOKEN_DELETED"
+  "type": "TOKEN_DELETED",
+  "isError": false,
+  "isWarning": false,
+  "tags": []
 }

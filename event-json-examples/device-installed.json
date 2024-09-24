@@ -55,5 +55,7 @@
       }
     }
   ],
-  "type": "DEVICE_INSTALLED"
+  "type": "DEVICE_INSTALLED",
+  "isError": false,
+  "isWarning": false
 }

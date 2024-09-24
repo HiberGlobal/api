@@ -229,12 +229,12 @@ Now, this types is only used in the relevant events.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | url | [ string](#string) |  |
-| content_type | [ Publisher.ContentType](#publishercontenttype) |  |
-| disabled | [ bool](#bool) |  |
-| certificate_id | [ int64](#int64) |  |
-| certificate_name | [ string](#string) |  |
-| ca_certificate_id | [ int64](#int64) |  |
-| ca_certificate_name | [ string](#string) |  |
+|  **optional** content_type | [optional Publisher.ContentType](#publishercontenttype) |  |
+|  **optional** disabled | [optional bool](#bool) |  |
+|  **optional** certificate_id | [optional int64](#int64) |  |
+|  **optional** certificate_name | [optional string](#string) |  |
+|  **optional** ca_certificate_id | [optional int64](#int64) |  |
+|  **optional** ca_certificate_name | [optional string](#string) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **config**.http | [ Publisher.Data.HTTPConfig](#publisherdatahttpconfig) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **config**.mqtt | [ Publisher.Data.MQTTConfig](#publisherdatamqttconfig) |  |
 

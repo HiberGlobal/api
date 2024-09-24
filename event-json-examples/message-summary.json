@@ -4,7 +4,8 @@
     "messageCount": [
       {
         "device": "AAAA AAAA",
-        "amount": 10
+        "amount": 10,
+        "source": "HIBERBAND"
       }
     ],
     "title": "Device message summary from 2020-05-31 05:15:25Z to 2020-06-01 05:15:25Z.",
@@ -34,5 +35,8 @@
     "textual": "2020-06-01T05:15:25.355Z",
     "timeZone": "UTC"
   },
-  "type": "MESSAGE_SUMMARY"
+  "type": "MESSAGE_SUMMARY",
+  "isError": false,
+  "isWarning": false,
+  "tags": []
 }

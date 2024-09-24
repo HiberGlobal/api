@@ -40,6 +40,7 @@
       "value": "my-updated-notes"
     },
     "updatedNotes": "my-updated-notes",
+    "secureNotesUpdated": false,
     "externalDeviceId": "00 11 22 33 AA BB CC DD"
   },
   "title": "Device AAAA AAAA was updated.",
@@ -70,5 +71,7 @@
       }
     }
   ],
-  "type": "DEVICE_UPDATED"
+  "type": "DEVICE_UPDATED",
+  "isError": false,
+  "isWarning": false
 }

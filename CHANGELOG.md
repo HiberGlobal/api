@@ -1,5 +1,28 @@
 # Changelog Hiber API
 
+### 0.210 (2024-09-24)
+
+##### AssetService
+
+- Added new asset types.
+- Added `numeric_value_types` to `Asset.AssignedDevice` to easily see which devices produce which `Value.Numeric.Type`.
+
+##### CurrentUserService
+
+- Marked a number of fields `optional` for cases where you do not have permission to see them, or, for the permission filters, if they are empty.
+
+##### EventService
+
+- Updated the event json examples with default values for fields.
+
+##### Publisher
+
+- Marked a number of deprecated data fields `optional`.
+
+##### TokenService
+
+- Add an option to `minimize` tokens in `CreateTokenRequest`. This reduces the length of the token significantly.
+
 ### 0.209 (2024-09-17)
 
 ##### MessageService

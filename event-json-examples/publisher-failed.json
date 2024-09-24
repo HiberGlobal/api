@@ -1,5 +1,5 @@
 {
-  "isWarning": true,
+  "isError": false,
   "publisherFailed": {
     "organization": "your-organization",
     "reason": "the request timed out",
@@ -9,6 +9,7 @@
       "deprecatedData": {
         "url": "https://example.com/my-webhook",
         "contentType": "JSON",
+        "disabled": false,
         "certificateId": "1",
         "http": {
           "secret": "my-secret"
@@ -18,14 +19,18 @@
         "eventTypes": {
           "include": [
             "MESSAGE_RECEIVED"
-          ]
+          ],
+          "exclude": []
         },
         "modemNumbers": {
           "include": [
             "AAAA AAAA"
-          ]
+          ],
+          "exclude": []
         },
         "tags": {
+          "include": [],
+          "exclude": []
         }
       },
       "tags": [
@@ -44,25 +49,22 @@
           }
         }
       ],
+      "health": "OK",
+      "type": "HTTP",
       "inCooldownUntil": {
       },
+      "disabled": false,
       "http": {
         "url": "https://example.com/my-webhook",
         "secret": "my-secret",
         "contentType": "JSON",
+        "disabled": false,
         "certificateId": "1",
-        "hmacHeaderName": "X-Hub-Signature"
+        "hmacHeaderName": "X-Hub-Signature",
+        "customHeaders": {
+        }
       },
       "createdBy": "example-identifier"
-    },
-    "healthLevel": {
-      "level": "Build up",
-      "color": "orange",
-      "colorData": {
-        "fill": "orange",
-        "text": "orange"
-      },
-      "severity": "2"
     },
     "tags": [
       {
@@ -84,27 +86,39 @@
     "description": "Webhook at https://example.com/my-webhook (id 10001) has failed:\n\nthe request timed out\n\nwell: example-tag, example-tag-2",
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
-      "textual": "2020-06-01T05:15:25.355Z",
-      "timeZone": "UTC"
+      "timeZone": "UTC",
+      "textual": "2020-06-01T05:15:25.355Z"
+    },
+    "healthLevel": {
+      "level": "Build up",
+      "color": "orange",
+      "catchAll": false,
+      "colorData": {
+        "fill": "orange",
+        "text": "orange"
+      },
+      "severity": "2"
     }
   },
-  "title": "Webhook at https://example.com/my-webhook (id 10001) has failed!",
-  "description": "Webhook at https://example.com/my-webhook (id 10001) has failed:\n\nthe request timed out\n\nwell: example-tag, example-tag-2",
+  "type": "PUBLISHER_FAILED",
   "time": {
     "timestamp": "2020-06-01T05:15:25.355Z",
-    "textual": "2020-06-01T05:15:25.355Z",
-    "timeZone": "UTC"
+    "timeZone": "UTC",
+    "textual": "2020-06-01T05:15:25.355Z"
   },
-  "type": "PUBLISHER_FAILED",
+  "isWarning": true,
   "healthLevel": {
     "level": "Build up",
     "color": "orange",
+    "catchAll": false,
     "colorData": {
       "fill": "orange",
       "text": "orange"
     },
     "severity": "2"
   },
+  "title": "Webhook at https://example.com/my-webhook (id 10001) has failed!",
+  "description": "Webhook at https://example.com/my-webhook (id 10001) has failed:\n\nthe request timed out\n\nwell: example-tag, example-tag-2",
   "tags": [
     {
       "id": "1",

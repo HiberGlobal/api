@@ -8,7 +8,10 @@
       "format": {
         "type": "JSON",
         "json": {
-          "compact": true
+          "compact": true,
+          "customFields": {
+            "temperatureCelsius": "$.temperature"
+          }
         }
       },
       "configuration": {
@@ -33,7 +36,9 @@
             }
           }
         }
-      }
+      },
+      "urls": [],
+      "error": ""
     },
     "title": "Exporting messages for device AAAA AAAA to example-identifier from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z.",
     "description": "Exporting messages for device AAAA AAAA to example-identifier from 2020-05-02 05:15:25Z to 2020-06-01 05:15:25Z.\n\nwell: example-tag, example-tag-2\nRequested by: user-identifier for your-organization",
@@ -66,5 +71,7 @@
       }
     }
   ],
-  "type": "EXPORT_CREATED"
+  "type": "EXPORT_CREATED",
+  "isError": false,
+  "isWarning": false
 }

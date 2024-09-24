@@ -31,6 +31,7 @@ message Asset {
         WELL_ANNULUS_B = 2;
         WELL_ANNULUS_C = 3;
         WELL_ANNULUS_D = 4;
+        WELL_HEAD = 15;
         WELL_TUBING_HEAD = 5;
         WELL_TUBING = 6;
         WELL_FLOW_LINE = 7;
@@ -38,6 +39,9 @@ message Asset {
         WELL_PRODUCTION_CASING_PRESSURE = 9;
         WELL_INTERMITTENT_CASING_PRESSURE = 10;
         PIPELINE = 11;
+        PRODUCTION_LINE = 12;
+        GAS_MANIFOLD = 13;
+        PRODUCTION_MANIFOLD = 14;
     }
 
     /* A device assigned to this asset.
@@ -53,6 +57,7 @@ message Asset {
         optional Timestamp last_message_received_at = 6;
         optional TimeRange assignment_time_range = 7;
         optional health.HealthLevel health = 8;
+        repeated value.Value.Numeric.Type numeric_value_types = 9;
     }
 
     string identifier = 1;

@@ -18,7 +18,8 @@
           "duration": "3600s",
           "textual": "1h"
         }
-      }
+      },
+      "checks": []
     },
     "title": "Alarm example (example-identifier) was created.",
     "description": "Alarm example (example-identifier) was created:\n\nexample",
@@ -35,5 +36,8 @@
     "textual": "2020-06-01T05:15:25.355Z",
     "timeZone": "UTC"
   },
-  "type": "ALARM_CREATED"
+  "type": "ALARM_CREATED",
+  "isError": false,
+  "isWarning": false,
+  "tags": []
 }

@@ -80,5 +80,6 @@
     "catchAll": true,
     "severity": "3"
   },
-  "resolveIdentifier": "resolve-15-1127000000000000"
+  "resolveIdentifier": "resolve-15-1127000000000000",
+  "isWarning": false
 }

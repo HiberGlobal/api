@@ -17,5 +17,8 @@
     "timeZone": "UTC"
   },
   "title": "Message Body Parser example-identifier was deleted.",
-  "description": "Message Body Parser example-identifier was deleted."
+  "description": "Message Body Parser example-identifier was deleted.",
+  "isError": false,
+  "isWarning": false,
+  "tags": []
 }

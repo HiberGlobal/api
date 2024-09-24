@@ -367,6 +367,7 @@ Non-operational values that the device produces will be linked to this asset
 |  **optional** last_message_received_at | [optional hiber.Timestamp](#hibertimestamp) |  |
 |  **optional** assignment_time_range | [optional hiber.TimeRange](#hibertimerange) |  |
 |  **optional** health | [optional hiber.health.HealthLevel](#hiberhealthhealthlevel) |  |
+| numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) |  |
 
 ### hiber.asset.AssetSelection
 
@@ -392,6 +393,7 @@ Currently a limited list, but more may be added in the future.
 | WELL_ANNULUS_B |  | 2 |
 | WELL_ANNULUS_C |  | 3 |
 | WELL_ANNULUS_D |  | 4 |
+| WELL_HEAD |  | 15 |
 | WELL_TUBING_HEAD |  | 5 |
 | WELL_TUBING |  | 6 |
 | WELL_FLOW_LINE |  | 7 |
@@ -399,6 +401,9 @@ Currently a limited list, but more may be added in the future.
 | WELL_PRODUCTION_CASING_PRESSURE |  | 9 |
 | WELL_INTERMITTENT_CASING_PRESSURE |  | 10 |
 | PIPELINE |  | 11 |
+| PRODUCTION_LINE |  | 12 |
+| GAS_MANIFOLD |  | 13 |
+| PRODUCTION_MANIFOLD |  | 14 |
 
 
 

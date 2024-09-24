@@ -45,6 +45,9 @@
       "bodyFields": {
         "text": "example"
       },
+      "isTest": false,
+      "isGatewayMessage": false,
+      "viaGatewayMessage": "10002",
       "tags": [
         {
           "id": "1",
@@ -119,5 +122,7 @@
     "textual": "2020-06-01T06:15:25.365Z",
     "timeZone": "UTC"
   },
-  "type": "MESSAGE_RECEIVED"
+  "type": "MESSAGE_RECEIVED",
+  "isError": false,
+  "isWarning": false
 }

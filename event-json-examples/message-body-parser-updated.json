@@ -21,5 +21,8 @@
     "timeZone": "UTC"
   },
   "title": "Message Body Parser example-identifier was updated.",
-  "description": "Message Body Parser example-identifier was updated:\n\n- The name was changed from example-old to example.\n\n- The metadata fields were updated.\n\n- The device metadata fields were updated.\n\n- The require metadata fields were updated."
+  "description": "Message Body Parser example-identifier was updated:\n\n- The name was changed from example-old to example.\n\n- The metadata fields were updated.\n\n- The device metadata fields were updated.\n\n- The require metadata fields were updated.",
+  "isError": false,
+  "isWarning": false,
+  "tags": []
 }

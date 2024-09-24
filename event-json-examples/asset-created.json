@@ -54,10 +54,15 @@
               "fill": "white",
               "text": "white"
             },
-            "severity": "1"
-          }
+            "severity": "1",
+            "catchAll": false
+          },
+          "numericValueTypes": [
+            "PRESSURE"
+          ]
         }
-      ]
+      ],
+      "inactiveDevices": []
     },
     "time": {
       "timestamp": "2020-06-01T05:15:25.355Z",
@@ -106,5 +111,7 @@
         "type": "well"
       }
     }
-  ]
+  ],
+  "isError": false,
+  "isWarning": false
 }

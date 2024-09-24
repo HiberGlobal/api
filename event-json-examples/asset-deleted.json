@@ -43,5 +43,7 @@
       "name": "example-tag-2",
       "type": "well"
     }
-  }]
+  }],
+  "isError": false,
+  "isWarning": false
 }

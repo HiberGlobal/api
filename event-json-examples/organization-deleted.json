@@ -17,5 +17,8 @@
     "textual": "2020-06-01T05:15:25.355Z",
     "timeZone": "UTC"
   },
-  "type": "ORGANIZATION_DELETED"
+  "type": "ORGANIZATION_DELETED",
+  "isError": false,
+  "isWarning": false,
+  "tags": []
 }

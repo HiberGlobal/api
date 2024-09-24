@@ -28,6 +28,7 @@
       "identifier": "example-identifier",
       "senderOrganization": "your-organization",
       "recipientOrganization": "your-organization-2",
+      "type": "DEVICES",
       "comment": "example",
       "createdAt": {
         "timestamp": "2020-06-01T05:15:25.355Z",
@@ -69,8 +70,7 @@
         "type": "well"
       }
     }
-  ]
+  ],
+  "isError": false,
+  "isWarning": false
 }
-
-
-

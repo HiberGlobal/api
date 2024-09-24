@@ -893,15 +893,17 @@
                 <tr>
                   <td>email</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>optional</td>
+                  <td><p>Email address of the current user.
+Only set when you have permission to read the user data (i.e. a token without that permission would not see this) </p></td>
                 </tr>
               
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>optional</td>
+                  <td><p>Name of the current user.
+Only set when you have permission to read the user data (i.e. a token without that permission would not see this) </p></td>
                 </tr>
               
                 <tr>
@@ -914,8 +916,8 @@
                 <tr>
                   <td>default_organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>The default organization for this user. </p></td>
+                  <td>optional</td>
+                  <td><p>The default organization for this user, if any. </p></td>
                 </tr>
               
                 <tr>
@@ -928,30 +930,30 @@
                 <tr>
                   <td>current_organization</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>The current organization for this user.
-If this is a user, this equals the default_organization.
+If this is a user, this equals the default_organization, if any.
 If this is a token, it&#39;s the token&#39;s organization. </p></td>
                 </tr>
               
                 <tr>
                   <td>current_organization_permissions</td>
                   <td><a href="#hiber.Filter.OrganizationPermissions">hiber.Filter.OrganizationPermissions</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Permissions for the current organization. </p></td>
                 </tr>
               
                 <tr>
                   <td>user_permissions</td>
                   <td><a href="#hiber.Filter.UserPermissions">hiber.Filter.UserPermissions</a></td>
-                  <td></td>
-                  <td><p>Permissions for the user. If this is a token, the user permissions may be limited. </p></td>
+                  <td>optional</td>
+                  <td><p>Permissions for the user. If this is a token, the user permissions may be limited or omitted. </p></td>
                 </tr>
               
                 <tr>
                   <td>support_permissions</td>
                   <td><a href="#hiber.Filter.SupportPermissions">hiber.Filter.SupportPermissions</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Permissions for customer support.
 Used for features typically reserved for customer support, or that behave differently
 when used by a customer support operator. </p></td>

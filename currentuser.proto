@@ -36,14 +36,22 @@ service CurrentUserService {
 /* Your personal data. */
 message CurrentUser {
     string id = 1;
-    string email = 2;
-    string name = 3;
+
+    /* Email address of the current user.
+     * Only set when you have permission to read the user data (i.e. a token without that permission would not see this)
+     */
+    optional string email = 2;
+
+    /* Name of the current user.
+     * Only set when you have permission to read the user data (i.e. a token without that permission would not see this)
+     */
+    optional string name = 3;
 
     /* The organizations that this user has access to. */
     repeated string organizations = 4;
 
-    /* The default organization for this user. */
-    string default_organization = 5;
+    /* The default organization for this user, if any. */
+    optional string default_organization = 5;
 
     /* Open access requests. */
     repeated string requested_organizations = 6;
@@ -51,22 +59,22 @@ message CurrentUser {
     reserved 7;
 
     /* The current organization for this user.
-     * If this is a user, this equals the default_organization.
+     * If this is a user, this equals the default_organization, if any.
      * If this is a token, it's the token's organization.
      */
-    string current_organization = 8;
+    optional string current_organization = 8;
 
     /* Permissions for the current organization. */
-    Filter.OrganizationPermissions current_organization_permissions = 9;
+    optional Filter.OrganizationPermissions current_organization_permissions = 9;
 
-    /* Permissions for the user. If this is a token, the user permissions may be limited. */
-    Filter.UserPermissions user_permissions = 10;
+    /* Permissions for the user. If this is a token, the user permissions may be limited or omitted. */
+    optional Filter.UserPermissions user_permissions = 10;
 
     /* Permissions for customer support.
      * Used for features typically reserved for customer support, or that behave differently
      * when used by a customer support operator.
      */
-    Filter.SupportPermissions support_permissions = 14;
+    optional Filter.SupportPermissions support_permissions = 14;
 
     /* Roles for the current organization. */
     repeated string roles = 15;

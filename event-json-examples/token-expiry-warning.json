@@ -5,6 +5,7 @@
     "organization": "your-organization",
     "token": {
       "id": "1",
+      "type": "SPECIFIC",
       "name": "your-token",
       "userId": "user-identifier",
       "organization": "your-organization",
@@ -22,9 +23,13 @@
         "USERS",
         "USERS_MANAGE"
       ],
+      "roles": [],
       "userDetails": {
-        "id": "user-identifier"
-      }
+        "id": "user-identifier",
+        "name": "",
+        "email": ""
+      },
+      "usedForThisCall": false
     },
     "title": "Token your-token (id 1) will expire in 14 days.",
     "description": "Token your-token (id 1) will expire in 14 days.",
@@ -40,7 +45,8 @@
         "fill": "orange",
         "text": "orange"
       },
-      "severity": "2"
+      "severity": "2",
+      "catchAll": false
     }
   },
   "title": "Token your-token (id 1) will expire in 14 days.",
@@ -58,6 +64,9 @@
       "fill": "orange",
       "text": "orange"
     },
-    "severity": "2"
-  }
+    "severity": "2",
+    "catchAll": false
+  },
+  "isError": false,
+  "tags": []
 }

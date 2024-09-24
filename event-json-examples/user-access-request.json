@@ -17,5 +17,8 @@
     "textual": "2020-06-01T05:15:25.355Z",
     "timeZone": "UTC"
   },
-  "type": "USER_ACCESS_REQUEST"
+  "type": "USER_ACCESS_REQUEST",
+  "isError": false,
+  "isWarning": false,
+  "tags": []
 }

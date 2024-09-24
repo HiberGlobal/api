@@ -4,26 +4,34 @@
     "deleted": {
       "id": "10001",
       "description": "example",
+      "type": "HTTP",
+      "health": "OK",
+      "disabled": false,
       "deprecatedData": {
         "url": "https://example.com/my-webhook",
         "contentType": "JSON",
         "certificateId": "1",
         "http": {
           "secret": "my-secret"
-        }
+        },
+        "disabled": false
       },
       "filters": {
         "eventTypes": {
           "include": [
             "MESSAGE_RECEIVED"
-          ]
+          ],
+          "exclude": []
         },
         "modemNumbers": {
           "include": [
             "AAAA AAAA"
-          ]
+          ],
+          "exclude": []
         },
         "tags": {
+          "include": [],
+          "exclude": []
         }
       },
       "tags": [
@@ -49,7 +57,10 @@
         "secret": "my-secret",
         "contentType": "JSON",
         "certificateId": "1",
-        "hmacHeaderName": "X-Hub-Signature"
+        "hmacHeaderName": "X-Hub-Signature",
+        "disabled": false,
+        "customHeaders": {
+        }
       },
       "createdBy": "example-identifier"
     },
@@ -100,5 +111,7 @@
       }
     }
   ],
-  "type": "PUBLISHER_DELETED"
+  "type": "PUBLISHER_DELETED",
+  "isError": false,
+  "isWarning": false
 }

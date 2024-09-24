@@ -61,5 +61,7 @@
       }
     }
   ],
-  "type": "PUBLISHER_UPDATED"
+  "type": "PUBLISHER_UPDATED",
+  "isError": false,
+  "isWarning": false
 }

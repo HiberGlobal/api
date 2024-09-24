@@ -79,12 +79,12 @@ message Publisher {
         option deprecated = true;
 
         string url = 1;
-        ContentType content_type = 2;
-        bool disabled = 3;
-        int64 certificate_id = 4;
-        string certificate_name = 5;
-        int64 ca_certificate_id = 6;
-        string ca_certificate_name = 7;
+        optional ContentType content_type = 2;
+        optional bool disabled = 3;
+        optional int64 certificate_id = 4;
+        optional string certificate_name = 5;
+        optional int64 ca_certificate_id = 6;
+        optional string ca_certificate_name = 7;
         oneof config {
             HTTPConfig http = 8;
             MQTTConfig mqtt = 9;

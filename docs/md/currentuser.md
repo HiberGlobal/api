@@ -285,15 +285,15 @@ Your personal data.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | id | [ string](#string) |  |
-| email | [ string](#string) |  |
-| name | [ string](#string) |  |
+|  **optional** email | [optional string](#string) | Email address of the current user. Only set when you have permission to read the user data (i.e. a token without that permission would not see this) |
+|  **optional** name | [optional string](#string) | Name of the current user. Only set when you have permission to read the user data (i.e. a token without that permission would not see this) |
 | organizations | [repeated string](#string) | The organizations that this user has access to. |
-| default_organization | [ string](#string) | The default organization for this user. |
+|  **optional** default_organization | [optional string](#string) | The default organization for this user, if any. |
 | requested_organizations | [repeated string](#string) | Open access requests. |
-| current_organization | [ string](#string) | The current organization for this user. If this is a user, this equals the default_organization. If this is a token, it's the token's organization. |
-| current_organization_permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions for the current organization. |
-| user_permissions | [ hiber.Filter.UserPermissions](#hiberfilteruserpermissions) | Permissions for the user. If this is a token, the user permissions may be limited. |
-| support_permissions | [ hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions) | Permissions for customer support. Used for features typically reserved for customer support, or that behave differently when used by a customer support operator. |
+|  **optional** current_organization | [optional string](#string) | The current organization for this user. If this is a user, this equals the default_organization, if any. If this is a token, it's the token's organization. |
+|  **optional** current_organization_permissions | [optional hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions for the current organization. |
+|  **optional** user_permissions | [optional hiber.Filter.UserPermissions](#hiberfilteruserpermissions) | Permissions for the user. If this is a token, the user permissions may be limited or omitted. |
+|  **optional** support_permissions | [optional hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions) | Permissions for customer support. Used for features typically reserved for customer support, or that behave differently when used by a customer support operator. |
 | roles | [repeated string](#string) | Roles for the current organization. |
 | mission_control_settings | [ string](#string) |  |
 | accepted_tac | [ bool](#bool) | Whether the user accepted the terms and conditions. |

@@ -22,5 +22,8 @@
     "textual": "2020-06-01T05:15:25.355Z",
     "timeZone": "UTC"
   },
-  "type": "ORGANIZATION_EVENT_CONFIGURATION_UPDATED"
+  "type": "ORGANIZATION_EVENT_CONFIGURATION_UPDATED",
+  "isError": false,
+  "isWarning": false,
+  "tags": []
 }

@@ -7,6 +7,7 @@
     , "WELL_ANNULUS_B": ""
     , "WELL_ANNULUS_C": ""
     , "WELL_ANNULUS_D": ""
+    , "WELL_HEAD": ""
     , "WELL_TUBING_HEAD": ""
     , "WELL_TUBING": ""
     , "WELL_FLOW_LINE": ""
@@ -14,5 +15,8 @@
     , "WELL_PRODUCTION_CASING_PRESSURE": ""
     , "WELL_INTERMITTENT_CASING_PRESSURE": ""
     , "PIPELINE": ""
+    , "PRODUCTION_LINE": ""
+    , "GAS_MANIFOLD": ""
+    , "PRODUCTION_MANIFOLD": ""
     }
 }]

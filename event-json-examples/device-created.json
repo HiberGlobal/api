@@ -55,5 +55,7 @@
     "textual": "2020-06-01T05:15:25.355Z",
     "timeZone": "UTC"
   },
-  "type": "DEVICE_CREATED"
+  "type": "DEVICE_CREATED",
+  "isError": false,
+  "isWarning": false
 }

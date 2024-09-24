@@ -12,6 +12,7 @@
         "state": "your-state",
         "country": "NL"
       },
+      "billingName": "example",
       "billingAddress": {
         "lines": ["address line 1", "address line 2"],
         "zipCode": "your-postal-code",
@@ -33,7 +34,8 @@
       },
       "features": [
         "HIBER"
-      ]
+      ],
+      "databaseInfo": ""
     },
     "title": "Organization Your Organization 2 (your-organization-2) was created.",
     "description": "Organization Your Organization 2 (your-organization-2) was created under your-organization.",
@@ -50,5 +52,8 @@
     "textual": "2020-06-01T05:15:25.355Z",
     "timeZone": "UTC"
   },
-  "type": "ORGANIZATION_CREATED"
+  "type": "ORGANIZATION_CREATED",
+  "isError": false,
+  "isWarning": false,
+  "tags": []
 }
