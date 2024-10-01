@@ -398,10 +398,7 @@ Not included in the UnitPreferences, since it cannot be converted.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ hiber.value.Value.Numeric.BatteryLevel.BatteryLevelUnit](#hibervaluevaluenumericbatterylevelbatterylevelunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional hiber.value.Value.Numeric.BatteryLevel.BatteryLevelUnit](#hibervaluevaluenumericbatterylevelbatterylevelunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### hiber.value.Value.Numeric.Distance
 
@@ -409,10 +406,7 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ hiber.value.Value.Numeric.Distance.DistanceUnit](#hibervaluevaluenumericdistancedistanceunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional hiber.value.Value.Numeric.Distance.DistanceUnit](#hibervaluevaluenumericdistancedistanceunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### hiber.value.Value.Numeric.Duration
 
@@ -420,11 +414,8 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ hiber.value.Value.Numeric.Duration.DurationUnit](#hibervaluevaluenumericdurationdurationunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional hiber.value.Value.Numeric.Duration.DurationUnit](#hibervaluevaluenumericdurationdurationunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
+| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
 
 ### hiber.value.Value.Numeric.Flow
 
@@ -432,10 +423,7 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ hiber.value.Value.Numeric.Flow.FlowUnit](#hibervaluevaluenumericflowflowunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional hiber.value.Value.Numeric.Flow.FlowUnit](#hibervaluevaluenumericflowflowunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### hiber.value.Value.Numeric.FuelEfficiency
 
@@ -443,10 +431,7 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ hiber.value.Value.Numeric.FuelEfficiency.FuelEfficiencyUnit](#hibervaluevaluenumericfuelefficiencyfuelefficiencyunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional hiber.value.Value.Numeric.FuelEfficiency.FuelEfficiencyUnit](#hibervaluevaluenumericfuelefficiencyfuelefficiencyunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### hiber.value.Value.Numeric.Mass
 
@@ -454,10 +439,7 @@ The value is a volume value, converted to your preferred volume unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ hiber.value.Value.Numeric.Mass.MassUnit](#hibervaluevaluenumericmassmassunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional hiber.value.Value.Numeric.Mass.MassUnit](#hibervaluevaluenumericmassmassunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### hiber.value.Value.Numeric.Percentage
 
@@ -465,9 +447,7 @@ The value is a percentage.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ float](#float) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ hiber.value.Value.Numeric.Percentage.PercentageUnit](#hibervaluevaluenumericpercentagepercentageunit) |  |
-| textual | [ string](#string) | Textual representation with % symbol, rounded based on the user preferences and field config. |
 
 ### hiber.value.Value.Numeric.Pressure
 
@@ -475,10 +455,7 @@ The value is a pressure value, converted to your preferred pressure unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ hiber.value.Value.Numeric.Pressure.PressureUnit](#hibervaluevaluenumericpressurepressureunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional hiber.value.Value.Numeric.Pressure.PressureUnit](#hibervaluevaluenumericpressurepressureunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### hiber.value.Value.Numeric.Rate
 
@@ -486,10 +463,8 @@ The value is a pressure value, converted to your preferred pressure unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ uint32](#uint32) |  |
 | unit | [ hiber.value.Value.Numeric.Rate.RateUnit](#hibervaluevaluenumericraterateunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional hiber.value.Value.Numeric.Rate.RateUnit](#hibervaluevaluenumericraterateunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
+| value | [ uint32](#uint32) |  |
 
 ### hiber.value.Value.Numeric.RotationSpeed
 
@@ -498,10 +473,7 @@ unit preferences.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ hiber.value.Value.Numeric.RotationSpeed.RotationSpeedUnit](#hibervaluevaluenumericrotationspeedrotationspeedunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional hiber.value.Value.Numeric.RotationSpeed.RotationSpeedUnit](#hibervaluevaluenumericrotationspeedrotationspeedunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### hiber.value.Value.Numeric.Speed
 
@@ -509,10 +481,7 @@ The value is a speed value, converted to your preferred speed unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ hiber.value.Value.Numeric.Speed.SpeedUnit](#hibervaluevaluenumericspeedspeedunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional hiber.value.Value.Numeric.Speed.SpeedUnit](#hibervaluevaluenumericspeedspeedunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### hiber.value.Value.Numeric.Temperature
 
@@ -520,10 +489,7 @@ The value is a temperature, converted to your preferred temperature unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ hiber.value.Value.Numeric.Temperature.TemperatureUnit](#hibervaluevaluenumerictemperaturetemperatureunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional hiber.value.Value.Numeric.Temperature.TemperatureUnit](#hibervaluevaluenumerictemperaturetemperatureunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### hiber.value.Value.Numeric.Voltage
 
@@ -531,10 +497,7 @@ The value is a voltage, converted to your preferred voltage unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ hiber.value.Value.Numeric.Voltage.VoltageUnit](#hibervaluevaluenumericvoltagevoltageunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional hiber.value.Value.Numeric.Voltage.VoltageUnit](#hibervaluevaluenumericvoltagevoltageunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### hiber.value.Value.Numeric.Volume
 
@@ -542,10 +505,7 @@ The value is a volume value, converted to your preferred volume unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ hiber.value.Value.Numeric.Volume.VolumeUnit](#hibervaluevaluenumericvolumevolumeunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional hiber.value.Value.Numeric.Volume.VolumeUnit](#hibervaluevaluenumericvolumevolumeunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 
 ### Enums

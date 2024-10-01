@@ -162,10 +162,7 @@ Not included in the UnitPreferences, since it cannot be converted.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ Value.Numeric.BatteryLevel.BatteryLevelUnit](#valuenumericbatterylevelbatterylevelunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional Value.Numeric.BatteryLevel.BatteryLevelUnit](#valuenumericbatterylevelbatterylevelunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### Value.Numeric.Distance
 
@@ -173,10 +170,7 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ Value.Numeric.Distance.DistanceUnit](#valuenumericdistancedistanceunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional Value.Numeric.Distance.DistanceUnit](#valuenumericdistancedistanceunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### Value.Numeric.Duration
 
@@ -184,11 +178,8 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ Value.Numeric.Duration.DurationUnit](#valuenumericdurationdurationunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional Value.Numeric.Duration.DurationUnit](#valuenumericdurationdurationunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
+| duration | [ google.protobuf.Duration](#googleprotobufduration) |  |
 
 ### Value.Numeric.Flow
 
@@ -196,10 +187,7 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ Value.Numeric.Flow.FlowUnit](#valuenumericflowflowunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional Value.Numeric.Flow.FlowUnit](#valuenumericflowflowunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### Value.Numeric.FuelEfficiency
 
@@ -207,10 +195,7 @@ The value is a distance value, converted to your preferred distance unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ Value.Numeric.FuelEfficiency.FuelEfficiencyUnit](#valuenumericfuelefficiencyfuelefficiencyunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional Value.Numeric.FuelEfficiency.FuelEfficiencyUnit](#valuenumericfuelefficiencyfuelefficiencyunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### Value.Numeric.Mass
 
@@ -218,10 +203,7 @@ The value is a volume value, converted to your preferred volume unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ Value.Numeric.Mass.MassUnit](#valuenumericmassmassunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional Value.Numeric.Mass.MassUnit](#valuenumericmassmassunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### Value.Numeric.Percentage
 
@@ -229,9 +211,7 @@ The value is a percentage.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ float](#float) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ Value.Numeric.Percentage.PercentageUnit](#valuenumericpercentagepercentageunit) |  |
-| textual | [ string](#string) | Textual representation with % symbol, rounded based on the user preferences and field config. |
 
 ### Value.Numeric.Pressure
 
@@ -239,10 +219,7 @@ The value is a pressure value, converted to your preferred pressure unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ Value.Numeric.Pressure.PressureUnit](#valuenumericpressurepressureunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional Value.Numeric.Pressure.PressureUnit](#valuenumericpressurepressureunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### Value.Numeric.Rate
 
@@ -250,10 +227,8 @@ The value is a pressure value, converted to your preferred pressure unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ uint32](#uint32) |  |
 | unit | [ Value.Numeric.Rate.RateUnit](#valuenumericraterateunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional Value.Numeric.Rate.RateUnit](#valuenumericraterateunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
+| value | [ uint32](#uint32) |  |
 
 ### Value.Numeric.RotationSpeed
 
@@ -262,10 +237,7 @@ unit preferences.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ Value.Numeric.RotationSpeed.RotationSpeedUnit](#valuenumericrotationspeedrotationspeedunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional Value.Numeric.RotationSpeed.RotationSpeedUnit](#valuenumericrotationspeedrotationspeedunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### Value.Numeric.Speed
 
@@ -273,10 +245,7 @@ The value is a speed value, converted to your preferred speed unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ Value.Numeric.Speed.SpeedUnit](#valuenumericspeedspeedunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional Value.Numeric.Speed.SpeedUnit](#valuenumericspeedspeedunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### Value.Numeric.Temperature
 
@@ -284,10 +253,7 @@ The value is a temperature, converted to your preferred temperature unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ Value.Numeric.Temperature.TemperatureUnit](#valuenumerictemperaturetemperatureunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional Value.Numeric.Temperature.TemperatureUnit](#valuenumerictemperaturetemperatureunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### Value.Numeric.Voltage
 
@@ -295,10 +261,7 @@ The value is a voltage, converted to your preferred voltage unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ Value.Numeric.Voltage.VoltageUnit](#valuenumericvoltagevoltageunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional Value.Numeric.Voltage.VoltageUnit](#valuenumericvoltagevoltageunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 ### Value.Numeric.Volume
 
@@ -306,10 +269,7 @@ The value is a volume value, converted to your preferred volume unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| value | [ double](#double) | <strong>Deprecated.</strong> Deprecated in favor of the field in Value.Numeric. |
 | unit | [ Value.Numeric.Volume.VolumeUnit](#valuenumericvolumevolumeunit) |  |
-| textual | [ string](#string) | <strong>Deprecated.</strong> Textual representation including unit symbol, rounded based on the user preferences and field config. Deprecated in favor of the field in Value.Numeric. |
-|  **optional** converted_from | [optional Value.Numeric.Volume.VolumeUnit](#valuenumericvolumevolumeunit) | <strong>Deprecated.</strong> The original unit, iff this value was converted from another unit because of user preferences. Deprecated in favor of the field in Value.Numeric. |
 
 
 ## Enums

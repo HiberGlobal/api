@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.211 (2024-10-01)
+
+##### ValueService
+
+- **[B]** Removed deprecated fields from `Value.Numeric` objects for specific types, leaving just the `unit` and some type-specific fields.
+
 ### 0.210 (2024-09-24)
 
 ##### AssetService
