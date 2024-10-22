@@ -31,10 +31,11 @@ message ValueSelection {
         repeated string fields = 1;
     }
 
-    /* Select the data by numeric value type.
-     * If the list is empty, all values with a numeric value type are returned.
+    /* Select the data by (numeric) value type.
+     * If the selection is empty, all values with all types are returned.
      */
-    message ByNumericValueType {
+    message ByValueType {
+        repeated Value.Type value_type = 2;
         repeated Value.Numeric.Type numeric_value_type = 1;
     }
 
@@ -52,7 +53,7 @@ message ValueSelection {
      */
     oneof data_selection {
         /* Get the values that are of the given numeric value types. */
-        ByNumericValueType numeric_value_type = 8;
+        ByValueType value_type = 8;
 
         /* Get the values for the selected fields. */
         ByField field = 9;
@@ -172,7 +173,7 @@ message DownsampledValues {
          * When multiple modems are given, the data is downsampled separately and merged together in the response,
          * sorted by time.
          */
-        optional ValueSelection selection = 2;
+        ValueSelection selection = 2;
 
         /* Downsample the values to the given amount of data points. */
         optional uint32 points = 3;

@@ -235,7 +235,7 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.value.ValueSelection.ByNumericValueType"><span class="badge">M</span>ValueSelection.ByNumericValueType</a>
+                  <a href="#hiber.value.ValueSelection.ByValueType"><span class="badge">M</span>ValueSelection.ByValueType</a>
                 </li>
               
               
@@ -851,7 +851,7 @@
                 <tr>
                   <td>selection</td>
                   <td><a href="#hiber.value.ValueSelection">ValueSelection</a></td>
-                  <td>optional</td>
+                  <td></td>
                   <td><p>The values to downsample.
 When multiple modems are given, the data is downsampled separately and merged together in the response,
 sorted by time. </p></td>
@@ -1276,8 +1276,8 @@ If multiple assets were assigned at the same time, this value exists for each as
                 </tr>
               
                 <tr>
-                  <td>numeric_value_type</td>
-                  <td><a href="#hiber.value.ValueSelection.ByNumericValueType">ValueSelection.ByNumericValueType</a></td>
+                  <td>value_type</td>
+                  <td><a href="#hiber.value.ValueSelection.ByValueType">ValueSelection.ByValueType</a></td>
                   <td></td>
                   <td><p>Get the values that are of the given numeric value types. </p></td>
                 </tr>
@@ -1369,8 +1369,8 @@ If multiple assets were assigned at the same time, this value exists for each as
 
         
       
-        <h3 id="hiber.value.ValueSelection.ByNumericValueType">ValueSelection.ByNumericValueType</h3>
-        <p>Select the data by numeric value type.</p><p>If the list is empty, all values with a numeric value type are returned.</p>
+        <h3 id="hiber.value.ValueSelection.ByValueType">ValueSelection.ByValueType</h3>
+        <p>Select the data by (numeric) value type.</p><p>If the selection is empty, all values with all types are returned.</p>
 
         
           <table class="field-table">
@@ -1378,6 +1378,13 @@ If multiple assets were assigned at the same time, this value exists for each as
               <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
             </thead>
             <tbody>
+              
+                <tr>
+                  <td>value_type</td>
+                  <td><a href="#hiber.value.Value.Type">Value.Type</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
               
                 <tr>
                   <td>numeric_value_type</td>
@@ -4873,6 +4880,14 @@ Used mainly to differentiate in the UI or to sort on. </p></td>
                   <td><a href="#hiber.value.Value.Numeric.Rate">hiber.value.Value.Numeric.Rate</a></td>
                   <td>optional</td>
                   <td><p>The expected transmission rate for this modem. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>numeric_value_types</td>
+                  <td><a href="#hiber.value.Value.Numeric.Type">hiber.value.Value.Numeric.Type</a></td>
+                  <td>repeated</td>
+                  <td><p>The numeric value types that this device produces.
+The device may produce other values (like battery level), but these are the primary value types. </p></td>
                 </tr>
               
             </tbody>

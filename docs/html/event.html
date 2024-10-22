@@ -614,6 +614,18 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.assign.DeleteAssignment"><span class="badge">M</span>DeleteAssignment</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.assign.DeleteAssignment.Request"><span class="badge">M</span>DeleteAssignment.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.assign.DeleteAssignment.Response"><span class="badge">M</span>DeleteAssignment.Response</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.assign.ListAlarmAssignments"><span class="badge">M</span>ListAlarmAssignments</a>
                 </li>
               
@@ -7888,6 +7900,15 @@ It would however work for assets having access to device data.
 This is not allowed to be a value in the future at the moment. </p></td>
                 </tr>
               
+                <tr>
+                  <td>override_conflicting_assignments</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Instead of throwing an error when there are conflicting assignments,
+unassign the conflicting assignments with the given time (override_time or now) and
+then making the assignment. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -8216,6 +8237,117 @@ Optional, when omitted or empty everything is included. </p></td>
                   <td>exclude</td>
                   <td><a href="#hiber.assign.AssignmentType">AssignmentType</a></td>
                   <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.assign.DeleteAssignment">DeleteAssignment</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.assign.DeleteAssignment.Request">DeleteAssignment.Request</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>unassign_parsers</td>
+                  <td><a href="#hiber.modem.message.bodyparser.ModemMessageBodyParserSelection">hiber.modem.message.bodyparser.ModemMessageBodyParserSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>unassign_alarms</td>
+                  <td><a href="#hiber.modem.alarm.ModemAlarmSelection">hiber.modem.alarm.ModemAlarmSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>unassign_modems</td>
+                  <td><a href="#hiber.modem.ModemSelection">hiber.modem.ModemSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>unassign_assets</td>
+                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>from_modems</td>
+                  <td><a href="#hiber.modem.ModemSelection">hiber.modem.ModemSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>from_tags</td>
+                  <td><a href="#hiber.tag.TagSelection">hiber.tag.TagSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>from_assets</td>
+                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.assign.DeleteAssignment.Response">DeleteAssignment.Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>deleted</td>
+                  <td><a href="#hiber.assign.Assignment">Assignment</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#hiber.assign.DeleteAssignment.Request">DeleteAssignment.Request</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -9270,12 +9402,21 @@ temperature, the check value will be converted to celsius instead. </p></td>
                 <tr>
                   <td>override_time</td>
                   <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td>optional</td>
+                  <td></td>
                   <td><p>Time that the assignment ended.
 This marks the assignment as ended at the given moment in the past, but would not have effect in the past
 for assignments like parsers and alarms (i.e. no alarm events are removed).
 It would however work for assets having access to device data.
 This is not allowed to be a value in the future at the moment. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remove_time</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Remove time from the assignment, if any.
+Effectively deletes the assignment if it was set with a time.
+Setting this to true makes this identical to using the Delete rpc. </p></td>
                 </tr>
               
             </tbody>
@@ -9407,7 +9548,14 @@ This is not allowed to be a value in the future at the moment. </p></td>
                 <td>Unassign</td>
                 <td><a href="#hiber.assign.Unassign.Request">Unassign.Request</a></td>
                 <td><a href="#hiber.assign.Unassign.Response">Unassign.Response</a></td>
-                <td><p>Remove an assignment, like an alarm to a modem.</p></td>
+                <td><p>End an assignment, like an alarm to a modem.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Delete</td>
+                <td><a href="#hiber.assign.DeleteAssignment.Request">DeleteAssignment.Request</a></td>
+                <td><a href="#hiber.assign.DeleteAssignment.Response">DeleteAssignment.Response</a></td>
+                <td><p>Delete an assignment, even if it has a time range.</p></td>
               </tr>
             
               <tr>
@@ -15861,6 +16009,14 @@ Used mainly to differentiate in the UI or to sort on. </p></td>
                   <td><p>The expected transmission rate for this modem. </p></td>
                 </tr>
               
+                <tr>
+                  <td>numeric_value_types</td>
+                  <td><a href="#hiber.value.Value.Numeric.Type">hiber.value.Value.Numeric.Type</a></td>
+                  <td>repeated</td>
+                  <td><p>The numeric value types that this device produces.
+The device may produce other values (like battery level), but these are the primary value types. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -21922,9 +22078,15 @@ Used as an identifier for the organization. </p></td>
               </tr>
             
               <tr>
-                <td>BI_TOOLING_BETA</td>
-                <td>8</td>
-                <td><p>Integrate BI tooling in the Mission Control interface.</p></td>
+                <td>ASSETS</td>
+                <td>10</td>
+                <td><p>Access the list of assets in Mission Control.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSET_DASHBOARD</td>
+                <td>11</td>
+                <td><p>Use the new assets as primary data owner in Mission Control dashboards.</p></td>
               </tr>
             
           </tbody>
@@ -23257,6 +23419,13 @@ If you do, you cannot grant it permissions they do not have, not can you grant i
                   <td><p>Optionally, attempt to minimize the token size as much as possible. </p></td>
                 </tr>
               
+                <tr>
+                  <td>limit_impersonation</td>
+                  <td><a href="#hiber.Filter.ChildOrganizations">hiber.Filter.ChildOrganizations</a></td>
+                  <td>optional</td>
+                  <td><p>Optionally, limit the organizations that the token is allowed to impersonate. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -23501,6 +23670,13 @@ If you do, you cannot grant it permissions they do not have, not can you grant i
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>Set if the current request is made with this token. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit_impersonation</td>
+                  <td><a href="#hiber.Filter.ChildOrganizations">hiber.Filter.ChildOrganizations</a></td>
+                  <td>optional</td>
+                  <td><p>Optionally, limit the organizations that the token is allowed to impersonate. </p></td>
                 </tr>
               
             </tbody>

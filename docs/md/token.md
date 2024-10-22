@@ -151,6 +151,7 @@
 |  **optional** roles | [optional hiber.Filter.Roles](#hiberfilterroles) | Roles the new token should get. |
 |  **optional** for_user_id | [optional string](#string) | Optionally, if you have the USERS_MANAGE permission, you can make a token for another user. If you do, you cannot grant it permissions they do not have, not can you grant it any user permissions. |
 |  **optional** minimize | [optional bool](#bool) | Optionally, attempt to minimize the token size as much as possible. |
+|  **optional** limit_impersonation | [optional hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Optionally, limit the organizations that the token is allowed to impersonate. |
 
 ### CreateTokenRequest.Response
 
@@ -213,6 +214,7 @@
 | type | [ Token.Type](#tokentype) |  |
 |  **optional** last_used | [optional hiber.Date](#hiberdate) | Date that the token was last used. |
 | used_for_this_call | [ bool](#bool) | Set if the current request is made with this token. |
+|  **optional** limit_impersonation | [optional hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Optionally, limit the organizations that the token is allowed to impersonate. |
 
 ### Token.UserDetails
 

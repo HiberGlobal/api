@@ -71,6 +71,11 @@ message Device {
     /* The DeviceType for this device. See DeviceType for more information. */
     string sensor_brand = 18;
 
+    /* The numeric value types that this device produces.
+     * The device may produce other values (like battery level), but these are the primary value types.
+     */
+    repeated value.Value.Numeric.Type numeric_value_types = 19;
+
     /* Collection of data about the devices it is connected to. */
     message Links {
         /* Other identifiers for this devices. Could include data like its MAC-address or otherwise unique identifier. */

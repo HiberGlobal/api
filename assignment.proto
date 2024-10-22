@@ -23,8 +23,11 @@ service AssignmentService {
     /* Assign something, like an alarm to a modem. */
     rpc Assign (Assign.Request) returns (Assign.Response);
 
-    /* Remove an assignment, like an alarm to a modem. */
+    /* End an assignment, like an alarm to a modem. */
     rpc Unassign (Unassign.Request) returns (Unassign.Response);
+
+    /* Delete an assignment, even if it has a time range. */
+    rpc Delete (DeleteAssignment.Request) returns (DeleteAssignment.Response);
 
     /* List assets with the devices and tags they are assigned to. */
     rpc AssetAssignments (ListAssetAssignments.Request) returns (ListAssetAssignments.Response);
@@ -214,6 +217,12 @@ message Assign {
          */
         optional Timestamp end_time = 11;
 
+        /* Instead of throwing an error when there are conflicting assignments,
+         * unassign the conflicting assignments with the given time (override_time or now) and
+         * then making the assignment.
+         */
+        optional bool override_conflicting_assignments = 13;
+
         reserved 3;
     }
     message Response {
@@ -241,18 +250,52 @@ message Unassign {
             asset.AssetSelection from_assets = 11;
         }
 
-        /* Time that the assignment ended.
-         * This marks the assignment as ended at the given moment in the past, but would not have effect in the past
-         * for assignments like parsers and alarms (i.e. no alarm events are removed).
-         * It would however work for assets having access to device data.
-         * This is not allowed to be a value in the future at the moment.
-         */
-        optional Timestamp override_time = 10;
+        oneof time {
+            /* Time that the assignment ended.
+             * This marks the assignment as ended at the given moment in the past, but would not have effect in the past
+             * for assignments like parsers and alarms (i.e. no alarm events are removed).
+             * It would however work for assets having access to device data.
+             * This is not allowed to be a value in the future at the moment.
+             */
+            Timestamp override_time = 10;
+
+            /* Remove time from the assignment, if any.
+             * Effectively deletes the assignment if it was set with a time.
+             * Setting this to true makes this identical to using the Delete rpc.
+             */
+            bool remove_time = 12;
+        }
 
         reserved 3;
     }
     message Response {
         repeated Assignment unassigned = 1;
+        Request request = 2;
+    }
+}
+
+message DeleteAssignment {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        oneof unassign {
+            modem.message.bodyparser.ModemMessageBodyParserSelection unassign_parsers = 2;
+            modem.alarm.ModemAlarmSelection unassign_alarms = 4;
+            modem.ModemSelection unassign_modems = 6;
+            asset.AssetSelection unassign_assets = 9;
+        }
+
+        oneof from {
+            modem.ModemSelection from_modems = 5;
+            tag.TagSelection from_tags = 7;
+            asset.AssetSelection from_assets = 11;
+        }
+
+        reserved 3;
+    }
+    message Response {
+        repeated Assignment deleted = 1;
         Request request = 2;
     }
 }

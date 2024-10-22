@@ -135,6 +135,10 @@ message Modem {
     /* The expected transmission rate for this modem. */
     optional hiber.value.Value.Numeric.Rate expected_transmission_rate = 34;
 
+    /* The numeric value types that this device produces.
+     * The device may produce other values (like battery level), but these are the primary value types.
+     */
+    repeated value.Value.Numeric.Type numeric_value_types = 35;
 
     /* Additional information when this modem is a gateway. */
     message GatewayInfo {

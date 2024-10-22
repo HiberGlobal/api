@@ -312,6 +312,7 @@ They have a unique device number in our system, used to identify them.
 |  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this device. |
 | type | [ string](#string) | The DeviceType for this device. See DeviceType for more information. |
 | sensor_brand | [ string](#string) | The DeviceType for this device. See DeviceType for more information. |
+| numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The numeric value types that this device produces. The device may produce other values (like battery level), but these are the primary value types. |
 
 ### hiber.device.Device.Links
 
@@ -442,6 +443,7 @@ when the modem is registered into the system or when a subscription is authorize
 | time_zone | [ string](#string) | The timezone configured for the modem. |
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
 |  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
+| numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The numeric value types that this device produces. The device may produce other values (like battery level), but these are the primary value types. |
 
 ### hiber.modem.ModemSelection
 

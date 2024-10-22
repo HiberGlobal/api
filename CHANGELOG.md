@@ -1,5 +1,64 @@
 # Changelog Hiber API
 
+### 0.213 (2024-10-22)
+
+##### AssetService
+
+- Fixed a bug where assets with the same name were allowed in an organization.
+
+##### AssignmentService
+
+- Added `DeleteAssignment` rpc to remove an assignment even if it has a `time_range`.
+  - Added `remove_time` flag in a new `time` `oneof` to `Unassign` to efffectively do a `DeleteAssignment` command in the `Unassign` command.
+- Added `override_conflicting_assignments` to `Assign` to unassign any devices from assets that would conflict with the new assignment.
+
+##### ExportService
+
+- Fixed an issue where CSV exports might fail occasionally.
+
+##### OrganizationService
+
+- Added `ASSETS` and `ASSET_DASHBOARD` organization features.
+- Removed unused `BI_TOOLING_BETA` organization feature.
+
+##### TokenService
+
+- Fixed a bug where a token could be created despite failing with a validation error.
+
+##### UserService
+
+- Fixed a bug where user deletion could produce errors.
+
+##### ValueService
+
+- Performance improvements and removed the requirement of setting a time range when selecting values.
+
+### 0.212 (2024-10-08)
+
+##### ValueService
+
+- Added `value_type` to `ByValueType` to select on `Value.Type` (i.e. `Value.Type.TEXT` or `Value.Type.ENUM`)
+  - Renamed `ByNumericValueType` in `ValueSelection` to `ByValueType` to make it reflect the extra option.
+  - Renamed `ValueSelection.numeric_value_type` to `value_type` to reflect the extra option.
+
+##### ValueService
+
+- Removed `optional` flag on `DownsampledValues.Request.selection`, since the API actually requires a selection.
+
+##### TokenService
+
+- Added option to limit impersionation (access to child organizations) on a token.
+
+##### DeviceService
+
+- Added `Device.numeric_value_types` to quickly see the primary numeric value types that this device produces.
+  - The device may produce other values (like battery level), but these are the primary value types.
+
+##### ModemService
+
+- Added `Modem.numeric_value_types` to quickly see the primary numeric value types that this device produces.
+  - The device may produce other values (like battery level), but these are the primary value types.
+
 ### 0.211 (2024-10-01)
 
 ##### ValueService

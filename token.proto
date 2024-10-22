@@ -48,6 +48,9 @@ message Token {
     /* Set if the current request is made with this token. */
     bool used_for_this_call = 12;
 
+    /* Optionally, limit the organizations that the token is allowed to impersonate. */
+    optional Filter.ChildOrganizations limit_impersonation = 14;
+
     message UserDetails {
         string id = 1;
         string email = 2;
@@ -104,6 +107,9 @@ message CreateTokenRequest {
 
     /* Optionally, attempt to minimize the token size as much as possible. */
     optional bool minimize = 11;
+
+    /* Optionally, limit the organizations that the token is allowed to impersonate. */
+    optional Filter.ChildOrganizations limit_impersonation = 12;
 
     reserved 3, 7;
 }

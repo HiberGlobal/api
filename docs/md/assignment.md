@@ -19,6 +19,9 @@
   - [Assignment.ModemMessageBodyParserAssignment](#assignmentmodemmessagebodyparserassignment)
   - [AssignmentSelection](#assignmentselection)
   - [AssignmentSelection.AssignmentTypes](#assignmentselectionassignmenttypes)
+  - [DeleteAssignment](#deleteassignment)
+  - [DeleteAssignment.Request](#deleteassignmentrequest)
+  - [DeleteAssignment.Response](#deleteassignmentresponse)
   - [ListAlarmAssignments](#listalarmassignments)
   - [ListAlarmAssignments.Request](#listalarmassignmentsrequest)
   - [ListAlarmAssignments.Response](#listalarmassignmentsresponse)
@@ -248,7 +251,13 @@ Assign something, like an alarm to a modem.
 > **rpc** Unassign([Unassign.Request](#unassignrequest))
     [Unassign.Response](#unassignresponse)
 
-Remove an assignment, like an alarm to a modem.
+End an assignment, like an alarm to a modem.
+
+### Delete
+> **rpc** Delete([DeleteAssignment.Request](#deleteassignmentrequest))
+    [DeleteAssignment.Response](#deleteassignmentresponse)
+
+Delete an assignment, even if it has a time range.
 
 ### AssetAssignments
 > **rpc** AssetAssignments([ListAssetAssignments.Request](#listassetassignmentsrequest))
@@ -305,6 +314,7 @@ Add assignments.
 | alarm_parameters | [map Assign.Request.AlarmParametersEntry](#assignrequestalarmparametersentry) | The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
 |  **optional** override_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment should be active. This sets the assignment to start in the past, but would not have effect in the past for assignments like parsers and alarms (they will only be triggered for new messages / values). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
 |  **optional** end_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (i.e. no alarm events are removed). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
+|  **optional** override_conflicting_assignments | [optional bool](#bool) | Instead of throwing an error when there are conflicting assignments, unassign the conflicting assignments with the given time (override_time or now) and then making the assignment. |
 
 ### Assign.Request.AlarmParametersEntry
 
@@ -398,6 +408,35 @@ Assignments that are no longer active (end time is in the past) and that no long
 | ----- | ---- | ----------- |
 | include | [repeated AssignmentType](#assignmenttype) |  |
 | exclude | [repeated AssignmentType](#assignmenttype) |  |
+
+### DeleteAssignment
+
+
+
+
+### DeleteAssignment.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) |  |
+
+### DeleteAssignment.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| deleted | [repeated Assignment](#assignment) |  |
+| request | [ DeleteAssignment.Request](#deleteassignmentrequest) |  |
 
 ### ListAlarmAssignments
 
@@ -666,7 +705,8 @@ Remove a assignment.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) |  |
-|  **optional** override_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (i.e. no alarm events are removed). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.override_time | [ hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (i.e. no alarm events are removed). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.remove_time | [ bool](#bool) | Remove time from the assignment, if any. Effectively deletes the assignment if it was set with a time. Setting this to true makes this identical to using the Delete rpc. |
 
 ### Unassign.Response
 
@@ -825,6 +865,7 @@ when the modem is registered into the system or when a subscription is authorize
 | time_zone | [ string](#string) | The timezone configured for the modem. |
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
 |  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
+| numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The numeric value types that this device produces. The device may produce other values (like battery level), but these are the primary value types. |
 
 ### hiber.modem.ModemSelection
 

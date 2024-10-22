@@ -417,7 +417,8 @@ Note that the organization field specifies the organization, it is not used to u
 | MODEM_CREATION | Required to manually create modems using the ModemService. | 4 |
 | EARLY_ACCESS | Used for organizations that get early access to features. | 5 |
 | EXPERIMENTAL | Used for organizations that get access to experimental features. e.g. feature work in progress. | 6 |
-| BI_TOOLING_BETA | Integrate BI tooling in the Mission Control interface. | 8 |
+| ASSETS | Access the list of assets in Mission Control. | 10 |
+| ASSET_DASHBOARD | Use the new assets as primary data owner in Mission Control dashboards. | 11 |
 
 
 

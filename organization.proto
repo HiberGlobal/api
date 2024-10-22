@@ -65,10 +65,13 @@ message Organization {
         /* Used for organizations that get access to experimental features. e.g. feature work in progress. */
         EXPERIMENTAL = 6;
 
-        /* Integrate BI tooling in the Mission Control interface. */
-        BI_TOOLING_BETA = 8;
+        /* Access the list of assets in Mission Control. */
+        ASSETS = 10;
 
-        reserved 3, 7, 9;
+        /* Use the new assets as primary data owner in Mission Control dashboards. */
+        ASSET_DASHBOARD = 11;
+
+        reserved 3, 7, 8, 9;
     }
 
     /* The slug for this organization, used to identify organizations */

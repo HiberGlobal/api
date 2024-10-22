@@ -27,7 +27,7 @@ Messages are parsed to a number of values (depending on the parser), which can b
   - [ValueContext.ValueDurations](#valuecontextvaluedurations)
   - [ValueSelection](#valueselection)
   - [ValueSelection.ByField](#valueselectionbyfield)
-  - [ValueSelection.ByNumericValueType](#valueselectionbynumericvaluetype)
+  - [ValueSelection.ByValueType](#valueselectionbyvaluetype)
 
 - Enums
   - [ListValues.Sort](#listvaluessort)
@@ -172,7 +172,7 @@ Request downsampled values, reducing the selected time range to a single value p
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** selection | [optional ValueSelection](#valueselection) | The values to downsample. When multiple modems are given, the data is downsampled separately and merged together in the response, sorted by time. |
+| selection | [ ValueSelection](#valueselection) | The values to downsample. When multiple modems are given, the data is downsampled separately and merged together in the response, sorted by time. |
 |  **optional** points | [optional uint32](#uint32) | Downsample the values to the given amount of data points. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Paginate the downsampled values, if needed. |
 | sort | [ ListValues.Sort](#listvaluessort) | How to sort the downsampled values. |
@@ -282,7 +282,7 @@ Select the values to return.
 | ----- | ---- | ----------- |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **owner_selection**.devices | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the devices(s) to get the values for. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **owner_selection**.assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | Select the asset(s) to get the values for. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data_selection**.numeric_value_type | [ ValueSelection.ByNumericValueType](#valueselectionbynumericvaluetype) | Get the values that are of the given numeric value types. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data_selection**.value_type | [ ValueSelection.ByValueType](#valueselectionbyvaluetype) | Get the values that are of the given numeric value types. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data_selection**.field | [ ValueSelection.ByField](#valueselectionbyfield) | Get the values for the selected fields. |
 | fields | [repeated string](#string) | <strong>Deprecated.</strong> Get the values for the selected fields. |
 |  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) | The time to view the values for. |
@@ -298,13 +298,14 @@ If the list is empty, all fields are returned.
 | ----- | ---- | ----------- |
 | fields | [repeated string](#string) |  |
 
-### ValueSelection.ByNumericValueType
+### ValueSelection.ByValueType
 
-Select the data by numeric value type.
-If the list is empty, all values with a numeric value type are returned.
+Select the data by (numeric) value type.
+If the selection is empty, all values with all types are returned.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
+| value_type | [repeated Value.Type](#valuetype) |  |
 | numeric_value_type | [repeated Value.Numeric.Type](#valuenumerictype) |  |
 
 
@@ -449,6 +450,7 @@ when the modem is registered into the system or when a subscription is authorize
 | time_zone | [ string](#string) | The timezone configured for the modem. |
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
 |  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
+| numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The numeric value types that this device produces. The device may produce other values (like battery level), but these are the primary value types. |
 
 ### hiber.modem.ModemSelection
 

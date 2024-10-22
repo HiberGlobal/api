@@ -239,6 +239,7 @@ They have a unique device number in our system, used to identify them.
 |  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this device. |
 | type | [ string](#string) | The DeviceType for this device. See DeviceType for more information. |
 | sensor_brand | [ string](#string) | The DeviceType for this device. See DeviceType for more information. |
+| numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The numeric value types that this device produces. The device may produce other values (like battery level), but these are the primary value types. |
 
 ### hiber.device.Device.Links
 
@@ -567,7 +568,8 @@ Note that the organization field specifies the organization, it is not used to u
 | MODEM_CREATION | Required to manually create modems using the ModemService. | 4 |
 | EARLY_ACCESS | Used for organizations that get early access to features. | 5 |
 | EXPERIMENTAL | Used for organizations that get access to experimental features. e.g. feature work in progress. | 6 |
-| BI_TOOLING_BETA | Integrate BI tooling in the Mission Control interface. | 8 |
+| ASSETS | Access the list of assets in Mission Control. | 10 |
+| ASSET_DASHBOARD | Use the new assets as primary data owner in Mission Control dashboards. | 11 |
 
 
 

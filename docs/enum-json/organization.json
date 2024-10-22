@@ -8,6 +8,7 @@
     , "MODEM_CREATION": "Required to manually create modems using the ModemService."
     , "EARLY_ACCESS": "Used for organizations that get early access to features."
     , "EXPERIMENTAL": "Used for organizations that get access to experimental features. e.g. feature work in progress."
-    , "BI_TOOLING_BETA": "Integrate BI tooling in the Mission Control interface."
+    , "ASSETS": "Access the list of assets in Mission Control."
+    , "ASSET_DASHBOARD": "Use the new assets as primary data owner in Mission Control dashboards."
     }
 }]

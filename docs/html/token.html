@@ -584,6 +584,13 @@ If you do, you cannot grant it permissions they do not have, not can you grant i
                   <td><p>Optionally, attempt to minimize the token size as much as possible. </p></td>
                 </tr>
               
+                <tr>
+                  <td>limit_impersonation</td>
+                  <td><a href="#hiber.Filter.ChildOrganizations">hiber.Filter.ChildOrganizations</a></td>
+                  <td>optional</td>
+                  <td><p>Optionally, limit the organizations that the token is allowed to impersonate. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -828,6 +835,13 @@ If you do, you cannot grant it permissions they do not have, not can you grant i
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>Set if the current request is made with this token. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit_impersonation</td>
+                  <td><a href="#hiber.Filter.ChildOrganizations">hiber.Filter.ChildOrganizations</a></td>
+                  <td>optional</td>
+                  <td><p>Optionally, limit the organizations that the token is allowed to impersonate. </p></td>
                 </tr>
               
             </tbody>
