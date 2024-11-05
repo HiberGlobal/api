@@ -23,6 +23,7 @@ Messages are parsed to a number of values (depending on the parser), which can b
   - [ValueContext](#valuecontext)
   - [ValueContext.ValueAssetContext](#valuecontextvalueassetcontext)
   - [ValueContext.ValueDelta](#valuecontextvaluedelta)
+  - [ValueContext.ValueDeviceContext](#valuecontextvaluedevicecontext)
   - [ValueContext.ValueDuration](#valuecontextvalueduration)
   - [ValueContext.ValueDurations](#valuecontextvaluedurations)
   - [ValueSelection](#valueselection)
@@ -229,7 +230,8 @@ A Value at a time, for a given modem and field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| device | [ string](#string) | The device that produced this value. |
+| device | [ ValueContext.ValueDeviceContext](#valuecontextvaluedevicecontext) | The device that produced this value. |
+| device_number | [ string](#string) | <strong>Deprecated.</strong> The device that produced this value. |
 | asset | [ ValueContext.ValueAssetContext](#valuecontextvalueassetcontext) | The asset that owns this value, if any. Assets own this value if they were assigned to the device that produced this value at the time it was produced. If multiple assets were assigned at the same time, this value exists for each asset. |
 | field | [ string](#string) | The field that this value was produced for. |
 | time | [ hiber.Timestamp](#hibertimestamp) | The time for this value. |
@@ -256,6 +258,15 @@ The delta of a value: the difference between a value and the previous value.
 | delta | [ Value](#value) | The delta of the two values. |
 | current | [ Value](#value) | The value at this time. |
 | previous | [ Value](#value) | The previous value to compare it with. |
+
+### ValueContext.ValueDeviceContext
+
+The device data for this value.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| number | [ string](#string) |  |
+| identifier | [ string](#string) |  |
 
 ### ValueContext.ValueDuration
 

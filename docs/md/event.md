@@ -115,7 +115,7 @@
   - [hiber.assign.Assign.Request.AlarmParametersEntry](#hiberassignassignrequestalarmparametersentry)
   - [hiber.assign.Assign.Response](#hiberassignassignresponse)
   - [hiber.assign.Assignment](#hiberassignassignment)
-  - [hiber.assign.Assignment.ModemAlarmAssignment](#hiberassignassignmentmodemalarmassignment)
+  - [hiber.assign.Assignment.AlarmAssignment](#hiberassignassignmentalarmassignment)
   - [hiber.assign.Assignment.ModemMessageBodyParserAssignment](#hiberassignassignmentmodemmessagebodyparserassignment)
   - [hiber.assign.AssignmentSelection](#hiberassignassignmentselection)
   - [hiber.assign.AssignmentSelection.AssignmentTypes](#hiberassignassignmentselectionassignmenttypes)
@@ -126,6 +126,7 @@
   - [hiber.assign.ListAlarmAssignments.Request](#hiberassignlistalarmassignmentsrequest)
   - [hiber.assign.ListAlarmAssignments.Response](#hiberassignlistalarmassignmentsresponse)
   - [hiber.assign.ListAlarmAssignments.Response.AlarmAssignment](#hiberassignlistalarmassignmentsresponsealarmassignment)
+  - [hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToAsset](#hiberassignlistalarmassignmentsresponsealarmassignmenttoasset)
   - [hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToModem](#hiberassignlistalarmassignmentsresponsealarmassignmenttomodem)
   - [hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToTag](#hiberassignlistalarmassignmentsresponsealarmassignmenttotag)
   - [hiber.assign.ListAssetAssignments](#hiberassignlistassetassignments)
@@ -1829,7 +1830,7 @@ Assignments that are no longer active (end time is in the past) and that no long
 | start | [ hiber.Timestamp](#hibertimestamp) | Time this assignment started. This is always in the past. |
 |  **optional** end | [optional hiber.Timestamp](#hibertimestamp) | Time this assignment ended, if it has ended. Inactive assignments that no longer have an effect may be cleaned up automatically. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_parser | [ hiber.assign.Assignment.ModemMessageBodyParserAssignment](#hiberassignassignmentmodemmessagebodyparserassignment) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_alarm | [ hiber.assign.Assignment.ModemAlarmAssignment](#hiberassignassignmentmodemalarmassignment) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_alarm | [ hiber.assign.Assignment.AlarmAssignment](#hiberassignassignmentalarmassignment) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_modem | [ string](#string) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_asset | [ string](#string) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_modem | [ string](#string) |  |
@@ -1837,7 +1838,7 @@ Assignments that are no longer active (end time is in the past) and that no long
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_tag | [ hiber.tag.Tag](#hibertagtag) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_asset | [ string](#string) |  |
 
-### hiber.assign.Assignment.ModemAlarmAssignment
+### hiber.assign.Assignment.AlarmAssignment
 
 
 
@@ -1947,6 +1948,16 @@ Things that an alarm is assigned to.
 | alarm | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) |  |
 | modems | [repeated hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToModem](#hiberassignlistalarmassignmentsresponsealarmassignmenttomodem) | The modem numbers this alarm is assigned to, with the alarm parameters. |
 | tags | [repeated hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToTag](#hiberassignlistalarmassignmentsresponsealarmassignmenttotag) | The tags this alarm is assigned to, with the alarm parameters. |
+| assets | [repeated hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToAsset](#hiberassignlistalarmassignmentsresponsealarmassignmenttoasset) | The assets this alarm is assigned to, with the alarm parameters. |
+
+### hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToAsset
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| asset_identifier | [ string](#string) |  |
+| parameters | [ google.protobuf.Struct](#googleprotobufstruct) |  |
 
 ### hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToModem
 
@@ -1981,6 +1992,8 @@ Things that an alarm is assigned to.
 |  **optional** selection | [optional hiber.assign.AssignmentSelection](#hiberassignassignmentselection) | Select the assignments to list. Optional, when omitted or empty everything is included. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 |  **optional** include_assets_without_assignments | [optional bool](#bool) | Whether to include assets that are in the selection and have no assignments. |
+|  **optional** include_alarm_details | [optional bool](#bool) | Whether to include the full alarms that are assigned, instead of just assignment. |
+|  **optional** apply_unit_preferences | [optional bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
 
 ### hiber.assign.ListAssetAssignments.Response
 
@@ -2002,6 +2015,8 @@ Things that an alarm is assigned to.
 | asset_identifier | [ string](#string) |  |
 | devices | [repeated string](#string) | The devices assigned to this asset. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | The tags for this asset. |
+| alarms | [repeated hiber.assign.Assignment.AlarmAssignment](#hiberassignassignmentalarmassignment) | The identifiers and parameters of the alarms that are assigned to this asset. |
+| alarm_details | [repeated hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | The alarms that are assigned to this asset, if you have permission to view them. |
 
 ### hiber.assign.ListAssignments
 
@@ -2068,7 +2083,7 @@ Things that are assigned to a modem.
 | organization | [ string](#string) |  |
 | modem_number | [ string](#string) |  |
 | message_body_parsers | [repeated hiber.assign.Assignment.ModemMessageBodyParserAssignment](#hiberassignassignmentmodemmessagebodyparserassignment) | The identifiers of the message body parsers that are assigned to this modem. |
-| alarms | [repeated hiber.assign.Assignment.ModemAlarmAssignment](#hiberassignassignmentmodemalarmassignment) | The identifiers and parameters of the alarms that are assigned to this modem. |
+| alarms | [repeated hiber.assign.Assignment.AlarmAssignment](#hiberassignassignmentalarmassignment) | The identifiers and parameters of the alarms that are assigned to this modem. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | The tags for this modem. |
 | message_body_parser_details | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) | The details of the parsers assigned to this modem. |
 | alarm_details | [repeated hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | The alarms that are assigned to this modem, if you have permission to view them. |
@@ -2152,7 +2167,7 @@ Things that an alarm is assigned to.
 | tag | [ hiber.tag.Tag](#hibertagtag) |  |
 | modems | [repeated string](#string) | The modems with this tag. |
 | message_body_parsers | [repeated hiber.assign.Assignment.ModemMessageBodyParserAssignment](#hiberassignassignmentmodemmessagebodyparserassignment) | The identifiers of the message body parsers that are assigned to this tag. |
-| alarms | [repeated hiber.assign.Assignment.ModemAlarmAssignment](#hiberassignassignmentmodemalarmassignment) | The identifiers and parameters of the alarms that are assigned to this tag. |
+| alarms | [repeated hiber.assign.Assignment.AlarmAssignment](#hiberassignassignmentalarmassignment) | The identifiers and parameters of the alarms that are assigned to this tag. |
 | message_body_parser_details | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) | The details of the parsers assigned to this tag. |
 | alarm_details | [repeated hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | The alarms that are assigned to this tag, if you have permission to view them. |
 | asset_identifiers | [repeated string](#string) | The assets assigned to this tag. |
@@ -2198,6 +2213,7 @@ The types of assignment available, like assigning a message body parser to a mod
 | DEFAULT |  | 0 |
 | ASSIGNS_MESSAGE_BODY_PARSER_TO_MODEM | Assignment that assigns a message body parser to a modem. | 1 |
 | ASSIGNS_ALARM_TO_MODEM | Assignment that assigns a modem alarm to a modem. | 2 |
+| ASSIGNS_ALARM_TO_ASSET | Assignment that assigns an alarm to an asset. | 9 |
 | ASSIGNS_MODEM_TO_TAG | Assignment that assigns a modem to a tag. | 4 |
 | ASSIGNS_MESSAGE_BODY_PARSER_TO_TAG | Assignment that assigns a message body parser to a tag, effectively assigning it to all modems with that tag. | 5 |
 | ASSIGNS_ALARM_TO_TAG | Assignment that assigns a modem alarm to a tag, effectively assigning it to all modems with that tag. | 6 |
@@ -3110,7 +3126,8 @@ Simplified version of assign.AssignDirectly.
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
-| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign_to**.modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign_to**.assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) |  |
 | parameters | [map hiber.modem.alarm.AssignModemAlarms.Request.ParametersEntry](#hibermodemalarmassignmodemalarmsrequestparametersentry) | The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
 
 ### hiber.modem.alarm.AssignModemAlarms.Request.ParametersEntry
@@ -3559,7 +3576,8 @@ Simplified version of assign.UnassignDirectly.
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
-| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign_from**.modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign_from**.assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) |  |
 
 ### hiber.modem.alarm.UnassignModemAlarms.Response
 

@@ -219,6 +219,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.value.ValueContext.ValueDeviceContext"><span class="badge">M</span>ValueContext.ValueDeviceContext</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.value.ValueContext.ValueDuration"><span class="badge">M</span>ValueContext.ValueDuration</a>
                 </li>
               
@@ -1064,9 +1068,16 @@ Fields specified here must have been specified in the selection. </p></td>
               
                 <tr>
                   <td>device</td>
-                  <td><a href="#string">string</a></td>
+                  <td><a href="#hiber.value.ValueContext.ValueDeviceContext">ValueContext.ValueDeviceContext</a></td>
                   <td></td>
                   <td><p>The device that produced this value. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>device_number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p><strong>Deprecated.</strong> The device that produced this value. </p></td>
                 </tr>
               
                 <tr>
@@ -1116,6 +1127,27 @@ If multiple assets were assigned at the same time, this value exists for each as
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>device_number</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -1187,6 +1219,37 @@ If multiple assets were assigned at the same time, this value exists for each as
                   <td><a href="#hiber.value.Value">Value</a></td>
                   <td></td>
                   <td><p>The previous value to compare it with. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.value.ValueContext.ValueDeviceContext">ValueContext.ValueDeviceContext</h3>
+        <p>The device data for this value.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>

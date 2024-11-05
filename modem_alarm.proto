@@ -13,6 +13,7 @@ package hiber.modem.alarm;
 
 import "google/protobuf/struct.proto";
 
+import "asset.proto";
 import "base.proto";
 import "field.proto";
 import "modem.proto";
@@ -666,7 +667,11 @@ message AssignModemAlarms {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         optional string organization = 1;
         ModemAlarmSelection alarms = 2;
-        modem.ModemSelection modems = 3;
+
+        oneof assign_to {
+            modem.ModemSelection modems = 3;
+            asset.AssetSelection assets = 5;
+        }
 
         /* The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). */
         map<string, google.protobuf.Struct> parameters = 4;
@@ -687,7 +692,10 @@ message UnassignModemAlarms {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         optional string organization = 1;
         ModemAlarmSelection alarms = 2;
-        modem.ModemSelection modems = 3;
+        oneof unassign_from {
+            modem.ModemSelection modems = 3;
+            asset.AssetSelection assets = 4;
+        }
     }
     message Response {
         repeated AssignedModemAlarm removed_direct_assignments = 1;

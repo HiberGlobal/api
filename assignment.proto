@@ -55,6 +55,9 @@ enum AssignmentType {
     /* Assignment that assigns a modem alarm to a modem. */
     ASSIGNS_ALARM_TO_MODEM = 2;
 
+    /* Assignment that assigns an alarm to an asset. */
+    ASSIGNS_ALARM_TO_ASSET = 9;
+
     /* Assignment that assigns a modem to a tag. */
     ASSIGNS_MODEM_TO_TAG = 4;
 
@@ -90,7 +93,7 @@ enum AssignmentType {
  * (currently only asset device assignment has an ongoing effect) may be cleaned up automatically.
  */
 message Assignment {
-    message ModemAlarmAssignment {
+    message AlarmAssignment {
         string identifier = 1;
         string name = 5;
         string description = 2;
@@ -118,7 +121,7 @@ message Assignment {
 
     oneof assign {
         ModemMessageBodyParserAssignment assign_parser = 3;
-        ModemAlarmAssignment assign_alarm = 5;
+        AlarmAssignment assign_alarm = 5;
         string assign_modem = 6;
         string assign_asset = 8;
     }
@@ -311,6 +314,15 @@ message ListAssetAssignments {
 
         /* Whether to include assets that are in the selection and have no assignments. */
         optional bool include_assets_without_assignments = 4;
+
+        /* Whether to include the full alarms that are assigned, instead of just assignment. */
+        optional bool include_alarm_details = 5;
+
+        /* Apply your UnitPreferences to the alarm checks.
+         * For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for
+         * temperature, the check value will be converted to celsius instead.
+         */
+        optional bool apply_unit_preferences = 6;
     }
 
     message Response {
@@ -324,6 +336,12 @@ message ListAssetAssignments {
 
             /* The tags for this asset. */
             repeated tag.Tag tags = 4;
+
+            /* The identifiers and parameters of the alarms that are assigned to this asset. */
+            repeated Assignment.AlarmAssignment alarms = 5;
+
+            /* The alarms that are assigned to this asset, if you have permission to view them. */
+            repeated modem.alarm.ModemAlarm alarm_details = 6;
         }
 
         repeated AssetAssignment assets = 1;
@@ -374,7 +392,7 @@ message ListModemAssignments {
             repeated Assignment.ModemMessageBodyParserAssignment message_body_parsers = 4;
 
             /* The identifiers and parameters of the alarms that are assigned to this modem. */
-            repeated Assignment.ModemAlarmAssignment alarms = 5;
+            repeated Assignment.AlarmAssignment alarms = 5;
 
             /* The tags for this modem. */
             repeated tag.Tag tags = 8;
@@ -442,7 +460,7 @@ message ListTagAssignments {
             repeated Assignment.ModemMessageBodyParserAssignment message_body_parsers = 4;
 
             /* The identifiers and parameters of the alarms that are assigned to this tag. */
-            repeated Assignment.ModemAlarmAssignment alarms = 5;
+            repeated Assignment.AlarmAssignment alarms = 5;
 
             /* The details of the parsers assigned to this tag. */
             repeated modem.message.bodyparser.ModemMessageBodyParser message_body_parser_details = 6;
@@ -493,6 +511,10 @@ message ListAlarmAssignments {
                 tag.Tag tag = 1;
                 google.protobuf.Struct parameters = 2;
             }
+            message ToAsset {
+                string asset_identifier = 1;
+                google.protobuf.Struct parameters = 2;
+            }
 
             string organization = 1;
             modem.alarm.ModemAlarm alarm = 2;
@@ -502,6 +524,9 @@ message ListAlarmAssignments {
 
             /* The tags this alarm is assigned to, with the alarm parameters. */
             repeated ToTag tags = 4;
+
+            /* The assets this alarm is assigned to, with the alarm parameters. */
+            repeated ToAsset assets = 5;
         }
 
         repeated AlarmAssignment alarms = 1;

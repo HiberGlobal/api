@@ -1,5 +1,30 @@
 # Changelog Hiber API
 
+### 0.215 (2024-11-05)
+
+##### AssignmentService
+
+- Added new `AssignmentType`: `ASSIGNS_ALARM_TO_ASSET`.
+  - Added `alarms` and `alarm_details` to `ListAssetAssignments.Response.AssetAssignment`
+    - Added `include_alarm_details` and `apply_unit_preferences` to `ListAssetAssignments.Request`.
+  - Added `assets` to `ListAlarmAssignments.Response.AlarmAssignment`
+- Renamed `ModemAlarmAssignment` to `AlarmAssignment` for clarity.
+
+##### ExportService
+
+- `AssetValues` export now contains `device.number` and `device.identifier`.
+
+##### ModemAlarmService
+
+- Added `assign_to` `oneof` to `AssignModemAlarms.Request` to pick between assigning to modems or assets.
+- Added `unassign_from` `oneof` to `UnassignModemAlarms.Request` to pick between unassigning to modems or assets.
+
+##### ValueService
+
+- Added more device context to `ValueContext`:
+  - Renamed `device` to `device_number` and deprecated it
+  - Added new object `device` with device `number` and `identifier`.
+
 ### 0.213 (2024-10-22)
 
 ##### AssetService

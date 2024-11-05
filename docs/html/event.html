@@ -598,7 +598,7 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.assign.Assignment.ModemAlarmAssignment"><span class="badge">M</span>Assignment.ModemAlarmAssignment</a>
+                  <a href="#hiber.assign.Assignment.AlarmAssignment"><span class="badge">M</span>Assignment.AlarmAssignment</a>
                 </li>
               
                 <li>
@@ -639,6 +639,10 @@
               
                 <li>
                   <a href="#hiber.assign.ListAlarmAssignments.Response.AlarmAssignment"><span class="badge">M</span>ListAlarmAssignments.Response.AlarmAssignment</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToAsset"><span class="badge">M</span>ListAlarmAssignments.Response.AlarmAssignment.ToAsset</a>
                 </li>
               
                 <li>
@@ -8019,7 +8023,7 @@ Inactive assignments that no longer have an effect may be cleaned up automatical
               
                 <tr>
                   <td>assign_alarm</td>
-                  <td><a href="#hiber.assign.Assignment.ModemAlarmAssignment">Assignment.ModemAlarmAssignment</a></td>
+                  <td><a href="#hiber.assign.Assignment.AlarmAssignment">Assignment.AlarmAssignment</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -8073,7 +8077,7 @@ Inactive assignments that no longer have an effect may be cleaned up automatical
 
         
       
-        <h3 id="hiber.assign.Assignment.ModemAlarmAssignment">Assignment.ModemAlarmAssignment</h3>
+        <h3 id="hiber.assign.Assignment.AlarmAssignment">Assignment.AlarmAssignment</h3>
         <p></p>
 
         
@@ -8502,6 +8506,44 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td><p>The tags this alarm is assigned to, with the alarm parameters. </p></td>
                 </tr>
               
+                <tr>
+                  <td>assets</td>
+                  <td><a href="#hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToAsset">ListAlarmAssignments.Response.AlarmAssignment.ToAsset</a></td>
+                  <td>repeated</td>
+                  <td><p>The assets this alarm is assigned to, with the alarm parameters. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToAsset">ListAlarmAssignments.Response.AlarmAssignment.ToAsset</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>asset_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>parameters</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -8616,6 +8658,22 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td><p>Whether to include assets that are in the selection and have no assignments. </p></td>
                 </tr>
               
+                <tr>
+                  <td>include_alarm_details</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Whether to include the full alarms that are assigned, instead of just assignment. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>apply_unit_preferences</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Apply your UnitPreferences to the alarm checks.
+For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for
+temperature, the check value will be converted to celsius instead. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -8697,6 +8755,20 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
                   <td>repeated</td>
                   <td><p>The tags for this asset. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>alarms</td>
+                  <td><a href="#hiber.assign.Assignment.AlarmAssignment">Assignment.AlarmAssignment</a></td>
+                  <td>repeated</td>
+                  <td><p>The identifiers and parameters of the alarms that are assigned to this asset. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>alarm_details</td>
+                  <td><a href="#hiber.modem.alarm.ModemAlarm">hiber.modem.alarm.ModemAlarm</a></td>
+                  <td>repeated</td>
+                  <td><p>The alarms that are assigned to this asset, if you have permission to view them. </p></td>
                 </tr>
               
             </tbody>
@@ -8950,7 +9022,7 @@ temperature, the check value will be converted to celsius instead. </p></td>
               
                 <tr>
                   <td>alarms</td>
-                  <td><a href="#hiber.assign.Assignment.ModemAlarmAssignment">Assignment.ModemAlarmAssignment</a></td>
+                  <td><a href="#hiber.assign.Assignment.AlarmAssignment">Assignment.AlarmAssignment</a></td>
                   <td>repeated</td>
                   <td><p>The identifiers and parameters of the alarms that are assigned to this modem. </p></td>
                 </tr>
@@ -9293,7 +9365,7 @@ temperature, the check value will be converted to celsius instead. </p></td>
               
                 <tr>
                   <td>alarms</td>
-                  <td><a href="#hiber.assign.Assignment.ModemAlarmAssignment">Assignment.ModemAlarmAssignment</a></td>
+                  <td><a href="#hiber.assign.Assignment.AlarmAssignment">Assignment.AlarmAssignment</a></td>
                   <td>repeated</td>
                   <td><p>The identifiers and parameters of the alarms that are assigned to this tag. </p></td>
                 </tr>
@@ -9483,6 +9555,12 @@ Setting this to true makes this identical to using the Delete rpc. </p></td>
                 <td>ASSIGNS_ALARM_TO_MODEM</td>
                 <td>2</td>
                 <td><p>Assignment that assigns a modem alarm to a modem.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSIGNS_ALARM_TO_ASSET</td>
+                <td>9</td>
+                <td><p>Assignment that assigns an alarm to an asset.</p></td>
               </tr>
             
               <tr>
@@ -17568,6 +17646,13 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                 </tr>
               
                 <tr>
+                  <td>assets</td>
+                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>parameters</td>
                   <td><a href="#hiber.modem.alarm.AssignModemAlarms.Request.ParametersEntry">AssignModemAlarms.Request.ParametersEntry</a></td>
                   <td>repeated</td>
@@ -18643,6 +18728,13 @@ be available to unencrypted values due to performance issues. </p></td>
                 <tr>
                   <td>modems</td>
                   <td><a href="#hiber.modem.ModemSelection">hiber.modem.ModemSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>assets</td>
+                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>

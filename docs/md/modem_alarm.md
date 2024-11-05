@@ -70,6 +70,13 @@ advanced use cases, like assigning to a tag.
 - Enums
   - [ModemAlarm.TriggerCondition](#modemalarmtriggercondition)
 
+- Referenced messages from [asset.proto](#referenced-messages-from-assetproto)
+  - [hiber.asset.Asset](#hiberassetasset)
+  - [hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice)
+  - [hiber.asset.AssetSelection](#hiberassetassetselection)
+
+    - [hiber.asset.Asset.Type](#hiberassetassettype)
+
 - Referenced messages from [field.proto](#referenced-messages-from-fieldproto)
   - [hiber.field.Field](#hiberfieldfield)
   - [hiber.field.Field.Enum](#hiberfieldfieldenum)
@@ -226,7 +233,8 @@ Simplified version of assign.AssignDirectly.
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarms | [ ModemAlarmSelection](#modemalarmselection) |  |
-| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign_to**.modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign_to**.assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) |  |
 | parameters | [map AssignModemAlarms.Request.ParametersEntry](#assignmodemalarmsrequestparametersentry) | The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
 
 ### AssignModemAlarms.Request.ParametersEntry
@@ -675,7 +683,8 @@ Simplified version of assign.UnassignDirectly.
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarms | [ ModemAlarmSelection](#modemalarmselection) |  |
-| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign_from**.modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign_from**.assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) |  |
 
 ### UnassignModemAlarms.Response
 
@@ -819,6 +828,94 @@ Condition determining when an alarm is triggered if it has multiple checks.
 | DEFAULT | Defaults to the current value when updating, or to ANY_CHECK_FAILED when creating. | 0 |
 | ANY_CHECK_FAILED | Trigger the alarm when any of the checks fail. This is useful when providing a single device health alarm, that checks, for example, battery, operating temperature, etc. and should trigger when any of those are outside the expected range. | 1 |
 | ALL_CHECKS_FAILED | Trigger the alarm only when all checks fail. This is useful when creating a combined alarm, where several data points factor into the decisions to trigger the alarm, for example, combining a check on the current value with a delta check on the historical values, to trigger only if the value is high for a longer period. | 2 |
+
+
+
+## Referenced messages from asset.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [asset.proto](https://github.com/HiberGlobal/api/blob/master/asset.proto).
+
+
+### hiber.asset.Asset
+
+Assets are things that collect the data produced by devices.
+Devices are assigned to assets to handle data ownership.
+When a device is replaced, the data flow for the asset continues with the data from the new device.
+Multiple devices can be assigned to an asset, though it is advisable to only do so when they send
+different type of data (i.e. one sensor for pressure and one for flow).
+
+For example, if you have a Well, you might have assets for Annulus A and the tubing head.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifier | [ string](#string) |  |
+| name | [ string](#string) | Name of the asset |
+|  **optional** type | [optional hiber.asset.Asset.Type](#hiberassetassettype) | Type of the asset, if any of the predefined types applies. |
+|  **optional** description | [optional string](#string) | Longer detailed description of the asset. |
+|  **optional** notes | [optional string](#string) | Multiline notes field that can be used to add additional information to an asset. |
+|  **optional** time_zone | [optional string](#string) | Optional time zone for the asset. This can, for example, be used to calculate SLAs on a daily basis, adjusted by time zone. |
+|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this asset. |
+| metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Metadata for the asset. This can be automatically populated from linked devices or manually added. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | Tags assigned to this asset |
+| devices | [repeated hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice) | Devices assigned to this asset |
+| inactive_devices | [repeated hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice) | Devices that were assigned to this asset in the past |
+| organization | [ string](#string) | The organization that owns this asset. Typically only relevant if child organizations are included. |
+
+### hiber.asset.Asset.AssignedDevice
+
+A device assigned to this asset.
+Non-operational values that the device produces will be linked to this asset
+(i.e. pressure, but not battery level).
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| number | [ string](#string) |  |
+| identifiers | [repeated string](#string) |  |
+|  **optional** name | [optional string](#string) |  |
+|  **optional** type | [optional string](#string) |  |
+|  **optional** last_message_sent_at | [optional hiber.Timestamp](#hibertimestamp) |  |
+|  **optional** last_message_received_at | [optional hiber.Timestamp](#hibertimestamp) |  |
+|  **optional** assignment_time_range | [optional hiber.TimeRange](#hibertimerange) |  |
+|  **optional** health | [optional hiber.health.HealthLevel](#hiberhealthhealthlevel) |  |
+| numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) |  |
+
+### hiber.asset.AssetSelection
+
+Selection object for assets.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifiers | [repeated string](#string) | Select assets by identifier. |
+| search | [repeated string](#string) | Search assets by (partial, case insensitive) identifier, name, description, notes and time zone. |
+| types | [repeated hiber.asset.Asset.Type](#hiberassetassettype) | Select assets by type. |
+|  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) | Select assets by tags |
+
+
+### Enums
+#### hiber.asset.Asset.Type
+Predefined assets types that can be used to say something about the data.
+Currently a limited list, but more may be added in the future.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| UNKNOWN |  | 0 |
+| WELL_ANNULUS_A |  | 1 |
+| WELL_ANNULUS_B |  | 2 |
+| WELL_ANNULUS_C |  | 3 |
+| WELL_ANNULUS_D |  | 4 |
+| WELL_HEAD |  | 15 |
+| WELL_TUBING_HEAD |  | 5 |
+| WELL_TUBING |  | 6 |
+| WELL_FLOW_LINE |  | 7 |
+| WELL_CASING |  | 8 |
+| WELL_PRODUCTION_CASING_PRESSURE |  | 9 |
+| WELL_INTERMITTENT_CASING_PRESSURE |  | 10 |
+| PIPELINE |  | 11 |
+| PRODUCTION_LINE |  | 12 |
+| GAS_MANIFOLD |  | 13 |
+| PRODUCTION_MANIFOLD |  | 14 |
 
 
 
