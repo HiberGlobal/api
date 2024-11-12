@@ -10,6 +10,7 @@
     "errorMessages": {
       "example-check-id": "Expected battery to be within 20..100%, but it is now at 15%!"
     },
+    "resolveIdentifier":"resolve-56-example-identifier:AAAA AAAA",
     "tags": [
       {
         "id": "1",
@@ -83,5 +84,6 @@
       }
     }
   ],
-  "isWarning": false
+  "isWarning": false,
+  "resolveIdentifier": "resolve-56-example-identifier:AAAA AAAA"
 }

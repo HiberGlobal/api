@@ -114,6 +114,7 @@ message ValueContext {
     message ValueDeviceContext {
         string number = 1;
         string identifier = 2;
+        string name = 3;
     }
 
     /* The amount of time a field for a modem was at different values. */

@@ -28,6 +28,7 @@ service CurrentUserService {
 
     rpc UpdateMissionControlSettings (UpdateMissionControlSettingsRequest) returns (UpdateMissionControlSettingsRequest.Response);
     rpc AcceptTermsAndConditions (AcceptTermsAndConditionsRequest) returns (AcceptTermsAndConditionsRequest.Response);
+    rpc LogPasswordUpdated (LogPasswordUpdatedRequest) returns (LogPasswordUpdatedRequest.Response);
 
     rpc OverrideRoles (OverrideRoles.Request) returns (OverrideRoles.Response);
     rpc RestoreRoles (OverrideRoles.Restore.Request) returns (OverrideRoles.Restore.Response);
@@ -85,6 +86,12 @@ message CurrentUser {
     bool accepted_tac = 12;
 
     string user_hash = 13;
+
+    /* Whether a password reset is recommended for this user. */
+    bool password_reset_recommended = 16;
+
+    /* Why a password reset is recommended for this user. */
+    optional string password_reset_recommended_reason = 17;
 }
 
 /* Get your personal data. */
@@ -172,6 +179,12 @@ message AcceptTermsAndConditionsRequest {
     }
 
     bool accept_tac = 1;
+}
+
+/* Log that the user has reset their password. */
+message LogPasswordUpdatedRequest {
+    message Response {
+    }
 }
 
 /* List all organizations that can be impersonated. */

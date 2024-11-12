@@ -270,6 +270,14 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.user.LogPasswordUpdatedRequest"><span class="badge">M</span>LogPasswordUpdatedRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.user.LogPasswordUpdatedRequest.Response"><span class="badge">M</span>LogPasswordUpdatedRequest.Response</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.user.OverrideRoles"><span class="badge">M</span>OverrideRoles</a>
                 </li>
               
@@ -816,6 +824,20 @@ when used by a customer support operator. </p></td>
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>password_reset_recommended</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether a password reset is recommended for this user. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>password_reset_recommended_reason</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Why a password reset is recommended for this user. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -944,6 +966,20 @@ when used by a customer support operator. </p></td>
           </table>
 
           
+
+        
+      
+        <h3 id="hiber.user.LogPasswordUpdatedRequest">LogPasswordUpdatedRequest</h3>
+        <p>Log that the user has reset their password.</p>
+
+        
+
+        
+      
+        <h3 id="hiber.user.LogPasswordUpdatedRequest.Response">LogPasswordUpdatedRequest.Response</h3>
+        <p></p>
+
+        
 
         
       
@@ -1287,6 +1323,13 @@ If no organizations are provided, all overrides will be removed. </p></td>
                 <td>AcceptTermsAndConditions</td>
                 <td><a href="#hiber.user.AcceptTermsAndConditionsRequest">AcceptTermsAndConditionsRequest</a></td>
                 <td><a href="#hiber.user.AcceptTermsAndConditionsRequest.Response">AcceptTermsAndConditionsRequest.Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LogPasswordUpdated</td>
+                <td><a href="#hiber.user.LogPasswordUpdatedRequest">LogPasswordUpdatedRequest</a></td>
+                <td><a href="#hiber.user.LogPasswordUpdatedRequest.Response">LogPasswordUpdatedRequest.Response</a></td>
                 <td><p></p></td>
               </tr>
             

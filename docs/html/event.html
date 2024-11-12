@@ -3107,7 +3107,14 @@ for the device (and organization). </p></td>
                   <td>resolved_at</td>
                   <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
                   <td></td>
-                  <td><p>When this alarm event was resolved. </p></td>
+                  <td><p>Whether this event was resolved. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>resolve_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The identifier to use when resolving this event. Only present when not resolved </p></td>
                 </tr>
               
                 <tr>
@@ -7524,10 +7531,10 @@ Overrides unbundled_events in EventSelection message. </p></td>
             <tbody>
               
                 <tr>
-                  <td>event</td>
-                  <td><a href="#hiber.event.Event">Event</a></td>
+                  <td>resolved</td>
+                  <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The amount of events that were resolved. </p></td>
                 </tr>
               
             </tbody>
@@ -22137,18 +22144,6 @@ Used as an identifier for the organization. </p></td>
                 <td>UNKNOWN</td>
                 <td>0</td>
                 <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>HIBER</td>
-                <td>1</td>
-                <td><p>The default Hiber set of features including Mission Control and the API</p></td>
-              </tr>
-            
-              <tr>
-                <td>HILO</td>
-                <td>2</td>
-                <td><p>A limited set of features corresponding to the HiberHilo product.</p></td>
               </tr>
             
               <tr>

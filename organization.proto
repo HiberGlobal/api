@@ -50,12 +50,6 @@ message Organization {
     enum Feature {
         UNKNOWN = 0;
 
-        /* The default Hiber set of features including Mission Control and the API */
-        HIBER = 1;
-
-        /* A limited set of features corresponding to the HiberHilo product. */
-        HILO = 2;
-
         /* Required to manually create modems using the ModemService. */
         MODEM_CREATION = 4;
 
@@ -71,7 +65,7 @@ message Organization {
         /* Use the new assets as primary data owner in Mission Control dashboards. */
         ASSET_DASHBOARD = 11;
 
-        reserved 3, 7, 8, 9;
+        reserved 1, 2, 3, 7, 8, 9;
     }
 
     /* The slug for this organization, used to identify organizations */

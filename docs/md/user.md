@@ -219,6 +219,7 @@
 | email | [ string](#string) |  |
 | name | [ string](#string) |  |
 |  **optional** password | [optional string](#string) | Optional. If no password is given, the account can only be accessed using a password reset. |
+|  **optional** password_reset | [optional bool](#bool) | Optional. If a password is given, this will ask the user to change their password after the first login. |
 | roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new user should get. |
 |  **optional** send_verification_mail | [optional bool](#bool) | Send an automated email prompting the user to verify their email address. |
 |  **optional** send_password_reset_mail | [optional bool](#bool) | Send an automated email prompting the user to set a password. Recommended when password is not set. |

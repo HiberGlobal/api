@@ -26,6 +26,8 @@
   - [ListOrganizationInvitesRequest](#listorganizationinvitesrequest)
   - [ListOrganizationInvitesRequest.Invite](#listorganizationinvitesrequestinvite)
   - [ListOrganizationInvitesRequest.Response](#listorganizationinvitesrequestresponse)
+  - [LogPasswordUpdatedRequest](#logpasswordupdatedrequest)
+  - [LogPasswordUpdatedRequest.Response](#logpasswordupdatedrequestresponse)
   - [OverrideRoles](#overrideroles)
   - [OverrideRoles.Request](#overriderolesrequest)
   - [OverrideRoles.Response](#overriderolesresponse)
@@ -191,6 +193,12 @@ others require an organization to be linked.
 
 
 
+### LogPasswordUpdated
+> **rpc** LogPasswordUpdated([LogPasswordUpdatedRequest](#logpasswordupdatedrequest))
+    [LogPasswordUpdatedRequest.Response](#logpasswordupdatedrequestresponse)
+
+
+
 ### OverrideRoles
 > **rpc** OverrideRoles([OverrideRoles.Request](#overriderolesrequest))
     [OverrideRoles.Response](#overriderolesresponse)
@@ -298,6 +306,8 @@ Your personal data.
 | mission_control_settings | [ string](#string) |  |
 | accepted_tac | [ bool](#bool) | Whether the user accepted the terms and conditions. |
 | user_hash | [ string](#string) |  |
+| password_reset_recommended | [ bool](#bool) | Whether a password reset is recommended for this user. |
+|  **optional** password_reset_recommended_reason | [optional string](#string) | Why a password reset is recommended for this user. |
 
 ### CurrentUserRequest
 
@@ -343,6 +353,16 @@ List all invitations from organizations.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organizations | [repeated ListOrganizationInvitesRequest.Invite](#listorganizationinvitesrequestinvite) |  |
+
+### LogPasswordUpdatedRequest
+
+Log that the user has reset their password.
+
+
+### LogPasswordUpdatedRequest.Response
+
+
+
 
 ### OverrideRoles
 
@@ -676,8 +696,6 @@ Note that the organization field specifies the organization, it is not used to u
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | UNKNOWN |  | 0 |
-| HIBER | The default Hiber set of features including Mission Control and the API | 1 |
-| HILO | A limited set of features corresponding to the HiberHilo product. | 2 |
 | MODEM_CREATION | Required to manually create modems using the ModemService. | 4 |
 | EARLY_ACCESS | Used for organizations that get early access to features. | 5 |
 | EXPERIMENTAL | Used for organizations that get access to experimental features. e.g. feature work in progress. | 6 |

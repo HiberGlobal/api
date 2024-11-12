@@ -33,6 +33,8 @@
   - [hiber.user.ListOrganizationInvitesRequest](#hiberuserlistorganizationinvitesrequest)
   - [hiber.user.ListOrganizationInvitesRequest.Invite](#hiberuserlistorganizationinvitesrequestinvite)
   - [hiber.user.ListOrganizationInvitesRequest.Response](#hiberuserlistorganizationinvitesrequestresponse)
+  - [hiber.user.LogPasswordUpdatedRequest](#hiberuserlogpasswordupdatedrequest)
+  - [hiber.user.LogPasswordUpdatedRequest.Response](#hiberuserlogpasswordupdatedrequestresponse)
   - [hiber.user.OverrideRoles](#hiberuseroverrideroles)
   - [hiber.user.OverrideRoles.Request](#hiberuseroverriderolesrequest)
   - [hiber.user.OverrideRoles.Response](#hiberuseroverriderolesresponse)
@@ -205,6 +207,8 @@ Your personal data.
 | mission_control_settings | [ string](#string) |  |
 | accepted_tac | [ bool](#bool) | Whether the user accepted the terms and conditions. |
 | user_hash | [ string](#string) |  |
+| password_reset_recommended | [ bool](#bool) | Whether a password reset is recommended for this user. |
+|  **optional** password_reset_recommended_reason | [optional string](#string) | Why a password reset is recommended for this user. |
 
 ### hiber.user.CurrentUserRequest
 
@@ -250,6 +254,16 @@ List all invitations from organizations.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organizations | [repeated hiber.user.ListOrganizationInvitesRequest.Invite](#hiberuserlistorganizationinvitesrequestinvite) |  |
+
+### hiber.user.LogPasswordUpdatedRequest
+
+Log that the user has reset their password.
+
+
+### hiber.user.LogPasswordUpdatedRequest.Response
+
+
+
 
 ### hiber.user.OverrideRoles
 

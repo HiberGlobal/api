@@ -199,6 +199,9 @@ message CreateUserRequest {
     /* Optional. If no password is given, the account can only be accessed using a password reset. */
     optional string password = 4;
 
+    /* Optional. If a password is given, this will ask the user to change their password after the first login. */
+    optional bool password_reset = 11;
+
     /* Roles the new user should get. */
     Filter.Roles roles = 10;
 

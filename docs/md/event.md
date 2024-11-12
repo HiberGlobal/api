@@ -681,7 +681,8 @@ the contained object.
 | title | [ string](#string) |  |
 | description | [ string](#string) |  |
 | time | [ hiber.Timestamp](#hibertimestamp) |  |
-| resolved_at | [ hiber.Timestamp](#hibertimestamp) | When this alarm event was resolved. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **resolved_status**.resolved_at | [ hiber.Timestamp](#hibertimestamp) | Whether this event was resolved. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **resolved_status**.resolve_identifier | [ string](#string) | The identifier to use when resolving this event. Only present when not resolved |
 | health_level_after_resolved | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Optional health that this alarm event causes after it has been resolved. |
 | health_level_after_resolved_until | [ hiber.Timestamp](#hibertimestamp) | How long the optional health that this alarm event causes after it has been resolved lasts. |
 
@@ -1704,7 +1705,7 @@ Resolve a resolvable event using its resolve_identifier.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| event | [ Event](#event) |  |
+| resolved | [ uint32](#uint32) | The amount of events that were resolved. |
 
 ### UpdateEventHealthConfiguration
 
@@ -4445,8 +4446,6 @@ Note that the organization field specifies the organization, it is not used to u
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | UNKNOWN |  | 0 |
-| HIBER | The default Hiber set of features including Mission Control and the API | 1 |
-| HILO | A limited set of features corresponding to the HiberHilo product. | 2 |
 | MODEM_CREATION | Required to manually create modems using the ModemService. | 4 |
 | EARLY_ACCESS | Used for organizations that get early access to features. | 5 |
 | EXPERIMENTAL | Used for organizations that get access to experimental features. e.g. feature work in progress. | 6 |

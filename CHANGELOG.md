@@ -1,5 +1,35 @@
 # Changelog Hiber API
 
+### 0.216 (2024-11-12)
+
+##### AssignmentService
+
+- fixed a bug where multiple overlapping assignments of the same device to the same asset were allowed.
+- Improved handling of `Assign.Request.override_conflicting_assignments` to allow overriding of more types of conflicts.
+  - Some conflicts will only be resolved if the asset and device are the same as the existing assignment (i.e. expanding or replacing an assignment).
+
+##### OrganizationService
+
+- Removed some unused `Organization.Feature`s:
+  - `HIBER`
+  - `HILO`
+
+##### CurrentUserService
+
+- Added `CurrentUser.password_reset_recommended` to indicate we should ask the user to change their password when they next log in.
+  - Added `CurrentUser.password_reset_recommended_reason` with the reason for the request.
+- Added `LogPasswordUpdated` to clear the `CurrentUser.password_reset_recommended`.
+
+##### UserService
+
+- Added `CreateUserRequest.password_reset` to ask the user to change their password when they next log in.
+
+##### EventService
+
+- Added `resolve_identifier` to `AlarmTriggeredEvent` to be able to resolve it using the resolve call.
+- Removed `ResolveEvent.Response.event` in favor of a count.
+  - Added `ResolveEvent.Response.resolved` as a count of events that were resolved.
+
 ### 0.215 (2024-11-05)
 
 ##### AssignmentService

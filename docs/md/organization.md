@@ -412,8 +412,6 @@ Note that the organization field specifies the organization, it is not used to u
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | UNKNOWN |  | 0 |
-| HIBER | The default Hiber set of features including Mission Control and the API | 1 |
-| HILO | A limited set of features corresponding to the HiberHilo product. | 2 |
 | MODEM_CREATION | Required to manually create modems using the ModemService. | 4 |
 | EARLY_ACCESS | Used for organizations that get early access to features. | 5 |
 | EXPERIMENTAL | Used for organizations that get access to experimental features. e.g. feature work in progress. | 6 |

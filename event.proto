@@ -483,7 +483,13 @@ message Event {
             Timestamp time = 11;
 
             /* When this alarm event was resolved. */
-            Timestamp resolved_at = 13;
+            oneof resolved_status {
+                /* Whether this event was resolved. */
+                Timestamp resolved_at = 13;
+
+                /* The identifier to use when resolving this event. Only present when not resolved */
+                string resolve_identifier = 16;
+            }
 
             /* Optional health that this alarm event causes after it has been resolved. */
             health.HealthLevel health_level_after_resolved = 14;
@@ -1059,7 +1065,10 @@ message ResolveEvent {
         string resolve_identifier = 2;
     }
     message Response {
-        Event event = 1;
+        /* The amount of events that were resolved. */
+        uint32 resolved = 2;
+
+        reserved 1;
     }
 }
 

@@ -267,6 +267,7 @@ The device data for this value.
 | ----- | ---- | ----------- |
 | number | [ string](#string) |  |
 | identifier | [ string](#string) |  |
+| name | [ string](#string) |  |
 
 ### ValueContext.ValueDuration
 
