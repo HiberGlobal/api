@@ -28,6 +28,8 @@
   - [RemoveUserRequest.Response](#removeuserrequestresponse)
   - [ResetUserPasswordRequest](#resetuserpasswordrequest)
   - [ResetUserPasswordRequest.Response](#resetuserpasswordrequestresponse)
+  - [SuspendUserRequest](#suspenduserrequest)
+  - [SuspendUserRequest.Response](#suspenduserrequestresponse)
   - [TestUserValidationRequest](#testuservalidationrequest)
   - [TestUserValidationRequest.Response](#testuservalidationrequestresponse)
   - [UpdateUserRoles](#updateuserroles)
@@ -121,6 +123,12 @@
 ### Approve
 > **rpc** Approve([ApproveUserRequest](#approveuserrequest))
     [ApproveUserRequest.Response](#approveuserrequestresponse)
+
+
+
+### Suspend
+> **rpc** Suspend([SuspendUserRequest](#suspenduserrequest))
+    [SuspendUserRequest.Response](#suspenduserrequestresponse)
 
 
 
@@ -357,6 +365,22 @@ List all invited users (email addresses).
 | user_id | [ string](#string) |  |
 
 ### ResetUserPasswordRequest.Response
+
+
+
+
+### SuspendUserRequest
+
+Suspend a user, leaving them in the organization but blocking frontend access.
+
+Does not disable tokens! The user maybe still use those to access the system.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| user_ids | [repeated string](#string) |  |
+
+### SuspendUserRequest.Response
 
 
 

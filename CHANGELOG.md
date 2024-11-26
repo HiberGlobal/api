@@ -1,5 +1,13 @@
 # Changelog Hiber API
 
+### 0.218 (2024-11-26)
+
+##### UserService
+
+- Added `Suspend` to suspend a user, leaving them in the organization but blocking frontend access.
+  - Does not disable tokens! The user maybe still use those to access the system.
+  - This is only allowed if the user is only linked to your organization, since it would aotherwise block access to the other organizations as well.
+
 ### 0.216 (2024-11-12)
 
 ##### AssignmentService
