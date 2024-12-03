@@ -1,5 +1,16 @@
 # Changelog Hiber API
 
+### 0.219 (2024-12-03)
+
+##### ValueSimulationService
+
+- The `unit` and `numeric-value-type` are now required for numeric value simulation.
+
+##### ValueService
+
+- Added `Value.Numeric.Type.OTHER` and `Value.Numeric.Other` for value types that are known but not supported.
+- Reordered and added documentation for `Value.Numeric.Type` values and `Value.Numeric` type objects.
+
 ### 0.218 (2024-11-26)
 
 ##### UserService

@@ -422,8 +422,8 @@ Contains a set simulation_interval for which each interval a simulation will be 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | values | [repeated double](#double) |  |
-|  **optional** type | [optional hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) |  |
-|  **optional** unit | [optional hiber.UnitOfMeasurement](#hiberunitofmeasurement) |  |
+| type | [ hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) |  |
+| unit | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) |  |
 
 ### hiber.simulation.ValueSimulation.ValueRotation.Text
 
@@ -1135,6 +1135,7 @@ Unit of measurement for a numeric value.
 | FLOW_CUBIC_FEET_PER_SECOND |  | 50 |
 | REVOLUTIONS_PER_MINUTE |  | 44 |
 | ITEMS_PER_24_HOURS |  | 45 |
+| OTHER |  | 54 |
 
 ## Scalar Value Types
 

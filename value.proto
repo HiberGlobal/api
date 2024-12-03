@@ -38,20 +38,54 @@ message Value {
          */
         enum Type {
             TYPE_UNKNOWN = 0;
-            PERCENTAGE = 1;
-            TEMPERATURE = 2;
-            DISTANCE = 3;
-            PRESSURE = 4;
-            VOLTAGE = 5;
-            SPEED = 6;
-            VOLUME = 7;
-            DURATION = 8;
-            FUEL_EFFICIENCY = 9;
-            MASS = 10;
+
+            /* Battery level, as a percentage. */
             BATTERY_LEVEL = 11;
+
+            /* Distance in metric or imperial units. */
+            DISTANCE = 3;
+
+            /* Time period. */
+            DURATION = 8;
+
+            /* Volume per time period. */
             FLOW = 12;
-            ROTATION_SPEED = 13;
+
+            /* Fuel efficiency, e.g. mpg or l/100km. */
+            FUEL_EFFICIENCY = 9;
+
+            /* Mass. */
+            MASS = 10;
+
+            /* Known unit that is not (yet) supported.
+             * This could be a very specific value, like a counter,
+             * or something like energy in joules that is not available.
+             */
+            OTHER = 15;
+
+            /* A percentage, typically 0-100%. */
+            PERCENTAGE = 1;
+
+            /* Pressure. */
+            PRESSURE = 4;
+
+            /* Count per time period, e.g. the amount of items counted in a 24 hour window. */
             RATE = 14;
+
+            /* Speed that something rotates per time period, typically in revolutions per minute. */
+            ROTATION_SPEED = 13;
+
+            /* Temperature. */
+            TEMPERATURE = 2;
+
+            /* Speed, e.g. km/h. */
+            SPEED = 6;
+
+            /* Voltage, e.g. mV. */
+            VOLTAGE = 5;
+
+            /* Volume, e.g. m³. */
+            VOLUME = 7;
         }
 
         /* Special case for battery level, since it can be provided in many units.
@@ -65,17 +99,6 @@ message Value {
             }
 
             BatteryLevelUnit unit = 2;
-            reserved 1,3,4;
-        }
-
-        /* The value for rotation speed. The only value is revolutions per minute (RPM), therefore it is not included in
-         * unit preferences.
-         */
-        message RotationSpeed {
-            enum RotationSpeedUnit {
-                REVOLUTIONS_PER_MINUTE = 0; // rpm
-            }
-            RotationSpeedUnit unit = 2;
             reserved 1,3,4;
         }
 
@@ -99,7 +122,37 @@ message Value {
             reserved 1,3,4;
         }
 
-        /* The value is a distance value, converted to your preferred distance unit. */
+        message Duration {
+            /* Unit of duration. */
+            enum DurationUnit {
+                MILLISECONDS = 0; // ms
+                SECONDS = 1; // s
+                MINUTES = 2; // min
+                HOURS = 3; // h
+                DAYS = 4; // d
+                WEEKS = 5; // w
+            }
+            DurationUnit unit = 4;
+            google.protobuf.Duration duration = 1;
+            reserved 2,3,5;
+        }
+
+        message Flow {
+            /* Unit of volume per time. */
+            enum FlowUnit {
+                CUBIC_METER_PER_HOUR = 0; // m³/h
+                BARRELS_PER_DAY = 1; // bbl/d
+                CUBIC_METER_PER_SECOND = 2; // m³/s
+                CUBIC_FEET_PER_HOUR = 3; // ft³/h
+                CUBIC_FEET_PER_SECOND = 4; // ft³/s
+                LITER_PER_HOUR = 5; // l/h
+                LITER_PER_SECOND = 6; // l/s
+            }
+            FlowUnit unit = 2;
+            reserved 1,3,4;
+        }
+
+        /* The value is a fuel efficiency value, converted to your preferred fuel efficiency unit. */
         message FuelEfficiency {
             /* Unit of fuel efficiency */
             enum FuelEfficiencyUnit {
@@ -113,6 +166,24 @@ message Value {
             }
             FuelEfficiencyUnit unit = 2;
             reserved 1,3,4;
+        }
+
+        /* The value is a mass value, converted to your preferred mass unit. */
+        message Mass {
+            /* Unit of mass. */
+            enum MassUnit {
+                KILOGRAMS = 0; // kg
+                POUNDS = 1; // lb
+            }
+            MassUnit unit = 2;
+            reserved 1,3,4;
+        }
+
+        /* Known unit that is not (yet) supported.
+         * This could be a very specific value, like a counter,
+         * or something like energy in joules that is not available.
+         */
+        message Other {
         }
 
         /* The value is a percentage. */
@@ -136,6 +207,27 @@ message Value {
                 KILOGRAM_PER_CENTIMETER_SQUARED = 3; // kg/cm²
             }
             PressureUnit unit = 2;
+            reserved 1,3,4;
+        }
+
+        message Rate {
+            enum RateUnit {
+                /* The amount of items counted in a 24 hour window. */
+                ITEMS_PER_24_HOURS = 0;
+            }
+            RateUnit unit = 2;
+            uint32 value = 1;
+            reserved 3,4;
+        }
+
+        /* The value for rotation speed. The only value is revolutions per minute (RPM), therefore it is not included in
+         * unit preferences.
+         */
+        message RotationSpeed {
+            enum RotationSpeedUnit {
+                REVOLUTIONS_PER_MINUTE = 0; // rpm
+            }
+            RotationSpeedUnit unit = 2;
             reserved 1,3,4;
         }
 
@@ -190,57 +282,6 @@ message Value {
             reserved 1,3,4;
         }
 
-        /* The value is a volume value, converted to your preferred volume unit. */
-        message Mass {
-            /* Unit of mass. */
-            enum MassUnit {
-                KILOGRAMS = 0; // kg
-                POUNDS = 1; // lb
-            }
-            MassUnit unit = 2;
-            reserved 1,3,4;
-        }
-
-        message Flow {
-            /* Unit of volume per time. */
-            enum FlowUnit {
-                CUBIC_METER_PER_HOUR = 0; // m³/h
-                BARRELS_PER_DAY = 1; // bbl/d
-                CUBIC_METER_PER_SECOND = 2; // m³/s
-                CUBIC_FEET_PER_HOUR = 3; // ft³/h
-                CUBIC_FEET_PER_SECOND = 4; // ft³/s
-                LITER_PER_HOUR = 5; // l/h
-                LITER_PER_SECOND = 6; // l/s
-            }
-            FlowUnit unit = 2;
-            reserved 1,3,4;
-        }
-
-        message Rate {
-            enum RateUnit {
-                /* The amount of items counted in a 24 hour window. */
-                ITEMS_PER_24_HOURS = 0;
-            }
-            RateUnit unit = 2;
-            uint32 value = 1;
-            reserved 3,4;
-        }
-
-        message Duration {
-            /* Unit of duration. */
-            enum DurationUnit {
-                MILLISECONDS = 0; // ms
-                SECONDS = 1; // s
-                MINUTES = 2; // min
-                HOURS = 3; // h
-                DAYS = 4; // d
-                WEEKS = 5; // w
-            }
-            DurationUnit unit = 4;
-            google.protobuf.Duration duration = 1;
-            reserved 2,3,5;
-        }
-
         Type type = 1;
         oneof typed_value {
             BatteryLevel battery_level = 11;
@@ -257,6 +298,7 @@ message Value {
             Flow flow = 13;
             RotationSpeed rotation_speed = 16;
             Rate rate = 17;
+            Other other = 22;
 
             double unknown = 15;
         }

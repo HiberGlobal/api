@@ -60,8 +60,8 @@ message ValueSimulation {
 
         message Numeric {
             repeated double values = 1;
-            optional value.Value.Numeric.Type type = 2;
-            optional UnitOfMeasurement unit = 3;
+            value.Value.Numeric.Type type = 2;
+            UnitOfMeasurement unit = 3;
         }
         message Text {
             repeated string values = 1;

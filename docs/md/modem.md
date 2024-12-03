@@ -101,6 +101,7 @@ used to identify them.
   - [hiber.value.Value.Numeric.Flow](#hibervaluevaluenumericflow)
   - [hiber.value.Value.Numeric.FuelEfficiency](#hibervaluevaluenumericfuelefficiency)
   - [hiber.value.Value.Numeric.Mass](#hibervaluevaluenumericmass)
+  - [hiber.value.Value.Numeric.Other](#hibervaluevaluenumericother)
   - [hiber.value.Value.Numeric.Percentage](#hibervaluevaluenumericpercentage)
   - [hiber.value.Value.Numeric.Pressure](#hibervaluevaluenumericpressure)
   - [hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate)
@@ -1183,6 +1184,7 @@ If the value is numeric, this specifies the unit, value, etc.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **typed_value**.flow | [ hiber.value.Value.Numeric.Flow](#hibervaluevaluenumericflow) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **typed_value**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed](#hibervaluevaluenumericrotationspeed) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **typed_value**.rate | [ hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **typed_value**.other | [ hiber.value.Value.Numeric.Other](#hibervaluevaluenumericother) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **typed_value**.unknown | [ double](#double) |  |
 | value | [ double](#double) |  |
 | textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
@@ -1226,7 +1228,7 @@ The value is a distance value, converted to your preferred distance unit.
 
 ### hiber.value.Value.Numeric.FuelEfficiency
 
-The value is a distance value, converted to your preferred distance unit.
+The value is a fuel efficiency value, converted to your preferred fuel efficiency unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1234,11 +1236,18 @@ The value is a distance value, converted to your preferred distance unit.
 
 ### hiber.value.Value.Numeric.Mass
 
-The value is a volume value, converted to your preferred volume unit.
+The value is a mass value, converted to your preferred mass unit.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | unit | [ hiber.value.Value.Numeric.Mass.MassUnit](#hibervaluevaluenumericmassmassunit) |  |
+
+### hiber.value.Value.Numeric.Other
+
+Known unit that is not (yet) supported.
+This could be a very specific value, like a counter,
+or something like energy in joules that is not available.
+
 
 ### hiber.value.Value.Numeric.Percentage
 
@@ -1434,20 +1443,21 @@ Supported types will automatically convert to the preferred unit (based on the u
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | TYPE_UNKNOWN |  | 0 |
-| PERCENTAGE |  | 1 |
-| TEMPERATURE |  | 2 |
-| DISTANCE |  | 3 |
-| PRESSURE |  | 4 |
-| VOLTAGE |  | 5 |
-| SPEED |  | 6 |
-| VOLUME |  | 7 |
-| DURATION |  | 8 |
-| FUEL_EFFICIENCY |  | 9 |
-| MASS |  | 10 |
-| BATTERY_LEVEL |  | 11 |
-| FLOW |  | 12 |
-| ROTATION_SPEED |  | 13 |
-| RATE |  | 14 |
+| BATTERY_LEVEL | Battery level, as a percentage. | 11 |
+| DISTANCE | Distance in metric or imperial units. | 3 |
+| DURATION | Time period. | 8 |
+| FLOW | Volume per time period. | 12 |
+| FUEL_EFFICIENCY | Fuel efficiency, e.g. mpg or l/100km. | 9 |
+| MASS | Mass. | 10 |
+| OTHER | Known unit that is not (yet) supported. This could be a very specific value, like a counter, or something like energy in joules that is not available. | 15 |
+| PERCENTAGE | A percentage, typically 0-100%. | 1 |
+| PRESSURE | Pressure. | 4 |
+| RATE | Count per time period, e.g. the amount of items counted in a 24 hour window. | 14 |
+| ROTATION_SPEED | Speed that something rotates per time period, typically in revolutions per minute. | 13 |
+| TEMPERATURE | Temperature. | 2 |
+| SPEED | Speed, e.g. km/h. | 6 |
+| VOLTAGE | Voltage, e.g. mV. | 5 |
+| VOLUME | Volume, e.g. m³. | 7 |
 
 #### hiber.value.Value.Numeric.Voltage.VoltageUnit
 Unit of voltage.
@@ -2202,6 +2212,7 @@ Unit of measurement for a numeric value.
 | FLOW_CUBIC_FEET_PER_SECOND |  | 50 |
 | REVOLUTIONS_PER_MINUTE |  | 44 |
 | ITEMS_PER_24_HOURS |  | 45 |
+| OTHER |  | 54 |
 
 ## Scalar Value Types
 

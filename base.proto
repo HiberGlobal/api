@@ -750,5 +750,7 @@ enum UnitOfMeasurement {
 
     ITEMS_PER_24_HOURS = 45;
 
+    OTHER = 54;
+
     reserved 13;
 }

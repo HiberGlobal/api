@@ -1651,6 +1651,7 @@ Unit of measurement for a numeric value.
 | FLOW_CUBIC_FEET_PER_SECOND |  | 50 |
 | REVOLUTIONS_PER_MINUTE |  | 44 |
 | ITEMS_PER_24_HOURS |  | 45 |
+| OTHER |  | 54 |
 
 ## Scalar Value Types
 
