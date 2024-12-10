@@ -1,5 +1,20 @@
 # Changelog Hiber API
 
+### 0.220 (2024-12-10)
+
+##### AssignmentService
+
+- Added `override_conflicting_assignments_allow_delete` to `Assign.Request` to allow completely replacing conflicting assignments
+  when using the `override_conflicting_assignments_allow_delete` flag.
+
+##### UserService
+
+- Add `Unsuspend` command to remove a suspension set by the `Suspend` command.
+
+##### ValueService
+
+- Added `include_operational_data` to `ValueSelection` to include operational values, like device status.
+
 ### 0.219 (2024-12-03)
 
 ##### ValueSimulationService

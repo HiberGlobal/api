@@ -301,6 +301,7 @@ Select the values to return.
 |  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) | The time to view the values for. |
 |  **optional** include_location | [optional bool](#bool) | Include the location (which is not a field). |
 | filter_enum_values | [repeated hiber.Filter.FieldEnumValues](#hiberfilterfieldenumvalues) | Filter the values for enum fields. |
+|  **optional** include_operational_data | [optional bool](#bool) | Whether to include values that have been marked as operational (i.e. device status). Operational data is typically only available when selecting values for a device. |
 
 ### ValueSelection.ByField
 

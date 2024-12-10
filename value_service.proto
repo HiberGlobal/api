@@ -70,6 +70,11 @@ message ValueSelection {
 
     /* Filter the values for enum fields. */
     repeated Filter.FieldEnumValues filter_enum_values = 6;
+
+    /* Whether to include values that have been marked as operational (i.e. device status).
+     * Operational data is typically only available when selecting values for a device.
+     */
+    optional bool include_operational_data = 10;
 }
 
 /* A Value at a time, for a given modem and field. */

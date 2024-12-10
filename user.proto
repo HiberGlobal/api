@@ -14,7 +14,6 @@ service UserService {
 
     rpc ListAccessRequests (ListAccessRequestsRequest) returns (ListAccessRequestsRequest.Response);
     rpc Approve (ApproveUserRequest) returns (ApproveUserRequest.Response);
-    rpc Suspend (SuspendUserRequest) returns (SuspendUserRequest.Response);
     rpc Remove (RemoveUserRequest) returns (RemoveUserRequest.Response);
     rpc Invite (InviteUserRequest) returns (InviteUserRequest.Response);
     rpc ListInvitations (ListInvitationsRequest) returns (ListInvitationsRequest.Response);
@@ -28,6 +27,9 @@ service UserService {
     rpc GetUserValidation (GetUserValidationRequest) returns (UserValidation);
     rpc UpdateUserValidation (UpdateUserValidationRequest) returns (UserValidation);
     rpc TestUserValidation (TestUserValidationRequest) returns (TestUserValidationRequest.Response);
+
+    rpc Suspend (SuspendUserRequest) returns (SuspendUserRequest.Response);
+    rpc Unsuspend (UnsuspendUserRequest) returns (UnsuspendUserRequest.Response);
 
     rpc Activity (UserActivitySummaryRequest) returns (UserActivitySummaryRequest.Response);
 }
@@ -142,6 +144,17 @@ message ApproveUserRequest {
  * Does not disable tokens! The user maybe still use those to access the system.
  */
 message SuspendUserRequest {
+    message Response {
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    optional string organization = 1;
+    repeated string user_ids = 2;
+}
+
+/* Enable a suspended a user, re-enabling frontend access.
+ */
+message UnsuspendUserRequest {
     message Response {
     }
 

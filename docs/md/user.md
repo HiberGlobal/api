@@ -32,6 +32,8 @@
   - [SuspendUserRequest.Response](#suspenduserrequestresponse)
   - [TestUserValidationRequest](#testuservalidationrequest)
   - [TestUserValidationRequest.Response](#testuservalidationrequestresponse)
+  - [UnsuspendUserRequest](#unsuspenduserrequest)
+  - [UnsuspendUserRequest.Response](#unsuspenduserrequestresponse)
   - [UpdateUserRoles](#updateuserroles)
   - [UpdateUserRoles.Request](#updateuserrolesrequest)
   - [UpdateUserRoles.Request.ModifyRoles](#updateuserrolesrequestmodifyroles)
@@ -126,12 +128,6 @@
 
 
 
-### Suspend
-> **rpc** Suspend([SuspendUserRequest](#suspenduserrequest))
-    [SuspendUserRequest.Response](#suspenduserrequestresponse)
-
-
-
 ### Remove
 > **rpc** Remove([RemoveUserRequest](#removeuserrequest))
     [RemoveUserRequest.Response](#removeuserrequestresponse)
@@ -189,6 +185,18 @@
 ### TestUserValidation
 > **rpc** TestUserValidation([TestUserValidationRequest](#testuservalidationrequest))
     [TestUserValidationRequest.Response](#testuservalidationrequestresponse)
+
+
+
+### Suspend
+> **rpc** Suspend([SuspendUserRequest](#suspenduserrequest))
+    [SuspendUserRequest.Response](#suspenduserrequestresponse)
+
+
+
+### Unsuspend
+> **rpc** Unsuspend([UnsuspendUserRequest](#unsuspenduserrequest))
+    [UnsuspendUserRequest.Response](#unsuspenduserrequestresponse)
 
 
 
@@ -397,6 +405,20 @@ Does not disable tokens! The user maybe still use those to access the system.
 | custom_validation | [ UserValidation](#uservalidation) | Test the given validation instead of the validation configured for your organization. |
 
 ### TestUserValidationRequest.Response
+
+
+
+
+### UnsuspendUserRequest
+
+Enable a suspended a user, re-enabling frontend access.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| user_ids | [repeated string](#string) |  |
+
+### UnsuspendUserRequest.Response
 
 
 

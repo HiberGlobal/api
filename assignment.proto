@@ -226,6 +226,11 @@ message Assign {
          */
         optional bool override_conflicting_assignments = 13;
 
+        /* When overriding assignments, we may run into a case where a previous assignment would be completely replaced.
+         * Since this is questionable, doing so required an additional opt-in with this flag.
+         */
+        optional bool override_conflicting_assignments_allow_delete = 14;
+
         reserved 3;
     }
     message Response {
