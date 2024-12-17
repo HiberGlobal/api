@@ -4,6 +4,7 @@ package hiber.asset;
 
 import "google/protobuf/struct.proto";
 import "base.proto";
+import "file.proto";
 import "health.proto";
 import "tag.proto";
 import "value.proto";
@@ -100,6 +101,14 @@ message Asset {
      * Typically only relevant if child organizations are included.
      */
     string organization = 11;
+
+    /* Location for the asset. */
+    Location location = 13;
+
+    /* Files for this asset.
+     * Typically an image of a place. See the File.media_type for more information.
+     */
+    repeated file.File files = 14;
 }
 
 /* Selection object for assets. */

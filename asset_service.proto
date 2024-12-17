@@ -6,6 +6,7 @@ import "google/protobuf/struct.proto";
 
 import "base.proto";
 import "asset.proto";
+import "file.proto";
 import "device.proto";
 import "tag.proto";
 import "value.proto";
@@ -112,6 +113,8 @@ message CreateAsset {
     optional string time_zone = 5;
     optional value.Value.Numeric.Rate expected_transmission_rate = 6;
     optional google.protobuf.Struct metadata = 7;
+    optional Location location = 8;
+    repeated file.File files = 9;
 
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
@@ -137,6 +140,10 @@ message UpdateAsset {
     map<string, google.protobuf.Value> add_metadata = 7;
     map<string, string> add_metadata_text = 8;
     repeated string remove_metadata_keys = 9;
+    optional Location location = 10;
+    optional bool remove_location = 11;
+    repeated file.File add_files = 12;
+    repeated string delete_files = 13;
 
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */

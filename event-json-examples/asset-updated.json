@@ -9,7 +9,21 @@
       "type": "WELL_ANNULUS_B",
       "metadata": {
         "example": "test"
-      }
+      },
+      "files": [
+        {
+          "mediaType": "application/pdf",
+          "name": "documentation.pdf",
+          "identifier": "file-link-example-identifier",
+          "url": "https://example.com/documentation.pdf"
+        },
+        {
+          "mediaType": "image/png",
+          "name": "example2.png",
+          "identifier": "file-example-identifier2",
+          "fileService": true
+        }
+      ]
     },
     "assetIdentifier": "example-identifier",
     "time": {

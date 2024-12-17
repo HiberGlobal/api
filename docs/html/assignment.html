@@ -366,10 +366,6 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.Avatar"><span class="badge">M</span>Avatar</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.BytesOrHex"><span class="badge">M</span>BytesOrHex</a>
                 </li>
               
@@ -503,10 +499,6 @@
               
                 <li>
                   <a href="#hiber.MapFilter.OneOfValues"><span class="badge">M</span>MapFilter.OneOfValues</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.NamedFile"><span class="badge">M</span>NamedFile</a>
                 </li>
               
                 <li>
@@ -1214,6 +1206,10 @@
               
                 <li>
                   <a href="#hiber.tag.Tag.Label"><span class="badge">M</span>Tag.Label</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.tag.Tag.Metadata"><span class="badge">M</span>Tag.Metadata</a>
                 </li>
               
                 <li>
@@ -3196,37 +3192,6 @@ Setting this to true makes this identical to using the Delete rpc. </p></td>
 
         
       
-        <h3 id="hiber.Avatar">Avatar</h3>
-        <p>An avatar is represented either by a (publicly) fetchable URL that serves an image,</p><p>xor a binary payload that knows its name and mime-type.</p><p>If it is a url, it must be obtainable without credentials, though this is not validated by the API.</p><p>Because the content behind URL's can change or become unavailable over time,</p><p>the client should make sure it properly caches the data fetched from the URL.</p><p>("Properly" means [among other things] respecting the response headers for this resource)</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>url</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>A URL that contains the location of avatar. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>image</td>
-                  <td><a href="#hiber.NamedFile">NamedFile</a></td>
-                  <td></td>
-                  <td><p>The data of the avatar as a Named File. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="hiber.BytesOrHex">BytesOrHex</h3>
         <p>Some clients may prefer direct binary data, while other prefer a hexadecimal string,</p><p>both for input and output. To support both methods, this object is used to represent binary data.</p><p>When you receive this from the api, both fields are set. When sending it to the api, only one field is required.</p>
 
@@ -4305,44 +4270,6 @@ Exclude takes precedence over include. </p></td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.NamedFile">NamedFile</h3>
-        <p>A NamedFile contains bytes with its mime-type and name.</p><p>It can represent any file of any type.</p><p>Note that depending on where in the API this is used,</p><p>the server might put restrictions on file size, media-type or name length.</p><p>The file name should be interpreted as-is.</p><p>No hierarchical information is stored in the name, nor should you look at the "extension" to know its media-type.</p><p>It might not even have a file extension.</p><p>The file name may contain characters that cannot be a valid file name on certain systems.</p><p>Specific API calls may pur restrictions on the name or size of the file.</p><p>When showing this as an image in a browser, one can make use of a `data` URI.</p><p>The client must convert the bytes to base64 and can then construct a data URI like this</p><p>data:<media-type>;base64,<base64-encoded-bytes></p><p>Other type clients should be able to sort-of-directly set the data bytes as the source for an image.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>data</td>
-                  <td><a href="#hiber.BytesOrHex">BytesOrHex</a></td>
-                  <td></td>
-                  <td><p>The binary payload that represents the file </p></td>
-                </tr>
-              
-                <tr>
-                  <td>media_type</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>The media-type of the file, as defined by RFC 6838 or its extensions </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>A semantic name for this file. </p></td>
                 </tr>
               
             </tbody>
@@ -5483,6 +5410,21 @@ This can be automatically populated from linked devices or manually added. </p><
                   <td></td>
                   <td><p>The organization that owns this asset.
 Typically only relevant if child organizations are included. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location</td>
+                  <td><a href="#hiber.Location">hiber.Location</a></td>
+                  <td></td>
+                  <td><p>Location for the asset. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>files</td>
+                  <td><a href="#hiber.file.File">hiber.file.File</a></td>
+                  <td>repeated</td>
+                  <td><p>Files for this asset.
+Typically an image of a place. See the File.media_type for more information. </p></td>
                 </tr>
               
             </tbody>
@@ -11804,6 +11746,35 @@ This can also be used without an existing parser by uploading a .ksy file or spe
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>location_point</td>
+                  <td><a href="#hiber.Location">hiber.Location</a></td>
+                  <td></td>
+                  <td><p>Single point location for this tag. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location_area</td>
+                  <td><a href="#hiber.Area">hiber.Area</a></td>
+                  <td></td>
+                  <td><p>Square area (on the map) for this tag. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location_shape</td>
+                  <td><a href="#hiber.Shape">hiber.Shape</a></td>
+                  <td></td>
+                  <td><p>Complex shaped area for this tag. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>files</td>
+                  <td><a href="#hiber.file.File">hiber.file.File</a></td>
+                  <td>repeated</td>
+                  <td><p>Add files to the new tag. These can be just an identifier to an existing File, or a full file upload.
+Keep in mind the grpc request size limitation. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -12047,7 +12018,7 @@ This can also be used without an existing parser by uploading a .ksy file or spe
         
       
         <h3 id="hiber.tag.Tag">Tag</h3>
-        <p></p>
+        <p>Tag in your organization.</p><p>Tags can be assigned to devices and assets to group them together or mark a certain property.</p><p>A Tag has three parts: its id in your organization, a Label that describes how it should be displayed, and</p><p>Metadata (which is only included when using the TagService) with additional information.</p>
 
         
           <table class="field-table">
@@ -12067,7 +12038,16 @@ This can also be used without an existing parser by uploading a .ksy file or spe
                   <td>label</td>
                   <td><a href="#hiber.tag.Tag.Label">Tag.Label</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The label to display for this tag. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#hiber.tag.Tag.Metadata">Tag.Metadata</a></td>
+                  <td>optional</td>
+                  <td><p>Metadata for this tag.
+This is typically not included in calls where the tag is repeated a lot, like the device list.
+Use the TagService.List call to get the tags with Metadata. </p></td>
                 </tr>
               
             </tbody>
@@ -12078,7 +12058,7 @@ This can also be used without an existing parser by uploading a .ksy file or spe
         
       
         <h3 id="hiber.tag.Tag.Label">Tag.Label</h3>
-        <p></p>
+        <p>Label for a tag, containing all the information needed to display it.</p>
 
         
           <table class="field-table">
@@ -12099,6 +12079,52 @@ This can also be used without an existing parser by uploading a .ksy file or spe
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.tag.Tag.Metadata">Tag.Metadata</h3>
+        <p>Metadata for a tag.</p><p>This is typically not included in calls where the tag is repeated a lot, like the device list.</p><p>Use the TagService.List call to get the tags with Metadata.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>location_point</td>
+                  <td><a href="#hiber.Location">hiber.Location</a></td>
+                  <td></td>
+                  <td><p>Single point location for this tag. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location_area</td>
+                  <td><a href="#hiber.Area">hiber.Area</a></td>
+                  <td></td>
+                  <td><p>Square area (on the map) for this tag. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location_shape</td>
+                  <td><a href="#hiber.Shape">hiber.Shape</a></td>
+                  <td></td>
+                  <td><p>Complex shaped area for this tag. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>files</td>
+                  <td><a href="#hiber.file.File">hiber.file.File</a></td>
+                  <td>repeated</td>
+                  <td><p>Files for this tag.
+Typically an image of a place. See the File.media_type for more information. </p></td>
                 </tr>
               
             </tbody>
@@ -12274,6 +12300,13 @@ This can also be used without an existing parser by uploading a .ksy file or spe
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>location</td>
+                  <td><a href="#hiber.LocationSelection">hiber.LocationSelection</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -12310,6 +12343,49 @@ This can also be used without an existing parser by uploading a .ksy file or spe
                   <td><a href="#hiber.tag.Tag.Label">Tag.Label</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location_point</td>
+                  <td><a href="#hiber.Location">hiber.Location</a></td>
+                  <td></td>
+                  <td><p>Update the location to a single point location. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location_area</td>
+                  <td><a href="#hiber.Area">hiber.Area</a></td>
+                  <td></td>
+                  <td><p>Update the location to a square area (on the map). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location_shape</td>
+                  <td><a href="#hiber.Shape">hiber.Shape</a></td>
+                  <td></td>
+                  <td><p>Update the location to a complex shaped area. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remove_location</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Remove the location from this tag. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>add_files</td>
+                  <td><a href="#hiber.file.File">hiber.file.File</a></td>
+                  <td>repeated</td>
+                  <td><p>Add files to the tag. These can be just an identifier to an existing File, or a full file upload.
+Keep in mind the grpc request size limitation. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>delete_files</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Remove files from the new tag and delete them from the system. </p></td>
                 </tr>
               
             </tbody>

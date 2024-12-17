@@ -632,55 +632,6 @@ enum Health {
     ERROR = 2;
 }
 
-/* A NamedFile contains bytes with its mime-type and name.
- * It can represent any file of any type.
- *
- * Note that depending on where in the API this is used,
- * the server might put restrictions on file size, media-type or name length.
- *
- * The file name should be interpreted as-is.
- * No hierarchical information is stored in the name, nor should you look at the "extension" to know its media-type.
- * It might not even have a file extension.
- * The file name may contain characters that cannot be a valid file name on certain systems.
- *
- * Specific API calls may pur restrictions on the name or size of the file.
- *
- * When showing this as an image in a browser, one can make use of a `data` URI.
- * The client must convert the bytes to base64 and can then construct a data URI like this
- *
- *     data:<media-type>;base64,<base64-encoded-bytes>
- *
- * Other type clients should be able to sort-of-directly set the data bytes as the source for an image.
- */
-message NamedFile {
-    /* The binary payload that represents the file */
-    BytesOrHex data = 1;
-
-    /* The media-type of the file, as defined by RFC 6838 or its extensions */
-    string media_type = 2;
-
-    /* A semantic name for this file. */
-    string name = 3;
-}
-
-/* An avatar is represented either by a (publicly) fetchable URL that serves an image,
- * xor a binary payload that knows its name and mime-type.
- *
- * If it is a url, it must be obtainable without credentials, though this is not validated by the API.
- * Because the content behind URL's can change or become unavailable over time,
- * the client should make sure it properly caches the data fetched from the URL.
- * ("Properly" means [among other things] respecting the response headers for this resource)
- */
-message Avatar {
-    oneof url_or_image {
-        /* A URL that contains the location of avatar. */
-        string url = 1;
-
-        /* The data of the avatar as a Named File. */
-        NamedFile image = 2;
-    }
-}
-
 /* Unit of measurement for a numeric value. */
 enum UnitOfMeasurement {
     UNIT_UNKNOWN = 0;

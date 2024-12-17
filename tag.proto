@@ -3,6 +3,7 @@ syntax = "proto3";
 package hiber.tag;
 
 import "base.proto";
+import "file.proto";
 import "health.proto";
 
 option java_multiple_files = false;
@@ -23,14 +24,53 @@ service TagService {
     rpc Health (TagHealth.Request) returns (TagHealth.Response);
 }
 
+/* Tag in your organization.
+ * Tags can be assigned to devices and assets to group them together or mark a certain property.
+ *
+ * A Tag has three parts: its id in your organization, a Label that describes how it should be displayed, and
+ * Metadata (which is only included when using the TagService) with additional information.
+ */
 message Tag {
+    /* Label for a tag, containing all the information needed to display it. */
     message Label {
         string name = 1;
         string type = 2;
     }
 
+    /* Metadata for a tag.
+     * This is typically not included in calls where the tag is repeated a lot, like the device list.
+     *
+     * Use the TagService.List call to get the tags with Metadata.
+     */
+    message Metadata {
+        /* Location for the tag (i.e. a plot of land, a specific well or a field). */
+        oneof location {
+            /* Single point location for this tag. */
+            Location location_point = 4;
+
+            /* Square area (on the map) for this tag. */
+            Area location_area = 5;
+
+            /* Complex shaped area for this tag. */
+            Shape location_shape = 6;
+        }
+
+        /* Files for this tag.
+         * Typically an image of a place. See the File.media_type for more information.
+         */
+        repeated file.File files = 7;
+    }
+
     int64 id = 1;
+
+    /* The label to display for this tag. */
     Label label = 3;
+
+    /* Metadata for this tag.
+     * This is typically not included in calls where the tag is repeated a lot, like the device list.
+     * Use the TagService.List call to get the tags with Metadata.
+     */
+    optional Metadata metadata = 4;
 }
 
 message TagSelection {
@@ -38,6 +78,7 @@ message TagSelection {
     repeated string names = 2;
     optional Filter.Tags filter = 3;
     repeated string types = 4;
+    optional LocationSelection location = 5;
 }
 
 message UpdateTagsForItem {
@@ -78,6 +119,23 @@ message CreateTagRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     optional string organization = 1;
     Tag.Label create = 2;
+
+    /* Location for the tag (i.e. a plot of land, a specific well or a field). */
+    oneof location {
+        /* Single point location for this tag. */
+        Location location_point = 4;
+
+        /* Square area (on the map) for this tag. */
+        Area location_area = 5;
+
+        /* Complex shaped area for this tag. */
+        Shape location_shape = 6;
+    }
+
+    /* Add files to the new tag. These can be just an identifier to an existing File, or a full file upload.
+     * Keep in mind the grpc request size limitation.
+     */
+    repeated file.File files = 7;
 }
 
 message UpdateTagRequest {
@@ -85,6 +143,28 @@ message UpdateTagRequest {
     optional string organization = 1;
     int64 id = 2;
     Tag.Label update = 3;
+
+    oneof location {
+        /* Update the location to a single point location. */
+        Location location_point = 4;
+
+        /* Update the location to a square area (on the map). */
+        Area location_area = 5;
+
+        /* Update the location to a complex shaped area. */
+        Shape location_shape = 6;
+
+        /* Remove the location from this tag. */
+        bool remove_location = 7;
+    }
+
+    /* Add files to the tag. These can be just an identifier to an existing File, or a full file upload.
+     * Keep in mind the grpc request size limitation.
+     */
+    repeated file.File add_files = 8;
+
+    /* Remove files from the new tag and delete them from the system. */
+    repeated string delete_files = 9;
 }
 
 message DeleteTagRequest {

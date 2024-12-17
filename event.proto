@@ -8,6 +8,7 @@ import "assignment.proto";
 import "asset.proto";
 import "base.proto";
 import "export.proto";
+import "file.proto";
 import "health.proto";
 import "integration_mqtt.proto";
 import "modem.proto";
@@ -181,6 +182,8 @@ message Event {
                 optional uint32 expected_transmission_rate = 5;
                 optional asset.Asset.Type type = 6;
                 optional google.protobuf.Struct metadata = 7;
+                optional Location location = 8;
+                repeated file.File files = 9;
             }
 
             string organization = 1;
@@ -774,7 +777,6 @@ message Event {
             organization.Organization created = 2;
             string title = 9;
             string description = 10;
-            Avatar avatar = 12;
             Timestamp time = 11;
         }
 

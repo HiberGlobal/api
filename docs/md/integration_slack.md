@@ -42,7 +42,6 @@
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
-  - [hiber.Avatar](#hiberavatar)
   - [hiber.BytesOrHex](#hiberbytesorhex)
   - [hiber.BytesOrHex.Update](#hiberbytesorhexupdate)
   - [hiber.Date](#hiberdate)
@@ -77,7 +76,6 @@
   - [hiber.MapFilter.ExcludeEntry](#hibermapfilterexcludeentry)
   - [hiber.MapFilter.IncludeAndEntry](#hibermapfilterincludeandentry)
   - [hiber.MapFilter.OneOfValues](#hibermapfilteroneofvalues)
-  - [hiber.NamedFile](#hibernamedfile)
   - [hiber.Pagination](#hiberpagination)
   - [hiber.Pagination.Result](#hiberpaginationresult)
   - [hiber.Shape](#hibershape)
@@ -404,16 +402,21 @@ so not all messages listed here are referenced.)
 
 ### hiber.tag.Tag
 
+Tag in your organization.
+Tags can be assigned to devices and assets to group them together or mark a certain property.
 
+A Tag has three parts: its id in your organization, a Label that describes how it should be displayed, and
+Metadata (which is only included when using the TagService) with additional information.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | id | [ int64](#int64) |  |
-| label | [ hiber.tag.Tag.Label](#hibertagtaglabel) |  |
+| label | [ hiber.tag.Tag.Label](#hibertagtaglabel) | The label to display for this tag. |
+|  **optional** metadata | [optional hiber.tag.Tag.Metadata](#hibertagtagmetadata) | Metadata for this tag. This is typically not included in calls where the tag is repeated a lot, like the device list. Use the TagService.List call to get the tags with Metadata. |
 
 ### hiber.tag.Tag.Label
 
-
+Label for a tag, containing all the information needed to display it.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -430,6 +433,7 @@ so not all messages listed here are referenced.)
 | names | [repeated string](#string) |  |
 |  **optional** filter | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 | types | [repeated string](#string) |  |
+|  **optional** location | [optional hiber.LocationSelection](#hiberlocationselection) |  |
 
 
 ### Enums
@@ -455,21 +459,6 @@ When sending an Area to the api, the center location is ignored.
 | bottom_left | [ hiber.Location](#hiberlocation) |  |
 | top_right | [ hiber.Location](#hiberlocation) |  |
 |  **optional** textual | [optional string](#string) | Text representation. Can be used as an alternative input in a request, filled in by the API in responses. |
-
-### hiber.Avatar
-
-An avatar is represented either by a (publicly) fetchable URL that serves an image,
-xor a binary payload that knows its name and mime-type.
-
-If it is a url, it must be obtainable without credentials, though this is not validated by the API.
-Because the content behind URL's can change or become unavailable over time,
-the client should make sure it properly caches the data fetched from the URL.
-("Properly" means [among other things] respecting the response headers for this resource)
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **url_or_image**.url | [ string](#string) | A URL that contains the location of avatar. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **url_or_image**.image | [ hiber.NamedFile](#hibernamedfile) | The data of the avatar as a Named File. |
 
 ### hiber.BytesOrHex
 
@@ -826,34 +815,6 @@ which is not possible in protobuf without trickery.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | value | [repeated string](#string) |  |
-
-### hiber.NamedFile
-
-A NamedFile contains bytes with its mime-type and name.
-It can represent any file of any type.
-
-Note that depending on where in the API this is used,
-the server might put restrictions on file size, media-type or name length.
-
-The file name should be interpreted as-is.
-No hierarchical information is stored in the name, nor should you look at the "extension" to know its media-type.
-It might not even have a file extension.
-The file name may contain characters that cannot be a valid file name on certain systems.
-
-Specific API calls may pur restrictions on the name or size of the file.
-
-When showing this as an image in a browser, one can make use of a `data` URI.
-The client must convert the bytes to base64 and can then construct a data URI like this
-
-    data:<media-type>;base64,<base64-encoded-bytes>
-
-Other type clients should be able to sort-of-directly set the data bytes as the source for an image.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| data | [ hiber.BytesOrHex](#hiberbytesorhex) | The binary payload that represents the file |
-| media_type | [ string](#string) | The media-type of the file, as defined by RFC 6838 or its extensions |
-| name | [ string](#string) | A semantic name for this file. |
 
 ### hiber.Pagination
 

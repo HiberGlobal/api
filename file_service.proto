@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package hiber.file;
+
+import "base.proto";
+import "file.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.file";
+option java_outer_classname = "FileApi";
+option go_package = ".;hiber";
+
+service FileService {
+    rpc List (ListFiles.Request) returns (ListFiles.Response);
+    rpc Get (GetFile.Request) returns (GetFile.Response);
+    rpc Upload (UploadFile.Request) returns (UploadFile.Response);
+    rpc Delete (DeleteFile.Request) returns (DeleteFile.Response);
+}
+
+message ListFiles {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select the files to list. Optional, when omitted or empty everything is included. */
+        optional FileSelection selection = 2;
+
+        /* Paginate through results. */
+        optional Pagination pagination = 3;
+    }
+
+    message Response {
+        repeated File files = 1;
+        Request request = 2;
+        Pagination.Result pagination = 3;
+    }
+}
+
+/* Get the content of a file that has the file_service flag set for content
+ * (not a url or given immediate binary data).
+ */
+message GetFile {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+        string identifier = 2;
+    }
+
+    message Response {
+        /* The requested file, with content set to data if available. */
+        File file = 1;
+    }
+}
+
+/* Upload a file to the file service. */
+message UploadFile {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* The file to upload, with either binary data or a url as content.
+         * If an identifier is set, it will be replaced with a generated identifier.
+         */
+        File file = 2;
+    }
+
+    message Response {
+        File file = 1;
+    }
+}
+
+/* Delete a file in the file service. */
+message DeleteFile {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* The identifier of the file to delete. */
+        string identifier = 2;
+    }
+
+    message Response {
+    }
+}

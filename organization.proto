@@ -3,6 +3,7 @@ syntax = "proto3";
 package hiber.organization;
 
 import "base.proto";
+import "file.proto";
 import "value.proto";
 
 option java_multiple_files = false;
@@ -28,6 +29,24 @@ service OrganizationService {
  * of any modems and related data.
  */
 message Organization {
+    /* An avatar is represented either by a (publicly) fetchable URL that serves an image,
+     * xor a binary payload that knows its name and mime-type.
+     *
+     * If it is a url, it must be obtainable without credentials, though this is not validated by the API.
+     * Because the content behind URL's can change or become unavailable over time,
+     * the client should make sure it properly caches the data fetched from the URL.
+     * ("Properly" means [among other things] respecting the response headers for this resource)
+     */
+    message Avatar {
+        oneof url_or_image {
+            /* A URL that contains the location of avatar. */
+            string url = 1;
+
+            /* The data of the avatar as a Named File. */
+            file.File image = 2;
+        }
+    }
+
     message Address {
         repeated string lines = 1;
         string zip_code = 2;
@@ -64,6 +83,9 @@ message Organization {
 
         /* Use the new assets as primary data owner in Mission Control dashboards. */
         ASSET_DASHBOARD = 11;
+
+        /* Display and use device and gateway locations in Mission Control. */
+        LOCATIONS = 12;
 
         reserved 1, 2, 3, 7, 8, 9;
     }
@@ -120,7 +142,7 @@ message UpdateOrganizationRequest {
     string billing_name = 5;
     Organization.Address billing_address = 6;
     Organization.Contact contact = 7;
-    Avatar avatar = 8;
+    Organization.Avatar avatar = 8;
 }
 
 /* Get your current organization's organization tree.
@@ -175,7 +197,7 @@ message CreateOrganizationRequest {
     optional string display_name = 3;
 
     /* The avatar image representing this organization. Usually the logo. */
-    optional Avatar avatar = 11;
+    optional Organization.Avatar avatar = 11;
 
     /* Whether this organization is created for a business. */
     optional bool is_business = 4;
@@ -234,7 +256,7 @@ message GetOrganizationAvatar {
     }
     message Response {
         /* Avatars, indexed by organization slug */
-        map<string, Avatar> avatars = 1;
+        map<string, Organization.Avatar> avatars = 1;
 
         Pagination.Result pagination = 2;
     }

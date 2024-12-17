@@ -12,6 +12,20 @@
       "metadata": {
         "example": "example"
       },
+      "files": [
+        {
+          "mediaType": "image/png",
+          "name": "example.png",
+          "identifier": "file-example-identifier",
+          "fileService": true
+        },
+        {
+          "mediaType": "application/pdf",
+          "name": "documentation.pdf",
+          "identifier": "file-link-example-identifier",
+          "url": "https://example.com/documentation.pdf"
+        }
+      ],
       "tags": [
         {
           "id": "1",

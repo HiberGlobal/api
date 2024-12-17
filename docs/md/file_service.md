@@ -1,45 +1,33 @@
-# integration_mqtt.proto
+# file_service.proto
 
 
 
-#### This file was generated from [integration_mqtt.proto](https://github.com/HiberGlobal/api/blob/master/integration_mqtt.proto).
+#### This file was generated from [file_service.proto](https://github.com/HiberGlobal/api/blob/master/file_service.proto).
 
 ## Table of Contents
 
 - Services
-  - [MQTTService](#mqttservice)
+  - [FileService](#fileservice)
 
 - Messages
-  - [CreateMQTTPublisherRequest](#createmqttpublisherrequest)
-  - [DeleteMQTTPublisherRequest](#deletemqttpublisherrequest)
-  - [DeleteMQTTPublisherRequest.Response](#deletemqttpublisherrequestresponse)
-  - [DisableMQTTPublisherRequest](#disablemqttpublisherrequest)
-  - [DisableMQTTPublisherRequest.Response](#disablemqttpublisherrequestresponse)
-  - [EnableMQTTPublisherRequest](#enablemqttpublisherrequest)
-  - [EnableMQTTPublisherRequest.Response](#enablemqttpublisherrequestresponse)
-  - [ListMQTTPublishersRequest](#listmqttpublishersrequest)
-  - [ListMQTTPublishersRequest.Response](#listmqttpublishersrequestresponse)
-  - [MQTTMessage](#mqttmessage)
-  - [MQTTPublisher](#mqttpublisher)
-  - [MQTTPublisher.Data](#mqttpublisherdata)
-  - [MQTTPublisher.HealthConfig](#mqttpublisherhealthconfig)
-  - [MQTTPublisherHistoryRequest](#mqttpublisherhistoryrequest)
-  - [MQTTPublisherHistoryRequest.Response](#mqttpublisherhistoryrequestresponse)
-  - [MQTTPublisherHistorySelection](#mqttpublisherhistoryselection)
-  - [MQTTPublisherSelection](#mqttpublisherselection)
-  - [UpdateMQTTPublisherRequest](#updatemqttpublisherrequest)
-  - [UpdateMQTTPublisherTagsRequest](#updatemqttpublishertagsrequest)
-  - [UpdateMQTTPublisherTagsRequest.Response](#updatemqttpublishertagsrequestresponse)
+  - [DeleteFile](#deletefile)
+  - [DeleteFile.Request](#deletefilerequest)
+  - [DeleteFile.Response](#deletefileresponse)
+  - [GetFile](#getfile)
+  - [GetFile.Request](#getfilerequest)
+  - [GetFile.Response](#getfileresponse)
+  - [ListFiles](#listfiles)
+  - [ListFiles.Request](#listfilesrequest)
+  - [ListFiles.Response](#listfilesresponse)
+  - [UploadFile](#uploadfile)
+  - [UploadFile.Request](#uploadfilerequest)
+  - [UploadFile.Response](#uploadfileresponse)
 
 - Enums
-  - [ListMQTTPublishersRequest.Sort](#listmqttpublishersrequestsort)
-  - [MQTTPublisher.ContentType](#mqttpublishercontenttype)
-  - [MQTTPublisher.Data.QoS](#mqttpublisherdataqos)
 
-- Referenced messages from [tag.proto](#referenced-messages-from-tagproto)
-  - [hiber.tag.Tag](#hibertagtag)
-  - [hiber.tag.Tag.Label](#hibertagtaglabel)
-  - [hiber.tag.TagSelection](#hibertagtagselection)
+- Referenced messages from [file.proto](#referenced-messages-from-fileproto)
+  - [hiber.file.File](#hiberfilefile)
+  - [hiber.file.FileSelection](#hiberfilefileselection)
 
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
@@ -96,393 +84,178 @@
 - [Scalar Value Types](#scalar-value-types)
 
 
-## MQTTService
+## FileService
 
 
 ### List
-> **rpc** List([ListMQTTPublishersRequest](#listmqttpublishersrequest))
-    [ListMQTTPublishersRequest.Response](#listmqttpublishersrequestresponse)
+> **rpc** List([ListFiles.Request](#listfilesrequest))
+    [ListFiles.Response](#listfilesresponse)
 
 
 
-### Create
-> **rpc** Create([CreateMQTTPublisherRequest](#createmqttpublisherrequest))
-    [MQTTPublisher](#mqttpublisher)
+### Get
+> **rpc** Get([GetFile.Request](#getfilerequest))
+    [GetFile.Response](#getfileresponse)
 
 
 
-### Update
-> **rpc** Update([UpdateMQTTPublisherRequest](#updatemqttpublisherrequest))
-    [MQTTPublisher](#mqttpublisher)
-
-
-
-### UpdateTags
-> **rpc** UpdateTags([UpdateMQTTPublisherTagsRequest](#updatemqttpublishertagsrequest))
-    [UpdateMQTTPublisherTagsRequest.Response](#updatemqttpublishertagsrequestresponse)
-
-
-
-### Enable
-> **rpc** Enable([EnableMQTTPublisherRequest](#enablemqttpublisherrequest))
-    [EnableMQTTPublisherRequest.Response](#enablemqttpublisherrequestresponse)
-
-
-
-### Disable
-> **rpc** Disable([DisableMQTTPublisherRequest](#disablemqttpublisherrequest))
-    [DisableMQTTPublisherRequest.Response](#disablemqttpublisherrequestresponse)
+### Upload
+> **rpc** Upload([UploadFile.Request](#uploadfilerequest))
+    [UploadFile.Response](#uploadfileresponse)
 
 
 
 ### Delete
-> **rpc** Delete([DeleteMQTTPublisherRequest](#deletemqttpublisherrequest))
-    [DeleteMQTTPublisherRequest.Response](#deletemqttpublisherrequestresponse)
-
-
-
-### History
-> **rpc** History([MQTTPublisherHistoryRequest](#mqttpublisherhistoryrequest))
-    [MQTTPublisherHistoryRequest.Response](#mqttpublisherhistoryrequestresponse)
+> **rpc** Delete([DeleteFile.Request](#deletefilerequest))
+    [DeleteFile.Response](#deletefileresponse)
 
 
 
 
 ## Messages
 
-### CreateMQTTPublisherRequest
+### DeleteFile
+
+Delete a file in the file service.
+
+
+### DeleteFile.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** description | [optional string](#string) |  |
-|  **optional** filter_event_types | [optional hiber.Filter.Events](#hiberfilterevents) |  |
-|  **optional** filter_modem_numbers | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
-|  **optional** filter_tags | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
-| url | [ string](#string) | The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 |
-| content_type | [ MQTTPublisher.ContentType](#mqttpublishercontenttype) |  |
-| topic | [ string](#string) | The MQTT topic to send to on the receiving server. |
-| qos | [ MQTTPublisher.Data.QoS](#mqttpublisherdataqos) | MQTT QoS value. |
-|  **optional** identifier | [optional string](#string) | Identifier used by the MQTT client. Defaults to "hiber". |
-|  **optional** username | [optional string](#string) | Optional username to authenticate with. |
-|  **optional** password | [optional string](#string) | Optional password to authenticate with. Requires username to be set. |
-|  **optional** certificate_id | [optional int64](#int64) | Client certificate to use when connecting to the MQTT server. |
-|  **optional** server_ca_certificate_id | [optional int64](#int64) | Server CA certificate to use when connecting to the MQTT server. |
-|  **optional** disabled | [optional bool](#bool) | Disable the MQTT publisher after creation, so it needs to be enabled before it is active. |
-| tags | [repeated int64](#int64) |  |
-|  **optional** override_url_validation | [optional bool](#bool) | Set this flag to not parse the url or enforce mqtts. |
+| identifier | [ string](#string) | The identifier of the file to delete. |
 
-### DeleteMQTTPublisherRequest
+### DeleteFile.Response
+
+
+
+
+### GetFile
+
+Get the content of a file that has the file_service flag set for content
+(not a url or given immediate binary data).
+
+
+### GetFile.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| id | [ int64](#int64) |  |
+| identifier | [ string](#string) |  |
 
-### DeleteMQTTPublisherRequest.Response
-
-
+### GetFile.Response
 
 
-### DisableMQTTPublisherRequest
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| file | [ File](#file) | The requested file, with content set to data if available. |
+
+### ListFiles
+
+
+
+
+### ListFiles.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ MQTTPublisherSelection](#mqttpublisherselection) |  |
+|  **optional** selection | [optional FileSelection](#fileselection) | Select the files to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Paginate through results. |
 
-### DisableMQTTPublisherRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| publishers | [repeated MQTTPublisher](#mqttpublisher) |  |
-| request | [ DisableMQTTPublisherRequest](#disablemqttpublisherrequest) |  |
-
-### EnableMQTTPublisherRequest
-
-Enable a disabled publisher or re-enable a publisher that's failed and is in cooldown.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| selection | [ MQTTPublisherSelection](#mqttpublisherselection) |  |
-
-### EnableMQTTPublisherRequest.Response
+### ListFiles.Response
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| publishers | [repeated MQTTPublisher](#mqttpublisher) |  |
-| request | [ EnableMQTTPublisherRequest](#enablemqttpublisherrequest) |  |
-
-### ListMQTTPublishersRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** selection | [optional MQTTPublisherSelection](#mqttpublisherselection) |  |
-|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
-| sort | [repeated ListMQTTPublishersRequest.Sort](#listmqttpublishersrequestsort) |  |
-
-### ListMQTTPublishersRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| publishers | [repeated MQTTPublisher](#mqttpublisher) |  |
-| request | [ ListMQTTPublishersRequest](#listmqttpublishersrequest) |  |
+| files | [repeated File](#file) |  |
+| request | [ ListFiles.Request](#listfilesrequest) |  |
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
-### MQTTMessage
+### UploadFile
+
+Upload a file to the file service.
 
 
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| time | [ hiber.Timestamp](#hibertimestamp) |  |
-| publisher_data | [ MQTTPublisher.Data](#mqttpublisherdata) |  |
-| message | [ hiber.BytesOrHex](#hiberbytesorhex) |  |
-| successful | [ bool](#bool) |  |
-| error | [ string](#string) |  |
-
-### MQTTPublisher
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| id | [ int64](#int64) |  |
-| description | [ string](#string) |  |
-| created_by | [ string](#string) | The uid of the user that created this publisher |
-| data | [ MQTTPublisher.Data](#mqttpublisherdata) |  |
-| filter_event_types | [ hiber.Filter.Events](#hiberfilterevents) |  |
-| filter_modem_numbers | [ hiber.Filter.Modems](#hiberfiltermodems) |  |
-| filter_tags | [ hiber.Filter.Tags](#hiberfiltertags) |  |
-| health | [ hiber.Health](#hiberhealth) |  |
-| health_config | [ MQTTPublisher.HealthConfig](#mqttpublisherhealthconfig) |  |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
-
-### MQTTPublisher.Data
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| url | [ string](#string) | The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 |
-| content_type | [ MQTTPublisher.ContentType](#mqttpublishercontenttype) |  |
-| topic | [ string](#string) | The MQTT topic to send to on the receiving server. |
-| qos | [ MQTTPublisher.Data.QoS](#mqttpublisherdataqos) | MQTT QoS value. |
-| identifier | [ string](#string) | Identifier used by the MQTT client. Defaults to "hiber". |
-| username | [ string](#string) | Optional username to authenticate with. |
-| password | [ string](#string) | Optional password to authenticate with. Requires username to be set. |
-| certificate_id | [ int64](#int64) | Client certificate to use when connecting to the MQTT server. |
-| certificate_name | [ string](#string) |  |
-| ca_certificate_id | [ int64](#int64) | CA certificate for the client certificate to use when connecting to the MQTT server. |
-| ca_certificate_name | [ string](#string) |  |
-| server_ca_certificate_id | [ int64](#int64) | Server CA certificate to use when connecting to the MQTT server. |
-| server_ca_certificate_name | [ string](#string) |  |
-| disabled | [ bool](#bool) |  |
-
-### MQTTPublisher.HealthConfig
-
-Health configuration for the mqtt integration. Defines how the health is calculated.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| health_warning_period | [ hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. |
-| health_warning_failure_percentage | [ int32](#int32) | Allowed percentage of failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
-
-### MQTTPublisherHistoryRequest
+### UploadFile.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| id | [ int64](#int64) |  |
-|  **optional** selection | [optional MQTTPublisherHistorySelection](#mqttpublisherhistoryselection) |  |
-|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+| file | [ File](#file) | The file to upload, with either binary data or a url as content. If an identifier is set, it will be replaced with a generated identifier. |
 
-### MQTTPublisherHistoryRequest.Response
+### UploadFile.Response
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| items | [repeated MQTTMessage](#mqttmessage) |  |
-| request | [ MQTTPublisherHistoryRequest](#mqttpublisherhistoryrequest) |  |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
-
-### MQTTPublisherHistorySelection
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) |  |
-|  **optional** only_failures | [optional bool](#bool) |  |
-
-### MQTTPublisherSelection
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** publishers | [optional hiber.Filter.Publishers](#hiberfilterpublishers) | Filter by id. |
-|  **optional** description | [optional string](#string) | Partial text match on the description. |
-|  **optional** search_url | [optional string](#string) | Partial text match on the url. |
-|  **optional** search_topic | [optional string](#string) | Partial text match on the topic. |
-| content_types | [repeated MQTTPublisher.ContentType](#mqttpublishercontenttype) | Only return MQTT integrations that use the given content types. |
-| certificate_ids | [repeated int64](#int64) | Filter by referenced certificate (id), either as client or server certificate. |
-|  **optional** tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
-| health | [repeated hiber.Health](#hiberhealth) |  |
-
-### UpdateMQTTPublisherRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| id | [ int64](#int64) |  |
-|  **optional** deprecated_filter_event_types | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) | <strong>Deprecated.</strong>  |
-|  **optional** filter_event_types | [optional hiber.Filter.Events](#hiberfilterevents) |  |
-|  **optional** deprecated_filter_modem_numbers | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | <strong>Deprecated.</strong>  |
-|  **optional** filter_modem_numbers | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
-|  **optional** deprecated_filter_tags | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | <strong>Deprecated.</strong>  |
-|  **optional** filter_tags | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
-|  **optional** deprecated_description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
-|  **optional** description | [optional string](#string) |  |
-|  **optional** url | [optional string](#string) | The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 |
-|  **optional** content_type | [optional MQTTPublisher.ContentType](#mqttpublishercontenttype) |  |
-|  **optional** topic | [optional string](#string) | The MQTT topic to send to on the receiving server. |
-|  **optional** qos | [optional MQTTPublisher.Data.QoS](#mqttpublisherdataqos) | MQTT QoS value. |
-|  **optional** identifier | [optional string](#string) | Identifier used by the MQTT client. Defaults to "hiber". |
-|  **optional** deprecated_identifier | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
-|  **optional** username | [optional string](#string) | Optional username to authenticate with. |
-|  **optional** deprecated_username | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
-|  **optional** password | [optional string](#string) | Optional password to authenticate with. Requires username to be set. |
-|  **optional** deprecated_password | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
-|  **optional** certificate_id | [optional int64](#int64) | Update or remove the client certificate to use when connecting to the MQTT server. |
-|  **optional** deprecated_certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | <strong>Deprecated.</strong>  |
-|  **optional** server_ca_certificate_id | [optional int64](#int64) | Update or remove the server CA certificate to use when connecting to the MQTT server. |
-|  **optional** deprecated_server_ca_certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | <strong>Deprecated.</strong>  |
-|  **optional** active | [optional bool](#bool) | Disable the MQTT publisher, so it needs to be enabled again before it is active. |
-|  **optional** deprecated_active | [optional hiber.UpdateBoolean](#hiberupdateboolean) | <strong>Deprecated.</strong>  |
-|  **optional** health_warning_period | [optional hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
-|  **optional** health_warning_failure_percentage | [optional uint32](#uint32) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
-|  **optional** deprecated_health_warning_failure_percentage | [optional hiber.UpdateZeroableInt](#hiberupdatezeroableint) | <strong>Deprecated.</strong>  |
-|  **optional** override_url_validation | [optional bool](#bool) | Set this flag to not parse the url or enforce mqtts. |
-
-### UpdateMQTTPublisherTagsRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) |  |
-| selection | [ MQTTPublisherSelection](#mqttpublisherselection) |  |
-| update | [ hiber.tag.UpdateTagsForItem](#hibertagupdatetagsforitem) |  |
-
-### UpdateMQTTPublisherTagsRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| mqtt_publishers | [repeated MQTTPublisher](#mqttpublisher) |  |
+| file | [ File](#file) |  |
 
 
 ## Enums
-### ListMQTTPublishersRequest.Sort
 
 
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| DEFAULT | Sort by id. | 0 |
-| ID_DESC | Sort by id, high to low. | 1 |
-| DESCRIPTION | Sort by description. | 2 |
-| DESCRIPTION_DESC | Sort by description, z to a. | 3 |
-| URL | Sort by url. | 4 |
-| URL_DESC | Sort by url, z to a. | 5 |
-| TOPIC | Sort by topic. | 6 |
-| TOPIC_DESC | Sort by topic, z to a. | 7 |
-| HEALTH | Sort unhealthy webhooks before health webhooks. | 8 |
-
-### MQTTPublisher.ContentType
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| DEFAULT |  | 0 |
-| JSON |  | 1 |
-| PROTO |  | 2 |
-
-### MQTTPublisher.Data.QoS
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| DEFAULT |  | 0 |
-| AT_MOST_ONCE | Qos level 0 | 1 |
-| AT_LEAST_ONCE | Qos level 1 | 2 |
-| EXACTLY_ONCE | Qos level 2 | 3 |
-
-
-
-## Referenced messages from tag.proto
+## Referenced messages from file.proto
 (Note that these are included because there is a proto dependency on the file,
 so not all messages listed here are referenced.)
 
-#### This section was generated from [tag.proto](https://github.com/HiberGlobal/api/blob/master/tag.proto).
+#### This section was generated from [file.proto](https://github.com/HiberGlobal/api/blob/master/file.proto).
 
 
-### hiber.tag.Tag
+### hiber.file.File
 
-Tag in your organization.
-Tags can be assigned to devices and assets to group them together or mark a certain property.
+A file in your organization, with its mime-type and name.
+It can represent any file of any type.
 
-A Tag has three parts: its id in your organization, a Label that describes how it should be displayed, and
-Metadata (which is only included when using the TagService) with additional information.
+Specific API calls may pur restrictions on the name or size of the file.
 
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| id | [ int64](#int64) |  |
-| label | [ hiber.tag.Tag.Label](#hibertagtaglabel) | The label to display for this tag. |
-|  **optional** metadata | [optional hiber.tag.Tag.Metadata](#hibertagtagmetadata) | Metadata for this tag. This is typically not included in calls where the tag is repeated a lot, like the device list. Use the TagService.List call to get the tags with Metadata. |
+To avoid sending large amounts of binary data, File does not typically contain the file's content.
+The content can be fetched at a url, or using the FileService.Get rpc.
+For specific use cases, the data field might be set with binary data, avoiding the need for another lookup.
 
-### hiber.tag.Tag.Label
+The file name should be interpreted as-is.
+No hierarchical information is stored in the name, nor should you look at the "extension" to know its media-type.
+It might not even have a file extension.
+The file name may contain characters that cannot be a valid file name on certain systems.
 
-Label for a tag, containing all the information needed to display it.
+When showing this as an image in a browser, one can make use of a `data` URI.
+The client must convert the bytes to base64 and can then construct a data URI like this
 
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| name | [ string](#string) |  |
-| type | [ string](#string) |  |
+    data:<media-type>;base64,<base64-encoded-bytes>
 
-### hiber.tag.TagSelection
+Other type clients should be able to sort-of-directly set the data bytes as the source for an image.
 
-
+(Technical note: the indices are structured for binary backwards compatibility with the now-removed NamedFile.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| search | [repeated string](#string) |  |
-| names | [repeated string](#string) |  |
-|  **optional** filter | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
-| types | [repeated string](#string) |  |
-|  **optional** location | [optional hiber.LocationSelection](#hiberlocationselection) |  |
+| identifier | [ string](#string) | This file's content can be fetched using the FileService, with this file identifier. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **content**.data | [ hiber.BytesOrHex](#hiberbytesorhex) | The binary payload that represents the file |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **content**.file_service | [ bool](#bool) | This file's content can be fetched using the FileService, with this file identifier. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **content**.url | [ string](#string) | This file's content can be fetched at this url. |
+| media_type | [ string](#string) | The media-type of the file, as defined by RFC 6838 or its extensions |
+| name | [ string](#string) | A semantic name for this file. |
+
+### hiber.file.FileSelection
+
+Selection to use when listing files in your organization.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** search | [optional string](#string) | Search files in your organization by (partial) match on name, media type and (if present) url. |
+| identifiers | [repeated string](#string) | List files in your organization with a specific identifier. |
 
 
 ### Enums

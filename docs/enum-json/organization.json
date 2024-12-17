@@ -8,5 +8,6 @@
     , "EXPERIMENTAL": "Used for organizations that get access to experimental features. e.g. feature work in progress."
     , "ASSETS": "Access the list of assets in Mission Control."
     , "ASSET_DASHBOARD": "Use the new assets as primary data owner in Mission Control dashboards."
+    , "LOCATIONS": "Display and use device and gateway locations in Mission Control."
     }
 }]

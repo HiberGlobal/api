@@ -1,5 +1,38 @@
 # Changelog Hiber API
 
+### 0.221 (2024-12-17)
+
+##### AssetService
+
+- Added `Asset.location` to give assets a location.
+  - Added `location` to `CreateAsset.Request` and `UpdateAsset.Request` to manage the location of an `Asset`.
+  - Added `remove_location` to `UpdateAsset.Request` to remove the location from an `Asset`.
+- Added `Asset.files` to store `File`s for an `Asset`.
+  - Added `CreateAsset.Request.files` to add files to a new `Asset`.
+  - Added `add_files` and `delete_files` to `UpdateAsset.Request` to manage files on an `Asset`.
+
+##### FileService
+
+- Added new `FileService` to manage files in your organization.
+  - Added `List` to list files in your organization.
+  - Added `Upload` to upload a file or create a url link.
+  - Added `Get` to download a file.
+  - Added `Delete` to delete a file.
+
+##### OrganizationService
+
+- Moved `Avatar` from `base.proto` to `Organization`
+- Added `Organization.Feature.LOCATION` to determine whether location should be used.
+
+##### TagService
+
+- Added `Tag.location` to give tags a location.
+  - Added `location` to `CreateTagRequest` and `UpdateTagRequest` to manage the location of an `Tag`.
+  - Added `remove_location` to `UpdateTagRequest` to remove the location from an `Tag`.
+- Added `Tag.files` to store `File`s for an `Tag`.
+  - Added `CreateTagRequest.files` to add files to a new `Tag`.
+  - Added `add_files` and `delete_files` to `UpdateTagRequest` to manage files on an `Tag`.
+
 ### 0.220 (2024-12-10)
 
 ##### AssignmentService

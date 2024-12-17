@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package hiber.file;
+
+import "base.proto";
+
+option java_multiple_files = true;
+option java_package = "global.hiber.api.grpc.file";
+option go_package = ".;hiber";
+
+/* A file in your organization, with its mime-type and name.
+ * It can represent any file of any type.
+ *
+ * Specific API calls may pur restrictions on the name or size of the file.
+ *
+ * To avoid sending large amounts of binary data, File does not typically contain the file's content.
+ * The content can be fetched at a url, or using the FileService.Get rpc.
+ * For specific use cases, the data field might be set with binary data, avoiding the need for another lookup.
+ *
+ * The file name should be interpreted as-is.
+ * No hierarchical information is stored in the name, nor should you look at the "extension" to know its media-type.
+ * It might not even have a file extension.
+ * The file name may contain characters that cannot be a valid file name on certain systems.
+ *
+ * When showing this as an image in a browser, one can make use of a `data` URI.
+ * The client must convert the bytes to base64 and can then construct a data URI like this
+ *
+ *     data:<media-type>;base64,<base64-encoded-bytes>
+ *
+ * Other type clients should be able to sort-of-directly set the data bytes as the source for an image.
+ *
+ * (Technical note: the indices are structured for binary backwards compatibility with the now-removed NamedFile.)
+ */
+message File {
+    /* This file's content can be fetched using the FileService, with this file identifier. */
+    string identifier = 4;
+
+    oneof content {
+        /* The binary payload that represents the file */
+        BytesOrHex data = 1;
+
+        /* This file's content can be fetched using the FileService, with this file identifier. */
+        bool file_service = 5;
+
+        /* This file's content can be fetched at this url. */
+        string url = 6;
+    }
+
+    /* The media-type of the file, as defined by RFC 6838 or its extensions */
+    string media_type = 2;
+
+    /* A semantic name for this file. */
+    string name = 3;
+}
+
+/* Selection to use when listing files in your organization. */
+message FileSelection {
+    /* Search files in your organization by (partial) match on name, media type and (if present) url. */
+    optional string search = 1;
+
+    /* List files in your organization with a specific identifier. */
+    repeated string identifiers = 2;
+}
