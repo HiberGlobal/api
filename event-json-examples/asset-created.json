@@ -17,13 +17,15 @@
           "mediaType": "image/png",
           "name": "example.png",
           "identifier": "file-example-identifier",
-          "fileService": true
+          "fileService": true,
+          "link": "https://rest.api.test.env.hiber.cloud/file/file-example-identifier"
         },
         {
           "mediaType": "application/pdf",
           "name": "documentation.pdf",
           "identifier": "file-link-example-identifier",
-          "url": "https://example.com/documentation.pdf"
+          "url": "https://example.com/documentation.pdf",
+          "link": "https://rest.api.test.env.hiber.cloud/file/file-link-example-identifier"
         }
       ],
       "tags": [

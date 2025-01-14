@@ -15,13 +15,15 @@
           "mediaType": "application/pdf",
           "name": "documentation.pdf",
           "identifier": "file-link-example-identifier",
-          "url": "https://example.com/documentation.pdf"
+          "url": "https://example.com/documentation.pdf",
+          "link": "https://rest.api.test.env.hiber.cloud/file/file-link-example-identifier"
         },
         {
           "mediaType": "image/png",
           "name": "example2.png",
           "identifier": "file-example-identifier2",
-          "fileService": true
+          "fileService": true,
+          "link": "https://rest.api.test.env.hiber.cloud/file/file-example-identifier2"
         }
       ]
     },

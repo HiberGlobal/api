@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.222 (2025-01-14)
+
+##### ModemMessageBodyParserService
+
+- Added `UpdateUploadedModemMessageBodyParserRequest.replace_data_fields` to replace the fields.
+
 ### 0.221 (2024-12-17)
 
 ##### AssetService

@@ -4544,6 +4544,15 @@ Typically an image of a place. See the File.media_type for more information. </p
                   <td><p>A semantic name for this file. </p></td>
                 </tr>
               
+                <tr>
+                  <td>link</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>A link to file in the Hiber Rest API.
+Note: the Hiber Rest API requires a token, for authenticated access to your files.
+If the content oneof of this file is a url, this link will return a HTTP 301 code to redirect to that url. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 

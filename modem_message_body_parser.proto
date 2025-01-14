@@ -423,6 +423,9 @@ message UpdateUploadedModemMessageBodyParserRequest {
     /* Remove fields from the data fields list. */
     repeated string remove_data_fields = 6;
 
+    /* Replace fields to the data fields list. */
+    repeated field.Field replace_data_fields = 14;
+
     /* Fields in the parsed result that match special things that can be processed by the system, like a location. */
     optional MetadataFields metadata_fields = 10;
 

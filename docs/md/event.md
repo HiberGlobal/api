@@ -2618,6 +2618,7 @@ Other type clients should be able to sort-of-directly set the data bytes as the 
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **content**.url | [ string](#string) | This file's content can be fetched at this url. |
 | media_type | [ string](#string) | The media-type of the file, as defined by RFC 6838 or its extensions |
 | name | [ string](#string) | A semantic name for this file. |
+| link | [ string](#string) | A link to file in the Hiber Rest API. Note: the Hiber Rest API requires a token, for authenticated access to your files. If the content oneof of this file is a url, this link will return a HTTP 301 code to redirect to that url. |
 
 ### hiber.file.FileSelection
 
@@ -4187,6 +4188,7 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 |  **optional** content_ksy | [optional string](#string) | The new ksy definition for this parser. |
 | add_data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Add fields to the data fields list. |
 | remove_data_fields | [repeated string](#string) | Remove fields from the data fields list. |
+| replace_data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Replace fields to the data fields list. |
 |  **optional** metadata_fields | [optional hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
 | add_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | <strong>Deprecated.</strong> Add a post-processing step to the result of this parser. |
 | remove_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | <strong>Deprecated.</strong> Remove a post-processing step to the result of this parser. |
