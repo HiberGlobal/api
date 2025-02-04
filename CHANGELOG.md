@@ -1,5 +1,15 @@
 # Changelog Hiber API
 
+### 0.225 (2025-02-04)
+
+##### FieldService
+
+- Added more sorting options when listing fields.
+
+##### FieldService
+
+- `FieldSelection.search` now also matches `Field.identifier`.
+
 ### 0.222 (2025-01-14)
 
 ##### ModemMessageBodyParserService

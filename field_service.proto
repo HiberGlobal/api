@@ -56,8 +56,26 @@ message ListFields {
         /* Sort by display_name. */
         DISPLAY_NAME = 1;
 
+        /* Sort by display_name. */
+        DISPLAY_NAME_DESC = 5;
+
         /* Sort by json path only. */
         FIELD_PATH = 2;
+
+        /* Sort by json path only. */
+        FIELD_PATH_DESC = 6;
+
+        /* Sort by type and numeric value type (if numeric). */
+        TYPE = 3;
+
+        /* Sort by type and numeric value type (if numeric). */
+        TYPE_DESC = 7;
+
+        /* Sort by numeric value unit. */
+        UNIT = 4;
+
+        /* Sort by numeric value unit. */
+        UNIT_DESC = 8;
     }
 
     message Request {

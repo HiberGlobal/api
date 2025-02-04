@@ -6,6 +6,7 @@
       "contentKsy": "example",
       "identifier": "example-identifier",
       "organization": "your-organization",
+      "organizationDisplayName": "Your Organization",
       "dataFields": [],
       "metadataFields": {
         "requireMessageMetadata": {

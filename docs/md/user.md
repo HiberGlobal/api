@@ -486,6 +486,7 @@ Completely replace the roles the users have.
 | roles | [repeated string](#string) | Roles for the current organization. |
 | permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions for the current organization. |
 | support_permissions | [ hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions) | Permissions for customer support. Used for features typically reserved for customer support, or that behave differently when used by a customer support operator. |
+| last_activity | [ hiber.Date](#hiberdate) |  |
 
 ### UserActivitySummaryRequest
 

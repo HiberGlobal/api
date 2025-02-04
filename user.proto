@@ -51,6 +51,8 @@ message User {
      * when used by a customer support operator.
      */
     Filter.SupportPermissions support_permissions = 6;
+
+    Date last_activity = 8;
 }
 
 message UserSelection {

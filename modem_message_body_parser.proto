@@ -132,6 +132,9 @@ message ModemMessageBodyParser {
     /* The organization that created the parser. */
     string organization = 8;
 
+    /* The display name of the organization that created the parser. */
+    string organization_display_name = 15;
+
     /* The name for this parser. */
     string name = 2;
 

@@ -350,6 +350,7 @@ A parser can be defined in two ways: using a .ksy (Kaitai struct https://kaitai.
 | ----- | ---- | ----------- |
 | identifier | [ string](#string) | The globally (across organizations) unique identifier for this parser. |
 | organization | [ string](#string) | The organization that created the parser. |
+| organization_display_name | [ string](#string) | The display name of the organization that created the parser. |
 | name | [ string](#string) | The name for this parser. |
 | content_ksy | [ string](#string) | The content of this parsers script. If simple_parser is set, this content is generated from that definition. This field may be omitted by the list call to save data. |
 | simple_parser | [ SimpleModemMessageBodyParser](#simplemodemmessagebodyparser) | The simple parser this .ksy was generated from, if it was generated from a simple parser. This field may be omitted on demand to save data in the list call. |
@@ -724,6 +725,8 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifier | [ string](#string) | Unique identifier for this field. |
+| parser_identifier | [ string](#string) | Unique identifier for the parser this field belongs to. |
+| parser_name | [ string](#string) | Name of the parser this field belongs to. |
 | field | [ string](#string) | The name of the field (if in the root structure) or a JsonPath to the field. |
 |  **optional** display_name | [optional string](#string) | An optional display name for the field. |
 | priority | [ int32](#int32) | Priority of the field, typically used for ordering. |

@@ -270,6 +270,8 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifier | [ string](#string) | Unique identifier for this field. |
+| parser_identifier | [ string](#string) | Unique identifier for the parser this field belongs to. |
+| parser_name | [ string](#string) | Name of the parser this field belongs to. |
 | field | [ string](#string) | The name of the field (if in the root structure) or a JsonPath to the field. |
 |  **optional** display_name | [optional string](#string) | An optional display name for the field. |
 | priority | [ int32](#int32) | Priority of the field, typically used for ordering. |

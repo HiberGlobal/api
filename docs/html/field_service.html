@@ -2139,9 +2139,45 @@ When set to true at a later point, earlier values are not encrypted retro-active
               </tr>
             
               <tr>
+                <td>DISPLAY_NAME_DESC</td>
+                <td>5</td>
+                <td><p>Sort by display_name.</p></td>
+              </tr>
+            
+              <tr>
                 <td>FIELD_PATH</td>
                 <td>2</td>
                 <td><p>Sort by json path only.</p></td>
+              </tr>
+            
+              <tr>
+                <td>FIELD_PATH_DESC</td>
+                <td>6</td>
+                <td><p>Sort by json path only.</p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE</td>
+                <td>3</td>
+                <td><p>Sort by type and numeric value type (if numeric).</p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_DESC</td>
+                <td>7</td>
+                <td><p>Sort by type and numeric value type (if numeric).</p></td>
+              </tr>
+            
+              <tr>
+                <td>UNIT</td>
+                <td>4</td>
+                <td><p>Sort by numeric value unit.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UNIT_DESC</td>
+                <td>8</td>
+                <td><p>Sort by numeric value unit.</p></td>
               </tr>
             
           </tbody>
@@ -4782,6 +4818,20 @@ is ready to be downloaded.</p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Unique identifier for this field. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>parser_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique identifier for the parser this field belongs to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>parser_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of the parser this field belongs to. </p></td>
                 </tr>
               
                 <tr>
@@ -7913,6 +7963,13 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>The organization that created the parser. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>organization_display_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The display name of the organization that created the parser. </p></td>
                 </tr>
               
                 <tr>
