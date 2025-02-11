@@ -32,7 +32,7 @@ service SimulationService {
 }
 
 /* Push any number of modem messages. These are marked as test messages, which means they will be treated
- * differently in a few places (i.e. message sequence, to avoid errors on the next real messages).
+ * differently in a few places (e.g. message sequence, to avoid errors on the next real messages).
  * The message is handled like a real message, it's encrypted as if sent from a modem, then goes through
  * the decryption process and all relevant events are triggered (including webhooks calls caused by the events).
  */
@@ -132,7 +132,7 @@ message Simulation {
          */
         uint32 messages_per_interval = 2;
 
-        /* Interval messages should be simulated at (i.e. once every hour). */
+        /* Interval messages should be simulated at (e.g. once every hour). */
         Duration simulation_interval = 3;
 
         oneof message_bodies {
@@ -178,7 +178,7 @@ message Simulation {
              */
             uint32 messages_per_interval = 1;
 
-            /* Default for interval messages should be simulated at (i.e. once every hour). */
+            /* Default for interval messages should be simulated at (e.g. once every hour). */
             Duration simulation_interval = 2;
         }
 
@@ -231,7 +231,7 @@ message Simulation {
                  */
                 uint32 messages_per_interval = 3;
 
-                /* Interval messages should be simulated at (i.e. once every hour). */
+                /* Interval messages should be simulated at (e.g. once every hour). */
                 Duration simulation_interval = 4;
 
                 oneof message_body {

@@ -145,9 +145,9 @@ enum Sort {
     /* Sort alphabetically on the name of the organization that owns the device, in descending order. */
     ORGANIZATION_DESC = 11;
 
-    /* Health sorted from least to most severe (i.e. OK, WARNING, ERROR). */
+    /* Health sorted from least to most severe (e.g. OK, WARNING, ERROR). */
     HEALTH_ASC = 12;
-    /* Health sorted from most to least severe (i.e. ERROR, WARNING, OK). */
+    /* Health sorted from most to least severe (e.g. ERROR, WARNING, OK). */
     HEALTH_DESC = 13;
     /* Health sorted alphabetically by health level name. */
     HEALTH_ALPHABETICAL_ASC = 14;

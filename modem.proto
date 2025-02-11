@@ -448,7 +448,7 @@ message ModemMessage {
     /* Convenience flag marking whether the body was parsed successfully by at least one parser. */
     bool body_parsed_successfully = 12;
 
-    /* Message source(s) for this message (i.e. it was received through the satellite or directly to the server). */
+    /* Message source(s) for this message (e.g. it was received through the satellite or directly to the server). */
     repeated Source sources = 10;
 
     /* True if the the TEST source is in the sources. */
@@ -490,7 +490,7 @@ message ModemMessageSelection {
         repeated ModemMessage.Source exclude = 2;
     }
 
-    /* Define the modems to return messages for, i.e. include = [AAAA AAAA, BBBB BBBB].
+    /* Define the modems to return messages for, e.g. include = [AAAA AAAA, BBBB BBBB].
      * Deprecated in favor of using the ModemSelection.
      */
     Filter.Modems modems = 1 [deprecated = true];
@@ -580,9 +580,9 @@ message ListModemsRequest {
         /* Sort alphabetically on the name of the organization that owns the modem, in descending order. */
         ORGANIZATION_DESC = 9;
 
-        /* Health sorted from least to most severe (i.e. OK, WARNING, ERROR). */
+        /* Health sorted from least to most severe (e.g. OK, WARNING, ERROR). */
         HEALTH = 10;
-        /* Health sorted from most to least severe (i.e. ERROR, WARNING, OK). */
+        /* Health sorted from most to least severe (e.g. ERROR, WARNING, OK). */
         HEALTH_DESC = 11;
         /* Health sorted alphabetically by health level name. */
         HEALTH_ASC_ALPHABETICAL = 12;

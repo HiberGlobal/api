@@ -28,7 +28,7 @@ message Transfer {
     /* The organization that received the transfer. */
     string recipient_organization = 3;
 
-    /* Optional comment for the transfer (i.e. reason, tracking information, etc). */
+    /* Optional comment for the transfer (e.g. reason, tracking information, etc). */
     string comment = 4;
 
     Timestamp created_at = 5;

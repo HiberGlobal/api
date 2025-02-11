@@ -38,11 +38,11 @@
       }
     ],
     "title": "Processing for AAAA AAAA appears to be misconfigured! Please contact customer support if this is not resolved.",
-    "description": "Processing for AAAA AAAA appears to be misconfigured! Please contact customer support if this is not resolved.\n\nThis can mean that:\n- the device is sending invalid messages\n- the processing is configured incorrectly (i.e. for a different type of device)\n\nSee the message below for more information:\n\nParsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.\n\nwell: example-tag, example-tag-2",
+    "description": "Processing for AAAA AAAA appears to be misconfigured! Please contact customer support if this is not resolved.\n\nThis can mean that:\n- the device is sending invalid messages\n- the processing is configured incorrectly (e.g. for a different type of device)\n\nSee the message below for more information:\n\nParsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.\n\nwell: example-tag, example-tag-2",
     "deviceExternalDeviceId": "00 11 22 33 AA BB CC DD"
   },
   "title": "Processing for AAAA AAAA appears to be misconfigured! Please contact customer support if this is not resolved.",
-  "description": "Processing for AAAA AAAA appears to be misconfigured! Please contact customer support if this is not resolved.\n\nThis can mean that:\n- the device is sending invalid messages\n- the processing is configured incorrectly (i.e. for a different type of device)\n\nSee the message below for more information:\n\nParsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.\n\nwell: example-tag, example-tag-2",
+  "description": "Processing for AAAA AAAA appears to be misconfigured! Please contact customer support if this is not resolved.\n\nThis can mean that:\n- the device is sending invalid messages\n- the processing is configured incorrectly (e.g. for a different type of device)\n\nSee the message below for more information:\n\nParsing failure: all assigned parsers have failed with the following errors:\n\n - Failed: 13 bytes were not parsed.\n\nwell: example-tag, example-tag-2",
   "device": {
     "number": "AAAA AAAA",
     "name": "AAAA AAAA",

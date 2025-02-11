@@ -33,7 +33,7 @@ By default, everyone who has access to an organization, can access basic organiz
 | ORGANIZATION_DELETE | Delete child organizations. You cannot delete your own organization. To delete your organization, contact support. | 3 |
 | ASSETS | List assets, see their details | 53 |
 | ASSETS_UPDATE | Create and update assets, such as their display name and tags. Includes ASSETS permission. | 54 |
-| ASSETS_VALUES | Read asset values, i.e. pressure measurements. | 55 |
+| ASSETS_VALUES | Read asset values, e.g. pressure measurements. | 55 |
 | MODEMS | List modems, see their details and health | 10 |
 | MODEMS_CREATE | Create new modems. Includes MODEMS permission. | 50 |
 | MODEMS_UPDATE | Update modems, such as their peripherals, display name and tags. Includes MODEMS permission. | 11 |
@@ -53,7 +53,7 @@ By default, everyone who has access to an organization, can access basic organiz
 | USERS_MANAGE | Approve or create new users, remove users from the organization. Includes users permission. | 31 |
 | PUBLISHERS | Manage publishers: webhooks, MQTT integration and custom email publishers. | 35 |
 | TOKENS | Manage tokens. | 36 |
-| CERTIFICATES | Read and use uploaded certificates (i.e. for publishers). | 38 |
+| CERTIFICATES | Read and use uploaded certificates (used by publishers). | 38 |
 | CERTIFICATES_MANAGE | Upload certificates, and update or delete uploaded certificates. | 39 |
 | ASSIGNMENTS | Manage assignments using the assignment services and individual calls on, for example, ModemService. | 45 |
 | SIMULATION_MANAGE | Manage simulations, like modem message simulation. | 46 |

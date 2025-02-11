@@ -1,5 +1,9 @@
 # Changelog Hiber API
 
+### 0.226 (2025-02-11)
+
+- Grammatical corrections in documentation
+
 ### 0.225 (2025-02-04)
 
 ##### FieldService

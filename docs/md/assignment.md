@@ -312,7 +312,7 @@ Add assignments.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) |  |
 | alarm_parameters | [map Assign.Request.AlarmParametersEntry](#assignrequestalarmparametersentry) | The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
 |  **optional** override_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment should be active. This sets the assignment to start in the past, but would not have effect in the past for assignments like parsers and alarms (they will only be triggered for new messages / values). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
-|  **optional** end_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (i.e. no alarm events are removed). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
+|  **optional** end_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (e.g. no alarm events are removed). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
 |  **optional** override_conflicting_assignments | [optional bool](#bool) | Instead of throwing an error when there are conflicting assignments, unassign the conflicting assignments with the given time (override_time or now) and then making the assignment. |
 |  **optional** override_conflicting_assignments_allow_delete | [optional bool](#bool) | When overriding assignments, we may run into a case where a previous assignment would be completely replaced. Since this is questionable, doing so required an additional opt-in with this flag. |
 
@@ -719,7 +719,7 @@ Remove a assignment.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.override_time | [ hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (i.e. no alarm events are removed). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.override_time | [ hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (e.g. no alarm events are removed). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.remove_time | [ bool](#bool) | Remove time from the assignment, if any. Effectively deletes the assignment if it was set with a time. Setting this to true makes this identical to using the Delete rpc. |
 
 ### Unassign.Response
@@ -763,7 +763,7 @@ Assets are things that collect the data produced by devices.
 Devices are assigned to assets to handle data ownership.
 When a device is replaced, the data flow for the asset continues with the data from the new device.
 Multiple devices can be assigned to an asset, though it is advisable to only do so when they send
-different type of data (i.e. one sensor for pressure and one for flow).
+different type of data (e.g. one sensor for pressure and one for flow).
 
 For example, if you have a Well, you might have assets for Annulus A and the tubing head.
 
@@ -788,7 +788,7 @@ For example, if you have a Well, you might have assets for Annulus A and the tub
 
 A device assigned to this asset.
 Non-operational values that the device produces will be linked to this asset
-(i.e. pressure, but not battery level).
+(e.g. pressure, but not battery level).
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -933,8 +933,8 @@ Sorting options for the results.
 | MODEM_NAME_DESC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in descending order. | 7 |
 | ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the modem, in ascending order. | 8 |
 | ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the modem, in descending order. | 9 |
-| HEALTH | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 10 |
-| HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 11 |
+| HEALTH | Health sorted from least to most severe (e.g. OK, WARNING, ERROR). | 10 |
+| HEALTH_DESC | Health sorted from most to least severe (e.g. ERROR, WARNING, OK). | 11 |
 | HEALTH_ASC_ALPHABETICAL | Health sorted alphabetically by health level name. | 12 |
 | HEALTH_DESC_ALPHABETICAL | Health sorted alphabetically by health level name, descending order. | 13 |
 | SENSOR_BRAND_ASC | Sort alphabetically on the brand of the sensor, in ascending order. | 16 |
@@ -1166,7 +1166,7 @@ would have the following parameters:
 
 ### hiber.modem.alarm.ModemAlarm.Check
 
-A check is a specification of how things should be, i.e. "a value should be within this range".
+A check is a specification of how things should be, e.g. "a value should be within this range".
 When it fails, it produces an event with:
 - a custom health level, or the default defined in the alarm
 - an error message, define from a template in the check
@@ -1315,7 +1315,7 @@ Check that the field is not in a set of blocked values.
 ### hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedRangeCheck
 
 Check that the field is outside of a range.
-If the minimum is higher than the maximum (i.e. 30..10), this is automatically converted into a
+If the minimum is higher than the maximum (e.g. 30..10), this is automatically converted into a
 ThresholdCheck.
 
 | Field | Type | Description |
@@ -1360,7 +1360,7 @@ Check that the field is higher than the given value.
 ### hiber.modem.alarm.ModemAlarm.Check.FieldCheck.ThresholdCheck
 
 Check that the field is above a minimum threshold and under a maximum threshold.
-If the minimum is higher than the maximum (i.e. 30..10), this is automatically converted into a
+If the minimum is higher than the maximum (e.g. 30..10), this is automatically converted into a
 BlockedRangeCheck.
 
 | Field | Type | Description |
@@ -1864,7 +1864,7 @@ Delimited size definition, used for Bytes and Text.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **size**.size_bytes | [ int32](#int32) | Specifies the number of bytes in this field. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **size**.end_of_stream | [ bool](#bool) | Specifies that this field parses all bytes until the end of the stream. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **size**.field_name | [ string](#string) | Specifies the number of bytes in this field using the value of an Integer field. This integer field must be parsed before this field is parsed. |
-| terminator | [ bytes](#bytes) | Specify a terminator that marks the point the field terminates, optionally, and we should continue to the next field. This is typically a single byte (i.e. 0x00). This can be combined with a size to limit the amounts of bytes that are parsed. |
+| terminator | [ bytes](#bytes) | Specify a terminator that marks the point the field terminates, optionally, and we should continue to the next field. This is typically a single byte (e.g. 0x00). This can be combined with a size to limit the amounts of bytes that are parsed. |
 
 ### hiber.modem.message.bodyparser.SimpleModemMessageBodyParser.Field
 
@@ -2191,7 +2191,7 @@ while others prefer a text-based format.
 To accommodate this, this Date type supports both.
 
 When used as API output, both the int fields and textual fields will be set.
-The textual field has the commonly used ISO 8601 local date format (i.e. "2018-01-01").
+The textual field has the commonly used ISO 8601 local date format (e.g. "2018-01-01").
 When used an API input, either specify the int fields or the textual field.
 If both are specified, the textual field will be discarded.
 
@@ -2566,7 +2566,7 @@ while a rectangular region is easier to define using Area.
 Period of time between two timestamps. Typically used for filtering.
 
 This can be used with textual shortcuts for timestamp, and some additional duration textual shortcuts:
-- a duration as an offset of now, i.e. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is
+- a duration as an offset of now, e.g. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is
   10 hours before the end time (using the ISO 8601 duration format)
 Examples:
 - start "-10h" end "now": a time range from 10 hours before the request time, to the request time
@@ -2585,7 +2585,7 @@ Some clients are better at parsing Google's seconds/nanos based timestamp, while
 To accommodate this, this Timestamp type supports both.
 
 When used as API output, both the timestamp and textual fields will be set. The textual field has the commonly
-used ISO 8601 format (i.e. "2018-01-01T13:00:00Z").
+used ISO 8601 format (e.g. "2018-01-01T13:00:00Z").
 When used an API input, only one of the fields is needed, there is no need to set both. When both are set, the
 timestamp field will be used, the textual field will be discarded.
 
@@ -2689,10 +2689,10 @@ api event stream and publishers.
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
 | ASSET_CREATED | A new asset was created in your organization. | 70 |
-| ASSET_UPDATED | An asset in your organization was updated (i.e. renamed, tagged). | 71 |
+| ASSET_UPDATED | An asset in your organization was updated (e.g. renamed, tagged). | 71 |
 | ASSET_DELETED | An asset in your organization was deleted. | 72 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
-| DEVICE_UPDATED | A device in your organization was manually updated (i.e. renamed, tagged). | 36 |
+| DEVICE_UPDATED | A device in your organization was manually updated (e.g. renamed, tagged). | 36 |
 | DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |
 | DEVICE_INSTALLED | A device in your organization was installed and should now be active. | 33 |
 | MESSAGE_RECEIVED | A device in your organization sent a message. This event is the final output for the message, after any parsing and post-processing. | 5 |
@@ -2724,8 +2724,8 @@ api event stream and publishers.
 | TOKEN_EXPIRY_WARNING | A token in your organization will expire within 2 weeks. | 25 |
 | TOKEN_EXPIRED | A token in your organization has expired. | 26 |
 | TOKEN_DELETED | A token in your organization was deleted. | 32 |
-| EXPORT_CREATED | A new export was started for your organization, exporting data (i.e. messages) to a file. | 65 |
-| EXPORT_READY | An export in your organization has completed and the resulting file with data (i.e. messages as CSV) is ready to be downloaded. | 66 |
+| EXPORT_CREATED | A new export was started for your organization, exporting data (e.g. messages) to a file. | 65 |
+| EXPORT_READY | An export in your organization has completed and the resulting file with data (e.g. messages as CSV) is ready to be downloaded. | 66 |
 | EXPORT_FAILED | An export in your organization has failed (typically because of incorrect data selection). | 67 |
 
 #### hiber.Health

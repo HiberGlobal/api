@@ -43,7 +43,7 @@ message Tag {
      * Use the TagService.List call to get the tags with Metadata.
      */
     message Metadata {
-        /* Location for the tag (i.e. a plot of land, a specific well or a field). */
+        /* Location for the tag (e.g. a plot of land, a specific well or a field). */
         oneof location {
             /* Single point location for this tag. */
             Location location_point = 4;
@@ -120,7 +120,7 @@ message CreateTagRequest {
     optional string organization = 1;
     Tag.Label create = 2;
 
-    /* Location for the tag (i.e. a plot of land, a specific well or a field). */
+    /* Location for the tag (e.g. a plot of land, a specific well or a field). */
     oneof location {
         /* Single point location for this tag. */
         Location location_point = 4;

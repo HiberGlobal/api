@@ -26,7 +26,7 @@ Preconfigured device type.
 | ----- | ---- | ----------- |
 | identifier | [ string](#string) |  |
 | brand | [ string](#string) | Brand that produces this device type. |
-| application | [ string](#string) | What this devices is meant for, i.e. measuring pressure. |
+| application | [ string](#string) | What this devices is meant for, e.g. measuring pressure. |
 | category | [ string](#string) | A category specific to this device type (for example, based on device configuration). |
 | version | [ string](#string) | A version specific to this device type (typically based on firmware version). |
 | description | [ string](#string) | Textual description of the device type, for display purposes. |

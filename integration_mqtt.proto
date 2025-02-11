@@ -43,7 +43,7 @@ message MQTTPublisher {
     }
 
     message Data {
-        /* The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 */
+        /* The url of an MQTT server to send the events to, e.g. mqtt[s]://example.com:8883 */
         string url = 1;
 
         ContentType content_type = 2;
@@ -204,7 +204,7 @@ message CreateMQTTPublisherRequest {
     optional Filter.Modems filter_modem_numbers = 4;
     optional Filter.Tags filter_tags = 5;
 
-    /* The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 */
+    /* The url of an MQTT server to send the events to, e.g. mqtt[s]://example.com:8883 */
     string url = 10;
     MQTTPublisher.ContentType content_type = 11;
 
@@ -278,7 +278,7 @@ message UpdateMQTTPublisherRequest {
     optional UpdateClearableString deprecated_description = 10 [deprecated = true];
     optional string description = 27;
 
-    /* The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 */
+    /* The url of an MQTT server to send the events to, e.g. mqtt[s]://example.com:8883 */
     optional string url = 11;
     optional MQTTPublisher.ContentType content_type = 12;
 

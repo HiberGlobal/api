@@ -121,7 +121,7 @@ By default, everyone who has access to an organization, can access basic organiz
 | ORGANIZATION_DELETE | Delete child organizations. You cannot delete your own organization. To delete your organization, contact support. | 3 |
 | ASSETS | List assets, see their details | 53 |
 | ASSETS_UPDATE | Create and update assets, such as their display name and tags. Includes ASSETS permission. | 54 |
-| ASSETS_VALUES | Read asset values, i.e. pressure measurements. | 55 |
+| ASSETS_VALUES | Read asset values, e.g. pressure measurements. | 55 |
 | MODEMS | List modems, see their details and health | 10 |
 | MODEMS_CREATE | Create new modems. Includes MODEMS permission. | 50 |
 | MODEMS_UPDATE | Update modems, such as their peripherals, display name and tags. Includes MODEMS permission. | 11 |
@@ -141,7 +141,7 @@ By default, everyone who has access to an organization, can access basic organiz
 | USERS_MANAGE | Approve or create new users, remove users from the organization. Includes users permission. | 31 |
 | PUBLISHERS | Manage publishers: webhooks, MQTT integration and custom email publishers. | 35 |
 | TOKENS | Manage tokens. | 36 |
-| CERTIFICATES | Read and use uploaded certificates (i.e. for publishers). | 38 |
+| CERTIFICATES | Read and use uploaded certificates (used by publishers). | 38 |
 | CERTIFICATES_MANAGE | Upload certificates, and update or delete uploaded certificates. | 39 |
 | ASSIGNMENTS | Manage assignments using the assignment services and individual calls on, for example, ModemService. | 45 |
 | SIMULATION_MANAGE | Manage simulations, like modem message simulation. | 46 |
@@ -233,7 +233,7 @@ while others prefer a text-based format.
 To accommodate this, this Date type supports both.
 
 When used as API output, both the int fields and textual fields will be set.
-The textual field has the commonly used ISO 8601 local date format (i.e. "2018-01-01").
+The textual field has the commonly used ISO 8601 local date format (e.g. "2018-01-01").
 When used an API input, either specify the int fields or the textual field.
 If both are specified, the textual field will be discarded.
 
@@ -608,7 +608,7 @@ while a rectangular region is easier to define using Area.
 Period of time between two timestamps. Typically used for filtering.
 
 This can be used with textual shortcuts for timestamp, and some additional duration textual shortcuts:
-- a duration as an offset of now, i.e. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is
+- a duration as an offset of now, e.g. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is
   10 hours before the end time (using the ISO 8601 duration format)
 Examples:
 - start "-10h" end "now": a time range from 10 hours before the request time, to the request time
@@ -627,7 +627,7 @@ Some clients are better at parsing Google's seconds/nanos based timestamp, while
 To accommodate this, this Timestamp type supports both.
 
 When used as API output, both the timestamp and textual fields will be set. The textual field has the commonly
-used ISO 8601 format (i.e. "2018-01-01T13:00:00Z").
+used ISO 8601 format (e.g. "2018-01-01T13:00:00Z").
 When used an API input, only one of the fields is needed, there is no need to set both. When both are set, the
 timestamp field will be used, the textual field will be discarded.
 
@@ -731,10 +731,10 @@ api event stream and publishers.
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
 | ASSET_CREATED | A new asset was created in your organization. | 70 |
-| ASSET_UPDATED | An asset in your organization was updated (i.e. renamed, tagged). | 71 |
+| ASSET_UPDATED | An asset in your organization was updated (e.g. renamed, tagged). | 71 |
 | ASSET_DELETED | An asset in your organization was deleted. | 72 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
-| DEVICE_UPDATED | A device in your organization was manually updated (i.e. renamed, tagged). | 36 |
+| DEVICE_UPDATED | A device in your organization was manually updated (e.g. renamed, tagged). | 36 |
 | DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |
 | DEVICE_INSTALLED | A device in your organization was installed and should now be active. | 33 |
 | MESSAGE_RECEIVED | A device in your organization sent a message. This event is the final output for the message, after any parsing and post-processing. | 5 |
@@ -766,8 +766,8 @@ api event stream and publishers.
 | TOKEN_EXPIRY_WARNING | A token in your organization will expire within 2 weeks. | 25 |
 | TOKEN_EXPIRED | A token in your organization has expired. | 26 |
 | TOKEN_DELETED | A token in your organization was deleted. | 32 |
-| EXPORT_CREATED | A new export was started for your organization, exporting data (i.e. messages) to a file. | 65 |
-| EXPORT_READY | An export in your organization has completed and the resulting file with data (i.e. messages as CSV) is ready to be downloaded. | 66 |
+| EXPORT_CREATED | A new export was started for your organization, exporting data (e.g. messages) to a file. | 65 |
+| EXPORT_READY | An export in your organization has completed and the resulting file with data (e.g. messages as CSV) is ready to be downloaded. | 66 |
 | EXPORT_FAILED | An export in your organization has failed (typically because of incorrect data selection). | 67 |
 
 #### hiber.Health

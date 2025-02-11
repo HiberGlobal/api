@@ -151,7 +151,7 @@ whether everything works from message to webhook call, and further in your own s
 ### PushModemMessagesRequest
 
 Push any number of modem messages. These are marked as test messages, which means they will be treated
-differently in a few places (i.e. message sequence, to avoid errors on the next real messages).
+differently in a few places (e.g. message sequence, to avoid errors on the next real messages).
 The message is handled like a real message, it's encrypted as if sent from a modem, then goes through
 the decryption process and all relevant events are triggered (including webhooks calls caused by the events).
 
@@ -246,7 +246,7 @@ This does not affect messages that are not simulated (like test messages or real
 | ----- | ---- | ----------- |
 | modem_number | [ string](#string) |  |
 | messages_per_interval | [ uint32](#uint32) | The number of simulated messages per day for this modem. This value is either the custom amount per day for this modem or the default value |
-| simulation_interval | [ hiber.Duration](#hiberduration) | Interval messages should be simulated at (i.e. once every hour). |
+| simulation_interval | [ hiber.Duration](#hiberduration) | Interval messages should be simulated at (e.g. once every hour). |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **message_bodies**.message_body | [ hiber.BytesOrHex](#hiberbytesorhex) | A message body to use for the simulated messages. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **message_bodies**.message_body_rotation | [ Simulation.ModemMessageSimulation.MessageBodyRotation](#simulationmodemmessagesimulationmessagebodyrotation) | Rotate through a list of message bodies. |
 | message_body_variable_byte_indices | [repeated uint32](#uint32) | The indices of bytes in the message body that should be randomized (to have variable values). |
@@ -261,7 +261,7 @@ This does not affect messages that are not simulated (like test messages or real
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | messages_per_interval | [ uint32](#uint32) | Default for the amount of messages to simulate per interval for a modem that has simulation enabled. Must be between 1 and 24 (for a maximum of 240 message per day). |
-| simulation_interval | [ hiber.Duration](#hiberduration) | Default for interval messages should be simulated at (i.e. once every hour). |
+| simulation_interval | [ hiber.Duration](#hiberduration) | Default for interval messages should be simulated at (e.g. once every hour). |
 
 ### Simulation.ModemMessageSimulation.Delete
 
@@ -354,7 +354,7 @@ Create or update the modem message simulation for a selection of modems.
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Modems to create or update the message simulation for. |
 | messages_per_interval | [ uint32](#uint32) | The number of simulated messages per simulation interval for these modems. This value is either the custom amount per day for these modems or the default value |
-| simulation_interval | [ hiber.Duration](#hiberduration) | Interval messages should be simulated at (i.e. once every hour). |
+| simulation_interval | [ hiber.Duration](#hiberduration) | Interval messages should be simulated at (e.g. once every hour). |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **message_body**.update_message_body | [ hiber.BytesOrHex.Update](#hiberbytesorhexupdate) | <strong>Deprecated.</strong> A message body to use for the simulated messages. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **message_body**.replace_message_body_rotation | [ Simulation.ModemMessageSimulation.MessageBodyRotation](#simulationmodemmessagesimulationmessagebodyrotation) | Replace the list of message bodies to rotate through. This does not have to match the length of the location rotation, if any. Note that this **replaces** the entire list of values, to ensure the order is maintained. |
 | message_body_add_variable_byte_indices | [repeated uint32](#uint32) | Add indices of bytes in the message body that should be randomized (to have variable values). |
@@ -484,8 +484,8 @@ Sorting options for the results.
 | MODEM_NAME_DESC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in descending order. | 7 |
 | ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the modem, in ascending order. | 8 |
 | ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the modem, in descending order. | 9 |
-| HEALTH | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 10 |
-| HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 11 |
+| HEALTH | Health sorted from least to most severe (e.g. OK, WARNING, ERROR). | 10 |
+| HEALTH_DESC | Health sorted from most to least severe (e.g. ERROR, WARNING, OK). | 11 |
 | HEALTH_ASC_ALPHABETICAL | Health sorted alphabetically by health level name. | 12 |
 | HEALTH_DESC_ALPHABETICAL | Health sorted alphabetically by health level name, descending order. | 13 |
 | SENSOR_BRAND_ASC | Sort alphabetically on the brand of the sensor, in ascending order. | 16 |
@@ -587,7 +587,7 @@ while others prefer a text-based format.
 To accommodate this, this Date type supports both.
 
 When used as API output, both the int fields and textual fields will be set.
-The textual field has the commonly used ISO 8601 local date format (i.e. "2018-01-01").
+The textual field has the commonly used ISO 8601 local date format (e.g. "2018-01-01").
 When used an API input, either specify the int fields or the textual field.
 If both are specified, the textual field will be discarded.
 
@@ -962,7 +962,7 @@ while a rectangular region is easier to define using Area.
 Period of time between two timestamps. Typically used for filtering.
 
 This can be used with textual shortcuts for timestamp, and some additional duration textual shortcuts:
-- a duration as an offset of now, i.e. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is
+- a duration as an offset of now, e.g. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is
   10 hours before the end time (using the ISO 8601 duration format)
 Examples:
 - start "-10h" end "now": a time range from 10 hours before the request time, to the request time
@@ -981,7 +981,7 @@ Some clients are better at parsing Google's seconds/nanos based timestamp, while
 To accommodate this, this Timestamp type supports both.
 
 When used as API output, both the timestamp and textual fields will be set. The textual field has the commonly
-used ISO 8601 format (i.e. "2018-01-01T13:00:00Z").
+used ISO 8601 format (e.g. "2018-01-01T13:00:00Z").
 When used an API input, only one of the fields is needed, there is no need to set both. When both are set, the
 timestamp field will be used, the textual field will be discarded.
 
@@ -1085,10 +1085,10 @@ api event stream and publishers.
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
 | ASSET_CREATED | A new asset was created in your organization. | 70 |
-| ASSET_UPDATED | An asset in your organization was updated (i.e. renamed, tagged). | 71 |
+| ASSET_UPDATED | An asset in your organization was updated (e.g. renamed, tagged). | 71 |
 | ASSET_DELETED | An asset in your organization was deleted. | 72 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
-| DEVICE_UPDATED | A device in your organization was manually updated (i.e. renamed, tagged). | 36 |
+| DEVICE_UPDATED | A device in your organization was manually updated (e.g. renamed, tagged). | 36 |
 | DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |
 | DEVICE_INSTALLED | A device in your organization was installed and should now be active. | 33 |
 | MESSAGE_RECEIVED | A device in your organization sent a message. This event is the final output for the message, after any parsing and post-processing. | 5 |
@@ -1120,8 +1120,8 @@ api event stream and publishers.
 | TOKEN_EXPIRY_WARNING | A token in your organization will expire within 2 weeks. | 25 |
 | TOKEN_EXPIRED | A token in your organization has expired. | 26 |
 | TOKEN_DELETED | A token in your organization was deleted. | 32 |
-| EXPORT_CREATED | A new export was started for your organization, exporting data (i.e. messages) to a file. | 65 |
-| EXPORT_READY | An export in your organization has completed and the resulting file with data (i.e. messages as CSV) is ready to be downloaded. | 66 |
+| EXPORT_CREATED | A new export was started for your organization, exporting data (e.g. messages) to a file. | 65 |
+| EXPORT_READY | An export in your organization has completed and the resulting file with data (e.g. messages as CSV) is ready to be downloaded. | 66 |
 | EXPORT_FAILED | An export in your organization has failed (typically because of incorrect data selection). | 67 |
 
 #### hiber.Health

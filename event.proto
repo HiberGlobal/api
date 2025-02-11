@@ -29,7 +29,7 @@ option go_package = ".;hiber";
 /* Events are used in a number of ways in the api. With this service you can
  * search, list and stream them for your own purposes.
  *
- * Events are filtered by permission, i.e. if you cannot access the users, you would not see user-related events.
+ * Events are filtered by permission, e.g. if you cannot access the users, you would not see user-related events.
  * Requesting user-related events explicitly if you cannot access the users will return an error.
  */
 service EventService {

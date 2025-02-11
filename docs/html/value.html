@@ -1984,7 +1984,7 @@ Aggregation (if applicable) is applied before the delta is calculated.</p></td>
         
       
         <h3 id="hiber.Date">Date</h3>
-        <p>Date type for convenience.</p><p>Some clients are better at parsing year, month and day of month as separate fields,</p><p>while others prefer a text-based format.</p><p>To accommodate this, this Date type supports both.</p><p>When used as API output, both the int fields and textual fields will be set.</p><p>The textual field has the commonly used ISO 8601 local date format (i.e. "2018-01-01").</p><p>When used an API input, either specify the int fields or the textual field.</p><p>If both are specified, the textual field will be discarded.</p>
+        <p>Date type for convenience.</p><p>Some clients are better at parsing year, month and day of month as separate fields,</p><p>while others prefer a text-based format.</p><p>To accommodate this, this Date type supports both.</p><p>When used as API output, both the int fields and textual fields will be set.</p><p>The textual field has the commonly used ISO 8601 local date format (e.g. "2018-01-01").</p><p>When used an API input, either specify the int fields or the textual field.</p><p>If both are specified, the textual field will be discarded.</p>
 
         
           <table class="field-table">
@@ -3139,7 +3139,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.TimeRange">TimeRange</h3>
-        <p>Period of time between two timestamps. Typically used for filtering.</p><p>This can be used with textual shortcuts for timestamp, and some additional duration textual shortcuts:</p><p>- a duration as an offset of now, i.e. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is</p><p>10 hours before the end time (using the ISO 8601 duration format)</p><p>Examples:</p><p>- start "-10h" end "now": a time range from 10 hours before the request time, to the request time</p><p>- start "-10h" end "2022-01-01 20:00": becomes start 2022-01-01 10:00 end 2022-01-01 20:00</p>
+        <p>Period of time between two timestamps. Typically used for filtering.</p><p>This can be used with textual shortcuts for timestamp, and some additional duration textual shortcuts:</p><p>- a duration as an offset of now, e.g. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is</p><p>10 hours before the end time (using the ISO 8601 duration format)</p><p>Examples:</p><p>- start "-10h" end "now": a time range from 10 hours before the request time, to the request time</p><p>- start "-10h" end "2022-01-01 20:00": becomes start 2022-01-01 10:00 end 2022-01-01 20:00</p>
 
         
           <table class="field-table">
@@ -3170,7 +3170,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.Timestamp">Timestamp</h3>
-        <p>Timestamp type for convenience.</p><p>Some clients are better at parsing Google's seconds/nanos based timestamp, while others prefer a text-based format.</p><p>To accommodate this, this Timestamp type supports both.</p><p>When used as API output, both the timestamp and textual fields will be set. The textual field has the commonly</p><p>used ISO 8601 format (i.e. "2018-01-01T13:00:00Z").</p><p>When used an API input, only one of the fields is needed, there is no need to set both. When both are set, the</p><p>timestamp field will be used, the textual field will be discarded.</p><p>In addition, the textual field, when used as input, allows for a number of shortcuts that get converted into</p><p>timestamps:</p><p>- "now": converted to the current timestamp at the time of the request</p>
+        <p>Timestamp type for convenience.</p><p>Some clients are better at parsing Google's seconds/nanos based timestamp, while others prefer a text-based format.</p><p>To accommodate this, this Timestamp type supports both.</p><p>When used as API output, both the timestamp and textual fields will be set. The textual field has the commonly</p><p>used ISO 8601 format (e.g. "2018-01-01T13:00:00Z").</p><p>When used an API input, only one of the fields is needed, there is no need to set both. When both are set, the</p><p>timestamp field will be used, the textual field will be discarded.</p><p>In addition, the textual field, when used as input, allows for a number of shortcuts that get converted into</p><p>timestamps:</p><p>- "now": converted to the current timestamp at the time of the request</p>
 
         
           <table class="field-table">
@@ -3413,7 +3413,7 @@ This refers to things like message summary configuration.</p></td>
               <tr>
                 <td>ASSET_UPDATED</td>
                 <td>71</td>
-                <td><p>An asset in your organization was updated (i.e. renamed, tagged).</p></td>
+                <td><p>An asset in your organization was updated (e.g. renamed, tagged).</p></td>
               </tr>
             
               <tr>
@@ -3431,7 +3431,7 @@ This refers to things like message summary configuration.</p></td>
               <tr>
                 <td>DEVICE_UPDATED</td>
                 <td>36</td>
-                <td><p>A device in your organization was manually updated (i.e. renamed, tagged).</p></td>
+                <td><p>A device in your organization was manually updated (e.g. renamed, tagged).</p></td>
               </tr>
             
               <tr>
@@ -3649,13 +3649,13 @@ even email preferences.</p></td>
               <tr>
                 <td>EXPORT_CREATED</td>
                 <td>65</td>
-                <td><p>A new export was started for your organization, exporting data (i.e. messages) to a file.</p></td>
+                <td><p>A new export was started for your organization, exporting data (e.g. messages) to a file.</p></td>
               </tr>
             
               <tr>
                 <td>EXPORT_READY</td>
                 <td>66</td>
-                <td><p>An export in your organization has completed and the resulting file with data (i.e. messages as CSV)
+                <td><p>An export in your organization has completed and the resulting file with data (e.g. messages as CSV)
 is ready to be downloaded.</p></td>
               </tr>
             

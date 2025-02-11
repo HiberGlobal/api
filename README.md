@@ -155,7 +155,7 @@ message Pagination {
 (Note, again, that this is a reduced, and possibly outdated, example.)
 
 This code actually contains a few interesting things. First, nested messages.
-These are used to denoted linked function, i.e. the `Response` message inside the `ListRequest`.
+These are used to denoted linked function, e.g. the `Response` message inside the `ListRequest`.
 
 The `WebhookSelection` message contains the filters that can be applied to webhooks.
 Note that the `WebhookSelection` message contains a `TagSelection` as well.

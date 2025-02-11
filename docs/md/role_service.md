@@ -159,8 +159,8 @@ List all organizations that can be impersonated.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Organization identifier, i.e. "my-organization" |
-| display_name | [ string](#string) | Organization name, i.e. "My Organization" |
+| organization | [ string](#string) | Organization identifier, e.g. "my-organization" |
+| display_name | [ string](#string) | Organization name, e.g. "My Organization" |
 | contact | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) | The contact person for this organization |
 | member | [ bool](#bool) | If true, you are a member of this organization (= you are directly linked to this organization) |
 | default_organization | [ bool](#bool) | If true, this is the organization that you use by default. |

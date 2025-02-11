@@ -88,7 +88,7 @@ message UpdateBoolean {
 /* Period of time between two timestamps. Typically used for filtering.
  *
  * This can be used with textual shortcuts for timestamp, and some additional duration textual shortcuts:
- * - a duration as an offset of now, i.e. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is
+ * - a duration as an offset of now, e.g. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is
  *   10 hours before the end time (using the ISO 8601 duration format)
  * Examples:
  * - start "-10h" end "now": a time range from 10 hours before the request time, to the request time
@@ -111,7 +111,7 @@ message DoubleRange {
  * To accommodate this, this Timestamp type supports both.
  *
  * When used as API output, both the timestamp and textual fields will be set. The textual field has the commonly
- * used ISO 8601 format (i.e. "2018-01-01T13:00:00Z").
+ * used ISO 8601 format (e.g. "2018-01-01T13:00:00Z").
  * When used an API input, only one of the fields is needed, there is no need to set both. When both are set, the
  * timestamp field will be used, the textual field will be discarded.
  *
@@ -132,7 +132,7 @@ message Timestamp {
  * To accommodate this, this Date type supports both.
  *
  * When used as API output, both the int fields and textual fields will be set.
- * The textual field has the commonly used ISO 8601 local date format (i.e. "2018-01-01").
+ * The textual field has the commonly used ISO 8601 local date format (e.g. "2018-01-01").
  * When used an API input, either specify the int fields or the textual field.
  * If both are specified, the textual field will be discarded.
  */
@@ -273,7 +273,7 @@ enum EventType {
     /* A new asset was created in your organization. */
     ASSET_CREATED = 70;
 
-    /* An asset in your organization was updated (i.e. renamed, tagged). */
+    /* An asset in your organization was updated (e.g. renamed, tagged). */
     ASSET_UPDATED = 71;
 
     /* An asset in your organization was deleted. */
@@ -282,7 +282,7 @@ enum EventType {
     /* A new device was created in your organization, either manually or by a gateway. */
     DEVICE_CREATED = 55;
 
-    /* A device in your organization was manually updated (i.e. renamed, tagged). */
+    /* A device in your organization was manually updated (e.g. renamed, tagged). */
     DEVICE_UPDATED = 36;
 
     /* The location of a device in your organization was updated, either manually or by a message. */
@@ -420,10 +420,10 @@ enum EventType {
     /* A token in your organization was deleted. */
     TOKEN_DELETED = 32;
 
-    /* A new export was started for your organization, exporting data (i.e. messages) to a file. */
+    /* A new export was started for your organization, exporting data (e.g. messages) to a file. */
     EXPORT_CREATED = 65;
 
-    /* An export in your organization has completed and the resulting file with data (i.e. messages as CSV)
+    /* An export in your organization has completed and the resulting file with data (e.g. messages as CSV)
      * is ready to be downloaded.
      */
     EXPORT_READY = 66;

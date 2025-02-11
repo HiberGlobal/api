@@ -243,7 +243,7 @@ message SimpleModemMessageBodyParser {
         }
 
         /* Specify a terminator that marks the point the field terminates, optionally,
-         * and we should continue to the next field. This is typically a single byte (i.e. 0x00).
+         * and we should continue to the next field. This is typically a single byte (e.g. 0x00).
          * This can be combined with a size to limit the amounts of bytes that are parsed.
          */
         bytes terminator = 4;

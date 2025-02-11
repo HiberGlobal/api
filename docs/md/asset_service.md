@@ -232,7 +232,7 @@ Change the assigned devices for a selection of assets in your (selected) organiz
 | devices | [ hiber.device.DeviceSelection](#hiberdevicedeviceselection) | Select which devices to assign this asset to. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Paginate through results (for the Response, not the actual update). To get the next pages, use the List call with the same selection and pagination for the next page. |
 |  **optional** override_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment should be active. This sets the assignment to start in the past, but would not have effect in the past for assignments like parsers and alarms (they will only be triggered for new messages / values). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
-|  **optional** end_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (i.e. no alarm events are removed). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
+|  **optional** end_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (e.g. no alarm events are removed). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
 
 ### AssignAssetDevices.Response
 
@@ -369,7 +369,7 @@ Change the assigned devices for a selection of assets in your (selected) organiz
 | selection | [ AssetSelection](#assetselection) | Select which assets to unassign. Not optional and cannot be empty. |
 | devices | [ hiber.device.DeviceSelection](#hiberdevicedeviceselection) | Select which devices to unassign this asset from. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Paginate through results (for the Response, not the actual update). To get the next pages, use the List call with the same selection and pagination for the next page. |
-|  **optional** override_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (i.e. no alarm events are removed). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
+|  **optional** override_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (e.g. no alarm events are removed). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
 
 ### UnassignAssetDevices.Response
 
@@ -501,7 +501,7 @@ Assets are things that collect the data produced by devices.
 Devices are assigned to assets to handle data ownership.
 When a device is replaced, the data flow for the asset continues with the data from the new device.
 Multiple devices can be assigned to an asset, though it is advisable to only do so when they send
-different type of data (i.e. one sensor for pressure and one for flow).
+different type of data (e.g. one sensor for pressure and one for flow).
 
 For example, if you have a Well, you might have assets for Annulus A and the tubing head.
 
@@ -526,7 +526,7 @@ For example, if you have a Well, you might have assets for Annulus A and the tub
 
 A device assigned to this asset.
 Non-operational values that the device produces will be linked to this asset
-(i.e. pressure, but not battery level).
+(e.g. pressure, but not battery level).
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -738,8 +738,8 @@ Sorting options for the results.
 | LIFECYCLE_ALPHABETICAL_DESC | Sort device on lifecycle name, alphabetically in reverse order. | 9 |
 | ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the device, in ascending order. | 10 |
 | ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the device, in descending order. | 11 |
-| HEALTH_ASC | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 12 |
-| HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 13 |
+| HEALTH_ASC | Health sorted from least to most severe (e.g. OK, WARNING, ERROR). | 12 |
+| HEALTH_DESC | Health sorted from most to least severe (e.g. ERROR, WARNING, OK). | 13 |
 | HEALTH_ALPHABETICAL_ASC | Health sorted alphabetically by health level name. | 14 |
 | HEALTH_ALPHABETICAL_DESC | Health sorted alphabetically by health level name, descending order. | 15 |
 | SENSOR_BRAND_ASC | Sort alphabetically on the brand of the sensor, in ascending order. | 16 |
@@ -1233,7 +1233,7 @@ while others prefer a text-based format.
 To accommodate this, this Date type supports both.
 
 When used as API output, both the int fields and textual fields will be set.
-The textual field has the commonly used ISO 8601 local date format (i.e. "2018-01-01").
+The textual field has the commonly used ISO 8601 local date format (e.g. "2018-01-01").
 When used an API input, either specify the int fields or the textual field.
 If both are specified, the textual field will be discarded.
 
@@ -1608,7 +1608,7 @@ while a rectangular region is easier to define using Area.
 Period of time between two timestamps. Typically used for filtering.
 
 This can be used with textual shortcuts for timestamp, and some additional duration textual shortcuts:
-- a duration as an offset of now, i.e. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is
+- a duration as an offset of now, e.g. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is
   10 hours before the end time (using the ISO 8601 duration format)
 Examples:
 - start "-10h" end "now": a time range from 10 hours before the request time, to the request time
@@ -1627,7 +1627,7 @@ Some clients are better at parsing Google's seconds/nanos based timestamp, while
 To accommodate this, this Timestamp type supports both.
 
 When used as API output, both the timestamp and textual fields will be set. The textual field has the commonly
-used ISO 8601 format (i.e. "2018-01-01T13:00:00Z").
+used ISO 8601 format (e.g. "2018-01-01T13:00:00Z").
 When used an API input, only one of the fields is needed, there is no need to set both. When both are set, the
 timestamp field will be used, the textual field will be discarded.
 
@@ -1731,10 +1731,10 @@ api event stream and publishers.
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
 | ASSET_CREATED | A new asset was created in your organization. | 70 |
-| ASSET_UPDATED | An asset in your organization was updated (i.e. renamed, tagged). | 71 |
+| ASSET_UPDATED | An asset in your organization was updated (e.g. renamed, tagged). | 71 |
 | ASSET_DELETED | An asset in your organization was deleted. | 72 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
-| DEVICE_UPDATED | A device in your organization was manually updated (i.e. renamed, tagged). | 36 |
+| DEVICE_UPDATED | A device in your organization was manually updated (e.g. renamed, tagged). | 36 |
 | DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |
 | DEVICE_INSTALLED | A device in your organization was installed and should now be active. | 33 |
 | MESSAGE_RECEIVED | A device in your organization sent a message. This event is the final output for the message, after any parsing and post-processing. | 5 |
@@ -1766,8 +1766,8 @@ api event stream and publishers.
 | TOKEN_EXPIRY_WARNING | A token in your organization will expire within 2 weeks. | 25 |
 | TOKEN_EXPIRED | A token in your organization has expired. | 26 |
 | TOKEN_DELETED | A token in your organization was deleted. | 32 |
-| EXPORT_CREATED | A new export was started for your organization, exporting data (i.e. messages) to a file. | 65 |
-| EXPORT_READY | An export in your organization has completed and the resulting file with data (i.e. messages as CSV) is ready to be downloaded. | 66 |
+| EXPORT_CREATED | A new export was started for your organization, exporting data (e.g. messages) to a file. | 65 |
+| EXPORT_READY | An export in your organization has completed and the resulting file with data (e.g. messages as CSV) is ready to be downloaded. | 66 |
 | EXPORT_FAILED | An export in your organization has failed (typically because of incorrect data selection). | 67 |
 
 #### hiber.Health

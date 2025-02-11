@@ -38,7 +38,7 @@ message PerformTransfer {
             organization.CreateOrganizationRequest new_organization = 3;
         }
 
-        /* Optional comment for the transfer (i.e. reason, tracking information, etc). */
+        /* Optional comment for the transfer (e.g. reason, tracking information, etc). */
         optional string comment = 4;
 
         oneof type {

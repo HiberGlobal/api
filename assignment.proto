@@ -214,7 +214,7 @@ message Assign {
 
         /* Time that the assignment ended.
          * This marks the assignment as ended at the given moment in the past, but would not have effect in the past
-         * for assignments like parsers and alarms (i.e. no alarm events are removed).
+         * for assignments like parsers and alarms (e.g. no alarm events are removed).
          * It would however work for assets having access to device data.
          * This is not allowed to be a value in the future at the moment.
          */
@@ -261,7 +261,7 @@ message Unassign {
         oneof time {
             /* Time that the assignment ended.
              * This marks the assignment as ended at the given moment in the past, but would not have effect in the past
-             * for assignments like parsers and alarms (i.e. no alarm events are removed).
+             * for assignments like parsers and alarms (e.g. no alarm events are removed).
              * It would however work for assets having access to device data.
              * This is not allowed to be a value in the future at the moment.
              */

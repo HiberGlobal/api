@@ -7753,7 +7753,7 @@ Overrides unbundled_events in EventSelection message. </p></td>
 
       
         <h3 id="hiber.event.EventService">EventService</h3>
-        <p>Events are used in a number of ways in the api. With this service you can</p><p>search, list and stream them for your own purposes.</p><p>Events are filtered by permission, i.e. if you cannot access the users, you would not see user-related events.</p><p>Requesting user-related events explicitly if you cannot access the users will return an error.</p>
+        <p>Events are used in a number of ways in the api. With this service you can</p><p>search, list and stream them for your own purposes.</p><p>Events are filtered by permission, e.g. if you cannot access the users, you would not see user-related events.</p><p>Requesting user-related events explicitly if you cannot access the users will return an error.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -7932,7 +7932,7 @@ This is not allowed to be a value in the future at the moment. </p></td>
                   <td>optional</td>
                   <td><p>Time that the assignment ended.
 This marks the assignment as ended at the given moment in the past, but would not have effect in the past
-for assignments like parsers and alarms (i.e. no alarm events are removed).
+for assignments like parsers and alarms (e.g. no alarm events are removed).
 It would however work for assets having access to device data.
 This is not allowed to be a value in the future at the moment. </p></td>
                 </tr>
@@ -9518,7 +9518,7 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td></td>
                   <td><p>Time that the assignment ended.
 This marks the assignment as ended at the given moment in the past, but would not have effect in the past
-for assignments like parsers and alarms (i.e. no alarm events are removed).
+for assignments like parsers and alarms (e.g. no alarm events are removed).
 It would however work for assets having access to device data.
 This is not allowed to be a value in the future at the moment. </p></td>
                 </tr>
@@ -9725,7 +9725,7 @@ Setting this to true makes this identical to using the Delete rpc. </p></td>
 
       
         <h3 id="hiber.asset.Asset">Asset</h3>
-        <p>Assets are things that collect the data produced by devices.</p><p>Devices are assigned to assets to handle data ownership.</p><p>When a device is replaced, the data flow for the asset continues with the data from the new device.</p><p>Multiple devices can be assigned to an asset, though it is advisable to only do so when they send</p><p>different type of data (i.e. one sensor for pressure and one for flow).</p><p>For example, if you have a Well, you might have assets for Annulus A and the tubing head.</p>
+        <p>Assets are things that collect the data produced by devices.</p><p>Devices are assigned to assets to handle data ownership.</p><p>When a device is replaced, the data flow for the asset continues with the data from the new device.</p><p>Multiple devices can be assigned to an asset, though it is advisable to only do so when they send</p><p>different type of data (e.g. one sensor for pressure and one for flow).</p><p>For example, if you have a Well, you might have assets for Annulus A and the tubing head.</p>
 
         
           <table class="field-table">
@@ -9844,7 +9844,7 @@ Typically an image of a place. See the File.media_type for more information. </p
         
       
         <h3 id="hiber.asset.Asset.AssignedDevice">Asset.AssignedDevice</h3>
-        <p>A device assigned to this asset.</p><p>Non-operational values that the device produces will be linked to this asset</p><p>(i.e. pressure, but not battery level).</p>
+        <p>A device assigned to this asset.</p><p>Non-operational values that the device produces will be linked to this asset</p><p>(e.g. pressure, but not battery level).</p>
 
         
           <table class="field-table">
@@ -10197,7 +10197,7 @@ Typically an image of a place. See the File.media_type for more information. </p
         
       
         <h3 id="hiber.Date">Date</h3>
-        <p>Date type for convenience.</p><p>Some clients are better at parsing year, month and day of month as separate fields,</p><p>while others prefer a text-based format.</p><p>To accommodate this, this Date type supports both.</p><p>When used as API output, both the int fields and textual fields will be set.</p><p>The textual field has the commonly used ISO 8601 local date format (i.e. "2018-01-01").</p><p>When used an API input, either specify the int fields or the textual field.</p><p>If both are specified, the textual field will be discarded.</p>
+        <p>Date type for convenience.</p><p>Some clients are better at parsing year, month and day of month as separate fields,</p><p>while others prefer a text-based format.</p><p>To accommodate this, this Date type supports both.</p><p>When used as API output, both the int fields and textual fields will be set.</p><p>The textual field has the commonly used ISO 8601 local date format (e.g. "2018-01-01").</p><p>When used an API input, either specify the int fields or the textual field.</p><p>If both are specified, the textual field will be discarded.</p>
 
         
           <table class="field-table">
@@ -11352,7 +11352,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.TimeRange">TimeRange</h3>
-        <p>Period of time between two timestamps. Typically used for filtering.</p><p>This can be used with textual shortcuts for timestamp, and some additional duration textual shortcuts:</p><p>- a duration as an offset of now, i.e. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is</p><p>10 hours before the end time (using the ISO 8601 duration format)</p><p>Examples:</p><p>- start "-10h" end "now": a time range from 10 hours before the request time, to the request time</p><p>- start "-10h" end "2022-01-01 20:00": becomes start 2022-01-01 10:00 end 2022-01-01 20:00</p>
+        <p>Period of time between two timestamps. Typically used for filtering.</p><p>This can be used with textual shortcuts for timestamp, and some additional duration textual shortcuts:</p><p>- a duration as an offset of now, e.g. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is</p><p>10 hours before the end time (using the ISO 8601 duration format)</p><p>Examples:</p><p>- start "-10h" end "now": a time range from 10 hours before the request time, to the request time</p><p>- start "-10h" end "2022-01-01 20:00": becomes start 2022-01-01 10:00 end 2022-01-01 20:00</p>
 
         
           <table class="field-table">
@@ -11383,7 +11383,7 @@ For example, unbundled events are likely to return an approximated total, but no
         
       
         <h3 id="hiber.Timestamp">Timestamp</h3>
-        <p>Timestamp type for convenience.</p><p>Some clients are better at parsing Google's seconds/nanos based timestamp, while others prefer a text-based format.</p><p>To accommodate this, this Timestamp type supports both.</p><p>When used as API output, both the timestamp and textual fields will be set. The textual field has the commonly</p><p>used ISO 8601 format (i.e. "2018-01-01T13:00:00Z").</p><p>When used an API input, only one of the fields is needed, there is no need to set both. When both are set, the</p><p>timestamp field will be used, the textual field will be discarded.</p><p>In addition, the textual field, when used as input, allows for a number of shortcuts that get converted into</p><p>timestamps:</p><p>- "now": converted to the current timestamp at the time of the request</p>
+        <p>Timestamp type for convenience.</p><p>Some clients are better at parsing Google's seconds/nanos based timestamp, while others prefer a text-based format.</p><p>To accommodate this, this Timestamp type supports both.</p><p>When used as API output, both the timestamp and textual fields will be set. The textual field has the commonly</p><p>used ISO 8601 format (e.g. "2018-01-01T13:00:00Z").</p><p>When used an API input, only one of the fields is needed, there is no need to set both. When both are set, the</p><p>timestamp field will be used, the textual field will be discarded.</p><p>In addition, the textual field, when used as input, allows for a number of shortcuts that get converted into</p><p>timestamps:</p><p>- "now": converted to the current timestamp at the time of the request</p>
 
         
           <table class="field-table">
@@ -11626,7 +11626,7 @@ This refers to things like message summary configuration.</p></td>
               <tr>
                 <td>ASSET_UPDATED</td>
                 <td>71</td>
-                <td><p>An asset in your organization was updated (i.e. renamed, tagged).</p></td>
+                <td><p>An asset in your organization was updated (e.g. renamed, tagged).</p></td>
               </tr>
             
               <tr>
@@ -11644,7 +11644,7 @@ This refers to things like message summary configuration.</p></td>
               <tr>
                 <td>DEVICE_UPDATED</td>
                 <td>36</td>
-                <td><p>A device in your organization was manually updated (i.e. renamed, tagged).</p></td>
+                <td><p>A device in your organization was manually updated (e.g. renamed, tagged).</p></td>
               </tr>
             
               <tr>
@@ -11862,13 +11862,13 @@ even email preferences.</p></td>
               <tr>
                 <td>EXPORT_CREATED</td>
                 <td>65</td>
-                <td><p>A new export was started for your organization, exporting data (i.e. messages) to a file.</p></td>
+                <td><p>A new export was started for your organization, exporting data (e.g. messages) to a file.</p></td>
               </tr>
             
               <tr>
                 <td>EXPORT_READY</td>
                 <td>66</td>
-                <td><p>An export in your organization has completed and the resulting file with data (i.e. messages as CSV)
+                <td><p>An export in your organization has completed and the resulting file with data (e.g. messages as CSV)
 is ready to be downloaded.</p></td>
               </tr>
             
@@ -13977,7 +13977,7 @@ the field color in HealthLevel </p></td>
                   <td>url</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 </p></td>
+                  <td><p>The url of an MQTT server to send the events to, e.g. mqtt[s]://example.com:8883 </p></td>
                 </tr>
               
                 <tr>
@@ -14462,7 +14462,7 @@ the field color in HealthLevel </p></td>
                   <td>url</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 </p></td>
+                  <td><p>The url of an MQTT server to send the events to, e.g. mqtt[s]://example.com:8883 </p></td>
                 </tr>
               
                 <tr>
@@ -14866,7 +14866,7 @@ If the failure percentage is higher, within the warning period, the health is sw
                   <td>url</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p>The url of an MQTT server to send the events to, i.e. mqtt[s]://example.com:8883 </p></td>
+                  <td><p>The url of an MQTT server to send the events to, e.g. mqtt[s]://example.com:8883 </p></td>
                 </tr>
               
                 <tr>
@@ -16520,7 +16520,7 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td>sources</td>
                   <td><a href="#hiber.modem.ModemMessage.Source">ModemMessage.Source</a></td>
                   <td>repeated</td>
-                  <td><p>Message source(s) for this message (i.e. it was received through the satellite or directly to the server). </p></td>
+                  <td><p>Message source(s) for this message (e.g. it was received through the satellite or directly to the server). </p></td>
                 </tr>
               
                 <tr>
@@ -16670,7 +16670,7 @@ This may change in the future. </p></td>
                   <td>modems</td>
                   <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
                   <td></td>
-                  <td><p><strong>Deprecated.</strong> Define the modems to return messages for, i.e. include = [AAAA AAAA, BBBB BBBB].
+                  <td><p><strong>Deprecated.</strong> Define the modems to return messages for, e.g. include = [AAAA AAAA, BBBB BBBB].
 Deprecated in favor of using the ModemSelection. </p></td>
                 </tr>
               
@@ -17392,13 +17392,13 @@ add the name of the peripheral as a map-key and add a repeated list of versions 
               <tr>
                 <td>HEALTH</td>
                 <td>10</td>
-                <td><p>Health sorted from least to most severe (i.e. OK, WARNING, ERROR).</p></td>
+                <td><p>Health sorted from least to most severe (e.g. OK, WARNING, ERROR).</p></td>
               </tr>
             
               <tr>
                 <td>HEALTH_DESC</td>
                 <td>11</td>
-                <td><p>Health sorted from most to least severe (i.e. ERROR, WARNING, OK).</p></td>
+                <td><p>Health sorted from most to least severe (e.g. ERROR, WARNING, OK).</p></td>
               </tr>
             
               <tr>
@@ -18193,7 +18193,7 @@ This field displays all the parameters that can be set for the alarm on assignme
         
       
         <h3 id="hiber.modem.alarm.ModemAlarm.Check">ModemAlarm.Check</h3>
-        <p>A check is a specification of how things should be, i.e. "a value should be within this range".</p><p>When it fails, it produces an event with:</p><p>- a custom health level, or the default defined in the alarm</p><p>- an error message, define from a template in the check</p><p>The error message template is a string with parameters for the relevant data.</p><p>The parameters are included as {parameter}, which gets replaced with the value.</p><p>The supported parameters are different per check, but the parameters below are always supported:</p><p>- modem:name: the modem name.</p><p>- modem:number: the modem number.</p><p>- message: the id of the message, if any.</p><p>- expected: a shortcut for the expected value(s), depending on the check:</p><p>- inactivity check: expected duration</p><p>- location check: expected area as [(bottom left), (top right)], and shape as [(point), (point), ..., (point)]</p><p>- equals/minimum/maximum check: expected value</p><p>- oneof check (allowed/blocked): expected values as [a, b, c]</p><p>- threshold/delta check: expected range as minimum..maximum, extended with duration for delta check</p><p>- actual: the invalid actual value(s) for this check.</p><p>The checks below define other available parameters.</p><p>For example (using some parameters for specific checks):</p><p>- "Your device {modem} has left its designated area! It is now at {actual}."</p><p>- "Your device battery is at {actual}%, which is below the recommended minimum of {field.threshold.minimum}%."</p><p>- "Your device battery is draining faster than expected: {actual}% over the past {field.delta.period}."</p><p>- "Your device temperature has exceeded {value.threshold.maximum} degrees: {actual}."</p><p>- "Your device reported an unhealthy state {actual}. Healthy states are: {expected}."</p><p>- "Your device reported an unhealthy state {actual}. Healthy states are: {field.oneof.expected}."</p><p>- "Your device reported an unhealthy state {actual}. Please set it back to {expected}."</p><p>- "Your device reported an unhealthy state {actual}. Please set it back to {field.equals.expected}."</p><p>- "Unexpected value {actual} for field {field.path}!"</p><p>Numeric values can be formatted with an extra postfix on the parameters</p><p>- Round numeric values by adding ":.2f" (for 2 decimals). For example: "{actual:.3f}" (rounds to 3 decimals)</p><p>- Always sign numeric values (when rounded) by prefixing the format with a plus. For example: `{actual:+.3f}`</p><p>- This is applied to numeric fields and fields that can be numeric, like `{actual}` and `{expected}`.</p>
+        <p>A check is a specification of how things should be, e.g. "a value should be within this range".</p><p>When it fails, it produces an event with:</p><p>- a custom health level, or the default defined in the alarm</p><p>- an error message, define from a template in the check</p><p>The error message template is a string with parameters for the relevant data.</p><p>The parameters are included as {parameter}, which gets replaced with the value.</p><p>The supported parameters are different per check, but the parameters below are always supported:</p><p>- modem:name: the modem name.</p><p>- modem:number: the modem number.</p><p>- message: the id of the message, if any.</p><p>- expected: a shortcut for the expected value(s), depending on the check:</p><p>- inactivity check: expected duration</p><p>- location check: expected area as [(bottom left), (top right)], and shape as [(point), (point), ..., (point)]</p><p>- equals/minimum/maximum check: expected value</p><p>- oneof check (allowed/blocked): expected values as [a, b, c]</p><p>- threshold/delta check: expected range as minimum..maximum, extended with duration for delta check</p><p>- actual: the invalid actual value(s) for this check.</p><p>The checks below define other available parameters.</p><p>For example (using some parameters for specific checks):</p><p>- "Your device {modem} has left its designated area! It is now at {actual}."</p><p>- "Your device battery is at {actual}%, which is below the recommended minimum of {field.threshold.minimum}%."</p><p>- "Your device battery is draining faster than expected: {actual}% over the past {field.delta.period}."</p><p>- "Your device temperature has exceeded {value.threshold.maximum} degrees: {actual}."</p><p>- "Your device reported an unhealthy state {actual}. Healthy states are: {expected}."</p><p>- "Your device reported an unhealthy state {actual}. Healthy states are: {field.oneof.expected}."</p><p>- "Your device reported an unhealthy state {actual}. Please set it back to {expected}."</p><p>- "Your device reported an unhealthy state {actual}. Please set it back to {field.equals.expected}."</p><p>- "Unexpected value {actual} for field {field.path}!"</p><p>Numeric values can be formatted with an extra postfix on the parameters</p><p>- Round numeric values by adding ":.2f" (for 2 decimals). For example: "{actual:.3f}" (rounds to 3 decimals)</p><p>- Always sign numeric values (when rounded) by prefixing the format with a plus. For example: `{actual:+.3f}`</p><p>- This is applied to numeric fields and fields that can be numeric, like `{actual}` and `{expected}`.</p>
 
         
           <table class="field-table">
@@ -18439,7 +18439,7 @@ Note: unit is not currently available in the alarm_parameters. </p></td>
         
       
         <h3 id="hiber.modem.alarm.ModemAlarm.Check.FieldCheck.BlockedRangeCheck">ModemAlarm.Check.FieldCheck.BlockedRangeCheck</h3>
-        <p>Check that the field is outside of a range.</p><p>If the minimum is higher than the maximum (i.e. 30..10), this is automatically converted into a</p><p>ThresholdCheck.</p>
+        <p>Check that the field is outside of a range.</p><p>If the minimum is higher than the maximum (e.g. 30..10), this is automatically converted into a</p><p>ThresholdCheck.</p>
 
         
           <table class="field-table">
@@ -18584,7 +18584,7 @@ be available to unencrypted values due to performance issues. </p></td>
         
       
         <h3 id="hiber.modem.alarm.ModemAlarm.Check.FieldCheck.ThresholdCheck">ModemAlarm.Check.FieldCheck.ThresholdCheck</h3>
-        <p>Check that the field is above a minimum threshold and under a maximum threshold.</p><p>If the minimum is higher than the maximum (i.e. 30..10), this is automatically converted into a</p><p>BlockedRangeCheck.</p>
+        <p>Check that the field is above a minimum threshold and under a maximum threshold.</p><p>If the minimum is higher than the maximum (e.g. 30..10), this is automatically converted into a</p><p>BlockedRangeCheck.</p>
 
         
           <table class="field-table">
@@ -20370,7 +20370,7 @@ This integer field must be parsed before this field is parsed. </p></td>
                   <td><a href="#bytes">bytes</a></td>
                   <td></td>
                   <td><p>Specify a terminator that marks the point the field terminates, optionally,
-and we should continue to the next field. This is typically a single byte (i.e. 0x00).
+and we should continue to the next field. This is typically a single byte (e.g. 0x00).
 This can be combined with a size to limit the amounts of bytes that are parsed. </p></td>
                 </tr>
               
@@ -24507,7 +24507,7 @@ When the creator gains or loses permissions, this applies to the token as well.<
                   <td>comment</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Optional comment for the transfer (i.e. reason, tracking information, etc). </p></td>
+                  <td><p>Optional comment for the transfer (e.g. reason, tracking information, etc). </p></td>
                 </tr>
               
                 <tr>

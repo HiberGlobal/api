@@ -8,10 +8,10 @@
     , "ORGANIZATION_DELETED": "An organization under your organization was deleted."
     , "ORGANIZATION_EVENT_CONFIGURATION_UPDATED": "Your organization's event configuration was updated. This refers to things like message summary configuration."
     , "ASSET_CREATED": "A new asset was created in your organization."
-    , "ASSET_UPDATED": "An asset in your organization was updated (i.e. renamed, tagged)."
+    , "ASSET_UPDATED": "An asset in your organization was updated (e.g. renamed, tagged)."
     , "ASSET_DELETED": "An asset in your organization was deleted."
     , "DEVICE_CREATED": "A new device was created in your organization, either manually or by a gateway."
-    , "DEVICE_UPDATED": "A device in your organization was manually updated (i.e. renamed, tagged)."
+    , "DEVICE_UPDATED": "A device in your organization was manually updated (e.g. renamed, tagged)."
     , "DEVICE_LOCATION_UPDATED": "The location of a device in your organization was updated, either manually or by a message."
     , "DEVICE_INSTALLED": "A device in your organization was installed and should now be active."
     , "MESSAGE_RECEIVED": "A device in your organization sent a message. This event is the final output for the message, after any parsing and post-processing."
@@ -43,8 +43,8 @@
     , "TOKEN_EXPIRY_WARNING": "A token in your organization will expire within 2 weeks."
     , "TOKEN_EXPIRED": "A token in your organization has expired."
     , "TOKEN_DELETED": "A token in your organization was deleted."
-    , "EXPORT_CREATED": "A new export was started for your organization, exporting data (i.e. messages) to a file."
-    , "EXPORT_READY": "An export in your organization has completed and the resulting file with data (i.e. messages as CSV) is ready to be downloaded."
+    , "EXPORT_CREATED": "A new export was started for your organization, exporting data (e.g. messages) to a file."
+    , "EXPORT_READY": "An export in your organization has completed and the resulting file with data (e.g. messages as CSV) is ready to be downloaded."
     , "EXPORT_FAILED": "An export in your organization has failed (typically because of incorrect data selection)."
     }
 },{

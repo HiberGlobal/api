@@ -49,7 +49,7 @@ message ValueSimulation {
             Enum enum = 5;
         }
 
-        /* Interval messages should be simulated at (i.e. once every hour). */
+        /* Interval messages should be simulated at (e.g. once every hour). */
         Duration simulation_interval = 6;
 
         /* Timestamp after which the next simulation run will be triggered (not guaranteed to be exactly at this time).
@@ -80,7 +80,7 @@ message ValueSimulation {
         /* The rotating list of locations to use when simulating messages. */
         repeated Location locations = 1;
 
-        /* Interval messages should be simulated at (i.e. once every hour). */
+        /* Interval messages should be simulated at (e.g. once every hour). */
         Duration simulation_interval = 2;
 
         /* Timestamp after which the next simulation run will be triggered (not guaranteed to be exactly at this time).

@@ -190,10 +190,10 @@ message LogPasswordUpdatedRequest {
 /* List all organizations that can be impersonated. */
 message AccessibleOrganizationsRequest {
     message AccessibleOrganization {
-        /* Organization identifier, i.e. "my-organization" */
+        /* Organization identifier, e.g. "my-organization" */
         string organization = 1;
 
-        /* Organization name, i.e. "My Organization" */
+        /* Organization name, e.g. "My Organization" */
         string display_name = 2;
 
         /* The contact person for this organization */

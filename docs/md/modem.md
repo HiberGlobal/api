@@ -496,7 +496,7 @@ data and message body. (Your message body is, of course, still encrypted if you'
 | body_bytes | [ hiber.BytesOrHex](#hiberbytesorhex) | Message body convenience object. |
 | body_parsed | [repeated ModemMessage.ParsedBody](#modemmessageparsedbody) | A list of applied body parsers and their results. |
 | body_parsed_successfully | [ bool](#bool) | Convenience flag marking whether the body was parsed successfully by at least one parser. |
-| sources | [repeated ModemMessage.Source](#modemmessagesource) | Message source(s) for this message (i.e. it was received through the satellite or directly to the server). |
+| sources | [repeated ModemMessage.Source](#modemmessagesource) | Message source(s) for this message (e.g. it was received through the satellite or directly to the server). |
 | is_test | [ bool](#bool) | True if the the TEST source is in the sources. |
 | is_gateway_message | [ bool](#bool) | Whether this message contains other messages. |
 | via_gateway_message | [ uint64](#uint64) | The gateway message this message was sent in. |
@@ -526,7 +526,7 @@ Filter messages by modem id, (child)organization, and time sent (note that this 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modems | [ hiber.Filter.Modems](#hiberfiltermodems) | <strong>Deprecated.</strong> Define the modems to return messages for, i.e. include = [AAAA AAAA, BBBB BBBB]. Deprecated in favor of using the ModemSelection. |
+| modems | [ hiber.Filter.Modems](#hiberfiltermodems) | <strong>Deprecated.</strong> Define the modems to return messages for, e.g. include = [AAAA AAAA, BBBB BBBB]. Deprecated in favor of using the ModemSelection. |
 | modem_selection | [ ModemSelection](#modemselection) | Select the modems to return messages for. |
 | time_range | [ hiber.TimeRange](#hibertimerange) | Filter message by time range. This field is required, to limit the amount of messages. |
 | filter_by_sources | [ ModemMessageSelection.ModemMessageSourceFilter](#modemmessageselectionmodemmessagesourcefilter) | Filter messages by the given source filter. For example, to exclude test and simulated messages, use exclude = [TEST, SIMULATED] or to only return Hiberband messages, use include = [HIBERBAND]. Note that if a message has sources [HIBERBAND, DIRECT_TO_API], including [HIBERBAND] will include the message, and excluding [HIBERBAND] will filter out the message, even though it also has DIRECT_TO_API. |
@@ -707,8 +707,8 @@ Sorting options for the results.
 | MODEM_NAME_DESC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in descending order. | 7 |
 | ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the modem, in ascending order. | 8 |
 | ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the modem, in descending order. | 9 |
-| HEALTH | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 10 |
-| HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 11 |
+| HEALTH | Health sorted from least to most severe (e.g. OK, WARNING, ERROR). | 10 |
+| HEALTH_DESC | Health sorted from most to least severe (e.g. ERROR, WARNING, OK). | 11 |
 | HEALTH_ASC_ALPHABETICAL | Health sorted alphabetically by health level name. | 12 |
 | HEALTH_DESC_ALPHABETICAL | Health sorted alphabetically by health level name, descending order. | 13 |
 | SENSOR_BRAND_ASC | Sort alphabetically on the brand of the sensor, in ascending order. | 16 |
@@ -1586,7 +1586,7 @@ while others prefer a text-based format.
 To accommodate this, this Date type supports both.
 
 When used as API output, both the int fields and textual fields will be set.
-The textual field has the commonly used ISO 8601 local date format (i.e. "2018-01-01").
+The textual field has the commonly used ISO 8601 local date format (e.g. "2018-01-01").
 When used an API input, either specify the int fields or the textual field.
 If both are specified, the textual field will be discarded.
 
@@ -1961,7 +1961,7 @@ while a rectangular region is easier to define using Area.
 Period of time between two timestamps. Typically used for filtering.
 
 This can be used with textual shortcuts for timestamp, and some additional duration textual shortcuts:
-- a duration as an offset of now, i.e. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is
+- a duration as an offset of now, e.g. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is
   10 hours before the end time (using the ISO 8601 duration format)
 Examples:
 - start "-10h" end "now": a time range from 10 hours before the request time, to the request time
@@ -1980,7 +1980,7 @@ Some clients are better at parsing Google's seconds/nanos based timestamp, while
 To accommodate this, this Timestamp type supports both.
 
 When used as API output, both the timestamp and textual fields will be set. The textual field has the commonly
-used ISO 8601 format (i.e. "2018-01-01T13:00:00Z").
+used ISO 8601 format (e.g. "2018-01-01T13:00:00Z").
 When used an API input, only one of the fields is needed, there is no need to set both. When both are set, the
 timestamp field will be used, the textual field will be discarded.
 
@@ -2084,10 +2084,10 @@ api event stream and publishers.
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
 | ASSET_CREATED | A new asset was created in your organization. | 70 |
-| ASSET_UPDATED | An asset in your organization was updated (i.e. renamed, tagged). | 71 |
+| ASSET_UPDATED | An asset in your organization was updated (e.g. renamed, tagged). | 71 |
 | ASSET_DELETED | An asset in your organization was deleted. | 72 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
-| DEVICE_UPDATED | A device in your organization was manually updated (i.e. renamed, tagged). | 36 |
+| DEVICE_UPDATED | A device in your organization was manually updated (e.g. renamed, tagged). | 36 |
 | DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |
 | DEVICE_INSTALLED | A device in your organization was installed and should now be active. | 33 |
 | MESSAGE_RECEIVED | A device in your organization sent a message. This event is the final output for the message, after any parsing and post-processing. | 5 |
@@ -2119,8 +2119,8 @@ api event stream and publishers.
 | TOKEN_EXPIRY_WARNING | A token in your organization will expire within 2 weeks. | 25 |
 | TOKEN_EXPIRED | A token in your organization has expired. | 26 |
 | TOKEN_DELETED | A token in your organization was deleted. | 32 |
-| EXPORT_CREATED | A new export was started for your organization, exporting data (i.e. messages) to a file. | 65 |
-| EXPORT_READY | An export in your organization has completed and the resulting file with data (i.e. messages as CSV) is ready to be downloaded. | 66 |
+| EXPORT_CREATED | A new export was started for your organization, exporting data (e.g. messages) to a file. | 65 |
+| EXPORT_READY | An export in your organization has completed and the resulting file with data (e.g. messages as CSV) is ready to be downloaded. | 66 |
 | EXPORT_FAILED | An export in your organization has failed (typically because of incorrect data selection). | 67 |
 
 #### hiber.Health

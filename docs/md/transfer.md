@@ -31,7 +31,7 @@ and must have the TRANSFERS permissions in the sender organization.
 | identifier | [ string](#string) | The identifier for the transfer. |
 | sender_organization | [ string](#string) | The organization that sent the transfer. |
 | recipient_organization | [ string](#string) | The organization that received the transfer. |
-| comment | [ string](#string) | Optional comment for the transfer (i.e. reason, tracking information, etc). |
+| comment | [ string](#string) | Optional comment for the transfer (e.g. reason, tracking information, etc). |
 | created_at | [ hiber.Timestamp](#hibertimestamp) |  |
 | type | [ Transfer.Type](#transfertype) | The type of data transferred to the recipient organization. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **typed**.devices | [ Transfer.Devices](#transferdevices) | The devices that were transferred from the sender to the recipient organization. |

@@ -13,7 +13,7 @@ message DeviceType {
     /* Brand that produces this device type. */
     string brand = 2;
 
-    /* What this devices is meant for, i.e. measuring pressure. */
+    /* What this devices is meant for, e.g. measuring pressure. */
     string application = 3;
 
     /* A category specific to this device type (for example, based on device configuration). */

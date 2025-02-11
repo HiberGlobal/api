@@ -151,7 +151,7 @@ and must have the TRANSFERS permissions in the sender organization.
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **recipient_organization_or_create**.recipient_organization | [ string](#string) | Existing organization to receive the transfer. You must have access to the recipient organization to transfer data to it. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **recipient_organization_or_create**.new_organization | [ hiber.organization.CreateOrganizationRequest](#hiberorganizationcreateorganizationrequest) | Create a new organization to receive the transfer. |
-|  **optional** comment | [optional string](#string) | Optional comment for the transfer (i.e. reason, tracking information, etc). |
+|  **optional** comment | [optional string](#string) | Optional comment for the transfer (e.g. reason, tracking information, etc). |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.devices | [ hiber.device.DeviceSelection](#hiberdevicedeviceselection) | Transfer a number of selected devices to the recipient organization. |
 
 ### PerformTransfer.Response
@@ -310,8 +310,8 @@ Sorting options for the results.
 | LIFECYCLE_ALPHABETICAL_DESC | Sort device on lifecycle name, alphabetically in reverse order. | 9 |
 | ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the device, in ascending order. | 10 |
 | ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the device, in descending order. | 11 |
-| HEALTH_ASC | Health sorted from least to most severe (i.e. OK, WARNING, ERROR). | 12 |
-| HEALTH_DESC | Health sorted from most to least severe (i.e. ERROR, WARNING, OK). | 13 |
+| HEALTH_ASC | Health sorted from least to most severe (e.g. OK, WARNING, ERROR). | 12 |
+| HEALTH_DESC | Health sorted from most to least severe (e.g. ERROR, WARNING, OK). | 13 |
 | HEALTH_ALPHABETICAL_ASC | Health sorted alphabetically by health level name. | 14 |
 | HEALTH_ALPHABETICAL_DESC | Health sorted alphabetically by health level name, descending order. | 15 |
 | SENSOR_BRAND_ASC | Sort alphabetically on the brand of the sensor, in ascending order. | 16 |
@@ -602,7 +602,7 @@ so not all messages listed here are referenced.)
 | identifier | [ string](#string) | The identifier for the transfer. |
 | sender_organization | [ string](#string) | The organization that sent the transfer. |
 | recipient_organization | [ string](#string) | The organization that received the transfer. |
-| comment | [ string](#string) | Optional comment for the transfer (i.e. reason, tracking information, etc). |
+| comment | [ string](#string) | Optional comment for the transfer (e.g. reason, tracking information, etc). |
 | created_at | [ hiber.Timestamp](#hibertimestamp) |  |
 | type | [ hiber.transfer.Transfer.Type](#hibertransfertransfertype) | The type of data transferred to the recipient organization. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **typed**.devices | [ hiber.transfer.Transfer.Devices](#hibertransfertransferdevices) | The devices that were transferred from the sender to the recipient organization. |
@@ -677,7 +677,7 @@ while others prefer a text-based format.
 To accommodate this, this Date type supports both.
 
 When used as API output, both the int fields and textual fields will be set.
-The textual field has the commonly used ISO 8601 local date format (i.e. "2018-01-01").
+The textual field has the commonly used ISO 8601 local date format (e.g. "2018-01-01").
 When used an API input, either specify the int fields or the textual field.
 If both are specified, the textual field will be discarded.
 
@@ -1052,7 +1052,7 @@ while a rectangular region is easier to define using Area.
 Period of time between two timestamps. Typically used for filtering.
 
 This can be used with textual shortcuts for timestamp, and some additional duration textual shortcuts:
-- a duration as an offset of now, i.e. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is
+- a duration as an offset of now, e.g. "-10h" or "PT-10h": converted to now + offset, so start.textual -10h is
   10 hours before the end time (using the ISO 8601 duration format)
 Examples:
 - start "-10h" end "now": a time range from 10 hours before the request time, to the request time
@@ -1071,7 +1071,7 @@ Some clients are better at parsing Google's seconds/nanos based timestamp, while
 To accommodate this, this Timestamp type supports both.
 
 When used as API output, both the timestamp and textual fields will be set. The textual field has the commonly
-used ISO 8601 format (i.e. "2018-01-01T13:00:00Z").
+used ISO 8601 format (e.g. "2018-01-01T13:00:00Z").
 When used an API input, only one of the fields is needed, there is no need to set both. When both are set, the
 timestamp field will be used, the textual field will be discarded.
 
@@ -1175,10 +1175,10 @@ api event stream and publishers.
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
 | ASSET_CREATED | A new asset was created in your organization. | 70 |
-| ASSET_UPDATED | An asset in your organization was updated (i.e. renamed, tagged). | 71 |
+| ASSET_UPDATED | An asset in your organization was updated (e.g. renamed, tagged). | 71 |
 | ASSET_DELETED | An asset in your organization was deleted. | 72 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
-| DEVICE_UPDATED | A device in your organization was manually updated (i.e. renamed, tagged). | 36 |
+| DEVICE_UPDATED | A device in your organization was manually updated (e.g. renamed, tagged). | 36 |
 | DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |
 | DEVICE_INSTALLED | A device in your organization was installed and should now be active. | 33 |
 | MESSAGE_RECEIVED | A device in your organization sent a message. This event is the final output for the message, after any parsing and post-processing. | 5 |
@@ -1210,8 +1210,8 @@ api event stream and publishers.
 | TOKEN_EXPIRY_WARNING | A token in your organization will expire within 2 weeks. | 25 |
 | TOKEN_EXPIRED | A token in your organization has expired. | 26 |
 | TOKEN_DELETED | A token in your organization was deleted. | 32 |
-| EXPORT_CREATED | A new export was started for your organization, exporting data (i.e. messages) to a file. | 65 |
-| EXPORT_READY | An export in your organization has completed and the resulting file with data (i.e. messages as CSV) is ready to be downloaded. | 66 |
+| EXPORT_CREATED | A new export was started for your organization, exporting data (e.g. messages) to a file. | 65 |
+| EXPORT_READY | An export in your organization has completed and the resulting file with data (e.g. messages as CSV) is ready to be downloaded. | 66 |
 | EXPORT_FAILED | An export in your organization has failed (typically because of incorrect data selection). | 67 |
 
 #### hiber.Health
