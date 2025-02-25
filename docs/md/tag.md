@@ -304,7 +304,7 @@ Use the TagService.List call to get the tags with Metadata.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.location_shape | [ hiber.Shape](#hibershape) | Update the location to a complex shaped area. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.remove_location | [ bool](#bool) | Remove the location from this tag. |
 | add_files | [repeated hiber.file.File](#hiberfilefile) | Add files to the tag. These can be just an identifier to an existing File, or a full file upload. Keep in mind the grpc request size limitation. |
-| delete_files | [repeated string](#string) | Remove files from the new tag and delete them from the system. |
+| delete_files | [repeated string](#string) | Remove files from the tag and delete them from the system (if no other references exist). |
 
 ### UpdateTagsForItem
 

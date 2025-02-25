@@ -97,7 +97,7 @@ message Assignment {
         string identifier = 1;
         string name = 5;
         string description = 2;
-        google.protobuf.Struct parameters = 3;
+        google.protobuf.Struct parameters = 3 [deprecated = true];
 
         reserved 4;
     }
@@ -131,6 +131,29 @@ message Assignment {
         ModemMessageBodyParserAssignment to_parser = 4;
         tag.Tag to_tag = 7;
         string to_asset = 11;
+    }
+
+    message AdditionalConfiguration {
+        /* Select the fields, defined as a list of json paths.
+         * Fields are produced by the device's assigned parsers. See field.proto for more information.
+         */
+        message FieldsByJsonPath {
+            /* List of json paths specifying fields. See field.proto for more information. */
+            repeated string fields = 1;
+        }
+
+        message AssetDeviceAssignment {
+            /* Specify the fields that are shared with the Asset.
+             * If nothing is specified, all fields are shared with the asset by default.
+             */
+            FieldsByJsonPath shared_fields = 1;
+        }
+    }
+
+    /* Additional configuration depending on the assignment type. */
+    oneof additional_configuration {
+        /* Additional configuration for assignment between Asset and Device/Modem. */
+        AdditionalConfiguration.AssetDeviceAssignment asset_device = 12;
     }
 }
 
@@ -202,7 +225,13 @@ message Assign {
         }
 
         /* The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). */
-        map<string, google.protobuf.Struct> alarm_parameters = 6;
+        map<string, google.protobuf.Struct> alarm_parameters = 6 [deprecated = true];
+
+        /* Additional configuration depending on the assignment type. */
+        oneof additional_configuration {
+            /* Additional configuration for assignment between Asset and Device/Modem. */
+            Assignment.AdditionalConfiguration.AssetDeviceAssignment asset_device = 15;
+        }
 
         /* Time that the assignment should be active.
          * This sets the assignment to start in the past, but would not have effect in the past for assignments like
@@ -510,15 +539,15 @@ message ListAlarmAssignments {
         message AlarmAssignment {
             message ToModem {
                 string modem_number = 1;
-                google.protobuf.Struct parameters = 2;
+                google.protobuf.Struct parameters = 2 [deprecated = true];
             }
             message ToTag {
                 tag.Tag tag = 1;
-                google.protobuf.Struct parameters = 2;
+                google.protobuf.Struct parameters = 2 [deprecated = true];
             }
             message ToAsset {
                 string asset_identifier = 1;
-                google.protobuf.Struct parameters = 2;
+                google.protobuf.Struct parameters = 2 [deprecated = true];
             }
 
             string organization = 1;
@@ -562,10 +591,10 @@ message ListModemMessageBodyParserAssignments {
             string organization = 1;
             modem.message.bodyparser.ModemMessageBodyParser message_body_parser = 2;
 
-            /* The modem numbers this alarm is assigned to, with the alarm parameters. */
+            /* The modem numbers this parser is assigned to. */
             repeated string modems = 3;
 
-            /* The tags this alarm is assigned to, with the alarm parameters. */
+            /* The tags this parser is assigned to. */
             repeated tag.Tag tags = 4;
         }
 

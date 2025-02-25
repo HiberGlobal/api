@@ -549,6 +549,25 @@
         
           
           <li>
+            <a href="#file.proto">file.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#hiber.file.File"><span class="badge">M</span>File</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.file.FileSelection"><span class="badge">M</span>FileSelection</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#health.proto">health.proto</a>
             <ul>
               
@@ -1839,6 +1858,14 @@ Used mainly to differentiate in the UI or to sort on. </p></td>
                   <td>repeated</td>
                   <td><p>The numeric value types that this device produces.
 The device may produce other values (like battery level), but these are the primary value types. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>files</td>
+                  <td><a href="#hiber.file.File">hiber.file.File</a></td>
+                  <td>repeated</td>
+                  <td><p>Files for this tag.
+Typically an image of the device installation. See the File.media_type for more information. </p></td>
                 </tr>
               
             </tbody>
@@ -5516,6 +5543,119 @@ is ready to be downloaded.</p></td>
     
       
       <div class="file-heading">
+        <h2 id="file.proto">file.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="hiber.file.File">File</h3>
+        <p>A file in your organization, with its mime-type and name.</p><p>It can represent any file of any type.</p><p>Specific API calls may pur restrictions on the name or size of the file.</p><p>To avoid sending large amounts of binary data, File does not typically contain the file's content.</p><p>The content can be fetched at a url, or using the FileService.Get rpc.</p><p>For specific use cases, the data field might be set with binary data, avoiding the need for another lookup.</p><p>The file name should be interpreted as-is.</p><p>No hierarchical information is stored in the name, nor should you look at the "extension" to know its media-type.</p><p>It might not even have a file extension.</p><p>The file name may contain characters that cannot be a valid file name on certain systems.</p><p>When showing this as an image in a browser, one can make use of a `data` URI.</p><p>The client must convert the bytes to base64 and can then construct a data URI like this</p><p>data:<media-type>;base64,<base64-encoded-bytes></p><p>Other type clients should be able to sort-of-directly set the data bytes as the source for an image.</p><p>(Technical note: the indices are structured for binary backwards compatibility with the now-removed NamedFile.)</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>This file&#39;s content can be fetched using the FileService, with this file identifier. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#hiber.BytesOrHex">hiber.BytesOrHex</a></td>
+                  <td></td>
+                  <td><p>The binary payload that represents the file </p></td>
+                </tr>
+              
+                <tr>
+                  <td>file_service</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>This file&#39;s content can be fetched using the FileService, with this file identifier. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>url</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>This file&#39;s content can be fetched at this url. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>media_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The media-type of the file, as defined by RFC 6838 or its extensions </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>A semantic name for this file. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>link</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>A link to file in the Hiber Rest API.
+Note: the Hiber Rest API requires a token, for authenticated access to your files.
+If the content oneof of this file is a url, this link will return a HTTP 301 code to redirect to that url. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.file.FileSelection">FileSelection</h3>
+        <p>Selection to use when listing files in your organization.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>search</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Search files in your organization by (partial) match on name, media type and (if present) url. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>List files in your organization with a specific identifier. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
         <h2 id="health.proto">health.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -7814,7 +7954,7 @@ Keep in mind the grpc request size limitation. </p></td>
                   <td>delete_files</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>Remove files from the new tag and delete them from the system. </p></td>
+                  <td><p>Remove files from the tag and delete them from the system (if no other references exist). </p></td>
                 </tr>
               
             </tbody>

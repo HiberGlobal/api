@@ -4749,6 +4749,14 @@ If the content oneof of this file is a url, this link will return a HTTP 301 cod
 The device may produce other values (like battery level), but these are the primary value types. </p></td>
                 </tr>
               
+                <tr>
+                  <td>files</td>
+                  <td><a href="#hiber.file.File">hiber.file.File</a></td>
+                  <td>repeated</td>
+                  <td><p>Files for this tag.
+Typically an image of the device installation. See the File.media_type for more information. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -5797,7 +5805,7 @@ Keep in mind the grpc request size limitation. </p></td>
                   <td>delete_files</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>Remove files from the new tag and delete them from the system. </p></td>
+                  <td><p>Remove files from the tag and delete them from the system (if no other references exist). </p></td>
                 </tr>
               
             </tbody>

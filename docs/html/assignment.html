@@ -199,6 +199,18 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.assign.Assignment.AdditionalConfiguration"><span class="badge">M</span>Assignment.AdditionalConfiguration</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.assign.Assignment.AdditionalConfiguration.AssetDeviceAssignment"><span class="badge">M</span>Assignment.AdditionalConfiguration.AssetDeviceAssignment</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.assign.Assignment.AdditionalConfiguration.FieldsByJsonPath"><span class="badge">M</span>Assignment.AdditionalConfiguration.FieldsByJsonPath</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.assign.Assignment.AlarmAssignment"><span class="badge">M</span>Assignment.AlarmAssignment</a>
                 </li>
               
@@ -1335,7 +1347,14 @@
                   <td>alarm_parameters</td>
                   <td><a href="#hiber.assign.Assign.Request.AlarmParametersEntry">Assign.Request.AlarmParametersEntry</a></td>
                   <td>repeated</td>
-                  <td><p>The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). </p></td>
+                  <td><p><strong>Deprecated.</strong> The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_device</td>
+                  <td><a href="#hiber.assign.Assignment.AdditionalConfiguration.AssetDeviceAssignment">Assignment.AdditionalConfiguration.AssetDeviceAssignment</a></td>
+                  <td></td>
+                  <td><p>Additional configuration for assignment between Asset and Device/Modem. </p></td>
                 </tr>
               
                 <tr>
@@ -1380,6 +1399,27 @@ Since this is questionable, doing so required an additional opt-in with this fla
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>alarm_parameters</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -1534,6 +1574,69 @@ Inactive assignments that no longer have an effect may be cleaned up automatical
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>asset_device</td>
+                  <td><a href="#hiber.assign.Assignment.AdditionalConfiguration.AssetDeviceAssignment">Assignment.AdditionalConfiguration.AssetDeviceAssignment</a></td>
+                  <td></td>
+                  <td><p>Additional configuration for assignment between Asset and Device/Modem. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.assign.Assignment.AdditionalConfiguration">Assignment.AdditionalConfiguration</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.assign.Assignment.AdditionalConfiguration.AssetDeviceAssignment">Assignment.AdditionalConfiguration.AssetDeviceAssignment</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>shared_fields</td>
+                  <td><a href="#hiber.assign.Assignment.AdditionalConfiguration.FieldsByJsonPath">Assignment.AdditionalConfiguration.FieldsByJsonPath</a></td>
+                  <td></td>
+                  <td><p>Specify the fields that are shared with the Asset.
+If nothing is specified, all fields are shared with the asset by default. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.assign.Assignment.AdditionalConfiguration.FieldsByJsonPath">Assignment.AdditionalConfiguration.FieldsByJsonPath</h3>
+        <p>Select the fields, defined as a list of json paths.</p><p>Fields are produced by the device's assigned parsers. See field.proto for more information.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>fields</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>List of json paths specifying fields. See field.proto for more information. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -1576,12 +1679,33 @@ Inactive assignments that no longer have an effect may be cleaned up automatical
                   <td>parameters</td>
                   <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>parameters</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -2005,12 +2129,33 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td>parameters</td>
                   <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>parameters</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -2036,12 +2181,33 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td>parameters</td>
                   <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>parameters</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -2067,12 +2233,33 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td>parameters</td>
                   <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>parameters</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -2651,14 +2838,14 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td>modems</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>The modem numbers this alarm is assigned to, with the alarm parameters. </p></td>
+                  <td><p>The modem numbers this parser is assigned to. </p></td>
                 </tr>
               
                 <tr>
                   <td>tags</td>
                   <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
                   <td>repeated</td>
-                  <td><p>The tags this alarm is assigned to, with the alarm parameters. </p></td>
+                  <td><p>The tags this parser is assigned to. </p></td>
                 </tr>
               
             </tbody>
@@ -6524,6 +6711,14 @@ Used mainly to differentiate in the UI or to sort on. </p></td>
                   <td>repeated</td>
                   <td><p>The numeric value types that this device produces.
 The device may produce other values (like battery level), but these are the primary value types. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>files</td>
+                  <td><a href="#hiber.file.File">hiber.file.File</a></td>
+                  <td>repeated</td>
+                  <td><p>Files for this tag.
+Typically an image of the device installation. See the File.media_type for more information. </p></td>
                 </tr>
               
             </tbody>
@@ -12399,7 +12594,7 @@ Keep in mind the grpc request size limitation. </p></td>
                   <td>delete_files</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>Remove files from the new tag and delete them from the system. </p></td>
+                  <td><p>Remove files from the tag and delete them from the system (if no other references exist). </p></td>
                 </tr>
               
             </tbody>

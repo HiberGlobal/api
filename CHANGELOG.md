@@ -1,5 +1,28 @@
 # Changelog Hiber API
 
+### 0.228 (2025-02-25)
+
+##### AssignmentService
+
+- Deprecated `Assignment.AlarmAssignment.parameters` due to disuse.
+  - Deprecated `Assign.Request.alarm_parameters` and
+    `ListAlarmAssignments.Response.To{Modem,Tag,Asset}.parameters`
+- Added `Assignment.AdditionalConfiguration` for additional configuration for specific assignment types
+  - Added `Assignment.additional_configuration` `oneof` and `Assign.Request.additional_configuration` `oneof`
+  - Added `Assignment.AdditionalConfiguration.AssetDeviceAssignment` and `Assignment.asset_device` for
+  specific configuration for assignments between assets and devices:
+    - Added `Assignment.AdditionalConfiguration.AssetDeviceAssignment.shared_fields` to limit the fields shared
+      in an asset device assignment.
+
+##### DeviceService
+
+- Added `files` to `Device`.
+- Added `add_files` and `delete_files` to `UpdateDevice`.
+
+##### ModemService
+
+- Added `files` to `Modem`.
+
 ### 0.226 (2025-02-11)
 
 - Grammatical corrections in documentation

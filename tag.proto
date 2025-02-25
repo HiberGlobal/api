@@ -163,7 +163,7 @@ message UpdateTagRequest {
      */
     repeated file.File add_files = 8;
 
-    /* Remove files from the new tag and delete them from the system. */
+    /* Remove files from the tag and delete them from the system (if no other references exist). */
     repeated string delete_files = 9;
 }
 

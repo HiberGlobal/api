@@ -9,6 +9,7 @@ package hiber.device;
 
 import "base.proto";
 import "device.proto";
+import "file.proto";
 import "modem.proto";
 import "value.proto";
 
@@ -89,6 +90,14 @@ message UpdateDevice {
      * the device sends every hour to make sure we meet the SLA.
      */
     optional hiber.value.Value.Numeric.Rate expected_transmission_rate = 14;
+
+    /* Add files to the device. These can be just an identifier to an existing File, or a full file upload.
+     * Keep in mind the grpc request size limitation.
+     */
+    repeated file.File add_files = 15;
+
+    /* Remove files from the device and delete them from the system (if no other references exist). */
+    repeated string delete_files = 16;
 
     /* When updating peripherals, you can choose to add and delete peripherals,
      * or to do a wholesome replace of all peripherals.

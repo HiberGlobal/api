@@ -10,6 +10,7 @@ package hiber.modem;
 import "google/protobuf/struct.proto";
 
 import "base.proto";
+import "file.proto";
 import "health.proto";
 import "organization.proto";
 import "tag.proto";
@@ -139,6 +140,11 @@ message Modem {
      * The device may produce other values (like battery level), but these are the primary value types.
      */
     repeated value.Value.Numeric.Type numeric_value_types = 35;
+
+    /* Files for this tag.
+     * Typically an image of the device installation. See the File.media_type for more information.
+     */
+    repeated file.File files = 36;
 
     /* Additional information when this modem is a gateway. */
     message GatewayInfo {

@@ -19,6 +19,11 @@
 - Enums
   - [Sort](#sort)
 
+- Referenced messages from [file.proto](#referenced-messages-from-fileproto)
+  - [hiber.file.File](#hiberfilefile)
+  - [hiber.file.FileSelection](#hiberfilefileselection)
+
+
 - Referenced messages from [health.proto](#referenced-messages-from-healthproto)
   - [hiber.health.HealthLevel](#hiberhealthhealthlevel)
   - [hiber.health.HealthLevelSelection](#hiberhealthhealthlevelselection)
@@ -160,6 +165,7 @@ They have a unique device number in our system, used to identify them.
 | type | [ string](#string) | The DeviceType for this device. See DeviceType for more information. |
 | sensor_brand | [ string](#string) | The DeviceType for this device. See DeviceType for more information. |
 | numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The numeric value types that this device produces. The device may produce other values (like battery level), but these are the primary value types. |
+| files | [repeated hiber.file.File](#hiberfilefile) | Files for this tag. Typically an image of the device installation. See the File.media_type for more information. |
 
 ### Device.Links
 
@@ -246,6 +252,61 @@ Sorting options for the results.
 | TAG_TYPE_PRODUCTION_AREA_ASC | Sort alphabetically on any tags of type 'production_area', in ascending order. | 24 |
 | TAG_TYPE_PRODUCTION_AREA_DESC | Sort alphabetically on any tags of type 'production_area', in descending order. | 25 |
 
+
+
+## Referenced messages from file.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [file.proto](https://github.com/HiberGlobal/api/blob/master/file.proto).
+
+
+### hiber.file.File
+
+A file in your organization, with its mime-type and name.
+It can represent any file of any type.
+
+Specific API calls may pur restrictions on the name or size of the file.
+
+To avoid sending large amounts of binary data, File does not typically contain the file's content.
+The content can be fetched at a url, or using the FileService.Get rpc.
+For specific use cases, the data field might be set with binary data, avoiding the need for another lookup.
+
+The file name should be interpreted as-is.
+No hierarchical information is stored in the name, nor should you look at the "extension" to know its media-type.
+It might not even have a file extension.
+The file name may contain characters that cannot be a valid file name on certain systems.
+
+When showing this as an image in a browser, one can make use of a `data` URI.
+The client must convert the bytes to base64 and can then construct a data URI like this
+
+    data:<media-type>;base64,<base64-encoded-bytes>
+
+Other type clients should be able to sort-of-directly set the data bytes as the source for an image.
+
+(Technical note: the indices are structured for binary backwards compatibility with the now-removed NamedFile.)
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifier | [ string](#string) | This file's content can be fetched using the FileService, with this file identifier. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **content**.data | [ hiber.BytesOrHex](#hiberbytesorhex) | The binary payload that represents the file |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **content**.file_service | [ bool](#bool) | This file's content can be fetched using the FileService, with this file identifier. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **content**.url | [ string](#string) | This file's content can be fetched at this url. |
+| media_type | [ string](#string) | The media-type of the file, as defined by RFC 6838 or its extensions |
+| name | [ string](#string) | A semantic name for this file. |
+| link | [ string](#string) | A link to file in the Hiber Rest API. Note: the Hiber Rest API requires a token, for authenticated access to your files. If the content oneof of this file is a url, this link will return a HTTP 301 code to redirect to that url. |
+
+### hiber.file.FileSelection
+
+Selection to use when listing files in your organization.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** search | [optional string](#string) | Search files in your organization by (partial) match on name, media type and (if present) url. |
+| identifiers | [repeated string](#string) | List files in your organization with a specific identifier. |
+
+
+### Enums
 
 
 ## Referenced messages from health.proto
@@ -381,6 +442,7 @@ when the modem is registered into the system or when a subscription is authorize
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
 |  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
 | numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The numeric value types that this device produces. The device may produce other values (like battery level), but these are the primary value types. |
+| files | [repeated hiber.file.File](#hiberfilefile) | Files for this tag. Typically an image of the device installation. See the File.media_type for more information. |
 
 ### hiber.modem.ModemSelection
 

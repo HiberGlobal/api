@@ -15,6 +15,9 @@
   - [Assign.Request.AlarmParametersEntry](#assignrequestalarmparametersentry)
   - [Assign.Response](#assignresponse)
   - [Assignment](#assignment)
+  - [Assignment.AdditionalConfiguration](#assignmentadditionalconfiguration)
+  - [Assignment.AdditionalConfiguration.AssetDeviceAssignment](#assignmentadditionalconfigurationassetdeviceassignment)
+  - [Assignment.AdditionalConfiguration.FieldsByJsonPath](#assignmentadditionalconfigurationfieldsbyjsonpath)
   - [Assignment.AlarmAssignment](#assignmentalarmassignment)
   - [Assignment.ModemMessageBodyParserAssignment](#assignmentmodemmessagebodyparserassignment)
   - [AssignmentSelection](#assignmentselection)
@@ -310,7 +313,8 @@ Add assignments.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) |  |
-| alarm_parameters | [map Assign.Request.AlarmParametersEntry](#assignrequestalarmparametersentry) | The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
+| alarm_parameters | [map Assign.Request.AlarmParametersEntry](#assignrequestalarmparametersentry) | <strong>Deprecated.</strong> The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **additional_configuration**.asset_device | [ Assignment.AdditionalConfiguration.AssetDeviceAssignment](#assignmentadditionalconfigurationassetdeviceassignment) | Additional configuration for assignment between Asset and Device/Modem. |
 |  **optional** override_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment should be active. This sets the assignment to start in the past, but would not have effect in the past for assignments like parsers and alarms (they will only be triggered for new messages / values). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
 |  **optional** end_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (e.g. no alarm events are removed). It would however work for assets having access to device data. This is not allowed to be a value in the future at the moment. |
 |  **optional** override_conflicting_assignments | [optional bool](#bool) | Instead of throwing an error when there are conflicting assignments, unassign the conflicting assignments with the given time (override_time or now) and then making the assignment. |
@@ -365,6 +369,29 @@ Assignments that are no longer active (end time is in the past) and that no long
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_parser | [ Assignment.ModemMessageBodyParserAssignment](#assignmentmodemmessagebodyparserassignment) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_tag | [ hiber.tag.Tag](#hibertagtag) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_asset | [ string](#string) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **additional_configuration**.asset_device | [ Assignment.AdditionalConfiguration.AssetDeviceAssignment](#assignmentadditionalconfigurationassetdeviceassignment) | Additional configuration for assignment between Asset and Device/Modem. |
+
+### Assignment.AdditionalConfiguration
+
+
+
+
+### Assignment.AdditionalConfiguration.AssetDeviceAssignment
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| shared_fields | [ Assignment.AdditionalConfiguration.FieldsByJsonPath](#assignmentadditionalconfigurationfieldsbyjsonpath) | Specify the fields that are shared with the Asset. If nothing is specified, all fields are shared with the asset by default. |
+
+### Assignment.AdditionalConfiguration.FieldsByJsonPath
+
+Select the fields, defined as a list of json paths.
+Fields are produced by the device's assigned parsers. See field.proto for more information.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| fields | [repeated string](#string) | List of json paths specifying fields. See field.proto for more information. |
 
 ### Assignment.AlarmAssignment
 
@@ -375,7 +402,7 @@ Assignments that are no longer active (end time is in the past) and that no long
 | identifier | [ string](#string) |  |
 | name | [ string](#string) |  |
 | description | [ string](#string) |  |
-| parameters | [ google.protobuf.Struct](#googleprotobufstruct) |  |
+| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <strong>Deprecated.</strong>  |
 
 ### Assignment.ModemMessageBodyParserAssignment
 
@@ -485,7 +512,7 @@ Things that an alarm is assigned to.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | asset_identifier | [ string](#string) |  |
-| parameters | [ google.protobuf.Struct](#googleprotobufstruct) |  |
+| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <strong>Deprecated.</strong>  |
 
 ### ListAlarmAssignments.Response.AlarmAssignment.ToModem
 
@@ -494,7 +521,7 @@ Things that an alarm is assigned to.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | modem_number | [ string](#string) |  |
-| parameters | [ google.protobuf.Struct](#googleprotobufstruct) |  |
+| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <strong>Deprecated.</strong>  |
 
 ### ListAlarmAssignments.Response.AlarmAssignment.ToTag
 
@@ -503,7 +530,7 @@ Things that an alarm is assigned to.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | tag | [ hiber.tag.Tag](#hibertagtag) |  |
-| parameters | [ google.protobuf.Struct](#googleprotobufstruct) |  |
+| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <strong>Deprecated.</strong>  |
 
 ### ListAssetAssignments
 
@@ -652,8 +679,8 @@ Things that an alarm is assigned to.
 | ----- | ---- | ----------- |
 | organization | [ string](#string) |  |
 | message_body_parser | [ hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) |  |
-| modems | [repeated string](#string) | The modem numbers this alarm is assigned to, with the alarm parameters. |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | The tags this alarm is assigned to, with the alarm parameters. |
+| modems | [repeated string](#string) | The modem numbers this parser is assigned to. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | The tags this parser is assigned to. |
 
 ### ListTagAssignments
 
@@ -883,6 +910,7 @@ when the modem is registered into the system or when a subscription is authorize
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
 |  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
 | numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The numeric value types that this device produces. The device may produce other values (like battery level), but these are the primary value types. |
+| files | [repeated hiber.file.File](#hiberfilefile) | Files for this tag. Typically an image of the device installation. See the File.media_type for more information. |
 
 ### hiber.modem.ModemSelection
 

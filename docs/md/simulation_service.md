@@ -254,6 +254,7 @@ when the modem is registered into the system or when a subscription is authorize
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
 |  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
 | numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The numeric value types that this device produces. The device may produce other values (like battery level), but these are the primary value types. |
+| files | [repeated hiber.file.File](#hiberfilefile) | Files for this tag. Typically an image of the device installation. See the File.media_type for more information. |
 
 ### hiber.modem.ModemSelection
 
