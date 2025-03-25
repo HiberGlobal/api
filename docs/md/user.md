@@ -276,7 +276,6 @@ Accept an invitation to an organization.
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | email | [ string](#string) | The email address of the user you want to invite. |
-|  **optional** retry | [optional bool](#bool) | Invite the user again, even if there is an open invite. This can be done a limited amount of times. |
 | roles | [ hiber.Filter.Roles](#hiberfilterroles) | Roles the new user should get. |
 |  **optional** override_allow_no_roles | [optional bool](#bool) | By default, the server returns an error when you don't specify any roles. Set this to true to allow it. |
 
@@ -314,7 +313,6 @@ List all invited users (email addresses).
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 |  **optional** search | [optional string](#string) | Search the invited email addresses. |
-|  **optional** include_accepted | [optional bool](#bool) | Whether to include invitations that were already accepted. |
 
 ### ListInvitationsRequest.Response
 

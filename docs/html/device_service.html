@@ -5128,6 +5128,13 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td><p>Brand for this gateway. </p></td>
                 </tr>
               
+                <tr>
+                  <td>external_device_ids</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>External device ids for this gateway. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -6301,8 +6308,7 @@ Devices in this state are not visible to customers.</p></td>
                 <td>READY_TO_INSTALL</td>
                 <td>8</td>
                 <td><p>Device has passed Acceptance Testing and is ready be installed.
-When it sends it first message, it will automatically go to INSTALLED.
-Devices in this state are not visible to customers.</p></td>
+When it sends it first message, it will automatically go to INSTALLED.</p></td>
               </tr>
             
               <tr>
@@ -6364,12 +6370,6 @@ Devices in this state are not visible to customers.</p></td>
                 <td>OTHER</td>
                 <td>0</td>
                 <td><p>A device of which the specific type is not known</p></td>
-              </tr>
-            
-              <tr>
-                <td>DISCONNECTED_SENSOR</td>
-                <td>1</td>
-                <td><p>A device that is not currently connected to a gateway.</p></td>
               </tr>
             
               <tr>

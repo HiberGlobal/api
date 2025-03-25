@@ -189,8 +189,7 @@ message ListInvitationsRequest {
     /* Search the invited email addresses. */
     optional string search = 2;
 
-    /* Whether to include invitations that were already accepted. */
-    optional bool include_accepted = 3;
+    reserved 3;
 }
 
 /* Accept an invitation to an organization. */
@@ -204,9 +203,6 @@ message InviteUserRequest {
     /* The email address of the user you want to invite. */
     string email = 2;
 
-    /* Invite the user again, even if there is an open invite. This can be done a limited amount of times. */
-    optional bool retry = 3;
-
     /* Roles the new user should get. */
     Filter.Roles roles = 6;
 
@@ -215,7 +211,7 @@ message InviteUserRequest {
      */
     optional bool override_allow_no_roles = 5;
 
-    reserved 4;
+    reserved 3, 4;
 }
 
 message CreateUserRequest {

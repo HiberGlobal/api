@@ -340,7 +340,7 @@ Sorting options for the results.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | ACCEPTANCE_TESTING | Device is being tested by Hiber. Devices in this state are not visible to customers. | 0 |
-| READY_TO_INSTALL | Device has passed Acceptance Testing and is ready be installed. When it sends it first message, it will automatically go to INSTALLED. Devices in this state are not visible to customers. | 8 |
+| READY_TO_INSTALL | Device has passed Acceptance Testing and is ready be installed. When it sends it first message, it will automatically go to INSTALLED. | 8 |
 | INSTALLED | Device is active and sending messages. | 1 |
 | PAUSED | Device is paused and not sending messages. This should be of a temporary nature (e.g. a change to the installation is being made). On its next message, it will automatically go back to INSTALLED. Offline alarm checks will not be triggered for devices in this lifecycle. | 6 |
 | DISABLED | Device is disabled and not sending messages. This is a more permanent version of PAUSED. Devices in this state are not visible to customers. | 5 |
@@ -355,7 +355,6 @@ Type can depend on the hardware itself as well as network topology.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | OTHER | A device of which the specific type is not known | 0 |
-| DISCONNECTED_SENSOR | A device that is not currently connected to a gateway. | 1 |
 | GATEWAY | A device that can receive messages from sensors in the field and relay them (directly) to the satellite. Typically a LoRaWAN hub. Note that gateways also send messages themselves (e.g. a daily heartbeat). | 2 |
 | SENSOR | A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. | 3 |
 
@@ -391,6 +390,7 @@ Metadata (which is only included when using the TagService) with additional info
 | id | [ int64](#int64) |  |
 | label | [ hiber.tag.Tag.Label](#hibertagtaglabel) | The label to display for this tag. |
 |  **optional** metadata | [optional hiber.tag.Tag.Metadata](#hibertagtagmetadata) | Metadata for this tag. This is typically not included in calls where the tag is repeated a lot, like the device list. Use the TagService.List call to get the tags with Metadata. |
+|  **optional** priority | [optional int32](#int32) | Control tag sorting by setting a priority (sorted from high to low, where no priority is treated as 0). |
 
 ### hiber.tag.Tag.Label
 

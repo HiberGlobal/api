@@ -1,44 +1,29 @@
-# tag.proto
+# device_notes.proto
 
 
 
-#### This file was generated from [tag.proto](https://github.com/HiberGlobal/api/blob/master/tag.proto).
+#### This file was generated from [device_notes.proto](https://github.com/HiberGlobal/api/blob/master/device_notes.proto).
 
 ## Table of Contents
 
 - Services
-  - [TagService](#tagservice)
+  - [DeviceNoteService](#devicenoteservice)
 
 - Messages
-  - [CreateTagRequest](#createtagrequest)
-  - [DeleteTagRequest](#deletetagrequest)
-  - [DeleteTagRequest.Response](#deletetagrequestresponse)
-  - [ListTagsRequest](#listtagsrequest)
-  - [ListTagsRequest.Response](#listtagsrequestresponse)
-  - [ListTagsRequest.Response.TagAssetCountEntry](#listtagsrequestresponsetagassetcountentry)
-  - [ListTagsRequest.Response.TagModemCountEntry](#listtagsrequestresponsetagmodemcountentry)
-  - [ListTagsRequest.Response.TagWebhookCountEntry](#listtagsrequestresponsetagwebhookcountentry)
-  - [Tag](#tag)
-  - [Tag.Label](#taglabel)
-  - [Tag.Metadata](#tagmetadata)
-  - [TagHealth](#taghealth)
-  - [TagHealth.Request](#taghealthrequest)
-  - [TagHealth.Response](#taghealthresponse)
-  - [TagSelection](#tagselection)
-  - [UpdateTagRequest](#updatetagrequest)
-  - [UpdateTagsForItem](#updatetagsforitem)
+  - [AddDeviceNote](#adddevicenote)
+  - [AddDeviceNote.Request](#adddevicenoterequest)
+  - [AddDeviceNote.Response](#adddevicenoteresponse)
+  - [DeviceNote](#devicenote)
+  - [DeviceNoteSelection](#devicenoteselection)
+  - [ListDeviceNotes](#listdevicenotes)
+  - [ListDeviceNotes.Request](#listdevicenotesrequest)
+  - [ListDeviceNotes.Response](#listdevicenotesresponse)
+  - [UpdateDeviceNote](#updatedevicenote)
+  - [UpdateDeviceNote.Request](#updatedevicenoterequest)
+  - [UpdateDeviceNote.Response](#updatedevicenoteresponse)
 
 - Enums
-
-- Referenced messages from [file.proto](#referenced-messages-from-fileproto)
-  - [hiber.file.File](#hiberfilefile)
-  - [hiber.file.FileSelection](#hiberfilefileselection)
-
-
-- Referenced messages from [health.proto](#referenced-messages-from-healthproto)
-  - [hiber.health.HealthLevel](#hiberhealthhealthlevel)
-  - [hiber.health.HealthLevelSelection](#hiberhealthhealthlevelselection)
-
+  - [DeviceNoteSelection.Sort](#devicenoteselectionsort)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -94,378 +79,147 @@
 - [Scalar Value Types](#scalar-value-types)
 
 
-## TagService
-Tag management api calls. You can already get tags for objects when you get their data, and even create new tags
-when updating them, so these calls are meant for easier tag management if you need it.
+## DeviceNoteService
+
 
 ### List
-> **rpc** List([ListTagsRequest](#listtagsrequest))
-    [ListTagsRequest.Response](#listtagsrequestresponse)
+> **rpc** List([ListDeviceNotes.Request](#listdevicenotesrequest))
+    [ListDeviceNotes.Response](#listdevicenotesresponse)
 
 
 
-### Create
-> **rpc** Create([CreateTagRequest](#createtagrequest))
-    [Tag](#tag)
+### Add
+> **rpc** Add([AddDeviceNote.Request](#adddevicenoterequest))
+    [AddDeviceNote.Response](#adddevicenoteresponse)
 
 
 
 ### Update
-> **rpc** Update([UpdateTagRequest](#updatetagrequest))
-    [Tag](#tag)
+> **rpc** Update([UpdateDeviceNote.Request](#updatedevicenoterequest))
+    [UpdateDeviceNote.Response](#updatedevicenoteresponse)
 
 
-
-### Delete
-> **rpc** Delete([DeleteTagRequest](#deletetagrequest))
-    [DeleteTagRequest.Response](#deletetagrequestresponse)
-
-
-
-### Health
-> **rpc** Health([TagHealth.Request](#taghealthrequest))
-    [TagHealth.Response](#taghealthresponse)
-
-Count the tags in your organization by health.
 
 
 ## Messages
 
-### CreateTagRequest
+### AddDeviceNote
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| message | [ string](#string) |  |
+|  **optional** time | [optional hiber.Timestamp](#hibertimestamp) |  |
+
+### AddDeviceNote.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| create | [ Tag.Label](#taglabel) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.location_point | [ hiber.Location](#hiberlocation) | Single point location for this tag. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.location_area | [ hiber.Area](#hiberarea) | Square area (on the map) for this tag. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.location_shape | [ hiber.Shape](#hibershape) | Complex shaped area for this tag. |
-| files | [repeated hiber.file.File](#hiberfilefile) | Add files to the new tag. These can be just an identifier to an existing File, or a full file upload. Keep in mind the grpc request size limitation. |
-| priority | [ int32](#int32) | Control tag sorting by setting a priority (sorted from high to low, to no priority). |
+| device | [ string](#string) |  |
+| notes | [repeated AddDeviceNote](#adddevicenote) |  |
 
-### DeleteTagRequest
+### AddDeviceNote.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| device_note | [repeated DeviceNote](#devicenote) |  |
+| request | [ AddDeviceNote.Request](#adddevicenoterequest) |  |
+
+### DeviceNote
+
+Preconfigured device type.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| device | [ string](#string) |  |
+| note_id | [ uint64](#uint64) |  |
+| message | [ string](#string) |  |
+| message_history | [repeated string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
+| last_updated_at | [ hiber.Timestamp](#hibertimestamp) |  |
+| author | [ string](#string) |  |
+
+### DeviceNoteSelection
+
+Selection object for device types.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| device | [ string](#string) |  |
+|  **optional** search | [optional string](#string) |  |
+|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) |  |
+
+### ListDeviceNotes
+
+
+
+
+### ListDeviceNotes.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| id | [ int64](#int64) |  |
+| selection | [ DeviceNoteSelection](#devicenoteselection) | Select which device notes to return. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+| sort | [ DeviceNoteSelection.Sort](#devicenoteselectionsort) |  |
 
-### DeleteTagRequest.Response
+### ListDeviceNotes.Response
 
 
 
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| device_notes | [repeated DeviceNote](#devicenote) |  |
+| request | [ ListDeviceNotes.Request](#listdevicenotesrequest) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
-### ListTagsRequest
+### UpdateDeviceNote
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| updated_message | [ string](#string) |  |
+
+### UpdateDeviceNote.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** selection | [optional TagSelection](#tagselection) | Select the tags to list. Optional, when omitted or empty everything is included. |
-|  **optional** asset_count | [optional bool](#bool) | Count the assets for each tag in the response. |
-|  **optional** modem_count | [optional bool](#bool) | Count the modems for each tag in the response. |
-|  **optional** webhook_count | [optional bool](#bool) | Count the webhooks for each tag in the response. |
+| device | [ string](#string) |  |
+| note_id | [ uint64](#uint64) |  |
+| update | [ UpdateDeviceNote](#updatedevicenote) |  |
 
-### ListTagsRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| tags | [repeated Tag](#tag) |  |
-| request | [ ListTagsRequest](#listtagsrequest) |  |
-| tag_asset_count | [map ListTagsRequest.Response.TagAssetCountEntry](#listtagsrequestresponsetagassetcountentry) | map<tag-id, count> |
-| tag_modem_count | [map ListTagsRequest.Response.TagModemCountEntry](#listtagsrequestresponsetagmodemcountentry) | map<tag-id, count> |
-| tag_webhook_count | [map ListTagsRequest.Response.TagWebhookCountEntry](#listtagsrequestresponsetagwebhookcountentry) | map<webhook-id, count> |
-
-### ListTagsRequest.Response.TagAssetCountEntry
+### UpdateDeviceNote.Response
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ int64](#int64) |  |
-| value | [ int32](#int32) |  |
-
-### ListTagsRequest.Response.TagModemCountEntry
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| key | [ int64](#int64) |  |
-| value | [ int32](#int32) |  |
-
-### ListTagsRequest.Response.TagWebhookCountEntry
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| key | [ int64](#int64) |  |
-| value | [ int32](#int32) |  |
-
-### Tag
-
-Tag in your organization.
-Tags can be assigned to devices and assets to group them together or mark a certain property.
-
-A Tag has three parts: its id in your organization, a Label that describes how it should be displayed, and
-Metadata (which is only included when using the TagService) with additional information.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| id | [ int64](#int64) |  |
-| label | [ Tag.Label](#taglabel) | The label to display for this tag. |
-|  **optional** metadata | [optional Tag.Metadata](#tagmetadata) | Metadata for this tag. This is typically not included in calls where the tag is repeated a lot, like the device list. Use the TagService.List call to get the tags with Metadata. |
-|  **optional** priority | [optional int32](#int32) | Control tag sorting by setting a priority (sorted from high to low, where no priority is treated as 0). |
-
-### Tag.Label
-
-Label for a tag, containing all the information needed to display it.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| name | [ string](#string) |  |
-| type | [ string](#string) |  |
-
-### Tag.Metadata
-
-Metadata for a tag.
-This is typically not included in calls where the tag is repeated a lot, like the device list.
-
-Use the TagService.List call to get the tags with Metadata.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.location_point | [ hiber.Location](#hiberlocation) | Single point location for this tag. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.location_area | [ hiber.Area](#hiberarea) | Square area (on the map) for this tag. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.location_shape | [ hiber.Shape](#hibershape) | Complex shaped area for this tag. |
-| files | [repeated hiber.file.File](#hiberfilefile) | Files for this tag. Typically an image of a place. See the File.media_type for more information. |
-
-### TagHealth
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| tag | [ Tag](#tag) |  |
-| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) |  |
-| most_severe | [ bool](#bool) |  |
-| asset_count | [ uint32](#uint32) |  |
-| modem_count | [ uint32](#uint32) |  |
-
-### TagHealth.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** selection | [optional TagSelection](#tagselection) | Select the tags to list. Optional, when omitted or empty everything is included. |
-|  **optional** asset_count | [optional bool](#bool) | Count the assets for each tag in the response. |
-|  **optional** modem_count | [optional bool](#bool) | Count the modems for each tag in the response. |
-
-### TagHealth.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| tag_health | [repeated TagHealth](#taghealth) |  |
-| request | [ TagHealth.Request](#taghealthrequest) |  |
-
-### TagSelection
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| search | [repeated string](#string) |  |
-| names | [repeated string](#string) |  |
-|  **optional** filter | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
-| types | [repeated string](#string) |  |
-|  **optional** location | [optional hiber.LocationSelection](#hiberlocationselection) |  |
-
-### UpdateTagRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| id | [ int64](#int64) |  |
-| update | [ Tag.Label](#taglabel) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.location_point | [ hiber.Location](#hiberlocation) | Update the location to a single point location. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.location_area | [ hiber.Area](#hiberarea) | Update the location to a square area (on the map). |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.location_shape | [ hiber.Shape](#hibershape) | Update the location to a complex shaped area. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.remove_location | [ bool](#bool) | Remove the location from this tag. |
-| add_files | [repeated hiber.file.File](#hiberfilefile) | Add files to the tag. These can be just an identifier to an existing File, or a full file upload. Keep in mind the grpc request size limitation. |
-| delete_files | [repeated string](#string) | Remove files from the tag and delete them from the system (if no other references exist). |
-|  **optional** priority | [optional int32](#int32) | Control tag sorting by setting a priority (sorted from high to low, to no priority). |
-
-### UpdateTagsForItem
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| tag_ids_to_add | [repeated int64](#int64) |  |
-| tag_ids_to_remove | [repeated int64](#int64) |  |
-| new_tags_to_add | [repeated Tag.Label](#taglabel) |  |
+| updated_device_note | [ DeviceNote](#devicenote) |  |
+| request | [ UpdateDeviceNote.Request](#updatedevicenoterequest) |  |
 
 
 ## Enums
+### DeviceNoteSelection.Sort
 
 
-## Referenced messages from file.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| OLDEST_FIRST |  | 0 |
+| NEWEST_FIRST |  | 1 |
+| LAST_UPDATED |  | 2 |
 
-#### This section was generated from [file.proto](https://github.com/HiberGlobal/api/blob/master/file.proto).
-
-
-### hiber.file.File
-
-A file in your organization, with its mime-type and name.
-It can represent any file of any type.
-
-Specific API calls may pur restrictions on the name or size of the file.
-
-To avoid sending large amounts of binary data, File does not typically contain the file's content.
-The content can be fetched at a url, or using the FileService.Get rpc.
-For specific use cases, the data field might be set with binary data, avoiding the need for another lookup.
-
-The file name should be interpreted as-is.
-No hierarchical information is stored in the name, nor should you look at the "extension" to know its media-type.
-It might not even have a file extension.
-The file name may contain characters that cannot be a valid file name on certain systems.
-
-When showing this as an image in a browser, one can make use of a `data` URI.
-The client must convert the bytes to base64 and can then construct a data URI like this
-
-    data:<media-type>;base64,<base64-encoded-bytes>
-
-Other type clients should be able to sort-of-directly set the data bytes as the source for an image.
-
-(Technical note: the indices are structured for binary backwards compatibility with the now-removed NamedFile.)
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifier | [ string](#string) | This file's content can be fetched using the FileService, with this file identifier. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **content**.data | [ hiber.BytesOrHex](#hiberbytesorhex) | The binary payload that represents the file |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **content**.file_service | [ bool](#bool) | This file's content can be fetched using the FileService, with this file identifier. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **content**.url | [ string](#string) | This file's content can be fetched at this url. |
-| media_type | [ string](#string) | The media-type of the file, as defined by RFC 6838 or its extensions |
-| name | [ string](#string) | A semantic name for this file. |
-| link | [ string](#string) | A link to file in the Hiber Rest API. Note: the Hiber Rest API requires a token, for authenticated access to your files. If the content oneof of this file is a url, this link will return a HTTP 301 code to redirect to that url. |
-
-### hiber.file.FileSelection
-
-Selection to use when listing files in your organization.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** search | [optional string](#string) | Search files in your organization by (partial) match on name, media type and (if present) url. |
-| identifiers | [repeated string](#string) | List files in your organization with a specific identifier. |
-
-
-### Enums
-
-
-## Referenced messages from health.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
-
-#### This section was generated from [health.proto](https://github.com/HiberGlobal/api/blob/master/health.proto).
-
-
-### hiber.health.HealthLevel
-
-A health level in an organization.
-Health can be customized depending on your need.
-
-The default health levels are:
-- OK (green): no problems detected
-- WARNING (orange): unresolvable problems detected, for example delayed or skipped messages
-- ERROR (red): significant problems detected (that typically can be resolved),
-  for example inactivity or invalid messages (resolved on a successful message)
-
-Health levels can be customized to as many as you need for your operations, for example:
-- INTERVENTION
-- DEFECT
-- BATTERY
-- HIGH
-- LOW
-
-Health levels are ordered by severity (low to high),
-and of all things affecting a modem's health,
-only the most severe level will be returned when retrieving a modem.
-
-Health can be assigned using modems alarms, which specify the health level they will cause on a modem (and for how
-long, if it does not resolve automatically).
-
-Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems),
-which can happen when a device manufacturer has provided alarms to your device (e.g. a low battery alarm).
-By default, any unknown health levels map to the level that is marked catch-all.
-
-Health level have a set of named colors, represented by a map where the key is the name of the color
-and the value is a string that represents a valid CSS3 color.
-Simple examples are: green, red, orange, grey, #FF00FF for fuchsia, etc (Keep in mind that CSS3 allows for many
-ways to define colors, see https://www.w3.org/TR/2003/WD-css3-color-20030214/).
-
-All the following definitions also mean "red":
- - rgb(255, 0, 0)
- - rgb(100%, 0, 0)
- - rgba(100%, 0%, 0%, 100%)
- - hsl(0, 100%, 50%)
- - hsla(0, 100%, 50%, 1)
-
-The client is responsible for rendering the correct color from the CSS3 color-space and for setting the colors and
-their names. There is no verification on missing named colors, so the client must set sensible defaults when colors
-are missing.
-
-To assist with sorting, health levels have a numeric severity equal to their index in the sorted list of health
-levels (starting at 1). This means higher numbers denote a more severe health.
-Since these values are noting more than a list index, they should not be cached, compared to another organization or
-compared to values retrieved from the API at another time.
-
-For example, an organization using the default health would have:
-- Ok: severity 1
-- Warning: severity 2
-- Error: severity 3
-
-That organization could then add a new health level in between Ok and Warning, meaning the severity of Warning and
-Error will change:
-- Ok, severity 1
-- ItsComplicated, severity 2
-- Warning, severity 3
-- Error, severity 4
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| level | [ string](#string) | The name of this health level. Levels are identified by their name. The API does support renaming, where the rename is propagated to all the relevant parts of the system. |
-| color | [ string](#string) | <strong>Deprecated.</strong> Default color for the health level, as a string that represents a valid CSS3 color. DEPRECATED: Maps to the color named "text" in color_data. |
-| color_data | [map hiber.health.HealthLevel.ColorDataEntry](#hiberhealthhealthlevelcolordataentry) | Map of named colors, where key is the name and the value is a valid CSS3 color definition. |
-| severity | [ int64](#int64) | A unique numeric value equal to the index of this health level in the list of health levels sorted by ascending severity (starting at 1). This means higher numbers denote a more severe health. This value cannot be used when creating or updating. To change the severity for a health level, reorder all health levels. |
-| catch_all | [ bool](#bool) | Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems), which can happen when a device manufacturer has provided alarms for your device (e.g. a low battery alarm). By default, unknown health levels map to the level of the highest severity, unless another level is marked as catch-all. |
-
-### hiber.health.HealthLevelSelection
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** search | [optional string](#string) | Search for the given string in the levels and colors. |
-| levels | [repeated string](#string) | Filter by exact levels. |
-
-
-### Enums
 
 
 ## Referenced messages from base.proto

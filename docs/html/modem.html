@@ -1989,6 +1989,13 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td><p>Brand for this gateway. </p></td>
                 </tr>
               
+                <tr>
+                  <td>external_device_ids</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>External device ids for this gateway. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -3162,8 +3169,7 @@ Devices in this state are not visible to customers.</p></td>
                 <td>READY_TO_INSTALL</td>
                 <td>8</td>
                 <td><p>Device has passed Acceptance Testing and is ready be installed.
-When it sends it first message, it will automatically go to INSTALLED.
-Devices in this state are not visible to customers.</p></td>
+When it sends it first message, it will automatically go to INSTALLED.</p></td>
               </tr>
             
               <tr>
@@ -3225,12 +3231,6 @@ Devices in this state are not visible to customers.</p></td>
                 <td>OTHER</td>
                 <td>0</td>
                 <td><p>A device of which the specific type is not known</p></td>
-              </tr>
-            
-              <tr>
-                <td>DISCONNECTED_SENSOR</td>
-                <td>1</td>
-                <td><p>A device that is not currently connected to a gateway.</p></td>
               </tr>
             
               <tr>
@@ -7344,6 +7344,13 @@ Used as an identifier for the organization. </p></td>
 Keep in mind the grpc request size limitation. </p></td>
                 </tr>
               
+                <tr>
+                  <td>priority</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Control tag sorting by setting a priority (sorted from high to low, to no priority). </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -7617,6 +7624,13 @@ Keep in mind the grpc request size limitation. </p></td>
                   <td><p>Metadata for this tag.
 This is typically not included in calls where the tag is repeated a lot, like the device list.
 Use the TagService.List call to get the tags with Metadata. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>priority</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Control tag sorting by setting a priority (sorted from high to low, where no priority is treated as 0). </p></td>
                 </tr>
               
             </tbody>
@@ -7955,6 +7969,13 @@ Keep in mind the grpc request size limitation. </p></td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>Remove files from the tag and delete them from the system (if no other references exist). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>priority</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Control tag sorting by setting a priority (sorted from high to low, to no priority). </p></td>
                 </tr>
               
             </tbody>

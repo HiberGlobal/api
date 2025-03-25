@@ -155,6 +155,9 @@ message Modem {
 
         /* Brand for this gateway. */
         string gateway_brand = 3;
+
+        /* External device ids for this gateway. */
+        repeated string external_device_ids = 4;
     }
 
     /* Additional information when this modem is a connected device. */
@@ -200,7 +203,6 @@ message Modem {
 
         /* Device has passed Acceptance Testing and is ready be installed.
          * When it sends it first message, it will automatically go to INSTALLED.
-         * Devices in this state are not visible to customers.
          */
         READY_TO_INSTALL = 8;
 
@@ -242,9 +244,6 @@ message Modem {
         /* A device of which the specific type is not known */
         OTHER = 0;
 
-        /* A device that is not currently connected to a gateway. */
-        DISCONNECTED_SENSOR = 1;
-
         /* A device that can receive messages from sensors in the field and relay them (directly) to the satellite.
          * Typically a LoRaWAN hub.
          * Note that gateways also send messages themselves (e.g. a daily heartbeat).
@@ -253,6 +252,8 @@ message Modem {
 
         /* A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. */
         SENSOR = 3;
+
+        reserved 1;
     }
 
     reserved 6, 9, 13;

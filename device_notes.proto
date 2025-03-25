@@ -1,0 +1,125 @@
+syntax = "proto3";
+
+package hiber.device.note;
+
+import "base.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.device.note";
+option java_outer_classname = "DeviceNoteApi";
+option go_package = ".;hiber";
+
+service DeviceNoteService {
+    rpc List (ListDeviceNotes.Request) returns (ListDeviceNotes.Response);
+    rpc Add (AddDeviceNote.Request) returns (AddDeviceNote.Response);
+    rpc Update (UpdateDeviceNote.Request) returns (UpdateDeviceNote.Response);
+}
+
+/* Preconfigured device type. */
+message DeviceNote {
+    string device = 1;
+    uint64 note_id = 2;
+    string message = 3;
+    repeated string message_history = 4;
+
+    Timestamp time = 5;
+    Timestamp last_updated_at = 6;
+
+    string author = 7;
+}
+
+/* Selection object for device types. */
+message DeviceNoteSelection {
+    string device = 1;
+    optional string search = 2;
+    optional TimeRange time_range = 3;
+
+    enum Sort {
+        OLDEST_FIRST = 0;
+        NEWEST_FIRST = 1;
+        LAST_UPDATED = 2;
+    }
+}
+
+message ListDeviceNotes {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select which device notes to return. */
+        DeviceNoteSelection selection = 2;
+
+        optional Pagination pagination = 3;
+
+        DeviceNoteSelection.Sort sort = 4;
+    }
+    message Response {
+        repeated DeviceNote device_notes = 1;
+        Request request = 2;
+        Pagination.Result pagination = 3;
+    }
+}
+
+message AddDeviceNote {
+    string message = 1;
+    optional Timestamp time = 2;
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        string device = 2;
+        repeated AddDeviceNote notes = 3;
+    }
+
+    message Response {
+        repeated DeviceNote device_note = 1;
+        Request request = 2;
+    }
+}
+
+message UpdateDeviceNote {
+    string updated_message = 1;
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        string device = 2;
+        uint64 note_id = 3;
+        UpdateDeviceNote update = 4;
+    }
+
+    message Response {
+        DeviceNote updated_device_note = 1;
+        Request request = 2;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

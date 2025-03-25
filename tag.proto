@@ -71,6 +71,9 @@ message Tag {
      * Use the TagService.List call to get the tags with Metadata.
      */
     optional Metadata metadata = 4;
+
+    /* Control tag sorting by setting a priority (sorted from high to low, where no priority is treated as 0). */
+    optional int32 priority = 5;
 }
 
 message TagSelection {
@@ -136,6 +139,9 @@ message CreateTagRequest {
      * Keep in mind the grpc request size limitation.
      */
     repeated file.File files = 7;
+
+    /* Control tag sorting by setting a priority (sorted from high to low, to no priority). */
+    int32 priority = 8;
 }
 
 message UpdateTagRequest {
@@ -165,6 +171,9 @@ message UpdateTagRequest {
 
     /* Remove files from the tag and delete them from the system (if no other references exist). */
     repeated string delete_files = 9;
+
+    /* Control tag sorting by setting a priority (sorted from high to low, to no priority). */
+    optional int32 priority = 10;
 }
 
 message DeleteTagRequest {

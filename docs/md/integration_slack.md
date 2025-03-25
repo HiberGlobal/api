@@ -413,6 +413,7 @@ Metadata (which is only included when using the TagService) with additional info
 | id | [ int64](#int64) |  |
 | label | [ hiber.tag.Tag.Label](#hibertagtaglabel) | The label to display for this tag. |
 |  **optional** metadata | [optional hiber.tag.Tag.Metadata](#hibertagtagmetadata) | Metadata for this tag. This is typically not included in calls where the tag is repeated a lot, like the device list. Use the TagService.List call to get the tags with Metadata. |
+|  **optional** priority | [optional int32](#int32) | Control tag sorting by setting a priority (sorted from high to low, where no priority is treated as 0). |
 
 ### hiber.tag.Tag.Label
 

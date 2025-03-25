@@ -1,5 +1,35 @@
 # Changelog Hiber API
 
+### 0.232 (2025-03-25)
+
+##### DeviceNoteService
+
+- Added `DeviceNoteService` to manage device notes:
+  - `List` device notes for a given device
+  - `Add` one or more notes to a device
+  - `Update` an existing note.
+
+##### UserService
+
+- Simplified invitation logic
+  - Removed `ListInvitationsRequest.include_accepted`, they are no longer available.
+  - Removed `InviteUserRequest.retry`, this is now always allowed.
+  - Fixed numerous issues around case sensitivity in email addresses.
+
+##### TagService
+
+- Added `priority` to `Tag` to help sort tags as needed.
+  - Tags are sorted by priority (high to low, no priority is treated as 0), then name.
+  - Added `priority` to `CreateTagRequest` and `UpdateTagRequest`.
+
+##### ModemService
+
+- Device that are ready to install (`Lifecycle` is `READY_TO_INSTALL`) are now visible to customers.
+
+##### RoleService
+
+- Added `Installer` role for all organizations. Limits permissions to functionality around installing devices.
+
 ### 0.228 (2025-02-25)
 
 ##### AssignmentService

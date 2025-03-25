@@ -5195,6 +5195,13 @@ De default name of the device is its HEX number, in descending order.</p></td>
 Keep in mind the grpc request size limitation. </p></td>
                 </tr>
               
+                <tr>
+                  <td>priority</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Control tag sorting by setting a priority (sorted from high to low, to no priority). </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -5468,6 +5475,13 @@ Keep in mind the grpc request size limitation. </p></td>
                   <td><p>Metadata for this tag.
 This is typically not included in calls where the tag is repeated a lot, like the device list.
 Use the TagService.List call to get the tags with Metadata. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>priority</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Control tag sorting by setting a priority (sorted from high to low, where no priority is treated as 0). </p></td>
                 </tr>
               
             </tbody>
@@ -5806,6 +5820,13 @@ Keep in mind the grpc request size limitation. </p></td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>Remove files from the tag and delete them from the system (if no other references exist). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>priority</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Control tag sorting by setting a priority (sorted from high to low, to no priority). </p></td>
                 </tr>
               
             </tbody>
