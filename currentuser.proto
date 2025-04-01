@@ -92,6 +92,9 @@ message CurrentUser {
 
     /* Why a password reset is recommended for this user. */
     optional string password_reset_recommended_reason = 17;
+
+    /* Indicates that there is an active role override for this user. */
+    bool active_role_override = 18;
 }
 
 /* Get your personal data. */

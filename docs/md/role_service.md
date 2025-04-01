@@ -209,6 +209,7 @@ Your personal data.
 | user_hash | [ string](#string) |  |
 | password_reset_recommended | [ bool](#bool) | Whether a password reset is recommended for this user. |
 |  **optional** password_reset_recommended_reason | [optional string](#string) | Why a password reset is recommended for this user. |
+| active_role_override | [ bool](#bool) | Indicates that there is an active role override for this user. |
 
 ### hiber.user.CurrentUserRequest
 

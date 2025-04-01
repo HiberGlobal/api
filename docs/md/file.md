@@ -97,7 +97,11 @@ Other type clients should be able to sort-of-directly set the data bytes as the 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifier | [ string](#string) | This file's content can be fetched using the FileService, with this file identifier. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **content**.data | [ hiber.BytesOrHex](#hiberbytesorhex) | The binary payload that represents the file |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **content**.data | [ hiber.BytesOrHex](#hiberbytesorhex) | The binary payload that represents the file, in our standard binary wrapper. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **content**.data_formatted_hex | [ string](#string) | The binary payload that represents the file, formatted as a hexadecimal string. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **content**.data_formatted_base64 | [ string](#string) | The binary payload that represents the file, formatted as a base64 string. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **content**.data_uri | [ string](#string) | The binary payload that represents the file, formatted as a data uri string (e.g. data:image/png;base64,). |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **content**.data_raw | [ bytes](#bytes) | The binary payload that represents the file, raw bytes only. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **content**.file_service | [ bool](#bool) | This file's content can be fetched using the FileService, with this file identifier. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **content**.url | [ string](#string) | This file's content can be fetched at this url. |
 | media_type | [ string](#string) | The media-type of the file, as defined by RFC 6838 or its extensions |

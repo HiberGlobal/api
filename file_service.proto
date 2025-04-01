@@ -44,6 +44,20 @@ message GetFile {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         optional string organization = 1;
         string identifier = 2;
+
+        oneof data_formatted {
+            /* Get the binary content of the file, formatted as a hexadecimal string. */
+            bool data_formatted_hex = 3;
+
+            /* Get the binary content of the file, formatted as a base64 string. */
+            bool data_formatted_base64 = 4;
+
+            /* Get the binary content of the file, formatted as a base64 string. */
+            bool data_uri = 5;
+
+            /* Get the binary content of the file, raw bytes only. */
+            bool data_raw = 6;
+        }
     }
 
     message Response {

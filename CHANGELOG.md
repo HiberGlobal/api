@@ -1,5 +1,23 @@
 # Changelog Hiber API
 
+### 0.233 (2025-04-01)
+
+##### FileService
+
+- Added more output formats to `File`.
+  - Formats:
+    - `data` original `BytesOrHex` object which contains raw bytes and hex formatted data
+    - `data_formatted_hex` to just get the hex format (and not duplicate data, like in `data`)
+    - `data_raw` to just get the bytes (and not duplicate data, like in `data`)
+    - `data_formatted_base64` to get the content as a base64 string
+    - `data_uri` to get the content as a data uri
+  - Added flags to `GetFile.Request` to get the `File` with the chosen format.
+
+##### CurrentUserService
+
+- Added `active_role_override` to indicate that there is an active role override for this user.
+  - See `OverrideRoles` for more details about role overrides.
+
 ### 0.232 (2025-03-25)
 
 ##### DeviceNoteService

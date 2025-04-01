@@ -4061,7 +4061,35 @@ De default name of the device is its HEX number, in descending order.</p></td>
                   <td>data</td>
                   <td><a href="#hiber.BytesOrHex">hiber.BytesOrHex</a></td>
                   <td></td>
-                  <td><p>The binary payload that represents the file </p></td>
+                  <td><p>The binary payload that represents the file, in our standard binary wrapper. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data_formatted_hex</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The binary payload that represents the file, formatted as a hexadecimal string. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data_formatted_base64</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The binary payload that represents the file, formatted as a base64 string. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data_uri</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The binary payload that represents the file, formatted as a data uri string (e.g. data:image/png;base64,). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data_raw</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>The binary payload that represents the file, raw bytes only. </p></td>
                 </tr>
               
                 <tr>

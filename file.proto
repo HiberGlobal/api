@@ -36,8 +36,20 @@ message File {
     string identifier = 4;
 
     oneof content {
-        /* The binary payload that represents the file */
+        /* The binary payload that represents the file, in our standard binary wrapper. */
         BytesOrHex data = 1;
+
+        /* The binary payload that represents the file, formatted as a hexadecimal string. */
+        string data_formatted_hex = 8;
+
+        /* The binary payload that represents the file, formatted as a base64 string. */
+        string data_formatted_base64 = 9;
+
+        /* The binary payload that represents the file, formatted as a data uri string (e.g. data:image/png;base64,). */
+        string data_uri = 10;
+
+        /* The binary payload that represents the file, raw bytes only. */
+        bytes data_raw = 11;
 
         /* This file's content can be fetched using the FileService, with this file identifier. */
         bool file_service = 5;
