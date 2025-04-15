@@ -99,6 +99,11 @@ message UpdateDevice {
     /* Remove files from the device and delete them from the system (if no other references exist). */
     repeated string delete_files = 16;
 
+    /* Set the external identifier for a device or gateway that has no external identifier.
+     * Only allowed when a single device or gateway is selected that does not already have an external identifier.
+     */
+    optional string set_external_device_identifier = 17;
+
     /* When updating peripherals, you can choose to add and delete peripherals,
      * or to do a wholesome replace of all peripherals.
      */

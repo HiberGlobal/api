@@ -1,5 +1,16 @@
 # Changelog Hiber API
 
+### 0.235 (2025-04-15)
+
+##### DeviceService
+
+- Added `set_external_device_identifier` to `UpdateDevice` to set the external identifier for a device or gateway that has no external identifier.
+  - Only allowed when a single device or gateway is selected that does not already have an external identifier.
+
+##### ModemService
+
+- Added `device_type` to `CreateModem` to set the `DeviceType`.
+
 ### 0.233 (2025-04-01)
 
 ##### FileService

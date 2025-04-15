@@ -744,6 +744,9 @@ message CreateModem {
          */
         repeated string external_device_identifiers = 4;
 
+        /* Device type for the modem(s) we will create. */
+        optional string device_type = 14;
+
         /* The status for the new modems. */
         optional Modem.Lifecycle lifecycle = 5;
 

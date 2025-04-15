@@ -217,6 +217,7 @@ When updating a device, all optional fields will be handled as follows:
 |  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | Update the expected transmission rate. Expected transmission rate differs from transmission interval in that the device might be sending every hour, but we might just expect a transmission every six hours because network unreliability. This can help with reaching SLA goals, where if we want to have 1 message per day as per the SLA, the device sends every hour to make sure we meet the SLA. |
 | add_files | [repeated hiber.file.File](#hiberfilefile) | Add files to the device. These can be just an identifier to an existing File, or a full file upload. Keep in mind the grpc request size limitation. |
 | delete_files | [repeated string](#string) | Remove files from the device and delete them from the system (if no other references exist). |
+|  **optional** set_external_device_identifier | [optional string](#string) | Set the external identifier for a device or gateway that has no external identifier. Only allowed when a single device or gateway is selected that does not already have an external identifier. |
 
 ### UpdateDevice.Request
 

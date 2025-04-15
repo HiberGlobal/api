@@ -257,6 +257,7 @@ when you want to connect a device to the API using just the API calls in the Tes
 | amount | [ uint32](#uint32) | The amount of modems to create. |
 | names | [repeated string](#string) | The name(s) to give the new modem(s). Must not contain more values than the amount of modems to create. |
 | external_device_identifiers | [repeated string](#string) | The external device identifiers for the new modems. Must not contain more values than the amount of modems to create. The order of this list matches the order of the name, values in the same index are applied to the same modem. |
+|  **optional** device_type | [optional string](#string) | Device type for the modem(s) we will create. |
 |  **optional** lifecycle | [optional Modem.Lifecycle](#modemlifecycle) | The status for the new modems. |
 |  **optional** technical | [optional Modem.TechnicalData](#modemtechnicaldata) | The technical data, such as manufacturer and hardware information for the new modems. |
 | peripherals | [map CreateModem.Request.PeripheralsEntry](#createmodemrequestperipheralsentry) | The peripherals for the new modems. |

@@ -1076,6 +1076,14 @@ Keep in mind the grpc request size limitation. </p></td>
                   <td><p>Remove files from the device and delete them from the system (if no other references exist). </p></td>
                 </tr>
               
+                <tr>
+                  <td>set_external_device_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Set the external identifier for a device or gateway that has no external identifier.
+Only allowed when a single device or gateway is selected that does not already have an external identifier. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -4227,6 +4235,13 @@ Must not contain more values than the amount of modems to create. </p></td>
                   <td><p>The external device identifiers for the new modems.
 Must not contain more values than the amount of modems to create.
 The order of this list matches the order of the name, values in the same index are applied to the same modem. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>device_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Device type for the modem(s) we will create. </p></td>
                 </tr>
               
                 <tr>
