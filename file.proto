@@ -69,6 +69,9 @@ message File {
      * If the content oneof of this file is a url, this link will return a HTTP 301 code to redirect to that url.
      */
     string link = 7;
+
+    /* The time for this file, typically when it was created. */
+    Timestamp time = 12;
 }
 
 /* Selection to use when listing files in your organization. */

@@ -18,14 +18,24 @@
           "name": "example.png",
           "identifier": "file-example-identifier",
           "fileService": true,
-          "link": "https://rest.api.test.env.hiber.cloud/file/file-example-identifier"
+          "link": "https://rest.api.test.env.hiber.cloud/file/file-example-identifier",
+          "time": {
+            "timestamp": "2020-06-01T05:15:25.355Z",
+            "timeZone": "UTC",
+            "textual": "2020-06-01T05:15:25.355Z"
+          }
         },
         {
           "mediaType": "application/pdf",
           "name": "documentation.pdf",
           "identifier": "file-link-example-identifier",
           "url": "https://example.com/documentation.pdf",
-          "link": "https://rest.api.test.env.hiber.cloud/file/file-link-example-identifier"
+          "link": "https://rest.api.test.env.hiber.cloud/file/file-link-example-identifier",
+          "time": {
+            "timestamp": "2020-06-01T05:15:25.355Z",
+            "timeZone": "UTC",
+            "textual": "2020-06-01T05:15:25.355Z"
+          }
         }
       ],
       "tags": [

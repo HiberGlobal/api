@@ -1,5 +1,17 @@
 # Changelog Hiber API
 
+### 0.236 (2025-04-30)
+
+##### FileService
+
+- Added `time` to `File`, for now just the creation time, but this might become customizable in the future.
+
+### 0.235.1 (2025-04-16)
+
+##### ModemService
+
+- Fixed an issue where the limit for modem creation was incorrectly set to 0.
+
 ### 0.235 (2025-04-15)
 
 ##### DeviceService
