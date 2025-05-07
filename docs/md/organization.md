@@ -304,7 +304,6 @@ of any modems and related data.
 | created_at | [ hiber.Timestamp](#hibertimestamp) |  |
 | updated_at | [ hiber.Timestamp](#hibertimestamp) |  |
 | features | [repeated Organization.Feature](#organizationfeature) |  |
-| database_info | [ string](#string) |  |
 |  **optional** defaults | [optional Organization.Defaults](#organizationdefaults) |  |
 
 ### Organization.Address

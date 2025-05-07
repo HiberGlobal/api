@@ -107,11 +107,9 @@ message Organization {
     Timestamp updated_at = 10;
 
     repeated Feature features = 11;
-
-    string database_info = 12;
-
     optional Defaults defaults = 13;
 
+    reserved 12;
 }
 
 /* Selection object for child organizations.

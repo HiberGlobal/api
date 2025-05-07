@@ -1,5 +1,15 @@
 # Changelog Hiber API
 
+### 0.237 (2025-05-07)
+
+##### OrganizationService
+
+- Removed `database_info` from `Organization`. It was no longer in use.
+
+##### ModemService
+
+- Fixed an issue where the limit for modem creation was incorrectly set to 0.
+
 ### 0.236 (2025-04-30)
 
 ##### FileService

@@ -4430,7 +4430,6 @@ of any modems and related data.
 | created_at | [ hiber.Timestamp](#hibertimestamp) |  |
 | updated_at | [ hiber.Timestamp](#hibertimestamp) |  |
 | features | [repeated hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature) |  |
-| database_info | [ string](#string) |  |
 |  **optional** defaults | [optional hiber.organization.Organization.Defaults](#hiberorganizationorganizationdefaults) |  |
 
 ### hiber.organization.Organization.Address
