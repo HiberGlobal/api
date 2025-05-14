@@ -1,5 +1,12 @@
 # Changelog Hiber API
 
+### 0.238 (2025-05-14)
+
+##### UserService
+
+- Added `has_active_role_override` to `User` to mark users with an active role override.
+- Added `RevokeSession` to revoke the frontend session of a user. Does not affect their tokens.
+
 ### 0.237 (2025-05-07)
 
 ##### OrganizationService

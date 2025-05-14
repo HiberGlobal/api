@@ -251,6 +251,14 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.user.RevokeUserSessionRequest"><span class="badge">M</span>RevokeUserSessionRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.user.RevokeUserSessionRequest.Response"><span class="badge">M</span>RevokeUserSessionRequest.Response</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.user.SuspendUserRequest"><span class="badge">M</span>SuspendUserRequest</a>
                 </li>
               
@@ -1161,8 +1169,46 @@ Set this to true to allow it. </p></td>
 
         
       
+        <h3 id="hiber.user.RevokeUserSessionRequest">RevokeUserSessionRequest</h3>
+        <p>Revoke the frontend session for a user, requiring them to log in again when they access the frontend.</p><p>Does not disable / revoke tokens! The user can still use those to access the system.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_ids</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>The users to revoke the frontend session for. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.user.RevokeUserSessionRequest.Response">RevokeUserSessionRequest.Response</h3>
+        <p></p>
+
+        
+
+        
+      
         <h3 id="hiber.user.SuspendUserRequest">SuspendUserRequest</h3>
-        <p>Suspend a user, leaving them in the organization but blocking frontend access.</p><p>Does not disable tokens! The user maybe still use those to access the system.</p>
+        <p>Suspend a user, leaving them in the organization but blocking frontend access.</p><p>Does not disable tokens! The user can still use those to access the system.</p>
 
         
           <table class="field-table">
@@ -1557,6 +1603,13 @@ when used by a customer support operator. </p></td>
                   <td><a href="#hiber.Date">hiber.Date</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>has_active_role_override</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether the user has an active role override (See CurrentUserService.OverrideRoles). </p></td>
                 </tr>
               
             </tbody>
@@ -1965,6 +2018,13 @@ when used by a customer support operator. </p></td>
                 <td>Unsuspend</td>
                 <td><a href="#hiber.user.UnsuspendUserRequest">UnsuspendUserRequest</a></td>
                 <td><a href="#hiber.user.UnsuspendUserRequest.Response">UnsuspendUserRequest.Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>RevokeSession</td>
+                <td><a href="#hiber.user.RevokeUserSessionRequest">RevokeUserSessionRequest</a></td>
+                <td><a href="#hiber.user.RevokeUserSessionRequest.Response">RevokeUserSessionRequest.Response</a></td>
                 <td><p></p></td>
               </tr>
             

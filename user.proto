@@ -30,6 +30,7 @@ service UserService {
 
     rpc Suspend (SuspendUserRequest) returns (SuspendUserRequest.Response);
     rpc Unsuspend (UnsuspendUserRequest) returns (UnsuspendUserRequest.Response);
+    rpc RevokeSession (RevokeUserSessionRequest) returns (RevokeUserSessionRequest.Response);
 
     rpc Activity (UserActivitySummaryRequest) returns (UserActivitySummaryRequest.Response);
 }
@@ -53,6 +54,9 @@ message User {
     Filter.SupportPermissions support_permissions = 6;
 
     Date last_activity = 8;
+
+    /* Whether the user has an active role override (See CurrentUserService.OverrideRoles). */
+    bool has_active_role_override = 9;
 }
 
 message UserSelection {
@@ -143,7 +147,7 @@ message ApproveUserRequest {
 
 /* Suspend a user, leaving them in the organization but blocking frontend access.
  *
- * Does not disable tokens! The user maybe still use those to access the system.
+ * Does not disable tokens! The user can still use those to access the system.
  */
 message SuspendUserRequest {
     message Response {
@@ -162,6 +166,21 @@ message UnsuspendUserRequest {
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     optional string organization = 1;
+    repeated string user_ids = 2;
+}
+
+/* Revoke the frontend session for a user, requiring them to log in again when they access the frontend.
+ *
+ * Does not disable / revoke tokens! The user can still use those to access the system.
+ */
+message RevokeUserSessionRequest {
+    message Response {
+    }
+
+    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+    optional string organization = 1;
+
+    /* The users to revoke the frontend session for. */
     repeated string user_ids = 2;
 }
 

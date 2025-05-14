@@ -28,6 +28,8 @@
   - [RemoveUserRequest.Response](#removeuserrequestresponse)
   - [ResetUserPasswordRequest](#resetuserpasswordrequest)
   - [ResetUserPasswordRequest.Response](#resetuserpasswordrequestresponse)
+  - [RevokeUserSessionRequest](#revokeusersessionrequest)
+  - [RevokeUserSessionRequest.Response](#revokeusersessionrequestresponse)
   - [SuspendUserRequest](#suspenduserrequest)
   - [SuspendUserRequest.Response](#suspenduserrequestresponse)
   - [TestUserValidationRequest](#testuservalidationrequest)
@@ -195,6 +197,12 @@
 ### Unsuspend
 > **rpc** Unsuspend([UnsuspendUserRequest](#unsuspenduserrequest))
     [UnsuspendUserRequest.Response](#unsuspenduserrequestresponse)
+
+
+
+### RevokeSession
+> **rpc** RevokeSession([RevokeUserSessionRequest](#revokeusersessionrequest))
+    [RevokeUserSessionRequest.Response](#revokeusersessionrequestresponse)
 
 
 
@@ -373,11 +381,27 @@ List all invited users (email addresses).
 
 
 
+### RevokeUserSessionRequest
+
+Revoke the frontend session for a user, requiring them to log in again when they access the frontend.
+
+Does not disable / revoke tokens! The user can still use those to access the system.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| user_ids | [repeated string](#string) | The users to revoke the frontend session for. |
+
+### RevokeUserSessionRequest.Response
+
+
+
+
 ### SuspendUserRequest
 
 Suspend a user, leaving them in the organization but blocking frontend access.
 
-Does not disable tokens! The user maybe still use those to access the system.
+Does not disable tokens! The user can still use those to access the system.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -485,6 +509,7 @@ Completely replace the roles the users have.
 | permissions | [ hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions for the current organization. |
 | support_permissions | [ hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions) | Permissions for customer support. Used for features typically reserved for customer support, or that behave differently when used by a customer support operator. |
 | last_activity | [ hiber.Date](#hiberdate) |  |
+| has_active_role_override | [ bool](#bool) | Whether the user has an active role override (See CurrentUserService.OverrideRoles). |
 
 ### UserActivitySummaryRequest
 
