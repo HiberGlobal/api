@@ -463,6 +463,18 @@
                 </li>
               
               
+                <li>
+                  <a href="#base.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#base.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#base.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
               
             </ul>
           </li>
@@ -3416,6 +3428,40 @@ is ready to be downloaded.</p></td>
       
 
       
+        <h3 id="base.proto-extensions">File-level Extensions</h3>
+        <table class="extension-table">
+          <thead>
+            <tr><td>Extension</td><td>Type</td><td>Base</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>permission_usage</td>
+                <td><a href="#hiber.OrganizationPermission">OrganizationPermission</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>1001</td>
+                <td><p>The OrganizationPermissions used by this call. See the individual permissions for more details.</p></td>
+              </tr>
+            
+              <tr>
+                <td>support_permission_usage</td>
+                <td><a href="#hiber.SupportPermission">SupportPermission</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>1003</td>
+                <td><p>The SupportPermission used by this call. See the individual permissions for more details.</p></td>
+              </tr>
+            
+              <tr>
+                <td>user_permission_usage</td>
+                <td><a href="#hiber.UserPermission">UserPermission</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>1002</td>
+                <td><p>The UserPermissions used by this call. See the individual permissions for more details.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
 
       
     
@@ -3578,7 +3624,7 @@ You cannot delete your own organization. To delete your organization, contact su
               <tr>
                 <td>USERS_MANAGE</td>
                 <td>31</td>
-                <td><p>Approve or create new users, remove users from the organization. Includes users permission.</p></td>
+                <td><p>Approve or create new users, remove users from the organization. Includes USERS permission.</p></td>
               </tr>
             
               <tr>
@@ -3639,6 +3685,24 @@ You cannot delete your own organization. To delete your organization, contact su
                 <td>TAGS_MANAGE</td>
                 <td>52</td>
                 <td><p>Create, edit and delete tags. Viewing tags is always allowed.</p></td>
+              </tr>
+            
+              <tr>
+                <td>FILES</td>
+                <td>57</td>
+                <td><p>Download and view file content.</p></td>
+              </tr>
+            
+              <tr>
+                <td>FILES_UPLOAD</td>
+                <td>58</td>
+                <td><p>Upload new files. Includes FILES permission.</p></td>
+              </tr>
+            
+              <tr>
+                <td>FILES_MANAGE</td>
+                <td>59</td>
+                <td><p>Manage files (e.g. delete them). Includes FILES and FILES_UPLOAD permissions.</p></td>
               </tr>
             
           </tbody>
@@ -3716,6 +3780,12 @@ You cannot delete your own organization. To delete your organization, contact su
                 <td>MANAGE_ORGANIZATION_CONTRACT</td>
                 <td>10</td>
                 <td><p>Manage organization contract info.</p></td>
+              </tr>
+            
+              <tr>
+                <td>MANAGE_USERS_ADVANCED</td>
+                <td>11</td>
+                <td><p>Advanced user management.</p></td>
               </tr>
             
           </tbody>

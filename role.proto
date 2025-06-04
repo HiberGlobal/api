@@ -26,9 +26,15 @@ message Role {
      * This is not typically available in any organizations other than the Hiber organization.
      */
     repeated SupportPermission support_permissions = 4;
+
+    /* This role does not include permissions you do not have; you are allowed to grant and impersonate it. */
+    bool grantable = 6;
 }
 
 message RoleSelection {
     optional string search = 1;
     optional Filter.Roles roles = 2;
+
+    /* Only return roles that you are allowed to grant (that do not include permissions you do not have). */
+    optional bool only_grantable = 3;
 }

@@ -26,48 +26,80 @@ option go_package = ".;hiber";
 
 service ModemMessageBodyParserService {
     /* List available message body parsers (including inherited from your parent organizations). */
-    rpc List (ListModemMessageBodyParsersRequest) returns (ListModemMessageBodyParsersRequest.Response);
+    rpc List (ListModemMessageBodyParsersRequest) returns (ListModemMessageBodyParsersRequest.Response) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
 
     /* Upload a .ksy file as a message body parser. */
-    rpc Upload (UploadModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
+    rpc Upload (UploadModemMessageBodyParserRequest) returns (ModemMessageBodyParser) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
 
     /* Re-upload a .ksy file to update a message body parser, if you are the owner. */
-    rpc UpdateUploaded (UpdateUploadedModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
+    rpc UpdateUploaded (UpdateUploadedModemMessageBodyParserRequest) returns (ModemMessageBodyParser) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
 
     /* Create a simple message body parser using API elements. */
-    rpc CreateSimple (CreateSimpleModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
+    rpc CreateSimple (CreateSimpleModemMessageBodyParserRequest) returns (ModemMessageBodyParser) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
 
     /* Update a simple message body parser created using API elements, if you are the owner. */
-    rpc UpdateSimple (UpdateSimpleModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
+    rpc UpdateSimple (UpdateSimpleModemMessageBodyParserRequest) returns (ModemMessageBodyParser) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
 
     /* Rename a message body parser, if you are the owner. */
-    rpc Rename (RenameModemMessageBodyParserRequest) returns (ModemMessageBodyParser);
+    rpc Rename (RenameModemMessageBodyParserRequest) returns (ModemMessageBodyParser) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
 
     /* Make a message body parser (un)available to (a selection of) child organizations. */
-    rpc UpdateChildOrganizationAvailability (UpdateChildOrganizationAvailabilityRequest) returns (ModemMessageBodyParser);
+    rpc UpdateChildOrganizationAvailability (UpdateChildOrganizationAvailabilityRequest) returns (ModemMessageBodyParser) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
 
     /* Make a message body parser available to a child organization. */
-    rpc MakeAvailableToChildOrganization (MakeModemMessageBodyParserAvailableToChildOrganizationRequest) returns (ModemMessageBodyParser);
+    rpc MakeAvailableToChildOrganization (MakeModemMessageBodyParserAvailableToChildOrganizationRequest) returns (ModemMessageBodyParser) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
 
     /* Make a message body parser unavailable to a child organization. */
-    rpc MakeUnavailableToChildOrganization (MakeModemMessageBodyParserUnavailableToChildOrganizationRequest) returns (ModemMessageBodyParser);
+    rpc MakeUnavailableToChildOrganization (MakeModemMessageBodyParserUnavailableToChildOrganizationRequest) returns (ModemMessageBodyParser) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
 
     /* Delete a message body parser, if you are the owner. */
-    rpc Delete (DeleteModemMessageBodyParserRequest) returns (DeleteModemMessageBodyParserRequest.Response);
+    rpc Delete (DeleteModemMessageBodyParserRequest) returns (DeleteModemMessageBodyParserRequest.Response) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
 
     /* Test a message body parser with an existing message or provided binary message body.
      * This can also be used without an existing parser by uploading a .ksy file or specifying a simple parser.
      */
-    rpc Test (TestModemMessageBodyParserRequest) returns (TestModemMessageBodyParserRequest.Response);
+    rpc Test (TestModemMessageBodyParserRequest) returns (TestModemMessageBodyParserRequest.Response) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
 
     /* Retry parsing messages with a message body parser (for example after updating the parser). */
-    rpc Retry (RetryModemMessageBodyParsing.Request) returns (RetryModemMessageBodyParsing.Response);
+    rpc Retry (RetryModemMessageBodyParsing.Request) returns (RetryModemMessageBodyParsing.Response) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
 
     /* Assign a parser to a modem. */
-    rpc Assign (AssignModemMessageBodyParsers.Request) returns (AssignModemMessageBodyParsers.Response);
+    rpc Assign (AssignModemMessageBodyParsers.Request) returns (AssignModemMessageBodyParsers.Response) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+        option (permission_usage) = ASSIGNMENTS;
+        option (permission_usage) = MODEMS;
+    }
 
     /* Unassign a parser from a modem. */
-    rpc Unassign (UnassignModemMessageBodyParsers.Request) returns (UnassignModemMessageBodyParsers.Response);
+    rpc Unassign (UnassignModemMessageBodyParsers.Request) returns (UnassignModemMessageBodyParsers.Response) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+        option (permission_usage) = ASSIGNMENTS;
+        option (permission_usage) = MODEMS;
+    }
 }
 
 /* Modem message body parser. This defines a parsing strategy for the body of a message.

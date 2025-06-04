@@ -21,28 +21,50 @@ option go_package = ".;hiber";
  */
 service AssetService {
     /* List the assets in your organization. */
-    rpc List (ListAsset.Request) returns (ListAsset.Response);
+    rpc List (ListAsset.Request) returns (ListAsset.Response) {
+        option (permission_usage) = ASSETS;
+    }
 
     /* Create assets in your organization. */
-    rpc Create (CreateAsset.Request) returns (CreateAsset.Response);
+    rpc Create (CreateAsset.Request) returns (CreateAsset.Response) {
+        option (permission_usage) = ASSETS_UPDATE;
+    }
 
     /* Update assets in your organization. */
-    rpc Update(UpdateAsset.Request) returns (UpdateAsset.Response);
+    rpc Update(UpdateAsset.Request) returns (UpdateAsset.Response) {
+        option (permission_usage) = ASSETS_UPDATE;
+    }
 
     /* Delete assets in your organization. */
-    rpc Delete(DeleteAsset.Request) returns (DeleteAsset.Response);
+    rpc Delete(DeleteAsset.Request) returns (DeleteAsset.Response) {
+        option (permission_usage) = ASSETS_UPDATE;
+    }
 
     /* Assign (a) tag(s) to an asset. */
-    rpc AssignTag (AssignAssetTags.Request) returns (AssignAssetTags.Response);
+    rpc AssignTag (AssignAssetTags.Request) returns (AssignAssetTags.Response) {
+        option (permission_usage) = ASSETS;
+        option (permission_usage) = ASSIGNMENTS;
+    }
 
     /* Unassign (a) tag(s) from an asset. */
-    rpc UnassignTag (UnassignAssetTags.Request) returns (UnassignAssetTags.Response);
+    rpc UnassignTag (UnassignAssetTags.Request) returns (UnassignAssetTags.Response) {
+        option (permission_usage) = ASSETS;
+        option (permission_usage) = ASSIGNMENTS;
+    }
 
     /* Assign (a) device(s) to an asset. */
-    rpc AssignDevice (AssignAssetDevices.Request) returns (AssignAssetDevices.Response);
+    rpc AssignDevice (AssignAssetDevices.Request) returns (AssignAssetDevices.Response) {
+        option (permission_usage) = ASSETS;
+        option (permission_usage) = ASSIGNMENTS;
+        option (permission_usage) = MODEMS;
+    }
 
     /* Unassign (a) device(s) from an asset. */
-    rpc UnassignDevice (UnassignAssetDevices.Request) returns (UnassignAssetDevices.Response);
+    rpc UnassignDevice (UnassignAssetDevices.Request) returns (UnassignAssetDevices.Response) {
+        option (permission_usage) = ASSETS;
+        option (permission_usage) = ASSIGNMENTS;
+        option (permission_usage) = MODEMS;
+    }
 }
 
 /* List the assets in your (selected) organization.

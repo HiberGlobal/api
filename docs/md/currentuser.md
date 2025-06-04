@@ -737,6 +737,7 @@ so not all messages listed here are referenced.)
 | description | [ string](#string) | Description for the role. |
 | permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | The organization permissions the role grants. |
 | support_permissions | [repeated hiber.SupportPermission](#hibersupportpermission) | The support permissions the role grants. This is not typically available in any organizations other than the Hiber organization. |
+| grantable | [ bool](#bool) | This role does not include permissions you do not have; you are allowed to grant and impersonate it. |
 
 ### hiber.role.RoleSelection
 
@@ -746,6 +747,7 @@ so not all messages listed here are referenced.)
 | ----- | ---- | ----------- |
 |  **optional** search | [optional string](#string) |  |
 |  **optional** roles | [optional hiber.Filter.Roles](#hiberfilterroles) |  |
+|  **optional** only_grantable | [optional bool](#bool) | Only return roles that you are allowed to grant (that do not include permissions you do not have). |
 
 
 ### Enums

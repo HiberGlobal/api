@@ -25,7 +25,7 @@
     , "TRANSFERS": "See the transfers to/from other organizations."
     , "TRANSFERS_SEND": "Transfer devices to another organization."
     , "USERS": "List all users, see their names and email addresses."
-    , "USERS_MANAGE": "Approve or create new users, remove users from the organization. Includes users permission."
+    , "USERS_MANAGE": "Approve or create new users, remove users from the organization. Includes USERS permission."
     , "PUBLISHERS": "Manage publishers: webhooks, MQTT integration and custom email publishers."
     , "TOKENS": "Manage tokens."
     , "CERTIFICATES": "Read and use uploaded certificates (used by publishers)."
@@ -36,6 +36,9 @@
     , "LOCATIONS_MANAGE": "Manage saved locations using the OrganizationLocationService."
     , "EXPORT": "Create, access and download exports."
     , "TAGS_MANAGE": "Create, edit and delete tags. Viewing tags is always allowed."
+    , "FILES": "Download and view file content."
+    , "FILES_UPLOAD": "Upload new files. Includes FILES permission."
+    , "FILES_MANAGE": "Manage files (e.g. delete them). Includes FILES and FILES_UPLOAD permissions."
     }
 },{
   "name": "SupportPermission",
@@ -52,6 +55,7 @@
     , "MANAGE_DEVICE_NOTES": "Assign device notes."
     , "MANAGE_DEVICE_TIME_ZONE": "Assign device time zones."
     , "MANAGE_ORGANIZATION_CONTRACT": "Manage organization contract info."
+    , "MANAGE_USERS_ADVANCED": "Advanced user management."
     }
 },{
   "name": "UserPermission",

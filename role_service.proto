@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package hiber.role;
 
+import "base.proto";
 import "currentuser.proto";
 import "role.proto";
 
@@ -11,9 +12,17 @@ option java_outer_classname = "RoleApi";
 option go_package = ".;hiber";
 
 service RoleService {
-    rpc List (ListRoles.Request) returns (ListRoles.Response);
-    rpc Override (user.OverrideRoles.Request) returns (user.OverrideRoles.Response);
-    rpc Restore (user.OverrideRoles.Restore.Request) returns (user.OverrideRoles.Restore.Response);
+    rpc List (ListRoles.Request) returns (ListRoles.Response) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+    }
+    rpc Override (user.OverrideRoles.Request) returns (user.OverrideRoles.Response) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+        option (user_permission_usage) = UPDATE;
+    }
+    rpc Restore (user.OverrideRoles.Restore.Request) returns (user.OverrideRoles.Restore.Response) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+        option (user_permission_usage) = UPDATE;
+    }
 }
 
 message ListRoles {

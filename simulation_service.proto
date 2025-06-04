@@ -16,9 +16,21 @@ option go_package = ".;hiber";
  * This can help with API integration and with demonstrations.
  */
 service ValueSimulationService {
-    rpc ListValueSimulations (List.Request) returns (List.Response);
-    rpc UpdateValueSimulations (Update.Request) returns (Update.Response);
-    rpc DisableValueSimulations (Delete.Request) returns (Delete.Response);
+    rpc ListValueSimulations (List.Request) returns (List.Response) {
+        option (permission_usage) = SIMULATION_MANAGE;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+    rpc UpdateValueSimulations (Update.Request) returns (Update.Response) {
+        option (permission_usage) = SIMULATION_MANAGE;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+    rpc DisableValueSimulations (Delete.Request) returns (Delete.Response) {
+        option (permission_usage) = SIMULATION_MANAGE;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
 }
 
 message List {

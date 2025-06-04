@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package hiber;
 
+import "google/protobuf/descriptor.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 import "permission.proto";
@@ -9,6 +10,27 @@ import "permission.proto";
 option java_multiple_files = true;
 option java_package = "global.hiber.api.grpc";
 option go_package = ".;hiber";
+
+/* Document permission usage to methods.
+ * Documents the permissions that are used by methods, like this:
+ *
+ * ```
+ * option (permission_usage) = MODEMS;
+ * ```
+ *
+ * This results in an overview of which permissions are used by a method, with individual comments on which permissions
+ * are required and which are optional.
+ */
+extend google.protobuf.MethodOptions {
+    /* The OrganizationPermissions used by this call. See the individual permissions for more details. */
+    repeated OrganizationPermission permission_usage = 1001;
+
+    /* The UserPermissions used by this call. See the individual permissions for more details. */
+    repeated UserPermission user_permission_usage = 1002;
+
+    /* The SupportPermission used by this call. See the individual permissions for more details. */
+    repeated SupportPermission support_permission_usage = 1003;
+}
 
 /* Update object for an int that can be set to 0.
  *

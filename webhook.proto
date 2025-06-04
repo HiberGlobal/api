@@ -11,17 +11,155 @@ option java_outer_classname = "WebhookApi";
 option go_package = ".;hiber";
 
 service WebhookService {
-    rpc List (ListWebhooksRequest) returns (ListWebhooksRequest.Response);
-    rpc History (WebhookHistoryRequest) returns (WebhookHistoryRequest.Response);
-    rpc Create (CreateWebhookRequest) returns (Webhook);
-    rpc Enable (EnableWebhookRequest) returns (Webhook);
-    rpc Disable (DisableWebhookRequest) returns (Webhook);
-    rpc UpdateFilter (UpdateWebhookFilterRequest) returns (Webhook);
-    rpc Update (UpdateWebhookRequest) returns (Webhook);
-    rpc UpdateWebhooks (UpdateWebhooksRequest) returns (UpdateWebhooksRequest.Response);
-    rpc UpdateTags (UpdateWebhookTagsRequest) returns (UpdateWebhookTagsRequest.Response);
-    rpc Get (GetWebhookRequest) returns (Webhook);
-    rpc Delete (DeleteWebhookRequest) returns (DeleteWebhookRequest.Response);
+    rpc List (ListWebhooksRequest) returns (ListWebhooksRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc History (WebhookHistoryRequest) returns (WebhookHistoryRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc Create (CreateWebhookRequest) returns (Webhook) {
+        option (permission_usage) = PUBLISHERS;
+
+        /* For organization created events. */
+        option (permission_usage) = ORGANIZATION_CREATE;
+        /* For organization updated events. */
+        option (permission_usage) = ORGANIZATION_UPDATE;
+        /* For organization deleted events. */
+        option (permission_usage) = ORGANIZATION_DELETE;
+        /* For asset events. */
+        option (permission_usage) = ASSETS;
+        /* For modem/device-related events. */
+        option (permission_usage) = MODEMS;
+        /* For message events. */
+        option (permission_usage) = MODEM_MESSAGES;
+        /* For parser-related events. */
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+        /* For alarm-related events. */
+        option (permission_usage) = MODEMS_ALARMS;
+        /* For transfer events. */
+        option (permission_usage) = TRANSFERS;
+        /* For user-related events. */
+        option (permission_usage) = USERS;
+        /* For user management events. */
+        option (permission_usage) = USERS_MANAGE;
+        /* For token-related events. */
+        option (permission_usage) = TOKENS;
+        /* For export-related events. */
+        option (permission_usage) = EXPORT;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+    rpc Enable (EnableWebhookRequest) returns (Webhook) {
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc Disable (DisableWebhookRequest) returns (Webhook) {
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc UpdateFilter (UpdateWebhookFilterRequest) returns (Webhook) {
+        option (permission_usage) = PUBLISHERS;
+
+        /* For organization created events. */
+        option (permission_usage) = ORGANIZATION_CREATE;
+        /* For organization updated events. */
+        option (permission_usage) = ORGANIZATION_UPDATE;
+        /* For organization deleted events. */
+        option (permission_usage) = ORGANIZATION_DELETE;
+        /* For asset events. */
+        option (permission_usage) = ASSETS;
+        /* For modem/device-related events. */
+        option (permission_usage) = MODEMS;
+        /* For message events. */
+        option (permission_usage) = MODEM_MESSAGES;
+        /* For parser-related events. */
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+        /* For alarm-related events. */
+        option (permission_usage) = MODEMS_ALARMS;
+        /* For transfer events. */
+        option (permission_usage) = TRANSFERS;
+        /* For user-related events. */
+        option (permission_usage) = USERS;
+        /* For user management events. */
+        option (permission_usage) = USERS_MANAGE;
+        /* For token-related events. */
+        option (permission_usage) = TOKENS;
+        /* For export-related events. */
+        option (permission_usage) = EXPORT;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+    rpc Update (UpdateWebhookRequest) returns (Webhook) {
+        option (permission_usage) = PUBLISHERS;
+
+        /* For organization created events. */
+        option (permission_usage) = ORGANIZATION_CREATE;
+        /* For organization updated events. */
+        option (permission_usage) = ORGANIZATION_UPDATE;
+        /* For organization deleted events. */
+        option (permission_usage) = ORGANIZATION_DELETE;
+        /* For asset events. */
+        option (permission_usage) = ASSETS;
+        /* For modem/device-related events. */
+        option (permission_usage) = MODEMS;
+        /* For message events. */
+        option (permission_usage) = MODEM_MESSAGES;
+        /* For parser-related events. */
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+        /* For alarm-related events. */
+        option (permission_usage) = MODEMS_ALARMS;
+        /* For transfer events. */
+        option (permission_usage) = TRANSFERS;
+        /* For user-related events. */
+        option (permission_usage) = USERS;
+        /* For user management events. */
+        option (permission_usage) = USERS_MANAGE;
+        /* For token-related events. */
+        option (permission_usage) = TOKENS;
+        /* For export-related events. */
+        option (permission_usage) = EXPORT;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+    rpc UpdateWebhooks (UpdateWebhooksRequest) returns (UpdateWebhooksRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+
+        /* For organization created events. */
+        option (permission_usage) = ORGANIZATION_CREATE;
+        /* For organization updated events. */
+        option (permission_usage) = ORGANIZATION_UPDATE;
+        /* For organization deleted events. */
+        option (permission_usage) = ORGANIZATION_DELETE;
+        /* For asset events. */
+        option (permission_usage) = ASSETS;
+        /* For modem/device-related events. */
+        option (permission_usage) = MODEMS;
+        /* For message events. */
+        option (permission_usage) = MODEM_MESSAGES;
+        /* For parser-related events. */
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+        /* For alarm-related events. */
+        option (permission_usage) = MODEMS_ALARMS;
+        /* For transfer events. */
+        option (permission_usage) = TRANSFERS;
+        /* For user-related events. */
+        option (permission_usage) = USERS;
+        /* For user management events. */
+        option (permission_usage) = USERS_MANAGE;
+        /* For token-related events. */
+        option (permission_usage) = TOKENS;
+        /* For export-related events. */
+        option (permission_usage) = EXPORT;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+    rpc UpdateTags (UpdateWebhookTagsRequest) returns (UpdateWebhookTagsRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc Get (GetWebhookRequest) returns (Webhook) {
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc Delete (DeleteWebhookRequest) returns (DeleteWebhookRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+    }
 }
 
 /* Webhook publisher that sends events to a webhook.

@@ -10,10 +10,18 @@ option java_outer_classname = "CertificateApi";
 option go_package = ".;hiber";
 
 service CertificateService {
-    rpc List (ListCertificatesRequest) returns (ListCertificatesRequest.Response);
-    rpc Rename (RenameCertificateRequest) returns (RenameCertificateRequest.Response);
-    rpc Upload (UploadCertificateRequest) returns (UploadCertificateRequest.Response);
-    rpc Delete (DeleteCertificateRequest) returns (DeleteCertificateRequest.Response);
+    rpc List (ListCertificatesRequest) returns (ListCertificatesRequest.Response) {
+        option (permission_usage) = CERTIFICATES;
+    }
+    rpc Rename (RenameCertificateRequest) returns (RenameCertificateRequest.Response) {
+        option (permission_usage) = CERTIFICATES_MANAGE;
+    }
+    rpc Upload (UploadCertificateRequest) returns (UploadCertificateRequest.Response) {
+        option (permission_usage) = CERTIFICATES_MANAGE;
+    }
+    rpc Delete (DeleteCertificateRequest) returns (DeleteCertificateRequest.Response) {
+        option (permission_usage) = CERTIFICATES_MANAGE;
+    }
 }
 
 message Certificate {

@@ -19,6 +19,7 @@
   - [Assignment.AdditionalConfiguration.AssetDeviceAssignment](#assignmentadditionalconfigurationassetdeviceassignment)
   - [Assignment.AdditionalConfiguration.FieldsByJsonPath](#assignmentadditionalconfigurationfieldsbyjsonpath)
   - [Assignment.AlarmAssignment](#assignmentalarmassignment)
+  - [Assignment.AssetAssignment](#assignmentassetassignment)
   - [Assignment.ModemMessageBodyParserAssignment](#assignmentmodemmessagebodyparserassignment)
   - [AssignmentSelection](#assignmentselection)
   - [AssignmentSelection.AssignmentTypes](#assignmentselectionassignmenttypes)
@@ -404,6 +405,15 @@ Fields are produced by the device's assigned parsers. See field.proto for more i
 | description | [ string](#string) |  |
 | parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <strong>Deprecated.</strong>  |
 
+### Assignment.AssetAssignment
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifier | [ string](#string) |  |
+| name | [ string](#string) |  |
+
 ### Assignment.ModemMessageBodyParserAssignment
 
 
@@ -512,6 +522,7 @@ Things that an alarm is assigned to.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | asset_identifier | [ string](#string) |  |
+| asset | [ Assignment.AssetAssignment](#assignmentassetassignment) |  |
 | parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <strong>Deprecated.</strong>  |
 
 ### ListAlarmAssignments.Response.AlarmAssignment.ToModem
@@ -642,7 +653,8 @@ Things that are assigned to a modem.
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | The tags for this modem. |
 | message_body_parser_details | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) | The details of the parsers assigned to this modem. |
 | alarm_details | [repeated hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | The alarms that are assigned to this modem, if you have permission to view them. |
-| asset_identifiers | [repeated string](#string) | The assets assigned to this device. |
+| asset_identifiers | [repeated string](#string) | The identifiers of the assets assigned to this device. |
+| assets | [repeated Assignment.AssetAssignment](#assignmentassetassignment) | The assets assigned to this device. |
 
 ### ListModemMessageBodyParserAssignments
 
@@ -726,6 +738,7 @@ Things that an alarm is assigned to.
 | message_body_parser_details | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) | The details of the parsers assigned to this tag. |
 | alarm_details | [repeated hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | The alarms that are assigned to this tag, if you have permission to view them. |
 | asset_identifiers | [repeated string](#string) | The assets assigned to this tag. |
+| assets | [repeated Assignment.AssetAssignment](#assignmentassetassignment) | The assets assigned to this device. |
 
 ### Unassign
 

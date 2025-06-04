@@ -1,5 +1,27 @@
 # Changelog Hiber API
 
+### 0.240 (2025-06-04)
+
+- Document permission usage on all methods:
+```
+option (permission_usage) = MODEMS;
+```
+
+##### DeviceService
+
+- Extternal identifiers for devices are now unique across organizations (excluding `decommissioned` devices).
+
+##### FileService
+
+- Added `OrganizationPermission.FILES` permission to read file content.
+- Added `OrganizationPermission.FILES_UPLOAD` permission to upload files.
+- Added `OrganizationPermission.FILES_MANAGE` permission to manage files.
+
+##### RoleService
+
+- Added `Role.grantable` to indicate this is a role that can be granted by the current user (that do not include permissions you do not have).
+  - Added `RoleSelection.only_grantable` to only list roles that are `grantable`.
+
 ### 0.238 (2025-05-14)
 
 ##### UserService

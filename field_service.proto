@@ -15,17 +15,39 @@ option java_outer_classname = "FieldApi";
 option go_package = ".;hiber";
 
 service FieldService {
-    rpc List (ListFields.Request) returns (ListFields.Response);
-    rpc ForAsset (ListFieldsForAsset.Request) returns (ListFieldsForAsset.Response);
-    rpc ForModem (ListFieldsForModem.Request) returns (ListFieldsForModem.Response);
+    rpc List (ListFields.Request) returns (ListFields.Response) {
+        option (permission_usage) = MODEMS;
+        option (permission_usage) = MODEM_MESSAGES;
+    }
+    rpc ForAsset (ListFieldsForAsset.Request) returns (ListFieldsForAsset.Response) {
+        option (permission_usage) = ASSETS_VALUES;
+    }
+    rpc ForModem (ListFieldsForModem.Request) returns (ListFieldsForModem.Response) {
+        option (permission_usage) = MODEMS;
+        option (permission_usage) = MODEM_MESSAGES;
 
-    rpc Add (AddFieldsRequest) returns (modem.message.bodyparser.ModemMessageBodyParser);
-    rpc ReplaceAll (ReplaceAllFieldsRequest) returns (modem.message.bodyparser.ModemMessageBodyParser);
-    rpc Delete (DeleteFieldsRequest) returns (modem.message.bodyparser.ModemMessageBodyParser);
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
 
-    rpc Update (UpdateFieldRequest) returns (Field);
-    rpc UpdateNumericDetails (UpdateFieldNumericDetails.Request) returns (Field);
-    rpc UpdateEnumValues (UpdateFieldEnumValues.Request) returns (Field);
+    rpc Add (AddFieldsRequest) returns (modem.message.bodyparser.ModemMessageBodyParser) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
+    rpc ReplaceAll (ReplaceAllFieldsRequest) returns (modem.message.bodyparser.ModemMessageBodyParser) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
+    rpc Delete (DeleteFieldsRequest) returns (modem.message.bodyparser.ModemMessageBodyParser) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
+
+    rpc Update (UpdateFieldRequest) returns (Field) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
+    rpc UpdateNumericDetails (UpdateFieldNumericDetails.Request) returns (Field) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
+    rpc UpdateEnumValues (UpdateFieldEnumValues.Request) returns (Field) {
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
 }
 
 message FieldSelection {

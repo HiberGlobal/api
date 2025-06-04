@@ -26,28 +26,53 @@ option go_package = ".;hiber";
  */
 service ModemService {
     /* Get a single modem. */
-    rpc Get (GetModemRequest) returns (Modem);
+    rpc Get (GetModemRequest) returns (Modem) {
+        option (permission_usage) = MODEMS;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
 
     /* Create new modem(s). This is only available if your organization can create modems. */
-    rpc Create (CreateModem.Request) returns (CreateModem.Response);
+    rpc Create (CreateModem.Request) returns (CreateModem.Response) {
+        option (permission_usage) = MODEMS_CREATE;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+        option (support_permission_usage) = MANAGE_DEVICE_SLA;
+        option (support_permission_usage) = MANAGE_DEVICE_TIME_ZONE;
+        option (support_permission_usage) = MANAGE_DEVICE_TRANSMISSION_INTERVAL;
+    }
 
     /* List the modems in your organization, and, optionally, its child organizations. */
-    rpc List (ListModemsRequest) returns (ListModemsRequest.Response);
+    rpc List (ListModemsRequest) returns (ListModemsRequest.Response) {
+        option (permission_usage) = MODEMS;
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
 
     /* List the modems in your organization, and, optionally, its child organizations, grouped by dependency.
      * For example, a modem that sends it messages through a gateway (like Hilo) would be grouped under that gateway.
      */
-    rpc Grouped (ListModemsGrouped.Request) returns (ListModemsGrouped.Response);
+    rpc Grouped (ListModemsGrouped.Request) returns (ListModemsGrouped.Response) {
+        option (permission_usage) = MODEMS;
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
 
     /* List messages for the selected modems. */
     rpc Messages (ListModemMessagesRequest) returns (ListModemMessagesRequest.Response){
         option deprecated = true;
+        option (permission_usage) = MODEM_MESSAGES;
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     };
 
     /* Add, remove and create new tags for the selected modems. */
-    rpc UpdateTags (UpdateModemTagsRequest) returns (UpdateModemTagsRequest.Response);
+    rpc UpdateTags (UpdateModemTagsRequest) returns (UpdateModemTagsRequest.Response) {
+        option (permission_usage) = MODEMS_UPDATE;
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
 
-    rpc TagCount (TagCount.Request) returns (TagCount.Response);
+    rpc TagCount (TagCount.Request) returns (TagCount.Response) {
+        option (permission_usage) = MODEMS;
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
 }
 
 /* Modem data, including location and last message (if available).

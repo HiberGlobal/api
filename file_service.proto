@@ -11,10 +11,18 @@ option java_outer_classname = "FileApi";
 option go_package = ".;hiber";
 
 service FileService {
-    rpc List (ListFiles.Request) returns (ListFiles.Response);
-    rpc Get (GetFile.Request) returns (GetFile.Response);
-    rpc Upload (UploadFile.Request) returns (UploadFile.Response);
-    rpc Delete (DeleteFile.Request) returns (DeleteFile.Response);
+    rpc List (ListFiles.Request) returns (ListFiles.Response) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+    }
+    rpc Get (GetFile.Request) returns (GetFile.Response) {
+        option (permission_usage) = FILES;
+    }
+    rpc Upload (UploadFile.Request) returns (UploadFile.Response) {
+        option (permission_usage) = FILES_UPLOAD;
+    }
+    rpc Delete (DeleteFile.Request) returns (DeleteFile.Response) {
+        option (permission_usage) = FILES_MANAGE;
+    }
 }
 
 message ListFiles {

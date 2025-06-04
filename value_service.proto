@@ -18,8 +18,22 @@ option java_outer_classname = "ValueServiceApi";
 option go_package = ".;hiber";
 
 service ValueService {
-    rpc List (ListValues.Request) returns (ListValues.Response);
-    rpc Downsampled (DownsampledValues.Request) returns (DownsampledValues.Response);
+    rpc List (ListValues.Request) returns (ListValues.Response) {
+        /* When value owner is an asset. */
+        option (permission_usage) = ASSETS_VALUES;
+        /* When value owner is a device. */
+        option (permission_usage) = MODEM_VALUES;
+        /* When value owner is a device. */
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+    rpc Downsampled (DownsampledValues.Request) returns (DownsampledValues.Response) {
+        /* When value owner is an asset. */
+        option (permission_usage) = ASSETS_VALUES;
+        /* When value owner is a device. */
+        option (permission_usage) = MODEM_VALUES;
+        /* When value owner is a device. */
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
 }
 
 /* Select the values to return. */

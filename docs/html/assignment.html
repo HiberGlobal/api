@@ -215,6 +215,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.assign.Assignment.AssetAssignment"><span class="badge">M</span>Assignment.AssetAssignment</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.assign.Assignment.ModemMessageBodyParserAssignment"><span class="badge">M</span>Assignment.ModemMessageBodyParserAssignment</a>
                 </li>
               
@@ -566,6 +570,18 @@
                   <a href="#hiber.UnitOfMeasurement"><span class="badge">E</span>UnitOfMeasurement</a>
                 </li>
               
+              
+                <li>
+                  <a href="#base.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#base.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+              
+                <li>
+                  <a href="#base.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
               
               
             </ul>
@@ -1710,6 +1726,37 @@ If nothing is specified, all fields are shared with the asset by default. </p></
 
         
       
+        <h3 id="hiber.assign.Assignment.AssetAssignment">Assignment.AssetAssignment</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="hiber.assign.Assignment.ModemMessageBodyParserAssignment">Assignment.ModemMessageBodyParserAssignment</h3>
         <p></p>
 
@@ -2121,6 +2168,13 @@ temperature, the check value will be converted to celsius instead. </p></td>
                 <tr>
                   <td>asset_identifier</td>
                   <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset</td>
+                  <td><a href="#hiber.assign.Assignment.AssetAssignment">Assignment.AssetAssignment</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -2703,6 +2757,13 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td>asset_identifiers</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
+                  <td><p>The identifiers of the assets assigned to this device. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>assets</td>
+                  <td><a href="#hiber.assign.Assignment.AssetAssignment">Assignment.AssetAssignment</a></td>
+                  <td>repeated</td>
                   <td><p>The assets assigned to this device. </p></td>
                 </tr>
               
@@ -3040,6 +3101,13 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>The assets assigned to this tag. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>assets</td>
+                  <td><a href="#hiber.assign.Assignment.AssetAssignment">Assignment.AssetAssignment</a></td>
+                  <td>repeated</td>
+                  <td><p>The assets assigned to this device. </p></td>
                 </tr>
               
             </tbody>
@@ -5491,6 +5559,40 @@ is ready to be downloaded.</p></td>
         </table>
       
 
+      
+        <h3 id="base.proto-extensions">File-level Extensions</h3>
+        <table class="extension-table">
+          <thead>
+            <tr><td>Extension</td><td>Type</td><td>Base</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>permission_usage</td>
+                <td><a href="#hiber.OrganizationPermission">OrganizationPermission</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>1001</td>
+                <td><p>The OrganizationPermissions used by this call. See the individual permissions for more details.</p></td>
+              </tr>
+            
+              <tr>
+                <td>support_permission_usage</td>
+                <td><a href="#hiber.SupportPermission">SupportPermission</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>1003</td>
+                <td><p>The SupportPermission used by this call. See the individual permissions for more details.</p></td>
+              </tr>
+            
+              <tr>
+                <td>user_permission_usage</td>
+                <td><a href="#hiber.UserPermission">UserPermission</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>1002</td>
+                <td><p>The UserPermissions used by this call. See the individual permissions for more details.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
 
       

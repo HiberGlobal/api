@@ -69,7 +69,7 @@ enum OrganizationPermission {
 
     /* List all users, see their names and email addresses. */
     USERS = 30;
-    /* Approve or create new users, remove users from the organization. Includes users permission. */
+    /* Approve or create new users, remove users from the organization. Includes USERS permission. */
     USERS_MANAGE = 31;
 
     /* Manage publishers: webhooks, MQTT integration and custom email publishers. */
@@ -100,6 +100,15 @@ enum OrganizationPermission {
 
     /* Create, edit and delete tags. Viewing tags is always allowed. */
     TAGS_MANAGE = 52;
+
+    /* Download and view file content. */
+    FILES = 57;
+
+    /* Upload new files. Includes FILES permission. */
+    FILES_UPLOAD = 58;
+
+    /* Manage files (e.g. delete them). Includes FILES and FILES_UPLOAD permissions. */
+    FILES_MANAGE = 59;
 
     reserved 14, 22, 25, 40, 37;
 }
@@ -155,4 +164,7 @@ enum SupportPermission {
 
     /* Manage organization contract info. */
     MANAGE_ORGANIZATION_CONTRACT = 10;
+
+    /* Advanced user management. */
+    MANAGE_USERS_ADVANCED = 11;
 }

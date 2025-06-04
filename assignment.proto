@@ -18,31 +18,67 @@ option go_package = ".;hiber";
 
 service AssignmentService {
     /* List assignments. */
-    rpc List (ListAssignments.Request) returns (ListAssignments.Response);
+    rpc List (ListAssignments.Request) returns (ListAssignments.Response) {
+        option (permission_usage) = ASSIGNMENTS;
+    }
 
     /* Assign something, like an alarm to a modem. */
-    rpc Assign (Assign.Request) returns (Assign.Response);
+    rpc Assign (Assign.Request) returns (Assign.Response) {
+        option (permission_usage) = ASSIGNMENTS;
+        option (permission_usage) = MODEMS;
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+        option (permission_usage) = MODEMS_ALARMS;
+        option (permission_usage) = ASSETS;
+    }
 
     /* End an assignment, like an alarm to a modem. */
-    rpc Unassign (Unassign.Request) returns (Unassign.Response);
+    rpc Unassign (Unassign.Request) returns (Unassign.Response) {
+        option (permission_usage) = ASSIGNMENTS;
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
 
     /* Delete an assignment, even if it has a time range. */
-    rpc Delete (DeleteAssignment.Request) returns (DeleteAssignment.Response);
+    rpc Delete (DeleteAssignment.Request) returns (DeleteAssignment.Response) {
+        option (permission_usage) = ASSIGNMENTS;
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
 
     /* List assets with the devices and tags they are assigned to. */
-    rpc AssetAssignments (ListAssetAssignments.Request) returns (ListAssetAssignments.Response);
+    rpc AssetAssignments (ListAssetAssignments.Request) returns (ListAssetAssignments.Response) {
+        option (permission_usage) = ASSETS;
+        /* Only when requesting additional alarm details. */
+        option (permission_usage) = MODEMS_ALARMS;
+    }
 
     /* List modems with tags, alarms and parsers assigned to them. */
-    rpc ModemAssignments (ListModemAssignments.Request) returns (ListModemAssignments.Response);
+    rpc ModemAssignments (ListModemAssignments.Request) returns (ListModemAssignments.Response) {
+        option (permission_usage) = MODEMS;
+        /* Only when requesting additional parser details. */
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+        /* Only when requesting additional alarm details. */
+        option (permission_usage) = MODEMS_ALARMS;
+    }
 
     /* List tags with the modems, alarms and parsers they are assigned to. */
-    rpc TagAssignments (ListTagAssignments.Request) returns (ListTagAssignments.Response);
+    rpc TagAssignments (ListTagAssignments.Request) returns (ListTagAssignments.Response) {
+        option (permission_usage) = MODEMS;
+        /* Only when requesting additional parser details. */
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+        /* Only when requesting additional alarm details. */
+        option (permission_usage) = MODEMS_ALARMS;
+    }
 
     /* List alarms with the modems and parsers they are assigned to. */
-    rpc AlarmAssignments (ListAlarmAssignments.Request) returns (ListAlarmAssignments.Response);
+    rpc AlarmAssignments (ListAlarmAssignments.Request) returns (ListAlarmAssignments.Response) {
+        option (permission_usage) = MODEMS;
+        option (permission_usage) = MODEMS_ALARMS;
+    }
 
     /* List alarms with the modems and parsers they are assigned to. */
-    rpc ModemMessageBodyParserAssignments (ListModemMessageBodyParserAssignments.Request) returns (ListModemMessageBodyParserAssignments.Response);
+    rpc ModemMessageBodyParserAssignments (ListModemMessageBodyParserAssignments.Request) returns (ListModemMessageBodyParserAssignments.Response) {
+        option (permission_usage) = MODEMS;
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+    }
 }
 
 /* The types of assignment available, like assigning a message body parser to a modem. */
@@ -93,6 +129,11 @@ enum AssignmentType {
  * (currently only asset device assignment has an ongoing effect) may be cleaned up automatically.
  */
 message Assignment {
+    message AssetAssignment {
+        string identifier = 1;
+        string name = 2;
+    }
+
     message AlarmAssignment {
         string identifier = 1;
         string name = 5;
@@ -437,8 +478,11 @@ message ListModemAssignments {
             /* The alarms that are assigned to this modem, if you have permission to view them. */
             repeated modem.alarm.ModemAlarm alarm_details = 7;
 
-            /* The assets assigned to this device. */
+            /* The identifiers of the assets assigned to this device. */
             repeated string asset_identifiers = 9;
+
+            /* The assets assigned to this device. */
+            repeated Assignment.AssetAssignment assets = 10;
 
             reserved 3;
         }
@@ -504,6 +548,9 @@ message ListTagAssignments {
 
             /* The assets assigned to this tag. */
             repeated string asset_identifiers = 8;
+
+            /* The assets assigned to this device. */
+            repeated Assignment.AssetAssignment assets = 9;
         }
 
         repeated TagAssignment tags = 1;
@@ -547,6 +594,7 @@ message ListAlarmAssignments {
             }
             message ToAsset {
                 string asset_identifier = 1;
+                Assignment.AssetAssignment asset = 3;
                 google.protobuf.Struct parameters = 2 [deprecated = true];
             }
 

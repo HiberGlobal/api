@@ -15,23 +15,51 @@ option go_package = ".;hiber";
  * others require an organization to be linked.
  */
 service CurrentUserService {
-    rpc CurrentUser (CurrentUserRequest) returns (hiber.user.CurrentUser);
-    rpc DeleteCurrentUser (DeleteCurrentUserRequest) returns (DeleteCurrentUserRequest.Response);
+    rpc CurrentUser (CurrentUserRequest) returns (hiber.user.CurrentUser) {
+        option (user_permission_usage) = READ;
+    }
+    rpc DeleteCurrentUser (DeleteCurrentUserRequest) returns (DeleteCurrentUserRequest.Response) {
+        option (user_permission_usage) = DELETE;
+    }
 
-    rpc RequestAccess (RequestAccessRequest) returns (RequestAccessRequest.Response);
-    rpc CancelAccessRequest (CancelAccessRequestRequest) returns (CancelAccessRequestRequest.Response);
-    rpc ListOrganizationInvites (ListOrganizationInvitesRequest) returns (ListOrganizationInvitesRequest.Response);
-    rpc AcceptOrganizationInvite (AcceptOrganizationInviteRequest) returns (AcceptOrganizationInviteRequest.Response);
+    rpc RequestAccess (RequestAccessRequest) returns (RequestAccessRequest.Response) {
+        option (user_permission_usage) = REQUEST_ACCESS;
+    }
+    rpc CancelAccessRequest (CancelAccessRequestRequest) returns (CancelAccessRequestRequest.Response) {
+        option (user_permission_usage) = REQUEST_ACCESS;
+    }
+    rpc ListOrganizationInvites (ListOrganizationInvitesRequest) returns (ListOrganizationInvitesRequest.Response) {
+        option (user_permission_usage) = REQUEST_ACCESS;
+    }
+    rpc AcceptOrganizationInvite (AcceptOrganizationInviteRequest) returns (AcceptOrganizationInviteRequest.Response) {
+        option (user_permission_usage) = REQUEST_ACCESS;
+    }
 
-    rpc AccessibleOrganizations (AccessibleOrganizationsRequest) returns (AccessibleOrganizationsRequest.Response);
-    rpc UpdateDefaultOrganization (UpdateDefaultOrganizationRequest) returns (UpdateDefaultOrganizationRequest.Response);
+    rpc AccessibleOrganizations (AccessibleOrganizationsRequest) returns (AccessibleOrganizationsRequest.Response) {
+        option (user_permission_usage) = READ;
+    }
+    rpc UpdateDefaultOrganization (UpdateDefaultOrganizationRequest) returns (UpdateDefaultOrganizationRequest.Response) {
+        option (user_permission_usage) = UPDATE;
+    }
 
-    rpc UpdateMissionControlSettings (UpdateMissionControlSettingsRequest) returns (UpdateMissionControlSettingsRequest.Response);
-    rpc AcceptTermsAndConditions (AcceptTermsAndConditionsRequest) returns (AcceptTermsAndConditionsRequest.Response);
-    rpc LogPasswordUpdated (LogPasswordUpdatedRequest) returns (LogPasswordUpdatedRequest.Response);
+    rpc UpdateMissionControlSettings (UpdateMissionControlSettingsRequest) returns (UpdateMissionControlSettingsRequest.Response) {
+        option (user_permission_usage) = UPDATE;
+    }
+    rpc AcceptTermsAndConditions (AcceptTermsAndConditionsRequest) returns (AcceptTermsAndConditionsRequest.Response) {
+        option (user_permission_usage) = UPDATE;
+    }
+    rpc LogPasswordUpdated (LogPasswordUpdatedRequest) returns (LogPasswordUpdatedRequest.Response) {
+        option (user_permission_usage) = UPDATE;
+    }
 
-    rpc OverrideRoles (OverrideRoles.Request) returns (OverrideRoles.Response);
-    rpc RestoreRoles (OverrideRoles.Restore.Request) returns (OverrideRoles.Restore.Response);
+    rpc OverrideRoles (OverrideRoles.Request) returns (OverrideRoles.Response) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+        option (user_permission_usage) = UPDATE;
+    }
+    rpc RestoreRoles (OverrideRoles.Restore.Request) returns (OverrideRoles.Restore.Response) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+        option (user_permission_usage) = UPDATE;
+    }
 }
 
 /* Your personal data. */

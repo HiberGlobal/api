@@ -10,11 +10,30 @@ option java_outer_classname = "ExportApi";
 option go_package = ".;hiber";
 
 service ExportService {
-    rpc List (ListExports.Request) returns (ListExports.Response);
-    rpc Create (CreateExport.Request) returns (CreateExport.Response);
-    rpc AvailableFields (AvailableFieldsForExport.Request) returns (AvailableFieldsForExport.Response);
-    rpc Extend (ExtendExportDownloadExpiry.Request) returns (ExtendExportDownloadExpiry.Response);
-    rpc Delete (DeleteExport.Request) returns (DeleteExport.Response);
+    rpc List (ListExports.Request) returns (ListExports.Response) {
+        option (permission_usage) = EXPORT;
+    }
+    rpc Create (CreateExport.Request) returns (CreateExport.Response) {
+        option (permission_usage) = EXPORT;
+
+        /* When exporting messages. */
+        option (permission_usage) = MODEM_MESSAGES;
+
+        /* When exporting asset values. */
+        option (permission_usage) = ASSETS_VALUES;
+    }
+    rpc AvailableFields (AvailableFieldsForExport.Request) returns (AvailableFieldsForExport.Response) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+
+        /* When requesting fields for exporting messages. */
+        option (permission_usage) = MODEM_MESSAGES;
+    }
+    rpc Extend (ExtendExportDownloadExpiry.Request) returns (ExtendExportDownloadExpiry.Response) {
+        option (permission_usage) = EXPORT;
+    }
+    rpc Delete (DeleteExport.Request) returns (DeleteExport.Response) {
+        option (permission_usage) = EXPORT;
+    }
 }
 
 /* An export created by this organization. */

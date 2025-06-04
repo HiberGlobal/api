@@ -11,12 +11,30 @@ option java_outer_classname = "TokenApi";
 option go_package = ".;hiber";
 
 service TokenService {
-    rpc List (ListTokensRequest) returns (ListTokensRequest.Response);
-    rpc Create (CreateTokenRequest) returns (CreateTokenRequest.Response);
-    rpc Delete (DeleteTokenRequest) returns (DeleteTokenRequest.Response);
-    rpc UpdateTokenOrganizationPermissions (UpdateTokenOrganizationPermissionsRequest) returns (UpdateTokenOrganizationPermissionsRequest.Response);
-    rpc UpdateTokenUserPermissions (UpdateTokenUserPermissionsRequest) returns (UpdateTokenUserPermissionsRequest.Response);
-    rpc UpdateTokenRoles(UpdateTokenRoles.Request) returns (UpdateTokenRoles.Response);
+    rpc List (ListTokensRequest) returns (ListTokensRequest.Response) {
+        option (permission_usage) = TOKENS;
+
+        /* To view token owner information. */
+        option (permission_usage) = USERS;
+    }
+    rpc Create (CreateTokenRequest) returns (CreateTokenRequest.Response) {
+        option (permission_usage) = TOKENS;
+
+        /* To create a token for someone else. */
+        option (permission_usage) = USERS_MANAGE;
+    }
+    rpc Delete (DeleteTokenRequest) returns (DeleteTokenRequest.Response) {
+        option (permission_usage) = TOKENS;
+    }
+    rpc UpdateTokenOrganizationPermissions (UpdateTokenOrganizationPermissionsRequest) returns (UpdateTokenOrganizationPermissionsRequest.Response) {
+        option (permission_usage) = TOKENS;
+    }
+    rpc UpdateTokenUserPermissions (UpdateTokenUserPermissionsRequest) returns (UpdateTokenUserPermissionsRequest.Response) {
+        option (permission_usage) = TOKENS;
+    }
+    rpc UpdateTokenRoles(UpdateTokenRoles.Request) returns (UpdateTokenRoles.Response) {
+        option (permission_usage) = TOKENS;
+    }
 }
 
 message Token {

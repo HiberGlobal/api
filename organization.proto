@@ -15,14 +15,34 @@ option go_package = ".;hiber";
  * sub-organizations later.
  */
 service OrganizationService {
-    rpc Create (CreateOrganizationRequest) returns (Organization);
-    rpc Get (GetOrganizationRequest) returns (Organization);
-    rpc Update (UpdateOrganizationRequest) returns (Organization);
-    rpc Delete (DeleteOrganizationRequest) returns (DeleteOrganizationRequest.Response);
-    rpc Tree (OrganizationTreeRequest) returns (OrganizationTreeRequest.Response);
-    rpc ListChildOrganizations (ListChildOrganizationsRequest) returns (ListChildOrganizationsRequest.Response);
-    rpc ValidateCreationToken (ValidateOrganizationCreationTokenRequest) returns (ValidateOrganizationCreationTokenRequest.Response);
-    rpc GetAvatar (GetOrganizationAvatar.Request) returns (GetOrganizationAvatar.Response);
+    rpc Create (CreateOrganizationRequest) returns (Organization) {
+        /* When not using a creation token. */
+        option (permission_usage) = ORGANIZATION_CREATE;
+
+        /* When using a creation token. */
+        option (user_permission_usage) = UPDATE;
+    }
+    rpc Get (GetOrganizationRequest) returns (Organization) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+    }
+    rpc Update (UpdateOrganizationRequest) returns (Organization) {
+        option (permission_usage) = ORGANIZATION_UPDATE;
+    }
+    rpc Delete (DeleteOrganizationRequest) returns (DeleteOrganizationRequest.Response) {
+        option (permission_usage) = ORGANIZATION_DELETE;
+    }
+    rpc Tree (OrganizationTreeRequest) returns (OrganizationTreeRequest.Response) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+    }
+    rpc ListChildOrganizations (ListChildOrganizationsRequest) returns (ListChildOrganizationsRequest.Response) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+    }
+    rpc ValidateCreationToken (ValidateOrganizationCreationTokenRequest) returns (ValidateOrganizationCreationTokenRequest.Response) {
+        option (user_permission_usage) = UPDATE;
+    }
+    rpc GetAvatar (GetOrganizationAvatar.Request) returns (GetOrganizationAvatar.Response) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+    }
 }
 
 /* Organization data. An Organization can have many linked users, but the organization is the owner

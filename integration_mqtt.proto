@@ -11,14 +11,88 @@ option java_outer_classname = "MQTTIntegrationApi";
 option go_package = ".;hiber";
 
 service MQTTService {
-    rpc List (ListMQTTPublishersRequest) returns (ListMQTTPublishersRequest.Response);
-    rpc Create (CreateMQTTPublisherRequest) returns (MQTTPublisher);
-    rpc Update (UpdateMQTTPublisherRequest) returns (MQTTPublisher);
-    rpc UpdateTags (UpdateMQTTPublisherTagsRequest) returns (UpdateMQTTPublisherTagsRequest.Response);
-    rpc Enable (EnableMQTTPublisherRequest) returns (EnableMQTTPublisherRequest.Response);
-    rpc Disable (DisableMQTTPublisherRequest) returns (DisableMQTTPublisherRequest.Response);
-    rpc Delete (DeleteMQTTPublisherRequest) returns (DeleteMQTTPublisherRequest.Response);
-    rpc History (MQTTPublisherHistoryRequest) returns (MQTTPublisherHistoryRequest.Response);
+    rpc List (ListMQTTPublishersRequest) returns (ListMQTTPublishersRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc Create (CreateMQTTPublisherRequest) returns (MQTTPublisher) {
+        option (permission_usage) = PUBLISHERS;
+
+        /* For organization created events. */
+        option (permission_usage) = ORGANIZATION_CREATE;
+        /* For organization updated events. */
+        option (permission_usage) = ORGANIZATION_UPDATE;
+        /* For organization deleted events. */
+        option (permission_usage) = ORGANIZATION_DELETE;
+        /* For asset events. */
+        option (permission_usage) = ASSETS;
+        /* For modem/device-related events. */
+        option (permission_usage) = MODEMS;
+        /* For message events. */
+        option (permission_usage) = MODEM_MESSAGES;
+        /* For parser-related events. */
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+        /* For alarm-related events. */
+        option (permission_usage) = MODEMS_ALARMS;
+        /* For transfer events. */
+        option (permission_usage) = TRANSFERS;
+        /* For user-related events. */
+        option (permission_usage) = USERS;
+        /* For user management events. */
+        option (permission_usage) = USERS_MANAGE;
+        /* For token-related events. */
+        option (permission_usage) = TOKENS;
+        /* For export-related events. */
+        option (permission_usage) = EXPORT;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+    rpc Update (UpdateMQTTPublisherRequest) returns (MQTTPublisher) {
+        option (permission_usage) = PUBLISHERS;
+
+        /* For organization created events. */
+        option (permission_usage) = ORGANIZATION_CREATE;
+        /* For organization updated events. */
+        option (permission_usage) = ORGANIZATION_UPDATE;
+        /* For organization deleted events. */
+        option (permission_usage) = ORGANIZATION_DELETE;
+        /* For asset events. */
+        option (permission_usage) = ASSETS;
+        /* For modem/device-related events. */
+        option (permission_usage) = MODEMS;
+        /* For message events. */
+        option (permission_usage) = MODEM_MESSAGES;
+        /* For parser-related events. */
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+        /* For alarm-related events. */
+        option (permission_usage) = MODEMS_ALARMS;
+        /* For transfer events. */
+        option (permission_usage) = TRANSFERS;
+        /* For user-related events. */
+        option (permission_usage) = USERS;
+        /* For user management events. */
+        option (permission_usage) = USERS_MANAGE;
+        /* For token-related events. */
+        option (permission_usage) = TOKENS;
+        /* For export-related events. */
+        option (permission_usage) = EXPORT;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+    rpc UpdateTags (UpdateMQTTPublisherTagsRequest) returns (UpdateMQTTPublisherTagsRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc Enable (EnableMQTTPublisherRequest) returns (EnableMQTTPublisherRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc Disable (DisableMQTTPublisherRequest) returns (DisableMQTTPublisherRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc Delete (DeleteMQTTPublisherRequest) returns (DeleteMQTTPublisherRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc History (MQTTPublisherHistoryRequest) returns (MQTTPublisherHistoryRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+    }
 }
 
 message MQTTPublisher {

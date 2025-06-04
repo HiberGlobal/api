@@ -33,17 +33,133 @@ option go_package = ".;hiber";
  * Requesting user-related events explicitly if you cannot access the users will return an error.
  */
 service EventService {
-    rpc List (ListEventsRequest) returns (ListEventsRequest.Response);
-    rpc Stream (EventStreamRequest) returns (stream Event);
-    rpc History (EventHistory.Request) returns (EventHistory.Response);
+    rpc List (ListEventsRequest) returns (ListEventsRequest.Response) {
+        /* For organization created events. */
+        option (permission_usage) = ORGANIZATION_CREATE;
+        /* For organization updated events. */
+        option (permission_usage) = ORGANIZATION_UPDATE;
+        /* For organization deleted events. */
+        option (permission_usage) = ORGANIZATION_DELETE;
+        /* For asset events. */
+        option (permission_usage) = ASSETS;
+        /* For modem/device-related events. */
+        option (permission_usage) = MODEMS;
+        /* For message events. */
+        option (permission_usage) = MODEM_MESSAGES;
+        /* For parser-related events. */
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+        /* For alarm-related events. */
+        option (permission_usage) = MODEMS_ALARMS;
+        /* For transfer events. */
+        option (permission_usage) = TRANSFERS;
+        /* For publisher-related events. */
+        option (permission_usage) = PUBLISHERS;
+        /* For user-related events. */
+        option (permission_usage) = USERS;
+        /* For user management events. */
+        option (permission_usage) = USERS_MANAGE;
+        /* For token-related events. */
+        option (permission_usage) = TOKENS;
+        /* For export-related events. */
+        option (permission_usage) = EXPORT;
 
-    rpc ModemHealth (ModemHealthEvents.Request) returns (ModemHealthEvents.Response);
-    rpc Resolve (ResolveEvent.Request) returns (ResolveEvent.Response);
-    rpc MarkResolved (MarkEventsResolved.Request) returns (MarkEventsResolved.Response);
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+    rpc Stream (EventStreamRequest) returns (stream Event) {
+        /* For organization created events. */
+        option (permission_usage) = ORGANIZATION_CREATE;
+        /* For organization updated events. */
+        option (permission_usage) = ORGANIZATION_UPDATE;
+        /* For organization deleted events. */
+        option (permission_usage) = ORGANIZATION_DELETE;
+        /* For asset events. */
+        option (permission_usage) = ASSETS;
+        /* For modem/device-related events. */
+        option (permission_usage) = MODEMS;
+        /* For message events. */
+        option (permission_usage) = MODEM_MESSAGES;
+        /* For parser-related events. */
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+        /* For alarm-related events. */
+        option (permission_usage) = MODEMS_ALARMS;
+        /* For transfer events. */
+        option (permission_usage) = TRANSFERS;
+        /* For publisher-related events. */
+        option (permission_usage) = PUBLISHERS;
+        /* For user-related events. */
+        option (permission_usage) = USERS;
+        /* For user management events. */
+        option (permission_usage) = USERS_MANAGE;
+        /* For token-related events. */
+        option (permission_usage) = TOKENS;
+        /* For export-related events. */
+        option (permission_usage) = EXPORT;
 
-    rpc GetEventConfiguration (EventConfiguration.Request) returns (EventConfiguration);
-    rpc UpdateEventConfiguration (EventConfiguration) returns (EventConfiguration);
-    rpc UpdateEventHealthConfiguration (UpdateEventHealthConfiguration.Request) returns (UpdateEventHealthConfiguration.Response);
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+    rpc History (EventHistory.Request) returns (EventHistory.Response) {
+        /* For organization created events. */
+        option (permission_usage) = ORGANIZATION_CREATE;
+        /* For organization updated events. */
+        option (permission_usage) = ORGANIZATION_UPDATE;
+        /* For organization deleted events. */
+        option (permission_usage) = ORGANIZATION_DELETE;
+        /* For asset events. */
+        option (permission_usage) = ASSETS;
+        /* For modem/device-related events. */
+        option (permission_usage) = MODEMS;
+        /* For message events. */
+        option (permission_usage) = MODEM_MESSAGES;
+        /* For parser-related events. */
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+        /* For alarm-related events. */
+        option (permission_usage) = MODEMS_ALARMS;
+        /* For transfer events. */
+        option (permission_usage) = TRANSFERS;
+        /* For publisher-related events. */
+        option (permission_usage) = PUBLISHERS;
+        /* For user-related events. */
+        option (permission_usage) = USERS;
+        /* For user management events. */
+        option (permission_usage) = USERS_MANAGE;
+        /* For token-related events. */
+        option (permission_usage) = TOKENS;
+        /* For export-related events. */
+        option (permission_usage) = EXPORT;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+
+    rpc ModemHealth (ModemHealthEvents.Request) returns (ModemHealthEvents.Response) {
+        /* For modem/device-related events. */
+        option (permission_usage) = MODEMS;
+        /* For message events. */
+        option (permission_usage) = MODEM_MESSAGES;
+        /* For parser-related events. */
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+        /* For alarm-related events. */
+        option (permission_usage) = MODEMS_ALARMS;
+        /* For transfer events. */
+        option (permission_usage) = TRANSFERS;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+    rpc Resolve (ResolveEvent.Request) returns (ResolveEvent.Response) {
+        option (permission_usage) = ORGANIZATION_UPDATE;
+    }
+    rpc MarkResolved (MarkEventsResolved.Request) returns (MarkEventsResolved.Response) {
+        option (permission_usage) = ORGANIZATION_UPDATE;
+    }
+
+    rpc GetEventConfiguration (EventConfiguration.Request) returns (EventConfiguration) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+    }
+    rpc UpdateEventConfiguration (EventConfiguration) returns (EventConfiguration) {
+        option (permission_usage) = ORGANIZATION_UPDATE;
+    }
+    rpc UpdateEventHealthConfiguration (UpdateEventHealthConfiguration.Request) returns (UpdateEventHealthConfiguration.Response) {
+        option (permission_usage) = ORGANIZATION_UPDATE;
+    }
 }
 
 /* Generic Event object, used in streams where events are mixed. Protobuf provides helper methods to extract

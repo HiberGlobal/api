@@ -25,34 +25,61 @@ option go_package = ".;hiber";
 
 service ModemAlarmService {
     /* List available modem alarms (including inherited from your parent organizations). */
-    rpc List (ListModemAlarms.Request) returns (ListModemAlarms.Response);
+    rpc List (ListModemAlarms.Request) returns (ListModemAlarms.Response) {
+        option (permission_usage) = MODEMS_ALARMS;
+    }
 
     /* Create a new modem alarm with any number of checks. */
-    rpc Create (CreateModemAlarm.Request) returns (CreateModemAlarm.Response);
+    rpc Create (CreateModemAlarm.Request) returns (CreateModemAlarm.Response) {
+        option (permission_usage) = MODEMS_ALARMS_UPDATE;
+    }
 
     /* Update a modem alarm and its checks, if you are the owner. */
-    rpc Update (UpdateModemAlarm.Request) returns (UpdateModemAlarm.Response);
+    rpc Update (UpdateModemAlarm.Request) returns (UpdateModemAlarm.Response) {
+        option (permission_usage) = MODEMS_ALARMS_UPDATE;
+    }
 
     /* Delete a modem alarm, if you are the owner. */
-    rpc Delete (DeleteModemAlarm.Request) returns (DeleteModemAlarm.Response);
+    rpc Delete (DeleteModemAlarm.Request) returns (DeleteModemAlarm.Response) {
+        option (permission_usage) = MODEMS_ALARMS_UPDATE;
+    }
 
     /* Add a check to a modem alarm, if you are the owner. */
-    rpc AddCheck (UpdateModemAlarmAddCheck.Request) returns (UpdateModemAlarmAddCheck.Response);
+    rpc AddCheck (UpdateModemAlarmAddCheck.Request) returns (UpdateModemAlarmAddCheck.Response) {
+        option (permission_usage) = MODEMS_ALARMS_UPDATE;
+    }
 
     /* Update a check in a modem alarm, if you are the owner. */
-    rpc UpdateCheck (UpdateModemAlarmUpdateCheck.Request) returns (UpdateModemAlarmUpdateCheck.Response);
+    rpc UpdateCheck (UpdateModemAlarmUpdateCheck.Request) returns (UpdateModemAlarmUpdateCheck.Response) {
+        option (permission_usage) = MODEMS_ALARMS_UPDATE;
+    }
 
     /* Remove a check from a modem alarm, if you are the owner. */
-    rpc RemoveCheck (UpdateModemAlarmRemoveCheck.Request) returns (UpdateModemAlarmRemoveCheck.Response);
+    rpc RemoveCheck (UpdateModemAlarmRemoveCheck.Request) returns (UpdateModemAlarmRemoveCheck.Response) {
+        option (permission_usage) = MODEMS_ALARMS_UPDATE;
+    }
 
     /* Test a set of parameters on a modem alarm, to see the result when they are applied during assignment. */
-    rpc TestParameters (TestModemAlarmTestParameters.Request) returns (TestModemAlarmTestParameters.Response);
+    rpc TestParameters (TestModemAlarmTestParameters.Request) returns (TestModemAlarmTestParameters.Response) {
+        option (permission_usage) = MODEMS_ALARMS;
+    }
 
     /* Assign a modem alarm to a modem. */
-    rpc Assign (AssignModemAlarms.Request) returns (AssignModemAlarms.Response);
+    rpc Assign (AssignModemAlarms.Request) returns (AssignModemAlarms.Response) {
+        option (permission_usage) = MODEMS_ALARMS;
+        option (permission_usage) = ASSIGNMENTS;
+        option (permission_usage) = MODEMS;
+
+        /* When assigning to asset. */
+        option (permission_usage) = ASSETS;
+    }
 
     /* Unassign a modem alarm from a modem. */
-    rpc Unassign (UnassignModemAlarms.Request) returns (UnassignModemAlarms.Response);
+    rpc Unassign (UnassignModemAlarms.Request) returns (UnassignModemAlarms.Response) {
+        option (permission_usage) = MODEMS_ALARMS;
+        option (permission_usage) = ASSIGNMENTS;
+        option (permission_usage) = MODEMS;
+    }
 }
 
 /* Alarm for a modem, monitoring message data, location or activity.

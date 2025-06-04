@@ -15,10 +15,18 @@ option go_package = ".;hiber";
  * is available to child organizations.
  */
 service NamedLocationService {
-    rpc List (ListNamedLocations.Request) returns (ListNamedLocations.Response);
-    rpc Create (CreateNamedLocations.Request) returns (CreateNamedLocations.Response);
-    rpc Update (UpdateNamedLocation.Request) returns (UpdateNamedLocation.Response);
-    rpc Delete (DeleteNamedLocation.Request) returns (DeleteNamedLocation.Response);
+    rpc List (ListNamedLocations.Request) returns (ListNamedLocations.Response) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+    }
+    rpc Create (CreateNamedLocations.Request) returns (CreateNamedLocations.Response) {
+        option (permission_usage) = LOCATIONS_MANAGE;
+    }
+    rpc Update (UpdateNamedLocation.Request) returns (UpdateNamedLocation.Response) {
+        option (permission_usage) = LOCATIONS_MANAGE;
+    }
+    rpc Delete (DeleteNamedLocation.Request) returns (DeleteNamedLocation.Response) {
+        option (permission_usage) = LOCATIONS_MANAGE;
+    }
 }
 
 /* A named location within an organization. */

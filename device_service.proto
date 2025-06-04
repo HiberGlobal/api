@@ -23,10 +23,19 @@ option go_package = ".;hiber";
  */
 service DeviceService {
     /* List the devices in your organization, and, optionally, its child organizations. */
-    rpc List (ListDevice.Request) returns (ListDevice.Response);
+    rpc List (ListDevice.Request) returns (ListDevice.Response) {
+        option (permission_usage) = MODEMS;
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
 
     /* Update a device. */
-    rpc Update(UpdateDevice.Request) returns (UpdateDevice.Response);
+    rpc Update(UpdateDevice.Request) returns (UpdateDevice.Response) {
+        option (permission_usage) = MODEMS_UPDATE;
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+        option (support_permission_usage) = MANAGE_DEVICE_SLA;
+        option (support_permission_usage) = MANAGE_DEVICE_TIME_ZONE;
+        option (support_permission_usage) = MANAGE_DEVICE_TRANSMISSION_INTERVAL;
+    }
 }
 
 /* Update request for devices.

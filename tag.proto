@@ -15,13 +15,23 @@ option go_package = ".;hiber";
  * when updating them, so these calls are meant for easier tag management if you need it.
  */
 service TagService {
-    rpc List (ListTagsRequest) returns (ListTagsRequest.Response);
-    rpc Create (CreateTagRequest) returns (Tag);
-    rpc Update (UpdateTagRequest) returns (Tag);
-    rpc Delete (DeleteTagRequest) returns (DeleteTagRequest.Response);
+    rpc List (ListTagsRequest) returns (ListTagsRequest.Response) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+    }
+    rpc Create (CreateTagRequest) returns (Tag) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+    }
+    rpc Update (UpdateTagRequest) returns (Tag) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+    }
+    rpc Delete (DeleteTagRequest) returns (DeleteTagRequest.Response) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+    }
 
     /* Count the tags in your organization by health. */
-    rpc Health (TagHealth.Request) returns (TagHealth.Response);
+    rpc Health (TagHealth.Request) returns (TagHealth.Response) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+    }
 }
 
 /* Tag in your organization.

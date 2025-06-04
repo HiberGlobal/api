@@ -11,14 +11,88 @@ option java_outer_classname = "SlackIntegrationApi";
 option go_package = ".;hiber";
 
 service SlackIntegrationService {
-    rpc List (ListSlackPublishersRequest) returns (ListSlackPublishersRequest.Response);
-    rpc Create (CreateSlackPublisherRequest) returns (SlackPublisher);
-    rpc Update (UpdateSlackPublisherRequest) returns (SlackPublisher);
-    rpc UpdateTags (UpdateSlackPublisherTagsRequest) returns (UpdateSlackPublisherTagsRequest.Response);
-    rpc Enable (EnableSlackPublisherRequest) returns (EnableSlackPublisherRequest.Response);
-    rpc Disable (DisableSlackPublisherRequest) returns (DisableSlackPublisherRequest.Response);
-    rpc Delete (DeleteSlackPublisherRequest) returns (DeleteSlackPublisherRequest.Response);
-    rpc History (SlackPublisherHistoryRequest) returns (SlackPublisherHistoryRequest.Response);
+    rpc List (ListSlackPublishersRequest) returns (ListSlackPublishersRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc Create (CreateSlackPublisherRequest) returns (SlackPublisher) {
+        option (permission_usage) = PUBLISHERS;
+
+        /* For organization created events. */
+        option (permission_usage) = ORGANIZATION_CREATE;
+        /* For organization updated events. */
+        option (permission_usage) = ORGANIZATION_UPDATE;
+        /* For organization deleted events. */
+        option (permission_usage) = ORGANIZATION_DELETE;
+        /* For asset events. */
+        option (permission_usage) = ASSETS;
+        /* For modem/device-related events. */
+        option (permission_usage) = MODEMS;
+        /* For message events. */
+        option (permission_usage) = MODEM_MESSAGES;
+        /* For parser-related events. */
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+        /* For alarm-related events. */
+        option (permission_usage) = MODEMS_ALARMS;
+        /* For transfer events. */
+        option (permission_usage) = TRANSFERS;
+        /* For user-related events. */
+        option (permission_usage) = USERS;
+        /* For user management events. */
+        option (permission_usage) = USERS_MANAGE;
+        /* For token-related events. */
+        option (permission_usage) = TOKENS;
+        /* For export-related events. */
+        option (permission_usage) = EXPORT;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+    rpc Update (UpdateSlackPublisherRequest) returns (SlackPublisher) {
+        option (permission_usage) = PUBLISHERS;
+
+        /* For organization created events. */
+        option (permission_usage) = ORGANIZATION_CREATE;
+        /* For organization updated events. */
+        option (permission_usage) = ORGANIZATION_UPDATE;
+        /* For organization deleted events. */
+        option (permission_usage) = ORGANIZATION_DELETE;
+        /* For asset events. */
+        option (permission_usage) = ASSETS;
+        /* For modem/device-related events. */
+        option (permission_usage) = MODEMS;
+        /* For message events. */
+        option (permission_usage) = MODEM_MESSAGES;
+        /* For parser-related events. */
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+        /* For alarm-related events. */
+        option (permission_usage) = MODEMS_ALARMS;
+        /* For transfer events. */
+        option (permission_usage) = TRANSFERS;
+        /* For user-related events. */
+        option (permission_usage) = USERS;
+        /* For user management events. */
+        option (permission_usage) = USERS_MANAGE;
+        /* For token-related events. */
+        option (permission_usage) = TOKENS;
+        /* For export-related events. */
+        option (permission_usage) = EXPORT;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+    rpc UpdateTags (UpdateSlackPublisherTagsRequest) returns (UpdateSlackPublisherTagsRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc Enable (EnableSlackPublisherRequest) returns (EnableSlackPublisherRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc Disable (DisableSlackPublisherRequest) returns (DisableSlackPublisherRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc Delete (DeleteSlackPublisherRequest) returns (DeleteSlackPublisherRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc History (SlackPublisherHistoryRequest) returns (SlackPublisherHistoryRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+    }
 }
 
 message SlackPublisher {

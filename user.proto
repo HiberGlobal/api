@@ -10,29 +10,65 @@ option java_outer_classname = "UserApi";
 option go_package = ".;hiber";
 
 service UserService {
-    rpc List (ListUsersRequest) returns (ListUsersRequest.Response);
+    rpc List (ListUsersRequest) returns (ListUsersRequest.Response) {
+        option (permission_usage) = USERS;
+    }
 
-    rpc ListAccessRequests (ListAccessRequestsRequest) returns (ListAccessRequestsRequest.Response);
-    rpc Approve (ApproveUserRequest) returns (ApproveUserRequest.Response);
-    rpc Remove (RemoveUserRequest) returns (RemoveUserRequest.Response);
-    rpc Invite (InviteUserRequest) returns (InviteUserRequest.Response);
-    rpc ListInvitations (ListInvitationsRequest) returns (ListInvitationsRequest.Response);
+    rpc ListAccessRequests (ListAccessRequestsRequest) returns (ListAccessRequestsRequest.Response) {
+        option (permission_usage) = USERS;
+    }
+    rpc Approve (ApproveUserRequest) returns (ApproveUserRequest.Response) {
+        option (permission_usage) = USERS_MANAGE;
+    }
+    rpc Remove (RemoveUserRequest) returns (RemoveUserRequest.Response) {
+        option (permission_usage) = USERS_MANAGE;
+    }
+    rpc Invite (InviteUserRequest) returns (InviteUserRequest.Response) {
+        option (permission_usage) = USERS_MANAGE;
+    }
+    rpc ListInvitations (ListInvitationsRequest) returns (ListInvitationsRequest.Response) {
+        option (permission_usage) = USERS_MANAGE;
+    }
 
-    rpc CreateUser (CreateUserRequest) returns (User);
-    rpc CreateUsers (CreateUsersRequest) returns (CreateUsersRequest.Response);
+    rpc CreateUser (CreateUserRequest) returns (User) {
+        option (permission_usage) = USERS_MANAGE;
+        option (support_permission_usage) = MANAGE_USERS_ADVANCED;
+    }
+    rpc CreateUsers (CreateUsersRequest) returns (CreateUsersRequest.Response) {
+        option (permission_usage) = USERS_MANAGE;
+        option (support_permission_usage) = MANAGE_USERS_ADVANCED;
+    }
 
-    rpc ResetPassword (ResetUserPasswordRequest) returns (ResetUserPasswordRequest.Response);
-    rpc UpdateUserRoles (UpdateUserRoles.Request) returns (UpdateUserRoles.Response);
+    rpc ResetPassword (ResetUserPasswordRequest) returns (ResetUserPasswordRequest.Response) {
+        option (permission_usage) = USERS_MANAGE;
+    }
+    rpc UpdateUserRoles (UpdateUserRoles.Request) returns (UpdateUserRoles.Response) {
+        option (permission_usage) = USERS_MANAGE;
+    }
 
-    rpc GetUserValidation (GetUserValidationRequest) returns (UserValidation);
-    rpc UpdateUserValidation (UpdateUserValidationRequest) returns (UserValidation);
-    rpc TestUserValidation (TestUserValidationRequest) returns (TestUserValidationRequest.Response);
+    rpc GetUserValidation (GetUserValidationRequest) returns (UserValidation) {
+        option (permission_usage) = USERS_MANAGE;
+    }
+    rpc UpdateUserValidation (UpdateUserValidationRequest) returns (UserValidation) {
+        option (permission_usage) = USERS_MANAGE;
+    }
+    rpc TestUserValidation (TestUserValidationRequest) returns (TestUserValidationRequest.Response) {
+        option (permission_usage) = USERS_MANAGE;
+    }
 
-    rpc Suspend (SuspendUserRequest) returns (SuspendUserRequest.Response);
-    rpc Unsuspend (UnsuspendUserRequest) returns (UnsuspendUserRequest.Response);
-    rpc RevokeSession (RevokeUserSessionRequest) returns (RevokeUserSessionRequest.Response);
+    rpc Suspend (SuspendUserRequest) returns (SuspendUserRequest.Response) {
+        option (permission_usage) = USERS_MANAGE;
+    }
+    rpc Unsuspend (UnsuspendUserRequest) returns (UnsuspendUserRequest.Response) {
+        option (permission_usage) = USERS_MANAGE;
+    }
+    rpc RevokeSession (RevokeUserSessionRequest) returns (RevokeUserSessionRequest.Response) {
+        option (permission_usage) = USERS_MANAGE;
+    }
 
-    rpc Activity (UserActivitySummaryRequest) returns (UserActivitySummaryRequest.Response);
+    rpc Activity (UserActivitySummaryRequest) returns (UserActivitySummaryRequest.Response) {
+        option (permission_usage) = USERS_MANAGE;
+    }
 }
 
 message User {

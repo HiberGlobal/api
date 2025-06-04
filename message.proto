@@ -20,10 +20,18 @@ option go_package = ".;hiber";
 /* This service contains calls to list and manage messages. */
 service MessageService {
     /* List messages for the selected modems. */
-    rpc List (ListMessages.Request) returns (ListMessages.Response);
+    rpc List (ListMessages.Request) returns (ListMessages.Response) {
+        option (permission_usage) = MODEM_MESSAGES;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
 
     /* Count messages for the selected modems. */
-    rpc Count (CountMessages.Request) returns (CountMessages.Response);
+    rpc Count (CountMessages.Request) returns (CountMessages.Response) {
+        option (permission_usage) = MODEM_MESSAGES;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
 }
 
 /* Message received from a device in the field.

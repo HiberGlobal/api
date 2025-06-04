@@ -18,8 +18,15 @@ option java_outer_classname = "TransferApi";
 option go_package = ".;hiber";
 
 service TransferService {
-    rpc Transfer (PerformTransfer.Request) returns (PerformTransfer.Response);
-    rpc History (TransferHistory.Request) returns (TransferHistory.Response);
+    rpc Transfer (PerformTransfer.Request) returns (PerformTransfer.Response) {
+        option (permission_usage) = TRANSFERS_SEND;
+
+        /* When creating a new organization. */
+        option (permission_usage) = ORGANIZATION_CREATE;
+    }
+    rpc History (TransferHistory.Request) returns (TransferHistory.Response) {
+        option (permission_usage) = TRANSFERS;
+    }
 }
 
 message PerformTransfer {

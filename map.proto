@@ -65,10 +65,18 @@ option go_package = ".;hiber";
 /* Map of modems, in different map levels to enable data to be displayed efficiently */
 service MapService {
     /* Show the selected modems on the map, in a selected area. */
-    rpc TileMap (TileMapRequest) returns (TileMapRequest.Response);
+    rpc TileMap (TileMapRequest) returns (TileMapRequest.Response) {
+        option (permission_usage) = MODEMS;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
 
     /* List the location history for a modem. */
-    rpc LocationHistory (LocationHistory.Request) returns (LocationHistory.Response);
+    rpc LocationHistory (LocationHistory.Request) returns (LocationHistory.Response) {
+        option (permission_usage) = MODEMS;
+
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
 }
 
 message TileCoordinate {

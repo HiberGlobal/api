@@ -11,19 +11,29 @@ option go_package = ".;hiber";
 
 service HealthService {
     /* List the health levels. */
-    rpc List (ListHealthLevels.Request) returns (ListHealthLevels.Response);
+    rpc List (ListHealthLevels.Request) returns (ListHealthLevels.Response) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+    }
 
     /* Reorder the health levels, changing the order of severity. */
-    rpc Reorder (ReorderHealthLevels.Request) returns (ReorderHealthLevels.Response);
+    rpc Reorder (ReorderHealthLevels.Request) returns (ReorderHealthLevels.Response) {
+        option (permission_usage) = HEALTH_MANAGE;
+    }
 
     /* Add a new health level at the end of the list (highest severity). */
-    rpc Add (AddHealthLevel.Request) returns (AddHealthLevel.Response);
+    rpc Add (AddHealthLevel.Request) returns (AddHealthLevel.Response) {
+        option (permission_usage) = HEALTH_MANAGE;
+    }
 
     /* Update or rename a health level. */
-    rpc Update (UpdateHealthLevel.Request) returns (UpdateHealthLevel.Response);
+    rpc Update (UpdateHealthLevel.Request) returns (UpdateHealthLevel.Response) {
+        option (permission_usage) = HEALTH_MANAGE;
+    }
 
     /* Remove a health level. Any events with that level are redirected to the catch-all level. */
-    rpc Remove (RemoveHealthLevel.Request) returns (RemoveHealthLevel.Response);
+    rpc Remove (RemoveHealthLevel.Request) returns (RemoveHealthLevel.Response) {
+        option (permission_usage) = HEALTH_MANAGE;
+    }
 }
 
 /* A health level in an organization.

@@ -14,7 +14,9 @@ option java_outer_classname = "DeviceTypeApi";
 option go_package = ".;hiber";
 
 service DeviceTypeService {
-    rpc List (ListDeviceTypes.Request) returns (ListDeviceTypes.Response);
+    rpc List (ListDeviceTypes.Request) returns (ListDeviceTypes.Response) {
+        option (permission_usage) = PERMISSION_DEFAULT;
+    }
 }
 
 message ListDeviceTypes {

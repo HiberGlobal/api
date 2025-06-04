@@ -7,11 +7,15 @@ option java_package = "global.hiber.api.grpc.sso";
 option java_outer_classname = "SSOApi";
 option go_package = ".;hiber";
 
+import "base.proto";
+
 /* Single sign on support service. */
 service SingleSignOnService {
 
     /* Zendesk SSO using custom JWT */
-    rpc Zendesk (ZendeskTokenRequest) returns (ZendeskTokenRequest.Response);
+    rpc Zendesk (ZendeskTokenRequest) returns (ZendeskTokenRequest.Response) {
+        option (permission_usage) = SIMULATION_MANAGE;
+    }
 }
 
 message ZendeskTokenRequest {

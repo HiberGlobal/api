@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package hiber.value;
 
+import "base.proto";
 import "field.proto";
 import "value.proto";
 
@@ -10,7 +11,12 @@ option java_package = "global.hiber.api.grpc.value";
 option go_package = ".;hiber";
 
 service UnitPreferencesService {
-    rpc UnitPreferences (UnitPreferences.Request) returns (UnitPreferences.Response);
+    rpc UnitPreferences (UnitPreferences.Request) returns (UnitPreferences.Response) {
+        option (user_permission_usage) = READ;
+
+        /* When updating unit preferences. */
+        option (user_permission_usage) = UPDATE;
+    }
 }
 
 /* The preferred units for the current user. */

@@ -16,19 +16,34 @@ option go_package = ".;hiber";
  * whether everything works from message to webhook call, and further in your own system.
  */
 service TestingService {
-    rpc PushModemMessages (PushModemMessagesRequest) returns (PushModemMessagesRequest.Response);
+    rpc PushModemMessages (PushModemMessagesRequest) returns (PushModemMessagesRequest.Response) {
+        option (permission_usage) = MODEM_MESSAGES_SEND_TEST_MESSAGES;
+    }
 }
 
 /* Simulation service to manage active simulations.
  * Simulation can help fill in the gaps until real data is present, by, for example, simulating messages from a device.
  */
 service SimulationService {
-    rpc Get (Simulation.GetRequest) returns (Simulation);
-    rpc Update (Simulation.UpdateRequest) returns (Simulation);
+    rpc Get (Simulation.GetRequest) returns (Simulation) {
+        option (permission_usage) = SIMULATION_MANAGE;
+    }
+    rpc Update (Simulation.UpdateRequest) returns (Simulation) {
+        option (permission_usage) = SIMULATION_MANAGE;
+    }
 
-    rpc ListModemMessageSimulations (Simulation.ModemMessageSimulation.List.Request) returns (Simulation.ModemMessageSimulation.List.Response);
-    rpc UpdateModemMessageSimulations (Simulation.ModemMessageSimulation.Update.Request) returns (Simulation.ModemMessageSimulation.Update.Response);
-    rpc DisableModemMessageSimulations (Simulation.ModemMessageSimulation.Delete.Request) returns (Simulation.ModemMessageSimulation.Delete.Response);
+    rpc ListModemMessageSimulations (Simulation.ModemMessageSimulation.List.Request) returns (Simulation.ModemMessageSimulation.List.Response) {
+        option (permission_usage) = SIMULATION_MANAGE;
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+    rpc UpdateModemMessageSimulations (Simulation.ModemMessageSimulation.Update.Request) returns (Simulation.ModemMessageSimulation.Update.Response) {
+        option (permission_usage) = SIMULATION_MANAGE;
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+    rpc DisableModemMessageSimulations (Simulation.ModemMessageSimulation.Delete.Request) returns (Simulation.ModemMessageSimulation.Delete.Response) {
+        option (permission_usage) = SIMULATION_MANAGE;
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
 }
 
 /* Push any number of modem messages. These are marked as test messages, which means they will be treated

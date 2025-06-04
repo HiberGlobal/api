@@ -10,11 +10,25 @@ option java_outer_classname = "EmailNotificationsApi";
 option go_package = ".;hiber";
 
 service EmailNotificationPreferencesService {
-    rpc List (ListEmailNotificationPreferencesRequest) returns (ListEmailNotificationPreferencesRequest.Response);
-    rpc View (ViewEmailNotificationPreferencesRequest) returns (EmailNotificationPreferences);
-    rpc Update (UpdateEmailNotificationPreferencesRequest) returns (EmailNotificationPreferences);
-    rpc Delete (RemoveAllEmailNotificationPreferencesRequest) returns (RemoveAllEmailNotificationPreferencesRequest.Response);
-    rpc History (EmailNotificationHistoryRequest) returns (EmailNotificationHistoryRequest.Response);
+    rpc List (ListEmailNotificationPreferencesRequest) returns (ListEmailNotificationPreferencesRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc View (ViewEmailNotificationPreferencesRequest) returns (EmailNotificationPreferences) {
+        /* Only when viewing email publishers that are not yours. */
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc Update (UpdateEmailNotificationPreferencesRequest) returns (EmailNotificationPreferences) {
+        /* Only when updating email publishers that are not yours. */
+        option (permission_usage) = PUBLISHERS;
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+    rpc Delete (RemoveAllEmailNotificationPreferencesRequest) returns (RemoveAllEmailNotificationPreferencesRequest.Response) {
+        /* Only when deleting email publishers that are not yours. */
+        option (permission_usage) = PUBLISHERS;
+    }
+    rpc History (EmailNotificationHistoryRequest) returns (EmailNotificationHistoryRequest.Response) {
+        option (permission_usage) = PUBLISHERS;
+    }
 }
 
 message EmailNotificationPreferences {
