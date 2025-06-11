@@ -24,6 +24,9 @@
   - [ListInvitationsRequest.Response](#listinvitationsrequestresponse)
   - [ListUsersRequest](#listusersrequest)
   - [ListUsersRequest.Response](#listusersrequestresponse)
+  - [RemoveRoleOverride](#removeroleoverride)
+  - [RemoveRoleOverride.Request](#removeroleoverriderequest)
+  - [RemoveRoleOverride.Response](#removeroleoverrideresponse)
   - [RemoveUserRequest](#removeuserrequest)
   - [RemoveUserRequest.Response](#removeuserrequestresponse)
   - [ResetUserPasswordRequest](#resetuserpasswordrequest)
@@ -206,6 +209,12 @@
 
 
 
+### RemoveRoleOverride
+> **rpc** RemoveRoleOverride([RemoveRoleOverride.Request](#removeroleoverriderequest))
+    [RemoveRoleOverride.Response](#removeroleoverrideresponse)
+
+
+
 ### Activity
 > **rpc** Activity([UserActivitySummaryRequest](#useractivitysummaryrequest))
     [UserActivitySummaryRequest.Response](#useractivitysummaryrequestresponse)
@@ -351,6 +360,25 @@ List all invited users (email addresses).
 | users | [repeated User](#user) |  |
 | request | [ ListUsersRequest](#listusersrequest) |  |
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
+
+### RemoveRoleOverride
+
+Remove any override a user has active for your organization.
+
+
+### RemoveRoleOverride.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| user_ids | [repeated string](#string) | The users to remove the role overrides for. |
+
+### RemoveRoleOverride.Response
+
+
+
 
 ### RemoveUserRequest
 

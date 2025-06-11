@@ -189,6 +189,10 @@ Get the content of a file that has the file_service flag set for content
 
 Upload a file to the file service.
 
+If this call is giving errors, it might be running into some file size limitations in GRPC.
+these can be overridden, but depending on your implementation, this might be complicated.
+As an alternative, feel free to use the Rest API: https://docs.api.hiber.cloud/#/REST-API/file
+
 
 ### UploadFile.Request
 

@@ -195,7 +195,6 @@ Create or update the modem value simulation for a selection of modems.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| simulations | [repeated ValueSimulation](#valuesimulation) |  |
 | request | [ Update.Request](#updaterequest) |  |
 
 ### ValueSimulationSelection

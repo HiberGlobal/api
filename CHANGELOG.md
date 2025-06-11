@@ -1,5 +1,15 @@
 # Changelog Hiber API
 
+### 0.241 (2025-06-11)
+
+##### DeviceTypeService
+
+- Added `Valve Actuator` device type.
+
+##### ModemService
+
+- Added separate permission `MODEMS_UPDATE_FILES` to update files on devices.
+
 ### 0.240 (2025-06-04)
 
 - Document permission usage on all methods:

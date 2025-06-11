@@ -12,6 +12,7 @@
     , "MODEMS": "List modems, see their details and health"
     , "MODEMS_CREATE": "Create new modems. Includes MODEMS permission."
     , "MODEMS_UPDATE": "Update modems, such as their peripherals, display name and tags. Includes MODEMS permission."
+    , "MODEMS_UPDATE_FILES": "Update modems files, such as photo's of the installation."
     , "MODEMS_LICENSE_KEYS": "Show and regenerate license keys. Includes MODEMS permission."
     , "MODEMS_MESSAGE_BODY_PARSERS": "Manage and assign message body parsers. Includes MODEMS permission."
     , "MODEMS_SECURE_NOTES": "Show and update secure notes. Includes MODEMS permission."

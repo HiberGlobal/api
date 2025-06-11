@@ -235,6 +235,18 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.user.RemoveRoleOverride"><span class="badge">M</span>RemoveRoleOverride</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.user.RemoveRoleOverride.Request"><span class="badge">M</span>RemoveRoleOverride.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.user.RemoveRoleOverride.Response"><span class="badge">M</span>RemoveRoleOverride.Response</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.user.RemoveUserRequest"><span class="badge">M</span>RemoveUserRequest</a>
                 </li>
               
@@ -1095,6 +1107,51 @@ Set this to true to allow it. </p></td>
           </table>
 
           
+
+        
+      
+        <h3 id="hiber.user.RemoveRoleOverride">RemoveRoleOverride</h3>
+        <p>Remove any override a user has active for your organization.</p>
+
+        
+
+        
+      
+        <h3 id="hiber.user.RemoveRoleOverride.Request">RemoveRoleOverride.Request</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_ids</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>The users to remove the role overrides for. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.user.RemoveRoleOverride.Response">RemoveRoleOverride.Response</h3>
+        <p></p>
+
+        
 
         
       
@@ -2037,6 +2094,13 @@ when used by a customer support operator. </p></td>
                 <td>RevokeSession</td>
                 <td><a href="#hiber.user.RevokeUserSessionRequest">RevokeUserSessionRequest</a></td>
                 <td><a href="#hiber.user.RevokeUserSessionRequest.Response">RevokeUserSessionRequest.Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>RemoveRoleOverride</td>
+                <td><a href="#hiber.user.RemoveRoleOverride.Request">RemoveRoleOverride.Request</a></td>
+                <td><a href="#hiber.user.RemoveRoleOverride.Response">RemoveRoleOverride.Response</a></td>
                 <td><p></p></td>
               </tr>
             

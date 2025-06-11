@@ -345,6 +345,7 @@ By default, everyone who has access to an organization, can access basic organiz
 | MODEMS | List modems, see their details and health | 10 |
 | MODEMS_CREATE | Create new modems. Includes MODEMS permission. | 50 |
 | MODEMS_UPDATE | Update modems, such as their peripherals, display name and tags. Includes MODEMS permission. | 11 |
+| MODEMS_UPDATE_FILES | Update modems files, such as photo's of the installation. | 60 |
 | MODEMS_LICENSE_KEYS | Show and regenerate license keys. Includes MODEMS permission. | 12 |
 | MODEMS_MESSAGE_BODY_PARSERS | Manage and assign message body parsers. Includes MODEMS permission. | 43 |
 | MODEMS_SECURE_NOTES | Show and update secure notes. Includes MODEMS permission. | 42 |

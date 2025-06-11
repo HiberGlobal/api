@@ -18,17 +18,14 @@ option go_package = ".;hiber";
 service ValueSimulationService {
     rpc ListValueSimulations (List.Request) returns (List.Response) {
         option (permission_usage) = SIMULATION_MANAGE;
-
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     }
     rpc UpdateValueSimulations (Update.Request) returns (Update.Response) {
         option (permission_usage) = SIMULATION_MANAGE;
-
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     }
     rpc DisableValueSimulations (Delete.Request) returns (Delete.Response) {
         option (permission_usage) = SIMULATION_MANAGE;
-
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     }
 }
@@ -76,7 +73,7 @@ message Update {
         }
     }
     message Response {
-        repeated ValueSimulation simulations = 1;
+        reserved 1;
         Request request = 2;
     }
 }

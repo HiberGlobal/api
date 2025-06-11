@@ -66,6 +66,10 @@ service UserService {
         option (permission_usage) = USERS_MANAGE;
     }
 
+    rpc RemoveRoleOverride (RemoveRoleOverride.Request) returns (RemoveRoleOverride.Response) {
+        option (permission_usage) = USERS_MANAGE;
+    }
+
     rpc Activity (UserActivitySummaryRequest) returns (UserActivitySummaryRequest.Response) {
         option (permission_usage) = USERS_MANAGE;
     }
@@ -363,6 +367,20 @@ message UpdateUserRoles {
          */
         bool override_allow_no_roles = 5;
     }
+    message Response {
+    }
+}
+
+/* Remove any override a user has active for your organization. */
+message RemoveRoleOverride {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* The users to remove the role overrides for. */
+        repeated string user_ids = 2;
+    }
+
     message Response {
     }
 }
