@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.242 (2025-06-18)
+
+##### ModemService
+
+- Added `Modem.ConnectedDeviceInfo.Frequency` and `Modem.ConnectedDeviceInfo.frequency` to specify the device's frequency.
+
 ### 0.241 (2025-06-11)
 
 ##### DeviceTypeService

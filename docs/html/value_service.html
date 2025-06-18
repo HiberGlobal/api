@@ -649,6 +649,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.modem.Modem.ConnectedDeviceInfo.Frequency"><span class="badge">E</span>Modem.ConnectedDeviceInfo.Frequency</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.modem.Modem.Lifecycle"><span class="badge">E</span>Modem.Lifecycle</a>
                 </li>
               
@@ -5060,6 +5064,13 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td><p>Brand for this modem&#39;s sensor. </p></td>
                 </tr>
               
+                <tr>
+                  <td>frequency</td>
+                  <td><a href="#hiber.modem.Modem.ConnectedDeviceInfo.Frequency">Modem.ConnectedDeviceInfo.Frequency</a></td>
+                  <td>optional</td>
+                  <td><p>Frequency configured for this device. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -6254,6 +6265,65 @@ add the name of the peripheral as a map-key and add a repeated list of versions 
                 <td>TAG_TYPE_PRODUCTION_AREA_DESC</td>
                 <td>25</td>
                 <td><p>Sort alphabetically on any tags of type &#39;production_area&#39;, in descending order.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="hiber.modem.Modem.ConnectedDeviceInfo.Frequency">Modem.ConnectedDeviceInfo.Frequency</h3>
+        <p>Frequency specified by LoRaWAN regional parameters.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>AS923</td>
+                <td>0</td>
+                <td><p>AS923</p></td>
+              </tr>
+            
+              <tr>
+                <td>AS923_2</td>
+                <td>10</td>
+                <td><p>AS923-2</p></td>
+              </tr>
+            
+              <tr>
+                <td>AU915</td>
+                <td>1</td>
+                <td><p>AU915</p></td>
+              </tr>
+            
+              <tr>
+                <td>EU868</td>
+                <td>5</td>
+                <td><p>EU868</p></td>
+              </tr>
+            
+              <tr>
+                <td>IN865</td>
+                <td>6</td>
+                <td><p>IN865</p></td>
+              </tr>
+            
+              <tr>
+                <td>KR920</td>
+                <td>7</td>
+                <td><p>KR920</p></td>
+              </tr>
+            
+              <tr>
+                <td>US915</td>
+                <td>8</td>
+                <td><p>US915</p></td>
+              </tr>
+            
+              <tr>
+                <td>US915_HYBRID</td>
+                <td>9</td>
+                <td><p>US915-Hybrid</p></td>
               </tr>
             
           </tbody>

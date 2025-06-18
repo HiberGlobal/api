@@ -201,6 +201,29 @@ message Modem {
 
         /* Brand for this modem's sensor. */
         string sensor_brand = 4;
+
+        /* Frequency configured for this device. */
+        optional Frequency frequency = 5;
+
+        /* Frequency specified by LoRaWAN regional parameters. */
+        enum Frequency {
+            /* AS923 */
+            AS923 = 0;
+            /* AS923-2 */
+            AS923_2 = 10;
+            /* AU915 */
+            AU915 = 1;
+            /* EU868 */
+            EU868 = 5;
+            /* IN865 */
+            IN865 = 6;
+            /* KR920 */
+            KR920 = 7;
+            /* US915 */
+            US915 = 8;
+            /* US915-Hybrid */
+            US915_HYBRID = 9;
+        }
     }
 
     message TechnicalData {

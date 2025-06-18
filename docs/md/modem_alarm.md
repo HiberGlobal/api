@@ -91,6 +91,7 @@ advanced use cases, like assigning to a tag.
   - [hiber.modem.ModemSelection](#hibermodemmodemselection)
 
     - [hiber.modem.ListModemsRequest.Sort](#hibermodemlistmodemsrequestsort)
+    - [hiber.modem.Modem.ConnectedDeviceInfo.Frequency](#hibermodemmodemconnecteddeviceinfofrequency)
     - [hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle)
     - [hiber.modem.Modem.Type](#hibermodemmodemtype)
     - [hiber.modem.ModemMessage.Source](#hibermodemmodemmessagesource)
@@ -1126,6 +1127,20 @@ Sorting options for the results.
 | TAG_TYPE_SITE_DESC | Sort alphabetically on any tags of type 'site', in descending order. | 23 |
 | TAG_TYPE_PRODUCTION_AREA_ASC | Sort alphabetically on any tags of type 'production_area', in ascending order. | 24 |
 | TAG_TYPE_PRODUCTION_AREA_DESC | Sort alphabetically on any tags of type 'production_area', in descending order. | 25 |
+
+#### hiber.modem.Modem.ConnectedDeviceInfo.Frequency
+Frequency specified by LoRaWAN regional parameters.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| AS923 | AS923 | 0 |
+| AS923_2 | AS923-2 | 10 |
+| AU915 | AU915 | 1 |
+| EU868 | EU868 | 5 |
+| IN865 | IN865 | 6 |
+| KR920 | KR920 | 7 |
+| US915 | US915 | 8 |
+| US915_HYBRID | US915-Hybrid | 9 |
 
 #### hiber.modem.Modem.Lifecycle
 

@@ -30,6 +30,19 @@
     , "TAG_TYPE_PRODUCTION_AREA_DESC": "Sort alphabetically on any tags of type 'production_area', in descending order."
     }
 },{
+  "name": "Frequency",
+  "description": "Frequency specified by LoRaWAN regional parameters.",
+  "values": {
+    "AS923": "AS923"
+    , "AS923_2": "AS923-2"
+    , "AU915": "AU915"
+    , "EU868": "EU868"
+    , "IN865": "IN865"
+    , "KR920": "KR920"
+    , "US915": "US915"
+    , "US915_HYBRID": "US915-Hybrid"
+    }
+},{
   "name": "Lifecycle",
   "description": "",
   "values": {
