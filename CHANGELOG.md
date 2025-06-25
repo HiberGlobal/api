@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.243 (2025-06-25)
+
+##### DeviceTypeService
+
+- Use regionless device type by default.
+
 ### 0.242 (2025-06-18)
 
 ##### ModemService
