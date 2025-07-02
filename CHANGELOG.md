@@ -1,5 +1,15 @@
 # Changelog Hiber API
 
+### 0.244 (2025-07-02)
+
+##### DeviceTypeService
+
+- Reverted using regionless device type by default because of an incompatibility issue with the app.
+
+##### TagService
+
+- Added `associated_with` to `TagSelection` to select tags that are used with the given tags.
+
 ### 0.243 (2025-06-25)
 
 ##### DeviceTypeService

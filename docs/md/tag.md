@@ -291,6 +291,7 @@ Use the TagService.List call to get the tags with Metadata.
 |  **optional** filter | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 | types | [repeated string](#string) |  |
 |  **optional** location | [optional hiber.LocationSelection](#hiberlocationselection) |  |
+|  **optional** associated_with | [optional hiber.Filter.Tags](#hiberfiltertags) | Return all tags that are used in combination with the given tags (e.g. assigned to the same device). |
 
 ### UpdateTagRequest
 

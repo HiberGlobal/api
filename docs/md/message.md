@@ -427,6 +427,7 @@ Label for a tag, containing all the information needed to display it.
 |  **optional** filter | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 | types | [repeated string](#string) |  |
 |  **optional** location | [optional hiber.LocationSelection](#hiberlocationselection) |  |
+|  **optional** associated_with | [optional hiber.Filter.Tags](#hiberfiltertags) | Return all tags that are used in combination with the given tags (e.g. assigned to the same device). |
 
 
 ### Enums

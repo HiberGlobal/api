@@ -333,7 +333,7 @@ so not all messages listed here are referenced.)
 | optional | [ bool](#bool) | Whether this field should be validated from the parser output. |
 | operational | [ bool](#bool) | Field contains values relevant for operating the device. |
 |  **optional** unit_of_measurement | [optional hiber.UnitOfMeasurement](#hiberunitofmeasurement) | <strong>Deprecated.</strong> If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
-|  **optional** unit_symbol | [optional string](#string) | <strong>Deprecated.</strong> The symbol for the unit. Deprecated: use numeric.symbol instead |
+|  **optional** unit_symbol | [optional string](#string) | <strong>Deprecated.</strong> The symbol for the unit. Deprecated: use numeric.unit.symbol instead |
 
 ### hiber.field.Field.Enum
 
@@ -350,7 +350,7 @@ If the field is numeric, this specifies the unit and formatting details for the 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | type | [ hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The type of numeric value. |
-| symbol | [ string](#string) | The symbol to use for the field's unit. |
+| symbol | [ string](#string) | <strong>Deprecated.</strong> The symbol to use for the field's unit. Deprecated: use unit.symbol instead. |
 | format | [ hiber.field.Field.Numeric.Format](#hiberfieldfieldnumericformat) | How to format the values (number of decimals, rounding, etc.). |
 | unit | [ hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | The unit for the field, depending on the type. |
 |  **optional** converted_from | [optional hiber.field.Field.Numeric.Unit](#hiberfieldfieldnumericunit) | If the unit preferences were applied, and the unit is different, the field will be converted to the preferred unit, from the original unit specified in this field. |
@@ -385,6 +385,7 @@ Formatting options for the field.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.mass | [ hiber.value.Value.Numeric.Mass.MassUnit](#hibervaluevaluenumericmassmassunit) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed.RotationSpeedUnit](#hibervaluevaluenumericrotationspeedrotationspeedunit) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rate | [ hiber.value.Value.Numeric.Rate.RateUnit](#hibervaluevaluenumericraterateunit) |  |
+| symbol | [ string](#string) |  |
 
 
 ### Enums

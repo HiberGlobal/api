@@ -92,6 +92,9 @@ message TagSelection {
     optional Filter.Tags filter = 3;
     repeated string types = 4;
     optional LocationSelection location = 5;
+
+    /* Return all tags that are used in combination with the given tags (e.g. assigned to the same device). */
+    optional Filter.Tags associated_with = 6;
 }
 
 message UpdateTagsForItem {

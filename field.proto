@@ -29,6 +29,7 @@ message Field {
                 value.Value.Numeric.RotationSpeed.RotationSpeedUnit rotation_speed = 13;
                 value.Value.Numeric.Rate.RateUnit rate = 14;
             }
+            string symbol = 15;
         }
 
         /* Formatting options for the field. */
@@ -84,8 +85,10 @@ message Field {
         /* The type of numeric value. */
         value.Value.Numeric.Type type = 1;
 
-        /* The symbol to use for the field's unit. */
-        string symbol = 2;
+        /* The symbol to use for the field's unit.
+         * Deprecated: use unit.symbol instead.
+         */
+        string symbol = 2 [deprecated = true];
 
         /* How to format the values (number of decimals, rounding, etc.). */
         Format format = 3;
@@ -150,7 +153,7 @@ message Field {
     optional UnitOfMeasurement unit_of_measurement = 4 [deprecated = true];
 
     /* The symbol for the unit.
-     * Deprecated: use numeric.symbol instead
+     * Deprecated: use numeric.unit.symbol instead
      */
     optional string unit_symbol = 6 [deprecated = true];
 
