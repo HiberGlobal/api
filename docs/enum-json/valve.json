@@ -1,0 +1,20 @@
+[{
+  "name": "HighPressureLineStatus",
+  "description": "",
+  "values": {
+    "ZERO": "High pressure line = 0 bar."
+    , "PRESSURIZED": "High pressure line pressurized."
+    , "READY_TO_BE_PRESSURIZED": "High pressure line ready to be pressurized. High pressure line requires manual operation to change status to PRESSURIZED."
+    }
+},{
+  "name": "Operation",
+  "description": "",
+  "values": {
+    "NO_OPERATION": "If no choice is made, fall back to no-operation"
+    , "BLEED_HIGH_PRESSURE_LINE": "Open valve to bleed high pressure line. Send a downlink command to LoRaWAN LNS to open the valve actuator. High pressure line status should be changed: PRESSURIZED -> ZERO"
+    , "CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO": "Confirm high pressure line pressure is 0 bar. High pressure line status can only be updated after operator's confirmation: High pressure line status is confirmed: ZERO"
+    , "RESET_VALVE": "Reset valve. Send a downlink command to LoRaWAN LNS to close the valve actuator. High pressure line status should be changed: ZERO -> READY_TO_BE_PRESSURIZED"
+    , "CONFIRM_VALVE_IS_RESET": "Confirm valve is reset. High pressure line status can only be updated after operator's confirmation: High pressure line status is confirmed: READY_TO_BE_PRESSURIZED"
+    , "CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE": "Confirm high pressure line under pressure. The operator is required to manually operate the high pressure line to make it PRESSURIZED High pressure line status can only be updated after operator confirmation: High pressure line status is confirmed: PRESSURIZED"
+    }
+}]

@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+package hiber.valve;
+
+import "base.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.valve";
+option java_outer_classname = "ValveApi";
+option go_package = ".;hiber";
+
+message Valve {
+    /* An 8-character hexadecimal string */
+    string number = 1;
+    string organization = 2;
+    string external_device_id = 3;
+    string name = 4;
+    string device_type = 5;
+    /* Valve actuator status: open or closed. */
+    bool open = 6;
+    optional bool leak = 7;
+    optional bool fraud = 8;
+    optional int64 remaining_battery_voltage = 9;
+    optional ValveProcess last_process = 10;
+
+    message ValveProcess {
+        /* Modem valve actuator number. */
+        string modem_number = 1;
+        /* Operation from technician. */
+        Operation operation = 2;
+        /* Time that the operation was executed. */
+        Timestamp operation_at = 3;
+        /* High pressure line status after the operation. */
+        HighPressureLineStatus high_pressure_line_status = 4;
+    }
+
+    enum HighPressureLineStatus {
+        /* High pressure line = 0 bar. */
+        ZERO = 0;
+        /* High pressure line pressurized. */
+        PRESSURIZED = 1;
+        /* High pressure line ready to be pressurized.
+         * High pressure line requires manual operation to change status to PRESSURIZED.
+         */
+        READY_TO_BE_PRESSURIZED = 2;
+    }
+
+    enum Operation {
+        /* If no choice is made, fall back to no-operation */
+        NO_OPERATION = 0;
+
+        /* Open valve to bleed high pressure line.
+         * Send a downlink command to LoRaWAN LNS to open the valve actuator.
+         * High pressure line status should be changed: PRESSURIZED -> ZERO
+         */
+        BLEED_HIGH_PRESSURE_LINE = 1;
+        /* Confirm high pressure line pressure is 0 bar.
+         * High pressure line status can only be updated after operator's confirmation:
+         * High pressure line status is confirmed: ZERO
+         */
+        CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO = 2;
+        /* Reset valve.
+         * Send a downlink command to LoRaWAN LNS to close the valve actuator.
+         * High pressure line status should be changed: ZERO -> READY_TO_BE_PRESSURIZED
+         */
+        RESET_VALVE = 3;
+        /* Confirm valve is reset.
+         * High pressure line status can only be updated after operator's confirmation:
+         * High pressure line status is confirmed: READY_TO_BE_PRESSURIZED
+         */
+        CONFIRM_VALVE_IS_RESET = 4;
+        /* Confirm high pressure line under pressure.
+         * The operator is required to manually operate the high pressure line to make it PRESSURIZED
+         * High pressure line status can only be updated after operator confirmation:
+         * High pressure line status is confirmed: PRESSURIZED
+         */
+        CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE = 5;
+    }
+}
+
+/* Selection object for valve. */
+message ValveSelection {
+    /* Select by valve numbers. */
+    optional Filter.Modems numbers = 1;
+    /* Select by external device identifiers. */
+    optional Filter.ModemIdentifiers identifiers = 2;
+    optional string search = 3;
+    /* Select by high pressure line status. */
+    repeated Valve.HighPressureLineStatus high_pressure_line_status = 4;
+    /* Select opened valves. */
+    optional bool only_opened_valve = 5;
+    /* Select closed valves. */
+    optional bool only_closed_valve = 6;
+}

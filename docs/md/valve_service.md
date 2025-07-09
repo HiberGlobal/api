@@ -1,26 +1,50 @@
-# email_notifications.proto
+# valve_service.proto
 
 
 
-#### This file was generated from [email_notifications.proto](https://github.com/HiberGlobal/api/blob/master/email_notifications.proto).
+#### This file was generated from [valve_service.proto](https://github.com/HiberGlobal/api/blob/master/valve_service.proto).
 
 ## Table of Contents
 
 - Services
-  - [EmailNotificationPreferencesService](#emailnotificationpreferencesservice)
+  - [ValveService](#valveservice)
 
 - Messages
-  - [EmailHistorySelection](#emailhistoryselection)
-  - [EmailNotificationHistoryRequest](#emailnotificationhistoryrequest)
-  - [EmailNotificationHistoryRequest.Response](#emailnotificationhistoryrequestresponse)
-  - [EmailNotificationHistoryRequest.Response.Email](#emailnotificationhistoryrequestresponseemail)
-  - [EmailNotificationPreferences](#emailnotificationpreferences)
-  - [RemoveAllEmailNotificationPreferencesRequest](#removeallemailnotificationpreferencesrequest)
-  - [RemoveAllEmailNotificationPreferencesRequest.Response](#removeallemailnotificationpreferencesrequestresponse)
-  - [UpdateEmailNotificationPreferencesRequest](#updateemailnotificationpreferencesrequest)
-  - [ViewEmailNotificationPreferencesRequest](#viewemailnotificationpreferencesrequest)
+  - [BleedHighPressureLine](#bleedhighpressureline)
+  - [BleedHighPressureLine.Request](#bleedhighpressurelinerequest)
+  - [BleedHighPressureLine.Response](#bleedhighpressurelineresponse)
+  - [ConfirmHighPressureLineIsZero](#confirmhighpressurelineiszero)
+  - [ConfirmHighPressureLineIsZero.Request](#confirmhighpressurelineiszerorequest)
+  - [ConfirmHighPressureLineIsZero.Response](#confirmhighpressurelineiszeroresponse)
+  - [ConfirmHighPressureLineUnderPressure](#confirmhighpressurelineunderpressure)
+  - [ConfirmHighPressureLineUnderPressure.Request](#confirmhighpressurelineunderpressurerequest)
+  - [ConfirmHighPressureLineUnderPressure.Response](#confirmhighpressurelineunderpressureresponse)
+  - [ConfirmValveIsReset](#confirmvalveisreset)
+  - [ConfirmValveIsReset.Request](#confirmvalveisresetrequest)
+  - [ConfirmValveIsReset.Response](#confirmvalveisresetresponse)
+  - [InitializeValve](#initializevalve)
+  - [InitializeValve.Request](#initializevalverequest)
+  - [InitializeValve.Response](#initializevalveresponse)
+  - [ListValve](#listvalve)
+  - [ListValve.Request](#listvalverequest)
+  - [ListValve.Response](#listvalveresponse)
+  - [OperateValve](#operatevalve)
+  - [OperateValve.Request](#operatevalverequest)
+  - [OperateValve.Response](#operatevalveresponse)
+  - [ResetValve](#resetvalve)
+  - [ResetValve.Request](#resetvalverequest)
+  - [ResetValve.Response](#resetvalveresponse)
 
 - Enums
+  - [ListValve.Sort](#listvalvesort)
+
+- Referenced messages from [valve.proto](#referenced-messages-from-valveproto)
+  - [hiber.valve.Valve](#hibervalvevalve)
+  - [hiber.valve.Valve.ValveProcess](#hibervalvevalvevalveprocess)
+  - [hiber.valve.ValveSelection](#hibervalvevalveselection)
+
+    - [hiber.valve.Valve.HighPressureLineStatus](#hibervalvevalvehighpressurelinestatus)
+    - [hiber.valve.Valve.Operation](#hibervalvevalveoperation)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -76,129 +100,367 @@
 - [Scalar Value Types](#scalar-value-types)
 
 
-## EmailNotificationPreferencesService
+## ValveService
+List valve actuators and process valve to control high pressure line.
+Switch valve actuator to control the high pressure line by sending downlink command message to LoRaWAN network server,
+- Operation.BLEED_HIGH_PRESSURE_LINE
+- Operation.RESET_VALVE
+The operator should verify and make sure the high pressure line status is changed before updating it.
+- Operation.CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO
+- Operation.CONFIRM_VALVE_IS_RESET
+- Operation.CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE
 
+### List
+> **rpc** List([ListValve.Request](#listvalverequest))
+    [ListValve.Response](#listvalveresponse)
 
-### View
-> **rpc** View([ViewEmailNotificationPreferencesRequest](#viewemailnotificationpreferencesrequest))
-    [EmailNotificationPreferences](#emailnotificationpreferences)
+List Valves in your organization.
 
+### Initialize
+> **rpc** Initialize([InitializeValve.Request](#initializevalverequest))
+    [InitializeValve.Response](#initializevalveresponse)
 
+Initialize high pressure line status.
 
-### Update
-> **rpc** Update([UpdateEmailNotificationPreferencesRequest](#updateemailnotificationpreferencesrequest))
-    [EmailNotificationPreferences](#emailnotificationpreferences)
+### Operate
+> **rpc** Operate([OperateValve.Request](#operatevalverequest))
+    [OperateValve.Response](#operatevalveresponse)
 
+Operate valve to control high pressure line.
 
+### BleedHighPressureLine
+> **rpc** BleedHighPressureLine([BleedHighPressureLine.Request](#bleedhighpressurelinerequest))
+    [BleedHighPressureLine.Response](#bleedhighpressurelineresponse)
 
-### Delete
-> **rpc** Delete([RemoveAllEmailNotificationPreferencesRequest](#removeallemailnotificationpreferencesrequest))
-    [RemoveAllEmailNotificationPreferencesRequest.Response](#removeallemailnotificationpreferencesrequestresponse)
+Open valve to bleed high pressure line.
+Send a downlink command to LoRaWAN LNS to open the valve actuator.
+High pressure line status should be changed: PRESSURIZED -> ZERO
 
+### ConfirmHighPressureLineIsZero
+> **rpc** ConfirmHighPressureLineIsZero([ConfirmHighPressureLineIsZero.Request](#confirmhighpressurelineiszerorequest))
+    [ConfirmHighPressureLineIsZero.Response](#confirmhighpressurelineiszeroresponse)
 
+Confirm high pressure line pressure is 0 bar.
+High pressure line status can only be updated after operator's confirmation:
+High pressure line status is confirmed: ZERO
 
-### History
-> **rpc** History([EmailNotificationHistoryRequest](#emailnotificationhistoryrequest))
-    [EmailNotificationHistoryRequest.Response](#emailnotificationhistoryrequestresponse)
+### ResetValve
+> **rpc** ResetValve([ResetValve.Request](#resetvalverequest))
+    [ResetValve.Response](#resetvalveresponse)
 
+Reset valve.
+Send a downlink command to LoRaWAN LNS to close the valve actuator.
+High pressure line status should be changed: ZERO -> READY_TO_BE_PRESSURIZED
 
+### ConfirmValveIsReset
+> **rpc** ConfirmValveIsReset([ConfirmValveIsReset.Request](#confirmvalveisresetrequest))
+    [ConfirmValveIsReset.Response](#confirmvalveisresetresponse)
+
+Confirm valve is reset.
+High pressure line status can only be updated after operator's confirmation:
+High pressure line status is confirmed: READY_TO_BE_PRESSURIZED
+
+### ConfirmHighPressureLineUnderPressure
+> **rpc** ConfirmHighPressureLineUnderPressure([ConfirmHighPressureLineUnderPressure.Request](#confirmhighpressurelineunderpressurerequest))
+    [ConfirmHighPressureLineUnderPressure.Response](#confirmhighpressurelineunderpressureresponse)
+
+Confirm high pressure line under pressure.
+The operator is required to manually operate the high pressure line to make it PRESSURIZED
+High pressure line status can only be updated after operator confirmation:
+High pressure line status is confirmed: PRESSURIZED
 
 
 ## Messages
 
-### EmailHistorySelection
+### BleedHighPressureLine
+
+Open valve to bleed high pressure line.
+Send a downlink command to LoRaWAN LNS to open the valve actuator.
+High pressure line status should be changed: PRESSURIZED -> ZERO
 
 
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) |  |
-|  **optional** only_failures | [optional bool](#bool) |  |
-
-### EmailNotificationHistoryRequest
+### BleedHighPressureLine.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** selection | [optional EmailHistorySelection](#emailhistoryselection) |  |
-|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+|  **optional** selection | [optional ValveSelection](#valveselection) | Select which valves to add process. |
 
-### EmailNotificationHistoryRequest.Response
+### BleedHighPressureLine.Response
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| emails | [repeated EmailNotificationHistoryRequest.Response.Email](#emailnotificationhistoryrequestresponseemail) |  |
-| request | [ EmailNotificationHistoryRequest](#emailnotificationhistoryrequest) |  |
+| valve | [ Valve](#valve) |  |
+| request | [ BleedHighPressureLine.Request](#bleedhighpressurelinerequest) |  |
+
+### ConfirmHighPressureLineIsZero
+
+Confirm high pressure line pressure is 0 bar.
+High pressure line status can only be updated after operator's confirmation:
+High pressure line status is confirmed: ZERO
+
+
+### ConfirmHighPressureLineIsZero.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional ValveSelection](#valveselection) | Select which valves to add process. |
+
+### ConfirmHighPressureLineIsZero.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| valve | [ Valve](#valve) |  |
+| request | [ ConfirmHighPressureLineIsZero.Request](#confirmhighpressurelineiszerorequest) |  |
+
+### ConfirmHighPressureLineUnderPressure
+
+Confirm high pressure line under pressure.
+The operator is required to manually operate the high pressure line to make it PRESSURIZED
+High pressure line status can only be updated after operator confirmation:
+High pressure line status is confirmed: PRESSURIZED
+
+
+### ConfirmHighPressureLineUnderPressure.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional ValveSelection](#valveselection) | Select which valves to add process. |
+
+### ConfirmHighPressureLineUnderPressure.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| valve | [ Valve](#valve) |  |
+| request | [ ConfirmHighPressureLineUnderPressure.Request](#confirmhighpressurelineunderpressurerequest) |  |
+
+### ConfirmValveIsReset
+
+Confirm valve is reset.
+High pressure line status can only be updated after operator's confirmation:
+High pressure line status is confirmed: READY_TO_BE_PRESSURIZED
+
+
+### ConfirmValveIsReset.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional ValveSelection](#valveselection) | Select which valves to add process. |
+
+### ConfirmValveIsReset.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| valve | [ Valve](#valve) |  |
+| request | [ ConfirmValveIsReset.Request](#confirmvalveisresetrequest) |  |
+
+### InitializeValve
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| init_high_pressure_line_status | [ Valve.HighPressureLineStatus](#valvehighpressurelinestatus) | Initialize high pressure line status. |
+
+### InitializeValve.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional ValveSelection](#valveselection) | Select which valves to add process. |
+| initialize_valve | [ InitializeValve](#initializevalve) | Valve process to add. |
+
+### InitializeValve.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| valve | [ Valve](#valve) |  |
+| request | [ InitializeValve.Request](#initializevalverequest) |  |
+
+### ListValve
+
+
+
+
+### ListValve.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional ValveSelection](#valveselection) | Select which valves to return. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Paginate through results. |
+| sort_by | [repeated ListValve.Sort](#listvalvesort) | Sort the valves with the given sort options. |
+
+### ListValve.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| valves | [repeated Valve](#valve) |  |
+| request | [ ListValve.Request](#listvalverequest) |  |
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
-### EmailNotificationHistoryRequest.Response.Email
+### OperateValve
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| time | [ hiber.Timestamp](#hibertimestamp) |  |
-| title | [ string](#string) |  |
-| successful | [ bool](#bool) |  |
-| error | [ string](#string) |  |
+| operation | [ Valve.Operation](#valveoperation) | Valve operation to evolve. |
 
-### EmailNotificationPreferences
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) | The organization that owns this publisher |
-| enabled_notifications | [ hiber.Filter.Events](#hiberfilterevents) | Events to receive by email. |
-| filter_modems | [ hiber.Filter.Modems](#hiberfiltermodems) | Filter events by modems. |
-| filter_tags | [ hiber.Filter.Tags](#hiberfiltertags) | Filter events by tags. |
-| filter_health_levels | [repeated string](#string) | Filter events by health level caused. |
-| user_id | [ string](#string) | User who created this publisher. |
-| active | [ bool](#bool) | Whether email is active for this user/address. |
-
-### RemoveAllEmailNotificationPreferencesRequest
+### OperateValve.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional ValveSelection](#valveselection) | Select which valves to add process. |
+| operate_valve | [ OperateValve](#operatevalve) | Valve operation process to evolve. |
 
-### RemoveAllEmailNotificationPreferencesRequest.Response
+### OperateValve.Response
 
 
 
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| valve | [ Valve](#valve) |  |
+| request | [ OperateValve.Request](#operatevalverequest) |  |
 
-### UpdateEmailNotificationPreferencesRequest
+### ResetValve
+
+Reset valve.
+Send a downlink command to LoRaWAN LNS to close the valve actuator.
+High pressure line status should be changed: ZERO -> READY_TO_BE_PRESSURIZED
+
+
+### ResetValve.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** enabled_notifications | [optional hiber.Filter.Events](#hiberfilterevents) | Events to receive by email. An empty value enables email for all events. |
-|  **optional** deprecated_enabled_notifications | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) | <strong>Deprecated.</strong>  |
-|  **optional** filter_modems | [optional hiber.Filter.Modems](#hiberfiltermodems) | Filter events by modems. An empty value enables email for every modem's events. |
-|  **optional** deprecated_filter_modems | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | <strong>Deprecated.</strong>  |
-|  **optional** filter_tags | [optional hiber.Filter.Tags](#hiberfiltertags) | Filter events by tags. An empty value enables email for all tags. |
-|  **optional** deprecated_filter_tags | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | <strong>Deprecated.</strong>  |
-| add_health_levels_to_filter | [repeated string](#string) | Add health levels to the health levels filter. |
-| remove_health_levels_from_filter | [repeated string](#string) | Remove health levels from the health levels filter. |
+|  **optional** selection | [optional ValveSelection](#valveselection) | Select which valves to add process. |
 
-### ViewEmailNotificationPreferencesRequest
+### ResetValve.Response
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| valve | [ Valve](#valve) |  |
+| request | [ ResetValve.Request](#resetvalverequest) |  |
 
 
 ## Enums
+### ListValve.Sort
+Sorting options for the results.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| NAME_ASC | Sort alphabetically on the name of the valve, in ascending order. Default. | 0 |
+| NAME_DESC | Sort alphabetically on the name of the valve, in descending order. | 1 |
+
+
+
+## Referenced messages from valve.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [valve.proto](https://github.com/HiberGlobal/api/blob/master/valve.proto).
+
+
+### hiber.valve.Valve
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| number | [ string](#string) | An 8-character hexadecimal string |
+| organization | [ string](#string) |  |
+| external_device_id | [ string](#string) |  |
+| name | [ string](#string) |  |
+| device_type | [ string](#string) |  |
+| open | [ bool](#bool) | Valve actuator status: open or closed. |
+|  **optional** leak | [optional bool](#bool) |  |
+|  **optional** fraud | [optional bool](#bool) |  |
+|  **optional** remaining_battery_voltage | [optional int64](#int64) |  |
+|  **optional** last_process | [optional hiber.valve.Valve.ValveProcess](#hibervalvevalvevalveprocess) |  |
+
+### hiber.valve.Valve.ValveProcess
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| modem_number | [ string](#string) | Modem valve actuator number. |
+| operation | [ hiber.valve.Valve.Operation](#hibervalvevalveoperation) | Operation from technician. |
+| operation_at | [ hiber.Timestamp](#hibertimestamp) | Time that the operation was executed. |
+| high_pressure_line_status | [ hiber.valve.Valve.HighPressureLineStatus](#hibervalvevalvehighpressurelinestatus) | High pressure line status after the operation. |
+
+### hiber.valve.ValveSelection
+
+Selection object for valve.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** numbers | [optional hiber.Filter.Modems](#hiberfiltermodems) | Select by valve numbers. |
+|  **optional** identifiers | [optional hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) | Select by external device identifiers. |
+|  **optional** search | [optional string](#string) |  |
+| high_pressure_line_status | [repeated hiber.valve.Valve.HighPressureLineStatus](#hibervalvevalvehighpressurelinestatus) | Select by high pressure line status. |
+|  **optional** only_opened_valve | [optional bool](#bool) | Select opened valves. |
+|  **optional** only_closed_valve | [optional bool](#bool) | Select closed valves. |
+
+
+### Enums
+#### hiber.valve.Valve.HighPressureLineStatus
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| ZERO | High pressure line = 0 bar. | 0 |
+| PRESSURIZED | High pressure line pressurized. | 1 |
+| READY_TO_BE_PRESSURIZED | High pressure line ready to be pressurized. High pressure line requires manual operation to change status to PRESSURIZED. | 2 |
+
+#### hiber.valve.Valve.Operation
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| NO_OPERATION | If no choice is made, fall back to no-operation | 0 |
+| BLEED_HIGH_PRESSURE_LINE | Open valve to bleed high pressure line. Send a downlink command to LoRaWAN LNS to open the valve actuator. High pressure line status should be changed: PRESSURIZED -> ZERO | 1 |
+| CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO | Confirm high pressure line pressure is 0 bar. High pressure line status can only be updated after operator's confirmation: High pressure line status is confirmed: ZERO | 2 |
+| RESET_VALVE | Reset valve. Send a downlink command to LoRaWAN LNS to close the valve actuator. High pressure line status should be changed: ZERO -> READY_TO_BE_PRESSURIZED | 3 |
+| CONFIRM_VALVE_IS_RESET | Confirm valve is reset. High pressure line status can only be updated after operator's confirmation: High pressure line status is confirmed: READY_TO_BE_PRESSURIZED | 4 |
+| CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE | Confirm high pressure line under pressure. The operator is required to manually operate the high pressure line to make it PRESSURIZED High pressure line status can only be updated after operator confirmation: High pressure line status is confirmed: PRESSURIZED | 5 |
+
 
 
 ## Referenced messages from base.proto

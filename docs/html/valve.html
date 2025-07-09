@@ -175,51 +175,31 @@
         
           
           <li>
-            <a href="#email_notifications.proto">email_notifications.proto</a>
+            <a href="#valve.proto">valve.proto</a>
             <ul>
               
                 <li>
-                  <a href="#hiber.email.EmailHistorySelection"><span class="badge">M</span>EmailHistorySelection</a>
+                  <a href="#hiber.valve.Valve"><span class="badge">M</span>Valve</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.email.EmailNotificationHistoryRequest"><span class="badge">M</span>EmailNotificationHistoryRequest</a>
+                  <a href="#hiber.valve.Valve.ValveProcess"><span class="badge">M</span>Valve.ValveProcess</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.email.EmailNotificationHistoryRequest.Response"><span class="badge">M</span>EmailNotificationHistoryRequest.Response</a>
+                  <a href="#hiber.valve.ValveSelection"><span class="badge">M</span>ValveSelection</a>
                 </li>
-              
-                <li>
-                  <a href="#hiber.email.EmailNotificationHistoryRequest.Response.Email"><span class="badge">M</span>EmailNotificationHistoryRequest.Response.Email</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.email.EmailNotificationPreferences"><span class="badge">M</span>EmailNotificationPreferences</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.email.RemoveAllEmailNotificationPreferencesRequest"><span class="badge">M</span>RemoveAllEmailNotificationPreferencesRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.email.RemoveAllEmailNotificationPreferencesRequest.Response"><span class="badge">M</span>RemoveAllEmailNotificationPreferencesRequest.Response</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.email.UpdateEmailNotificationPreferencesRequest"><span class="badge">M</span>UpdateEmailNotificationPreferencesRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.email.ViewEmailNotificationPreferencesRequest"><span class="badge">M</span>ViewEmailNotificationPreferencesRequest</a>
-                </li>
-              
-              
               
               
                 <li>
-                  <a href="#hiber.email.EmailNotificationPreferencesService"><span class="badge">S</span>EmailNotificationPreferencesService</a>
+                  <a href="#hiber.valve.Valve.HighPressureLineStatus"><span class="badge">E</span>Valve.HighPressureLineStatus</a>
                 </li>
+              
+                <li>
+                  <a href="#hiber.valve.Valve.Operation"><span class="badge">E</span>Valve.Operation</a>
+                </li>
+              
+              
               
             </ul>
           </li>
@@ -446,12 +426,12 @@
     
       
       <div class="file-heading">
-        <h2 id="email_notifications.proto">email_notifications.proto</h2><a href="#title">Top</a>
+        <h2 id="valve.proto">valve.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
       
-        <h3 id="hiber.email.EmailHistorySelection">EmailHistorySelection</h3>
+        <h3 id="hiber.valve.Valve">Valve</h3>
         <p></p>
 
         
@@ -462,19 +442,75 @@
             <tbody>
               
                 <tr>
-                  <td>time_range</td>
-                  <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
-                  <td>optional</td>
+                  <td>number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>An 8-character hexadecimal string </p></td>
+                </tr>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>only_failures</td>
+                  <td>external_device_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>device_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>open</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Valve actuator status: open or closed. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>leak</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>fraud</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remaining_battery_voltage</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_process</td>
+                  <td><a href="#hiber.valve.Valve.ValveProcess">Valve.ValveProcess</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -482,7 +518,7 @@
 
         
       
-        <h3 id="hiber.email.EmailNotificationHistoryRequest">EmailNotificationHistoryRequest</h3>
+        <h3 id="hiber.valve.Valve.ValveProcess">Valve.ValveProcess</h3>
         <p></p>
 
         
@@ -493,107 +529,31 @@
             <tbody>
               
                 <tr>
-                  <td>organization</td>
+                  <td>modem_number</td>
                   <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>selection</td>
-                  <td><a href="#hiber.email.EmailHistorySelection">EmailHistorySelection</a></td>
-                  <td>optional</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pagination</td>
-                  <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
-                  <td>optional</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.email.EmailNotificationHistoryRequest.Response">EmailNotificationHistoryRequest.Response</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>emails</td>
-                  <td><a href="#hiber.email.EmailNotificationHistoryRequest.Response.Email">EmailNotificationHistoryRequest.Response.Email</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>request</td>
-                  <td><a href="#hiber.email.EmailNotificationHistoryRequest">EmailNotificationHistoryRequest</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Modem valve actuator number. </p></td>
                 </tr>
               
                 <tr>
-                  <td>pagination</td>
-                  <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
+                  <td>operation</td>
+                  <td><a href="#hiber.valve.Valve.Operation">Valve.Operation</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Operation from technician. </p></td>
                 </tr>
               
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.email.EmailNotificationHistoryRequest.Response.Email">EmailNotificationHistoryRequest.Response.Email</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
                 <tr>
-                  <td>time</td>
+                  <td>operation_at</td>
                   <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Time that the operation was executed. </p></td>
                 </tr>
               
                 <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
+                  <td>high_pressure_line_status</td>
+                  <td><a href="#hiber.valve.Valve.HighPressureLineStatus">Valve.HighPressureLineStatus</a></td>
                   <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>successful</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>error</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td><p>High pressure line status after the operation. </p></td>
                 </tr>
               
             </tbody>
@@ -603,8 +563,8 @@
 
         
       
-        <h3 id="hiber.email.EmailNotificationPreferences">EmailNotificationPreferences</h3>
-        <p></p>
+        <h3 id="hiber.valve.ValveSelection">ValveSelection</h3>
+        <p>Selection object for valve.</p>
 
         
           <table class="field-table">
@@ -614,218 +574,45 @@
             <tbody>
               
                 <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>The organization that owns this publisher </p></td>
-                </tr>
-              
-                <tr>
-                  <td>enabled_notifications</td>
-                  <td><a href="#hiber.Filter.Events">hiber.Filter.Events</a></td>
-                  <td></td>
-                  <td><p>Events to receive by email. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>filter_modems</td>
-                  <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
-                  <td></td>
-                  <td><p>Filter events by modems. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>filter_tags</td>
-                  <td><a href="#hiber.Filter.Tags">hiber.Filter.Tags</a></td>
-                  <td></td>
-                  <td><p>Filter events by tags. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>filter_health_levels</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>Filter events by health level caused. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>user_id</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>User who created this publisher. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>active</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Whether email is active for this user/address. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.email.RemoveAllEmailNotificationPreferencesRequest">RemoveAllEmailNotificationPreferencesRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.email.RemoveAllEmailNotificationPreferencesRequest.Response">RemoveAllEmailNotificationPreferencesRequest.Response</h3>
-        <p></p>
-
-        
-
-        
-      
-        <h3 id="hiber.email.UpdateEmailNotificationPreferencesRequest">UpdateEmailNotificationPreferencesRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>enabled_notifications</td>
-                  <td><a href="#hiber.Filter.Events">hiber.Filter.Events</a></td>
-                  <td>optional</td>
-                  <td><p>Events to receive by email. An empty value enables email for all events. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>deprecated_enabled_notifications</td>
-                  <td><a href="#hiber.Filter.Events.Update">hiber.Filter.Events.Update</a></td>
-                  <td>optional</td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
-                  <td>filter_modems</td>
+                  <td>numbers</td>
                   <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
                   <td>optional</td>
-                  <td><p>Filter events by modems. An empty value enables email for every modem&#39;s events. </p></td>
+                  <td><p>Select by valve numbers. </p></td>
                 </tr>
               
                 <tr>
-                  <td>deprecated_filter_modems</td>
-                  <td><a href="#hiber.Filter.Modems.Update">hiber.Filter.Modems.Update</a></td>
+                  <td>identifiers</td>
+                  <td><a href="#hiber.Filter.ModemIdentifiers">hiber.Filter.ModemIdentifiers</a></td>
                   <td>optional</td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
+                  <td><p>Select by external device identifiers. </p></td>
                 </tr>
               
                 <tr>
-                  <td>filter_tags</td>
-                  <td><a href="#hiber.Filter.Tags">hiber.Filter.Tags</a></td>
-                  <td>optional</td>
-                  <td><p>Filter events by tags. An empty value enables email for all tags. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>deprecated_filter_tags</td>
-                  <td><a href="#hiber.Filter.Tags.Update">hiber.Filter.Tags.Update</a></td>
-                  <td>optional</td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
-                  <td>add_health_levels_to_filter</td>
+                  <td>search</td>
                   <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>high_pressure_line_status</td>
+                  <td><a href="#hiber.valve.Valve.HighPressureLineStatus">Valve.HighPressureLineStatus</a></td>
                   <td>repeated</td>
-                  <td><p>Add health levels to the health levels filter. </p></td>
+                  <td><p>Select by high pressure line status. </p></td>
                 </tr>
               
                 <tr>
-                  <td>remove_health_levels_from_filter</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>Remove health levels from the health levels filter. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>deprecated_enabled_notifications</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-                <tr>
-                  <td>deprecated_filter_modems</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-                <tr>
-                  <td>deprecated_filter_tags</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
-          
-
-        
-      
-        <h3 id="hiber.email.ViewEmailNotificationPreferencesRequest">ViewEmailNotificationPreferencesRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
+                  <td>only_opened_valve</td>
+                  <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                  <td><p>Select opened valves. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>only_closed_valve</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Select closed valves. </p></td>
                 </tr>
               
             </tbody>
@@ -837,50 +624,98 @@
       
 
       
-
-      
-
-      
-        <h3 id="hiber.email.EmailNotificationPreferencesService">EmailNotificationPreferencesService</h3>
+        <h3 id="hiber.valve.Valve.HighPressureLineStatus">Valve.HighPressureLineStatus</h3>
         <p></p>
         <table class="enum-table">
           <thead>
-            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
           </thead>
           <tbody>
             
               <tr>
-                <td>View</td>
-                <td><a href="#hiber.email.ViewEmailNotificationPreferencesRequest">ViewEmailNotificationPreferencesRequest</a></td>
-                <td><a href="#hiber.email.EmailNotificationPreferences">EmailNotificationPreferences</a></td>
-                <td><p></p></td>
+                <td>ZERO</td>
+                <td>0</td>
+                <td><p>High pressure line = 0 bar.</p></td>
               </tr>
             
               <tr>
-                <td>Update</td>
-                <td><a href="#hiber.email.UpdateEmailNotificationPreferencesRequest">UpdateEmailNotificationPreferencesRequest</a></td>
-                <td><a href="#hiber.email.EmailNotificationPreferences">EmailNotificationPreferences</a></td>
-                <td><p></p></td>
+                <td>PRESSURIZED</td>
+                <td>1</td>
+                <td><p>High pressure line pressurized.</p></td>
               </tr>
             
               <tr>
-                <td>Delete</td>
-                <td><a href="#hiber.email.RemoveAllEmailNotificationPreferencesRequest">RemoveAllEmailNotificationPreferencesRequest</a></td>
-                <td><a href="#hiber.email.RemoveAllEmailNotificationPreferencesRequest.Response">RemoveAllEmailNotificationPreferencesRequest.Response</a></td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>History</td>
-                <td><a href="#hiber.email.EmailNotificationHistoryRequest">EmailNotificationHistoryRequest</a></td>
-                <td><a href="#hiber.email.EmailNotificationHistoryRequest.Response">EmailNotificationHistoryRequest.Response</a></td>
-                <td><p></p></td>
+                <td>READY_TO_BE_PRESSURIZED</td>
+                <td>2</td>
+                <td><p>High pressure line ready to be pressurized.
+High pressure line requires manual operation to change status to PRESSURIZED.</p></td>
               </tr>
             
           </tbody>
         </table>
+      
+        <h3 id="hiber.valve.Valve.Operation">Valve.Operation</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>NO_OPERATION</td>
+                <td>0</td>
+                <td><p>If no choice is made, fall back to no-operation</p></td>
+              </tr>
+            
+              <tr>
+                <td>BLEED_HIGH_PRESSURE_LINE</td>
+                <td>1</td>
+                <td><p>Open valve to bleed high pressure line.
+Send a downlink command to LoRaWAN LNS to open the valve actuator.
+High pressure line status should be changed: PRESSURIZED -&gt; ZERO</p></td>
+              </tr>
+            
+              <tr>
+                <td>CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO</td>
+                <td>2</td>
+                <td><p>Confirm high pressure line pressure is 0 bar.
+High pressure line status can only be updated after operator&#39;s confirmation:
+High pressure line status is confirmed: ZERO</p></td>
+              </tr>
+            
+              <tr>
+                <td>RESET_VALVE</td>
+                <td>3</td>
+                <td><p>Reset valve.
+Send a downlink command to LoRaWAN LNS to close the valve actuator.
+High pressure line status should be changed: ZERO -&gt; READY_TO_BE_PRESSURIZED</p></td>
+              </tr>
+            
+              <tr>
+                <td>CONFIRM_VALVE_IS_RESET</td>
+                <td>4</td>
+                <td><p>Confirm valve is reset.
+High pressure line status can only be updated after operator&#39;s confirmation:
+High pressure line status is confirmed: READY_TO_BE_PRESSURIZED</p></td>
+              </tr>
+            
+              <tr>
+                <td>CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE</td>
+                <td>5</td>
+                <td><p>Confirm high pressure line under pressure.
+The operator is required to manually operate the high pressure line to make it PRESSURIZED
+High pressure line status can only be updated after operator confirmation:
+High pressure line status is confirmed: PRESSURIZED</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
 
-        
+      
+
+      
     
       
       <div class="file-heading">

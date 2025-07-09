@@ -29,9 +29,6 @@
   - [hiber.email.EmailNotificationHistoryRequest.Response](#hiberemailemailnotificationhistoryrequestresponse)
   - [hiber.email.EmailNotificationHistoryRequest.Response.Email](#hiberemailemailnotificationhistoryrequestresponseemail)
   - [hiber.email.EmailNotificationPreferences](#hiberemailemailnotificationpreferences)
-  - [hiber.email.EmailNotificationPreferences.CustomRecipient](#hiberemailemailnotificationpreferencescustomrecipient)
-  - [hiber.email.ListEmailNotificationPreferencesRequest](#hiberemaillistemailnotificationpreferencesrequest)
-  - [hiber.email.ListEmailNotificationPreferencesRequest.Response](#hiberemaillistemailnotificationpreferencesrequestresponse)
   - [hiber.email.RemoveAllEmailNotificationPreferencesRequest](#hiberemailremoveallemailnotificationpreferencesrequest)
   - [hiber.email.RemoveAllEmailNotificationPreferencesRequest.Response](#hiberemailremoveallemailnotificationpreferencesrequestresponse)
   - [hiber.email.UpdateEmailNotificationPreferencesRequest](#hiberemailupdateemailnotificationpreferencesrequest)
@@ -347,7 +344,6 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** custom | [optional hiber.email.EmailNotificationPreferences.CustomRecipient](#hiberemailemailnotificationpreferencescustomrecipient) | Custom email address preferences to get the history for. If not set, your email is used. |
 |  **optional** selection | [optional hiber.email.EmailHistorySelection](#hiberemailemailhistoryselection) |  |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
@@ -383,39 +379,8 @@ so not all messages listed here are referenced.)
 | filter_modems | [ hiber.Filter.Modems](#hiberfiltermodems) | Filter events by modems. |
 | filter_tags | [ hiber.Filter.Tags](#hiberfiltertags) | Filter events by tags. |
 | filter_health_levels | [repeated string](#string) | Filter events by health level caused. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **recipient**.user_id | [ string](#string) | User who created this publisher. Only set if no custom email address is given. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **recipient**.custom | [ hiber.email.EmailNotificationPreferences.CustomRecipient](#hiberemailemailnotificationpreferencescustomrecipient) | Custom email address. For publishers that send to an email address other than this users' email address. |
+| user_id | [ string](#string) | User who created this publisher. |
 | active | [ bool](#bool) | Whether email is active for this user/address. |
-
-### hiber.email.EmailNotificationPreferences.CustomRecipient
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| email | [ string](#string) |  |
-| name | [ string](#string) |  |
-
-### hiber.email.ListEmailNotificationPreferencesRequest
-
-List the custom recipients and their preferences. Optionally, personal email preferences can be included.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** search_email | [optional string](#string) | Search for a (partial) custom email address. |
-|  **optional** include_personal_email_preferences | [optional bool](#bool) | By default, this request only returns the email preferences for custom emails, but you can choose to view user-specific preferences as well. |
-|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
-
-### hiber.email.ListEmailNotificationPreferencesRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| email_preferences | [repeated hiber.email.EmailNotificationPreferences](#hiberemailemailnotificationpreferences) |  |
-| request | [ hiber.email.ListEmailNotificationPreferencesRequest](#hiberemaillistemailnotificationpreferencesrequest) |  |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
 ### hiber.email.RemoveAllEmailNotificationPreferencesRequest
 
@@ -424,7 +389,6 @@ List the custom recipients and their preferences. Optionally, personal email pre
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** custom | [optional hiber.email.EmailNotificationPreferences.CustomRecipient](#hiberemailemailnotificationpreferencescustomrecipient) | Custom email address preferences to disable. |
 
 ### hiber.email.RemoveAllEmailNotificationPreferencesRequest.Response
 
@@ -438,7 +402,6 @@ List the custom recipients and their preferences. Optionally, personal email pre
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** custom | [optional hiber.email.EmailNotificationPreferences.CustomRecipient](#hiberemailemailnotificationpreferencescustomrecipient) | Custom email address. Only set this if you want to send notification to an email address not associated with your user. |
 |  **optional** enabled_notifications | [optional hiber.Filter.Events](#hiberfilterevents) | Events to receive by email. An empty value enables email for all events. |
 |  **optional** deprecated_enabled_notifications | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) | <strong>Deprecated.</strong>  |
 |  **optional** filter_modems | [optional hiber.Filter.Modems](#hiberfiltermodems) | Filter events by modems. An empty value enables email for every modem's events. |
@@ -455,7 +418,6 @@ List the custom recipients and their preferences. Optionally, personal email pre
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** email | [optional string](#string) | View the configuration for any email publisher with a custom email address. Optional, should only be used if you want to get the email preferences for a custom recipient. When not set, your personal email preferences are returned. |
 
 
 ### Enums

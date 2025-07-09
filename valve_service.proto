@@ -1,0 +1,233 @@
+syntax = "proto3";
+
+package hiber.valve;
+
+import "base.proto";
+import "valve.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.valve";
+option java_outer_classname = "ValveServiceApi";
+option go_package = ".;hiber";
+
+/* List valve actuators and process valve to control high pressure line.
+ * Switch valve actuator to control the high pressure line by sending downlink command message to LoRaWAN network server,
+ * - Operation.BLEED_HIGH_PRESSURE_LINE
+ * - Operation.RESET_VALVE
+ * The operator should verify and make sure the high pressure line status is changed before updating it.
+ * - Operation.CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO
+ * - Operation.CONFIRM_VALVE_IS_RESET
+ * - Operation.CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE
+ */
+service ValveService {
+    /* List Valves in your organization. */
+    rpc List (ListValve.Request) returns (ListValve.Response);
+
+    /* Initialize high pressure line status. */
+    rpc Initialize (InitializeValve.Request) returns (InitializeValve.Response) {
+        option (permission_usage) = MODEMS;
+    };
+
+    /* Operate valve to control high pressure line. */
+    rpc Operate (OperateValve.Request) returns (OperateValve.Response) {
+        option (permission_usage) = MODEMS_UPDATE;
+        option (permission_usage) = MODEM_DOWNLINK_MESSAGES;
+    };
+
+    /* Open valve to bleed high pressure line.
+     * Send a downlink command to LoRaWAN LNS to open the valve actuator.
+     * High pressure line status should be changed: PRESSURIZED -> ZERO
+     */
+    rpc BleedHighPressureLine (BleedHighPressureLine.Request) returns (BleedHighPressureLine.Response) {
+        option (permission_usage) = MODEMS_UPDATE;
+        option (permission_usage) = MODEM_DOWNLINK_MESSAGES;
+    };
+
+    /* Confirm high pressure line pressure is 0 bar.
+     * High pressure line status can only be updated after operator's confirmation:
+     * High pressure line status is confirmed: ZERO
+     */
+    rpc ConfirmHighPressureLineIsZero (ConfirmHighPressureLineIsZero.Request) returns (ConfirmHighPressureLineIsZero.Response) {
+        option (permission_usage) = MODEMS_UPDATE;
+        option (permission_usage) = MODEM_DOWNLINK_MESSAGES;
+    };
+
+    /* Reset valve.
+     * Send a downlink command to LoRaWAN LNS to close the valve actuator.
+     * High pressure line status should be changed: ZERO -> READY_TO_BE_PRESSURIZED
+     */
+    rpc ResetValve (ResetValve.Request) returns (ResetValve.Response) {
+        option (permission_usage) = MODEMS_UPDATE;
+        option (permission_usage) = MODEM_DOWNLINK_MESSAGES;
+    };
+
+    /* Confirm valve is reset.
+     * High pressure line status can only be updated after operator's confirmation:
+     * High pressure line status is confirmed: READY_TO_BE_PRESSURIZED
+     */
+    rpc ConfirmValveIsReset (ConfirmValveIsReset.Request) returns (ConfirmValveIsReset.Response) {
+        option (permission_usage) = MODEMS_UPDATE;
+        option (permission_usage) = MODEM_DOWNLINK_MESSAGES;
+    };
+
+    /* Confirm high pressure line under pressure.
+     * The operator is required to manually operate the high pressure line to make it PRESSURIZED
+     * High pressure line status can only be updated after operator confirmation:
+     * High pressure line status is confirmed: PRESSURIZED
+     */
+    rpc ConfirmHighPressureLineUnderPressure (ConfirmHighPressureLineUnderPressure.Request) returns (ConfirmHighPressureLineUnderPressure.Response) {
+        option (permission_usage) = MODEMS_UPDATE;
+        option (permission_usage) = MODEM_DOWNLINK_MESSAGES;
+    };
+}
+
+message ListValve {
+    /* Sorting options for the results. */
+    enum Sort {
+        /* Sort alphabetically on the name of the valve, in ascending order. Default. */
+        NAME_ASC = 0;
+        /* Sort alphabetically on the name of the valve, in descending order. */
+        NAME_DESC = 1;
+    }
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select which valves to return. */
+        optional ValveSelection selection = 2;
+
+        /* Paginate through results. */
+        optional Pagination pagination = 3;
+
+        /* Sort the valves with the given sort options. */
+        repeated Sort sort_by = 4;
+    }
+    message Response {
+        repeated Valve valves = 1;
+        Request request = 2;
+        Pagination.Result pagination = 3;
+    }
+}
+
+message InitializeValve {
+    /* Initialize high pressure line status. */
+    Valve.HighPressureLineStatus init_high_pressure_line_status = 1;
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+        /* Select which valves to add process. */
+        optional ValveSelection selection = 2;
+        /* Valve process to add. */
+        InitializeValve initialize_valve = 3;
+    }
+    message Response {
+        Valve valve = 1;
+        Request request = 2;
+    }
+}
+
+message OperateValve {
+    /* Valve operation to evolve. */
+    Valve.Operation operation = 1;
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+        /* Select which valves to add process. */
+        optional ValveSelection selection = 2;
+        /* Valve operation process to evolve. */
+        OperateValve operate_valve = 3;
+    }
+    message Response {
+        Valve valve = 1;
+        Request request = 2;
+    }
+}
+
+/* Open valve to bleed high pressure line.
+ * Send a downlink command to LoRaWAN LNS to open the valve actuator.
+ * High pressure line status should be changed: PRESSURIZED -> ZERO
+ */
+message BleedHighPressureLine {
+    message Request{
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+        /* Select which valves to add process. */
+        optional ValveSelection selection = 2;
+    }
+    message Response {
+        Valve valve = 1;
+        Request request = 2;
+    }
+};
+
+/* Confirm high pressure line pressure is 0 bar.
+ * High pressure line status can only be updated after operator's confirmation:
+ * High pressure line status is confirmed: ZERO
+ */
+message ConfirmHighPressureLineIsZero {
+    message Request{
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+        /* Select which valves to add process. */
+        optional ValveSelection selection = 2;
+    }
+    message Response {
+        Valve valve = 1;
+        Request request = 2;
+    }
+};
+
+/* Reset valve.
+ * Send a downlink command to LoRaWAN LNS to close the valve actuator.
+ * High pressure line status should be changed: ZERO -> READY_TO_BE_PRESSURIZED
+ */
+message ResetValve {
+    message Request{
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+        /* Select which valves to add process. */
+        optional ValveSelection selection = 2;
+    }
+    message Response {
+        Valve valve = 1;
+        Request request = 2;
+    }
+};
+
+/* Confirm valve is reset.
+ * High pressure line status can only be updated after operator's confirmation:
+ * High pressure line status is confirmed: READY_TO_BE_PRESSURIZED
+ */
+message ConfirmValveIsReset {
+    message Request{
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+        /* Select which valves to add process. */
+        optional ValveSelection selection = 2;
+    }
+    message Response {
+        Valve valve = 1;
+        Request request = 2;
+    }
+};
+
+/* Confirm high pressure line under pressure.
+ * The operator is required to manually operate the high pressure line to make it PRESSURIZED
+ * High pressure line status can only be updated after operator confirmation:
+ * High pressure line status is confirmed: PRESSURIZED
+ */
+message ConfirmHighPressureLineUnderPressure {
+    message Request{
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+        /* Select which valves to add process. */
+        optional ValveSelection selection = 2;
+    }
+    message Response {
+        Valve valve = 1;
+        Request request = 2;
+    }
+};
+

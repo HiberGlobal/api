@@ -89,7 +89,11 @@ message UpdateDevice {
     optional hiber.modem.Modem.Lifecycle lifecycle = 10;
 
     /* Sets the interval this devices is transmitting on.
-     * Mainly useful for devices that have a regular interval for transmissions. */
+     * For devices that are capable of remote configuration,
+     * this will also (try to) update the configuration on the device.
+     * If the device (or Mission Control) does not support remote configuration,
+     * this field is considered documentation.
+     */
     optional Duration transmission_interval = 11;
 
     /* Update the expected transmission rate.

@@ -10,9 +10,6 @@ option java_outer_classname = "EmailNotificationsApi";
 option go_package = ".;hiber";
 
 service EmailNotificationPreferencesService {
-    rpc List (ListEmailNotificationPreferencesRequest) returns (ListEmailNotificationPreferencesRequest.Response) {
-        option (permission_usage) = PUBLISHERS;
-    }
     rpc View (ViewEmailNotificationPreferencesRequest) returns (EmailNotificationPreferences) {
         /* Only when viewing email publishers that are not yours. */
         option (permission_usage) = PUBLISHERS;
@@ -32,11 +29,6 @@ service EmailNotificationPreferencesService {
 }
 
 message EmailNotificationPreferences {
-    message CustomRecipient {
-        string email = 1;
-        string name = 2;
-    }
-
     /* The organization that owns this publisher */
     string organization = 1;
 
@@ -52,58 +44,23 @@ message EmailNotificationPreferences {
     /* Filter events by health level caused. */
     repeated string filter_health_levels = 8;
 
-    oneof recipient {
-        /* User who created this publisher. Only set if no custom email address is given. */
-        string user_id = 5;
-        /* Custom email address. For publishers that send to an email address other than this users' email address. */
-        CustomRecipient custom = 6;
-    }
+    /* User who created this publisher. */
+    string user_id = 5;
 
     /* Whether email is active for this user/address. */
     bool active = 7;
-}
 
-/* List the custom recipients and their preferences. Optionally, personal email preferences can be included. */
-message ListEmailNotificationPreferencesRequest {
-    message Response {
-        repeated EmailNotificationPreferences email_preferences = 1;
-        ListEmailNotificationPreferencesRequest request = 2;
-        Pagination.Result pagination = 3;
-    }
-
-    /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-    optional string organization = 1;
-
-    /* Search for a (partial) custom email address. */
-    optional string search_email = 2;
-
-    /* By default, this request only returns the email preferences for custom emails,
-     * but you can choose to view user-specific preferences as well.
-     */
-    optional bool include_personal_email_preferences = 3;
-
-    optional Pagination pagination = 4;
+    reserved 6;
 }
 
 message ViewEmailNotificationPreferencesRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     optional string organization = 1;
-
-    /* View the configuration for any email publisher with a custom email address.
-     * Optional, should only be used if you want to get the email preferences for a custom recipient.
-     * When not set, your personal email preferences are returned.
-     */
-    optional string email = 2;
 }
 
 message UpdateEmailNotificationPreferencesRequest {
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     optional string organization = 1;
-
-    /* Custom email address.
-     * Only set this if you want to send notification to an email address not associated with your user.
-     */
-    optional EmailNotificationPreferences.CustomRecipient custom = 2;
 
     /* Events to receive by email. An empty value enables email for all events. */
     optional Filter.Events enabled_notifications = 8;
@@ -129,9 +86,6 @@ message RemoveAllEmailNotificationPreferencesRequest {
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     optional string organization = 1;
-
-    /* Custom email address preferences to disable. */
-    optional EmailNotificationPreferences.CustomRecipient custom = 2;
 }
 
 message EmailHistorySelection {
@@ -155,9 +109,6 @@ message EmailNotificationHistoryRequest {
 
     /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
     optional string organization = 1;
-
-    /* Custom email address preferences to get the history for. If not set, your email is used. */
-    optional EmailNotificationPreferences.CustomRecipient custom = 2;
 
     optional EmailHistorySelection selection = 3;
     optional Pagination pagination = 4;

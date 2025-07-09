@@ -1,0 +1,8 @@
+[{
+  "name": "Sort",
+  "description": "Sorting options for the results.",
+  "values": {
+    "NAME_ASC": "Sort alphabetically on the name of the valve, in ascending order. Default."
+    , "NAME_DESC": "Sort alphabetically on the name of the valve, in descending order."
+    }
+}]

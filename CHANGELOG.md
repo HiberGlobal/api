@@ -1,5 +1,19 @@
 # Changelog Hiber API
 
+### 0.245 (2025-07-09)
+
+##### EmailNotificationPreferencesService
+
+- Removed unused `custom` option from `EmailNotificationPreferences`.
+  - Removed `EmailNotificationPreferencesService.CustomRecipient`.
+  - Removed `oneof recipient` since it is now always `user_id`.
+  - Removed `rpc List` and `ListEmailNotificationPreferencesRequest` and `ViewEmailNotificationPreferencesRequest.email` which were used to view customer email publishers.
+  - Removed `custom` from `UpdateEmailNotificationPreferencesRequest`, `RemoveAllEmailNotificationPreferencesRequest` and `EmailNotificationHistoryRequest`.
+
+##### ValveService
+
+- Added the `Valve` and `ValveService` for `Valve`-specific operations.
+
 ### 0.244 (2025-07-02)
 
 ##### DeviceTypeService

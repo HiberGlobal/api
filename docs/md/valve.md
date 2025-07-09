@@ -1,26 +1,21 @@
-# email_notifications.proto
+# valve.proto
 
 
 
-#### This file was generated from [email_notifications.proto](https://github.com/HiberGlobal/api/blob/master/email_notifications.proto).
+#### This file was generated from [valve.proto](https://github.com/HiberGlobal/api/blob/master/valve.proto).
 
 ## Table of Contents
 
-- Services
-  - [EmailNotificationPreferencesService](#emailnotificationpreferencesservice)
+
 
 - Messages
-  - [EmailHistorySelection](#emailhistoryselection)
-  - [EmailNotificationHistoryRequest](#emailnotificationhistoryrequest)
-  - [EmailNotificationHistoryRequest.Response](#emailnotificationhistoryrequestresponse)
-  - [EmailNotificationHistoryRequest.Response.Email](#emailnotificationhistoryrequestresponseemail)
-  - [EmailNotificationPreferences](#emailnotificationpreferences)
-  - [RemoveAllEmailNotificationPreferencesRequest](#removeallemailnotificationpreferencesrequest)
-  - [RemoveAllEmailNotificationPreferencesRequest.Response](#removeallemailnotificationpreferencesrequestresponse)
-  - [UpdateEmailNotificationPreferencesRequest](#updateemailnotificationpreferencesrequest)
-  - [ViewEmailNotificationPreferencesRequest](#viewemailnotificationpreferencesrequest)
+  - [Valve](#valve)
+  - [Valve.ValveProcess](#valvevalveprocess)
+  - [ValveSelection](#valveselection)
 
 - Enums
+  - [Valve.HighPressureLineStatus](#valvehighpressurelinestatus)
+  - [Valve.Operation](#valveoperation)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -75,130 +70,72 @@
 
 - [Scalar Value Types](#scalar-value-types)
 
-
-## EmailNotificationPreferencesService
-
-
-### View
-> **rpc** View([ViewEmailNotificationPreferencesRequest](#viewemailnotificationpreferencesrequest))
-    [EmailNotificationPreferences](#emailnotificationpreferences)
-
-
-
-### Update
-> **rpc** Update([UpdateEmailNotificationPreferencesRequest](#updateemailnotificationpreferencesrequest))
-    [EmailNotificationPreferences](#emailnotificationpreferences)
-
-
-
-### Delete
-> **rpc** Delete([RemoveAllEmailNotificationPreferencesRequest](#removeallemailnotificationpreferencesrequest))
-    [RemoveAllEmailNotificationPreferencesRequest.Response](#removeallemailnotificationpreferencesrequestresponse)
-
-
-
-### History
-> **rpc** History([EmailNotificationHistoryRequest](#emailnotificationhistoryrequest))
-    [EmailNotificationHistoryRequest.Response](#emailnotificationhistoryrequestresponse)
-
-
-
-
 ## Messages
 
-### EmailHistorySelection
+### Valve
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) |  |
-|  **optional** only_failures | [optional bool](#bool) |  |
+| number | [ string](#string) | An 8-character hexadecimal string |
+| organization | [ string](#string) |  |
+| external_device_id | [ string](#string) |  |
+| name | [ string](#string) |  |
+| device_type | [ string](#string) |  |
+| open | [ bool](#bool) | Valve actuator status: open or closed. |
+|  **optional** leak | [optional bool](#bool) |  |
+|  **optional** fraud | [optional bool](#bool) |  |
+|  **optional** remaining_battery_voltage | [optional int64](#int64) |  |
+|  **optional** last_process | [optional Valve.ValveProcess](#valvevalveprocess) |  |
 
-### EmailNotificationHistoryRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** selection | [optional EmailHistorySelection](#emailhistoryselection) |  |
-|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
-
-### EmailNotificationHistoryRequest.Response
+### Valve.ValveProcess
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| emails | [repeated EmailNotificationHistoryRequest.Response.Email](#emailnotificationhistoryrequestresponseemail) |  |
-| request | [ EmailNotificationHistoryRequest](#emailnotificationhistoryrequest) |  |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
+| modem_number | [ string](#string) | Modem valve actuator number. |
+| operation | [ Valve.Operation](#valveoperation) | Operation from technician. |
+| operation_at | [ hiber.Timestamp](#hibertimestamp) | Time that the operation was executed. |
+| high_pressure_line_status | [ Valve.HighPressureLineStatus](#valvehighpressurelinestatus) | High pressure line status after the operation. |
 
-### EmailNotificationHistoryRequest.Response.Email
+### ValveSelection
 
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| time | [ hiber.Timestamp](#hibertimestamp) |  |
-| title | [ string](#string) |  |
-| successful | [ bool](#bool) |  |
-| error | [ string](#string) |  |
-
-### EmailNotificationPreferences
-
-
+Selection object for valve.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | The organization that owns this publisher |
-| enabled_notifications | [ hiber.Filter.Events](#hiberfilterevents) | Events to receive by email. |
-| filter_modems | [ hiber.Filter.Modems](#hiberfiltermodems) | Filter events by modems. |
-| filter_tags | [ hiber.Filter.Tags](#hiberfiltertags) | Filter events by tags. |
-| filter_health_levels | [repeated string](#string) | Filter events by health level caused. |
-| user_id | [ string](#string) | User who created this publisher. |
-| active | [ bool](#bool) | Whether email is active for this user/address. |
-
-### RemoveAllEmailNotificationPreferencesRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-
-### RemoveAllEmailNotificationPreferencesRequest.Response
-
-
-
-
-### UpdateEmailNotificationPreferencesRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** enabled_notifications | [optional hiber.Filter.Events](#hiberfilterevents) | Events to receive by email. An empty value enables email for all events. |
-|  **optional** deprecated_enabled_notifications | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) | <strong>Deprecated.</strong>  |
-|  **optional** filter_modems | [optional hiber.Filter.Modems](#hiberfiltermodems) | Filter events by modems. An empty value enables email for every modem's events. |
-|  **optional** deprecated_filter_modems | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | <strong>Deprecated.</strong>  |
-|  **optional** filter_tags | [optional hiber.Filter.Tags](#hiberfiltertags) | Filter events by tags. An empty value enables email for all tags. |
-|  **optional** deprecated_filter_tags | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | <strong>Deprecated.</strong>  |
-| add_health_levels_to_filter | [repeated string](#string) | Add health levels to the health levels filter. |
-| remove_health_levels_from_filter | [repeated string](#string) | Remove health levels from the health levels filter. |
-
-### ViewEmailNotificationPreferencesRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** numbers | [optional hiber.Filter.Modems](#hiberfiltermodems) | Select by valve numbers. |
+|  **optional** identifiers | [optional hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) | Select by external device identifiers. |
+|  **optional** search | [optional string](#string) |  |
+| high_pressure_line_status | [repeated Valve.HighPressureLineStatus](#valvehighpressurelinestatus) | Select by high pressure line status. |
+|  **optional** only_opened_valve | [optional bool](#bool) | Select opened valves. |
+|  **optional** only_closed_valve | [optional bool](#bool) | Select closed valves. |
 
 
 ## Enums
+### Valve.HighPressureLineStatus
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| ZERO | High pressure line = 0 bar. | 0 |
+| PRESSURIZED | High pressure line pressurized. | 1 |
+| READY_TO_BE_PRESSURIZED | High pressure line ready to be pressurized. High pressure line requires manual operation to change status to PRESSURIZED. | 2 |
+
+### Valve.Operation
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| NO_OPERATION | If no choice is made, fall back to no-operation | 0 |
+| BLEED_HIGH_PRESSURE_LINE | Open valve to bleed high pressure line. Send a downlink command to LoRaWAN LNS to open the valve actuator. High pressure line status should be changed: PRESSURIZED -> ZERO | 1 |
+| CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO | Confirm high pressure line pressure is 0 bar. High pressure line status can only be updated after operator's confirmation: High pressure line status is confirmed: ZERO | 2 |
+| RESET_VALVE | Reset valve. Send a downlink command to LoRaWAN LNS to close the valve actuator. High pressure line status should be changed: ZERO -> READY_TO_BE_PRESSURIZED | 3 |
+| CONFIRM_VALVE_IS_RESET | Confirm valve is reset. High pressure line status can only be updated after operator's confirmation: High pressure line status is confirmed: READY_TO_BE_PRESSURIZED | 4 |
+| CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE | Confirm high pressure line under pressure. The operator is required to manually operate the high pressure line to make it PRESSURIZED High pressure line status can only be updated after operator confirmation: High pressure line status is confirmed: PRESSURIZED | 5 |
+
 
 
 ## Referenced messages from base.proto

@@ -1063,7 +1063,10 @@ Must set this explicitly to prevent accidental loss of notes. </p></td>
                   <td><a href="#hiber.Duration">hiber.Duration</a></td>
                   <td>optional</td>
                   <td><p>Sets the interval this devices is transmitting on.
-Mainly useful for devices that have a regular interval for transmissions. </p></td>
+For devices that are capable of remote configuration,
+this will also (try to) update the configuration on the device.
+If the device (or Mission Control) does not support remote configuration,
+this field is considered documentation. </p></td>
                 </tr>
               
                 <tr>
