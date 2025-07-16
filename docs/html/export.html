@@ -231,6 +231,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.export.Export.Configuration.ProcessPointValues"><span class="badge">M</span>Export.Configuration.ProcessPointValues</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.export.Export.File"><span class="badge">M</span>Export.File</a>
                 </li>
               
@@ -568,6 +572,14 @@ Time range is ignored for this request. </p></td>
 Time range is ignored for this request. </p></td>
                 </tr>
               
+                <tr>
+                  <td>process_point_values</td>
+                  <td><a href="#hiber.export.Export.Configuration.ProcessPointValues">Export.Configuration.ProcessPointValues</a></td>
+                  <td></td>
+                  <td><p>Get the fields for process point values.
+Time range is ignored for this request. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -846,6 +858,13 @@ The file may be a single url, or may be split into multiple parts, each with a u
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>process_point_values</td>
+                  <td><a href="#hiber.export.Export.Configuration.ProcessPointValues">Export.Configuration.ProcessPointValues</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -896,6 +915,37 @@ The file may be a single url, or may be split into multiple parts, each with a u
               
                 <tr>
                   <td>modems</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time_range</td>
+                  <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.export.Export.Configuration.ProcessPointValues">Export.Configuration.ProcessPointValues</h3>
+        <p>Export values for a set of process points.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>process_point_identifiers</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p> </p></td>
@@ -1283,9 +1333,38 @@ to flatten it to simple columns. </p></td>
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>use_process_point_in_configuration</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> Return export configuration for process point instead of asset.
+Defaults to using asset for backwards compatibility. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>use_process_point_in_configuration</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -2988,15 +3067,33 @@ This refers to things like message summary configuration.</p></td>
               </tr>
             
               <tr>
+                <td>PROCESS_POINT_CREATED</td>
+                <td>73</td>
+                <td><p>A new process point was created in your organization.</p></td>
+              </tr>
+            
+              <tr>
                 <td>ASSET_UPDATED</td>
                 <td>71</td>
                 <td><p>An asset in your organization was updated (e.g. renamed, tagged).</p></td>
               </tr>
             
               <tr>
+                <td>PROCESS_POINT_UPDATED</td>
+                <td>74</td>
+                <td><p>An process point in your organization was updated (e.g. renamed, tagged).</p></td>
+              </tr>
+            
+              <tr>
                 <td>ASSET_DELETED</td>
                 <td>72</td>
                 <td><p>An asset in your organization was deleted.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROCESS_POINT_DELETED</td>
+                <td>75</td>
+                <td><p>An process point in your organization was deleted.</p></td>
               </tr>
             
               <tr>

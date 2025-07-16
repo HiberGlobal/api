@@ -33,6 +33,7 @@ used to identify them.
   - [Modem.Peripherals](#modemperipherals)
   - [Modem.Peripherals.PeripheralsEntry](#modemperipheralsperipheralsentry)
   - [Modem.TechnicalData](#modemtechnicaldata)
+  - [Modem.ValveInfo](#modemvalveinfo)
   - [ModemMessage](#modemmessage)
   - [ModemMessage.ParsedBody](#modemmessageparsedbody)
   - [ModemMessageSelection](#modemmessageselection)
@@ -136,6 +137,14 @@ used to identify them.
     - [hiber.value.Value.Type](#hibervaluevaluetype)
     - [hiber.value.ValueAggregation](#hibervaluevalueaggregation)
     - [hiber.value.ValueTransformation](#hibervaluevaluetransformation)
+
+- Referenced messages from [valve.proto](#referenced-messages-from-valveproto)
+  - [hiber.valve.Valve](#hibervalvevalve)
+  - [hiber.valve.Valve.ValveProcess](#hibervalvevalvevalveprocess)
+  - [hiber.valve.ValveSelection](#hibervalvevalveselection)
+
+    - [hiber.valve.Valve.HighPressureLineStatus](#hibervalvevalvehighpressurelinestatus)
+    - [hiber.valve.Valve.Operation](#hibervalvevalveoperation)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -425,10 +434,12 @@ when the modem is registered into the system or when a subscription is authorize
 | is_gateway | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Whether the modem is a gateway, it has been configured as a gateway and has connected devices. Use `type` instead. |
 | is_device_connected_to_gateway | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Whether the modem is connected to a modem configured as a gateway. Use `type` instead. |
 | connected_to_gateway | [ string](#string) | <strong>Deprecated.</strong> [DEPRECATED] The modem number that this modem is connected to, if any. Use `connected_device_info.connected_to_gateway` instead. |
-| external_device_ids | [repeated string](#string) | <strong>Deprecated.</strong> [DEPRECATED] External device ids, if any. Use `connected_device_info.external_device_ids` instead. |
+| external_device_ids | [repeated string](#string) | External device ids for this sensor, gateway or valve. |
+| device_type | [ string](#string) | Device type for this modem. |
 | type | [ Modem.Type](#modemtype) | The type of modem. Used mainly to differentiate in the UI or to sort on. |
-| gateway_info | [ Modem.GatewayInfo](#modemgatewayinfo) | Additional information when this modem is a gateway. |
-| connected_device_info | [ Modem.ConnectedDeviceInfo](#modemconnecteddeviceinfo) | Additional information when this modem is a connected device. |
+|  **optional** gateway_info | [optional Modem.GatewayInfo](#modemgatewayinfo) | Additional information when this modem is a gateway. |
+|  **optional** connected_device_info | [optional Modem.ConnectedDeviceInfo](#modemconnecteddeviceinfo) | Additional information when this modem is a connected device. |
+|  **optional** valve_info | [optional Modem.ValveInfo](#modemvalveinfo) | Additional information when this modem is a connected device. |
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
 | time_zone | [ string](#string) | The timezone configured for the modem. |
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
@@ -443,8 +454,8 @@ Additional information when this modem is a connected device.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | connected_to_gateway | [ string](#string) | The gateways that this modem is connected to. This field reflects the gateway that processed the last message for this modem. If the modem is connected to multiple gateways, the last used gateway is tracked here. |
-| external_device_ids | [repeated string](#string) | External device ids for this modem. |
-| device_type | [ string](#string) | Device type for this modem. |
+| external_device_ids | [repeated string](#string) | <strong>Deprecated.</strong> External device ids for this modem. |
+| device_type | [ string](#string) | <strong>Deprecated.</strong> Device type for this modem. |
 | sensor_brand | [ string](#string) | Brand for this modem's sensor. |
 |  **optional** frequency | [optional Modem.ConnectedDeviceInfo.Frequency](#modemconnecteddeviceinfofrequency) | Frequency configured for this device. |
 
@@ -455,9 +466,9 @@ Additional information when this modem is a gateway.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | number_of_connected_devices | [ int32](#int32) |  |
-| device_type | [ string](#string) | Device type for this gateway. |
+| device_type | [ string](#string) | <strong>Deprecated.</strong> Device type for this gateway. |
 | gateway_brand | [ string](#string) | Brand for this gateway. |
-| external_device_ids | [repeated string](#string) | External device ids for this gateway. |
+| external_device_ids | [repeated string](#string) | <strong>Deprecated.</strong> External device ids for this gateway. |
 
 ### Modem.Peripherals
 
@@ -487,6 +498,15 @@ open field for peripherals like battery, sensors, etc.
 | ----- | ---- | ----------- |
 | hardware_production_batch | [ string](#string) |  |
 | manufacturer | [ string](#string) |  |
+
+### Modem.ValveInfo
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** open | [optional bool](#bool) |  |
+|  **optional** high_pressure_line_status | [optional hiber.valve.Valve.HighPressureLineStatus](#hibervalvevalvehighpressurelinestatus) |  |
 
 ### ModemMessage
 
@@ -769,6 +789,7 @@ Type can depend on the hardware itself as well as network topology.
 | OTHER | A device of which the specific type is not known | 0 |
 | GATEWAY | A device that can receive messages from sensors in the field and relay them (directly) to the satellite. Typically a LoRaWAN hub. Note that gateways also send messages themselves (e.g. a daily heartbeat). | 2 |
 | SENSOR | A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. | 3 |
+| VALVE |  | 4 |
 
 ### ModemMessage.Source
 
@@ -1185,7 +1206,9 @@ Note that the organization field specifies the organization, it is not used to u
 | EARLY_ACCESS | Used for organizations that get early access to features. | 5 |
 | EXPERIMENTAL | Used for organizations that get access to experimental features. e.g. feature work in progress. | 6 |
 | ASSETS | Access the list of assets in Mission Control. | 10 |
+| PROCESS_POINTS | Access the list of process points in Mission Control. | 13 |
 | ASSET_DASHBOARD | Use the new assets as primary data owner in Mission Control dashboards. | 11 |
+| PROCESS_POINT_DASHBOARD | Use the new process points as primary data owner in Mission Control dashboards. | 14 |
 | LOCATIONS | Display and use device and gateway locations in Mission Control. | 12 |
 
 
@@ -1200,7 +1223,7 @@ so not all messages listed here are referenced.)
 ### hiber.tag.Tag
 
 Tag in your organization.
-Tags can be assigned to devices and assets to group them together or mark a certain property.
+Tags can be assigned to devices and process points to group them together or mark a certain property.
 
 A Tag has three parts: its id in your organization, a Label that describes how it should be displayed, and
 Metadata (which is only included when using the TagService) with additional information.
@@ -1616,6 +1639,80 @@ Transform the values into a derived value.
 | ---- | ----------- | ------ |
 | DURATION | Instead of returning the value, return the amount of time a value was active. Aggregation (if applicable) is applied afterwards on the duration value. | 0 |
 | DELTA | Instead of returning the value, return the difference between the value and the previous value. Aggregation (if applicable) is applied before the delta is calculated. | 1 |
+
+
+
+## Referenced messages from valve.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [valve.proto](https://github.com/HiberGlobal/api/blob/master/valve.proto).
+
+
+### hiber.valve.Valve
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| number | [ string](#string) | An 8-character hexadecimal string |
+| organization | [ string](#string) |  |
+| external_device_id | [ string](#string) |  |
+| name | [ string](#string) |  |
+| device_type | [ string](#string) |  |
+| open | [ bool](#bool) | Valve actuator status: open or closed. |
+|  **optional** leak | [optional bool](#bool) |  |
+|  **optional** fraud | [optional bool](#bool) |  |
+|  **optional** remaining_battery_voltage | [optional int64](#int64) |  |
+|  **optional** last_process | [optional hiber.valve.Valve.ValveProcess](#hibervalvevalvevalveprocess) |  |
+| high_pressure_line_status | [ hiber.valve.Valve.HighPressureLineStatus](#hibervalvevalvehighpressurelinestatus) |  |
+
+### hiber.valve.Valve.ValveProcess
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| modem_number | [ string](#string) | Modem valve actuator number. |
+| operation | [ hiber.valve.Valve.Operation](#hibervalvevalveoperation) | Operation from technician. |
+| operation_at | [ hiber.Timestamp](#hibertimestamp) | Time that the operation was executed. |
+| high_pressure_line_status | [ hiber.valve.Valve.HighPressureLineStatus](#hibervalvevalvehighpressurelinestatus) | High pressure line status after the operation. |
+
+### hiber.valve.ValveSelection
+
+Selection object for valve.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** numbers | [optional hiber.Filter.Modems](#hiberfiltermodems) | Select by valve numbers. |
+|  **optional** identifiers | [optional hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) | Select by external device identifiers. |
+|  **optional** search | [optional string](#string) |  |
+| high_pressure_line_status | [repeated hiber.valve.Valve.HighPressureLineStatus](#hibervalvevalvehighpressurelinestatus) | Select by high pressure line status. |
+|  **optional** only_opened_valve | [optional bool](#bool) | Select opened valves. |
+|  **optional** only_closed_valve | [optional bool](#bool) | Select closed valves. |
+
+
+### Enums
+#### hiber.valve.Valve.HighPressureLineStatus
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| ZERO | High pressure line = 0 bar. | 0 |
+| PRESSURIZED | High pressure line pressurized. | 1 |
+| READY_TO_BE_PRESSURIZED | High pressure line ready to be pressurized. High pressure line requires manual operation to change status to PRESSURIZED. | 2 |
+
+#### hiber.valve.Valve.Operation
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| NO_OPERATION | If no choice is made, fall back to no-operation | 0 |
+| BLEED_HIGH_PRESSURE_LINE | Open valve to bleed high pressure line. Send a downlink command to LoRaWAN LNS to open the valve actuator. High pressure line status should be changed: PRESSURIZED -> ZERO | 1 |
+| CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO | Confirm high pressure line pressure is 0 bar. High pressure line status can only be updated after operator's confirmation: High pressure line status is confirmed: ZERO | 2 |
+| RESET_VALVE | Reset valve. Send a downlink command to LoRaWAN LNS to close the valve actuator. High pressure line status should be changed: ZERO -> READY_TO_BE_PRESSURIZED | 3 |
+| CONFIRM_VALVE_IS_RESET | Confirm valve is reset. High pressure line status can only be updated after operator's confirmation: High pressure line status is confirmed: READY_TO_BE_PRESSURIZED | 4 |
+| CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE | Confirm high pressure line under pressure. The operator is required to manually operate the high pressure line to make it PRESSURIZED High pressure line status can only be updated after operator confirmation: High pressure line status is confirmed: PRESSURIZED | 5 |
 
 
 
@@ -2168,8 +2265,11 @@ api event stream and publishers.
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
 | ASSET_CREATED | A new asset was created in your organization. | 70 |
+| PROCESS_POINT_CREATED | A new process point was created in your organization. | 73 |
 | ASSET_UPDATED | An asset in your organization was updated (e.g. renamed, tagged). | 71 |
+| PROCESS_POINT_UPDATED | An process point in your organization was updated (e.g. renamed, tagged). | 74 |
 | ASSET_DELETED | An asset in your organization was deleted. | 72 |
+| PROCESS_POINT_DELETED | An process point in your organization was deleted. | 75 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
 | DEVICE_UPDATED | A device in your organization was manually updated (e.g. renamed, tagged). | 36 |
 | DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |

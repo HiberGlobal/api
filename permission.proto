@@ -24,13 +24,22 @@ enum OrganizationPermission {
     ORGANIZATION_DELETE = 3;
 
     /* List assets, see their details */
-    ASSETS = 53;
+    ASSETS = 53 [deprecated = true];
+
+    /* List process points, see their details */
+    PROCESS_POINTS = 61;
 
     /* Create and update assets, such as their display name and tags. Includes ASSETS permission. */
-    ASSETS_UPDATE = 54;
+    ASSETS_UPDATE = 54 [deprecated = true];
+
+    /* Create and update process points, such as their display name and tags. Includes PROCESS_POINTS permission. */
+    PROCESS_POINTS_UPDATE = 62;
 
     /* Read asset values, e.g. pressure measurements. */
-    ASSETS_VALUES = 55;
+    ASSETS_VALUES = 55 [deprecated = true];
+
+    /* Read process point values, e.g. pressure measurements. */
+    PROCESS_POINTS_VALUES = 63;
 
     /* List modems, see their details and health */
     MODEMS = 10;

@@ -259,6 +259,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.modem.Modem.ValveInfo"><span class="badge">M</span>Modem.ValveInfo</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.modem.ModemMessage"><span class="badge">M</span>ModemMessage</a>
                 </li>
               
@@ -814,6 +818,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.tag.ListTagsRequest.Response.TagProcessPointCountEntry"><span class="badge">M</span>ListTagsRequest.Response.TagProcessPointCountEntry</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.tag.ListTagsRequest.Response.TagWebhookCountEntry"><span class="badge">M</span>ListTagsRequest.Response.TagWebhookCountEntry</a>
                 </li>
               
@@ -1011,6 +1019,37 @@
               
                 <li>
                   <a href="#hiber.value.ValueTransformation"><span class="badge">E</span>ValueTransformation</a>
+                </li>
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#valve.proto">valve.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#hiber.valve.Valve"><span class="badge">M</span>Valve</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.valve.Valve.ValveProcess"><span class="badge">M</span>Valve.ValveProcess</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.valve.ValveSelection"><span class="badge">M</span>ValveSelection</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#hiber.valve.Valve.HighPressureLineStatus"><span class="badge">E</span>Valve.HighPressureLineStatus</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.valve.Valve.Operation"><span class="badge">E</span>Valve.Operation</a>
                 </li>
               
               
@@ -1821,8 +1860,14 @@ Use `connected_device_info.connected_to_gateway` instead. </p></td>
                   <td>external_device_ids</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p><strong>Deprecated.</strong> [DEPRECATED] External device ids, if any.
-Use `connected_device_info.external_device_ids` instead. </p></td>
+                  <td><p>External device ids for this sensor, gateway or valve. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>device_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Device type for this modem. </p></td>
                 </tr>
               
                 <tr>
@@ -1836,14 +1881,21 @@ Used mainly to differentiate in the UI or to sort on. </p></td>
                 <tr>
                   <td>gateway_info</td>
                   <td><a href="#hiber.modem.Modem.GatewayInfo">Modem.GatewayInfo</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Additional information when this modem is a gateway. </p></td>
                 </tr>
               
                 <tr>
                   <td>connected_device_info</td>
                   <td><a href="#hiber.modem.Modem.ConnectedDeviceInfo">Modem.ConnectedDeviceInfo</a></td>
-                  <td></td>
+                  <td>optional</td>
+                  <td><p>Additional information when this modem is a connected device. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>valve_info</td>
+                  <td><a href="#hiber.modem.Modem.ValveInfo">Modem.ValveInfo</a></td>
+                  <td>optional</td>
                   <td><p>Additional information when this modem is a connected device. </p></td>
                 </tr>
               
@@ -1922,11 +1974,6 @@ Typically an image of the device installation. See the File.media_type for more 
                   <td><p>true</p></td>
                 </tr>
               
-                <tr>
-                  <td>external_device_ids</td>
-                  <td><p>true</p></td>
-                </tr>
-              
               </tbody>
             </table>
             
@@ -1957,14 +2004,14 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td>external_device_ids</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>External device ids for this modem. </p></td>
+                  <td><p><strong>Deprecated.</strong> External device ids for this modem. </p></td>
                 </tr>
               
                 <tr>
                   <td>device_type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Device type for this modem. </p></td>
+                  <td><p><strong>Deprecated.</strong> Device type for this modem. </p></td>
                 </tr>
               
                 <tr>
@@ -1984,6 +2031,32 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>external_device_ids</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>device_type</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -2009,7 +2082,7 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td>device_type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Device type for this gateway. </p></td>
+                  <td><p><strong>Deprecated.</strong> Device type for this gateway. </p></td>
                 </tr>
               
                 <tr>
@@ -2023,12 +2096,38 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td>external_device_ids</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>External device ids for this gateway. </p></td>
+                  <td><p><strong>Deprecated.</strong> External device ids for this gateway. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>device_type</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>external_device_ids</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -2123,6 +2222,37 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td>manufacturer</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.modem.Modem.ValveInfo">Modem.ValveInfo</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>open</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>high_pressure_line_status</td>
+                  <td><a href="#hiber.valve.Valve.HighPressureLineStatus">hiber.valve.Valve.HighPressureLineStatus</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -3334,6 +3464,12 @@ Note that gateways also send messages themselves (e.g. a daily heartbeat).</p></
                 <td>SENSOR</td>
                 <td>3</td>
                 <td><p>A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection.</p></td>
+              </tr>
+            
+              <tr>
+                <td>VALVE</td>
+                <td>4</td>
+                <td><p></p></td>
               </tr>
             
           </tbody>
@@ -5004,15 +5140,33 @@ This refers to things like message summary configuration.</p></td>
               </tr>
             
               <tr>
+                <td>PROCESS_POINT_CREATED</td>
+                <td>73</td>
+                <td><p>A new process point was created in your organization.</p></td>
+              </tr>
+            
+              <tr>
                 <td>ASSET_UPDATED</td>
                 <td>71</td>
                 <td><p>An asset in your organization was updated (e.g. renamed, tagged).</p></td>
               </tr>
             
               <tr>
+                <td>PROCESS_POINT_UPDATED</td>
+                <td>74</td>
+                <td><p>An process point in your organization was updated (e.g. renamed, tagged).</p></td>
+              </tr>
+            
+              <tr>
                 <td>ASSET_DELETED</td>
                 <td>72</td>
                 <td><p>An asset in your organization was deleted.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROCESS_POINT_DELETED</td>
+                <td>75</td>
+                <td><p>An process point in your organization was deleted.</p></td>
               </tr>
             
               <tr>
@@ -7348,9 +7502,21 @@ Used as an identifier for the organization. </p></td>
               </tr>
             
               <tr>
+                <td>PROCESS_POINTS</td>
+                <td>13</td>
+                <td><p>Access the list of process points in Mission Control.</p></td>
+              </tr>
+            
+              <tr>
                 <td>ASSET_DASHBOARD</td>
                 <td>11</td>
                 <td><p>Use the new assets as primary data owner in Mission Control dashboards.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROCESS_POINT_DASHBOARD</td>
+                <td>14</td>
+                <td><p>Use the new process points as primary data owner in Mission Control dashboards.</p></td>
               </tr>
             
               <tr>
@@ -7575,7 +7741,14 @@ Keep in mind the grpc request size limitation. </p></td>
                   <td>asset_count</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Count the assets for each tag in the response. </p></td>
+                  <td><p><strong>Deprecated.</strong> Count the assets for each tag in the response. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_point_count</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Count the process points for each tag in the response. </p></td>
                 </tr>
               
                 <tr>
@@ -7595,6 +7768,27 @@ Keep in mind the grpc request size limitation. </p></td>
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>asset_count</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7627,6 +7821,13 @@ Keep in mind the grpc request size limitation. </p></td>
                   <td>tag_asset_count</td>
                   <td><a href="#hiber.tag.ListTagsRequest.Response.TagAssetCountEntry">ListTagsRequest.Response.TagAssetCountEntry</a></td>
                   <td>repeated</td>
+                  <td><p><strong>Deprecated.</strong> map&lt;tag-id, count&gt; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tag_process_point_count</td>
+                  <td><a href="#hiber.tag.ListTagsRequest.Response.TagProcessPointCountEntry">ListTagsRequest.Response.TagProcessPointCountEntry</a></td>
+                  <td>repeated</td>
                   <td><p>map&lt;tag-id, count&gt; </p></td>
                 </tr>
               
@@ -7647,6 +7848,27 @@ Keep in mind the grpc request size limitation. </p></td>
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>tag_asset_count</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7713,6 +7935,37 @@ Keep in mind the grpc request size limitation. </p></td>
 
         
       
+        <h3 id="hiber.tag.ListTagsRequest.Response.TagProcessPointCountEntry">ListTagsRequest.Response.TagProcessPointCountEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="hiber.tag.ListTagsRequest.Response.TagWebhookCountEntry">ListTagsRequest.Response.TagWebhookCountEntry</h3>
         <p></p>
 
@@ -7745,7 +7998,7 @@ Keep in mind the grpc request size limitation. </p></td>
         
       
         <h3 id="hiber.tag.Tag">Tag</h3>
-        <p>Tag in your organization.</p><p>Tags can be assigned to devices and assets to group them together or mark a certain property.</p><p>A Tag has three parts: its id in your organization, a Label that describes how it should be displayed, and</p><p>Metadata (which is only included when using the TagService) with additional information.</p>
+        <p>Tag in your organization.</p><p>Tags can be assigned to devices and process points to group them together or mark a certain property.</p><p>A Tag has three parts: its id in your organization, a Label that describes how it should be displayed, and</p><p>Metadata (which is only included when using the TagService) with additional information.</p>
 
         
           <table class="field-table">
@@ -7903,6 +8156,13 @@ Typically an image of a place. See the File.media_type for more information. </p
                   <td>asset_count</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_point_count</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -7916,6 +8176,27 @@ Typically an image of a place. See the File.media_type for more information. </p
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>asset_count</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7948,7 +8229,14 @@ Typically an image of a place. See the File.media_type for more information. </p
                   <td>asset_count</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Count the assets for each tag in the response. </p></td>
+                  <td><p><strong>Deprecated.</strong> Count the assets for each tag in the response. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_point_count</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Count the process points for each tag in the response. </p></td>
                 </tr>
               
                 <tr>
@@ -7961,6 +8249,27 @@ Typically an image of a place. See the File.media_type for more information. </p
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>asset_count</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -9558,6 +9867,306 @@ Aggregation (if applicable) is applied afterwards on the duration value.</p></td
                 <td>1</td>
                 <td><p>Instead of returning the value, return the difference between the value and the previous value.
 Aggregation (if applicable) is applied before the delta is calculated.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="valve.proto">valve.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="hiber.valve.Valve">Valve</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>An 8-character hexadecimal string </p></td>
+                </tr>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>external_device_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>device_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>open</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Valve actuator status: open or closed. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>leak</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fraud</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remaining_battery_voltage</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_process</td>
+                  <td><a href="#hiber.valve.Valve.ValveProcess">Valve.ValveProcess</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>high_pressure_line_status</td>
+                  <td><a href="#hiber.valve.Valve.HighPressureLineStatus">Valve.HighPressureLineStatus</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.valve.Valve.ValveProcess">Valve.ValveProcess</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>modem_number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Modem valve actuator number. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>operation</td>
+                  <td><a href="#hiber.valve.Valve.Operation">Valve.Operation</a></td>
+                  <td></td>
+                  <td><p>Operation from technician. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>operation_at</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td></td>
+                  <td><p>Time that the operation was executed. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>high_pressure_line_status</td>
+                  <td><a href="#hiber.valve.Valve.HighPressureLineStatus">Valve.HighPressureLineStatus</a></td>
+                  <td></td>
+                  <td><p>High pressure line status after the operation. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.valve.ValveSelection">ValveSelection</h3>
+        <p>Selection object for valve.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>numbers</td>
+                  <td><a href="#hiber.Filter.Modems">hiber.Filter.Modems</a></td>
+                  <td>optional</td>
+                  <td><p>Select by valve numbers. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>identifiers</td>
+                  <td><a href="#hiber.Filter.ModemIdentifiers">hiber.Filter.ModemIdentifiers</a></td>
+                  <td>optional</td>
+                  <td><p>Select by external device identifiers. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>search</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>high_pressure_line_status</td>
+                  <td><a href="#hiber.valve.Valve.HighPressureLineStatus">Valve.HighPressureLineStatus</a></td>
+                  <td>repeated</td>
+                  <td><p>Select by high pressure line status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>only_opened_valve</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Select opened valves. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>only_closed_valve</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Select closed valves. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="hiber.valve.Valve.HighPressureLineStatus">Valve.HighPressureLineStatus</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ZERO</td>
+                <td>0</td>
+                <td><p>High pressure line = 0 bar.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PRESSURIZED</td>
+                <td>1</td>
+                <td><p>High pressure line pressurized.</p></td>
+              </tr>
+            
+              <tr>
+                <td>READY_TO_BE_PRESSURIZED</td>
+                <td>2</td>
+                <td><p>High pressure line ready to be pressurized.
+High pressure line requires manual operation to change status to PRESSURIZED.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="hiber.valve.Valve.Operation">Valve.Operation</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>NO_OPERATION</td>
+                <td>0</td>
+                <td><p>If no choice is made, fall back to no-operation</p></td>
+              </tr>
+            
+              <tr>
+                <td>BLEED_HIGH_PRESSURE_LINE</td>
+                <td>1</td>
+                <td><p>Open valve to bleed high pressure line.
+Send a downlink command to LoRaWAN LNS to open the valve actuator.
+High pressure line status should be changed: PRESSURIZED -&gt; ZERO</p></td>
+              </tr>
+            
+              <tr>
+                <td>CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO</td>
+                <td>2</td>
+                <td><p>Confirm high pressure line pressure is 0 bar.
+High pressure line status can only be updated after operator&#39;s confirmation:
+High pressure line status is confirmed: ZERO</p></td>
+              </tr>
+            
+              <tr>
+                <td>RESET_VALVE</td>
+                <td>3</td>
+                <td><p>Reset valve.
+Send a downlink command to LoRaWAN LNS to close the valve actuator.
+High pressure line status should be changed: ZERO -&gt; READY_TO_BE_PRESSURIZED</p></td>
+              </tr>
+            
+              <tr>
+                <td>CONFIRM_VALVE_IS_RESET</td>
+                <td>4</td>
+                <td><p>Confirm valve is reset.
+High pressure line status can only be updated after operator&#39;s confirmation:
+High pressure line status is confirmed: READY_TO_BE_PRESSURIZED</p></td>
+              </tr>
+            
+              <tr>
+                <td>CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE</td>
+                <td>5</td>
+                <td><p>Confirm high pressure line under pressure.
+The operator is required to manually operate the high pressure line to make it PRESSURIZED
+High pressure line status can only be updated after operator confirmation:
+High pressure line status is confirmed: PRESSURIZED</p></td>
               </tr>
             
           </tbody>

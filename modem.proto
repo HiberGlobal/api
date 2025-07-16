@@ -15,6 +15,7 @@ import "health.proto";
 import "organization.proto";
 import "tag.proto";
 import "value.proto";
+import "valve.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.modem";
@@ -134,10 +135,11 @@ message Modem {
      */
     string connected_to_gateway = 22 [deprecated = true];
 
-    /* [DEPRECATED] External device ids, if any.
-     * Use `connected_device_info.external_device_ids` instead.
-     */
-    repeated string external_device_ids = 23 [deprecated = true];
+    /* External device ids for this sensor, gateway or valve. */
+    repeated string external_device_ids = 23;
+
+    /* Device type for this modem. */
+    string device_type = 38;
 
     /* The type of modem.
      * Used mainly to differentiate in the UI or to sort on.
@@ -145,10 +147,13 @@ message Modem {
     Modem.Type type = 25;
 
     /* Additional information when this modem is a gateway. */
-    GatewayInfo gateway_info = 26;
+    optional GatewayInfo gateway_info = 26;
 
     /* Additional information when this modem is a connected device. */
-    ConnectedDeviceInfo connected_device_info = 27;
+    optional ConnectedDeviceInfo connected_device_info = 27;
+
+    /* Additional information when this modem is a connected device. */
+    optional ValveInfo valve_info = 37;
 
     /* Modem metadata, typically extracted from messages. */
     google.protobuf.Struct metadata = 31;
@@ -176,13 +181,13 @@ message Modem {
         int32 number_of_connected_devices = 1;
 
         /* Device type for this gateway. */
-        string device_type = 2;
+        string device_type = 2 [deprecated = true];
 
         /* Brand for this gateway. */
         string gateway_brand = 3;
 
         /* External device ids for this gateway. */
-        repeated string external_device_ids = 4;
+        repeated string external_device_ids = 4 [deprecated = true];
     }
 
     /* Additional information when this modem is a connected device. */
@@ -194,10 +199,10 @@ message Modem {
         string connected_to_gateway = 1;
 
         /* External device ids for this modem. */
-        repeated string external_device_ids = 2;
+        repeated string external_device_ids = 2 [deprecated = true];
 
         /* Device type for this modem. */
-        string device_type = 3;
+        string device_type = 3 [deprecated = true];
 
         /* Brand for this modem's sensor. */
         string sensor_brand = 4;
@@ -224,6 +229,11 @@ message Modem {
             /* US915-Hybrid */
             US915_HYBRID = 9;
         }
+    }
+
+    message ValveInfo {
+        optional bool open = 1;
+        optional valve.Valve.HighPressureLineStatus high_pressure_line_status = 2;
     }
 
     message TechnicalData {
@@ -300,6 +310,8 @@ message Modem {
 
         /* A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. */
         SENSOR = 3;
+
+        VALVE = 4;
 
         reserved 1;
     }

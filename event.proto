@@ -15,6 +15,7 @@ import "modem.proto";
 import "modem_alarm.proto";
 import "modem_message_body_parser.proto";
 import "organization.proto";
+import "process_point.proto";
 import "publisher.proto";
 import "tag.proto";
 import "token.proto";
@@ -42,6 +43,8 @@ service EventService {
         option (permission_usage) = ORGANIZATION_DELETE;
         /* For asset events. */
         option (permission_usage) = ASSETS;
+        /* For process point events. */
+        option (permission_usage) = PROCESS_POINTS;
         /* For modem/device-related events. */
         option (permission_usage) = MODEMS;
         /* For message events. */
@@ -74,6 +77,8 @@ service EventService {
         option (permission_usage) = ORGANIZATION_DELETE;
         /* For asset events. */
         option (permission_usage) = ASSETS;
+        /* For process point events. */
+        option (permission_usage) = PROCESS_POINTS;
         /* For modem/device-related events. */
         option (permission_usage) = MODEMS;
         /* For message events. */
@@ -106,6 +111,8 @@ service EventService {
         option (permission_usage) = ORGANIZATION_DELETE;
         /* For asset events. */
         option (permission_usage) = ASSETS;
+        /* For process point events. */
+        option (permission_usage) = PROCESS_POINTS;
         /* For modem/device-related events. */
         option (permission_usage) = MODEMS;
         /* For message events. */
@@ -225,6 +232,10 @@ message Event {
         AssetEvent.AssetUpdatedEvent asset_updated = 71;
         AssetEvent.AssetDeletedEvent asset_deleted = 72;
 
+        ProcessPointEvent.ProcessPointCreatedEvent process_point_created = 73;
+        ProcessPointEvent.ProcessPointUpdatedEvent process_point_updated = 74;
+        ProcessPointEvent.ProcessPointDeletedEvent process_point_deleted = 75;
+
         DeviceEvent.DeviceCreatedEvent device_created = 55;
         DeviceEvent.DeviceUpdatedEvent device_updated = 39;
         DeviceEvent.DeviceLocationUpdatedEvent device_location_updated = 2;
@@ -312,6 +323,49 @@ message Event {
         }
 
         message AssetDeletedEvent {
+            string organization = 1;
+            string deleted = 2;
+            Timestamp time = 3;
+            repeated tag.Tag tags = 4;
+            string title = 5;
+            string description = 6;
+        }
+    }
+
+    message ProcessPointEvent {
+        message ProcessPointCreatedEvent {
+            string organization = 1;
+            string process_point_identifier = 2;
+            processpoint.ProcessPoint process_point = 3;
+            Timestamp time = 4;
+            repeated tag.Tag tags = 5;
+            string title = 6;
+            string description = 7;
+        }
+
+        message ProcessPointUpdatedEvent {
+            message Update {
+                optional string name = 1;
+                optional string description = 2;
+                optional string notes = 3;
+                optional string time_zone = 4;
+                optional uint32 expected_transmission_rate = 5;
+                optional processpoint.ProcessPoint.Type type = 6;
+                optional google.protobuf.Struct metadata = 7;
+                optional Location location = 8;
+                repeated file.File files = 9;
+            }
+
+            string organization = 1;
+            Update updated = 2;
+            string process_point_identifier = 3;
+            Timestamp time = 4;
+            repeated tag.Tag tags = 5;
+            string title = 6;
+            string description = 7;
+        }
+
+        message ProcessPointDeletedEvent {
             string organization = 1;
             string deleted = 2;
             Timestamp time = 3;
@@ -1078,6 +1132,7 @@ message ListEventsRequest {
         ListEventsRequest request = 2;
         repeated BundledEvent events = 4;
         repeated EventTypeResponse unbundled_events = 5;
+
         reserved 1, 3;
     }
 
@@ -1105,6 +1160,11 @@ message ListEventsRequest {
      * Overrides unbundled_events in EventSelection message.
      */
     optional bool unbundled_events = 5;
+
+    /* Return events for process point instead of asset.
+     * Defaults to using asset for backwards compatibility.
+     */
+    optional bool use_process_point = 6 [deprecated = true];
 }
 
 /* Get the history of events that match the given filter, chronologically (by default, from now backwards in time).
@@ -1124,6 +1184,11 @@ message EventHistory {
         /* Select the events to list. Optional, when omitted or empty everything is included. */
         optional EventSelection selection = 2;
         optional Pagination pagination = 3;
+
+        /* Return events for process point instead of asset.
+         * Defaults to using asset for backwards compatibility.
+         */
+        optional bool use_process_point = 4 [deprecated = true];
     }
 
     message Response {
@@ -1150,6 +1215,11 @@ message EventStreamRequest {
      * Filtering on tags or publishers, for example, can only apply to the parent organization.
      */
     optional Filter.ChildOrganizations child_organizations = 3;
+
+    /* Return events for process point instead of asset.
+     * Defaults to using asset for backwards compatibility.
+     */
+    optional bool use_process_point = 4 [deprecated = true];
 }
 
 /* Get the list of events that affect device health, chronologically (by default, from now backwards in time).
@@ -1165,6 +1235,11 @@ message ModemHealthEvents {
         /* Select the events to list. Optional, when omitted or empty everything is included. */
         optional EventSelection selection = 2;
         optional Pagination pagination = 3;
+
+        /* Return events for process point instead of asset.
+         * Defaults to using asset for backwards compatibility.
+         */
+        optional bool use_process_point = 4 [deprecated = true];
     }
     message Response {
         Request request = 1;

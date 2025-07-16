@@ -23,10 +23,14 @@ option go_package = ".;hiber";
  * For example, if you have a Well, you might have assets for Annulus A and the tubing head.
  */
 message Asset {
+    option deprecated = true;
+
     /* Predefined assets types that can be used to say something about the data.
      * Currently a limited list, but more may be added in the future.
      */
     enum Type {
+        option deprecated = true;
+
         UNKNOWN = 0;
         WELL_ANNULUS_A = 1;
         WELL_ANNULUS_B = 2;
@@ -50,6 +54,8 @@ message Asset {
      * (e.g. pressure, but not battery level).
      */
     message AssignedDevice {
+        option deprecated = true;
+
         string number = 1;
         repeated string identifiers = 2;
         optional string name = 3;
@@ -113,6 +119,8 @@ message Asset {
 
 /* Selection object for assets. */
 message AssetSelection {
+    option deprecated = true;
+
     /* Select assets by identifier. */
     repeated string identifiers = 1;
 

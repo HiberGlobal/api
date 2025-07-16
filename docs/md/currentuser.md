@@ -714,7 +714,9 @@ Note that the organization field specifies the organization, it is not used to u
 | EARLY_ACCESS | Used for organizations that get early access to features. | 5 |
 | EXPERIMENTAL | Used for organizations that get access to experimental features. e.g. feature work in progress. | 6 |
 | ASSETS | Access the list of assets in Mission Control. | 10 |
+| PROCESS_POINTS | Access the list of process points in Mission Control. | 13 |
 | ASSET_DASHBOARD | Use the new assets as primary data owner in Mission Control dashboards. | 11 |
+| PROCESS_POINT_DASHBOARD | Use the new process points as primary data owner in Mission Control dashboards. | 14 |
 | LOCATIONS | Display and use device and gateway locations in Mission Control. | 12 |
 
 
@@ -1302,8 +1304,11 @@ api event stream and publishers.
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
 | ASSET_CREATED | A new asset was created in your organization. | 70 |
+| PROCESS_POINT_CREATED | A new process point was created in your organization. | 73 |
 | ASSET_UPDATED | An asset in your organization was updated (e.g. renamed, tagged). | 71 |
+| PROCESS_POINT_UPDATED | An process point in your organization was updated (e.g. renamed, tagged). | 74 |
 | ASSET_DELETED | An asset in your organization was deleted. | 72 |
+| PROCESS_POINT_DELETED | An process point in your organization was deleted. | 75 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
 | DEVICE_UPDATED | A device in your organization was manually updated (e.g. renamed, tagged). | 36 |
 | DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |

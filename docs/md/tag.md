@@ -17,6 +17,7 @@
   - [ListTagsRequest.Response](#listtagsrequestresponse)
   - [ListTagsRequest.Response.TagAssetCountEntry](#listtagsrequestresponsetagassetcountentry)
   - [ListTagsRequest.Response.TagModemCountEntry](#listtagsrequestresponsetagmodemcountentry)
+  - [ListTagsRequest.Response.TagProcessPointCountEntry](#listtagsrequestresponsetagprocesspointcountentry)
   - [ListTagsRequest.Response.TagWebhookCountEntry](#listtagsrequestresponsetagwebhookcountentry)
   - [Tag](#tag)
   - [Tag.Label](#taglabel)
@@ -167,7 +168,8 @@ Count the tags in your organization by health.
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 |  **optional** selection | [optional TagSelection](#tagselection) | Select the tags to list. Optional, when omitted or empty everything is included. |
-|  **optional** asset_count | [optional bool](#bool) | Count the assets for each tag in the response. |
+|  **optional** asset_count | [optional bool](#bool) | <strong>Deprecated.</strong> Count the assets for each tag in the response. |
+|  **optional** process_point_count | [optional bool](#bool) | Count the process points for each tag in the response. |
 |  **optional** modem_count | [optional bool](#bool) | Count the modems for each tag in the response. |
 |  **optional** webhook_count | [optional bool](#bool) | Count the webhooks for each tag in the response. |
 
@@ -179,7 +181,8 @@ Count the tags in your organization by health.
 | ----- | ---- | ----------- |
 | tags | [repeated Tag](#tag) |  |
 | request | [ ListTagsRequest](#listtagsrequest) |  |
-| tag_asset_count | [map ListTagsRequest.Response.TagAssetCountEntry](#listtagsrequestresponsetagassetcountentry) | map<tag-id, count> |
+| tag_asset_count | [map ListTagsRequest.Response.TagAssetCountEntry](#listtagsrequestresponsetagassetcountentry) | <strong>Deprecated.</strong> map<tag-id, count> |
+| tag_process_point_count | [map ListTagsRequest.Response.TagProcessPointCountEntry](#listtagsrequestresponsetagprocesspointcountentry) | map<tag-id, count> |
 | tag_modem_count | [map ListTagsRequest.Response.TagModemCountEntry](#listtagsrequestresponsetagmodemcountentry) | map<tag-id, count> |
 | tag_webhook_count | [map ListTagsRequest.Response.TagWebhookCountEntry](#listtagsrequestresponsetagwebhookcountentry) | map<webhook-id, count> |
 
@@ -201,6 +204,15 @@ Count the tags in your organization by health.
 | key | [ int64](#int64) |  |
 | value | [ int32](#int32) |  |
 
+### ListTagsRequest.Response.TagProcessPointCountEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ int64](#int64) |  |
+| value | [ int32](#int32) |  |
+
 ### ListTagsRequest.Response.TagWebhookCountEntry
 
 
@@ -213,7 +225,7 @@ Count the tags in your organization by health.
 ### Tag
 
 Tag in your organization.
-Tags can be assigned to devices and assets to group them together or mark a certain property.
+Tags can be assigned to devices and process points to group them together or mark a certain property.
 
 A Tag has three parts: its id in your organization, a Label that describes how it should be displayed, and
 Metadata (which is only included when using the TagService) with additional information.
@@ -257,7 +269,8 @@ Use the TagService.List call to get the tags with Metadata.
 | tag | [ Tag](#tag) |  |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) |  |
 | most_severe | [ bool](#bool) |  |
-| asset_count | [ uint32](#uint32) |  |
+| asset_count | [ uint32](#uint32) | <strong>Deprecated.</strong>  |
+| process_point_count | [ uint32](#uint32) |  |
 | modem_count | [ uint32](#uint32) |  |
 
 ### TagHealth.Request
@@ -268,7 +281,8 @@ Use the TagService.List call to get the tags with Metadata.
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 |  **optional** selection | [optional TagSelection](#tagselection) | Select the tags to list. Optional, when omitted or empty everything is included. |
-|  **optional** asset_count | [optional bool](#bool) | Count the assets for each tag in the response. |
+|  **optional** asset_count | [optional bool](#bool) | <strong>Deprecated.</strong> Count the assets for each tag in the response. |
+|  **optional** process_point_count | [optional bool](#bool) | Count the process points for each tag in the response. |
 |  **optional** modem_count | [optional bool](#bool) | Count the modems for each tag in the response. |
 
 ### TagHealth.Response
@@ -1023,8 +1037,11 @@ api event stream and publishers.
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
 | ASSET_CREATED | A new asset was created in your organization. | 70 |
+| PROCESS_POINT_CREATED | A new process point was created in your organization. | 73 |
 | ASSET_UPDATED | An asset in your organization was updated (e.g. renamed, tagged). | 71 |
+| PROCESS_POINT_UPDATED | An process point in your organization was updated (e.g. renamed, tagged). | 74 |
 | ASSET_DELETED | An asset in your organization was deleted. | 72 |
+| PROCESS_POINT_DELETED | An process point in your organization was deleted. | 75 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
 | DEVICE_UPDATED | A device in your organization was manually updated (e.g. renamed, tagged). | 36 |
 | DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |

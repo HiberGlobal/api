@@ -35,7 +35,7 @@ service TagService {
 }
 
 /* Tag in your organization.
- * Tags can be assigned to devices and assets to group them together or mark a certain property.
+ * Tags can be assigned to devices and process points to group them together or mark a certain property.
  *
  * A Tag has three parts: its id in your organization, a Label that describes how it should be displayed, and
  * Metadata (which is only included when using the TagService) with additional information.
@@ -108,7 +108,9 @@ message ListTagsRequest {
         repeated Tag tags = 1;
         ListTagsRequest request = 2;
         /* map<tag-id, count> */
-        map<int64, int32> tag_asset_count = 5;
+        map<int64, int32> tag_asset_count = 5 [deprecated = true];
+        /* map<tag-id, count> */
+        map<int64, int32> tag_process_point_count = 6;
         /* map<tag-id, count> */
         map<int64, int32> tag_modem_count = 3;
         /* map<webhook-id, count> */
@@ -122,7 +124,10 @@ message ListTagsRequest {
     optional TagSelection selection = 2;
 
     /* Count the assets for each tag in the response. */
-    optional bool asset_count = 5;
+    optional bool asset_count = 5 [deprecated = true];
+
+    /* Count the process points for each tag in the response. */
+    optional bool process_point_count = 6;
 
     /* Count the modems for each tag in the response. */
     optional bool modem_count = 3;
@@ -203,7 +208,8 @@ message TagHealth {
     health.HealthLevel health_level = 2;
     bool most_severe = 3;
 
-    uint32 asset_count = 4;
+    uint32 asset_count = 4 [deprecated = true];
+    uint32 process_point_count = 6;
     uint32 modem_count = 5;
 
     message Request {
@@ -214,7 +220,10 @@ message TagHealth {
         optional TagSelection selection = 2;
 
         /* Count the assets for each tag in the response. */
-        optional bool asset_count = 3;
+        optional bool asset_count = 3 [deprecated = true];
+
+        /* Count the process points for each tag in the response. */
+        optional bool process_point_count = 5;
 
         /* Count the modems for each tag in the response. */
         optional bool modem_count = 4;

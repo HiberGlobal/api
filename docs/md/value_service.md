@@ -26,6 +26,7 @@ Messages are parsed to a number of values (depending on the parser), which can b
   - [ValueContext.ValueDeviceContext](#valuecontextvaluedevicecontext)
   - [ValueContext.ValueDuration](#valuecontextvalueduration)
   - [ValueContext.ValueDurations](#valuecontextvaluedurations)
+  - [ValueContext.ValueProcessPointContext](#valuecontextvalueprocesspointcontext)
   - [ValueSelection](#valueselection)
   - [ValueSelection.ByField](#valueselectionbyfield)
   - [ValueSelection.ByValueType](#valueselectionbyvaluetype)
@@ -49,6 +50,13 @@ Messages are parsed to a number of values (depending on the parser), which can b
     - [hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle)
     - [hiber.modem.Modem.Type](#hibermodemmodemtype)
     - [hiber.modem.ModemMessage.Source](#hibermodemmodemmessagesource)
+
+- Referenced messages from [process_point.proto](#referenced-messages-from-process_pointproto)
+  - [hiber.processpoint.ProcessPoint](#hiberprocesspointprocesspoint)
+  - [hiber.processpoint.ProcessPoint.AssignedDevice](#hiberprocesspointprocesspointassigneddevice)
+  - [hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection)
+
+    - [hiber.processpoint.ProcessPoint.Type](#hiberprocesspointprocesspointtype)
 
 - Referenced messages from [value.proto](#referenced-messages-from-valueproto)
   - [hiber.value.Value](#hibervaluevalue)
@@ -232,7 +240,8 @@ A Value at a time, for a given modem and field.
 | ----- | ---- | ----------- |
 | device | [ ValueContext.ValueDeviceContext](#valuecontextvaluedevicecontext) | The device that produced this value. |
 | device_number | [ string](#string) | <strong>Deprecated.</strong> The device that produced this value. |
-| asset | [ ValueContext.ValueAssetContext](#valuecontextvalueassetcontext) | The asset that owns this value, if any. Assets own this value if they were assigned to the device that produced this value at the time it was produced. If multiple assets were assigned at the same time, this value exists for each asset. |
+| asset | [ ValueContext.ValueAssetContext](#valuecontextvalueassetcontext) | <strong>Deprecated.</strong> The asset that owns this value, if any. Assets own this value if they were assigned to the device that produced this value at the time it was produced. If multiple assets were assigned at the same time, this value exists for each asset. |
+| process_point | [ ValueContext.ValueProcessPointContext](#valuecontextvalueprocesspointcontext) | The process point that owns this value, if any. Process points own this value if they were assigned to the device that produced this value at the time it was produced. If multiple process points were assigned at the same time, this value exists for each process point. |
 | field | [ string](#string) | The field that this value was produced for. |
 | time | [ hiber.Timestamp](#hibertimestamp) | The time for this value. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value_type**.value | [ Value](#value) | The value at this time, if no ValueTransformation was specified for this field. |
@@ -241,7 +250,7 @@ A Value at a time, for a given modem and field.
 
 ### ValueContext.ValueAssetContext
 
-Information about the asset that owns the value.
+<strong>Deprecated.</strong> Information about the asset that owns the value.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -286,6 +295,16 @@ The amount of time a field for a modem was at different values.
 | ----- | ---- | ----------- |
 | durations | [repeated ValueContext.ValueDuration](#valuecontextvalueduration) |  |
 
+### ValueContext.ValueProcessPointContext
+
+Information about the process point that owns the value.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifier | [ string](#string) |  |
+| name | [ string](#string) |  |
+| type | [ hiber.processpoint.ProcessPoint.Type](#hiberprocesspointprocesspointtype) |  |
+
 ### ValueSelection
 
 Select the values to return.
@@ -293,7 +312,8 @@ Select the values to return.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **owner_selection**.devices | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the devices(s) to get the values for. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **owner_selection**.assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | Select the asset(s) to get the values for. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **owner_selection**.assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <strong>Deprecated.</strong> Select the asset(s) to get the values for. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **owner_selection**.process_points | [ hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) | Select the process point(s) to get the values for. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data_selection**.value_type | [ ValueSelection.ByValueType](#valueselectionbyvaluetype) | Get the values that are of the given numeric value types. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data_selection**.field | [ ValueSelection.ByField](#valueselectionbyfield) | Get the values for the selected fields. |
 | fields | [repeated string](#string) | <strong>Deprecated.</strong> Get the values for the selected fields. |
@@ -342,7 +362,7 @@ so not all messages listed here are referenced.)
 
 ### hiber.asset.Asset
 
-Assets are things that collect the data produced by devices.
+<strong>Deprecated.</strong> Assets are things that collect the data produced by devices.
 Devices are assigned to assets to handle data ownership.
 When a device is replaced, the data flow for the asset continues with the data from the new device.
 Multiple devices can be assigned to an asset, though it is advisable to only do so when they send
@@ -369,7 +389,7 @@ For example, if you have a Well, you might have assets for Annulus A and the tub
 
 ### hiber.asset.Asset.AssignedDevice
 
-A device assigned to this asset.
+<strong>Deprecated.</strong> A device assigned to this asset.
 Non-operational values that the device produces will be linked to this asset
 (e.g. pressure, but not battery level).
 
@@ -387,7 +407,7 @@ Non-operational values that the device produces will be linked to this asset
 
 ### hiber.asset.AssetSelection
 
-Selection object for assets.
+<strong>Deprecated.</strong> Selection object for assets.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -399,7 +419,7 @@ Selection object for assets.
 
 ### Enums
 #### hiber.asset.Asset.Type
-Predefined assets types that can be used to say something about the data.
+<strong>Deprecated.</strong> Predefined assets types that can be used to say something about the data.
 Currently a limited list, but more may be added in the future.
 
 | Name | Description | Number |
@@ -457,10 +477,12 @@ when the modem is registered into the system or when a subscription is authorize
 | is_gateway | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Whether the modem is a gateway, it has been configured as a gateway and has connected devices. Use `type` instead. |
 | is_device_connected_to_gateway | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Whether the modem is connected to a modem configured as a gateway. Use `type` instead. |
 | connected_to_gateway | [ string](#string) | <strong>Deprecated.</strong> [DEPRECATED] The modem number that this modem is connected to, if any. Use `connected_device_info.connected_to_gateway` instead. |
-| external_device_ids | [repeated string](#string) | <strong>Deprecated.</strong> [DEPRECATED] External device ids, if any. Use `connected_device_info.external_device_ids` instead. |
+| external_device_ids | [repeated string](#string) | External device ids for this sensor, gateway or valve. |
+| device_type | [ string](#string) | Device type for this modem. |
 | type | [ hiber.modem.Modem.Type](#hibermodemmodemtype) | The type of modem. Used mainly to differentiate in the UI or to sort on. |
-| gateway_info | [ hiber.modem.Modem.GatewayInfo](#hibermodemmodemgatewayinfo) | Additional information when this modem is a gateway. |
-| connected_device_info | [ hiber.modem.Modem.ConnectedDeviceInfo](#hibermodemmodemconnecteddeviceinfo) | Additional information when this modem is a connected device. |
+|  **optional** gateway_info | [optional hiber.modem.Modem.GatewayInfo](#hibermodemmodemgatewayinfo) | Additional information when this modem is a gateway. |
+|  **optional** connected_device_info | [optional hiber.modem.Modem.ConnectedDeviceInfo](#hibermodemmodemconnecteddeviceinfo) | Additional information when this modem is a connected device. |
+|  **optional** valve_info | [optional hiber.modem.Modem.ValveInfo](#hibermodemmodemvalveinfo) | Additional information when this modem is a connected device. |
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
 | time_zone | [ string](#string) | The timezone configured for the modem. |
 | transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
@@ -569,6 +591,7 @@ Type can depend on the hardware itself as well as network topology.
 | OTHER | A device of which the specific type is not known | 0 |
 | GATEWAY | A device that can receive messages from sensors in the field and relay them (directly) to the satellite. Typically a LoRaWAN hub. Note that gateways also send messages themselves (e.g. a daily heartbeat). | 2 |
 | SENSOR | A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. | 3 |
+| VALVE |  | 4 |
 
 #### hiber.modem.ModemMessage.Source
 
@@ -579,6 +602,96 @@ Type can depend on the hardware itself as well as network topology.
 | DIRECT_TO_API | A real message from a modem or gateway, sent directly to the API using a persistent connection. | 1 |
 | TEST | A test message sent to the testing API. | 2 |
 | SIMULATION | A simulated message, generated by the server. | 3 |
+
+
+
+## Referenced messages from process_point.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [process_point.proto](https://github.com/HiberGlobal/api/blob/master/process_point.proto).
+
+
+### hiber.processpoint.ProcessPoint
+
+Process Points are things that collect the data produced by devices.
+Devices are assigned to process points to handle data ownership.
+When a device is replaced, the data flow for the process point continues with the data from the new device.
+Multiple devices can be assigned to an process point, though it is advisable to only do so when they send
+different type of data (e.g. one sensor for pressure and one for flow).
+
+For example, if you have a Well, you might have process points for Annulus A and the tubing head.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifier | [ string](#string) |  |
+| name | [ string](#string) | Name of the process point |
+|  **optional** type | [optional hiber.processpoint.ProcessPoint.Type](#hiberprocesspointprocesspointtype) | Type of the process point, if any of the predefined types applies. |
+|  **optional** description | [optional string](#string) | Longer detailed description of the process point. |
+|  **optional** notes | [optional string](#string) | Multiline notes field that can be used to add additional information to an process point. |
+|  **optional** time_zone | [optional string](#string) | Optional time zone for the process point. This can, for example, be used to calculate SLAs on a daily basis, adjusted by time zone. |
+|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this process point. |
+| metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Metadata for the process point. This can be automatically populated from linked devices or manually added. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | Tags assigned to this process point |
+| devices | [repeated hiber.processpoint.ProcessPoint.AssignedDevice](#hiberprocesspointprocesspointassigneddevice) | Devices assigned to this process point |
+| inactive_devices | [repeated hiber.processpoint.ProcessPoint.AssignedDevice](#hiberprocesspointprocesspointassigneddevice) | Devices that were assigned to this process point in the past |
+| organization | [ string](#string) | The organization that owns this process point. Typically only relevant if child organizations are included. |
+| location | [ hiber.Location](#hiberlocation) | Location for the process point. |
+| files | [repeated hiber.file.File](#hiberfilefile) | Files for this process point. Typically an image of a place. See the File.media_type for more information. |
+
+### hiber.processpoint.ProcessPoint.AssignedDevice
+
+A device assigned to this process point.
+Non-operational values that the device produces will be linked to this process point
+(e.g. pressure, but not battery level).
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| number | [ string](#string) |  |
+| identifiers | [repeated string](#string) |  |
+|  **optional** name | [optional string](#string) |  |
+|  **optional** type | [optional string](#string) |  |
+|  **optional** last_message_sent_at | [optional hiber.Timestamp](#hibertimestamp) |  |
+|  **optional** last_message_received_at | [optional hiber.Timestamp](#hibertimestamp) |  |
+|  **optional** assignment_time_range | [optional hiber.TimeRange](#hibertimerange) |  |
+|  **optional** health | [optional hiber.health.HealthLevel](#hiberhealthhealthlevel) |  |
+| numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) |  |
+
+### hiber.processpoint.ProcessPointSelection
+
+Selection object for process points.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifiers | [repeated string](#string) | Select process points by identifier. |
+| search | [repeated string](#string) | Search process points by (partial, case insensitive) identifier, name, description, notes and time zone. |
+| types | [repeated hiber.processpoint.ProcessPoint.Type](#hiberprocesspointprocesspointtype) | Select process points by type. |
+|  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) | Select process points by tags |
+
+
+### Enums
+#### hiber.processpoint.ProcessPoint.Type
+Predefined process points types that can be used to say something about the data.
+Currently a limited list, but more may be added in the future.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| UNKNOWN |  | 0 |
+| WELL_ANNULUS_A |  | 1 |
+| WELL_ANNULUS_B |  | 2 |
+| WELL_ANNULUS_C |  | 3 |
+| WELL_ANNULUS_D |  | 4 |
+| WELL_HEAD |  | 15 |
+| WELL_TUBING_HEAD |  | 5 |
+| WELL_TUBING |  | 6 |
+| WELL_FLOW_LINE |  | 7 |
+| WELL_CASING |  | 8 |
+| WELL_PRODUCTION_CASING_PRESSURE |  | 9 |
+| WELL_INTERMITTENT_CASING_PRESSURE |  | 10 |
+| PIPELINE |  | 11 |
+| PRODUCTION_LINE |  | 12 |
+| GAS_MANIFOLD |  | 13 |
+| PRODUCTION_MANIFOLD |  | 14 |
 
 
 
@@ -1512,8 +1625,11 @@ api event stream and publishers.
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
 | ASSET_CREATED | A new asset was created in your organization. | 70 |
+| PROCESS_POINT_CREATED | A new process point was created in your organization. | 73 |
 | ASSET_UPDATED | An asset in your organization was updated (e.g. renamed, tagged). | 71 |
+| PROCESS_POINT_UPDATED | An process point in your organization was updated (e.g. renamed, tagged). | 74 |
 | ASSET_DELETED | An asset in your organization was deleted. | 72 |
+| PROCESS_POINT_DELETED | An process point in your organization was deleted. | 75 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
 | DEVICE_UPDATED | A device in your organization was manually updated (e.g. renamed, tagged). | 36 |
 | DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |

@@ -62,6 +62,7 @@
     "OTHER": "A device of which the specific type is not known"
     , "GATEWAY": "A device that can receive messages from sensors in the field and relay them (directly) to the satellite. Typically a LoRaWAN hub. Note that gateways also send messages themselves (e.g. a daily heartbeat)."
     , "SENSOR": "A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection."
+    , "VALVE": ""
     }
 },{
   "name": "Source",

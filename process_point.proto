@@ -1,0 +1,127 @@
+syntax = "proto3";
+
+package hiber.processpoint;
+
+import "google/protobuf/struct.proto";
+import "base.proto";
+import "file.proto";
+import "health.proto";
+import "tag.proto";
+import "value.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.processpoint";
+option java_outer_classname = "ProcessPointApi";
+option go_package = ".;hiber";
+
+/* Process Points are things that collect the data produced by devices.
+ * Devices are assigned to process points to handle data ownership.
+ * When a device is replaced, the data flow for the process point continues with the data from the new device.
+ * Multiple devices can be assigned to an process point, though it is advisable to only do so when they send
+ * different type of data (e.g. one sensor for pressure and one for flow).
+ *
+ * For example, if you have a Well, you might have process points for Annulus A and the tubing head.
+ */
+message ProcessPoint {
+    /* Predefined process points types that can be used to say something about the data.
+     * Currently a limited list, but more may be added in the future.
+     */
+    enum Type {
+        UNKNOWN = 0;
+        WELL_ANNULUS_A = 1;
+        WELL_ANNULUS_B = 2;
+        WELL_ANNULUS_C = 3;
+        WELL_ANNULUS_D = 4;
+        WELL_HEAD = 15;
+        WELL_TUBING_HEAD = 5;
+        WELL_TUBING = 6;
+        WELL_FLOW_LINE = 7;
+        WELL_CASING = 8;
+        WELL_PRODUCTION_CASING_PRESSURE = 9;
+        WELL_INTERMITTENT_CASING_PRESSURE = 10;
+        PIPELINE = 11;
+        PRODUCTION_LINE = 12;
+        GAS_MANIFOLD = 13;
+        PRODUCTION_MANIFOLD = 14;
+    }
+
+    /* A device assigned to this process point.
+     * Non-operational values that the device produces will be linked to this process point
+     * (e.g. pressure, but not battery level).
+     */
+    message AssignedDevice {
+        string number = 1;
+        repeated string identifiers = 2;
+        optional string name = 3;
+        optional string type = 4;
+        optional Timestamp last_message_sent_at = 5;
+        optional Timestamp last_message_received_at = 6;
+        optional TimeRange assignment_time_range = 7;
+        optional health.HealthLevel health = 8;
+        repeated value.Value.Numeric.Type numeric_value_types = 9;
+    }
+
+    string identifier = 1;
+
+    /* Name of the process point */
+    string name = 2;
+
+    /* Type of the process point, if any of the predefined types applies. */
+    optional Type type = 3;
+
+    /* Longer detailed description of the process point. */
+    optional string description = 4;
+
+    /* Multiline notes field that can be used to add additional information to an process point. */
+    optional string notes = 5;
+
+    /* Optional time zone for the process point.
+     * This can, for example, be used to calculate SLAs on a daily basis, adjusted by time zone.
+     */
+    optional string time_zone = 6;
+
+    /* The expected transmission rate for this process point. */
+    optional value.Value.Numeric.Rate expected_transmission_rate = 7;
+
+    /* Metadata for the process point.
+     * This can be automatically populated from linked devices or manually added.
+     */
+    google.protobuf.Struct metadata = 8;
+
+    /* Tags assigned to this process point */
+    repeated tag.Tag tags = 9;
+
+    /* Devices assigned to this process point */
+    repeated AssignedDevice devices = 10;
+
+    /* Devices that were assigned to this process point in the past */
+    repeated AssignedDevice inactive_devices = 12;
+
+    /* The organization that owns this process point.
+     * Typically only relevant if child organizations are included.
+     */
+    string organization = 11;
+
+    /* Location for the process point. */
+    Location location = 13;
+
+    /* Files for this process point.
+     * Typically an image of a place. See the File.media_type for more information.
+     */
+    repeated file.File files = 14;
+}
+
+/* Selection object for process points. */
+message ProcessPointSelection {
+    /* Select process points by identifier. */
+    repeated string identifiers = 1;
+
+    /* Search process points by (partial, case insensitive) identifier, name, description, notes and time zone. */
+    repeated string search = 2;
+
+    /* Select process points by type. */
+    repeated ProcessPoint.Type types = 3;
+
+    /* Select process points by tags */
+    optional hiber.tag.TagSelection filter_by_tags = 4;
+}

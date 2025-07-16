@@ -22,6 +22,7 @@ message Valve {
     optional bool fraud = 8;
     optional int64 remaining_battery_voltage = 9;
     optional ValveProcess last_process = 10;
+    HighPressureLineStatus high_pressure_line_status = 11;
 
     message ValveProcess {
         /* Modem valve actuator number. */

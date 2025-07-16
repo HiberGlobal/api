@@ -20,40 +20,56 @@ option go_package = ".;hiber";
  * updating or deleting them in bulk and changing assigned tags and devices.
  */
 service AssetService {
+    option deprecated = true;
+
     /* List the assets in your organization. */
     rpc List (ListAsset.Request) returns (ListAsset.Response) {
+        option deprecated = true;
+
         option (permission_usage) = ASSETS;
     }
 
     /* Create assets in your organization. */
     rpc Create (CreateAsset.Request) returns (CreateAsset.Response) {
+        option deprecated = true;
+
         option (permission_usage) = ASSETS_UPDATE;
     }
 
     /* Update assets in your organization. */
     rpc Update(UpdateAsset.Request) returns (UpdateAsset.Response) {
+        option deprecated = true;
+
         option (permission_usage) = ASSETS_UPDATE;
     }
 
     /* Delete assets in your organization. */
     rpc Delete(DeleteAsset.Request) returns (DeleteAsset.Response) {
+        option deprecated = true;
+
         option (permission_usage) = ASSETS_UPDATE;
     }
 
     /* Assign (a) tag(s) to an asset. */
     rpc AssignTag (AssignAssetTags.Request) returns (AssignAssetTags.Response) {
+        option deprecated = true;
+
         option (permission_usage) = ASSETS;
         option (permission_usage) = ASSIGNMENTS;
     }
 
     /* Unassign (a) tag(s) from an asset. */
     rpc UnassignTag (UnassignAssetTags.Request) returns (UnassignAssetTags.Response) {
+        option deprecated = true;
+
         option (permission_usage) = ASSETS;
         option (permission_usage) = ASSIGNMENTS;
     }
 
     /* Assign (a) device(s) to an asset. */
     rpc AssignDevice (AssignAssetDevices.Request) returns (AssignAssetDevices.Response) {
+        option deprecated = true;
+
         option (permission_usage) = ASSETS;
         option (permission_usage) = ASSIGNMENTS;
         option (permission_usage) = MODEMS;
@@ -61,6 +77,8 @@ service AssetService {
 
     /* Unassign (a) device(s) from an asset. */
     rpc UnassignDevice (UnassignAssetDevices.Request) returns (UnassignAssetDevices.Response) {
+        option deprecated = true;
+
         option (permission_usage) = ASSETS;
         option (permission_usage) = ASSIGNMENTS;
         option (permission_usage) = MODEMS;
@@ -70,7 +88,11 @@ service AssetService {
 /* List the assets in your (selected) organization.
  */
 message ListAsset {
+    option deprecated = true;
+
     enum Sort {
+        option deprecated = true;
+
         /* Sort alphabetically on the name of the asset, in ascending order. Default. */
         NAME_ASC = 0;
         /* Sort alphabetically on the name of the asset, in descending order. */
@@ -101,6 +123,8 @@ message ListAsset {
     }
 
     message Request {
+        option deprecated = true;
+
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         optional string organization = 1;
 
@@ -119,6 +143,8 @@ message ListAsset {
         optional Filter.ChildOrganizations child_organizations = 5;
     }
     message Response {
+        option deprecated = true;
+
         repeated Asset assets = 1;
         Pagination.Result pagination = 2;
         Request request = 3;
@@ -128,6 +154,8 @@ message ListAsset {
 /* Create one or more assets in your (selected) organization.
  */
 message CreateAsset {
+    option deprecated = true;
+
     optional string name = 1;
     optional Asset.Type type = 2;
     optional string description = 3;
@@ -139,6 +167,8 @@ message CreateAsset {
     repeated file.File files = 9;
 
     message Request {
+        option deprecated = true;
+
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         optional string organization = 1;
 
@@ -146,6 +176,8 @@ message CreateAsset {
         repeated CreateAsset create = 2;
     }
     message Response {
+        option deprecated = true;
+
         repeated Asset created = 1;
         Request request = 2;
     }
@@ -153,6 +185,8 @@ message CreateAsset {
 
 /* Update one or more assets in your (selected) organization. */
 message UpdateAsset {
+    option deprecated = true;
+
     optional string update_name = 1;
     optional Asset.Type update_type = 2;
     optional string update_description = 3;
@@ -168,6 +202,8 @@ message UpdateAsset {
     repeated string delete_files = 13;
 
     message Request {
+        option deprecated = true;
+
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         optional string organization = 1;
 
@@ -183,6 +219,8 @@ message UpdateAsset {
         optional Pagination pagination = 4;
     }
     message Response {
+        option deprecated = true;
+
         repeated Asset assets = 1;
         Pagination.Result pagination = 2;
         Request request = 3;
@@ -191,7 +229,11 @@ message UpdateAsset {
 
 /* Delete assets in your (selected) organization. */
 message DeleteAsset {
+    option deprecated = true;
+
     message Request {
+        option deprecated = true;
+
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         optional string organization = 1;
 
@@ -199,6 +241,8 @@ message DeleteAsset {
         asset.AssetSelection selection = 2;
     }
     message Response {
+        option deprecated = true;
+
         uint32 deleted = 1;
         Request request = 2;
     }
@@ -206,7 +250,11 @@ message DeleteAsset {
 
 /* Change the assigned tags for a selection of assets in your (selected) organization. */
 message AssignAssetTags {
+    option deprecated = true;
+
     message Request {
+        option deprecated = true;
+
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         optional string organization = 1;
 
@@ -222,6 +270,8 @@ message AssignAssetTags {
         optional Pagination pagination = 4;
     }
     message Response {
+        option deprecated = true;
+
         repeated Asset assets = 1;
         Pagination.Result pagination = 2;
         Request request = 3;
@@ -230,7 +280,11 @@ message AssignAssetTags {
 
 /* Change the assigned tags for a selection of assets in your (selected) organization. */
 message UnassignAssetTags {
+    option deprecated = true;
+
     message Request {
+        option deprecated = true;
+
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         optional string organization = 1;
 
@@ -246,6 +300,8 @@ message UnassignAssetTags {
         optional Pagination pagination = 4;
     }
     message Response {
+        option deprecated = true;
+
         repeated Asset assets = 1;
         Pagination.Result pagination = 2;
         Request request = 3;
@@ -254,7 +310,11 @@ message UnassignAssetTags {
 
 /* Change the assigned devices for a selection of assets in your (selected) organization. */
 message AssignAssetDevices {
+    option deprecated = true;
+
     message Request {
+        option deprecated = true;
+
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         optional string organization = 1;
 
@@ -286,6 +346,8 @@ message AssignAssetDevices {
         optional Timestamp end_time = 6;
     }
     message Response {
+        option deprecated = true;
+
         repeated Asset assets = 1;
         Pagination.Result pagination = 2;
         Request request = 3;
@@ -294,7 +356,11 @@ message AssignAssetDevices {
 
 /* Change the assigned devices for a selection of assets in your (selected) organization. */
 message UnassignAssetDevices {
+    option deprecated = true;
+
     message Request {
+        option deprecated = true;
+
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
         optional string organization = 1;
 
@@ -318,6 +384,8 @@ message UnassignAssetDevices {
         optional Timestamp override_time = 5;
     }
     message Response {
+        option deprecated = true;
+
         repeated Asset assets = 1;
         Pagination.Result pagination = 2;
         Request request = 3;

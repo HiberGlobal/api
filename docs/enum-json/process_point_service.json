@@ -1,0 +1,18 @@
+[{
+  "name": "Sort",
+  "description": "",
+  "values": {
+    "NAME_ASC": "Sort alphabetically on the name of the process point, in ascending order. Default."
+    , "NAME_DESC": "Sort alphabetically on the name of the process point, in descending order."
+    , "ACTIVITY": "Sort process points on most recent activity first (e.g. newest value received)."
+    , "INACTIVITY": "Sort process points on least recent activity first (e.g. longest no value received)."
+    , "TYPE_ASC": "Sort alphabetically on the process point type, in ascending order."
+    , "TYPE_DESC": "Sort alphabetically on the process point type, in descending order."
+    , "TAG_TYPE_WELL_ASC": "Sort alphabetically on any tags of type 'well', in ascending order."
+    , "TAG_TYPE_WELL_DESC": "Sort alphabetically on any tags of type 'well', in descending order."
+    , "TAG_TYPE_SITE_ASC": "Sort alphabetically on any tags of type 'site', in ascending order."
+    , "TAG_TYPE_SITE_DESC": "Sort alphabetically on any tags of type 'site', in descending order."
+    , "TAG_TYPE_PRODUCTION_AREA_ASC": "Sort alphabetically on any tags of type 'production_area', in ascending order."
+    , "TAG_TYPE_PRODUCTION_AREA_DESC": "Sort alphabetically on any tags of type 'production_area', in descending order."
+    }
+}]

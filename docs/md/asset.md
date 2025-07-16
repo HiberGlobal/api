@@ -128,7 +128,7 @@
 
 ### Asset
 
-Assets are things that collect the data produced by devices.
+<strong>Deprecated.</strong> Assets are things that collect the data produced by devices.
 Devices are assigned to assets to handle data ownership.
 When a device is replaced, the data flow for the asset continues with the data from the new device.
 Multiple devices can be assigned to an asset, though it is advisable to only do so when they send
@@ -155,7 +155,7 @@ For example, if you have a Well, you might have assets for Annulus A and the tub
 
 ### Asset.AssignedDevice
 
-A device assigned to this asset.
+<strong>Deprecated.</strong> A device assigned to this asset.
 Non-operational values that the device produces will be linked to this asset
 (e.g. pressure, but not battery level).
 
@@ -173,7 +173,7 @@ Non-operational values that the device produces will be linked to this asset
 
 ### AssetSelection
 
-Selection object for assets.
+<strong>Deprecated.</strong> Selection object for assets.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -185,7 +185,7 @@ Selection object for assets.
 
 ## Enums
 ### Asset.Type
-Predefined assets types that can be used to say something about the data.
+<strong>Deprecated.</strong> Predefined assets types that can be used to say something about the data.
 Currently a limited list, but more may be added in the future.
 
 | Name | Description | Number |
@@ -369,7 +369,7 @@ so not all messages listed here are referenced.)
 ### hiber.tag.Tag
 
 Tag in your organization.
-Tags can be assigned to devices and assets to group them together or mark a certain property.
+Tags can be assigned to devices and process points to group them together or mark a certain property.
 
 A Tag has three parts: its id in your organization, a Label that describes how it should be displayed, and
 Metadata (which is only included when using the TagService) with additional information.
@@ -1337,8 +1337,11 @@ api event stream and publishers.
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
 | ASSET_CREATED | A new asset was created in your organization. | 70 |
+| PROCESS_POINT_CREATED | A new process point was created in your organization. | 73 |
 | ASSET_UPDATED | An asset in your organization was updated (e.g. renamed, tagged). | 71 |
+| PROCESS_POINT_UPDATED | An process point in your organization was updated (e.g. renamed, tagged). | 74 |
 | ASSET_DELETED | An asset in your organization was deleted. | 72 |
+| PROCESS_POINT_DELETED | An process point in your organization was deleted. | 75 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
 | DEVICE_UPDATED | A device in your organization was manually updated (e.g. renamed, tagged). | 36 |
 | DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |

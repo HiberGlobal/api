@@ -122,8 +122,11 @@ By default, everyone who has access to an organization, can access basic organiz
 | ORGANIZATION_UPDATE | Update the organizations data, such as billing information, address, and contact. | 2 |
 | ORGANIZATION_DELETE | Delete child organizations. You cannot delete your own organization. To delete your organization, contact support. | 3 |
 | ASSETS | List assets, see their details | 53 |
+| PROCESS_POINTS | List process points, see their details | 61 |
 | ASSETS_UPDATE | Create and update assets, such as their display name and tags. Includes ASSETS permission. | 54 |
+| PROCESS_POINTS_UPDATE | Create and update process points, such as their display name and tags. Includes PROCESS_POINTS permission. | 62 |
 | ASSETS_VALUES | Read asset values, e.g. pressure measurements. | 55 |
+| PROCESS_POINTS_VALUES | Read process point values, e.g. pressure measurements. | 63 |
 | MODEMS | List modems, see their details and health | 10 |
 | MODEMS_CREATE | Create new modems. Includes MODEMS permission. | 50 |
 | MODEMS_UPDATE | Update modems, such as their peripherals, display name and tags. Includes MODEMS permission. | 11 |
@@ -738,8 +741,11 @@ api event stream and publishers.
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
 | ASSET_CREATED | A new asset was created in your organization. | 70 |
+| PROCESS_POINT_CREATED | A new process point was created in your organization. | 73 |
 | ASSET_UPDATED | An asset in your organization was updated (e.g. renamed, tagged). | 71 |
+| PROCESS_POINT_UPDATED | An process point in your organization was updated (e.g. renamed, tagged). | 74 |
 | ASSET_DELETED | An asset in your organization was deleted. | 72 |
+| PROCESS_POINT_DELETED | An process point in your organization was deleted. | 75 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
 | DEVICE_UPDATED | A device in your organization was manually updated (e.g. renamed, tagged). | 36 |
 | DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |

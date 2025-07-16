@@ -1,0 +1,22 @@
+[{
+  "name": "Type",
+  "description": "Predefined process points types that can be used to say something about the data. Currently a limited list, but more may be added in the future.",
+  "values": {
+    "UNKNOWN": ""
+    , "WELL_ANNULUS_A": ""
+    , "WELL_ANNULUS_B": ""
+    , "WELL_ANNULUS_C": ""
+    , "WELL_ANNULUS_D": ""
+    , "WELL_HEAD": ""
+    , "WELL_TUBING_HEAD": ""
+    , "WELL_TUBING": ""
+    , "WELL_FLOW_LINE": ""
+    , "WELL_CASING": ""
+    , "WELL_PRODUCTION_CASING_PRESSURE": ""
+    , "WELL_INTERMITTENT_CASING_PRESSURE": ""
+    , "PIPELINE": ""
+    , "PRODUCTION_LINE": ""
+    , "GAS_MANIFOLD": ""
+    , "PRODUCTION_MANIFOLD": ""
+    }
+}]

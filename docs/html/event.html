@@ -367,6 +367,26 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.event.Event.ProcessPointEvent"><span class="badge">M</span>Event.ProcessPointEvent</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.event.Event.ProcessPointEvent.ProcessPointCreatedEvent"><span class="badge">M</span>Event.ProcessPointEvent.ProcessPointCreatedEvent</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.event.Event.ProcessPointEvent.ProcessPointDeletedEvent"><span class="badge">M</span>Event.ProcessPointEvent.ProcessPointDeletedEvent</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.event.Event.ProcessPointEvent.ProcessPointUpdatedEvent"><span class="badge">M</span>Event.ProcessPointEvent.ProcessPointUpdatedEvent</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.event.Event.ProcessPointEvent.ProcessPointUpdatedEvent.Update"><span class="badge">M</span>Event.ProcessPointEvent.ProcessPointUpdatedEvent.Update</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.event.Event.PublisherEvent"><span class="badge">M</span>Event.PublisherEvent</a>
                 </li>
               
@@ -610,6 +630,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.assign.Assignment.AdditionalConfiguration.ProcessPointDeviceAssignment"><span class="badge">M</span>Assignment.AdditionalConfiguration.ProcessPointDeviceAssignment</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.assign.Assignment.AlarmAssignment"><span class="badge">M</span>Assignment.AlarmAssignment</a>
                 </li>
               
@@ -619,6 +643,10 @@
               
                 <li>
                   <a href="#hiber.assign.Assignment.ModemMessageBodyParserAssignment"><span class="badge">M</span>Assignment.ModemMessageBodyParserAssignment</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.assign.Assignment.ProcessPointAssignment"><span class="badge">M</span>Assignment.ProcessPointAssignment</a>
                 </li>
               
                 <li>
@@ -663,6 +691,10 @@
               
                 <li>
                   <a href="#hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToModem"><span class="badge">M</span>ListAlarmAssignments.Response.AlarmAssignment.ToModem</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToProcessPoint"><span class="badge">M</span>ListAlarmAssignments.Response.AlarmAssignment.ToProcessPoint</a>
                 </li>
               
                 <li>
@@ -727,6 +759,22 @@
               
                 <li>
                   <a href="#hiber.assign.ListModemMessageBodyParserAssignments.Response.ModemMessageBodyParserAssignment"><span class="badge">M</span>ListModemMessageBodyParserAssignments.Response.ModemMessageBodyParserAssignment</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.assign.ListProcessPointAssignments"><span class="badge">M</span>ListProcessPointAssignments</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.assign.ListProcessPointAssignments.Request"><span class="badge">M</span>ListProcessPointAssignments.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.assign.ListProcessPointAssignments.Response"><span class="badge">M</span>ListProcessPointAssignments.Response</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.assign.ListProcessPointAssignments.Response.ProcessPointAssignment"><span class="badge">M</span>ListProcessPointAssignments.Response.ProcessPointAssignment</a>
                 </li>
               
                 <li>
@@ -1068,6 +1116,10 @@
               
                 <li>
                   <a href="#hiber.export.Export.Configuration.ModemMessages"><span class="badge">M</span>Export.Configuration.ModemMessages</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.export.Export.Configuration.ProcessPointValues"><span class="badge">M</span>Export.Configuration.ProcessPointValues</a>
                 </li>
               
                 <li>
@@ -1440,6 +1492,10 @@
               
                 <li>
                   <a href="#hiber.modem.Modem.TechnicalData"><span class="badge">M</span>Modem.TechnicalData</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.modem.Modem.ValveInfo"><span class="badge">M</span>Modem.ValveInfo</a>
                 </li>
               
                 <li>
@@ -2047,6 +2103,33 @@
         
           
           <li>
+            <a href="#process_point.proto">process_point.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#hiber.processpoint.ProcessPoint"><span class="badge">M</span>ProcessPoint</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.processpoint.ProcessPoint.AssignedDevice"><span class="badge">M</span>ProcessPoint.AssignedDevice</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.processpoint.ProcessPointSelection"><span class="badge">M</span>ProcessPointSelection</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#hiber.processpoint.ProcessPoint.Type"><span class="badge">E</span>ProcessPoint.Type</a>
+                </li>
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#publisher.proto">publisher.proto</a>
             <ul>
               
@@ -2131,6 +2214,10 @@
               
                 <li>
                   <a href="#hiber.tag.ListTagsRequest.Response.TagModemCountEntry"><span class="badge">M</span>ListTagsRequest.Response.TagModemCountEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.tag.ListTagsRequest.Response.TagProcessPointCountEntry"><span class="badge">M</span>ListTagsRequest.Response.TagProcessPointCountEntry</a>
                 </li>
               
                 <li>
@@ -2735,6 +2822,27 @@ Only present when not resolved, and only available for some event types. </p></t
                 <tr>
                   <td>asset_deleted</td>
                   <td><a href="#hiber.event.Event.AssetEvent.AssetDeletedEvent">Event.AssetEvent.AssetDeletedEvent</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_point_created</td>
+                  <td><a href="#hiber.event.Event.ProcessPointEvent.ProcessPointCreatedEvent">Event.ProcessPointEvent.ProcessPointCreatedEvent</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_point_updated</td>
+                  <td><a href="#hiber.event.Event.ProcessPointEvent.ProcessPointUpdatedEvent">Event.ProcessPointEvent.ProcessPointUpdatedEvent</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_point_deleted</td>
+                  <td><a href="#hiber.event.Event.ProcessPointEvent.ProcessPointDeletedEvent">Event.ProcessPointEvent.ProcessPointDeletedEvent</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -5577,6 +5685,284 @@ This could be, for example:
 
         
       
+        <h3 id="hiber.event.Event.ProcessPointEvent">Event.ProcessPointEvent</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.event.Event.ProcessPointEvent.ProcessPointCreatedEvent">Event.ProcessPointEvent.ProcessPointCreatedEvent</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_point_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_point</td>
+                  <td><a href="#hiber.processpoint.ProcessPoint">hiber.processpoint.ProcessPoint</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.event.Event.ProcessPointEvent.ProcessPointDeletedEvent">Event.ProcessPointEvent.ProcessPointDeletedEvent</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deleted</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.event.Event.ProcessPointEvent.ProcessPointUpdatedEvent">Event.ProcessPointEvent.ProcessPointUpdatedEvent</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>updated</td>
+                  <td><a href="#hiber.event.Event.ProcessPointEvent.ProcessPointUpdatedEvent.Update">Event.ProcessPointEvent.ProcessPointUpdatedEvent.Update</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_point_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.event.Event.ProcessPointEvent.ProcessPointUpdatedEvent.Update">Event.ProcessPointEvent.ProcessPointUpdatedEvent.Update</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>notes</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time_zone</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expected_transmission_rate</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#hiber.processpoint.ProcessPoint.Type">hiber.processpoint.ProcessPoint.Type</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location</td>
+                  <td><a href="#hiber.Location">hiber.Location</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>files</td>
+                  <td><a href="#hiber.file.File">hiber.file.File</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="hiber.event.Event.PublisherEvent">Event.PublisherEvent</h3>
         <p></p>
 
@@ -7050,9 +7436,38 @@ like daylight saving time automatically. </p></td>
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>use_process_point</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> Return events for process point instead of asset.
+Defaults to using asset for backwards compatibility. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>use_process_point</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7251,9 +7666,38 @@ Keep in mind that filtering events using the selection is limited.
 Filtering on tags or publishers, for example, can only apply to the parent organization. </p></td>
                 </tr>
               
+                <tr>
+                  <td>use_process_point</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> Return events for process point instead of asset.
+Defaults to using asset for backwards compatibility. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>use_process_point</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7305,9 +7749,38 @@ When set, returns unbundled events per type, paginated per type.
 Overrides unbundled_events in EventSelection message. </p></td>
                 </tr>
               
+                <tr>
+                  <td>use_process_point</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> Return events for process point instead of asset.
+Defaults to using asset for backwards compatibility. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>use_process_point</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7495,9 +7968,38 @@ Overrides unbundled_events in EventSelection message. </p></td>
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>use_process_point</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> Return events for process point instead of asset.
+Defaults to using asset for backwards compatibility. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>use_process_point</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -7916,6 +8418,13 @@ Overrides unbundled_events in EventSelection message. </p></td>
                   <td>assign_assets</td>
                   <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>assign_process_points</td>
+                  <td><a href="#hiber.processpoint.ProcessPointSelection">hiber.processpoint.ProcessPointSelection</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -7937,6 +8446,13 @@ Overrides unbundled_events in EventSelection message. </p></td>
                   <td>to_assets</td>
                   <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>to_process_points</td>
+                  <td><a href="#hiber.processpoint.ProcessPointSelection">hiber.processpoint.ProcessPointSelection</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -7951,7 +8467,14 @@ Overrides unbundled_events in EventSelection message. </p></td>
                   <td>asset_device</td>
                   <td><a href="#hiber.assign.Assignment.AdditionalConfiguration.AssetDeviceAssignment">Assignment.AdditionalConfiguration.AssetDeviceAssignment</a></td>
                   <td></td>
-                  <td><p>Additional configuration for assignment between Asset and Device/Modem. </p></td>
+                  <td><p><strong>Deprecated.</strong> Additional configuration for assignment between Asset and Device/Modem. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_point_device</td>
+                  <td><a href="#hiber.assign.Assignment.AdditionalConfiguration.ProcessPointDeviceAssignment">Assignment.AdditionalConfiguration.ProcessPointDeviceAssignment</a></td>
+                  <td></td>
+                  <td><p>Additional configuration for assignment between ProcessPoint and Device/Modem. </p></td>
                 </tr>
               
                 <tr>
@@ -7961,7 +8484,7 @@ Overrides unbundled_events in EventSelection message. </p></td>
                   <td><p>Time that the assignment should be active.
 This sets the assignment to start in the past, but would not have effect in the past for assignments like
 parsers and alarms (they will only be triggered for new messages / values).
-It would however work for assets having access to device data.
+It would however work for assets / process points having access to device data.
 This is not allowed to be a value in the future at the moment. </p></td>
                 </tr>
               
@@ -7972,7 +8495,7 @@ This is not allowed to be a value in the future at the moment. </p></td>
                   <td><p>Time that the assignment ended.
 This marks the assignment as ended at the given moment in the past, but would not have effect in the past
 for assignments like parsers and alarms (e.g. no alarm events are removed).
-It would however work for assets having access to device data.
+It would however work for assets / process points having access to device data.
 This is not allowed to be a value in the future at the moment. </p></td>
                 </tr>
               
@@ -8010,7 +8533,22 @@ Since this is questionable, doing so required an additional opt-in with this fla
               <tbody>
               
                 <tr>
+                  <td>assign_assets</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>to_assets</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
                   <td>alarm_parameters</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_device</td>
                   <td><p>true</p></td>
                 </tr>
               
@@ -8084,7 +8622,7 @@ Since this is questionable, doing so required an additional opt-in with this fla
         
       
         <h3 id="hiber.assign.Assignment">Assignment</h3>
-        <p>An assignment assigning one thing to another.</p><p>Assignment is transitive: when an alarm or parser is assigned to a tag, and the tag is assigned to a modem,</p><p>the alarm or parser is considered assigned to that modem.</p><p>This only works in one direction, though. Assigning the alarm or parser to the modem directly does not also assign</p><p>the tag.</p><p>Assignment can have a custom start and end time.</p><p>This can extend into the past, but would not have effect in the past for assignments like parsers.</p><p>It would however work for assets having access to device data.</p><p>This can also extend into the future, but while the unassigned event will be produced, the assignment will</p><p>still be visible until the given time.</p><p>Assignments that are no longer active (end time is in the past) and that no longer have an effect</p><p>(currently only asset device assignment has an ongoing effect) may be cleaned up automatically.</p>
+        <p>An assignment assigning one thing to another.</p><p>Assignment is transitive: when an alarm or parser is assigned to a tag, and the tag is assigned to a modem,</p><p>the alarm or parser is considered assigned to that modem.</p><p>This only works in one direction, though. Assigning the alarm or parser to the modem directly does not also assign</p><p>the tag.</p><p>Assignment can have a custom start and end time.</p><p>This can extend into the past, but would not have effect in the past for assignments like parsers.</p><p>It would however work for process points having access to device data.</p><p>This can also extend into the future, but while the unassigned event will be produced, the assignment will</p><p>still be visible until the given time.</p><p>Assignments that are no longer active (end time is in the past) and that no longer have an effect</p><p>(currently only asset / process point device assignment has an ongoing effect) may be cleaned up automatically.</p>
 
         
           <table class="field-table">
@@ -8140,6 +8678,13 @@ Inactive assignments that no longer have an effect may be cleaned up automatical
                   <td>assign_asset</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>assign_process_point</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -8168,6 +8713,13 @@ Inactive assignments that no longer have an effect may be cleaned up automatical
                   <td>to_asset</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>to_process_point</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -8178,9 +8730,42 @@ Inactive assignments that no longer have an effect may be cleaned up automatical
                   <td><p>Additional configuration for assignment between Asset and Device/Modem. </p></td>
                 </tr>
               
+                <tr>
+                  <td>process_point_device</td>
+                  <td><a href="#hiber.assign.Assignment.AdditionalConfiguration.ProcessPointDeviceAssignment">Assignment.AdditionalConfiguration.ProcessPointDeviceAssignment</a></td>
+                  <td></td>
+                  <td><p>Additional configuration for assignment between Process Point and Device/Modem. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>assign_asset</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>to_asset</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -8232,6 +8817,31 @@ If nothing is specified, all fields are shared with the asset by default. </p></
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>List of json paths specifying fields. See field.proto for more information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.assign.Assignment.AdditionalConfiguration.ProcessPointDeviceAssignment">Assignment.AdditionalConfiguration.ProcessPointDeviceAssignment</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>shared_fields</td>
+                  <td><a href="#hiber.assign.Assignment.AdditionalConfiguration.FieldsByJsonPath">Assignment.AdditionalConfiguration.FieldsByJsonPath</a></td>
+                  <td></td>
+                  <td><p>Specify the fields that are shared with the process point.
+If nothing is specified, all fields are shared with the process point by default. </p></td>
                 </tr>
               
             </tbody>
@@ -8376,6 +8986,37 @@ If nothing is specified, all fields are shared with the asset by default. </p></
 
         
       
+        <h3 id="hiber.assign.Assignment.ProcessPointAssignment">Assignment.ProcessPointAssignment</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="hiber.assign.AssignmentSelection">AssignmentSelection</h3>
         <p></p>
 
@@ -8390,7 +9031,15 @@ If nothing is specified, all fields are shared with the asset by default. </p></
                   <td>assets</td>
                   <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
                   <td>optional</td>
-                  <td><p>Select the assets to return the assignments for. Optional, when omitted or empty everything is included. </p></td>
+                  <td><p><strong>Deprecated.</strong> Select the assets to return the assignments for. Optional, when omitted or empty everything is included. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_points</td>
+                  <td><a href="#hiber.processpoint.ProcessPointSelection">hiber.processpoint.ProcessPointSelection</a></td>
+                  <td>optional</td>
+                  <td><p>Select the process points to return the assignments for.
+Optional, when omitted or empty everything is included. </p></td>
                 </tr>
               
                 <tr>
@@ -8432,6 +9081,27 @@ Optional, when omitted or empty everything is included. </p></td>
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>assets</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -8516,6 +9186,13 @@ Optional, when omitted or empty everything is included. </p></td>
                   <td>unassign_assets</td>
                   <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>unassign_process_points</td>
+                  <td><a href="#hiber.processpoint.ProcessPointSelection">hiber.processpoint.ProcessPointSelection</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -8537,12 +9214,45 @@ Optional, when omitted or empty everything is included. </p></td>
                   <td>from_assets</td>
                   <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>from_process_points</td>
+                  <td><a href="#hiber.processpoint.ProcessPointSelection">hiber.processpoint.ProcessPointSelection</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>unassign_assets</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>from_assets</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -8726,12 +9436,40 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td>assets</td>
                   <td><a href="#hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToAsset">ListAlarmAssignments.Response.AlarmAssignment.ToAsset</a></td>
                   <td>repeated</td>
-                  <td><p>The assets this alarm is assigned to, with the alarm parameters. </p></td>
+                  <td><p><strong>Deprecated.</strong> The assets this alarm is assigned to, with the alarm parameters. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_points</td>
+                  <td><a href="#hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToProcessPoint">ListAlarmAssignments.Response.AlarmAssignment.ToProcessPoint</a></td>
+                  <td>repeated</td>
+                  <td><p>The process points this alarm is assigned to, with the alarm parameters. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>assets</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -8808,6 +9546,65 @@ temperature, the check value will be converted to celsius instead. </p></td>
                 <tr>
                   <td>modem_number</td>
                   <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>parameters</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>parameters</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
+        <h3 id="hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToProcessPoint">ListAlarmAssignments.Response.AlarmAssignment.ToProcessPoint</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>process_point_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_point</td>
+                  <td><a href="#hiber.assign.Assignment.ProcessPointAssignment">Assignment.ProcessPointAssignment</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -9109,9 +9906,38 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td><p>Include assignments that are no longer active. </p></td>
                 </tr>
               
+                <tr>
+                  <td>use_process_point</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> Return assignments for process point instead of asset.
+Defaults to using asset for backwards compatibility. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>use_process_point</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -9338,19 +10164,59 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td>asset_identifiers</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>The identifiers of the assets assigned to this device. </p></td>
+                  <td><p><strong>Deprecated.</strong> The identifiers of the assets assigned to this device. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_point_identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>The identifiers of the process points assigned to this device. </p></td>
                 </tr>
               
                 <tr>
                   <td>assets</td>
                   <td><a href="#hiber.assign.Assignment.AssetAssignment">Assignment.AssetAssignment</a></td>
                   <td>repeated</td>
-                  <td><p>The assets assigned to this device. </p></td>
+                  <td><p><strong>Deprecated.</strong> The assets assigned to this device. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_points</td>
+                  <td><a href="#hiber.assign.Assignment.ProcessPointAssignment">Assignment.ProcessPointAssignment</a></td>
+                  <td>repeated</td>
+                  <td><p>The process points assigned to this device. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>asset_identifiers</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>assets</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -9488,6 +10354,171 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
                   <td>repeated</td>
                   <td><p>The tags this parser is assigned to. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.assign.ListProcessPointAssignments">ListProcessPointAssignments</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.assign.ListProcessPointAssignments.Request">ListProcessPointAssignments.Request</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>selection</td>
+                  <td><a href="#hiber.assign.AssignmentSelection">AssignmentSelection</a></td>
+                  <td>optional</td>
+                  <td><p>Select the assignments to list. Optional, when omitted or empty everything is included. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>include_process_points_without_assignments</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Whether to include process points that are in the selection and have no assignments. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>include_alarm_details</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Whether to include the full alarms that are assigned, instead of just assignment. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>apply_unit_preferences</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Apply your UnitPreferences to the alarm checks.
+For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for
+temperature, the check value will be converted to celsius instead. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.assign.ListProcessPointAssignments.Response">ListProcessPointAssignments.Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>process_points</td>
+                  <td><a href="#hiber.assign.ListProcessPointAssignments.Response.ProcessPointAssignment">ListProcessPointAssignments.Response.ProcessPointAssignment</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#hiber.assign.ListProcessPointAssignments.Request">ListProcessPointAssignments.Request</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.assign.ListProcessPointAssignments.Response.ProcessPointAssignment">ListProcessPointAssignments.Response.ProcessPointAssignment</h3>
+        <p>Things that an alarm is assigned to.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_point_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>devices</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>The devices assigned to this process point. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
+                  <td>repeated</td>
+                  <td><p>The tags for this process point. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>alarms</td>
+                  <td><a href="#hiber.assign.Assignment.AlarmAssignment">Assignment.AlarmAssignment</a></td>
+                  <td>repeated</td>
+                  <td><p>The identifiers and parameters of the alarms that are assigned to this process point. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>alarm_details</td>
+                  <td><a href="#hiber.modem.alarm.ModemAlarm">hiber.modem.alarm.ModemAlarm</a></td>
+                  <td>repeated</td>
+                  <td><p>The alarms that are assigned to this process point, if you have permission to view them. </p></td>
                 </tr>
               
             </tbody>
@@ -9681,19 +10712,59 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td>asset_identifiers</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>The assets assigned to this tag. </p></td>
+                  <td><p><strong>Deprecated.</strong> The assets assigned to this tag. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_point_identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>The process points assigned to this tag. </p></td>
                 </tr>
               
                 <tr>
                   <td>assets</td>
                   <td><a href="#hiber.assign.Assignment.AssetAssignment">Assignment.AssetAssignment</a></td>
                   <td>repeated</td>
-                  <td><p>The assets assigned to this device. </p></td>
+                  <td><p><strong>Deprecated.</strong> The assets assigned to this device. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_points</td>
+                  <td><a href="#hiber.assign.Assignment.ProcessPointAssignment">Assignment.ProcessPointAssignment</a></td>
+                  <td>repeated</td>
+                  <td><p>The process points assigned to this device. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>asset_identifiers</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>assets</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -9747,6 +10818,13 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td>unassign_assets</td>
                   <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>unassign_process_points</td>
+                  <td><a href="#hiber.processpoint.ProcessPointSelection">hiber.processpoint.ProcessPointSelection</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -9768,6 +10846,13 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td>from_assets</td>
                   <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>from_process_points</td>
+                  <td><a href="#hiber.processpoint.ProcessPointSelection">hiber.processpoint.ProcessPointSelection</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -9778,7 +10863,7 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td><p>Time that the assignment ended.
 This marks the assignment as ended at the given moment in the past, but would not have effect in the past
 for assignments like parsers and alarms (e.g. no alarm events are removed).
-It would however work for assets having access to device data.
+It would however work for assets / process points having access to device data.
 This is not allowed to be a value in the future at the moment. </p></td>
                 </tr>
               
@@ -9794,6 +10879,32 @@ Setting this to true makes this identical to using the Delete rpc. </p></td>
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>unassign_assets</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>from_assets</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -9864,6 +10975,12 @@ Setting this to true makes this identical to using the Delete rpc. </p></td>
               </tr>
             
               <tr>
+                <td>ASSIGNS_ALARM_TO_PROCESS_POINT</td>
+                <td>10</td>
+                <td><p>Assignment that assigns an alarm to an process point.</p></td>
+              </tr>
+            
+              <tr>
                 <td>ASSIGNS_MODEM_TO_TAG</td>
                 <td>4</td>
                 <td><p>Assignment that assigns a modem to a tag.</p></td>
@@ -9888,9 +11005,21 @@ Setting this to true makes this identical to using the Delete rpc. </p></td>
               </tr>
             
               <tr>
+                <td>ASSIGNS_PROCESS_POINT_TO_TAG</td>
+                <td>11</td>
+                <td><p>Assignment that assigns an process point to a tag.</p></td>
+              </tr>
+            
+              <tr>
                 <td>ASSIGNS_ASSET_TO_DEVICE</td>
                 <td>8</td>
                 <td><p>Assignment that assigns an asset to a device.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ASSIGNS_PROCESS_POINT_TO_DEVICE</td>
+                <td>12</td>
+                <td><p>Assignment that assigns an process point to a device.</p></td>
               </tr>
             
           </tbody>
@@ -9941,6 +11070,13 @@ Setting this to true makes this identical to using the Delete rpc. </p></td>
                 <td><a href="#hiber.assign.ListAssetAssignments.Request">ListAssetAssignments.Request</a></td>
                 <td><a href="#hiber.assign.ListAssetAssignments.Response">ListAssetAssignments.Response</a></td>
                 <td><p>List assets with the devices and tags they are assigned to.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ProcessPointAssignments</td>
+                <td><a href="#hiber.assign.ListProcessPointAssignments.Request">ListProcessPointAssignments.Request</a></td>
+                <td><a href="#hiber.assign.ListProcessPointAssignments.Response">ListProcessPointAssignments.Response</a></td>
+                <td><p>List process points with the devices and tags they are assigned to.</p></td>
               </tr>
             
               <tr>
@@ -11883,15 +13019,33 @@ This refers to things like message summary configuration.</p></td>
               </tr>
             
               <tr>
+                <td>PROCESS_POINT_CREATED</td>
+                <td>73</td>
+                <td><p>A new process point was created in your organization.</p></td>
+              </tr>
+            
+              <tr>
                 <td>ASSET_UPDATED</td>
                 <td>71</td>
                 <td><p>An asset in your organization was updated (e.g. renamed, tagged).</p></td>
               </tr>
             
               <tr>
+                <td>PROCESS_POINT_UPDATED</td>
+                <td>74</td>
+                <td><p>An process point in your organization was updated (e.g. renamed, tagged).</p></td>
+              </tr>
+            
+              <tr>
                 <td>ASSET_DELETED</td>
                 <td>72</td>
                 <td><p>An asset in your organization was deleted.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROCESS_POINT_DELETED</td>
+                <td>75</td>
+                <td><p>An process point in your organization was deleted.</p></td>
               </tr>
             
               <tr>
@@ -12591,6 +13745,14 @@ Time range is ignored for this request. </p></td>
 Time range is ignored for this request. </p></td>
                 </tr>
               
+                <tr>
+                  <td>process_point_values</td>
+                  <td><a href="#hiber.export.Export.Configuration.ProcessPointValues">Export.Configuration.ProcessPointValues</a></td>
+                  <td></td>
+                  <td><p>Get the fields for process point values.
+Time range is ignored for this request. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -12869,6 +14031,13 @@ The file may be a single url, or may be split into multiple parts, each with a u
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>process_point_values</td>
+                  <td><a href="#hiber.export.Export.Configuration.ProcessPointValues">Export.Configuration.ProcessPointValues</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -12919,6 +14088,37 @@ The file may be a single url, or may be split into multiple parts, each with a u
               
                 <tr>
                   <td>modems</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time_range</td>
+                  <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.export.Export.Configuration.ProcessPointValues">Export.Configuration.ProcessPointValues</h3>
+        <p>Export values for a set of process points.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>process_point_identifiers</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p> </p></td>
@@ -13306,9 +14506,38 @@ to flatten it to simple columns. </p></td>
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>use_process_point_in_configuration</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> Return export configuration for process point instead of asset.
+Defaults to using asset for backwards compatibility. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>use_process_point_in_configuration</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -16474,8 +17703,14 @@ Use `connected_device_info.connected_to_gateway` instead. </p></td>
                   <td>external_device_ids</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p><strong>Deprecated.</strong> [DEPRECATED] External device ids, if any.
-Use `connected_device_info.external_device_ids` instead. </p></td>
+                  <td><p>External device ids for this sensor, gateway or valve. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>device_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Device type for this modem. </p></td>
                 </tr>
               
                 <tr>
@@ -16489,14 +17724,21 @@ Used mainly to differentiate in the UI or to sort on. </p></td>
                 <tr>
                   <td>gateway_info</td>
                   <td><a href="#hiber.modem.Modem.GatewayInfo">Modem.GatewayInfo</a></td>
-                  <td></td>
+                  <td>optional</td>
                   <td><p>Additional information when this modem is a gateway. </p></td>
                 </tr>
               
                 <tr>
                   <td>connected_device_info</td>
                   <td><a href="#hiber.modem.Modem.ConnectedDeviceInfo">Modem.ConnectedDeviceInfo</a></td>
-                  <td></td>
+                  <td>optional</td>
+                  <td><p>Additional information when this modem is a connected device. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>valve_info</td>
+                  <td><a href="#hiber.modem.Modem.ValveInfo">Modem.ValveInfo</a></td>
+                  <td>optional</td>
                   <td><p>Additional information when this modem is a connected device. </p></td>
                 </tr>
               
@@ -16575,11 +17817,6 @@ Typically an image of the device installation. See the File.media_type for more 
                   <td><p>true</p></td>
                 </tr>
               
-                <tr>
-                  <td>external_device_ids</td>
-                  <td><p>true</p></td>
-                </tr>
-              
               </tbody>
             </table>
             
@@ -16610,14 +17847,14 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td>external_device_ids</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>External device ids for this modem. </p></td>
+                  <td><p><strong>Deprecated.</strong> External device ids for this modem. </p></td>
                 </tr>
               
                 <tr>
                   <td>device_type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Device type for this modem. </p></td>
+                  <td><p><strong>Deprecated.</strong> Device type for this modem. </p></td>
                 </tr>
               
                 <tr>
@@ -16637,6 +17874,32 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>external_device_ids</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>device_type</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -16662,7 +17925,7 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td>device_type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Device type for this gateway. </p></td>
+                  <td><p><strong>Deprecated.</strong> Device type for this gateway. </p></td>
                 </tr>
               
                 <tr>
@@ -16676,12 +17939,38 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td>external_device_ids</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>External device ids for this gateway. </p></td>
+                  <td><p><strong>Deprecated.</strong> External device ids for this gateway. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>device_type</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>external_device_ids</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -16776,6 +18065,37 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td>manufacturer</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.modem.Modem.ValveInfo">Modem.ValveInfo</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>open</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>high_pressure_line_status</td>
+                  <td><a href="#hiber.valve.Valve.HighPressureLineStatus">hiber.valve.Valve.HighPressureLineStatus</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -17989,6 +19309,12 @@ Note that gateways also send messages themselves (e.g. a daily heartbeat).</p></
                 <td><p>A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection.</p></td>
               </tr>
             
+              <tr>
+                <td>VALVE</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
           </tbody>
         </table>
       
@@ -18164,6 +19490,13 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                   <td>assets</td>
                   <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_points</td>
+                  <td><a href="#hiber.processpoint.ProcessPointSelection">hiber.processpoint.ProcessPointSelection</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -18177,6 +19510,27 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>assets</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -19251,12 +20605,40 @@ be available to unencrypted values due to performance issues. </p></td>
                   <td>assets</td>
                   <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_points</td>
+                  <td><a href="#hiber.processpoint.ProcessPointSelection">hiber.processpoint.ProcessPointSelection</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>assets</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -22717,9 +24099,21 @@ Used as an identifier for the organization. </p></td>
               </tr>
             
               <tr>
+                <td>PROCESS_POINTS</td>
+                <td>13</td>
+                <td><p>Access the list of process points in Mission Control.</p></td>
+              </tr>
+            
+              <tr>
                 <td>ASSET_DASHBOARD</td>
                 <td>11</td>
                 <td><p>Use the new assets as primary data owner in Mission Control dashboards.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROCESS_POINT_DASHBOARD</td>
+                <td>14</td>
+                <td><p>Use the new process points as primary data owner in Mission Control dashboards.</p></td>
               </tr>
             
               <tr>
@@ -22803,6 +24197,371 @@ Used as an identifier for the organization. </p></td>
         </table>
 
         
+    
+      
+      <div class="file-heading">
+        <h2 id="process_point.proto">process_point.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="hiber.processpoint.ProcessPoint">ProcessPoint</h3>
+        <p>Process Points are things that collect the data produced by devices.</p><p>Devices are assigned to process points to handle data ownership.</p><p>When a device is replaced, the data flow for the process point continues with the data from the new device.</p><p>Multiple devices can be assigned to an process point, though it is advisable to only do so when they send</p><p>different type of data (e.g. one sensor for pressure and one for flow).</p><p>For example, if you have a Well, you might have process points for Annulus A and the tubing head.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of the process point </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#hiber.processpoint.ProcessPoint.Type">ProcessPoint.Type</a></td>
+                  <td>optional</td>
+                  <td><p>Type of the process point, if any of the predefined types applies. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Longer detailed description of the process point. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>notes</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Multiline notes field that can be used to add additional information to an process point. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time_zone</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Optional time zone for the process point.
+This can, for example, be used to calculate SLAs on a daily basis, adjusted by time zone. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expected_transmission_rate</td>
+                  <td><a href="#hiber.value.Value.Numeric.Rate">hiber.value.Value.Numeric.Rate</a></td>
+                  <td>optional</td>
+                  <td><p>The expected transmission rate for this process point. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
+                  <td></td>
+                  <td><p>Metadata for the process point.
+This can be automatically populated from linked devices or manually added. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
+                  <td>repeated</td>
+                  <td><p>Tags assigned to this process point </p></td>
+                </tr>
+              
+                <tr>
+                  <td>devices</td>
+                  <td><a href="#hiber.processpoint.ProcessPoint.AssignedDevice">ProcessPoint.AssignedDevice</a></td>
+                  <td>repeated</td>
+                  <td><p>Devices assigned to this process point </p></td>
+                </tr>
+              
+                <tr>
+                  <td>inactive_devices</td>
+                  <td><a href="#hiber.processpoint.ProcessPoint.AssignedDevice">ProcessPoint.AssignedDevice</a></td>
+                  <td>repeated</td>
+                  <td><p>Devices that were assigned to this process point in the past </p></td>
+                </tr>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The organization that owns this process point.
+Typically only relevant if child organizations are included. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location</td>
+                  <td><a href="#hiber.Location">hiber.Location</a></td>
+                  <td></td>
+                  <td><p>Location for the process point. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>files</td>
+                  <td><a href="#hiber.file.File">hiber.file.File</a></td>
+                  <td>repeated</td>
+                  <td><p>Files for this process point.
+Typically an image of a place. See the File.media_type for more information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.processpoint.ProcessPoint.AssignedDevice">ProcessPoint.AssignedDevice</h3>
+        <p>A device assigned to this process point.</p><p>Non-operational values that the device produces will be linked to this process point</p><p>(e.g. pressure, but not battery level).</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_message_sent_at</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_message_received_at</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>assignment_time_range</td>
+                  <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>health</td>
+                  <td><a href="#hiber.health.HealthLevel">hiber.health.HealthLevel</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>numeric_value_types</td>
+                  <td><a href="#hiber.value.Value.Numeric.Type">hiber.value.Value.Numeric.Type</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.processpoint.ProcessPointSelection">ProcessPointSelection</h3>
+        <p>Selection object for process points.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Select process points by identifier. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>search</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Search process points by (partial, case insensitive) identifier, name, description, notes and time zone. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>types</td>
+                  <td><a href="#hiber.processpoint.ProcessPoint.Type">ProcessPoint.Type</a></td>
+                  <td>repeated</td>
+                  <td><p>Select process points by type. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>filter_by_tags</td>
+                  <td><a href="#hiber.tag.TagSelection">hiber.tag.TagSelection</a></td>
+                  <td>optional</td>
+                  <td><p>Select process points by tags </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="hiber.processpoint.ProcessPoint.Type">ProcessPoint.Type</h3>
+        <p>Predefined process points types that can be used to say something about the data.</p><p>Currently a limited list, but more may be added in the future.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWN</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_ANNULUS_A</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_ANNULUS_B</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_ANNULUS_C</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_ANNULUS_D</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_HEAD</td>
+                <td>15</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_TUBING_HEAD</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_TUBING</td>
+                <td>6</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_FLOW_LINE</td>
+                <td>7</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_CASING</td>
+                <td>8</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_PRODUCTION_CASING_PRESSURE</td>
+                <td>9</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WELL_INTERMITTENT_CASING_PRESSURE</td>
+                <td>10</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PIPELINE</td>
+                <td>11</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PRODUCTION_LINE</td>
+                <td>12</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GAS_MANIFOLD</td>
+                <td>13</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PRODUCTION_MANIFOLD</td>
+                <td>14</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
     
       
       <div class="file-heading">
@@ -23479,7 +25238,14 @@ Keep in mind the grpc request size limitation. </p></td>
                   <td>asset_count</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Count the assets for each tag in the response. </p></td>
+                  <td><p><strong>Deprecated.</strong> Count the assets for each tag in the response. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_point_count</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Count the process points for each tag in the response. </p></td>
                 </tr>
               
                 <tr>
@@ -23499,6 +25265,27 @@ Keep in mind the grpc request size limitation. </p></td>
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>asset_count</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -23531,6 +25318,13 @@ Keep in mind the grpc request size limitation. </p></td>
                   <td>tag_asset_count</td>
                   <td><a href="#hiber.tag.ListTagsRequest.Response.TagAssetCountEntry">ListTagsRequest.Response.TagAssetCountEntry</a></td>
                   <td>repeated</td>
+                  <td><p><strong>Deprecated.</strong> map&lt;tag-id, count&gt; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tag_process_point_count</td>
+                  <td><a href="#hiber.tag.ListTagsRequest.Response.TagProcessPointCountEntry">ListTagsRequest.Response.TagProcessPointCountEntry</a></td>
+                  <td>repeated</td>
                   <td><p>map&lt;tag-id, count&gt; </p></td>
                 </tr>
               
@@ -23551,6 +25345,27 @@ Keep in mind the grpc request size limitation. </p></td>
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>tag_asset_count</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -23617,6 +25432,37 @@ Keep in mind the grpc request size limitation. </p></td>
 
         
       
+        <h3 id="hiber.tag.ListTagsRequest.Response.TagProcessPointCountEntry">ListTagsRequest.Response.TagProcessPointCountEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="hiber.tag.ListTagsRequest.Response.TagWebhookCountEntry">ListTagsRequest.Response.TagWebhookCountEntry</h3>
         <p></p>
 
@@ -23649,7 +25495,7 @@ Keep in mind the grpc request size limitation. </p></td>
         
       
         <h3 id="hiber.tag.Tag">Tag</h3>
-        <p>Tag in your organization.</p><p>Tags can be assigned to devices and assets to group them together or mark a certain property.</p><p>A Tag has three parts: its id in your organization, a Label that describes how it should be displayed, and</p><p>Metadata (which is only included when using the TagService) with additional information.</p>
+        <p>Tag in your organization.</p><p>Tags can be assigned to devices and process points to group them together or mark a certain property.</p><p>A Tag has three parts: its id in your organization, a Label that describes how it should be displayed, and</p><p>Metadata (which is only included when using the TagService) with additional information.</p>
 
         
           <table class="field-table">
@@ -23807,6 +25653,13 @@ Typically an image of a place. See the File.media_type for more information. </p
                   <td>asset_count</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_point_count</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -23820,6 +25673,27 @@ Typically an image of a place. See the File.media_type for more information. </p
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>asset_count</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -23852,7 +25726,14 @@ Typically an image of a place. See the File.media_type for more information. </p
                   <td>asset_count</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Count the assets for each tag in the response. </p></td>
+                  <td><p><strong>Deprecated.</strong> Count the assets for each tag in the response. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>process_point_count</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Count the process points for each tag in the response. </p></td>
                 </tr>
               
                 <tr>
@@ -23865,6 +25746,27 @@ Typically an image of a place. See the File.media_type for more information. </p
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>asset_count</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         

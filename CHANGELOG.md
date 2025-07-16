@@ -1,5 +1,83 @@
 # Changelog Hiber API
 
+### 0.246 (2025-07-16)
+
+##### AssetService
+
+- Deprecated everything asset related in favor of `ProcessPoint`.
+
+##### AssignmentService
+
+- Duplicated `Asset`-related parts with a `ProcessPoint` alternative, including but not limited to:
+  - Added `rpc ProcessPointAssignments` for `rpc AssetAssignments`.
+  - Added values with `PROCESS_POINT` to `AssignmentType` for all values with `ASSET`.
+  - Added `assign_process_point` and `to_process_point` to `Assignment`
+  - etc.
+- Added `ListAssignments.Request.use_process_point` to switch output to `ProcessPoint`-based output, since
+  `Assignment` has `oneof` for `assign` and `to`, which means we cannot set both.
+
+##### EventService
+
+- Duplicated `Asset`-related events with a `ProcessPoint` alternative, including but not limited to:
+  - Added values with `PROCESS_POINT` to `EventType` for all values with `ASSET`.
+  - Added `ProcessPointEvent` identical to `AssetEvent`.
+  - etc.
+- Added `ListEventsRequest.use_process_point` to switch output to `ProcessPoint`-based output, since
+  `Event` has `oneof` for `event`, which means we cannot set both.
+- Updated event text to change asset to process point in various places.
+  - This is, unfortunately, not backwards compatible.
+  - Verified that those events are not in use for publishers that might fails to parse them now.
+
+##### ExportService
+
+- Added `process_point_values` to `type`.
+- Added `ListExports.Request.use_process_point_in_configuration` to switch output to `ProcessPoint`-based output, since
+  `Export` has `oneof` for `type`, which means we cannot set both.
+
+##### FieldService
+
+- Added `rpc ForProcessPoint` and `ListFieldsForProcessPoint` while deprecating the old `rpc ForAsset`.
+
+##### ModemService
+
+- Added `Modem.Type.VALVE` and `Modem.valve_info` to support `Valve` in the `Modem` list.
+- Added `Modem.device_type` as a simplification, deprecated `Modem.GatewayInfo.device_type` and `Modem.ConnectedDeviceInfo.device_type`.
+- Removed deprecation from `Modem.external_device_ids` and deprecated `Modem.GatewayInfo.external_device_ids` and `Modem.ConnectedDeviceInfo.external_device_ids` instead.
+
+##### ModemAlarmService
+
+- Added `process_points` for `assets` in various places.
+
+##### OrganizationService
+
+- Duplicated `Asset`-related `Organization.Feature`s with a `ProcessPoint` alternative:
+  - `PROCESS_POINTS` for `ASSETS`,
+  - `PROCESS_POINT_DASHBOARD` for `ASSET_DASHBOARD`.
+
+##### Permissions
+
+- Duplicated `Asset`-related `OrganizationPermission`s with a `ProcessPoint` alternative:
+  - `PROCESS_POINTS` for `ASSETS`,
+  - `PROCESS_POINTS_UPDATE` for `ASSETS_UPDATE`,
+  - `PROCESS_POINTS_VALUES` for `ASSETS_VALUES`.
+
+##### ProcessPointService
+
+- Added `ProcessPoint` and `ProcessPointService` as the replacement for `Asset` and `AssetService`.
+  - They are functionally identical, though some names were changed.
+
+##### TagService
+
+- Added `process_point_count` for `asset_count` in various places.
+
+##### ValueService
+
+- Added `process_points` for `assets` in various places.
+
+##### ValveService
+
+- Added `high_pressure_line_status` to `Valve` (same as `last_process.high_pressure_line_status`).
+
 ### 0.245 (2025-07-09)
 
 ##### EmailNotificationPreferencesService

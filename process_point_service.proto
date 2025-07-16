@@ -1,0 +1,325 @@
+syntax = "proto3";
+
+package hiber.processpoint;
+
+import "google/protobuf/struct.proto";
+
+import "base.proto";
+import "file.proto";
+import "device.proto";
+import "process_point.proto";
+import "tag.proto";
+import "value.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.processpoint";
+option java_outer_classname = "ProcessPointServiceApi";
+option go_package = ".;hiber";
+
+/* Manage Process Points in your organization, creating new process points,
+ * updating or deleting them in bulk and changing assigned tags and devices.
+ */
+service ProcessPointService {
+    /* List the process points in your organization. */
+    rpc List (ListProcessPoints.Request) returns (ListProcessPoints.Response) {
+        option (permission_usage) = PROCESS_POINTS;
+    }
+
+    /* Create process points in your organization. */
+    rpc Create (CreateProcessPoint.Request) returns (CreateProcessPoint.Response) {
+        option (permission_usage) = PROCESS_POINTS_UPDATE;
+    }
+
+    /* Update process points in your organization. */
+    rpc Update(UpdateProcessPoint.Request) returns (UpdateProcessPoint.Response) {
+        option (permission_usage) = PROCESS_POINTS_UPDATE;
+    }
+
+    /* Delete process points in your organization. */
+    rpc Delete(DeleteProcessPoint.Request) returns (DeleteProcessPoint.Response) {
+        option (permission_usage) = PROCESS_POINTS_UPDATE;
+    }
+
+    /* Assign (a) tag(s) to an process point. */
+    rpc AssignTag (AssignProcessPointTags.Request) returns (AssignProcessPointTags.Response) {
+        option (permission_usage) = PROCESS_POINTS;
+        option (permission_usage) = ASSIGNMENTS;
+    }
+
+    /* Unassign (a) tag(s) from an process point. */
+    rpc UnassignTag (UnassignProcessPointTags.Request) returns (UnassignProcessPointTags.Response) {
+        option (permission_usage) = PROCESS_POINTS;
+        option (permission_usage) = ASSIGNMENTS;
+    }
+
+    /* Assign (a) device(s) to an process point. */
+    rpc AssignDevice (AssignProcessPointDevices.Request) returns (AssignProcessPointDevices.Response) {
+        option (permission_usage) = PROCESS_POINTS;
+        option (permission_usage) = ASSIGNMENTS;
+        option (permission_usage) = MODEMS;
+    }
+
+    /* Unassign (a) device(s) from an process point. */
+    rpc UnassignDevice (UnassignProcessPointDevices.Request) returns (UnassignProcessPointDevices.Response) {
+        option (permission_usage) = PROCESS_POINTS;
+        option (permission_usage) = ASSIGNMENTS;
+        option (permission_usage) = MODEMS;
+    }
+}
+
+/* List the process points in your (selected) organization.
+ */
+message ListProcessPoints {
+    enum Sort {
+        /* Sort alphabetically on the name of the process point, in ascending order. Default. */
+        NAME_ASC = 0;
+        /* Sort alphabetically on the name of the process point, in descending order. */
+        NAME_DESC = 1;
+
+        /* Sort process points on most recent activity first (e.g. newest value received). */
+        ACTIVITY = 2;
+        /* Sort process points on least recent activity first (e.g. longest no value received). */
+        INACTIVITY = 3;
+
+        /* Sort alphabetically on the process point type, in ascending order. */
+        TYPE_ASC = 4;
+        /* Sort alphabetically on the process point type, in descending order. */
+        TYPE_DESC = 5;
+
+        /* Sort alphabetically on any tags of type 'well', in ascending order. */
+        TAG_TYPE_WELL_ASC = 6;
+        /* Sort alphabetically on any tags of type 'well', in descending order. */
+        TAG_TYPE_WELL_DESC = 7;
+        /* Sort alphabetically on any tags of type 'site', in ascending order. */
+        TAG_TYPE_SITE_ASC = 8;
+        /* Sort alphabetically on any tags of type 'site', in descending order. */
+        TAG_TYPE_SITE_DESC = 9;
+        /* Sort alphabetically on any tags of type 'production_area', in ascending order. */
+        TAG_TYPE_PRODUCTION_AREA_ASC = 10;
+        /* Sort alphabetically on any tags of type 'production_area', in descending order. */
+        TAG_TYPE_PRODUCTION_AREA_DESC = 11;
+    }
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select which process points to return.
+         * Optional, when omitted or empty everything is included.
+         */
+        optional ProcessPointSelection selection = 2;
+
+        /* Paginate through results. */
+        optional Pagination pagination = 3;
+
+        /* Sort the process points with the given sort options. */
+        repeated Sort sort_by = 4;
+
+        /* Include process points from the selected child organizations. */
+        optional Filter.ChildOrganizations child_organizations = 5;
+    }
+    message Response {
+        repeated ProcessPoint process_points = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}
+
+/* Create one or more process points in your (selected) organization.
+ */
+message CreateProcessPoint {
+    optional string name = 1;
+    optional ProcessPoint.Type type = 2;
+    optional string description = 3;
+    optional string notes = 4;
+    optional string time_zone = 5;
+    optional value.Value.Numeric.Rate expected_transmission_rate = 6;
+    optional google.protobuf.Struct metadata = 7;
+    optional Location location = 8;
+    repeated file.File files = 9;
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* ProcessPoints to create. */
+        repeated CreateProcessPoint create = 2;
+    }
+    message Response {
+        repeated ProcessPoint created = 1;
+        Request request = 2;
+    }
+}
+
+/* Update one or more process points in your (selected) organization. */
+message UpdateProcessPoint {
+    optional string update_name = 1;
+    optional ProcessPoint.Type update_type = 2;
+    optional string update_description = 3;
+    optional string update_notes = 4;
+    optional string update_time_zone = 5;
+    optional value.Value.Numeric.Rate update_expected_transmission_rate = 6;
+    map<string, google.protobuf.Value> add_metadata = 7;
+    map<string, string> add_metadata_text = 8;
+    repeated string remove_metadata_keys = 9;
+    optional Location location = 10;
+    optional bool remove_location = 11;
+    repeated file.File add_files = 12;
+    repeated string delete_files = 13;
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select which process points to update. Not optional and cannot be empty. */
+        ProcessPointSelection selection = 2;
+
+        /* The update to apply to the selected process points. */
+        UpdateProcessPoint update = 3;
+
+        /* Paginate through results (for the Response, not the actual update).
+         * To get the next pages, use the List call with the same selection and pagination for the next page.
+         */
+        optional Pagination pagination = 4;
+    }
+    message Response {
+        repeated ProcessPoint process_points = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}
+
+/* Delete process points in your (selected) organization. */
+message DeleteProcessPoint {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select which process points to delete. Not optional and cannot be empty. */
+        ProcessPointSelection selection = 2;
+    }
+    message Response {
+        uint32 deleted = 1;
+        Request request = 2;
+    }
+}
+
+/* Change the assigned tags for a selection of process points in your (selected) organization. */
+message AssignProcessPointTags {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select which process points to assign. Not optional and cannot be empty. */
+        ProcessPointSelection selection = 2;
+
+        /* Select which tags to assign this process point to. */
+        tag.TagSelection tags = 3;
+
+        /* Paginate through results (for the Response, not the actual update).
+         * To get the next pages, use the List call with the same selection and pagination for the next page.
+         */
+        optional Pagination pagination = 4;
+    }
+    message Response {
+        repeated ProcessPoint process_points = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}
+
+/* Change the assigned tags for a selection of process points in your (selected) organization. */
+message UnassignProcessPointTags {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select which process points to unassign. Not optional and cannot be empty. */
+        ProcessPointSelection selection = 2;
+
+        /* Select which tags to unassign this process point from. */
+        tag.TagSelection tags = 3;
+
+        /* Paginate through results (for the Response, not the actual update).
+         * To get the next pages, use the List call with the same selection and pagination for the next page.
+         */
+        optional Pagination pagination = 4;
+    }
+    message Response {
+        repeated ProcessPoint process_points = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}
+
+/* Change the assigned devices for a selection of process points in your (selected) organization. */
+message AssignProcessPointDevices {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select which process points to assign. Not optional and cannot be empty. */
+        ProcessPointSelection selection = 2;
+
+        /* Select which devices to assign this process point to. */
+        device.DeviceSelection devices = 3;
+
+        /* Paginate through results (for the Response, not the actual update).
+         * To get the next pages, use the List call with the same selection and pagination for the next page.
+         */
+        optional Pagination pagination = 4;
+
+        /* Time that the assignment should be active.
+         * This sets the assignment to start in the past, but would not have effect in the past for assignments like
+         * parsers and alarms (they will only be triggered for new messages / values).
+         * It would however work for process points having access to device data.
+         * This is not allowed to be a value in the future at the moment.
+         */
+        optional Timestamp override_time = 5;
+
+        /* Time that the assignment ended.
+         * This marks the assignment as ended at the given moment in the past, but would not have effect in the past
+         * for assignments like parsers and alarms (e.g. no alarm events are removed).
+         * It would however work for process points having access to device data.
+         * This is not allowed to be a value in the future at the moment.
+         */
+        optional Timestamp end_time = 6;
+    }
+    message Response {
+        repeated ProcessPoint process_points = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}
+
+/* Change the assigned devices for a selection of process points in your (selected) organization. */
+message UnassignProcessPointDevices {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select which process points to unassign. Not optional and cannot be empty. */
+        ProcessPointSelection selection = 2;
+
+        /* Select which devices to unassign this process point from. */
+        device.DeviceSelection devices = 3;
+
+        /* Paginate through results (for the Response, not the actual update).
+         * To get the next pages, use the List call with the same selection and pagination for the next page.
+         */
+        optional Pagination pagination = 4;
+
+        /* Time that the assignment ended.
+         * This marks the assignment as ended at the given moment in the past, but would not have effect in the past
+         * for assignments like parsers and alarms (e.g. no alarm events are removed).
+         * It would however work for process points having access to device data.
+         * This is not allowed to be a value in the future at the moment.
+         */
+        optional Timestamp override_time = 5;
+    }
+    message Response {
+        repeated ProcessPoint process_points = 1;
+        Pagination.Result pagination = 2;
+        Request request = 3;
+    }
+}

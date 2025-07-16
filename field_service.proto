@@ -7,6 +7,7 @@ import "base.proto";
 import "field.proto";
 import "modem.proto";
 import "modem_message_body_parser.proto";
+import "process_point.proto";
 import "value.proto";
 
 option java_multiple_files = false;
@@ -21,6 +22,9 @@ service FieldService {
     }
     rpc ForAsset (ListFieldsForAsset.Request) returns (ListFieldsForAsset.Response) {
         option (permission_usage) = ASSETS_VALUES;
+    }
+    rpc ForProcessPoint (ListFieldsForProcessPoint.Request) returns (ListFieldsForProcessPoint.Response) {
+        option (permission_usage) = PROCESS_POINTS_VALUES;
     }
     rpc ForModem (ListFieldsForModem.Request) returns (ListFieldsForModem.Response) {
         option (permission_usage) = MODEMS;
@@ -164,6 +168,53 @@ message ListFieldsForAsset {
         Pagination.Result pagination = 3;
 
         /* A merged result of all fields, for all assets. This can be useful to display table columns, for example. */
+        repeated field.Field total = 4;
+    }
+}
+
+message ListFieldsForProcessPoint {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select the process points to fetch the fields for. Optional, when omitted or empty everything is included. */
+        optional processpoint.ProcessPointSelection process_point_selection = 2;
+
+        /* Select which fields to return. Optional, when omitted or empty everything is included. */
+        optional FieldSelection field_selection = 3;
+
+        optional Pagination pagination = 4;
+        ListFields.Sort sort = 5;
+
+        /* Whether to apply the unit preferences to the fields.
+         * This will convert any fields into you preferred unit, for convenience.
+         */
+        optional bool apply_unit_preferences = 6;
+
+        /* Whether to also calculate the total fields for all selected process points,
+         * and return them as a single list in the response.
+         * This can be useful to display table columns, for example.
+         */
+        optional bool include_total = 7;
+
+        /* Whether to include fields that were only present from previously assigned devices. */
+        optional bool include_historic_fields = 8;
+    }
+
+    message Response {
+        message ProcessPointWithFields {
+            string process_point_name = 3;
+            string process_point_identifier = 1;
+            repeated Field fields = 2;
+        }
+
+        repeated ProcessPointWithFields process_point_fields = 1;
+        Request request = 2;
+        Pagination.Result pagination = 3;
+
+        /* A merged result of all fields, for all process points.
+         * This can be useful to display table columns, for example.
+         */
         repeated field.Field total = 4;
     }
 }

@@ -32,8 +32,11 @@ By default, everyone who has access to an organization, can access basic organiz
 | ORGANIZATION_UPDATE | Update the organizations data, such as billing information, address, and contact. | 2 |
 | ORGANIZATION_DELETE | Delete child organizations. You cannot delete your own organization. To delete your organization, contact support. | 3 |
 | ASSETS | List assets, see their details | 53 |
+| PROCESS_POINTS | List process points, see their details | 61 |
 | ASSETS_UPDATE | Create and update assets, such as their display name and tags. Includes ASSETS permission. | 54 |
+| PROCESS_POINTS_UPDATE | Create and update process points, such as their display name and tags. Includes PROCESS_POINTS permission. | 62 |
 | ASSETS_VALUES | Read asset values, e.g. pressure measurements. | 55 |
+| PROCESS_POINTS_VALUES | Read process point values, e.g. pressure measurements. | 63 |
 | MODEMS | List modems, see their details and health | 10 |
 | MODEMS_CREATE | Create new modems. Includes MODEMS permission. | 50 |
 | MODEMS_UPDATE | Update modems, such as their peripherals, display name and tags. Includes MODEMS permission. | 11 |

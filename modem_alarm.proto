@@ -17,6 +17,7 @@ import "asset.proto";
 import "base.proto";
 import "field.proto";
 import "modem.proto";
+import "process_point.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.modem.alarm";
@@ -70,7 +71,8 @@ service ModemAlarmService {
         option (permission_usage) = ASSIGNMENTS;
         option (permission_usage) = MODEMS;
 
-        /* When assigning to asset. */
+        /* When assigning to process point. */
+        option (permission_usage) = PROCESS_POINTS;
         option (permission_usage) = ASSETS;
     }
 
@@ -697,7 +699,8 @@ message AssignModemAlarms {
 
         oneof assign_to {
             modem.ModemSelection modems = 3;
-            asset.AssetSelection assets = 5;
+            asset.AssetSelection assets = 5 [deprecated = true];
+            processpoint.ProcessPointSelection process_points = 6;
         }
 
         /* The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). */
@@ -721,7 +724,8 @@ message UnassignModemAlarms {
         ModemAlarmSelection alarms = 2;
         oneof unassign_from {
             modem.ModemSelection modems = 3;
-            asset.AssetSelection assets = 4;
+            asset.AssetSelection assets = 4 [deprecated = true];
+            processpoint.ProcessPointSelection process_points = 5;
         }
     }
     message Response {

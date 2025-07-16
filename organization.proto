@@ -99,10 +99,16 @@ message Organization {
         EXPERIMENTAL = 6;
 
         /* Access the list of assets in Mission Control. */
-        ASSETS = 10;
+        ASSETS = 10 [deprecated = true];
+
+        /* Access the list of process points in Mission Control. */
+        PROCESS_POINTS = 13;
 
         /* Use the new assets as primary data owner in Mission Control dashboards. */
-        ASSET_DASHBOARD = 11;
+        ASSET_DASHBOARD = 11 [deprecated = true];
+
+        /* Use the new process points as primary data owner in Mission Control dashboards. */
+        PROCESS_POINT_DASHBOARD = 14;
 
         /* Display and use device and gateway locations in Mission Control. */
         LOCATIONS = 12;

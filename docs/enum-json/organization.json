@@ -7,7 +7,9 @@
     , "EARLY_ACCESS": "Used for organizations that get early access to features."
     , "EXPERIMENTAL": "Used for organizations that get access to experimental features. e.g. feature work in progress."
     , "ASSETS": "Access the list of assets in Mission Control."
+    , "PROCESS_POINTS": "Access the list of process points in Mission Control."
     , "ASSET_DASHBOARD": "Use the new assets as primary data owner in Mission Control dashboards."
+    , "PROCESS_POINT_DASHBOARD": "Use the new process points as primary data owner in Mission Control dashboards."
     , "LOCATIONS": "Display and use device and gateway locations in Mission Control."
     }
 }]

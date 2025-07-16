@@ -169,61 +169,61 @@ updating or deleting them in bulk and changing assigned tags and devices.
 > **rpc** List([ListAsset.Request](#listassetrequest))
     [ListAsset.Response](#listassetresponse)
 
-List the assets in your organization.
+<strong>Deprecated.</strong> List the assets in your organization.
 
 ### Create
 > **rpc** Create([CreateAsset.Request](#createassetrequest))
     [CreateAsset.Response](#createassetresponse)
 
-Create assets in your organization.
+<strong>Deprecated.</strong> Create assets in your organization.
 
 ### Update
 > **rpc** Update([UpdateAsset.Request](#updateassetrequest))
     [UpdateAsset.Response](#updateassetresponse)
 
-Update assets in your organization.
+<strong>Deprecated.</strong> Update assets in your organization.
 
 ### Delete
 > **rpc** Delete([DeleteAsset.Request](#deleteassetrequest))
     [DeleteAsset.Response](#deleteassetresponse)
 
-Delete assets in your organization.
+<strong>Deprecated.</strong> Delete assets in your organization.
 
 ### AssignTag
 > **rpc** AssignTag([AssignAssetTags.Request](#assignassettagsrequest))
     [AssignAssetTags.Response](#assignassettagsresponse)
 
-Assign (a) tag(s) to an asset.
+<strong>Deprecated.</strong> Assign (a) tag(s) to an asset.
 
 ### UnassignTag
 > **rpc** UnassignTag([UnassignAssetTags.Request](#unassignassettagsrequest))
     [UnassignAssetTags.Response](#unassignassettagsresponse)
 
-Unassign (a) tag(s) from an asset.
+<strong>Deprecated.</strong> Unassign (a) tag(s) from an asset.
 
 ### AssignDevice
 > **rpc** AssignDevice([AssignAssetDevices.Request](#assignassetdevicesrequest))
     [AssignAssetDevices.Response](#assignassetdevicesresponse)
 
-Assign (a) device(s) to an asset.
+<strong>Deprecated.</strong> Assign (a) device(s) to an asset.
 
 ### UnassignDevice
 > **rpc** UnassignDevice([UnassignAssetDevices.Request](#unassignassetdevicesrequest))
     [UnassignAssetDevices.Response](#unassignassetdevicesresponse)
 
-Unassign (a) device(s) from an asset.
+<strong>Deprecated.</strong> Unassign (a) device(s) from an asset.
 
 
 ## Messages
 
 ### AssignAssetDevices
 
-Change the assigned devices for a selection of assets in your (selected) organization.
+<strong>Deprecated.</strong> Change the assigned devices for a selection of assets in your (selected) organization.
 
 
 ### AssignAssetDevices.Request
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -236,7 +236,7 @@ Change the assigned devices for a selection of assets in your (selected) organiz
 
 ### AssignAssetDevices.Response
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -246,12 +246,12 @@ Change the assigned devices for a selection of assets in your (selected) organiz
 
 ### AssignAssetTags
 
-Change the assigned tags for a selection of assets in your (selected) organization.
+<strong>Deprecated.</strong> Change the assigned tags for a selection of assets in your (selected) organization.
 
 
 ### AssignAssetTags.Request
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -262,7 +262,7 @@ Change the assigned tags for a selection of assets in your (selected) organizati
 
 ### AssignAssetTags.Response
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -272,7 +272,7 @@ Change the assigned tags for a selection of assets in your (selected) organizati
 
 ### CreateAsset
 
-Create one or more assets in your (selected) organization.
+<strong>Deprecated.</strong> Create one or more assets in your (selected) organization.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -288,7 +288,7 @@ Create one or more assets in your (selected) organization.
 
 ### CreateAsset.Request
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -297,7 +297,7 @@ Create one or more assets in your (selected) organization.
 
 ### CreateAsset.Response
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -306,12 +306,12 @@ Create one or more assets in your (selected) organization.
 
 ### DeleteAsset
 
-Delete assets in your (selected) organization.
+<strong>Deprecated.</strong> Delete assets in your (selected) organization.
 
 
 ### DeleteAsset.Request
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -320,7 +320,7 @@ Delete assets in your (selected) organization.
 
 ### DeleteAsset.Response
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -329,12 +329,12 @@ Delete assets in your (selected) organization.
 
 ### ListAsset
 
-List the assets in your (selected) organization.
+<strong>Deprecated.</strong> List the assets in your (selected) organization.
 
 
 ### ListAsset.Request
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -346,7 +346,7 @@ List the assets in your (selected) organization.
 
 ### ListAsset.Response
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -356,12 +356,12 @@ List the assets in your (selected) organization.
 
 ### UnassignAssetDevices
 
-Change the assigned devices for a selection of assets in your (selected) organization.
+<strong>Deprecated.</strong> Change the assigned devices for a selection of assets in your (selected) organization.
 
 
 ### UnassignAssetDevices.Request
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -373,7 +373,7 @@ Change the assigned devices for a selection of assets in your (selected) organiz
 
 ### UnassignAssetDevices.Response
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -383,12 +383,12 @@ Change the assigned devices for a selection of assets in your (selected) organiz
 
 ### UnassignAssetTags
 
-Change the assigned tags for a selection of assets in your (selected) organization.
+<strong>Deprecated.</strong> Change the assigned tags for a selection of assets in your (selected) organization.
 
 
 ### UnassignAssetTags.Request
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -399,7 +399,7 @@ Change the assigned tags for a selection of assets in your (selected) organizati
 
 ### UnassignAssetTags.Response
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -409,7 +409,7 @@ Change the assigned tags for a selection of assets in your (selected) organizati
 
 ### UpdateAsset
 
-Update one or more assets in your (selected) organization.
+<strong>Deprecated.</strong> Update one or more assets in your (selected) organization.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -447,7 +447,7 @@ Update one or more assets in your (selected) organization.
 
 ### UpdateAsset.Request
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -458,7 +458,7 @@ Update one or more assets in your (selected) organization.
 
 ### UpdateAsset.Response
 
-
+<strong>Deprecated.</strong> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -469,7 +469,7 @@ Update one or more assets in your (selected) organization.
 
 ## Enums
 ### ListAsset.Sort
-
+<strong>Deprecated.</strong> 
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
@@ -497,7 +497,7 @@ so not all messages listed here are referenced.)
 
 ### hiber.asset.Asset
 
-Assets are things that collect the data produced by devices.
+<strong>Deprecated.</strong> Assets are things that collect the data produced by devices.
 Devices are assigned to assets to handle data ownership.
 When a device is replaced, the data flow for the asset continues with the data from the new device.
 Multiple devices can be assigned to an asset, though it is advisable to only do so when they send
@@ -524,7 +524,7 @@ For example, if you have a Well, you might have assets for Annulus A and the tub
 
 ### hiber.asset.Asset.AssignedDevice
 
-A device assigned to this asset.
+<strong>Deprecated.</strong> A device assigned to this asset.
 Non-operational values that the device produces will be linked to this asset
 (e.g. pressure, but not battery level).
 
@@ -542,7 +542,7 @@ Non-operational values that the device produces will be linked to this asset
 
 ### hiber.asset.AssetSelection
 
-Selection object for assets.
+<strong>Deprecated.</strong> Selection object for assets.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -554,7 +554,7 @@ Selection object for assets.
 
 ### Enums
 #### hiber.asset.Asset.Type
-Predefined assets types that can be used to say something about the data.
+<strong>Deprecated.</strong> Predefined assets types that can be used to say something about the data.
 Currently a limited list, but more may be added in the future.
 
 | Name | Description | Number |
@@ -771,7 +771,7 @@ so not all messages listed here are referenced.)
 ### hiber.tag.Tag
 
 Tag in your organization.
-Tags can be assigned to devices and assets to group them together or mark a certain property.
+Tags can be assigned to devices and process points to group them together or mark a certain property.
 
 A Tag has three parts: its id in your organization, a Label that describes how it should be displayed, and
 Metadata (which is only included when using the TagService) with additional information.
@@ -1739,8 +1739,11 @@ api event stream and publishers.
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
 | ASSET_CREATED | A new asset was created in your organization. | 70 |
+| PROCESS_POINT_CREATED | A new process point was created in your organization. | 73 |
 | ASSET_UPDATED | An asset in your organization was updated (e.g. renamed, tagged). | 71 |
+| PROCESS_POINT_UPDATED | An process point in your organization was updated (e.g. renamed, tagged). | 74 |
 | ASSET_DELETED | An asset in your organization was deleted. | 72 |
+| PROCESS_POINT_DELETED | An process point in your organization was deleted. | 75 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
 | DEVICE_UPDATED | A device in your organization was manually updated (e.g. renamed, tagged). | 36 |
 | DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |

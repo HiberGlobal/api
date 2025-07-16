@@ -1,0 +1,49 @@
+{
+  "processPointDeleted": {
+    "organization": "your-organization",
+    "deleted": "example-identifier",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC",
+      "textual": "2020-06-01T05:15:25.355Z"
+    },
+    "tags": [{
+      "id": "1",
+      "label": {
+        "name": "example-tag",
+        "type": "well"
+      }
+    }, {
+      "id": "2",
+      "label": {
+        "name": "example-tag-2",
+        "type": "well"
+      }
+    }],
+    "title": "Process point example-identifier was deleted.",
+    "description": "Process point example-identifier was deleted."
+  },
+  "type": "PROCESS_POINT_DELETED",
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC",
+    "textual": "2020-06-01T05:15:25.355Z"
+  },
+  "title": "Process point example-identifier was deleted.",
+  "description": "Process point example-identifier was deleted.",
+  "tags": [{
+    "id": "1",
+    "label": {
+      "name": "example-tag",
+      "type": "well"
+    }
+  }, {
+    "id": "2",
+    "label": {
+      "name": "example-tag-2",
+      "type": "well"
+    }
+  }],
+  "isError": false,
+  "isWarning": false
+}

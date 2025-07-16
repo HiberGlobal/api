@@ -24,6 +24,7 @@ service SlackIntegrationService {
         /* For organization deleted events. */
         option (permission_usage) = ORGANIZATION_DELETE;
         /* For asset events. */
+        option (permission_usage) = PROCESS_POINTS;
         option (permission_usage) = ASSETS;
         /* For modem/device-related events. */
         option (permission_usage) = MODEMS;
@@ -56,6 +57,7 @@ service SlackIntegrationService {
         /* For organization deleted events. */
         option (permission_usage) = ORGANIZATION_DELETE;
         /* For asset events. */
+        option (permission_usage) = PROCESS_POINTS;
         option (permission_usage) = ASSETS;
         /* For modem/device-related events. */
         option (permission_usage) = MODEMS;

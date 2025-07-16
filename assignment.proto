@@ -9,6 +9,7 @@ import "asset.proto";
 import "modem.proto";
 import "modem_alarm.proto";
 import "modem_message_body_parser.proto";
+import "process_point.proto";
 import "tag.proto";
 
 option java_multiple_files = false;
@@ -28,6 +29,7 @@ service AssignmentService {
         option (permission_usage) = MODEMS;
         option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
         option (permission_usage) = MODEMS_ALARMS;
+        option (permission_usage) = PROCESS_POINTS;
         option (permission_usage) = ASSETS;
     }
 
@@ -46,6 +48,13 @@ service AssignmentService {
     /* List assets with the devices and tags they are assigned to. */
     rpc AssetAssignments (ListAssetAssignments.Request) returns (ListAssetAssignments.Response) {
         option (permission_usage) = ASSETS;
+        /* Only when requesting additional alarm details. */
+        option (permission_usage) = MODEMS_ALARMS;
+    }
+
+    /* List process points with the devices and tags they are assigned to. */
+    rpc ProcessPointAssignments (ListProcessPointAssignments.Request) returns (ListProcessPointAssignments.Response) {
+        option (permission_usage) = PROCESS_POINTS;
         /* Only when requesting additional alarm details. */
         option (permission_usage) = MODEMS_ALARMS;
     }
@@ -92,7 +101,10 @@ enum AssignmentType {
     ASSIGNS_ALARM_TO_MODEM = 2;
 
     /* Assignment that assigns an alarm to an asset. */
-    ASSIGNS_ALARM_TO_ASSET = 9;
+    ASSIGNS_ALARM_TO_ASSET = 9 [deprecated = true];
+
+    /* Assignment that assigns an alarm to an process point. */
+    ASSIGNS_ALARM_TO_PROCESS_POINT = 10;
 
     /* Assignment that assigns a modem to a tag. */
     ASSIGNS_MODEM_TO_TAG = 4;
@@ -104,10 +116,16 @@ enum AssignmentType {
     ASSIGNS_ALARM_TO_TAG = 6;
 
     /* Assignment that assigns an asset to a tag. */
-    ASSIGNS_ASSET_TO_TAG = 7;
+    ASSIGNS_ASSET_TO_TAG = 7 [deprecated = true];
+
+    /* Assignment that assigns an process point to a tag. */
+    ASSIGNS_PROCESS_POINT_TO_TAG = 11;
 
     /* Assignment that assigns an asset to a device. */
-    ASSIGNS_ASSET_TO_DEVICE = 8;
+    ASSIGNS_ASSET_TO_DEVICE = 8 [deprecated = true];
+
+    /* Assignment that assigns an process point to a device. */
+    ASSIGNS_PROCESS_POINT_TO_DEVICE = 12;
 
     reserved 3;
 }
@@ -121,15 +139,22 @@ enum AssignmentType {
  *
  * Assignment can have a custom start and end time.
  * This can extend into the past, but would not have effect in the past for assignments like parsers.
- * It would however work for assets having access to device data.
+ * It would however work for process points having access to device data.
  * This can also extend into the future, but while the unassigned event will be produced, the assignment will
  * still be visible until the given time.
  *
  * Assignments that are no longer active (end time is in the past) and that no longer have an effect
- * (currently only asset device assignment has an ongoing effect) may be cleaned up automatically.
+ * (currently only asset / process point device assignment has an ongoing effect) may be cleaned up automatically.
  */
 message Assignment {
     message AssetAssignment {
+        option deprecated = true;
+
+        string identifier = 1;
+        string name = 2;
+    }
+
+    message ProcessPointAssignment {
         string identifier = 1;
         string name = 2;
     }
@@ -164,14 +189,16 @@ message Assignment {
         ModemMessageBodyParserAssignment assign_parser = 3;
         AlarmAssignment assign_alarm = 5;
         string assign_modem = 6;
-        string assign_asset = 8;
+        string assign_asset = 8 [deprecated = true];
+        string assign_process_point = 14;
     }
 
     oneof to {
         string to_modem = 2;
         ModemMessageBodyParserAssignment to_parser = 4;
         tag.Tag to_tag = 7;
-        string to_asset = 11;
+        string to_asset = 11 [deprecated = true];
+        string to_process_point = 15;
     }
 
     message AdditionalConfiguration {
@@ -184,8 +211,17 @@ message Assignment {
         }
 
         message AssetDeviceAssignment {
+            option deprecated = true;
+
             /* Specify the fields that are shared with the Asset.
              * If nothing is specified, all fields are shared with the asset by default.
+             */
+            FieldsByJsonPath shared_fields = 1;
+        }
+
+        message ProcessPointDeviceAssignment {
+            /* Specify the fields that are shared with the process point.
+             * If nothing is specified, all fields are shared with the process point by default.
              */
             FieldsByJsonPath shared_fields = 1;
         }
@@ -195,6 +231,9 @@ message Assignment {
     oneof additional_configuration {
         /* Additional configuration for assignment between Asset and Device/Modem. */
         AdditionalConfiguration.AssetDeviceAssignment asset_device = 12;
+
+        /* Additional configuration for assignment between Process Point and Device/Modem. */
+        AdditionalConfiguration.ProcessPointDeviceAssignment process_point_device = 13;
     }
 }
 
@@ -205,7 +244,12 @@ message AssignmentSelection {
     }
 
     /* Select the assets to return the assignments for. Optional, when omitted or empty everything is included. */
-    optional asset.AssetSelection assets = 6;
+    optional asset.AssetSelection assets = 6 [deprecated = true];
+
+    /* Select the process points to return the assignments for.
+     * Optional, when omitted or empty everything is included.
+     */
+    optional processpoint.ProcessPointSelection process_points = 7;
 
     /* Select the modems to return the assignments for. Optional, when omitted or empty everything is included. */
     optional modem.ModemSelection modems = 1;
@@ -236,6 +280,11 @@ message ListAssignments {
 
         /* Include assignments that are no longer active. */
         optional bool include_inactive_assignments = 4;
+
+        /* Return assignments for process point instead of asset.
+         * Defaults to using asset for backwards compatibility.
+         */
+        optional bool use_process_point = 5 [deprecated = true];
     }
 
     message Response {
@@ -256,13 +305,15 @@ message Assign {
             modem.message.bodyparser.ModemMessageBodyParserSelection assign_parsers = 2;
             modem.alarm.ModemAlarmSelection assign_alarms = 4;
             modem.ModemSelection assign_modems = 7;
-            asset.AssetSelection assign_assets = 9;
+            asset.AssetSelection assign_assets = 9 [deprecated = true];
+            processpoint.ProcessPointSelection assign_process_points = 16;
         }
 
         oneof to {
             modem.ModemSelection to_modems = 5;
             tag.TagSelection to_tags = 8;
-            asset.AssetSelection to_assets = 12;
+            asset.AssetSelection to_assets = 12 [deprecated = true];
+            processpoint.ProcessPointSelection to_process_points = 17;
         }
 
         /* The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). */
@@ -271,13 +322,16 @@ message Assign {
         /* Additional configuration depending on the assignment type. */
         oneof additional_configuration {
             /* Additional configuration for assignment between Asset and Device/Modem. */
-            Assignment.AdditionalConfiguration.AssetDeviceAssignment asset_device = 15;
+            Assignment.AdditionalConfiguration.AssetDeviceAssignment asset_device = 15 [deprecated = true];
+
+            /* Additional configuration for assignment between ProcessPoint and Device/Modem. */
+            Assignment.AdditionalConfiguration.ProcessPointDeviceAssignment process_point_device = 18;
         }
 
         /* Time that the assignment should be active.
          * This sets the assignment to start in the past, but would not have effect in the past for assignments like
          * parsers and alarms (they will only be triggered for new messages / values).
-         * It would however work for assets having access to device data.
+         * It would however work for assets / process points having access to device data.
          * This is not allowed to be a value in the future at the moment.
          */
         optional Timestamp override_time = 10;
@@ -285,7 +339,7 @@ message Assign {
         /* Time that the assignment ended.
          * This marks the assignment as ended at the given moment in the past, but would not have effect in the past
          * for assignments like parsers and alarms (e.g. no alarm events are removed).
-         * It would however work for assets having access to device data.
+         * It would however work for assets / process points having access to device data.
          * This is not allowed to be a value in the future at the moment.
          */
         optional Timestamp end_time = 11;
@@ -319,20 +373,22 @@ message Unassign {
             modem.message.bodyparser.ModemMessageBodyParserSelection unassign_parsers = 2;
             modem.alarm.ModemAlarmSelection unassign_alarms = 4;
             modem.ModemSelection unassign_modems = 6;
-            asset.AssetSelection unassign_assets = 9;
+            asset.AssetSelection unassign_assets = 9 [deprecated = true];
+            processpoint.ProcessPointSelection unassign_process_points = 13;
         }
 
         oneof from {
             modem.ModemSelection from_modems = 5;
             tag.TagSelection from_tags = 7;
-            asset.AssetSelection from_assets = 11;
+            asset.AssetSelection from_assets = 11 [deprecated = true];
+            processpoint.ProcessPointSelection from_process_points = 14;
         }
 
         oneof time {
             /* Time that the assignment ended.
              * This marks the assignment as ended at the given moment in the past, but would not have effect in the past
              * for assignments like parsers and alarms (e.g. no alarm events are removed).
-             * It would however work for assets having access to device data.
+             * It would however work for assets / process points having access to device data.
              * This is not allowed to be a value in the future at the moment.
              */
             Timestamp override_time = 10;
@@ -361,13 +417,15 @@ message DeleteAssignment {
             modem.message.bodyparser.ModemMessageBodyParserSelection unassign_parsers = 2;
             modem.alarm.ModemAlarmSelection unassign_alarms = 4;
             modem.ModemSelection unassign_modems = 6;
-            asset.AssetSelection unassign_assets = 9;
+            asset.AssetSelection unassign_assets = 9 [deprecated = true];
+            processpoint.ProcessPointSelection unassign_process_points = 12;
         }
 
         oneof from {
             modem.ModemSelection from_modems = 5;
             tag.TagSelection from_tags = 7;
-            asset.AssetSelection from_assets = 11;
+            asset.AssetSelection from_assets = 11 [deprecated = true];
+            processpoint.ProcessPointSelection from_process_points = 13;
         }
 
         reserved 3;
@@ -420,6 +478,53 @@ message ListAssetAssignments {
         }
 
         repeated AssetAssignment assets = 1;
+        Request request = 2;
+        Pagination.Result pagination = 3;
+    }
+}
+
+message ListProcessPointAssignments {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select the assignments to list. Optional, when omitted or empty everything is included. */
+        optional AssignmentSelection selection = 2;
+        optional Pagination pagination = 3;
+
+        /* Whether to include process points that are in the selection and have no assignments. */
+        optional bool include_process_points_without_assignments = 4;
+
+        /* Whether to include the full alarms that are assigned, instead of just assignment. */
+        optional bool include_alarm_details = 5;
+
+        /* Apply your UnitPreferences to the alarm checks.
+         * For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for
+         * temperature, the check value will be converted to celsius instead.
+         */
+        optional bool apply_unit_preferences = 6;
+    }
+
+    message Response {
+        /* Things that an alarm is assigned to. */
+        message ProcessPointAssignment {
+            string organization = 1;
+            string process_point_identifier = 2;
+
+            /* The devices assigned to this process point. */
+            repeated string devices = 3;
+
+            /* The tags for this process point. */
+            repeated tag.Tag tags = 4;
+
+            /* The identifiers and parameters of the alarms that are assigned to this process point. */
+            repeated Assignment.AlarmAssignment alarms = 5;
+
+            /* The alarms that are assigned to this process point, if you have permission to view them. */
+            repeated modem.alarm.ModemAlarm alarm_details = 6;
+        }
+
+        repeated ProcessPointAssignment process_points = 1;
         Request request = 2;
         Pagination.Result pagination = 3;
     }
@@ -479,10 +584,16 @@ message ListModemAssignments {
             repeated modem.alarm.ModemAlarm alarm_details = 7;
 
             /* The identifiers of the assets assigned to this device. */
-            repeated string asset_identifiers = 9;
+            repeated string asset_identifiers = 9 [deprecated = true];
+
+            /* The identifiers of the process points assigned to this device. */
+            repeated string process_point_identifiers = 11;
 
             /* The assets assigned to this device. */
-            repeated Assignment.AssetAssignment assets = 10;
+            repeated Assignment.AssetAssignment assets = 10 [deprecated = true];
+
+            /* The process points assigned to this device. */
+            repeated Assignment.ProcessPointAssignment process_points = 12;
 
             reserved 3;
         }
@@ -547,10 +658,15 @@ message ListTagAssignments {
             repeated modem.alarm.ModemAlarm alarm_details = 7;
 
             /* The assets assigned to this tag. */
-            repeated string asset_identifiers = 8;
+            repeated string asset_identifiers = 8 [deprecated = true];
+            /* The process points assigned to this tag. */
+            repeated string process_point_identifiers = 10;
 
             /* The assets assigned to this device. */
-            repeated Assignment.AssetAssignment assets = 9;
+            repeated Assignment.AssetAssignment assets = 9 [deprecated = true];
+
+            /* The process points assigned to this device. */
+            repeated Assignment.ProcessPointAssignment process_points = 11;
         }
 
         repeated TagAssignment tags = 1;
@@ -593,8 +709,15 @@ message ListAlarmAssignments {
                 google.protobuf.Struct parameters = 2 [deprecated = true];
             }
             message ToAsset {
+                option deprecated = true;
+
                 string asset_identifier = 1;
                 Assignment.AssetAssignment asset = 3;
+                google.protobuf.Struct parameters = 2 [deprecated = true];
+            }
+            message ToProcessPoint {
+                string process_point_identifier = 1;
+                Assignment.ProcessPointAssignment process_point = 3;
                 google.protobuf.Struct parameters = 2 [deprecated = true];
             }
 
@@ -608,7 +731,10 @@ message ListAlarmAssignments {
             repeated ToTag tags = 4;
 
             /* The assets this alarm is assigned to, with the alarm parameters. */
-            repeated ToAsset assets = 5;
+            repeated ToAsset assets = 5 [deprecated = true];
+
+            /* The process points this alarm is assigned to, with the alarm parameters. */
+            repeated ToProcessPoint process_points = 6;
         }
 
         repeated AlarmAssignment alarms = 1;

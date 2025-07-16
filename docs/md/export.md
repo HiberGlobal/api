@@ -23,6 +23,7 @@
   - [Export.Configuration](#exportconfiguration)
   - [Export.Configuration.AssetValues](#exportconfigurationassetvalues)
   - [Export.Configuration.ModemMessages](#exportconfigurationmodemmessages)
+  - [Export.Configuration.ProcessPointValues](#exportconfigurationprocesspointvalues)
   - [Export.File](#exportfile)
   - [Export.Format](#exportformat)
   - [Export.Format.Csv](#exportformatcsv)
@@ -145,6 +146,7 @@
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **configuration**.modem_message | [ Export.Configuration.ModemMessages](#exportconfigurationmodemmessages) | Get the fields for modem messages, with optional specific fields for the selected modems, based on assigned parsers. Time range is ignored for this request. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **configuration**.asset_values | [ Export.Configuration.AssetValues](#exportconfigurationassetvalues) | Get the fields for asset values. Time range is ignored for this request. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **configuration**.process_point_values | [ Export.Configuration.ProcessPointValues](#exportconfigurationprocesspointvalues) | Get the fields for process point values. Time range is ignored for this request. |
 
 ### AvailableFieldsForExport.Response
 
@@ -224,10 +226,11 @@ The configuration for the export, which determines what data is exported.
 | expires_in | [ hiber.Duration](#hiberduration) | The time urls will be available after the moment the export has the READY status. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.modem_message | [ Export.Configuration.ModemMessages](#exportconfigurationmodemmessages) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.asset_values | [ Export.Configuration.AssetValues](#exportconfigurationassetvalues) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.process_point_values | [ Export.Configuration.ProcessPointValues](#exportconfigurationprocesspointvalues) |  |
 
 ### Export.Configuration.AssetValues
 
-Export values for a set of assets.
+<strong>Deprecated.</strong> Export values for a set of assets.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -241,6 +244,15 @@ Export modem messages for a set of modems.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | modems | [repeated string](#string) |  |
+| time_range | [ hiber.TimeRange](#hibertimerange) |  |
+
+### Export.Configuration.ProcessPointValues
+
+Export values for a set of process points.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| process_point_identifiers | [repeated string](#string) |  |
 | time_range | [ hiber.TimeRange](#hibertimerange) |  |
 
 ### Export.File
@@ -349,6 +361,7 @@ Json format for export.
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 |  **optional** selection | [optional ExportSelection](#exportselection) | Select the exports to list. Optional, when omitted or empty everything is included. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+|  **optional** use_process_point_in_configuration | [optional bool](#bool) | <strong>Deprecated.</strong> Return export configuration for process point instead of asset. Defaults to using asset for backwards compatibility. |
 
 ### ListExports.Response
 
@@ -932,8 +945,11 @@ api event stream and publishers.
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
 | ASSET_CREATED | A new asset was created in your organization. | 70 |
+| PROCESS_POINT_CREATED | A new process point was created in your organization. | 73 |
 | ASSET_UPDATED | An asset in your organization was updated (e.g. renamed, tagged). | 71 |
+| PROCESS_POINT_UPDATED | An process point in your organization was updated (e.g. renamed, tagged). | 74 |
 | ASSET_DELETED | An asset in your organization was deleted. | 72 |
+| PROCESS_POINT_DELETED | An process point in your organization was deleted. | 75 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
 | DEVICE_UPDATED | A device in your organization was manually updated (e.g. renamed, tagged). | 36 |
 | DEVICE_LOCATION_UPDATED | The location of a device in your organization was updated, either manually or by a message. | 4 |
