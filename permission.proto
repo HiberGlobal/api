@@ -155,9 +155,6 @@ enum SupportPermission {
     /* Create and assign custom tags. */
     CUSTOM_TAGS = 3;
 
-    /* Manage Shell SSIP integration. */
-    INTEGRATION_SHELL_SSIP = 4;
-
     /* Manage device transmission interval (actual interval). */
     MANAGE_DEVICE_TRANSMISSION_INTERVAL = 5;
 

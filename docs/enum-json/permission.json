@@ -52,7 +52,6 @@
     , "MANAGE_ORGANIZATION_FEATURE": "Manage organization feature flags."
     , "MANAGE_DEVICE_TYPE": "Change the device type for devices."
     , "CUSTOM_TAGS": "Create and assign custom tags."
-    , "INTEGRATION_SHELL_SSIP": "Manage Shell SSIP integration."
     , "MANAGE_DEVICE_TRANSMISSION_INTERVAL": "Manage device transmission interval (actual interval)."
     , "MANAGE_DEVICE_SLA": "Manage device SLA values (minimum messages per day)."
     , "DEVICE_VIEW_ALL_LIFECYCLES": "View all lifecycles. Without this permission, you can only see INSTALLED and PAUSED."

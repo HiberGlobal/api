@@ -569,6 +569,9 @@ Completely replace the roles the users have.
 | date | [ hiber.Date](#hiberdate) |  |
 | actions | [repeated string](#string) |  |
 | total_requests | [ uint32](#uint32) |  |
+| used_mission_control | [ bool](#bool) |  |
+| used_hiber_cli | [ bool](#bool) |  |
+| used_hiber_app | [ bool](#bool) |  |
 
 ### UserSelection
 

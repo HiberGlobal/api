@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.247 (2025-07-23)
+
+##### Permissions
+
+- Removed an unused permission.
+
 ### 0.246 (2025-07-16)
 
 ##### AssetService

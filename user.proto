@@ -436,6 +436,9 @@ message UserActivitySummaryRequest {
             Date date = 3;
             repeated string actions = 4;
             uint32 total_requests = 5;
+            bool used_mission_control = 6;
+            bool used_hiber_cli = 7;
+            bool used_hiber_app = 8;
         }
 
         repeated UserActivitySummary summaries = 1;
