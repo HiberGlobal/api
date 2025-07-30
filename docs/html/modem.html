@@ -263,6 +263,18 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.modem.ModemLifecycleInfo"><span class="badge">M</span>ModemLifecycleInfo</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.modem.ModemLifecycleInfo.Request"><span class="badge">M</span>ModemLifecycleInfo.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.modem.ModemLifecycleInfo.Response"><span class="badge">M</span>ModemLifecycleInfo.Response</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.modem.ModemMessage"><span class="badge">M</span>ModemMessage</a>
                 </li>
               
@@ -2263,6 +2275,77 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
 
         
       
+        <h3 id="hiber.modem.ModemLifecycleInfo">ModemLifecycleInfo</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>lifecycle</td>
+                  <td><a href="#hiber.modem.Modem.Lifecycle">Modem.Lifecycle</a></td>
+                  <td></td>
+                  <td><p>The lifecycle with info. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>visibility_limited</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Whether this lifecycle is visible to everyone, or limited to specific permissions.
+For example, decommissioned devices are no longer visible to customers, but are visible to support staff. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>highlighted</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Whether this lifecycle should be highlighted to the users.
+Typically means that some interaction is required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.modem.ModemLifecycleInfo.Request">ModemLifecycleInfo.Request</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.modem.ModemLifecycleInfo.Response">ModemLifecycleInfo.Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>lifecycles</td>
+                  <td><a href="#hiber.modem.ModemLifecycleInfo">ModemLifecycleInfo</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="hiber.modem.ModemMessage">ModemMessage</h3>
         <p>Decrypted modem message. Messages are received encrypted and decrypted asynchronously, which adds the location</p><p>data and message body. (Your message body is, of course, still encrypted if you've encrypted it yourself)</p>
 
@@ -3430,6 +3513,20 @@ Devices in this state are not visible to customers.</p></td>
               </tr>
             
               <tr>
+                <td>PENDING_MAINTENANCE</td>
+                <td>11</td>
+                <td><p>Device is defective in some way and needs maintenance to operate optimally.
+Devices in this state should be highlighted as they need to be acted upon.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PENDING_REPLACEMENT</td>
+                <td>12</td>
+                <td><p>Device is defective and needs to be replaced.
+Devices in this state should be highlighted as they need to be acted upon.</p></td>
+              </tr>
+            
+              <tr>
                 <td>SPARE</td>
                 <td>9</td>
                 <td><p>Spare device sent to customer in case it is needed.</p></td>
@@ -3549,6 +3646,13 @@ Note that gateways also send messages themselves (e.g. a daily heartbeat).</p></
                 <td><a href="#hiber.modem.ListModemsGrouped.Response">ListModemsGrouped.Response</a></td>
                 <td><p>List the modems in your organization, and, optionally, its child organizations, grouped by dependency.
 For example, a modem that sends it messages through a gateway (like Hilo) would be grouped under that gateway.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Lifecycles</td>
+                <td><a href="#hiber.modem.ModemLifecycleInfo.Request">ModemLifecycleInfo.Request</a></td>
+                <td><a href="#hiber.modem.ModemLifecycleInfo.Response">ModemLifecycleInfo.Response</a></td>
+                <td><p>List possible lifecycles with additional information.</p></td>
               </tr>
             
               <tr>

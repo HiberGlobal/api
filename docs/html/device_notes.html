@@ -484,7 +484,35 @@
                   <td>time</td>
                   <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
                   <td>optional</td>
-                  <td><p> </p></td>
+                  <td><p>Optionally, override the note time. If not set, now is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>guide</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>If posted from a guide, identifier of the guide used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>step</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>If posted from a guide, identifier of the step the note is for. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>files</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Identifiers of any files that are related to this note. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location</td>
+                  <td><a href="#hiber.Location">hiber.Location</a></td>
+                  <td>optional</td>
+                  <td><p>If provided, the location the note was posted from. </p></td>
                 </tr>
               
             </tbody>
@@ -577,49 +605,77 @@
                   <td>device</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The device this note is for. </p></td>
                 </tr>
               
                 <tr>
                   <td>note_id</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Id of the note (unique per device). </p></td>
                 </tr>
               
                 <tr>
                   <td>message</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Actual note message. </p></td>
                 </tr>
               
                 <tr>
                   <td>message_history</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>History of message edits for this note. </p></td>
                 </tr>
               
                 <tr>
                   <td>time</td>
                   <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Time the note was created. </p></td>
                 </tr>
               
                 <tr>
                   <td>last_updated_at</td>
                   <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>optional</td>
+                  <td><p>Last time the note was updated. </p></td>
                 </tr>
               
                 <tr>
                   <td>author</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Identifier of the user who wrote the note. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>guide</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>If posted from a guide, identifier of the guide used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>step</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>If posted from a guide, identifier of the step the note is for. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>files</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Identifiers of any files that are related to this note. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>location</td>
+                  <td><a href="#hiber.Location">hiber.Location</a></td>
+                  <td>optional</td>
+                  <td><p>If provided, the location the note was posted from. </p></td>
                 </tr>
               
             </tbody>
@@ -643,21 +699,21 @@
                   <td>device</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The device to select notes for. </p></td>
                 </tr>
               
                 <tr>
                   <td>search</td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
-                  <td><p> </p></td>
+                  <td><p>Search notes that contain the given text in the message or author, guide, step or file identifiers. </p></td>
                 </tr>
               
                 <tr>
                   <td>time_range</td>
                   <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
                   <td>optional</td>
-                  <td><p> </p></td>
+                  <td><p>Limit to messages created in the given time range. </p></td>
                 </tr>
               
             </tbody>
@@ -870,19 +926,27 @@
               <tr>
                 <td>OLDEST_FIRST</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>Sort notes in chronological order.</p></td>
               </tr>
             
               <tr>
                 <td>NEWEST_FIRST</td>
                 <td>1</td>
-                <td><p></p></td>
+                <td><p>Sort notes in reverse chronological order starting with the last created note.</p></td>
               </tr>
             
               <tr>
                 <td>LAST_UPDATED</td>
                 <td>2</td>
-                <td><p></p></td>
+                <td><p>Sort notes in reverse chronological order starting with the last updated note.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GUIDE_STEPS</td>
+                <td>3</td>
+                <td><p>Sort notes by their guide and guide steps, if any, from first to last.
+All notes from a guide are sorted together, even if non-guide notes were made inbetween.
+Notes without a guide are sorted around the guide notes, using OLDEST_FIRST.</p></td>
               </tr>
             
           </tbody>

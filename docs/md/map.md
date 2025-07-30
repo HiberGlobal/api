@@ -498,6 +498,8 @@ Frequency specified by LoRaWAN regional parameters.
 | DISABLED | Device is disabled and not sending messages. This is a more permanent version of PAUSED. Devices in this state are not visible to customers. | 5 |
 | DECOMMISSIONED | Device is (going to be) removed from installation and will not return to installed status again. Devices in this state are not visible to customers. | 4 |
 | DEFECTIVE | Device is defective and should not be used anymore. Devices in this state are typically RMA-ed and (should be) transferred to the RMA organization. Devices in this state are not visible to customers. | 7 |
+| PENDING_MAINTENANCE | Device is defective in some way and needs maintenance to operate optimally. Devices in this state should be highlighted as they need to be acted upon. | 11 |
+| PENDING_REPLACEMENT | Device is defective and needs to be replaced. Devices in this state should be highlighted as they need to be acted upon. | 12 |
 | SPARE | Spare device sent to customer in case it is needed. | 9 |
 
 #### hiber.modem.Modem.Type

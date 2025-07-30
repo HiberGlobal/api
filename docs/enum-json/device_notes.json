@@ -2,8 +2,9 @@
   "name": "Sort",
   "description": "",
   "values": {
-    "OLDEST_FIRST": ""
-    , "NEWEST_FIRST": ""
-    , "LAST_UPDATED": ""
+    "OLDEST_FIRST": "Sort notes in chronological order."
+    , "NEWEST_FIRST": "Sort notes in reverse chronological order starting with the last created note."
+    , "LAST_UPDATED": "Sort notes in reverse chronological order starting with the last updated note."
+    , "GUIDE_STEPS": "Sort notes by their guide and guide steps, if any, from first to last. All notes from a guide are sorted together, even if non-guide notes were made inbetween. Notes without a guide are sorted around the guide notes, using OLDEST_FIRST."
     }
 }]

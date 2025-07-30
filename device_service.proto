@@ -36,6 +36,11 @@ service DeviceService {
         option (support_permission_usage) = MANAGE_DEVICE_TIME_ZONE;
         option (support_permission_usage) = MANAGE_DEVICE_TRANSMISSION_INTERVAL;
     }
+
+    /* List possible lifecycles with additional information. */
+    rpc Lifecycles (DeviceLifecycleInfo.Request) returns (DeviceLifecycleInfo.Response){
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    };
 }
 
 /* Update request for devices.
@@ -187,5 +192,27 @@ message ListDevice {
          * Only set when include_missing_gateways is true in the request.
          */
         repeated Device gateways = 5;
+    }
+}
+
+message DeviceLifecycleInfo {
+    /* The lifecycle with info. */
+    modem.Modem.Lifecycle lifecycle = 1;
+
+    /* Whether this lifecycle is visible to everyone, or limited to specific permissions.
+     * For example, decommissioned devices are no longer visible to customers, but are visible to support staff.
+     */
+    optional bool visibility_limited = 2;
+
+    /* Whether this lifecycle should be highlighted to the users.
+     * Typically means that some interaction is required.
+     */
+    optional bool highlighted = 3;
+
+    message Request {
+    }
+
+    message Response {
+        repeated DeviceLifecycleInfo lifecycles = 1;
     }
 }

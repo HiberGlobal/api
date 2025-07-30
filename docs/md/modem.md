@@ -34,6 +34,9 @@ used to identify them.
   - [Modem.Peripherals.PeripheralsEntry](#modemperipheralsperipheralsentry)
   - [Modem.TechnicalData](#modemtechnicaldata)
   - [Modem.ValveInfo](#modemvalveinfo)
+  - [ModemLifecycleInfo](#modemlifecycleinfo)
+  - [ModemLifecycleInfo.Request](#modemlifecycleinforequest)
+  - [ModemLifecycleInfo.Response](#modemlifecycleinforesponse)
   - [ModemMessage](#modemmessage)
   - [ModemMessage.ParsedBody](#modemmessageparsedbody)
   - [ModemMessageSelection](#modemmessageselection)
@@ -228,6 +231,12 @@ List the modems in your organization, and, optionally, its child organizations.
 
 List the modems in your organization, and, optionally, its child organizations, grouped by dependency.
 For example, a modem that sends it messages through a gateway (like Hilo) would be grouped under that gateway.
+
+### Lifecycles
+> **rpc** Lifecycles([ModemLifecycleInfo.Request](#modemlifecycleinforequest))
+    [ModemLifecycleInfo.Response](#modemlifecycleinforesponse)
+
+List possible lifecycles with additional information.
 
 ### Messages
 > **rpc** Messages([ListModemMessagesRequest](#listmodemmessagesrequest))
@@ -508,6 +517,29 @@ open field for peripherals like battery, sensors, etc.
 |  **optional** open | [optional bool](#bool) |  |
 |  **optional** high_pressure_line_status | [optional hiber.valve.Valve.HighPressureLineStatus](#hibervalvevalvehighpressurelinestatus) |  |
 
+### ModemLifecycleInfo
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| lifecycle | [ Modem.Lifecycle](#modemlifecycle) | The lifecycle with info. |
+|  **optional** visibility_limited | [optional bool](#bool) | Whether this lifecycle is visible to everyone, or limited to specific permissions. For example, decommissioned devices are no longer visible to customers, but are visible to support staff. |
+|  **optional** highlighted | [optional bool](#bool) | Whether this lifecycle should be highlighted to the users. Typically means that some interaction is required. |
+
+### ModemLifecycleInfo.Request
+
+
+
+
+### ModemLifecycleInfo.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| lifecycles | [repeated ModemLifecycleInfo](#modemlifecycleinfo) |  |
+
 ### ModemMessage
 
 <strong>Deprecated.</strong> Decrypted modem message. Messages are received encrypted and decrypted asynchronously, which adds the location
@@ -778,6 +810,8 @@ Frequency specified by LoRaWAN regional parameters.
 | DISABLED | Device is disabled and not sending messages. This is a more permanent version of PAUSED. Devices in this state are not visible to customers. | 5 |
 | DECOMMISSIONED | Device is (going to be) removed from installation and will not return to installed status again. Devices in this state are not visible to customers. | 4 |
 | DEFECTIVE | Device is defective and should not be used anymore. Devices in this state are typically RMA-ed and (should be) transferred to the RMA organization. Devices in this state are not visible to customers. | 7 |
+| PENDING_MAINTENANCE | Device is defective in some way and needs maintenance to operate optimally. Devices in this state should be highlighted as they need to be acted upon. | 11 |
+| PENDING_REPLACEMENT | Device is defective and needs to be replaced. Devices in this state should be highlighted as they need to be acted upon. | 12 |
 | SPARE | Spare device sent to customer in case it is needed. | 9 |
 
 ### Modem.Type

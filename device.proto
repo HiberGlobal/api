@@ -111,6 +111,8 @@ message DeviceSelection {
     optional hiber.tag.TagSelection filter_by_tags = 8;
 
     optional TimeRange with_last_message_in = 9;
+
+    optional bool exclude_gateways = 12;
 }
 
 /* Sorting options for the results. */

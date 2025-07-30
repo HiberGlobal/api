@@ -710,6 +710,7 @@ Filter devices by device number, tags, etc.
 |  **optional** sensorBrands | [optional hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
 |  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
 |  **optional** with_last_message_in | [optional hiber.TimeRange](#hibertimerange) |  |
+|  **optional** exclude_gateways | [optional bool](#bool) |  |
 
 ### hiber.device.ModemFilter
 

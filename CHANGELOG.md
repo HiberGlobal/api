@@ -1,5 +1,34 @@
 # Changelog Hiber API
 
+### 0.248 (2025-07-30)
+
+##### DeviceNoteService
+
+- Added `DeviceNote.guide` and `DeviceNote.step` for notes when following a guide in the app.
+  - Added `DeviceNoteSelection.Sort.GUIDE_STEPS` to display guide notes together.
+  - Added `AddDeviceNote.guide` and `AddDeviceNote.step` to set the values.
+- Added `DeviceNote.files` to reference files when adding notes.
+  - Added `AddDeviceNote.files` to add the files when creating a note.
+- Added `DeviceNote.location` to track a location where the note was added.
+  - Added `AddDeviceNote.location` to set the location when creating a note.
+- Marked `DeviceNote.last_updated_at` optional to reflrect reality.
+
+##### ModemService
+
+- Added new values to `Modem.Lifecycle`:
+  - `PROVISIONALLY_INSTALLED`: Device has passed been installed but needs to be verified.
+  - `PENDING_MAINTENANCE`: Device is defective in some way and needs maintenance to operate optimally.
+  - `PENDING_REPLACEMENT`: Device is defective and needs to be replaced.
+- Deprecated an unused value in `Modem.Lifecycle`: `DISABLED`.
+
+##### DeviceService
+
+- Added `Lifecycles` to list device lifecycles with some additional information.
+
+##### ModemService
+
+- Added `Lifecycles` to list device lifecycles with some additional information.
+
 ### 0.247 (2025-07-23)
 
 ##### Permissions

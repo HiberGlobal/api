@@ -57,6 +57,11 @@ service ModemService {
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     }
 
+    /* List possible lifecycles with additional information. */
+    rpc Lifecycles (ModemLifecycleInfo.Request) returns (ModemLifecycleInfo.Response){
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    };
+
     /* List messages for the selected modems. */
     rpc Messages (ListModemMessagesRequest) returns (ListModemMessagesRequest.Response){
         option deprecated = true;
@@ -264,6 +269,11 @@ message Modem {
          */
         READY_TO_INSTALL = 8;
 
+        /* Device has passed been installed but needs to be verified.
+         * Once it has passed a number of validations, it can move to INSTALLED.
+         */
+        // PROVISIONALLY_INSTALLED = 10; not enabled yet
+
         /* Device is active and sending messages. */
         INSTALLED = 1;
 
@@ -278,7 +288,7 @@ message Modem {
          * This is a more permanent version of PAUSED.
          * Devices in this state are not visible to customers.
          */
-        DISABLED = 5;
+        DISABLED = 5 [deprecated = true];
 
         /* Device is (going to be) removed from installation and will not return to installed status again.
          * Devices in this state are not visible to customers.
@@ -291,8 +301,19 @@ message Modem {
          */
         DEFECTIVE = 7;
 
+        /* Device is defective in some way and needs maintenance to operate optimally.
+         * Devices in this state should be highlighted as they need to be acted upon.
+         */
+        PENDING_MAINTENANCE = 11;
+
+        /* Device is defective and needs to be replaced.
+         * Devices in this state should be highlighted as they need to be acted upon.
+         */
+        PENDING_REPLACEMENT = 12;
+
         /* Spare device sent to customer in case it is needed. */
         SPARE = 9;
+
     }
 
     /* The effective type of this modem.
@@ -761,6 +782,28 @@ message ListModemsGrouped {
             uint32 content = 2;
             uint32 all = 3;
         }
+    }
+}
+
+message ModemLifecycleInfo {
+    /* The lifecycle with info. */
+    Modem.Lifecycle lifecycle = 1;
+
+    /* Whether this lifecycle is visible to everyone, or limited to specific permissions.
+     * For example, decommissioned devices are no longer visible to customers, but are visible to support staff.
+     */
+    optional bool visibility_limited = 2;
+
+    /* Whether this lifecycle should be highlighted to the users.
+     * Typically means that some interaction is required.
+     */
+    optional bool highlighted = 3;
+
+    message Request {
+    }
+
+    message Response {
+        repeated ModemLifecycleInfo lifecycles = 1;
     }
 }
 

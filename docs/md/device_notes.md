@@ -110,7 +110,11 @@
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | message | [ string](#string) |  |
-|  **optional** time | [optional hiber.Timestamp](#hibertimestamp) |  |
+|  **optional** time | [optional hiber.Timestamp](#hibertimestamp) | Optionally, override the note time. If not set, now is used. |
+|  **optional** guide | [optional string](#string) | If posted from a guide, identifier of the guide used. |
+|  **optional** step | [optional string](#string) | If posted from a guide, identifier of the step the note is for. |
+| files | [repeated string](#string) | Identifiers of any files that are related to this note. |
+|  **optional** location | [optional hiber.Location](#hiberlocation) | If provided, the location the note was posted from. |
 
 ### AddDeviceNote.Request
 
@@ -137,13 +141,17 @@ Preconfigured device type.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| device | [ string](#string) |  |
-| note_id | [ uint64](#uint64) |  |
-| message | [ string](#string) |  |
-| message_history | [repeated string](#string) |  |
-| time | [ hiber.Timestamp](#hibertimestamp) |  |
-| last_updated_at | [ hiber.Timestamp](#hibertimestamp) |  |
-| author | [ string](#string) |  |
+| device | [ string](#string) | The device this note is for. |
+| note_id | [ uint64](#uint64) | Id of the note (unique per device). |
+| message | [ string](#string) | Actual note message. |
+| message_history | [repeated string](#string) | History of message edits for this note. |
+| time | [ hiber.Timestamp](#hibertimestamp) | Time the note was created. |
+|  **optional** last_updated_at | [optional hiber.Timestamp](#hibertimestamp) | Last time the note was updated. |
+| author | [ string](#string) | Identifier of the user who wrote the note. |
+|  **optional** guide | [optional string](#string) | If posted from a guide, identifier of the guide used. |
+|  **optional** step | [optional string](#string) | If posted from a guide, identifier of the step the note is for. |
+| files | [repeated string](#string) | Identifiers of any files that are related to this note. |
+|  **optional** location | [optional hiber.Location](#hiberlocation) | If provided, the location the note was posted from. |
 
 ### DeviceNoteSelection
 
@@ -151,9 +159,9 @@ Selection object for device types.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| device | [ string](#string) |  |
-|  **optional** search | [optional string](#string) |  |
-|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) |  |
+| device | [ string](#string) | The device to select notes for. |
+|  **optional** search | [optional string](#string) | Search notes that contain the given text in the message or author, guide, step or file identifiers. |
+|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) | Limit to messages created in the given time range. |
 
 ### ListDeviceNotes
 
@@ -216,9 +224,10 @@ Selection object for device types.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| OLDEST_FIRST |  | 0 |
-| NEWEST_FIRST |  | 1 |
-| LAST_UPDATED |  | 2 |
+| OLDEST_FIRST | Sort notes in chronological order. | 0 |
+| NEWEST_FIRST | Sort notes in reverse chronological order starting with the last created note. | 1 |
+| LAST_UPDATED | Sort notes in reverse chronological order starting with the last updated note. | 2 |
+| GUIDE_STEPS | Sort notes by their guide and guide steps, if any, from first to last. All notes from a guide are sorted together, even if non-guide notes were made inbetween. Notes without a guide are sorted around the guide notes, using OLDEST_FIRST. | 3 |
 
 
 

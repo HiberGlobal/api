@@ -13,6 +13,9 @@ They have a unique device (previously modem) number, used to identify them.
   - [DeviceService](#deviceservice)
 
 - Messages
+  - [DeviceLifecycleInfo](#devicelifecycleinfo)
+  - [DeviceLifecycleInfo.Request](#devicelifecycleinforequest)
+  - [DeviceLifecycleInfo.Response](#devicelifecycleinforesponse)
   - [ListDevice](#listdevice)
   - [ListDevice.Request](#listdevicerequest)
   - [ListDevice.Response](#listdeviceresponse)
@@ -161,8 +164,37 @@ List the devices in your organization, and, optionally, its child organizations.
 
 Update a device.
 
+### Lifecycles
+> **rpc** Lifecycles([DeviceLifecycleInfo.Request](#devicelifecycleinforequest))
+    [DeviceLifecycleInfo.Response](#devicelifecycleinforesponse)
+
+List possible lifecycles with additional information.
+
 
 ## Messages
+
+### DeviceLifecycleInfo
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | The lifecycle with info. |
+|  **optional** visibility_limited | [optional bool](#bool) | Whether this lifecycle is visible to everyone, or limited to specific permissions. For example, decommissioned devices are no longer visible to customers, but are visible to support staff. |
+|  **optional** highlighted | [optional bool](#bool) | Whether this lifecycle should be highlighted to the users. Typically means that some interaction is required. |
+
+### DeviceLifecycleInfo.Request
+
+
+
+
+### DeviceLifecycleInfo.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| lifecycles | [repeated DeviceLifecycleInfo](#devicelifecycleinfo) |  |
 
 ### ListDevice
 
@@ -359,6 +391,7 @@ Filter devices by device number, tags, etc.
 |  **optional** sensorBrands | [optional hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
 |  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
 |  **optional** with_last_message_in | [optional hiber.TimeRange](#hibertimerange) |  |
+|  **optional** exclude_gateways | [optional bool](#bool) |  |
 
 ### hiber.device.ModemFilter
 
@@ -607,6 +640,8 @@ Frequency specified by LoRaWAN regional parameters.
 | DISABLED | Device is disabled and not sending messages. This is a more permanent version of PAUSED. Devices in this state are not visible to customers. | 5 |
 | DECOMMISSIONED | Device is (going to be) removed from installation and will not return to installed status again. Devices in this state are not visible to customers. | 4 |
 | DEFECTIVE | Device is defective and should not be used anymore. Devices in this state are typically RMA-ed and (should be) transferred to the RMA organization. Devices in this state are not visible to customers. | 7 |
+| PENDING_MAINTENANCE | Device is defective in some way and needs maintenance to operate optimally. Devices in this state should be highlighted as they need to be acted upon. | 11 |
+| PENDING_REPLACEMENT | Device is defective and needs to be replaced. Devices in this state should be highlighted as they need to be acted upon. | 12 |
 | SPARE | Spare device sent to customer in case it is needed. | 9 |
 
 #### hiber.modem.Modem.Type

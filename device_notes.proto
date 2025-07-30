@@ -23,27 +23,66 @@ service DeviceNoteService {
 
 /* Preconfigured device type. */
 message DeviceNote {
+    /* The device this note is for. */
     string device = 1;
+
+    /* Id of the note (unique per device). */
     uint64 note_id = 2;
+
+    /* Actual note message. */
     string message = 3;
+
+    /* History of message edits for this note. */
     repeated string message_history = 4;
 
+    /* Time the note was created. */
     Timestamp time = 5;
-    Timestamp last_updated_at = 6;
 
+    /* Last time the note was updated. */
+    optional Timestamp last_updated_at = 6;
+
+    /* Identifier of the user who wrote the note. */
     string author = 7;
+
+    /* If posted from a guide, identifier of the guide used. */
+    optional string guide = 8;
+
+    /* If posted from a guide, identifier of the step the note is for. */
+    optional string step = 9;
+
+    /* Identifiers of any files that are related to this note. */
+    repeated string files = 10;
+
+    /* If provided, the location the note was posted from. */
+    optional Location location = 11;
 }
 
 /* Selection object for device types. */
 message DeviceNoteSelection {
+    /* The device to select notes for. */
     string device = 1;
+
+    /* Search notes that contain the given text in the message or author, guide, step or file identifiers. */
     optional string search = 2;
+
+    /* Limit to messages created in the given time range. */
     optional TimeRange time_range = 3;
 
     enum Sort {
+        /* Sort notes in chronological order. */
         OLDEST_FIRST = 0;
+
+        /* Sort notes in reverse chronological order starting with the last created note. */
         NEWEST_FIRST = 1;
+
+        /* Sort notes in reverse chronological order starting with the last updated note. */
         LAST_UPDATED = 2;
+
+        /* Sort notes by their guide and guide steps, if any, from first to last.
+         * All notes from a guide are sorted together, even if non-guide notes were made inbetween.
+         * Notes without a guide are sorted around the guide notes, using OLDEST_FIRST.
+         */
+        GUIDE_STEPS = 3;
     }
 }
 
@@ -68,7 +107,21 @@ message ListDeviceNotes {
 
 message AddDeviceNote {
     string message = 1;
+
+    /* Optionally, override the note time. If not set, now is used. */
     optional Timestamp time = 2;
+
+    /* If posted from a guide, identifier of the guide used. */
+    optional string guide = 3;
+
+    /* If posted from a guide, identifier of the step the note is for. */
+    optional string step = 4;
+
+    /* Identifiers of any files that are related to this note. */
+    repeated string files = 5;
+
+    /* If provided, the location the note was posted from. */
+    optional Location location = 6;
 
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
