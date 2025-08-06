@@ -4326,6 +4326,13 @@ The device may produce other values (like battery level), but these are the prim
 Typically an image of the device installation. See the File.media_type for more information. </p></td>
                 </tr>
               
+                <tr>
+                  <td>required_device_firmware_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -4409,6 +4416,13 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td><a href="#hiber.modem.Modem.ConnectedDeviceInfo.Frequency">Modem.ConnectedDeviceInfo.Frequency</a></td>
                   <td>optional</td>
                   <td><p>Frequency configured for this device. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_battery_replacement</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>The last time the battery was replaced for this device. </p></td>
                 </tr>
               
             </tbody>

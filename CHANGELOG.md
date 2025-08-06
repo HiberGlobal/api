@@ -1,5 +1,23 @@
 # Changelog Hiber API
 
+### 0.249 (2025-08-06)
+
+##### Permissions
+
+- Removed `FILES_MANAGE` from `OrganizationPermission` and added it to `SupportPermission` as `MANAGE_FILES`, to limit file deletion to specific members of the operations team.
+
+##### DeviceService
+
+- Added `UpdateDevice.battery_replacement` for logging battery replacements.
+
+##### ModemService
+
+- Added `Modem.ConnectedDeviceInfo.last_battery_replacement` to show the last battery replacement.
+
+##### DeviceService
+
+- Added `rpc Settings` and `DeviceSettings` message type to get settings that should be configured on a device during installation.
+
 ### 0.248 (2025-07-30)
 
 ##### DeviceNoteService

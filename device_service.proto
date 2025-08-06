@@ -31,6 +31,7 @@ service DeviceService {
     /* Update a device. */
     rpc Update(UpdateDevice.Request) returns (UpdateDevice.Response) {
         option (permission_usage) = MODEMS_UPDATE;
+        option (permission_usage) = MODEMS_UPDATE_FILES;
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
         option (support_permission_usage) = MANAGE_DEVICE_SLA;
         option (support_permission_usage) = MANAGE_DEVICE_TIME_ZONE;
@@ -39,6 +40,12 @@ service DeviceService {
 
     /* List possible lifecycles with additional information. */
     rpc Lifecycles (DeviceLifecycleInfo.Request) returns (DeviceLifecycleInfo.Response){
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    };
+
+    /* List device settings. */
+    rpc Settings (DeviceSettings.Request) returns (DeviceSettings.Response){
+        option (permission_usage) = MODEMS;
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     };
 }
@@ -121,6 +128,9 @@ message UpdateDevice {
      * Only allowed when a single device or gateway is selected that does not already have an external identifier.
      */
     optional string set_external_device_identifier = 17;
+
+    /* Mark that the battery was replaced. */
+    optional Timestamp battery_replacement = 18;
 
     /* When updating peripherals, you can choose to add and delete peripherals,
      * or to do a wholesome replace of all peripherals.
@@ -214,5 +224,30 @@ message DeviceLifecycleInfo {
 
     message Response {
         repeated DeviceLifecycleInfo lifecycles = 1;
+    }
+}
+
+message DeviceSettings {
+    /* An 8-character hexadecimal string, formatted for human readability. System ignores spaces. */
+    string number = 1;
+
+    /* Map of numeric value to bytes that can be applied to the device. */
+    map<uint32, BytesOrHex> settings = 2;
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select which devices to return. Optional, when omitted or empty every device with settings is included. */
+        optional hiber.device.DeviceSelection selection = 2;
+
+        /* Paginate through results. */
+        optional Pagination pagination = 3;
+    }
+
+    message Response {
+        repeated DeviceSettings devices = 1;
+        DeviceSettings.Request request = 2;
+        Pagination.Result pagination = 3;
     }
 }

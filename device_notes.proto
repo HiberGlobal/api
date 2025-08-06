@@ -14,10 +14,10 @@ service DeviceNoteService {
         option (permission_usage) = MODEMS;
     }
     rpc Add (AddDeviceNote.Request) returns (AddDeviceNote.Response) {
-        option (permission_usage) = MODEMS_UPDATE;
+        option (permission_usage) = MODEMS_UPDATE_NOTES;
     }
     rpc Update (UpdateDeviceNote.Request) returns (UpdateDeviceNote.Response) {
-        option (permission_usage) = MODEMS_UPDATE;
+        option (permission_usage) = MODEMS_UPDATE_NOTES;
     }
 }
 

@@ -49,6 +49,9 @@ enum OrganizationPermission {
     MODEMS_UPDATE = 11;
     /* Update modems files, such as photo's of the installation. */
     MODEMS_UPDATE_FILES = 60;
+    /* Update modems notes. */
+    MODEMS_UPDATE_NOTES = 64;
+
     /* Show and regenerate license keys. Includes MODEMS permission. */
     MODEMS_LICENSE_KEYS = 12;
     /* Manage and assign message body parsers. Includes MODEMS permission. */
@@ -118,10 +121,7 @@ enum OrganizationPermission {
     /* Upload new files. Includes FILES permission. */
     FILES_UPLOAD = 58;
 
-    /* Manage files (e.g. delete them). Includes FILES and FILES_UPLOAD permissions. */
-    FILES_MANAGE = 59;
-
-    reserved 14, 22, 25, 40, 37;
+    reserved 14, 22, 25, 40, 37, 59;
 }
 
 /* UserPermissions are generally used to limit what a token can do to its user.
@@ -175,4 +175,7 @@ enum SupportPermission {
 
     /* Advanced user management. */
     MANAGE_USERS_ADVANCED = 11;
+
+    /* Remove files from devices, process points, tags and the system entirely. */
+    MANAGE_FILES = 12;
 }

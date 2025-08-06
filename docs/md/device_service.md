@@ -16,6 +16,10 @@ They have a unique device (previously modem) number, used to identify them.
   - [DeviceLifecycleInfo](#devicelifecycleinfo)
   - [DeviceLifecycleInfo.Request](#devicelifecycleinforequest)
   - [DeviceLifecycleInfo.Response](#devicelifecycleinforesponse)
+  - [DeviceSettings](#devicesettings)
+  - [DeviceSettings.Request](#devicesettingsrequest)
+  - [DeviceSettings.Response](#devicesettingsresponse)
+  - [DeviceSettings.SettingsEntry](#devicesettingssettingsentry)
   - [ListDevice](#listdevice)
   - [ListDevice.Request](#listdevicerequest)
   - [ListDevice.Response](#listdeviceresponse)
@@ -170,6 +174,12 @@ Update a device.
 
 List possible lifecycles with additional information.
 
+### Settings
+> **rpc** Settings([DeviceSettings.Request](#devicesettingsrequest))
+    [DeviceSettings.Response](#devicesettingsresponse)
+
+List device settings.
+
 
 ## Messages
 
@@ -195,6 +205,44 @@ List possible lifecycles with additional information.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | lifecycles | [repeated DeviceLifecycleInfo](#devicelifecycleinfo) |  |
+
+### DeviceSettings
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| number | [ string](#string) | An 8-character hexadecimal string, formatted for human readability. System ignores spaces. |
+| settings | [map DeviceSettings.SettingsEntry](#devicesettingssettingsentry) | Map of numeric value to bytes that can be applied to the device. |
+
+### DeviceSettings.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** selection | [optional DeviceSelection](#deviceselection) | Select which devices to return. Optional, when omitted or empty every device with settings is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Paginate through results. |
+
+### DeviceSettings.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| devices | [repeated DeviceSettings](#devicesettings) |  |
+| request | [ DeviceSettings.Request](#devicesettingsrequest) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
+
+### DeviceSettings.SettingsEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ uint32](#uint32) |  |
+| value | [ hiber.BytesOrHex](#hiberbytesorhex) |  |
 
 ### ListDevice
 
@@ -251,6 +299,7 @@ When updating a device, all optional fields will be handled as follows:
 | add_files | [repeated hiber.file.File](#hiberfilefile) | Add files to the device. These can be just an identifier to an existing File, or a full file upload. Keep in mind the grpc request size limitation. |
 | delete_files | [repeated string](#string) | Remove files from the device and delete them from the system (if no other references exist). |
 |  **optional** set_external_device_identifier | [optional string](#string) | Set the external identifier for a device or gateway that has no external identifier. Only allowed when a single device or gateway is selected that does not already have an external identifier. |
+|  **optional** battery_replacement | [optional hiber.Timestamp](#hibertimestamp) | Mark that the battery was replaced. |
 
 ### UpdateDevice.Request
 
@@ -354,6 +403,7 @@ They have a unique device number in our system, used to identify them.
 | sensor_brand | [ string](#string) | The DeviceType for this device. See DeviceType for more information. |
 | numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The numeric value types that this device produces. The device may produce other values (like battery level), but these are the primary value types. |
 | files | [repeated hiber.file.File](#hiberfilefile) | Files for this tag. Typically an image of the device installation. See the File.media_type for more information. |
+|  **optional** required_device_firmware_identifier | [optional string](#string) | When set, indicates that this device should be updated to the firmware specified by the identifier. |
 
 ### hiber.device.Device.Links
 
@@ -549,6 +599,7 @@ when the modem is registered into the system or when a subscription is authorize
 |  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
 | numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The numeric value types that this device produces. The device may produce other values (like battery level), but these are the primary value types. |
 | files | [repeated hiber.file.File](#hiberfilefile) | Files for this tag. Typically an image of the device installation. See the File.media_type for more information. |
+|  **optional** required_device_firmware_identifier | [optional string](#string) |  |
 
 ### hiber.modem.ModemSelection
 

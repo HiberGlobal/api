@@ -181,6 +181,8 @@ message Modem {
      */
     repeated file.File files = 36;
 
+    optional string required_device_firmware_identifier = 39;
+
     /* Additional information when this modem is a gateway. */
     message GatewayInfo {
         int32 number_of_connected_devices = 1;
@@ -214,6 +216,9 @@ message Modem {
 
         /* Frequency configured for this device. */
         optional Frequency frequency = 5;
+
+        /* The last time the battery was replaced for this device. */
+        optional Timestamp last_battery_replacement = 6;
 
         /* Frequency specified by LoRaWAN regional parameters. */
         enum Frequency {

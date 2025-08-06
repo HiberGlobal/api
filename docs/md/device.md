@@ -167,6 +167,7 @@ They have a unique device number in our system, used to identify them.
 | sensor_brand | [ string](#string) | The DeviceType for this device. See DeviceType for more information. |
 | numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The numeric value types that this device produces. The device may produce other values (like battery level), but these are the primary value types. |
 | files | [repeated hiber.file.File](#hiberfilefile) | Files for this tag. Typically an image of the device installation. See the File.media_type for more information. |
+|  **optional** required_device_firmware_identifier | [optional string](#string) | When set, indicates that this device should be updated to the firmware specified by the identifier. |
 
 ### Device.Links
 
@@ -452,6 +453,7 @@ when the modem is registered into the system or when a subscription is authorize
 |  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
 | numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The numeric value types that this device produces. The device may produce other values (like battery level), but these are the primary value types. |
 | files | [repeated hiber.file.File](#hiberfilefile) | Files for this tag. Typically an image of the device installation. See the File.media_type for more information. |
+|  **optional** required_device_firmware_identifier | [optional string](#string) |  |
 
 ### hiber.modem.ModemSelection
 

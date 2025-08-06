@@ -21,7 +21,7 @@ service FileService {
         option (permission_usage) = FILES_UPLOAD;
     }
     rpc Delete (DeleteFile.Request) returns (DeleteFile.Response) {
-        option (permission_usage) = FILES_MANAGE;
+        option (support_permission_usage) = MANAGE_FILES;
     }
 }
 

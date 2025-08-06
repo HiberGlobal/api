@@ -41,6 +41,7 @@ By default, everyone who has access to an organization, can access basic organiz
 | MODEMS_CREATE | Create new modems. Includes MODEMS permission. | 50 |
 | MODEMS_UPDATE | Update modems, such as their peripherals, display name and tags. Includes MODEMS permission. | 11 |
 | MODEMS_UPDATE_FILES | Update modems files, such as photo's of the installation. | 60 |
+| MODEMS_UPDATE_NOTES | Update modems notes. | 64 |
 | MODEMS_LICENSE_KEYS | Show and regenerate license keys. Includes MODEMS permission. | 12 |
 | MODEMS_MESSAGE_BODY_PARSERS | Manage and assign message body parsers. Includes MODEMS permission. | 43 |
 | MODEMS_SECURE_NOTES | Show and update secure notes. Includes MODEMS permission. | 42 |
@@ -67,7 +68,6 @@ By default, everyone who has access to an organization, can access basic organiz
 | TAGS_MANAGE | Create, edit and delete tags. Viewing tags is always allowed. | 52 |
 | FILES | Download and view file content. | 57 |
 | FILES_UPLOAD | Upload new files. Includes FILES permission. | 58 |
-| FILES_MANAGE | Manage files (e.g. delete them). Includes FILES and FILES_UPLOAD permissions. | 59 |
 
 ### SupportPermission
 SupportPermissions are used for features typically reserved for customer support, or that behave differently
@@ -86,6 +86,7 @@ when used by a customer support operator.
 | MANAGE_DEVICE_TIME_ZONE | Assign device time zones. | 9 |
 | MANAGE_ORGANIZATION_CONTRACT | Manage organization contract info. | 10 |
 | MANAGE_USERS_ADVANCED | Advanced user management. | 11 |
+| MANAGE_FILES | Remove files from devices, process points, tags and the system entirely. | 12 |
 
 ### UserPermission
 UserPermissions are generally used to limit what a token can do to its user.

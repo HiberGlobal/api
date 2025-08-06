@@ -82,6 +82,9 @@ message Device {
      */
     repeated file.File files = 20;
 
+    /* When set, indicates that this device should be updated to the firmware specified by the identifier. */
+    optional string required_device_firmware_identifier = 21;
+
     /* Collection of data about the devices it is connected to. */
     message Links {
         /* Other identifiers for this devices. Could include data like its MAC-address or otherwise unique identifier. */

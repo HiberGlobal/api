@@ -455,6 +455,7 @@ when the modem is registered into the system or when a subscription is authorize
 |  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
 | numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The numeric value types that this device produces. The device may produce other values (like battery level), but these are the primary value types. |
 | files | [repeated hiber.file.File](#hiberfilefile) | Files for this tag. Typically an image of the device installation. See the File.media_type for more information. |
+|  **optional** required_device_firmware_identifier | [optional string](#string) |  |
 
 ### Modem.ConnectedDeviceInfo
 
@@ -467,6 +468,7 @@ Additional information when this modem is a connected device.
 | device_type | [ string](#string) | <strong>Deprecated.</strong> Device type for this modem. |
 | sensor_brand | [ string](#string) | Brand for this modem's sensor. |
 |  **optional** frequency | [optional Modem.ConnectedDeviceInfo.Frequency](#modemconnecteddeviceinfofrequency) | Frequency configured for this device. |
+|  **optional** last_battery_replacement | [optional hiber.Timestamp](#hibertimestamp) | The last time the battery was replaced for this device. |
 
 ### Modem.GatewayInfo
 

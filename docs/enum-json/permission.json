@@ -16,6 +16,7 @@
     , "MODEMS_CREATE": "Create new modems. Includes MODEMS permission."
     , "MODEMS_UPDATE": "Update modems, such as their peripherals, display name and tags. Includes MODEMS permission."
     , "MODEMS_UPDATE_FILES": "Update modems files, such as photo's of the installation."
+    , "MODEMS_UPDATE_NOTES": "Update modems notes."
     , "MODEMS_LICENSE_KEYS": "Show and regenerate license keys. Includes MODEMS permission."
     , "MODEMS_MESSAGE_BODY_PARSERS": "Manage and assign message body parsers. Includes MODEMS permission."
     , "MODEMS_SECURE_NOTES": "Show and update secure notes. Includes MODEMS permission."
@@ -42,7 +43,6 @@
     , "TAGS_MANAGE": "Create, edit and delete tags. Viewing tags is always allowed."
     , "FILES": "Download and view file content."
     , "FILES_UPLOAD": "Upload new files. Includes FILES permission."
-    , "FILES_MANAGE": "Manage files (e.g. delete them). Includes FILES and FILES_UPLOAD permissions."
     }
 },{
   "name": "SupportPermission",
@@ -59,6 +59,7 @@
     , "MANAGE_DEVICE_TIME_ZONE": "Assign device time zones."
     , "MANAGE_ORGANIZATION_CONTRACT": "Manage organization contract info."
     , "MANAGE_USERS_ADVANCED": "Advanced user management."
+    , "MANAGE_FILES": "Remove files from devices, process points, tags and the system entirely."
     }
 },{
   "name": "UserPermission",

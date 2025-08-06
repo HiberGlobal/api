@@ -191,6 +191,22 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.device.DeviceSettings"><span class="badge">M</span>DeviceSettings</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.device.DeviceSettings.Request"><span class="badge">M</span>DeviceSettings.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.device.DeviceSettings.Response"><span class="badge">M</span>DeviceSettings.Response</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.device.DeviceSettings.SettingsEntry"><span class="badge">M</span>DeviceSettings.SettingsEntry</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.device.ListDevice"><span class="badge">M</span>ListDevice</a>
                 </li>
               
@@ -946,6 +962,144 @@ Typically means that some interaction is required. </p></td>
 
         
       
+        <h3 id="hiber.device.DeviceSettings">DeviceSettings</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>An 8-character hexadecimal string, formatted for human readability. System ignores spaces. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>settings</td>
+                  <td><a href="#hiber.device.DeviceSettings.SettingsEntry">DeviceSettings.SettingsEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Map of numeric value to bytes that can be applied to the device. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.device.DeviceSettings.Request">DeviceSettings.Request</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>selection</td>
+                  <td><a href="#hiber.device.DeviceSelection">DeviceSelection</a></td>
+                  <td>optional</td>
+                  <td><p>Select which devices to return. Optional, when omitted or empty every device with settings is included. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
+                  <td>optional</td>
+                  <td><p>Paginate through results. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.device.DeviceSettings.Response">DeviceSettings.Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>devices</td>
+                  <td><a href="#hiber.device.DeviceSettings">DeviceSettings</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#hiber.device.DeviceSettings.Request">DeviceSettings.Request</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.device.DeviceSettings.SettingsEntry">DeviceSettings.SettingsEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#hiber.BytesOrHex">hiber.BytesOrHex</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="hiber.device.ListDevice">ListDevice</h3>
         <p></p>
 
@@ -1202,6 +1356,13 @@ Keep in mind the grpc request size limitation. </p></td>
 Only allowed when a single device or gateway is selected that does not already have an external identifier. </p></td>
                 </tr>
               
+                <tr>
+                  <td>battery_replacement</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>Mark that the battery was replaced. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -1454,6 +1615,13 @@ which targets the devices that should be updated. </p></td>
                 <td><a href="#hiber.device.DeviceLifecycleInfo.Request">DeviceLifecycleInfo.Request</a></td>
                 <td><a href="#hiber.device.DeviceLifecycleInfo.Response">DeviceLifecycleInfo.Response</a></td>
                 <td><p>List possible lifecycles with additional information.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Settings</td>
+                <td><a href="#hiber.device.DeviceSettings.Request">DeviceSettings.Request</a></td>
+                <td><a href="#hiber.device.DeviceSettings.Response">DeviceSettings.Response</a></td>
+                <td><p>List device settings.</p></td>
               </tr>
             
           </tbody>
@@ -3840,6 +4008,13 @@ The device may produce other values (like battery level), but these are the prim
 Typically an image of the device installation. See the File.media_type for more information. </p></td>
                 </tr>
               
+                <tr>
+                  <td>required_device_firmware_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>When set, indicates that this device should be updated to the firmware specified by the identifier. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -5254,6 +5429,13 @@ The device may produce other values (like battery level), but these are the prim
 Typically an image of the device installation. See the File.media_type for more information. </p></td>
                 </tr>
               
+                <tr>
+                  <td>required_device_firmware_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -5337,6 +5519,13 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td><a href="#hiber.modem.Modem.ConnectedDeviceInfo.Frequency">Modem.ConnectedDeviceInfo.Frequency</a></td>
                   <td>optional</td>
                   <td><p>Frequency configured for this device. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_battery_replacement</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>The last time the battery was replaced for this device. </p></td>
                 </tr>
               
             </tbody>
