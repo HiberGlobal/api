@@ -2,6 +2,8 @@
 
 
 
+<p class="deprecated deprecated-file">Deprecated <br> Read the documentation for this file carefully and use its replacement.</p>
+
 #### This file was generated from [asset.proto](https://github.com/HiberGlobal/api/blob/master/asset.proto).
 
 ## Table of Contents
@@ -128,7 +130,7 @@
 
 ### Asset
 
-<strong>Deprecated.</strong> Assets are things that collect the data produced by devices.
+<p class="deprecated deprecated-message">Deprecated</p> Assets are things that collect the data produced by devices.
 Devices are assigned to assets to handle data ownership.
 When a device is replaced, the data flow for the asset continues with the data from the new device.
 Multiple devices can be assigned to an asset, though it is advisable to only do so when they send
@@ -155,7 +157,7 @@ For example, if you have a Well, you might have assets for Annulus A and the tub
 
 ### Asset.AssignedDevice
 
-<strong>Deprecated.</strong> A device assigned to this asset.
+<p class="deprecated deprecated-message">Deprecated</p> A device assigned to this asset.
 Non-operational values that the device produces will be linked to this asset
 (e.g. pressure, but not battery level).
 
@@ -173,7 +175,7 @@ Non-operational values that the device produces will be linked to this asset
 
 ### AssetSelection
 
-<strong>Deprecated.</strong> Selection object for assets.
+<p class="deprecated deprecated-message">Deprecated</p> Selection object for assets.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -185,7 +187,7 @@ Non-operational values that the device produces will be linked to this asset
 
 ## Enums
 ### Asset.Type
-<strong>Deprecated.</strong> Predefined assets types that can be used to say something about the data.
+<p class="deprecated deprecated-enum">Deprecated</p>Predefined assets types that can be used to say something about the data.
 Currently a limited list, but more may be added in the future.
 
 | Name | Description | Number |
@@ -341,7 +343,7 @@ Error will change:
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | level | [ string](#string) | The name of this health level. Levels are identified by their name. The API does support renaming, where the rename is propagated to all the relevant parts of the system. |
-| color | [ string](#string) | <strong>Deprecated.</strong> Default color for the health level, as a string that represents a valid CSS3 color. DEPRECATED: Maps to the color named "text" in color_data. |
+| color | [ string](#string) | <span class="deprecated deprecated-field">Deprecated</span> Default color for the health level, as a string that represents a valid CSS3 color. DEPRECATED: Maps to the color named "text" in color_data. |
 | color_data | [map hiber.health.HealthLevel.ColorDataEntry](#hiberhealthhealthlevelcolordataentry) | Map of named colors, where key is the name and the value is a valid CSS3 color definition. |
 | severity | [ int64](#int64) | A unique numeric value equal to the index of this health level in the list of health levels sorted by ascending severity (starting at 1). This means higher numbers denote a more severe health. This value cannot be used when creating or updating. To change the severity for a health level, reorder all health levels. |
 | catch_all | [ bool](#bool) | Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems), which can happen when a device manufacturer has provided alarms for your device (e.g. a low battery alarm). By default, unknown health levels map to the level of the highest severity, unless another level is marked as catch-all. |
@@ -750,6 +752,7 @@ Unit of volume.
 | GALLON_IMPERIAL | gal (imp) | 2 |
 | CUBIC_METER | m³ | 3 |
 | CUBIC_FEET | ft³ | 4 |
+| OIL_BARREL | bbl | 5 |
 
 #### hiber.value.Value.Type
 The type of value that is represented.
@@ -823,7 +826,7 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 ### hiber.BytesOrHex.Update
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -895,7 +898,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.ChildOrganizations.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.ChildOrganizations field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -922,7 +925,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.Events.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Events field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -968,7 +971,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.Modems.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Modems field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1051,7 +1054,7 @@ Filter result on specific properties encoded in map-value pairs.
 
 ### hiber.Filter.Tags.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Tags field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1249,7 +1252,7 @@ timestamps:
 
 ### hiber.UpdateBoolean
 
-<strong>Deprecated.</strong> Update object for a boolean.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for a boolean.
 
 Since false is the default value, we need to distinguish between an omitted value and setting the value to false,
 in an update object.
@@ -1265,7 +1268,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateClearableString
 
-<strong>Deprecated.</strong> Update object for a string that can be empty.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for a string that can be empty.
 
 Since an empty string is also the default value, we need to distinguish between an omitted value and
 setting the value to an empty string, in an update object.
@@ -1281,7 +1284,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateOptionalDuration
 
-<strong>Deprecated.</strong> Update object for an optional Duration.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an optional Duration.
 
 To use this to update, set a value and set updated to true.
 To clear the duration, set updated to true, but set no value.
@@ -1295,7 +1298,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateOptionalId
 
-<strong>Deprecated.</strong> Update object for an optional id.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an optional id.
 
 To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.
 
@@ -1308,7 +1311,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateZeroableInt
 
-<strong>Deprecated.</strong> Update object for an int that can be set to 0.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an int that can be set to 0.
 
 Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,
 in an update object.
@@ -1435,6 +1438,7 @@ Unit of measurement for a numeric value.
 | VOLUME_GALLON_IMPERIAL |  | 25 |
 | VOLUME_CUBIC_METER |  | 42 |
 | VOLUME_CUBIC_FOOT |  | 43 |
+| VOLUME_OIL_BARREL |  | 55 |
 | MASS_KILOGRAMS |  | 37 |
 | MASS_POUNDS |  | 38 |
 | FLOW_BARRELS_PER_DAY |  | 46 |

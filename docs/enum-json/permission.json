@@ -20,6 +20,7 @@
     , "MODEMS_LICENSE_KEYS": "Show and regenerate license keys. Includes MODEMS permission."
     , "MODEMS_MESSAGE_BODY_PARSERS": "Manage and assign message body parsers. Includes MODEMS permission."
     , "MODEMS_SECURE_NOTES": "Show and update secure notes. Includes MODEMS permission."
+    , "MODEMS_FIRMWARE": "Reset modem firmware requirement"
     , "MODEMS_ALARMS": "View and assign (with the ASSIGNMENTS permission) alarms. Includes MODEMS permission."
     , "MODEMS_ALARMS_UPDATE": "Manage alarms. Includes MODEMS permission."
     , "MODEM_VALUES": "Read modem values."

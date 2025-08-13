@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.250 (2025-08-13)
+
+##### ValueService
+
+- Added volume unit **(Oil) barrel** (`bbl`)
+
 ### 0.249 (2025-08-06)
 
 ##### Permissions

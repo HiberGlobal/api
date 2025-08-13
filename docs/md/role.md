@@ -135,6 +135,7 @@ By default, everyone who has access to an organization, can access basic organiz
 | MODEMS_LICENSE_KEYS | Show and regenerate license keys. Includes MODEMS permission. | 12 |
 | MODEMS_MESSAGE_BODY_PARSERS | Manage and assign message body parsers. Includes MODEMS permission. | 43 |
 | MODEMS_SECURE_NOTES | Show and update secure notes. Includes MODEMS permission. | 42 |
+| MODEMS_FIRMWARE | Reset modem firmware requirement | 65 |
 | MODEMS_ALARMS | View and assign (with the ASSIGNMENTS permission) alarms. Includes MODEMS permission. | 44 |
 | MODEMS_ALARMS_UPDATE | Manage alarms. Includes MODEMS permission. | 56 |
 | MODEM_VALUES | Read modem values. | 17 |
@@ -227,7 +228,7 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 ### hiber.BytesOrHex.Update
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -299,7 +300,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.ChildOrganizations.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.ChildOrganizations field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -326,7 +327,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.Events.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Events field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -372,7 +373,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.Modems.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Modems field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -455,7 +456,7 @@ Filter result on specific properties encoded in map-value pairs.
 
 ### hiber.Filter.Tags.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Tags field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -653,7 +654,7 @@ timestamps:
 
 ### hiber.UpdateBoolean
 
-<strong>Deprecated.</strong> Update object for a boolean.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for a boolean.
 
 Since false is the default value, we need to distinguish between an omitted value and setting the value to false,
 in an update object.
@@ -669,7 +670,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateClearableString
 
-<strong>Deprecated.</strong> Update object for a string that can be empty.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for a string that can be empty.
 
 Since an empty string is also the default value, we need to distinguish between an omitted value and
 setting the value to an empty string, in an update object.
@@ -685,7 +686,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateOptionalDuration
 
-<strong>Deprecated.</strong> Update object for an optional Duration.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an optional Duration.
 
 To use this to update, set a value and set updated to true.
 To clear the duration, set updated to true, but set no value.
@@ -699,7 +700,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateOptionalId
 
-<strong>Deprecated.</strong> Update object for an optional id.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an optional id.
 
 To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.
 
@@ -712,7 +713,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateZeroableInt
 
-<strong>Deprecated.</strong> Update object for an int that can be set to 0.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an int that can be set to 0.
 
 Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,
 in an update object.
@@ -839,6 +840,7 @@ Unit of measurement for a numeric value.
 | VOLUME_GALLON_IMPERIAL |  | 25 |
 | VOLUME_CUBIC_METER |  | 42 |
 | VOLUME_CUBIC_FOOT |  | 43 |
+| VOLUME_OIL_BARREL |  | 55 |
 | MASS_KILOGRAMS |  | 37 |
 | MASS_POUNDS |  | 38 |
 | FLOW_BARRELS_PER_DAY |  | 46 |

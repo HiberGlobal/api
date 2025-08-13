@@ -356,7 +356,7 @@ Create or update the modem message simulation for a selection of modems.
 | modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Modems to create or update the message simulation for. |
 | messages_per_interval | [ uint32](#uint32) | The number of simulated messages per simulation interval for these modems. This value is either the custom amount per day for these modems or the default value |
 | simulation_interval | [ hiber.Duration](#hiberduration) | Interval messages should be simulated at (e.g. once every hour). |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **message_body**.update_message_body | [ hiber.BytesOrHex.Update](#hiberbytesorhexupdate) | <strong>Deprecated.</strong> A message body to use for the simulated messages. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **message_body**.update_message_body | [ hiber.BytesOrHex.Update](#hiberbytesorhexupdate) | <span class="deprecated deprecated-field">Deprecated</span> A message body to use for the simulated messages. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **message_body**.replace_message_body_rotation | [ Simulation.ModemMessageSimulation.MessageBodyRotation](#simulationmodemmessagesimulationmessagebodyrotation) | Replace the list of message bodies to rotate through. This does not have to match the length of the location rotation, if any. Note that this **replaces** the entire list of values, to ensure the order is maintained. |
 | message_body_add_variable_byte_indices | [repeated uint32](#uint32) | Add indices of bytes in the message body that should be randomized (to have variable values). |
 | message_body_remove_variable_byte_indices | [repeated uint32](#uint32) | Remove indices of bytes in the message body that should be randomized (to have variable values). |
@@ -382,7 +382,7 @@ Create or update the modem message simulation for a selection of modems.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| deprecated_enabled | [ hiber.UpdateBoolean](#hiberupdateboolean) | <strong>Deprecated.</strong>  |
+| deprecated_enabled | [ hiber.UpdateBoolean](#hiberupdateboolean) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** enabled | [optional bool](#bool) |  |
 |  **optional** simulate_modem_inactivity | [optional Simulation.ModemInactivitySimulation](#simulationmodeminactivitysimulation) |  |
 |  **optional** simulate_delayed_messages | [optional Simulation.DelayedMessageSimulation](#simulationdelayedmessagesimulation) |  |
@@ -423,9 +423,9 @@ when the modem is registered into the system or when a subscription is authorize
 | notes | [ string](#string) | Notes field that can be used to add additional information to a modem. |
 | secure_notes | [ string](#string) | Secure notes field that can be used to add additional information to a modem, with limited accessibility. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
-| is_gateway | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Whether the modem is a gateway, it has been configured as a gateway and has connected devices. Use `type` instead. |
-| is_device_connected_to_gateway | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Whether the modem is connected to a modem configured as a gateway. Use `type` instead. |
-| connected_to_gateway | [ string](#string) | <strong>Deprecated.</strong> [DEPRECATED] The modem number that this modem is connected to, if any. Use `connected_device_info.connected_to_gateway` instead. |
+| is_gateway | [ bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Whether the modem is a gateway, it has been configured as a gateway and has connected devices. Use `type` instead. |
+| is_device_connected_to_gateway | [ bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Whether the modem is connected to a modem configured as a gateway. Use `type` instead. |
+| connected_to_gateway | [ string](#string) | <span class="deprecated deprecated-field">Deprecated</span> The modem number that this modem is connected to, if any. Use `connected_device_info.connected_to_gateway` instead. |
 | external_device_ids | [repeated string](#string) | External device ids for this sensor, gateway or valve. |
 | device_type | [ string](#string) | Device type for this modem. |
 | type | [ hiber.modem.Modem.Type](#hibermodemmodemtype) | The type of modem. Used mainly to differentiate in the UI or to sort on. |
@@ -449,8 +449,8 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 | ----- | ---- | ----------- |
 |  **optional** modems | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
 |  **optional** free_text_search | [optional string](#string) |  |
-|  **optional** only_active | [optional bool](#bool) | <strong>Deprecated.</strong> Use lifecycle filter instead. |
-|  **optional** activated_in | [optional hiber.TimeRange](#hibertimerange) | <strong>Deprecated.</strong>  |
+|  **optional** only_active | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Use lifecycle filter instead. |
+|  **optional** activated_in | [optional hiber.TimeRange](#hibertimerange) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** with_last_message_in | [optional hiber.TimeRange](#hibertimerange) |  |
 | health_levels | [repeated string](#string) | Filter modems by health level. |
 | lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
@@ -460,10 +460,10 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 |  **optional** device_types | [optional hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
 |  **optional** sensorBrands | [optional hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
 |  **optional** identifiers | [optional hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
-|  **optional** only_gateways | [optional bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
-|  **optional** only_has_external_device_ids | [optional bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
+|  **optional** only_gateways | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
+|  **optional** only_has_external_device_ids | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
 |  **optional** connected_to_gateways | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
-| external_device_ids | [repeated string](#string) | <strong>Deprecated.</strong>  |
+| external_device_ids | [repeated string](#string) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ hiber.modem.ModemSelection.Peripherals](#hibermodemmodemselectionperipherals) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.only_without_peripheral | [ bool](#bool) | When set to true, only modems that do not have any peripheral will be included in the result. |
@@ -592,7 +592,7 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 ### hiber.BytesOrHex.Update
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -664,7 +664,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.ChildOrganizations.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.ChildOrganizations field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -691,7 +691,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.Events.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Events field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -737,7 +737,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.Modems.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Modems field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -820,7 +820,7 @@ Filter result on specific properties encoded in map-value pairs.
 
 ### hiber.Filter.Tags.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Tags field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1018,7 +1018,7 @@ timestamps:
 
 ### hiber.UpdateBoolean
 
-<strong>Deprecated.</strong> Update object for a boolean.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for a boolean.
 
 Since false is the default value, we need to distinguish between an omitted value and setting the value to false,
 in an update object.
@@ -1034,7 +1034,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateClearableString
 
-<strong>Deprecated.</strong> Update object for a string that can be empty.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for a string that can be empty.
 
 Since an empty string is also the default value, we need to distinguish between an omitted value and
 setting the value to an empty string, in an update object.
@@ -1050,7 +1050,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateOptionalDuration
 
-<strong>Deprecated.</strong> Update object for an optional Duration.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an optional Duration.
 
 To use this to update, set a value and set updated to true.
 To clear the duration, set updated to true, but set no value.
@@ -1064,7 +1064,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateOptionalId
 
-<strong>Deprecated.</strong> Update object for an optional id.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an optional id.
 
 To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.
 
@@ -1077,7 +1077,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateZeroableInt
 
-<strong>Deprecated.</strong> Update object for an int that can be set to 0.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an int that can be set to 0.
 
 Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,
 in an update object.
@@ -1204,6 +1204,7 @@ Unit of measurement for a numeric value.
 | VOLUME_GALLON_IMPERIAL |  | 25 |
 | VOLUME_CUBIC_METER |  | 42 |
 | VOLUME_CUBIC_FOOT |  | 43 |
+| VOLUME_OIL_BARREL |  | 55 |
 | MASS_KILOGRAMS |  | 37 |
 | MASS_POUNDS |  | 38 |
 | FLOW_BARRELS_PER_DAY |  | 46 |

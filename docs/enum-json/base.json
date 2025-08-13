@@ -104,6 +104,7 @@
     , "VOLUME_GALLON_IMPERIAL": ""
     , "VOLUME_CUBIC_METER": ""
     , "VOLUME_CUBIC_FOOT": ""
+    , "VOLUME_OIL_BARREL": ""
     , "MASS_KILOGRAMS": ""
     , "MASS_POUNDS": ""
     , "FLOW_BARRELS_PER_DAY": ""

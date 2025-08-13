@@ -130,8 +130,8 @@
 | encrypted | [ bool](#bool) | Whether this field should be stored encrypted or not. If it is, some processing options may be unavailable or slower. |
 | optional | [ bool](#bool) | Whether this field should be validated from the parser output. |
 | operational | [ bool](#bool) | Field contains values relevant for operating the device. |
-|  **optional** unit_of_measurement | [optional hiber.UnitOfMeasurement](#hiberunitofmeasurement) | <strong>Deprecated.</strong> If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
-|  **optional** unit_symbol | [optional string](#string) | <strong>Deprecated.</strong> The symbol for the unit. Deprecated: use numeric.unit.symbol instead |
+|  **optional** unit_of_measurement | [optional hiber.UnitOfMeasurement](#hiberunitofmeasurement) | <span class="deprecated deprecated-field">Deprecated</span> If numeric, the unit of the field. Deprecated: use numeric.numeric_unit oneof instead |
+|  **optional** unit_symbol | [optional string](#string) | <span class="deprecated deprecated-field">Deprecated</span> The symbol for the unit. Deprecated: use numeric.unit.symbol instead |
 
 ### Field.Enum
 
@@ -148,7 +148,7 @@ If the field is numeric, this specifies the unit and formatting details for the 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | type | [ hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The type of numeric value. |
-| symbol | [ string](#string) | <strong>Deprecated.</strong> The symbol to use for the field's unit. Deprecated: use unit.symbol instead. |
+| symbol | [ string](#string) | <span class="deprecated deprecated-field">Deprecated</span> The symbol to use for the field's unit. Deprecated: use unit.symbol instead. |
 | format | [ Field.Numeric.Format](#fieldnumericformat) | How to format the values (number of decimals, rounding, etc.). |
 | unit | [ Field.Numeric.Unit](#fieldnumericunit) | The unit for the field, depending on the type. |
 |  **optional** converted_from | [optional Field.Numeric.Unit](#fieldnumericunit) | If the unit preferences were applied, and the unit is different, the field will be converted to the preferred unit, from the original unit specified in this field. |
@@ -548,6 +548,7 @@ Unit of volume.
 | GALLON_IMPERIAL | gal (imp) | 2 |
 | CUBIC_METER | m³ | 3 |
 | CUBIC_FEET | ft³ | 4 |
+| OIL_BARREL | bbl | 5 |
 
 #### hiber.value.Value.Type
 The type of value that is represented.
@@ -621,7 +622,7 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 ### hiber.BytesOrHex.Update
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -693,7 +694,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.ChildOrganizations.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.ChildOrganizations field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -720,7 +721,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.Events.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Events field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -766,7 +767,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.Modems.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Modems field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -849,7 +850,7 @@ Filter result on specific properties encoded in map-value pairs.
 
 ### hiber.Filter.Tags.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Tags field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1047,7 +1048,7 @@ timestamps:
 
 ### hiber.UpdateBoolean
 
-<strong>Deprecated.</strong> Update object for a boolean.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for a boolean.
 
 Since false is the default value, we need to distinguish between an omitted value and setting the value to false,
 in an update object.
@@ -1063,7 +1064,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateClearableString
 
-<strong>Deprecated.</strong> Update object for a string that can be empty.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for a string that can be empty.
 
 Since an empty string is also the default value, we need to distinguish between an omitted value and
 setting the value to an empty string, in an update object.
@@ -1079,7 +1080,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateOptionalDuration
 
-<strong>Deprecated.</strong> Update object for an optional Duration.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an optional Duration.
 
 To use this to update, set a value and set updated to true.
 To clear the duration, set updated to true, but set no value.
@@ -1093,7 +1094,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateOptionalId
 
-<strong>Deprecated.</strong> Update object for an optional id.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an optional id.
 
 To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.
 
@@ -1106,7 +1107,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateZeroableInt
 
-<strong>Deprecated.</strong> Update object for an int that can be set to 0.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an int that can be set to 0.
 
 Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,
 in an update object.
@@ -1233,6 +1234,7 @@ Unit of measurement for a numeric value.
 | VOLUME_GALLON_IMPERIAL |  | 25 |
 | VOLUME_CUBIC_METER |  | 42 |
 | VOLUME_CUBIC_FOOT |  | 43 |
+| VOLUME_OIL_BARREL |  | 55 |
 | MASS_KILOGRAMS |  | 37 |
 | MASS_POUNDS |  | 38 |
 | FLOW_BARRELS_PER_DAY |  | 46 |

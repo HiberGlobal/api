@@ -45,6 +45,7 @@ By default, everyone who has access to an organization, can access basic organiz
 | MODEMS_LICENSE_KEYS | Show and regenerate license keys. Includes MODEMS permission. | 12 |
 | MODEMS_MESSAGE_BODY_PARSERS | Manage and assign message body parsers. Includes MODEMS permission. | 43 |
 | MODEMS_SECURE_NOTES | Show and update secure notes. Includes MODEMS permission. | 42 |
+| MODEMS_FIRMWARE | Reset modem firmware requirement | 65 |
 | MODEMS_ALARMS | View and assign (with the ASSIGNMENTS permission) alarms. Includes MODEMS permission. | 44 |
 | MODEMS_ALARMS_UPDATE | Manage alarms. Includes MODEMS permission. | 56 |
 | MODEM_VALUES | Read modem values. | 17 |

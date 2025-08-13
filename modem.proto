@@ -125,17 +125,17 @@ message Modem {
 
     repeated hiber.tag.Tag tags = 10;
 
-    /* [DEPRECATED] Whether the modem is a gateway, it has been configured as a gateway and has connected devices.
+    /* Whether the modem is a gateway, it has been configured as a gateway and has connected devices.
      * Use `type` instead.
      */
     bool is_gateway = 20 [deprecated = true];
 
-    /* [DEPRECATED] Whether the modem is connected to a modem configured as a gateway.
+    /* Whether the modem is connected to a modem configured as a gateway.
      * Use `type` instead.
      */
     bool is_device_connected_to_gateway = 21 [deprecated = true];
 
-    /* [DEPRECATED] The modem number that this modem is connected to, if any.
+    /* The modem number that this modem is connected to, if any.
      * Use `connected_device_info.connected_to_gateway` instead.
      */
     string connected_to_gateway = 22 [deprecated = true];
@@ -430,13 +430,13 @@ message ModemSelection {
     optional Filter.SensorBrands sensorBrands = 23;
     optional Filter.ModemIdentifiers identifiers = 24;
 
-    /* [DEPRECATED] Only list devices that are a gateway.
+    /* Only list devices that are a gateway.
      * Replaced by `types`.
      * If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`.
      */
     optional bool only_gateways = 12 [deprecated = true];
 
-    /* [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors.
+    /* Only list devices that are a connected devices. Typically these are LoRaWAN sensors.
      * Replaced by `types`.
      * If you only want to have connected devices in the result,
      * create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`.
@@ -487,7 +487,7 @@ message ModemMessage {
      */
     message ParsedBody {
         /* Id of the parser that was used, if the parser and modem are owned by the same organization.
-         * [DEPRECATED] Deprecated in favour of the identifier, which is globally unique.
+         *  Deprecated in favour of the identifier, which is globally unique.
          */
         int32 parser_id = 1 [deprecated = true];
 

@@ -263,11 +263,11 @@
 | ----- | ---- | ----------- |
 | id | [ int64](#int64) |  |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** deprecated_event_filter | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_event_filter | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** event_filter | [optional hiber.Filter.Events](#hiberfilterevents) |  |
-|  **optional** deprecated_modem_filter | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_modem_filter | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** modem_filter | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
-|  **optional** deprecated_tag_filter | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_tag_filter | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** tag_filter | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 | add_health_levels_to_filter | [repeated string](#string) | Add health levels to the health levels filter. |
 | remove_health_levels_from_filter | [repeated string](#string) | Remove health levels from the health levels filter. |
@@ -289,28 +289,28 @@
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | url | [ string](#string) |  |
-|  **optional** deprecated_secret | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_secret | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** secret | [optional string](#string) |  |
 |  **optional** content_type | [optional Webhook.ContentType](#webhookcontenttype) |  |
-|  **optional** deprecated_description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** description | [optional string](#string) |  |
-|  **optional** deprecated_event_filter | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_event_filter | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** event_filter | [optional hiber.Filter.Events](#hiberfilterevents) |  |
-|  **optional** deprecated_modem_filter | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_modem_filter | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** modem_filter | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
-|  **optional** deprecated_tag_filter | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_tag_filter | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** tag_filter | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 | add_health_levels | [repeated string](#string) | Add health levels to the health levels filter. |
 | remove_health_levels | [repeated string](#string) | Remove health levels from the health levels filter. |
-|  **optional** deprecated_active | [optional hiber.UpdateBoolean](#hiberupdateboolean) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_active | [optional hiber.UpdateBoolean](#hiberupdateboolean) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** active | [optional bool](#bool) |  |
-|  **optional** deprecated_certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | <strong>Deprecated.</strong> A value of 0 removes the certificate |
+|  **optional** deprecated_certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | <span class="deprecated deprecated-field">Deprecated</span> A value of 0 removes the certificate |
 |  **optional** certificate_id | [optional int64](#int64) |  |
 |  **optional** health_warning_period | [optional hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
 |  **optional** health_warning_failure_percentage | [optional uint32](#uint32) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
-|  **optional** deprecated_health_warning_failure_percentage | [optional hiber.UpdateZeroableInt](#hiberupdatezeroableint) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_health_warning_failure_percentage | [optional hiber.UpdateZeroableInt](#hiberupdatezeroableint) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** update_hmac_header_name | [optional string](#string) | Update the custom hmac header, or clear to reset to default. |
-|  **optional** deprecated_update_hmac_header_name | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_update_hmac_header_name | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | add_custom_headers | [map UpdateWebhookRequest.UpdateWebhook.AddCustomHeadersEntry](#updatewebhookrequestupdatewebhookaddcustomheadersentry) | Custom headers to add to every call. |
 | remove_custom_headers | [repeated string](#string) | Remove previously configured custom headers. |
 | replace_custom_headers | [map UpdateWebhookRequest.UpdateWebhook.ReplaceCustomHeadersEntry](#updatewebhookrequestupdatewebhookreplacecustomheadersentry) | Replace the custom headers to add to every call. If set, remove_custom_headers is ignored. |
@@ -335,7 +335,7 @@
 
 ### UpdateWebhookRequest.UpdateWebhook.UpdateEvents
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -344,7 +344,7 @@
 
 ### UpdateWebhookRequest.UpdateWebhook.UpdateModems
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -353,7 +353,7 @@
 
 ### UpdateWebhookRequest.UpdateWebhook.UpdateTags
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -651,7 +651,7 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 ### hiber.BytesOrHex.Update
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -723,7 +723,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.ChildOrganizations.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.ChildOrganizations field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -750,7 +750,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.Events.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Events field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -796,7 +796,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.Modems.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Modems field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -879,7 +879,7 @@ Filter result on specific properties encoded in map-value pairs.
 
 ### hiber.Filter.Tags.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Tags field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1077,7 +1077,7 @@ timestamps:
 
 ### hiber.UpdateBoolean
 
-<strong>Deprecated.</strong> Update object for a boolean.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for a boolean.
 
 Since false is the default value, we need to distinguish between an omitted value and setting the value to false,
 in an update object.
@@ -1093,7 +1093,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateClearableString
 
-<strong>Deprecated.</strong> Update object for a string that can be empty.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for a string that can be empty.
 
 Since an empty string is also the default value, we need to distinguish between an omitted value and
 setting the value to an empty string, in an update object.
@@ -1109,7 +1109,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateOptionalDuration
 
-<strong>Deprecated.</strong> Update object for an optional Duration.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an optional Duration.
 
 To use this to update, set a value and set updated to true.
 To clear the duration, set updated to true, but set no value.
@@ -1123,7 +1123,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateOptionalId
 
-<strong>Deprecated.</strong> Update object for an optional id.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an optional id.
 
 To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.
 
@@ -1136,7 +1136,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateZeroableInt
 
-<strong>Deprecated.</strong> Update object for an int that can be set to 0.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an int that can be set to 0.
 
 Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,
 in an update object.
@@ -1263,6 +1263,7 @@ Unit of measurement for a numeric value.
 | VOLUME_GALLON_IMPERIAL |  | 25 |
 | VOLUME_CUBIC_METER |  | 42 |
 | VOLUME_CUBIC_FOOT |  | 43 |
+| VOLUME_OIL_BARREL |  | 55 |
 | MASS_KILOGRAMS |  | 37 |
 | MASS_POUNDS |  | 38 |
 | FLOW_BARRELS_PER_DAY |  | 46 |

@@ -11,6 +11,7 @@ import "device.proto";
 import "tag.proto";
 import "value.proto";
 
+option deprecated = true;
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.asset";
 option java_outer_classname = "AssetServiceApi";

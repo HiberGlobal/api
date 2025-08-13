@@ -13596,6 +13596,12 @@ is ready to be downloaded.</p></td>
               </tr>
             
               <tr>
+                <td>VOLUME_OIL_BARREL</td>
+                <td>55</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
                 <td>MASS_KILOGRAMS</td>
                 <td>37</td>
                 <td><p></p></td>
@@ -17691,7 +17697,7 @@ Only set when include_missing_group_parents is true in the request. </p></td>
                   <td>is_gateway</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p><strong>Deprecated.</strong> [DEPRECATED] Whether the modem is a gateway, it has been configured as a gateway and has connected devices.
+                  <td><p><strong>Deprecated.</strong> Whether the modem is a gateway, it has been configured as a gateway and has connected devices.
 Use `type` instead. </p></td>
                 </tr>
               
@@ -17699,7 +17705,7 @@ Use `type` instead. </p></td>
                   <td>is_device_connected_to_gateway</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p><strong>Deprecated.</strong> [DEPRECATED] Whether the modem is connected to a modem configured as a gateway.
+                  <td><p><strong>Deprecated.</strong> Whether the modem is connected to a modem configured as a gateway.
 Use `type` instead. </p></td>
                 </tr>
               
@@ -17707,7 +17713,7 @@ Use `type` instead. </p></td>
                   <td>connected_to_gateway</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p><strong>Deprecated.</strong> [DEPRECATED] The modem number that this modem is connected to, if any.
+                  <td><p><strong>Deprecated.</strong> The modem number that this modem is connected to, if any.
 Use `connected_device_info.connected_to_gateway` instead. </p></td>
                 </tr>
               
@@ -18371,7 +18377,7 @@ This may change in the future. </p></td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p><strong>Deprecated.</strong> Id of the parser that was used, if the parser and modem are owned by the same organization.
-[DEPRECATED] Deprecated in favour of the identifier, which is globally unique. </p></td>
+ Deprecated in favour of the identifier, which is globally unique. </p></td>
                 </tr>
               
                 <tr>
@@ -18639,7 +18645,7 @@ In other words, when providing multiple types, this is an &#34;OR&#34; relations
                   <td>only_gateways</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p><strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway.
+                  <td><p><strong>Deprecated.</strong> Only list devices that are a gateway.
 Replaced by `types`.
 If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. </p></td>
                 </tr>
@@ -18648,7 +18654,7 @@ If you only want to have gateways in the result, create a selection with only `M
                   <td>only_has_external_device_ids</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p><strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors.
+                  <td><p><strong>Deprecated.</strong> Only list devices that are a connected devices. Typically these are LoRaWAN sensors.
 Replaced by `types`.
 If you only want to have connected devices in the result,
 create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. </p></td>

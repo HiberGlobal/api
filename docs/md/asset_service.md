@@ -2,6 +2,8 @@
 
 
 
+<p class="deprecated deprecated-file">Deprecated <br> Read the documentation for this file carefully and use its replacement.</p>
+
 #### This file was generated from [asset_service.proto](https://github.com/HiberGlobal/api/blob/master/asset_service.proto).
 
 ## Table of Contents
@@ -169,61 +171,61 @@ updating or deleting them in bulk and changing assigned tags and devices.
 > **rpc** List([ListAsset.Request](#listassetrequest))
     [ListAsset.Response](#listassetresponse)
 
-<strong>Deprecated.</strong> List the assets in your organization.
+<p class="deprecated deprecated-method">Deprecated</p> List the assets in your organization.
 
 ### Create
 > **rpc** Create([CreateAsset.Request](#createassetrequest))
     [CreateAsset.Response](#createassetresponse)
 
-<strong>Deprecated.</strong> Create assets in your organization.
+<p class="deprecated deprecated-method">Deprecated</p> Create assets in your organization.
 
 ### Update
 > **rpc** Update([UpdateAsset.Request](#updateassetrequest))
     [UpdateAsset.Response](#updateassetresponse)
 
-<strong>Deprecated.</strong> Update assets in your organization.
+<p class="deprecated deprecated-method">Deprecated</p> Update assets in your organization.
 
 ### Delete
 > **rpc** Delete([DeleteAsset.Request](#deleteassetrequest))
     [DeleteAsset.Response](#deleteassetresponse)
 
-<strong>Deprecated.</strong> Delete assets in your organization.
+<p class="deprecated deprecated-method">Deprecated</p> Delete assets in your organization.
 
 ### AssignTag
 > **rpc** AssignTag([AssignAssetTags.Request](#assignassettagsrequest))
     [AssignAssetTags.Response](#assignassettagsresponse)
 
-<strong>Deprecated.</strong> Assign (a) tag(s) to an asset.
+<p class="deprecated deprecated-method">Deprecated</p> Assign (a) tag(s) to an asset.
 
 ### UnassignTag
 > **rpc** UnassignTag([UnassignAssetTags.Request](#unassignassettagsrequest))
     [UnassignAssetTags.Response](#unassignassettagsresponse)
 
-<strong>Deprecated.</strong> Unassign (a) tag(s) from an asset.
+<p class="deprecated deprecated-method">Deprecated</p> Unassign (a) tag(s) from an asset.
 
 ### AssignDevice
 > **rpc** AssignDevice([AssignAssetDevices.Request](#assignassetdevicesrequest))
     [AssignAssetDevices.Response](#assignassetdevicesresponse)
 
-<strong>Deprecated.</strong> Assign (a) device(s) to an asset.
+<p class="deprecated deprecated-method">Deprecated</p> Assign (a) device(s) to an asset.
 
 ### UnassignDevice
 > **rpc** UnassignDevice([UnassignAssetDevices.Request](#unassignassetdevicesrequest))
     [UnassignAssetDevices.Response](#unassignassetdevicesresponse)
 
-<strong>Deprecated.</strong> Unassign (a) device(s) from an asset.
+<p class="deprecated deprecated-method">Deprecated</p> Unassign (a) device(s) from an asset.
 
 
 ## Messages
 
 ### AssignAssetDevices
 
-<strong>Deprecated.</strong> Change the assigned devices for a selection of assets in your (selected) organization.
+<p class="deprecated deprecated-message">Deprecated</p> Change the assigned devices for a selection of assets in your (selected) organization.
 
 
 ### AssignAssetDevices.Request
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -236,7 +238,7 @@ updating or deleting them in bulk and changing assigned tags and devices.
 
 ### AssignAssetDevices.Response
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -246,12 +248,12 @@ updating or deleting them in bulk and changing assigned tags and devices.
 
 ### AssignAssetTags
 
-<strong>Deprecated.</strong> Change the assigned tags for a selection of assets in your (selected) organization.
+<p class="deprecated deprecated-message">Deprecated</p> Change the assigned tags for a selection of assets in your (selected) organization.
 
 
 ### AssignAssetTags.Request
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -262,7 +264,7 @@ updating or deleting them in bulk and changing assigned tags and devices.
 
 ### AssignAssetTags.Response
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -272,7 +274,7 @@ updating or deleting them in bulk and changing assigned tags and devices.
 
 ### CreateAsset
 
-<strong>Deprecated.</strong> Create one or more assets in your (selected) organization.
+<p class="deprecated deprecated-message">Deprecated</p> Create one or more assets in your (selected) organization.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -288,7 +290,7 @@ updating or deleting them in bulk and changing assigned tags and devices.
 
 ### CreateAsset.Request
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -297,7 +299,7 @@ updating or deleting them in bulk and changing assigned tags and devices.
 
 ### CreateAsset.Response
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -306,12 +308,12 @@ updating or deleting them in bulk and changing assigned tags and devices.
 
 ### DeleteAsset
 
-<strong>Deprecated.</strong> Delete assets in your (selected) organization.
+<p class="deprecated deprecated-message">Deprecated</p> Delete assets in your (selected) organization.
 
 
 ### DeleteAsset.Request
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -320,7 +322,7 @@ updating or deleting them in bulk and changing assigned tags and devices.
 
 ### DeleteAsset.Response
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -329,12 +331,12 @@ updating or deleting them in bulk and changing assigned tags and devices.
 
 ### ListAsset
 
-<strong>Deprecated.</strong> List the assets in your (selected) organization.
+<p class="deprecated deprecated-message">Deprecated</p> List the assets in your (selected) organization.
 
 
 ### ListAsset.Request
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -346,7 +348,7 @@ updating or deleting them in bulk and changing assigned tags and devices.
 
 ### ListAsset.Response
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -356,12 +358,12 @@ updating or deleting them in bulk and changing assigned tags and devices.
 
 ### UnassignAssetDevices
 
-<strong>Deprecated.</strong> Change the assigned devices for a selection of assets in your (selected) organization.
+<p class="deprecated deprecated-message">Deprecated</p> Change the assigned devices for a selection of assets in your (selected) organization.
 
 
 ### UnassignAssetDevices.Request
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -373,7 +375,7 @@ updating or deleting them in bulk and changing assigned tags and devices.
 
 ### UnassignAssetDevices.Response
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -383,12 +385,12 @@ updating or deleting them in bulk and changing assigned tags and devices.
 
 ### UnassignAssetTags
 
-<strong>Deprecated.</strong> Change the assigned tags for a selection of assets in your (selected) organization.
+<p class="deprecated deprecated-message">Deprecated</p> Change the assigned tags for a selection of assets in your (selected) organization.
 
 
 ### UnassignAssetTags.Request
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -399,7 +401,7 @@ updating or deleting them in bulk and changing assigned tags and devices.
 
 ### UnassignAssetTags.Response
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -409,7 +411,7 @@ updating or deleting them in bulk and changing assigned tags and devices.
 
 ### UpdateAsset
 
-<strong>Deprecated.</strong> Update one or more assets in your (selected) organization.
+<p class="deprecated deprecated-message">Deprecated</p> Update one or more assets in your (selected) organization.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -447,7 +449,7 @@ updating or deleting them in bulk and changing assigned tags and devices.
 
 ### UpdateAsset.Request
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -458,7 +460,7 @@ updating or deleting them in bulk and changing assigned tags and devices.
 
 ### UpdateAsset.Response
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -469,7 +471,7 @@ updating or deleting them in bulk and changing assigned tags and devices.
 
 ## Enums
 ### ListAsset.Sort
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-enum">Deprecated</p>
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
@@ -497,7 +499,7 @@ so not all messages listed here are referenced.)
 
 ### hiber.asset.Asset
 
-<strong>Deprecated.</strong> Assets are things that collect the data produced by devices.
+<p class="deprecated deprecated-message">Deprecated</p> Assets are things that collect the data produced by devices.
 Devices are assigned to assets to handle data ownership.
 When a device is replaced, the data flow for the asset continues with the data from the new device.
 Multiple devices can be assigned to an asset, though it is advisable to only do so when they send
@@ -524,7 +526,7 @@ For example, if you have a Well, you might have assets for Annulus A and the tub
 
 ### hiber.asset.Asset.AssignedDevice
 
-<strong>Deprecated.</strong> A device assigned to this asset.
+<p class="deprecated deprecated-message">Deprecated</p> A device assigned to this asset.
 Non-operational values that the device produces will be linked to this asset
 (e.g. pressure, but not battery level).
 
@@ -542,7 +544,7 @@ Non-operational values that the device produces will be linked to this asset
 
 ### hiber.asset.AssetSelection
 
-<strong>Deprecated.</strong> Selection object for assets.
+<p class="deprecated deprecated-message">Deprecated</p> Selection object for assets.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -554,7 +556,7 @@ Non-operational values that the device produces will be linked to this asset
 
 ### Enums
 #### hiber.asset.Asset.Type
-<strong>Deprecated.</strong> Predefined assets types that can be used to say something about the data.
+<p class="deprecated deprecated-enum">Deprecated</p>Predefined assets types that can be used to say something about the data.
 Currently a limited list, but more may be added in the future.
 
 | Name | Description | Number |
@@ -1154,6 +1156,7 @@ Unit of volume.
 | GALLON_IMPERIAL | gal (imp) | 2 |
 | CUBIC_METER | m³ | 3 |
 | CUBIC_FEET | ft³ | 4 |
+| OIL_BARREL | bbl | 5 |
 
 #### hiber.value.Value.Type
 The type of value that is represented.
@@ -1227,7 +1230,7 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 ### hiber.BytesOrHex.Update
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1299,7 +1302,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.ChildOrganizations.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.ChildOrganizations field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1326,7 +1329,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.Events.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Events field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1372,7 +1375,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.Modems.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Modems field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1455,7 +1458,7 @@ Filter result on specific properties encoded in map-value pairs.
 
 ### hiber.Filter.Tags.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Tags field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1653,7 +1656,7 @@ timestamps:
 
 ### hiber.UpdateBoolean
 
-<strong>Deprecated.</strong> Update object for a boolean.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for a boolean.
 
 Since false is the default value, we need to distinguish between an omitted value and setting the value to false,
 in an update object.
@@ -1669,7 +1672,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateClearableString
 
-<strong>Deprecated.</strong> Update object for a string that can be empty.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for a string that can be empty.
 
 Since an empty string is also the default value, we need to distinguish between an omitted value and
 setting the value to an empty string, in an update object.
@@ -1685,7 +1688,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateOptionalDuration
 
-<strong>Deprecated.</strong> Update object for an optional Duration.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an optional Duration.
 
 To use this to update, set a value and set updated to true.
 To clear the duration, set updated to true, but set no value.
@@ -1699,7 +1702,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateOptionalId
 
-<strong>Deprecated.</strong> Update object for an optional id.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an optional id.
 
 To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.
 
@@ -1712,7 +1715,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateZeroableInt
 
-<strong>Deprecated.</strong> Update object for an int that can be set to 0.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an int that can be set to 0.
 
 Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,
 in an update object.
@@ -1839,6 +1842,7 @@ Unit of measurement for a numeric value.
 | VOLUME_GALLON_IMPERIAL |  | 25 |
 | VOLUME_CUBIC_METER |  | 42 |
 | VOLUME_CUBIC_FOOT |  | 43 |
+| VOLUME_OIL_BARREL |  | 55 |
 | MASS_KILOGRAMS |  | 37 |
 | MASS_POUNDS |  | 38 |
 | FLOW_BARRELS_PER_DAY |  | 46 |

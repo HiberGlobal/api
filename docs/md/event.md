@@ -602,9 +602,9 @@ A bundle/set of events, all of the same event-type.
 | description | [ string](#string) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **amount**.exact_amount | [ BundledEvent.ExactAmount](#bundledeventexactamount) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **amount**.approximated_amount | [ BundledEvent.ApproximatedAmount](#bundledeventapproximatedamount) |  |
-| deprecated_amount | [ int32](#int32) | <strong>Deprecated.</strong> Deprecated in favour of using the amount field that is either an ExactAmount or ApproximatedAmount |
-| deprecated_last_event | [ hiber.Timestamp](#hibertimestamp) | <strong>Deprecated.</strong> Deprecated in favour of using the amount field that is either an ExactAmount or ApproximatedAmount. since `last_event` is not available when using approximation (we don't know the actual last event), this field is only present when getting an ExactAmount. |
-| deprecated_approximated_amount | [ bool](#bool) | <strong>Deprecated.</strong> Indicates that the amount is an approximation, and not an exact value. Some events will be approximated to avoid a large number of events affecting the request time. Deprecated in favour of using the oneof_amount field that is either an ExactAmount or ApproximatedAmount |
+| deprecated_amount | [ int32](#int32) | <span class="deprecated deprecated-field">Deprecated</span> Deprecated in favour of using the amount field that is either an ExactAmount or ApproximatedAmount |
+| deprecated_last_event | [ hiber.Timestamp](#hibertimestamp) | <span class="deprecated deprecated-field">Deprecated</span> Deprecated in favour of using the amount field that is either an ExactAmount or ApproximatedAmount. since `last_event` is not available when using approximation (we don't know the actual last event), this field is only present when getting an ExactAmount. |
+| deprecated_approximated_amount | [ bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Indicates that the amount is an approximation, and not an exact value. Some events will be approximated to avoid a large number of events affecting the request time. Deprecated in favour of using the oneof_amount field that is either an ExactAmount or ApproximatedAmount |
 
 ### BundledEvent.ApproximatedAmount
 
@@ -634,8 +634,8 @@ the contained object.
 | ----- | ---- | ----------- |
 | type | [ hiber.EventType](#hibereventtype) | Time of the event. |
 | time | [ hiber.Timestamp](#hibertimestamp) | Time of the event. |
-| is_error | [ bool](#bool) | <strong>Deprecated.</strong> Whether this event causes the 'Error' health level. If your organization does not use the default health levels, this field will be omitted. Use health_level instead. |
-| is_warning | [ bool](#bool) | <strong>Deprecated.</strong> Whether this event causes the 'Warning' health level. If your organization does not use the default health levels, this field will be omitted. Use health_level instead. |
+| is_error | [ bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Whether this event causes the 'Error' health level. If your organization does not use the default health levels, this field will be omitted. Use health_level instead. |
+| is_warning | [ bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Whether this event causes the 'Warning' health level. If your organization does not use the default health levels, this field will be omitted. Use health_level instead. |
 | health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | The health level caused by this event. This health generally applies to either a device, a token or a publisher, and is also applied to the organization health. Not every event affects health, so this field might be empty. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **resolved_status**.resolved | [ bool](#bool) | Whether this event was resolved. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **resolved_status**.resolve_identifier | [ string](#string) | The identifier to use when resolving this event. Only present when not resolved, and only available for some event types. |
@@ -770,11 +770,11 @@ the contained object.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| deprecated_description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+| deprecated_description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** description | [optional string](#string) |  |
 | trigger_condition | [ string](#string) |  |
 | checks | [ google.protobuf.Struct](#googleprotobufstruct) |  |
-| update_default_health_level | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+| update_default_health_level | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** updated_default_health_level | [optional string](#string) |  |
 | update_health_level_after_resolved | [ hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved](#hibermodemalarmmodemalarmhealthlevelafterresolved) |  |
 
@@ -940,10 +940,10 @@ device's location is updated
 | organization | [ string](#string) |  |
 | number | [ string](#string) |  |
 | external_device_id | [ string](#string) | External device id for this device (e.g. a MAC address). |
-| display_name | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+| display_name | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** updated_display_name | [optional string](#string) |  |
 | peripherals | [map Event.DeviceEvent.DeviceUpdatedEvent.PeripheralsEntry](#eventdeviceeventdeviceupdatedeventperipheralsentry) |  |
-| notes | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+| notes | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** updated_notes | [optional string](#string) |  |
 |  **optional** device_type | [optional string](#string) |  |
 | secure_notes_updated | [ bool](#bool) |  |
@@ -1039,12 +1039,12 @@ Events related to MessageBodyParsers.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) |  |
-| updated_name | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+| updated_name | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** name | [optional string](#string) |  |
-| updated_content_ksy | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+| updated_content_ksy | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** content_ksy | [optional string](#string) |  |
 | updated_simple_parser | [ hiber.modem.message.bodyparser.SimpleModemMessageBodyParser](#hibermodemmessagebodyparsersimplemodemmessagebodyparser) |  |
-| updated_available_to_child_organizations | [ hiber.Filter.ChildOrganizations.Update](#hiberfilterchildorganizationsupdate) | <strong>Deprecated.</strong>  |
+| updated_available_to_child_organizations | [ hiber.Filter.ChildOrganizations.Update](#hiberfilterchildorganizationsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** available_to_child_organizations | [optional hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) |  |
 | title | [ string](#string) |  |
 | description | [ string](#string) |  |
@@ -1129,7 +1129,7 @@ a ParsedBody for each of them.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) |  |
-| modem_number | [ string](#string) | <strong>Deprecated.</strong>  |
+| modem_number | [ string](#string) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | device_number | [ string](#string) |  |
 | device_external_device_id | [ string](#string) | External device id for this device (e.g. a MAC address). |
 | message | [ hiber.modem.ModemMessage](#hibermodemmodemmessage) | The received message, including parsed body. |
@@ -1161,7 +1161,7 @@ a ParsedBody for each of them.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| enabled | [ hiber.UpdateBoolean](#hiberupdateboolean) | <strong>Deprecated.</strong>  |
+| enabled | [ hiber.UpdateBoolean](#hiberupdateboolean) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** state | [optional bool](#bool) |  |
 |  **optional** period | [optional hiber.Duration](#hiberduration) |  |
 |  **optional** align_to_time | [optional hiber.Timestamp](#hibertimestamp) |  |
@@ -1225,7 +1225,7 @@ This event is disabled by default.
 |  **optional** display_name_updated | [optional string](#string) |  |
 |  **optional** vat_number_updated | [optional string](#string) |  |
 |  **optional** address_updated | [optional hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) |  |
-| is_business_updated | [ hiber.UpdateBoolean](#hiberupdateboolean) | <strong>Deprecated.</strong>  |
+| is_business_updated | [ hiber.UpdateBoolean](#hiberupdateboolean) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** business_updated | [optional bool](#bool) |  |
 |  **optional** billing_name_updated | [optional string](#string) |  |
 |  **optional** billing_address_updated | [optional hiber.organization.Organization.Address](#hiberorganizationorganizationaddress) |  |
@@ -1365,21 +1365,21 @@ This event is disabled by default.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | organization | [ string](#string) |  |
-| deprecated_updated_description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+| deprecated_updated_description | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** updated_description | [optional string](#string) |  |
-| partial_update_data | [ hiber.publisher.Publisher.Data](#hiberpublisherpublisherdata) | <strong>Deprecated.</strong> Deprecated in favor of the new updated_data field |
+| partial_update_data | [ hiber.publisher.Publisher.Data](#hiberpublisherpublisherdata) | <span class="deprecated deprecated-field">Deprecated</span> Deprecated in favor of the new updated_data field |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.webhook | [ Event.PublisherEvent.UpdatedEvent.WebhookUpdate](#eventpublishereventupdatedeventwebhookupdate) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.mqtt | [ Event.PublisherEvent.UpdatedEvent.MQTTUpdate](#eventpublishereventupdatedeventmqttupdate) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.email | [ Event.PublisherEvent.UpdatedEvent.EmailUpdate](#eventpublishereventupdatedeventemailupdate) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.slack | [ Event.PublisherEvent.UpdatedEvent.SlackUpdate](#eventpublishereventupdatedeventslackupdate) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **updated_data**.shell_ssip | [ Event.PublisherEvent.UpdatedEvent.ShellSsipUpdate](#eventpublishereventupdatedeventshellssipupdate) |  |
-| deprecated_updated_event_filter | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) | <strong>Deprecated.</strong>  |
+| deprecated_updated_event_filter | [ hiber.Filter.Events.Update](#hiberfiltereventsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** updated_event_filter | [optional hiber.Filter.Events](#hiberfilterevents) |  |
-| deprecated_updated_modem_filter | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | <strong>Deprecated.</strong>  |
+| deprecated_updated_modem_filter | [ hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** updated_modem_filter | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
-| deprecated_updated_tag_filter | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | <strong>Deprecated.</strong>  |
+| deprecated_updated_tag_filter | [ hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** updated_tag_filter | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
-| deprecated_updated_active_state | [ hiber.UpdateBoolean](#hiberupdateboolean) | <strong>Deprecated.</strong>  |
+| deprecated_updated_active_state | [ hiber.UpdateBoolean](#hiberupdateboolean) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** updated_active_state | [optional bool](#bool) |  |
 | health_warning_period | [ hiber.Duration](#hiberduration) |  |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
@@ -1402,13 +1402,13 @@ This event is disabled by default.
 | content_type | [ hiber.integration.mqtt.MQTTPublisher.ContentType](#hiberintegrationmqttmqttpublishercontenttype) |  |
 | topic | [ string](#string) |  |
 | qos | [ hiber.integration.mqtt.MQTTPublisher.Data.QoS](#hiberintegrationmqttmqttpublisherdataqos) |  |
-| deprecated_identifier | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+| deprecated_identifier | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** identifier | [optional string](#string) |  |
-| deprecated_username | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+| deprecated_username | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** username | [optional string](#string) |  |
-| deprecated_password | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+| deprecated_password | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** password | [optional string](#string) |  |
-| deprecated_certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | <strong>Deprecated.</strong>  |
+| deprecated_certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** certificate_id | [optional int64](#int64) |  |
 
 ### Event.PublisherEvent.UpdatedEvent.ShellSsipUpdate
@@ -1428,10 +1428,10 @@ This event is disabled by default.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** url | [optional string](#string) |  |
-| deprecated_secret | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+| deprecated_secret | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** secret | [optional string](#string) |  |
 |  **optional** content_type | [optional hiber.webhook.Webhook.ContentType](#hiberwebhookwebhookcontenttype) |  |
-| deprecated_certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | <strong>Deprecated.</strong>  |
+| deprecated_certificate_id | [ hiber.UpdateOptionalId](#hiberupdateoptionalid) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** certificate_id | [optional int64](#int64) |  |
 
 ### Event.TokenEvent
@@ -1648,7 +1648,7 @@ The Pagination object will let you limit the number of events returned.
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 |  **optional** selection | [optional EventSelection](#eventselection) | Select the events to list. Optional, when omitted or empty everything is included. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
-|  **optional** use_process_point | [optional bool](#bool) | <strong>Deprecated.</strong> Return events for process point instead of asset. Defaults to using asset for backwards compatibility. |
+|  **optional** use_process_point | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Return events for process point instead of asset. Defaults to using asset for backwards compatibility. |
 
 ### EventHistory.Response
 
@@ -1676,9 +1676,9 @@ one per event type, with the count.
 |  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) |  |
 | health_levels | [repeated string](#string) | Filter events by actual configured health level. |
 |  **optional** include_resolved_events | [optional bool](#bool) | By default, events that have been resolved are not listed. |
-|  **optional** unbundled_events | [optional bool](#bool) | <strong>Deprecated.</strong> When not set, no unbundled events are returned. When set, returns unbundled events per type, paginated per type. Deprecated: use unbundled_events on ListEventsRequest |
-|  **optional** errors_only | [optional bool](#bool) | <strong>Deprecated.</strong> Return only events that cause the default Error health. Deprecated: use health_levels with custom health levels instead. |
-|  **optional** warnings_only | [optional bool](#bool) | <strong>Deprecated.</strong> Return only events that cause the default Warning health. Deprecated: use health_levels with custom health levels instead. |
+|  **optional** unbundled_events | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> When not set, no unbundled events are returned. When set, returns unbundled events per type, paginated per type. Deprecated: use unbundled_events on ListEventsRequest |
+|  **optional** errors_only | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Return only events that cause the default Error health. Deprecated: use health_levels with custom health levels instead. |
+|  **optional** warnings_only | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Return only events that cause the default Warning health. Deprecated: use health_levels with custom health levels instead. |
 
 ### EventStreamRequest
 
@@ -1691,7 +1691,7 @@ Note: streams are limited to one per user due to GRPC limitations.
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 |  **optional** selection | [optional EventSelection](#eventselection) | Select the events to stream. Optional, when omitted or empty everything is included. |
 |  **optional** child_organizations | [optional hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Include events from child organizations, if requested. This is only available for streaming, listing events can only be listed per organization. Keep in mind that filtering events using the selection is limited. Filtering on tags or publishers, for example, can only apply to the parent organization. |
-|  **optional** use_process_point | [optional bool](#bool) | <strong>Deprecated.</strong> Return events for process point instead of asset. Defaults to using asset for backwards compatibility. |
+|  **optional** use_process_point | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Return events for process point instead of asset. Defaults to using asset for backwards compatibility. |
 
 ### ListEventsRequest
 
@@ -1710,7 +1710,7 @@ see the most recent events of each type on the first page.
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Pagination is applied per event type on unbundled events. It is not necessary for bundled events. |
 |  **optional** sort | [optional ListEventsRequest.Sort](#listeventsrequestsort) |  |
 |  **optional** unbundled_events | [optional bool](#bool) | When not set, bundled/grouped events are returned. When set, returns unbundled events per type, paginated per type. Overrides unbundled_events in EventSelection message. |
-|  **optional** use_process_point | [optional bool](#bool) | <strong>Deprecated.</strong> Return events for process point instead of asset. Defaults to using asset for backwards compatibility. |
+|  **optional** use_process_point | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Return events for process point instead of asset. Defaults to using asset for backwards compatibility. |
 
 ### ListEventsRequest.Response
 
@@ -1772,7 +1772,7 @@ Only returns the Event with first-level fields set, event details are not includ
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 |  **optional** selection | [optional EventSelection](#eventselection) | Select the events to list. Optional, when omitted or empty everything is included. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
-|  **optional** use_process_point | [optional bool](#bool) | <strong>Deprecated.</strong> Return events for process point instead of asset. Defaults to using asset for backwards compatibility. |
+|  **optional** use_process_point | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Return events for process point instead of asset. Defaults to using asset for backwards compatibility. |
 
 ### ModemHealthEvents.Response
 
@@ -1840,7 +1840,7 @@ To clear an existing expiry, set `updated` true and leave `duration` to be the d
 | type | [ hiber.EventType](#hibereventtype) | When set, events of this type will affect the system with the configured health level. |
 | level | [ string](#string) | The health level to produce when the event happens, by name. |
 |  **optional** expiry | [optional hiber.Duration](#hiberduration) | After the expiry duration, the event will not affect health anymore. Clear for manual resolving of events. |
-| deprecated_expiry | [ hiber.UpdateOptionalDuration](#hiberupdateoptionalduration) | <strong>Deprecated.</strong>  |
+| deprecated_expiry | [ hiber.UpdateOptionalDuration](#hiberupdateoptionalduration) | <span class="deprecated deprecated-field">Deprecated</span>  |
 
 
 ## Enums
@@ -1879,14 +1879,14 @@ Add assignments.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <strong>Deprecated.</strong>  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_process_points | [ hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <strong>Deprecated.</strong>  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_process_points | [ hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) |  |
-| alarm_parameters | [map hiber.assign.Assign.Request.AlarmParametersEntry](#hiberassignassignrequestalarmparametersentry) | <strong>Deprecated.</strong> The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **additional_configuration**.asset_device | [ hiber.assign.Assignment.AdditionalConfiguration.AssetDeviceAssignment](#hiberassignassignmentadditionalconfigurationassetdeviceassignment) | <strong>Deprecated.</strong> Additional configuration for assignment between Asset and Device/Modem. |
+| alarm_parameters | [map hiber.assign.Assign.Request.AlarmParametersEntry](#hiberassignassignrequestalarmparametersentry) | <span class="deprecated deprecated-field">Deprecated</span> The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **additional_configuration**.asset_device | [ hiber.assign.Assignment.AdditionalConfiguration.AssetDeviceAssignment](#hiberassignassignmentadditionalconfigurationassetdeviceassignment) | <span class="deprecated deprecated-field">Deprecated</span> Additional configuration for assignment between Asset and Device/Modem. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **additional_configuration**.process_point_device | [ hiber.assign.Assignment.AdditionalConfiguration.ProcessPointDeviceAssignment](#hiberassignassignmentadditionalconfigurationprocesspointdeviceassignment) | Additional configuration for assignment between ProcessPoint and Device/Modem. |
 |  **optional** override_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment should be active. This sets the assignment to start in the past, but would not have effect in the past for assignments like parsers and alarms (they will only be triggered for new messages / values). It would however work for assets / process points having access to device data. This is not allowed to be a value in the future at the moment. |
 |  **optional** end_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (e.g. no alarm events are removed). It would however work for assets / process points having access to device data. This is not allowed to be a value in the future at the moment. |
@@ -1937,12 +1937,12 @@ Assignments that are no longer active (end time is in the past) and that no long
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_parser | [ hiber.assign.Assignment.ModemMessageBodyParserAssignment](#hiberassignassignmentmodemmessagebodyparserassignment) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_alarm | [ hiber.assign.Assignment.AlarmAssignment](#hiberassignassignmentalarmassignment) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_modem | [ string](#string) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_asset | [ string](#string) | <strong>Deprecated.</strong>  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_asset | [ string](#string) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_process_point | [ string](#string) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_modem | [ string](#string) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_parser | [ hiber.assign.Assignment.ModemMessageBodyParserAssignment](#hiberassignassignmentmodemmessagebodyparserassignment) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_tag | [ hiber.tag.Tag](#hibertagtag) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_asset | [ string](#string) | <strong>Deprecated.</strong>  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_asset | [ string](#string) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_process_point | [ string](#string) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **additional_configuration**.asset_device | [ hiber.assign.Assignment.AdditionalConfiguration.AssetDeviceAssignment](#hiberassignassignmentadditionalconfigurationassetdeviceassignment) | Additional configuration for assignment between Asset and Device/Modem. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **additional_configuration**.process_point_device | [ hiber.assign.Assignment.AdditionalConfiguration.ProcessPointDeviceAssignment](#hiberassignassignmentadditionalconfigurationprocesspointdeviceassignment) | Additional configuration for assignment between Process Point and Device/Modem. |
@@ -1954,7 +1954,7 @@ Assignments that are no longer active (end time is in the past) and that no long
 
 ### hiber.assign.Assignment.AdditionalConfiguration.AssetDeviceAssignment
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -1986,11 +1986,11 @@ Fields are produced by the device's assigned parsers. See field.proto for more i
 | identifier | [ string](#string) |  |
 | name | [ string](#string) |  |
 | description | [ string](#string) |  |
-| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <strong>Deprecated.</strong>  |
+| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <span class="deprecated deprecated-field">Deprecated</span>  |
 
 ### hiber.assign.Assignment.AssetAssignment
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -2022,7 +2022,7 @@ Fields are produced by the device's assigned parsers. See field.proto for more i
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-|  **optional** assets | [optional hiber.asset.AssetSelection](#hiberassetassetselection) | <strong>Deprecated.</strong> Select the assets to return the assignments for. Optional, when omitted or empty everything is included. |
+|  **optional** assets | [optional hiber.asset.AssetSelection](#hiberassetassetselection) | <span class="deprecated deprecated-field">Deprecated</span> Select the assets to return the assignments for. Optional, when omitted or empty everything is included. |
 |  **optional** process_points | [optional hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) | Select the process points to return the assignments for. Optional, when omitted or empty everything is included. |
 |  **optional** modems | [optional hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the modems to return the assignments for. Optional, when omitted or empty everything is included. |
 |  **optional** modem_alarms | [optional hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) | Select the alarms to return the assignments for. Optional, when omitted or empty everything is included. |
@@ -2054,11 +2054,11 @@ Fields are produced by the device's assigned parsers. See field.proto for more i
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <strong>Deprecated.</strong>  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_process_points | [ hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <strong>Deprecated.</strong>  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_process_points | [ hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) |  |
 
 ### hiber.assign.DeleteAssignment.Response
@@ -2108,18 +2108,18 @@ Things that an alarm is assigned to.
 | alarm | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) |  |
 | modems | [repeated hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToModem](#hiberassignlistalarmassignmentsresponsealarmassignmenttomodem) | The modem numbers this alarm is assigned to, with the alarm parameters. |
 | tags | [repeated hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToTag](#hiberassignlistalarmassignmentsresponsealarmassignmenttotag) | The tags this alarm is assigned to, with the alarm parameters. |
-| assets | [repeated hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToAsset](#hiberassignlistalarmassignmentsresponsealarmassignmenttoasset) | <strong>Deprecated.</strong> The assets this alarm is assigned to, with the alarm parameters. |
+| assets | [repeated hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToAsset](#hiberassignlistalarmassignmentsresponsealarmassignmenttoasset) | <span class="deprecated deprecated-field">Deprecated</span> The assets this alarm is assigned to, with the alarm parameters. |
 | process_points | [repeated hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToProcessPoint](#hiberassignlistalarmassignmentsresponsealarmassignmenttoprocesspoint) | The process points this alarm is assigned to, with the alarm parameters. |
 
 ### hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToAsset
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | asset_identifier | [ string](#string) |  |
 | asset | [ hiber.assign.Assignment.AssetAssignment](#hiberassignassignmentassetassignment) |  |
-| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <strong>Deprecated.</strong>  |
+| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <span class="deprecated deprecated-field">Deprecated</span>  |
 
 ### hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToModem
 
@@ -2128,7 +2128,7 @@ Things that an alarm is assigned to.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | modem_number | [ string](#string) |  |
-| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <strong>Deprecated.</strong>  |
+| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <span class="deprecated deprecated-field">Deprecated</span>  |
 
 ### hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToProcessPoint
 
@@ -2138,7 +2138,7 @@ Things that an alarm is assigned to.
 | ----- | ---- | ----------- |
 | process_point_identifier | [ string](#string) |  |
 | process_point | [ hiber.assign.Assignment.ProcessPointAssignment](#hiberassignassignmentprocesspointassignment) |  |
-| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <strong>Deprecated.</strong>  |
+| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <span class="deprecated deprecated-field">Deprecated</span>  |
 
 ### hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToTag
 
@@ -2147,7 +2147,7 @@ Things that an alarm is assigned to.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | tag | [ hiber.tag.Tag](#hibertagtag) |  |
-| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <strong>Deprecated.</strong>  |
+| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <span class="deprecated deprecated-field">Deprecated</span>  |
 
 ### hiber.assign.ListAssetAssignments
 
@@ -2205,7 +2205,7 @@ Things that an alarm is assigned to.
 |  **optional** selection | [optional hiber.assign.AssignmentSelection](#hiberassignassignmentselection) | Select the assignments to list. Optional, when omitted or empty everything is included. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 |  **optional** include_inactive_assignments | [optional bool](#bool) | Include assignments that are no longer active. |
-|  **optional** use_process_point | [optional bool](#bool) | <strong>Deprecated.</strong> Return assignments for process point instead of asset. Defaults to using asset for backwards compatibility. |
+|  **optional** use_process_point | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Return assignments for process point instead of asset. Defaults to using asset for backwards compatibility. |
 
 ### hiber.assign.ListAssignments.Response
 
@@ -2260,9 +2260,9 @@ Things that are assigned to a modem.
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | The tags for this modem. |
 | message_body_parser_details | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) | The details of the parsers assigned to this modem. |
 | alarm_details | [repeated hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | The alarms that are assigned to this modem, if you have permission to view them. |
-| asset_identifiers | [repeated string](#string) | <strong>Deprecated.</strong> The identifiers of the assets assigned to this device. |
+| asset_identifiers | [repeated string](#string) | <span class="deprecated deprecated-field">Deprecated</span> The identifiers of the assets assigned to this device. |
 | process_point_identifiers | [repeated string](#string) | The identifiers of the process points assigned to this device. |
-| assets | [repeated hiber.assign.Assignment.AssetAssignment](#hiberassignassignmentassetassignment) | <strong>Deprecated.</strong> The assets assigned to this device. |
+| assets | [repeated hiber.assign.Assignment.AssetAssignment](#hiberassignassignmentassetassignment) | <span class="deprecated deprecated-field">Deprecated</span> The assets assigned to this device. |
 | process_points | [repeated hiber.assign.Assignment.ProcessPointAssignment](#hiberassignassignmentprocesspointassignment) | The process points assigned to this device. |
 
 ### hiber.assign.ListModemMessageBodyParserAssignments
@@ -2387,9 +2387,9 @@ Things that an alarm is assigned to.
 | alarms | [repeated hiber.assign.Assignment.AlarmAssignment](#hiberassignassignmentalarmassignment) | The identifiers and parameters of the alarms that are assigned to this tag. |
 | message_body_parser_details | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) | The details of the parsers assigned to this tag. |
 | alarm_details | [repeated hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | The alarms that are assigned to this tag, if you have permission to view them. |
-| asset_identifiers | [repeated string](#string) | <strong>Deprecated.</strong> The assets assigned to this tag. |
+| asset_identifiers | [repeated string](#string) | <span class="deprecated deprecated-field">Deprecated</span> The assets assigned to this tag. |
 | process_point_identifiers | [repeated string](#string) | The process points assigned to this tag. |
-| assets | [repeated hiber.assign.Assignment.AssetAssignment](#hiberassignassignmentassetassignment) | <strong>Deprecated.</strong> The assets assigned to this device. |
+| assets | [repeated hiber.assign.Assignment.AssetAssignment](#hiberassignassignmentassetassignment) | <span class="deprecated deprecated-field">Deprecated</span> The assets assigned to this device. |
 | process_points | [repeated hiber.assign.Assignment.ProcessPointAssignment](#hiberassignassignmentprocesspointassignment) | The process points assigned to this device. |
 
 ### hiber.assign.Unassign
@@ -2407,11 +2407,11 @@ Remove a assignment.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <strong>Deprecated.</strong>  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_process_points | [ hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <strong>Deprecated.</strong>  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_process_points | [ hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.override_time | [ hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (e.g. no alarm events are removed). It would however work for assets / process points having access to device data. This is not allowed to be a value in the future at the moment. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.remove_time | [ bool](#bool) | Remove time from the assignment, if any. Effectively deletes the assignment if it was set with a time. Setting this to true makes this identical to using the Delete rpc. |
@@ -2456,7 +2456,7 @@ so not all messages listed here are referenced.)
 
 ### hiber.asset.Asset
 
-<strong>Deprecated.</strong> Assets are things that collect the data produced by devices.
+<p class="deprecated deprecated-message">Deprecated</p> Assets are things that collect the data produced by devices.
 Devices are assigned to assets to handle data ownership.
 When a device is replaced, the data flow for the asset continues with the data from the new device.
 Multiple devices can be assigned to an asset, though it is advisable to only do so when they send
@@ -2483,7 +2483,7 @@ For example, if you have a Well, you might have assets for Annulus A and the tub
 
 ### hiber.asset.Asset.AssignedDevice
 
-<strong>Deprecated.</strong> A device assigned to this asset.
+<p class="deprecated deprecated-message">Deprecated</p> A device assigned to this asset.
 Non-operational values that the device produces will be linked to this asset
 (e.g. pressure, but not battery level).
 
@@ -2501,7 +2501,7 @@ Non-operational values that the device produces will be linked to this asset
 
 ### hiber.asset.AssetSelection
 
-<strong>Deprecated.</strong> Selection object for assets.
+<p class="deprecated deprecated-message">Deprecated</p> Selection object for assets.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -2513,7 +2513,7 @@ Non-operational values that the device produces will be linked to this asset
 
 ### Enums
 #### hiber.asset.Asset.Type
-<strong>Deprecated.</strong> Predefined assets types that can be used to say something about the data.
+<p class="deprecated deprecated-enum">Deprecated</p>Predefined assets types that can be used to say something about the data.
 Currently a limited list, but more may be added in the future.
 
 | Name | Description | Number |
@@ -2642,7 +2642,7 @@ The configuration for the export, which determines what data is exported.
 
 ### hiber.export.Export.Configuration.AssetValues
 
-<strong>Deprecated.</strong> Export values for a set of assets.
+<p class="deprecated deprecated-message">Deprecated</p> Export values for a set of assets.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -2773,7 +2773,7 @@ Json format for export.
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 |  **optional** selection | [optional hiber.export.ExportSelection](#hiberexportexportselection) | Select the exports to list. Optional, when omitted or empty everything is included. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
-|  **optional** use_process_point_in_configuration | [optional bool](#bool) | <strong>Deprecated.</strong> Return export configuration for process point instead of asset. Defaults to using asset for backwards compatibility. |
+|  **optional** use_process_point_in_configuration | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Return export configuration for process point instead of asset. Defaults to using asset for backwards compatibility. |
 
 ### hiber.export.ListExports.Response
 
@@ -2940,7 +2940,7 @@ Error will change:
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | level | [ string](#string) | The name of this health level. Levels are identified by their name. The API does support renaming, where the rename is propagated to all the relevant parts of the system. |
-| color | [ string](#string) | <strong>Deprecated.</strong> Default color for the health level, as a string that represents a valid CSS3 color. DEPRECATED: Maps to the color named "text" in color_data. |
+| color | [ string](#string) | <span class="deprecated deprecated-field">Deprecated</span> Default color for the health level, as a string that represents a valid CSS3 color. DEPRECATED: Maps to the color named "text" in color_data. |
 | color_data | [map hiber.health.HealthLevel.ColorDataEntry](#hiberhealthhealthlevelcolordataentry) | Map of named colors, where key is the name and the value is a valid CSS3 color definition. |
 | severity | [ int64](#int64) | A unique numeric value equal to the index of this health level in the list of health levels sorted by ascending severity (starting at 1). This means higher numbers denote a more severe health. This value cannot be used when creating or updating. To change the severity for a health level, reorder all health levels. |
 | catch_all | [ bool](#bool) | Precisely one health level can be assigned as a catch-all for any unknown health levels from alarms (or Hiber systems), which can happen when a device manufacturer has provided alarms for your device (e.g. a low battery alarm). By default, unknown health levels map to the level of the highest severity, unless another level is marked as catch-all. |
@@ -3172,33 +3172,33 @@ Health configuration for the mqtt integration. Defines how the health is calcula
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | id | [ int64](#int64) |  |
-|  **optional** deprecated_filter_event_types | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_filter_event_types | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** filter_event_types | [optional hiber.Filter.Events](#hiberfilterevents) |  |
-|  **optional** deprecated_filter_modem_numbers | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_filter_modem_numbers | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** filter_modem_numbers | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
-|  **optional** deprecated_filter_tags | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_filter_tags | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** filter_tags | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
-|  **optional** deprecated_description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** description | [optional string](#string) |  |
 |  **optional** url | [optional string](#string) | The url of an MQTT server to send the events to, e.g. mqtt[s]://example.com:8883 |
 |  **optional** content_type | [optional hiber.integration.mqtt.MQTTPublisher.ContentType](#hiberintegrationmqttmqttpublishercontenttype) |  |
 |  **optional** topic | [optional string](#string) | The MQTT topic to send to on the receiving server. |
 |  **optional** qos | [optional hiber.integration.mqtt.MQTTPublisher.Data.QoS](#hiberintegrationmqttmqttpublisherdataqos) | MQTT QoS value. |
 |  **optional** identifier | [optional string](#string) | Identifier used by the MQTT client. Defaults to "hiber". |
-|  **optional** deprecated_identifier | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_identifier | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** username | [optional string](#string) | Optional username to authenticate with. |
-|  **optional** deprecated_username | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_username | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** password | [optional string](#string) | Optional password to authenticate with. Requires username to be set. |
-|  **optional** deprecated_password | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_password | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** certificate_id | [optional int64](#int64) | Update or remove the client certificate to use when connecting to the MQTT server. |
-|  **optional** deprecated_certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** server_ca_certificate_id | [optional int64](#int64) | Update or remove the server CA certificate to use when connecting to the MQTT server. |
-|  **optional** deprecated_server_ca_certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_server_ca_certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** active | [optional bool](#bool) | Disable the MQTT publisher, so it needs to be enabled again before it is active. |
-|  **optional** deprecated_active | [optional hiber.UpdateBoolean](#hiberupdateboolean) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_active | [optional hiber.UpdateBoolean](#hiberupdateboolean) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** health_warning_period | [optional hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
 |  **optional** health_warning_failure_percentage | [optional uint32](#uint32) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
-|  **optional** deprecated_health_warning_failure_percentage | [optional hiber.UpdateZeroableInt](#hiberupdatezeroableint) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_health_warning_failure_percentage | [optional hiber.UpdateZeroableInt](#hiberupdatezeroableint) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** override_url_validation | [optional bool](#bool) | Set this flag to not parse the url or enforce mqtts. |
 
 ### hiber.integration.mqtt.UpdateMQTTPublisherTagsRequest
@@ -3288,9 +3288,9 @@ when the modem is registered into the system or when a subscription is authorize
 | notes | [ string](#string) | Notes field that can be used to add additional information to a modem. |
 | secure_notes | [ string](#string) | Secure notes field that can be used to add additional information to a modem, with limited accessibility. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
-| is_gateway | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Whether the modem is a gateway, it has been configured as a gateway and has connected devices. Use `type` instead. |
-| is_device_connected_to_gateway | [ bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Whether the modem is connected to a modem configured as a gateway. Use `type` instead. |
-| connected_to_gateway | [ string](#string) | <strong>Deprecated.</strong> [DEPRECATED] The modem number that this modem is connected to, if any. Use `connected_device_info.connected_to_gateway` instead. |
+| is_gateway | [ bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Whether the modem is a gateway, it has been configured as a gateway and has connected devices. Use `type` instead. |
+| is_device_connected_to_gateway | [ bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Whether the modem is connected to a modem configured as a gateway. Use `type` instead. |
+| connected_to_gateway | [ string](#string) | <span class="deprecated deprecated-field">Deprecated</span> The modem number that this modem is connected to, if any. Use `connected_device_info.connected_to_gateway` instead. |
 | external_device_ids | [repeated string](#string) | External device ids for this sensor, gateway or valve. |
 | device_type | [ string](#string) | Device type for this modem. |
 | type | [ hiber.modem.Modem.Type](#hibermodemmodemtype) | The type of modem. Used mainly to differentiate in the UI or to sort on. |
@@ -3314,8 +3314,8 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 | ----- | ---- | ----------- |
 |  **optional** modems | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
 |  **optional** free_text_search | [optional string](#string) |  |
-|  **optional** only_active | [optional bool](#bool) | <strong>Deprecated.</strong> Use lifecycle filter instead. |
-|  **optional** activated_in | [optional hiber.TimeRange](#hibertimerange) | <strong>Deprecated.</strong>  |
+|  **optional** only_active | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Use lifecycle filter instead. |
+|  **optional** activated_in | [optional hiber.TimeRange](#hibertimerange) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** with_last_message_in | [optional hiber.TimeRange](#hibertimerange) |  |
 | health_levels | [repeated string](#string) | Filter modems by health level. |
 | lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
@@ -3325,10 +3325,10 @@ Filter modems by modem id, (child)organization, tags, activation status and time
 |  **optional** device_types | [optional hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
 |  **optional** sensorBrands | [optional hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
 |  **optional** identifiers | [optional hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
-|  **optional** only_gateways | [optional bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
-|  **optional** only_has_external_device_ids | [optional bool](#bool) | <strong>Deprecated.</strong> [DEPRECATED] Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
+|  **optional** only_gateways | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
+|  **optional** only_has_external_device_ids | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
 |  **optional** connected_to_gateways | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
-| external_device_ids | [repeated string](#string) | <strong>Deprecated.</strong>  |
+| external_device_ids | [repeated string](#string) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ hiber.modem.ModemSelection.Peripherals](#hibermodemmodemselectionperipherals) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.only_without_peripheral | [ bool](#bool) | When set to true, only modems that do not have any peripheral will be included in the result. |
@@ -3446,7 +3446,7 @@ Simplified version of assign.AssignDirectly.
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign_to**.modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign_to**.assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <strong>Deprecated.</strong>  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign_to**.assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign_to**.process_points | [ hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) |  |
 | parameters | [map hiber.modem.alarm.AssignModemAlarms.Request.ParametersEntry](#hibermodemalarmassignmodemalarmsrequestparametersentry) | The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
 
@@ -3897,7 +3897,7 @@ Simplified version of assign.UnassignDirectly.
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign_from**.modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign_from**.assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <strong>Deprecated.</strong>  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign_from**.assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign_from**.process_points | [ hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) |  |
 
 ### hiber.modem.alarm.UnassignModemAlarms.Response
@@ -3928,12 +3928,12 @@ and as such can result in multiple events:
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | identifier | [ string](#string) | The identifiers of the alarm to update |
-|  **optional** update_name | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong> Update the name, optionally. |
+|  **optional** update_name | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span> Update the name, optionally. |
 |  **optional** name | [optional string](#string) |  |
-|  **optional** update_description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong> Update the description, optionally. |
+|  **optional** update_description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span> Update the description, optionally. |
 |  **optional** description | [optional string](#string) |  |
 |  **optional** update_trigger_condition | [optional hiber.modem.alarm.ModemAlarm.TriggerCondition](#hibermodemalarmmodemalarmtriggercondition) | Update the trigger condition, optionally. |
-|  **optional** update_default_health_level | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong> Update the default health level, optionally. |
+|  **optional** update_default_health_level | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span> Update the default health level, optionally. |
 |  **optional** default_health_level | [optional string](#string) |  |
 |  **optional** update_health_level_after_resolved | [optional hiber.modem.alarm.ModemAlarm.HealthLevelAfterResolved](#hibermodemalarmmodemalarmhealthlevelafterresolved) | Update the health after resolved, optionally. |
 |  **optional** remove_health_level_after_resolved | [optional bool](#bool) | Remove the health after resolved, optionally. |
@@ -4179,8 +4179,8 @@ A parser can be defined in two ways: using a .ksy (Kaitai struct https://kaitai.
 | data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Fields in the parsed result that contain data. Data fields are cached for efficient retrieval and allow all kinds of processing. |
 | metadata_fields | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.MetadataFields](#hibermodemmessagebodyparsermodemmessagebodyparsermetadatafields) | Fields in the parsed result that contain metadata, and special things like a location. |
 | available_to_child_organizations | [ hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations](#hibermodemmessagebodyparsermodemmessagebodyparseravailabletochildorganizations) | If set, this parser is available to your child organizations, as a Provided parser. |
-| post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | <strong>Deprecated.</strong> The list of post-processing steps applied to the result of this parser. |
-| require_message_metadata | [map hiber.modem.message.bodyparser.ModemMessageBodyParser.RequireMessageMetadataEntry](#hibermodemmessagebodyparsermodemmessagebodyparserrequiremessagemetadataentry) | <strong>Deprecated.</strong> In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. Deprecated: use metadata_fields.require_message_metadata |
+| post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | <span class="deprecated deprecated-field">Deprecated</span> The list of post-processing steps applied to the result of this parser. |
+| require_message_metadata | [map hiber.modem.message.bodyparser.ModemMessageBodyParser.RequireMessageMetadataEntry](#hibermodemmessagebodyparsermodemmessagebodyparserrequiremessagemetadataentry) | <span class="deprecated deprecated-field">Deprecated</span> In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. Deprecated: use metadata_fields.require_message_metadata |
 
 ### hiber.modem.message.bodyparser.ModemMessageBodyParser.AvailableToChildOrganizations
 
@@ -4448,8 +4448,8 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 | remove_data_fields | [repeated string](#string) | Remove fields from the data fields list. |
 | replace_data_fields | [repeated hiber.field.Field](#hiberfieldfield) | Replace fields to the data fields list. |
 |  **optional** metadata_fields | [optional hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafields) | Fields in the parsed result that match special things that can be processed by the system, like a location. |
-| add_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | <strong>Deprecated.</strong> Add a post-processing step to the result of this parser. |
-| remove_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | <strong>Deprecated.</strong> Remove a post-processing step to the result of this parser. |
+| add_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | <span class="deprecated deprecated-field">Deprecated</span> Add a post-processing step to the result of this parser. |
+| remove_post_processing | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser.PostProcessing](#hibermodemmessagebodyparsermodemmessagebodyparserpostprocessing) | <span class="deprecated deprecated-field">Deprecated</span> Remove a post-processing step to the result of this parser. |
 
 ### hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields
 
@@ -4465,9 +4465,9 @@ Upload an updated body parser from a .ksy file, replacing the previous file.
 | remove_modem_metadata_fields | [repeated string](#string) | Remove fields from the modem metadata fields list. |
 | replace_modem_metadata_fields | [repeated string](#string) | Replace the modem metadata fields list. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_time_field | [ string](#string) | Update the custom field to extract to measured_at time. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.deprecated_measured_at_time_field | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.deprecated_measured_at_time_field | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.measured_at_offset_field | [ string](#string) | Update the custom field to extract to measured_at offset from the sent_at time in seconds. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.deprecated_measured_at_offset_field | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **measured_at_field**.deprecated_measured_at_offset_field | [ hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | add_require_message_metadata | [map hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields.AddRequireMessageMetadataEntry](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafieldsaddrequiremessagemetadataentry) | In order to use this parser on a message, the metadata on the message must match the given requirement here. The key of the map is the json-path to look for in the message metadata, the value of the map is the json to expect at that json-path. |
 | remove_require_message_metadata | [repeated string](#string) | Remove a requirement for the metadata. Remove by listing the json-path here. |
 | replace_require_message_metadata | [map hiber.modem.message.bodyparser.UpdateUploadedModemMessageBodyParserRequest.MetadataFields.ReplaceRequireMessageMetadataEntry](#hibermodemmessagebodyparserupdateuploadedmodemmessagebodyparserrequestmetadatafieldsreplacerequiremessagemetadataentry) | Replaces the entire configuration for required message metadata. |
@@ -4910,7 +4910,7 @@ Now, this types is only used in the relevant events.
 | ----- | ---- | ----------- |
 | id | [ int64](#int64) |  |
 | description | [ string](#string) |  |
-| deprecated_data | [ hiber.publisher.Publisher.Data](#hiberpublisherpublisherdata) | <strong>Deprecated.</strong> This field remains for backwards compatibility, but it should not be used. |
+| deprecated_data | [ hiber.publisher.Publisher.Data](#hiberpublisherpublisherdata) | <span class="deprecated deprecated-field">Deprecated</span> This field remains for backwards compatibility, but it should not be used. |
 | filters | [ hiber.publisher.Publisher.Filters](#hiberpublisherpublisherfilters) |  |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
 | health | [ hiber.Health](#hiberhealth) |  |
@@ -4926,7 +4926,7 @@ Now, this types is only used in the relevant events.
 
 ### hiber.publisher.Publisher.Data
 
-<strong>Deprecated.</strong> This type remains for backwards compatibility, but it should not be used.
+<p class="deprecated deprecated-message">Deprecated</p> This type remains for backwards compatibility, but it should not be used.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -4942,7 +4942,7 @@ Now, this types is only used in the relevant events.
 
 ### hiber.publisher.Publisher.Data.HTTPConfig
 
-<strong>Deprecated.</strong> This field remains for backwards compatibility, but it should not be used.
+<p class="deprecated deprecated-message">Deprecated</p> This field remains for backwards compatibility, but it should not be used.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -4950,7 +4950,7 @@ Now, this types is only used in the relevant events.
 
 ### hiber.publisher.Publisher.Data.MQTTConfig
 
-<strong>Deprecated.</strong> This field remains for backwards compatibility, but it should not be used.
+<p class="deprecated deprecated-message">Deprecated</p> This field remains for backwards compatibility, but it should not be used.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -4982,12 +4982,12 @@ Now, this types is only used in the relevant events.
 
 ### hiber.publisher.UpdatePublisherRequest
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 
 ### hiber.publisher.UpdatePublisherRequest.UpdateModems
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -4997,7 +4997,7 @@ Now, this types is only used in the relevant events.
 
 ### Enums
 #### hiber.publisher.Publisher.ContentType
-<strong>Deprecated.</strong> This type remains for backwards compatibility, but it should not be used.
+<p class="deprecated deprecated-enum">Deprecated</p>This type remains for backwards compatibility, but it should not be used.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
@@ -5400,11 +5400,11 @@ so not all messages listed here are referenced.)
 | ----- | ---- | ----------- |
 | id | [ int64](#int64) |  |
 | organization | [ string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** deprecated_event_filter | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_event_filter | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** event_filter | [optional hiber.Filter.Events](#hiberfilterevents) |  |
-|  **optional** deprecated_modem_filter | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_modem_filter | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** modem_filter | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
-|  **optional** deprecated_tag_filter | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_tag_filter | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** tag_filter | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 | add_health_levels_to_filter | [repeated string](#string) | Add health levels to the health levels filter. |
 | remove_health_levels_from_filter | [repeated string](#string) | Remove health levels from the health levels filter. |
@@ -5426,28 +5426,28 @@ so not all messages listed here are referenced.)
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | url | [ string](#string) |  |
-|  **optional** deprecated_secret | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_secret | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** secret | [optional string](#string) |  |
 |  **optional** content_type | [optional hiber.webhook.Webhook.ContentType](#hiberwebhookwebhookcontenttype) |  |
-|  **optional** deprecated_description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_description | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** description | [optional string](#string) |  |
-|  **optional** deprecated_event_filter | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_event_filter | [optional hiber.Filter.Events.Update](#hiberfiltereventsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** event_filter | [optional hiber.Filter.Events](#hiberfilterevents) |  |
-|  **optional** deprecated_modem_filter | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_modem_filter | [optional hiber.Filter.Modems.Update](#hiberfiltermodemsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** modem_filter | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
-|  **optional** deprecated_tag_filter | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_tag_filter | [optional hiber.Filter.Tags.Update](#hiberfiltertagsupdate) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** tag_filter | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 | add_health_levels | [repeated string](#string) | Add health levels to the health levels filter. |
 | remove_health_levels | [repeated string](#string) | Remove health levels from the health levels filter. |
-|  **optional** deprecated_active | [optional hiber.UpdateBoolean](#hiberupdateboolean) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_active | [optional hiber.UpdateBoolean](#hiberupdateboolean) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** active | [optional bool](#bool) |  |
-|  **optional** deprecated_certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | <strong>Deprecated.</strong> A value of 0 removes the certificate |
+|  **optional** deprecated_certificate_id | [optional hiber.UpdateOptionalId](#hiberupdateoptionalid) | <span class="deprecated deprecated-field">Deprecated</span> A value of 0 removes the certificate |
 |  **optional** certificate_id | [optional int64](#int64) |  |
 |  **optional** health_warning_period | [optional hiber.Duration](#hiberduration) | Period to consider when determining health from warning events. Warning events cannot be resolved. Set this to 0 to disable warnings based on failure percentage. |
 |  **optional** health_warning_failure_percentage | [optional uint32](#uint32) | Allowed percentage of call failures. If the failure percentage is higher, within the warning period, the health is switched to WARNING. |
-|  **optional** deprecated_health_warning_failure_percentage | [optional hiber.UpdateZeroableInt](#hiberupdatezeroableint) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_health_warning_failure_percentage | [optional hiber.UpdateZeroableInt](#hiberupdatezeroableint) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** update_hmac_header_name | [optional string](#string) | Update the custom hmac header, or clear to reset to default. |
-|  **optional** deprecated_update_hmac_header_name | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <strong>Deprecated.</strong>  |
+|  **optional** deprecated_update_hmac_header_name | [optional hiber.UpdateClearableString](#hiberupdateclearablestring) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | add_custom_headers | [map hiber.webhook.UpdateWebhookRequest.UpdateWebhook.AddCustomHeadersEntry](#hiberwebhookupdatewebhookrequestupdatewebhookaddcustomheadersentry) | Custom headers to add to every call. |
 | remove_custom_headers | [repeated string](#string) | Remove previously configured custom headers. |
 | replace_custom_headers | [map hiber.webhook.UpdateWebhookRequest.UpdateWebhook.ReplaceCustomHeadersEntry](#hiberwebhookupdatewebhookrequestupdatewebhookreplacecustomheadersentry) | Replace the custom headers to add to every call. If set, remove_custom_headers is ignored. |
@@ -5472,7 +5472,7 @@ so not all messages listed here are referenced.)
 
 ### hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateEvents
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -5481,7 +5481,7 @@ so not all messages listed here are referenced.)
 
 ### hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateModems
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -5490,7 +5490,7 @@ so not all messages listed here are referenced.)
 
 ### hiber.webhook.UpdateWebhookRequest.UpdateWebhook.UpdateTags
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -5740,7 +5740,7 @@ When you receive this from the api, both fields are set. When sending it to the 
 
 ### hiber.BytesOrHex.Update
 
-<strong>Deprecated.</strong> 
+<p class="deprecated deprecated-message">Deprecated</p> 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -5812,7 +5812,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.ChildOrganizations.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.ChildOrganizations field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.ChildOrganizations field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -5839,7 +5839,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.Events.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Events field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Events field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -5885,7 +5885,7 @@ other filters default to allowing everything
 
 ### hiber.Filter.Modems.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Modems field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Modems field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -5968,7 +5968,7 @@ Filter result on specific properties encoded in map-value pairs.
 
 ### hiber.Filter.Tags.Update
 
-<strong>Deprecated.</strong> Update object to update a Filter.Tags field.
+<p class="deprecated deprecated-message">Deprecated</p> Update object to update a Filter.Tags field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -6166,7 +6166,7 @@ timestamps:
 
 ### hiber.UpdateBoolean
 
-<strong>Deprecated.</strong> Update object for a boolean.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for a boolean.
 
 Since false is the default value, we need to distinguish between an omitted value and setting the value to false,
 in an update object.
@@ -6182,7 +6182,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateClearableString
 
-<strong>Deprecated.</strong> Update object for a string that can be empty.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for a string that can be empty.
 
 Since an empty string is also the default value, we need to distinguish between an omitted value and
 setting the value to an empty string, in an update object.
@@ -6198,7 +6198,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateOptionalDuration
 
-<strong>Deprecated.</strong> Update object for an optional Duration.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an optional Duration.
 
 To use this to update, set a value and set updated to true.
 To clear the duration, set updated to true, but set no value.
@@ -6212,7 +6212,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateOptionalId
 
-<strong>Deprecated.</strong> Update object for an optional id.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an optional id.
 
 To use this to update, set a value and set updated to true. To clear the id, set updated to true, but set no value.
 
@@ -6225,7 +6225,7 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 ### hiber.UpdateZeroableInt
 
-<strong>Deprecated.</strong> Update object for an int that can be set to 0.
+<p class="deprecated deprecated-message">Deprecated</p> Update object for an int that can be set to 0.
 
 Since 0 is also the default value, we need to distinguish between an omitted value and setting the value to 0,
 in an update object.
@@ -6352,6 +6352,7 @@ Unit of measurement for a numeric value.
 | VOLUME_GALLON_IMPERIAL |  | 25 |
 | VOLUME_CUBIC_METER |  | 42 |
 | VOLUME_CUBIC_FOOT |  | 43 |
+| VOLUME_OIL_BARREL |  | 55 |
 | MASS_KILOGRAMS |  | 37 |
 | MASS_POUNDS |  | 38 |
 | FLOW_BARRELS_PER_DAY |  | 46 |

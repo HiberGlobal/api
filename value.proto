@@ -277,6 +277,7 @@ message Value {
                 GALLON_IMPERIAL = 2; // gal (imp)
                 CUBIC_METER = 3; // m³
                 CUBIC_FEET = 4; // ft³
+                OIL_BARREL = 5; // bbl
             }
             VolumeUnit unit = 2;
             reserved 1,3,4;

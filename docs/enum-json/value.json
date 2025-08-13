@@ -141,6 +141,7 @@
     , "GALLON_IMPERIAL": "gal (imp)"
     , "CUBIC_METER": "m³"
     , "CUBIC_FEET": "ft³"
+    , "OIL_BARREL": "bbl"
     }
 },{
   "name": "Type",
