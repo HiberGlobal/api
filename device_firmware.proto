@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package hiber.device.firmware;
+
+import "base.proto";
+import "device.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.device.firmware";
+option java_outer_classname = "DeviceFirmwareApi";
+option go_package = ".;hiber";
+
+/* Service to download and apply firmware for devices. */
+service DeviceFirmwareService {
+    /* Get device firmware, by identifier or by device if its required firmware value is set. */
+    rpc Get(GetDeviceFirmware.Request) returns (GetDeviceFirmware.Response) {
+        option (permission_usage) = MODEMS;
+        option (permission_usage) = MODEMS_FIRMWARE;
+    };
+
+    /* Clear the required firmware value for a (selection of) device(s). */
+    rpc ClearDeviceFirmwareRequirement(ClearDeviceFirmwareRequirement.Request) returns (ClearDeviceFirmwareRequirement.Response) {
+        option (permission_usage) = MODEMS;
+        option (permission_usage) = MODEMS_FIRMWARE;
+    };
+}
+
+message DeviceFirmware {
+    string identifier = 1;
+    string name = 2;
+    Version version = 3;
+    repeated string supported_device_types = 4;
+    string media_type = 5;
+    bytes data = 6;
+
+    message Version {
+        string version = 1;
+    }
+}
+
+message DeviceFirmwareSelection {
+    string search = 1;
+    repeated string identifiers = 2;
+    repeated string names = 3;
+    repeated string versions = 4;
+    repeated string supported_device_types = 5;
+    repeated string media_types = 6;
+}
+
+/* Get device firmware, by identifier or by device if its required firmware value is set. */
+message GetDeviceFirmware {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        oneof selection {
+            string identifier = 2;
+            string device = 3;
+        }
+    }
+
+    message Response {
+        DeviceFirmware firmware = 1;
+    }
+}
+
+/* Clear the required firmware value for a (selection of) device(s). */
+message ClearDeviceFirmwareRequirement {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* The devices to clear the required firmware for. */
+        device.DeviceSelection devices = 2;
+    }
+
+    message Response {
+    }
+}

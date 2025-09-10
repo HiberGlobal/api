@@ -1,50 +1,36 @@
-# testing.proto
+# device_firmware.proto
 
 
 
-#### This file was generated from [testing.proto](https://github.com/HiberGlobal/api/blob/master/testing.proto).
+#### This file was generated from [device_firmware.proto](https://github.com/HiberGlobal/api/blob/master/device_firmware.proto).
 
 ## Table of Contents
 
 - Services
-  - [SimulationService](#simulationservice)
-  - [TestingService](#testingservice)
+  - [DeviceFirmwareService](#devicefirmwareservice)
 
 - Messages
-  - [PushModemMessagesRequest](#pushmodemmessagesrequest)
-  - [PushModemMessagesRequest.MessageToPush](#pushmodemmessagesrequestmessagetopush)
-  - [PushModemMessagesRequest.Response](#pushmodemmessagesrequestresponse)
-  - [Simulation](#simulation)
-  - [Simulation.DelayedMessageSimulation](#simulationdelayedmessagesimulation)
-  - [Simulation.GetRequest](#simulationgetrequest)
-  - [Simulation.ModemInactivitySimulation](#simulationmodeminactivitysimulation)
-  - [Simulation.ModemMessageSimulation](#simulationmodemmessagesimulation)
-  - [Simulation.ModemMessageSimulation.Defaults](#simulationmodemmessagesimulationdefaults)
-  - [Simulation.ModemMessageSimulation.Delete](#simulationmodemmessagesimulationdelete)
-  - [Simulation.ModemMessageSimulation.Delete.Request](#simulationmodemmessagesimulationdeleterequest)
-  - [Simulation.ModemMessageSimulation.Delete.Response](#simulationmodemmessagesimulationdeleteresponse)
-  - [Simulation.ModemMessageSimulation.List](#simulationmodemmessagesimulationlist)
-  - [Simulation.ModemMessageSimulation.List.Request](#simulationmodemmessagesimulationlistrequest)
-  - [Simulation.ModemMessageSimulation.List.Response](#simulationmodemmessagesimulationlistresponse)
-  - [Simulation.ModemMessageSimulation.LocationRotation](#simulationmodemmessagesimulationlocationrotation)
-  - [Simulation.ModemMessageSimulation.MessageBodyRotation](#simulationmodemmessagesimulationmessagebodyrotation)
-  - [Simulation.ModemMessageSimulation.Summary](#simulationmodemmessagesimulationsummary)
-  - [Simulation.ModemMessageSimulation.Update](#simulationmodemmessagesimulationupdate)
-  - [Simulation.ModemMessageSimulation.Update.Request](#simulationmodemmessagesimulationupdaterequest)
-  - [Simulation.ModemMessageSimulation.Update.Response](#simulationmodemmessagesimulationupdateresponse)
-  - [Simulation.UpdateRequest](#simulationupdaterequest)
+  - [ClearDeviceFirmwareRequirement](#cleardevicefirmwarerequirement)
+  - [ClearDeviceFirmwareRequirement.Request](#cleardevicefirmwarerequirementrequest)
+  - [ClearDeviceFirmwareRequirement.Response](#cleardevicefirmwarerequirementresponse)
+  - [DeviceFirmware](#devicefirmware)
+  - [DeviceFirmware.Version](#devicefirmwareversion)
+  - [DeviceFirmwareSelection](#devicefirmwareselection)
+  - [GetDeviceFirmware](#getdevicefirmware)
+  - [GetDeviceFirmware.Request](#getdevicefirmwarerequest)
+  - [GetDeviceFirmware.Response](#getdevicefirmwareresponse)
 
 - Enums
 
-- Referenced messages from [modem.proto](#referenced-messages-from-modemproto)
-  - [hiber.modem.Modem](#hibermodemmodem)
-  - [hiber.modem.ModemSelection](#hibermodemmodemselection)
-
-    - [hiber.modem.ListModemsRequest.Sort](#hibermodemlistmodemsrequestsort)
-    - [hiber.modem.Modem.ConnectedDeviceInfo.Frequency](#hibermodemmodemconnecteddeviceinfofrequency)
-    - [hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle)
-    - [hiber.modem.Modem.Type](#hibermodemmodemtype)
-    - [hiber.modem.ModemMessage.Source](#hibermodemmodemmessagesource)
+- Referenced messages from [device.proto](#referenced-messages-from-deviceproto)
+  - [hiber.device.Device](#hiberdevicedevice)
+  - [hiber.device.Device.Links](#hiberdevicedevicelinks)
+  - [hiber.device.Device.PeripheralsEntry](#hiberdevicedeviceperipheralsentry)
+  - [hiber.device.DeviceSelection](#hiberdevicedeviceselection)
+  - [hiber.device.ModemFilter](#hiberdevicemodemfilter)
+  - [hiber.device.ModemFilter.Lifecycles](#hiberdevicemodemfilterlifecycles)
+  - Enums
+    - [hiber.device.Sort](#hiberdevicesort)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -100,400 +86,217 @@
 - [Scalar Value Types](#scalar-value-types)
 
 
-## SimulationService
-Simulation service to manage active simulations.
-Simulation can help fill in the gaps until real data is present, by, for example, simulating messages from a device.
+## DeviceFirmwareService
+Service to download and apply firmware for devices.
 
 ### Get
-> **rpc** Get([Simulation.GetRequest](#simulationgetrequest))
-    [Simulation](#simulation)
+> **rpc** Get([GetDeviceFirmware.Request](#getdevicefirmwarerequest))
+    [GetDeviceFirmware.Response](#getdevicefirmwareresponse)
 
+Get device firmware, by identifier or by device if its required firmware value is set.
 
+### ClearDeviceFirmwareRequirement
+> **rpc** ClearDeviceFirmwareRequirement([ClearDeviceFirmwareRequirement.Request](#cleardevicefirmwarerequirementrequest))
+    [ClearDeviceFirmwareRequirement.Response](#cleardevicefirmwarerequirementresponse)
 
-### Update
-> **rpc** Update([Simulation.UpdateRequest](#simulationupdaterequest))
-    [Simulation](#simulation)
-
-
-
-### ListModemMessageSimulations
-> **rpc** ListModemMessageSimulations([Simulation.ModemMessageSimulation.List.Request](#simulationmodemmessagesimulationlistrequest))
-    [Simulation.ModemMessageSimulation.List.Response](#simulationmodemmessagesimulationlistresponse)
-
-
-
-### UpdateModemMessageSimulations
-> **rpc** UpdateModemMessageSimulations([Simulation.ModemMessageSimulation.Update.Request](#simulationmodemmessagesimulationupdaterequest))
-    [Simulation.ModemMessageSimulation.Update.Response](#simulationmodemmessagesimulationupdateresponse)
-
-
-
-### DisableModemMessageSimulations
-> **rpc** DisableModemMessageSimulations([Simulation.ModemMessageSimulation.Delete.Request](#simulationmodemmessagesimulationdeleterequest))
-    [Simulation.ModemMessageSimulation.Delete.Response](#simulationmodemmessagesimulationdeleteresponse)
-
-
-
-
-
-## TestingService
-Method to test the system in different ways, meant for customer access. For example, you can use this to test
-whether everything works from message to webhook call, and further in your own system.
-
-### PushModemMessages
-> **rpc** PushModemMessages([PushModemMessagesRequest](#pushmodemmessagesrequest))
-    [PushModemMessagesRequest.Response](#pushmodemmessagesrequestresponse)
-
-
+Clear the required firmware value for a (selection of) device(s).
 
 
 ## Messages
 
-### PushModemMessagesRequest
+### ClearDeviceFirmwareRequirement
 
-Push any number of modem messages. These are marked as test messages, which means they will be treated
-differently in a few places (e.g. message sequence, to avoid errors on the next real messages).
-The message is handled like a real message, it's encrypted as if sent from a modem, then goes through
-the decryption process and all relevant events are triggered (including webhooks calls caused by the events).
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| messages | [repeated PushModemMessagesRequest.MessageToPush](#pushmodemmessagesrequestmessagetopush) |  |
-
-### PushModemMessagesRequest.MessageToPush
+Clear the required firmware value for a (selection of) device(s).
 
 
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| modem_number | [ string](#string) |  |
-|  **optional** time | [optional hiber.Timestamp](#hibertimestamp) |  |
-|  **optional** location | [optional hiber.Location](#hiberlocation) |  |
-|  **optional** content | [optional bytes](#bytes) |  |
-|  **optional** metadata | [optional google.protobuf.Struct](#googleprotobufstruct) | Metadata for this message. For example: LoRaWAN values like fPort. |
-
-### PushModemMessagesRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| request | [ PushModemMessagesRequest](#pushmodemmessagesrequest) |  |
-
-### Simulation
-
-Simulation settings for this organization.
-
-The simulation settings for an organization can be used to configure some organization-wide setting for
-specific simulations, like a default for the number of messages to simulate per enabled modem), or configuring
-a percentage of simulated messages to trigger a delayed event.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) |  |
-| enabled | [ bool](#bool) | Whether or not all simulations for this organization are enabled. |
-| modem_inactivity | [ Simulation.ModemInactivitySimulation](#simulationmodeminactivitysimulation) | Configuration for simulating modem inactivity. |
-| delayed_messages | [ Simulation.DelayedMessageSimulation](#simulationdelayedmessagesimulation) | Configuration for simulating delayed messages. |
-| modem_message_simulation_defaults | [ Simulation.ModemMessageSimulation.Defaults](#simulationmodemmessagesimulationdefaults) | Default configuration for the modem message simulation. |
-| modem_message_simulation | [ Simulation.ModemMessageSimulation.Summary](#simulationmodemmessagesimulationsummary) | Summary of modems with message simulation. |
-
-### Simulation.DelayedMessageSimulation
-
-Simulate delayed messages.
-
-Requires modems with message simulation.
-Adds a random delay between minimum_message_delay and maximum_message_delay to a percentage of messages
-generated by the modem message simulation.
-The messages themselves are not actually delayed; this just sets the sent time further into the past.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| percentage_of_simulated_messages | [ uint32](#uint32) |  |
-| minimum_message_delay | [ hiber.Duration](#hiberduration) |  |
-| maximum_message_delay | [ hiber.Duration](#hiberduration) |  |
-
-### Simulation.GetRequest
+### ClearDeviceFirmwareRequirement.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| devices | [ hiber.device.DeviceSelection](#hiberdevicedeviceselection) | The devices to clear the required firmware for. |
 
-### Simulation.ModemInactivitySimulation
+### ClearDeviceFirmwareRequirement.Response
 
-Simulate modem inactivity randomly.
 
-Requires modems with message simulation.
-For all those modems, randomly picks modems up to the configured percentage to be inactive.
-Those modems are excluded from the simulation for a period between period_min and period_max.
-When a modem is no longer inactive, another modem is randomly picked to be inactive. This allows you to test
-inactivity detection, health, etc.
 
-This does not affect messages that are not simulated (like test messages or real messages).
 
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| percentage_of_simulating_modems | [ uint32](#uint32) |  |
-| period_min | [ hiber.Duration](#hiberduration) |  |
-| period_max | [ hiber.Duration](#hiberduration) |  |
-
-### Simulation.ModemMessageSimulation
+### DeviceFirmware
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| modem_number | [ string](#string) |  |
-| messages_per_interval | [ uint32](#uint32) | The number of simulated messages per day for this modem. This value is either the custom amount per day for this modem or the default value |
-| simulation_interval | [ hiber.Duration](#hiberduration) | Interval messages should be simulated at (e.g. once every hour). |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **message_bodies**.message_body | [ hiber.BytesOrHex](#hiberbytesorhex) | A message body to use for the simulated messages. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **message_bodies**.message_body_rotation | [ Simulation.ModemMessageSimulation.MessageBodyRotation](#simulationmodemmessagesimulationmessagebodyrotation) | Rotate through a list of message bodies. |
-| message_body_variable_byte_indices | [repeated uint32](#uint32) | The indices of bytes in the message body that should be randomized (to have variable values). |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.random_location_in_area | [ hiber.Area](#hiberarea) | Randomize modem location within the given area. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.location_rotation | [ Simulation.ModemMessageSimulation.LocationRotation](#simulationmodemmessagesimulationlocationrotation) | Rotate through a list of locations. |
-| next_simulation_run_after | [ hiber.Timestamp](#hibertimestamp) | Timestamp after which the next simulation run will be triggered (not guaranteed to be exactly at this time). If further in the future, message simulation for this modem is inactive until this time. This may be set to a time in the future manually, or by the ModemInactivitySimulation. |
+| identifier | [ string](#string) |  |
+| name | [ string](#string) |  |
+| version | [ DeviceFirmware.Version](#devicefirmwareversion) |  |
+| supported_device_types | [repeated string](#string) |  |
+| media_type | [ string](#string) |  |
+| data | [ bytes](#bytes) |  |
 
-### Simulation.ModemMessageSimulation.Defaults
+### DeviceFirmware.Version
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| messages_per_interval | [ uint32](#uint32) | Default for the amount of messages to simulate per interval for a modem that has simulation enabled. Must be between 1 and 24 (for a maximum of 240 message per day). |
-| simulation_interval | [ hiber.Duration](#hiberduration) | Default for interval messages should be simulated at (e.g. once every hour). |
+| version | [ string](#string) |  |
 
-### Simulation.ModemMessageSimulation.Delete
-
+### DeviceFirmwareSelection
 
 
 
-### Simulation.ModemMessageSimulation.Delete.Request
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| search | [ string](#string) |  |
+| identifiers | [repeated string](#string) |  |
+| names | [repeated string](#string) |  |
+| versions | [repeated string](#string) |  |
+| supported_device_types | [repeated string](#string) |  |
+| media_types | [repeated string](#string) |  |
+
+### GetDeviceFirmware
+
+Get device firmware, by identifier or by device if its required firmware value is set.
+
+
+### GetDeviceFirmware.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **selection**.identifier | [ string](#string) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **selection**.device | [ string](#string) |  |
 
-### Simulation.ModemMessageSimulation.Delete.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| deleted | [ uint32](#uint32) |  |
-| request | [ Simulation.ModemMessageSimulation.Delete.Request](#simulationmodemmessagesimulationdeleterequest) |  |
-
-### Simulation.ModemMessageSimulation.List
-
-
-
-
-### Simulation.ModemMessageSimulation.List.Request
+### GetDeviceFirmware.Response
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
-|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
-| include_disabled | [ bool](#bool) | Include modems for which message simulation is disabled. |
-
-### Simulation.ModemMessageSimulation.List.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| modems | [repeated Simulation.ModemMessageSimulation](#simulationmodemmessagesimulation) |  |
-| request | [ Simulation.ModemMessageSimulation.List.Request](#simulationmodemmessagesimulationlistrequest) |  |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
-
-### Simulation.ModemMessageSimulation.LocationRotation
-
-Rotate through a list of locations.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| locations | [repeated hiber.Location](#hiberlocation) | The rotating list of locations to use when simulating messages. |
-
-### Simulation.ModemMessageSimulation.MessageBodyRotation
-
-Rotate through a list of message bodies.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| message_bodies | [repeated hiber.BytesOrHex](#hiberbytesorhex) | The rotating list of message bodies to use when simulating messages. |
-
-### Simulation.ModemMessageSimulation.Summary
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| enabled_modems | [ uint32](#uint32) | The number of modems for which message simulation has been enabled. |
-| active_modems | [ uint32](#uint32) | The number of modems that are actively simulating messages. |
-| inactive_modems | [ uint32](#uint32) | The number of modems that have been marked inactive (by ModemInactivitySimulation or a user). |
-| total_messages_per_day | [ uint32](#uint32) | The total amount of messages that will be simulated in this organization per day. |
-| total_simulations_per_day | [ uint32](#uint32) | The number of modem message simulation runs for this organization per day. |
-
-### Simulation.ModemMessageSimulation.Update
-
-Create or update the modem message simulation for a selection of modems.
-
-
-### Simulation.ModemMessageSimulation.Update.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Modems to create or update the message simulation for. |
-| messages_per_interval | [ uint32](#uint32) | The number of simulated messages per simulation interval for these modems. This value is either the custom amount per day for these modems or the default value |
-| simulation_interval | [ hiber.Duration](#hiberduration) | Interval messages should be simulated at (e.g. once every hour). |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **message_body**.update_message_body | [ hiber.BytesOrHex.Update](#hiberbytesorhexupdate) | <span class="deprecated deprecated-field">Deprecated</span> A message body to use for the simulated messages. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **message_body**.replace_message_body_rotation | [ Simulation.ModemMessageSimulation.MessageBodyRotation](#simulationmodemmessagesimulationmessagebodyrotation) | Replace the list of message bodies to rotate through. This does not have to match the length of the location rotation, if any. Note that this **replaces** the entire list of values, to ensure the order is maintained. |
-| message_body_add_variable_byte_indices | [repeated uint32](#uint32) | Add indices of bytes in the message body that should be randomized (to have variable values). |
-| message_body_remove_variable_byte_indices | [repeated uint32](#uint32) | Remove indices of bytes in the message body that should be randomized (to have variable values). |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.random_location_in_area | [ hiber.Area](#hiberarea) | Randomize modem location within the given area. |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.replace_location_rotation | [ Simulation.ModemMessageSimulation.LocationRotation](#simulationmodemmessagesimulationlocationrotation) | Replace the list of locations to rotate through. This does not have to match the length of the message body rotation, if any. Note that this **replaces** the entire list of values, to ensure the order is maintained. |
-| set_inactive_until | [ hiber.Timestamp](#hibertimestamp) | Disable the message simulation until the given date (UTC). |
-|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
-
-### Simulation.ModemMessageSimulation.Update.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| modems | [repeated Simulation.ModemMessageSimulation](#simulationmodemmessagesimulation) |  |
-| request | [ Simulation.ModemMessageSimulation.Update.Request](#simulationmodemmessagesimulationupdaterequest) |  |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
-
-### Simulation.UpdateRequest
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-| deprecated_enabled | [ hiber.UpdateBoolean](#hiberupdateboolean) | <span class="deprecated deprecated-field">Deprecated</span>  |
-|  **optional** enabled | [optional bool](#bool) |  |
-|  **optional** simulate_modem_inactivity | [optional Simulation.ModemInactivitySimulation](#simulationmodeminactivitysimulation) |  |
-|  **optional** simulate_delayed_messages | [optional Simulation.DelayedMessageSimulation](#simulationdelayedmessagesimulation) |  |
-|  **optional** modem_message_simulation_defaults | [optional Simulation.ModemMessageSimulation.Defaults](#simulationmodemmessagesimulationdefaults) |  |
+| firmware | [ DeviceFirmware](#devicefirmware) |  |
 
 
 ## Enums
 
 
-## Referenced messages from modem.proto
+## Referenced messages from device.proto
 (Note that these are included because there is a proto dependency on the file,
 so not all messages listed here are referenced.)
 
-#### This section was generated from [modem.proto](https://github.com/HiberGlobal/api/blob/master/modem.proto).
+#### This section was generated from [device.proto](https://github.com/HiberGlobal/api/blob/master/device.proto).
 
 
-### hiber.modem.Modem
+### hiber.device.Device
 
-Modem data, including location and last message (if available).
-Location, last message and firmware version can be updated by messages, the rest is typically either set
-when the modem is registered into the system or when a subscription is authorized.
+Information about a device.
+A device is anything in the Hiber network that can send data to our systems.
+They have a unique device number in our system, used to identify them.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| number | [ string](#string) | An 8-character hexadecimal string |
-| organization | [ string](#string) |  |
-| name | [ string](#string) | An optional descriptor given to the modem |
+| number | [ string](#string) | An 8-character hexadecimal string, formatted for human readability. System ignores spaces. |
+| organization | [ string](#string) | The organization that owns this device |
+| name | [ string](#string) | A descriptor given to the device, defaults to it's number. |
 | location | [ hiber.Location](#hiberlocation) |  |
-| last_message_id | [ uint64](#uint64) |  |
-| last_message_received_at | [ hiber.Timestamp](#hibertimestamp) | Time the server has received the last message. |
-| last_message_sent_at | [ hiber.Timestamp](#hibertimestamp) | Time the modem has sent the last message. |
-| last_message_body | [ hiber.BytesOrHex](#hiberbytesorhex) | The body of the last message. |
-| inactivity | [ hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
-| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health level based on the modem alarm and some always-present alarms. |
-| lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) |  |
-| technical | [ hiber.modem.Modem.TechnicalData](#hibermodemmodemtechnicaldata) | additional information |
-| peripherals | [ hiber.modem.Modem.Peripherals](#hibermodemmodemperipherals) |  |
+|  **optional** inactivity | [optional hiber.Duration](#hiberduration) | The amount of time since the last message from this modem was received on the server. |
+| health | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | Health based on the modem alarm and some always-present alarms. |
+| lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | The current lifecycle the modem is in. |
+| peripherals | [map hiber.device.Device.PeripheralsEntry](#hiberdevicedeviceperipheralsentry) | additional information |
 | notes | [ string](#string) | Notes field that can be used to add additional information to a modem. |
-| secure_notes | [ string](#string) | Secure notes field that can be used to add additional information to a modem, with limited accessibility. |
+|  **optional** secure_notes | [optional string](#string) | Secure notes field that can be used to add additional information to a modem, with limited accessibility. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
-| is_gateway | [ bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Whether the modem is a gateway, it has been configured as a gateway and has connected devices. Use `type` instead. |
-| is_device_connected_to_gateway | [ bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Whether the modem is connected to a modem configured as a gateway. Use `type` instead. |
-| connected_to_gateway | [ string](#string) | <span class="deprecated deprecated-field">Deprecated</span> The modem number that this modem is connected to, if any. Use `connected_device_info.connected_to_gateway` instead. |
-| external_device_ids | [repeated string](#string) | External device ids for this sensor, gateway or valve. |
-| device_type | [ string](#string) | Device type for this modem. |
-| type | [ hiber.modem.Modem.Type](#hibermodemmodemtype) | The type of modem. Used mainly to differentiate in the UI or to sort on. |
-|  **optional** gateway_info | [optional hiber.modem.Modem.GatewayInfo](#hibermodemmodemgatewayinfo) | Additional information when this modem is a gateway. |
-|  **optional** connected_device_info | [optional hiber.modem.Modem.ConnectedDeviceInfo](#hibermodemmodemconnecteddeviceinfo) | Additional information when this modem is a connected device. |
-|  **optional** valve_info | [optional hiber.modem.Modem.ValveInfo](#hibermodemmodemvalveinfo) | Additional information when this modem is a connected device. |
+|  **optional** link | [optional hiber.device.Device.Links](#hiberdevicedevicelinks) | Optional information about what other devices this devices is linked to. |
 | metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Modem metadata, typically extracted from messages. |
-| time_zone | [ string](#string) | The timezone configured for the modem. |
-| transmission_interval | [ hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
-|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this modem. |
+|  **optional** time_zone | [optional string](#string) | The timezone configured for the modem. |
+|  **optional** transmission_interval | [optional hiber.Duration](#hiberduration) | The transmission interval for this modem, if configured. |
+|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this device. |
+| type | [ string](#string) | The DeviceType for this device. See DeviceType for more information. |
+| sensor_brand | [ string](#string) | The DeviceType for this device. See DeviceType for more information. |
 | numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The numeric value types that this device produces. The device may produce other values (like battery level), but these are the primary value types. |
 | files | [repeated hiber.file.File](#hiberfilefile) | Files for this tag. Typically an image of the device installation. See the File.media_type for more information. |
-|  **optional** required_device_firmware_identifier | [optional string](#string) |  |
+|  **optional** required_device_firmware_identifier | [optional string](#string) | When set, indicates that this device should be updated to the firmware specified by the identifier. |
 | process_points | [repeated hiber.processpoint.ProcessPoint](#hiberprocesspointprocesspoint) | List of process points that this device is connected to (if you have permission to access them). Some fields might be omitted in this inline view for compactness (like connected devices). |
 
-### hiber.modem.ModemSelection
+### hiber.device.Device.Links
 
-Selection object for modems.
-Filter modems by modem id, (child)organization, tags, activation status and time, service type and last message time.
+Collection of data about the devices it is connected to.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-|  **optional** modems | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+| identifiers | [repeated string](#string) | Other identifiers for this devices. Could include data like its MAC-address or otherwise unique identifier. |
+|  **optional** gateway | [optional string](#string) | The gateway directly upstream from this device (in the direction of Mission Control). This device sends its data directly to its gateway, which in turn relays it to Mission Control. |
+
+### hiber.device.Device.PeripheralsEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) |  |
+| value | [ string](#string) |  |
+
+### hiber.device.DeviceSelection
+
+Selection object for devices.
+Filter devices by device number, tags, etc.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
 |  **optional** free_text_search | [optional string](#string) |  |
-|  **optional** only_active | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Use lifecycle filter instead. |
-|  **optional** activated_in | [optional hiber.TimeRange](#hibertimerange) | <span class="deprecated deprecated-field">Deprecated</span>  |
-|  **optional** with_last_message_in | [optional hiber.TimeRange](#hibertimerange) |  |
-| health_levels | [repeated string](#string) | Filter modems by health level. |
-| lifecycles | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) | Filter modems by lifecycle(s). Defaults to nominal lifecycles, excluding disabled or decommissioned modems. |
-|  **optional** transfers | [optional hiber.modem.ModemSelection.Transfers](#hibermodemmodemselectiontransfers) |  |
-| include_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Only include modems that have a type listed in types. In other words, when providing multiple types, this is an "OR" relationship. |
-| exclude_types | [repeated hiber.modem.Modem.Type](#hibermodemmodemtype) | Exclude modems that have a type listed in types. |
+|  **optional** modems | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** identifiers | [optional hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
+|  **optional** health_level | [optional hiber.Filter.HealthLevels](#hiberfilterhealthlevels) |  |
+|  **optional** lifecycles | [optional hiber.device.ModemFilter.Lifecycles](#hiberdevicemodemfilterlifecycles) |  |
+|  **optional** with_gateways | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
+|  **optional** peripherals | [optional hiber.Filter.Properties](#hiberfilterproperties) |  |
 |  **optional** device_types | [optional hiber.Filter.DeviceTypes](#hiberfilterdevicetypes) |  |
 |  **optional** sensorBrands | [optional hiber.Filter.SensorBrands](#hiberfiltersensorbrands) |  |
-|  **optional** identifiers | [optional hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) |  |
-|  **optional** only_gateways | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Only list devices that are a gateway. Replaced by `types`. If you only want to have gateways in the result, create a selection with only `Modem.Type.GATEWAY` for `types`. |
-|  **optional** only_has_external_device_ids | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Only list devices that are a connected devices. Typically these are LoRaWAN sensors. Replaced by `types`. If you only want to have connected devices in the result, create a selection with only `Modem.Type.CONNECTED_DEVICE` for `types`. |
-|  **optional** connected_to_gateways | [optional hiber.Filter.Modems](#hiberfiltermodems) |  |
-| external_device_ids | [repeated string](#string) | <span class="deprecated deprecated-field">Deprecated</span>  |
 |  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.peripherals | [ hiber.modem.ModemSelection.Peripherals](#hibermodemmodemselectionperipherals) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **peripheral_selection**.only_without_peripheral | [ bool](#bool) | When set to true, only modems that do not have any peripheral will be included in the result. |
-|  **optional** only_connected_to_gateway | [optional bool](#bool) | Only select modems that are connected to a gateway (connected devices). |
-|  **optional** not_connected_to_gateway | [optional bool](#bool) | Only select modems that are not connected to a gateway (i.e. gateways). |
+|  **optional** with_last_message_in | [optional hiber.TimeRange](#hibertimerange) |  |
+|  **optional** exclude_gateways | [optional bool](#bool) |  |
+
+### hiber.device.ModemFilter
+
+
+
+
+### hiber.device.ModemFilter.Lifecycles
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| include | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) |  |
+| exclude | [repeated hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) |  |
 
 
 ### Enums
-#### hiber.modem.ListModemsRequest.Sort
+#### hiber.device.Sort
 Sorting options for the results.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| LAST_MESSAGE_RECEIVED | Sorts messages in descending time order. | 0 |
-| LAST_MESSAGE_RECEIVED_INVERTED | Sorts messages in ascending time order. | 1 |
-| MODEM_NUMBER_ASC | Sort numerically on the number of the modem, in ascending order. | 2 |
-| MODEM_NUMBER_DESC | Sort numerically on the number of the modem, in descending order. | 3 |
-| STATUS_ASC | Sort modem on its Status. | 4 |
-| STATUS_DESC | Sort modem on its Status in reverse order. | 5 |
-| STATUS_ASC_ALPHABETICAL | Status sorted alphabetically by Status name. | 14 |
-| STATUS_DESC_ALPHABETICAL | Status sorted alphabetically by Status name, descending order. | 15 |
-| MODEM_NAME_ASC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in ascending order. | 6 |
-| MODEM_NAME_DESC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in descending order. | 7 |
-| ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the modem, in ascending order. | 8 |
-| ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the modem, in descending order. | 9 |
-| HEALTH | Health sorted from least to most severe (e.g. OK, WARNING, ERROR). | 10 |
-| HEALTH_DESC | Health sorted from most to least severe (e.g. ERROR, WARNING, OK). | 11 |
-| HEALTH_ASC_ALPHABETICAL | Health sorted alphabetically by health level name. | 12 |
-| HEALTH_DESC_ALPHABETICAL | Health sorted alphabetically by health level name, descending order. | 13 |
+| DEVICE_NAME_ASC | Sort alphabetically on the name of the device. De default name of the device is its HEX number, in ascending order. | 0 |
+| DEVICE_NAME_DESC | Sort alphabetically on the name of the device. De default name of the device is its HEX number, in descending order. | 1 |
+| DEVICE_NUMBER_ASC | Sort numerically on the number of the device, in ascending order. | 2 |
+| DEVICE_NUMBER_DESC | Sort numerically on the number of the device, in descending order. | 3 |
+| ACTIVITY | Sort devices on most recent activity first (e.g. newest message received). | 4 |
+| INACTIVITY | Sort devices on least recent activity first (e.g. longest no message received). | 5 |
+| LIFECYCLE_ASC | Sort device on its lifecycle state. | 6 |
+| LIFECYCLE_DESC | Sort device on its lifecycle state in reverse order. | 7 |
+| LIFECYCLE_ALPHABETICAL_ASC | Sort device on lifecycle name, alphabetically. | 8 |
+| LIFECYCLE_ALPHABETICAL_DESC | Sort device on lifecycle name, alphabetically in reverse order. | 9 |
+| ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the device, in ascending order. | 10 |
+| ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the device, in descending order. | 11 |
+| HEALTH_ASC | Health sorted from least to most severe (e.g. OK, WARNING, ERROR). | 12 |
+| HEALTH_DESC | Health sorted from most to least severe (e.g. ERROR, WARNING, OK). | 13 |
+| HEALTH_ALPHABETICAL_ASC | Health sorted alphabetically by health level name. | 14 |
+| HEALTH_ALPHABETICAL_DESC | Health sorted alphabetically by health level name, descending order. | 15 |
 | SENSOR_BRAND_ASC | Sort alphabetically on the brand of the sensor, in ascending order. | 16 |
 | SENSOR_BRAND_DESC | Sort alphabetically on the brand of the sensor, in descending order. | 17 |
 | DEVICE_TYPE_ASC | Sort alphabetically on the device type, in ascending order. | 18 |
@@ -504,57 +307,6 @@ Sorting options for the results.
 | TAG_TYPE_SITE_DESC | Sort alphabetically on any tags of type 'site', in descending order. | 23 |
 | TAG_TYPE_PRODUCTION_AREA_ASC | Sort alphabetically on any tags of type 'production_area', in ascending order. | 24 |
 | TAG_TYPE_PRODUCTION_AREA_DESC | Sort alphabetically on any tags of type 'production_area', in descending order. | 25 |
-
-#### hiber.modem.Modem.ConnectedDeviceInfo.Frequency
-Frequency specified by LoRaWAN regional parameters.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| AS923 | AS923 | 0 |
-| AS923_2 | AS923-2 | 10 |
-| AU915 | AU915 | 1 |
-| EU868 | EU868 | 5 |
-| IN865 | IN865 | 6 |
-| KR920 | KR920 | 7 |
-| US915 | US915 | 8 |
-| US915_HYBRID | US915-Hybrid | 9 |
-
-#### hiber.modem.Modem.Lifecycle
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| ACCEPTANCE_TESTING | Device is being tested by Hiber. Devices in this state are not visible to customers. | 0 |
-| READY_TO_INSTALL | Device has passed Acceptance Testing and is ready be installed. When it sends it first message, it will automatically go to INSTALLED. | 8 |
-| INSTALLED | Device is active and sending messages. | 1 |
-| PAUSED | Device is paused and not sending messages. This should be of a temporary nature (e.g. a change to the installation is being made). On its next message, it will automatically go back to INSTALLED. Offline alarm checks will not be triggered for devices in this lifecycle. | 6 |
-| DISABLED | Device is disabled and not sending messages. This is a more permanent version of PAUSED. Devices in this state are not visible to customers. | 5 |
-| DECOMMISSIONED | Device is (going to be) removed from installation and will not return to installed status again. Devices in this state are not visible to customers. | 4 |
-| DEFECTIVE | Device is defective and should not be used anymore. Devices in this state are typically RMA-ed and (should be) transferred to the RMA organization. Devices in this state are not visible to customers. | 7 |
-| PENDING_MAINTENANCE | Device is defective in some way and needs maintenance to operate optimally. Devices in this state should be highlighted as they need to be acted upon. | 11 |
-| PENDING_REPLACEMENT | Device is defective and needs to be replaced. Devices in this state should be highlighted as they need to be acted upon. | 12 |
-| SPARE | Spare device sent to customer in case it is needed. | 9 |
-
-#### hiber.modem.Modem.Type
-The effective type of this modem.
-Type can depend on the hardware itself as well as network topology.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| OTHER | A device of which the specific type is not known | 0 |
-| GATEWAY | A device that can receive messages from sensors in the field and relay them (directly) to the satellite. Typically a LoRaWAN hub. Note that gateways also send messages themselves (e.g. a daily heartbeat). | 2 |
-| SENSOR | A sensor that can (only) send data to a gateway. Typically using a LoRaWAN connection. | 3 |
-| VALVE |  | 4 |
-
-#### hiber.modem.ModemMessage.Source
-
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| HIBERBAND | A real message from a modem or gateway, sent over Hiberband to the server. | 0 |
-| DIRECT_TO_API | A real message from a modem or gateway, sent directly to the API using a persistent connection. | 1 |
-| TEST | A test message sent to the testing API. | 2 |
-| SIMULATION | A simulated message, generated by the server. | 3 |
 
 
 

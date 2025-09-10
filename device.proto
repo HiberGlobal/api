@@ -8,6 +8,7 @@ import "base.proto";
 import "file.proto";
 import "health.proto";
 import "modem.proto";
+import "process_point.proto";
 import "tag.proto";
 import "value.proto";
 
@@ -84,6 +85,11 @@ message Device {
 
     /* When set, indicates that this device should be updated to the firmware specified by the identifier. */
     optional string required_device_firmware_identifier = 21;
+
+    /* List of process points that this device is connected to (if you have permission to access them).
+     * Some fields might be omitted in this inline view for compactness (like connected devices).
+     */
+    repeated hiber.processpoint.ProcessPoint process_points = 22;
 
     /* Collection of data about the devices it is connected to. */
     message Links {

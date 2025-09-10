@@ -1,5 +1,17 @@
 # Changelog Hiber API
 
+### 0.254 (2025-09-10)
+
+##### DeviceService
+
+- Added `Device.process_points` to see the details of assigned process points, if you have permission to see them.
+  - Added permission usage of `PROCESS_POINTS` to `List` rpc.
+
+##### ModemService
+
+- Added `Modem.process_points` to see the details of assigned process points, if you have permission to see them.
+  - Added permission usage of `PROCESS_POINTS` to `Get`, `List` and `Grouped` rpcs.
+
 ### 0.250 (2025-08-13)
 
 ##### ValueService

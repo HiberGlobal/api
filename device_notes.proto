@@ -12,6 +12,7 @@ option go_package = ".;hiber";
 service DeviceNoteService {
     rpc List (ListDeviceNotes.Request) returns (ListDeviceNotes.Response) {
         option (permission_usage) = MODEMS;
+        option (permission_usage) = PROCESS_POINTS;
     }
     rpc Add (AddDeviceNote.Request) returns (AddDeviceNote.Response) {
         option (permission_usage) = MODEMS_UPDATE_NOTES;

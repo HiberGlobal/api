@@ -96,6 +96,13 @@ used to identify them.
 
     - [hiber.organization.Organization.Feature](#hiberorganizationorganizationfeature)
 
+- Referenced messages from [process_point.proto](#referenced-messages-from-process_pointproto)
+  - [hiber.processpoint.ProcessPoint](#hiberprocesspointprocesspoint)
+  - [hiber.processpoint.ProcessPoint.AssignedDevice](#hiberprocesspointprocesspointassigneddevice)
+  - [hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection)
+
+    - [hiber.processpoint.ProcessPoint.Type](#hiberprocesspointprocesspointtype)
+
 - Referenced messages from [tag.proto](#referenced-messages-from-tagproto)
   - [hiber.tag.Tag](#hibertagtag)
   - [hiber.tag.Tag.Label](#hibertagtaglabel)
@@ -456,6 +463,7 @@ when the modem is registered into the system or when a subscription is authorize
 | numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The numeric value types that this device produces. The device may produce other values (like battery level), but these are the primary value types. |
 | files | [repeated hiber.file.File](#hiberfilefile) | Files for this tag. Typically an image of the device installation. See the File.media_type for more information. |
 |  **optional** required_device_firmware_identifier | [optional string](#string) |  |
+| process_points | [repeated hiber.processpoint.ProcessPoint](#hiberprocesspointprocesspoint) | List of process points that this device is connected to (if you have permission to access them). Some fields might be omitted in this inline view for compactness (like connected devices). |
 
 ### Modem.ConnectedDeviceInfo
 
@@ -1246,6 +1254,96 @@ Note that the organization field specifies the organization, it is not used to u
 | ASSET_DASHBOARD | Use the new assets as primary data owner in Mission Control dashboards. | 11 |
 | PROCESS_POINT_DASHBOARD | Use the new process points as primary data owner in Mission Control dashboards. | 14 |
 | LOCATIONS | Display and use device and gateway locations in Mission Control. | 12 |
+
+
+
+## Referenced messages from process_point.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [process_point.proto](https://github.com/HiberGlobal/api/blob/master/process_point.proto).
+
+
+### hiber.processpoint.ProcessPoint
+
+Process Points are things that collect the data produced by devices.
+Devices are assigned to process points to handle data ownership.
+When a device is replaced, the data flow for the process point continues with the data from the new device.
+Multiple devices can be assigned to an process point, though it is advisable to only do so when they send
+different type of data (e.g. one sensor for pressure and one for flow).
+
+For example, if you have a Well, you might have process points for Annulus A and the tubing head.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifier | [ string](#string) |  |
+| name | [ string](#string) | Name of the process point |
+|  **optional** type | [optional hiber.processpoint.ProcessPoint.Type](#hiberprocesspointprocesspointtype) | Type of the process point, if any of the predefined types applies. |
+|  **optional** description | [optional string](#string) | Longer detailed description of the process point. |
+|  **optional** notes | [optional string](#string) | Multiline notes field that can be used to add additional information to an process point. |
+|  **optional** time_zone | [optional string](#string) | Optional time zone for the process point. This can, for example, be used to calculate SLAs on a daily basis, adjusted by time zone. |
+|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this process point. |
+| metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Metadata for the process point. This can be automatically populated from linked devices or manually added. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) | Tags assigned to this process point |
+| devices | [repeated hiber.processpoint.ProcessPoint.AssignedDevice](#hiberprocesspointprocesspointassigneddevice) | Devices assigned to this process point |
+| inactive_devices | [repeated hiber.processpoint.ProcessPoint.AssignedDevice](#hiberprocesspointprocesspointassigneddevice) | Devices that were assigned to this process point in the past |
+| organization | [ string](#string) | The organization that owns this process point. Typically only relevant if child organizations are included. |
+| location | [ hiber.Location](#hiberlocation) | Location for the process point. |
+| files | [repeated hiber.file.File](#hiberfilefile) | Files for this process point. Typically an image of a place. See the File.media_type for more information. |
+
+### hiber.processpoint.ProcessPoint.AssignedDevice
+
+A device assigned to this process point.
+Non-operational values that the device produces will be linked to this process point
+(e.g. pressure, but not battery level).
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| number | [ string](#string) |  |
+| identifiers | [repeated string](#string) |  |
+|  **optional** name | [optional string](#string) |  |
+|  **optional** type | [optional string](#string) |  |
+|  **optional** last_message_sent_at | [optional hiber.Timestamp](#hibertimestamp) |  |
+|  **optional** last_message_received_at | [optional hiber.Timestamp](#hibertimestamp) |  |
+|  **optional** assignment_time_range | [optional hiber.TimeRange](#hibertimerange) |  |
+|  **optional** health | [optional hiber.health.HealthLevel](#hiberhealthhealthlevel) |  |
+| numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) |  |
+
+### hiber.processpoint.ProcessPointSelection
+
+Selection object for process points.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifiers | [repeated string](#string) | Select process points by identifier. |
+| search | [repeated string](#string) | Search process points by (partial, case insensitive) identifier, name, description, notes and time zone. |
+| types | [repeated hiber.processpoint.ProcessPoint.Type](#hiberprocesspointprocesspointtype) | Select process points by type. |
+|  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) | Select process points by tags |
+
+
+### Enums
+#### hiber.processpoint.ProcessPoint.Type
+Predefined process points types that can be used to say something about the data.
+Currently a limited list, but more may be added in the future.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| UNKNOWN |  | 0 |
+| WELL_ANNULUS_A |  | 1 |
+| WELL_ANNULUS_B |  | 2 |
+| WELL_ANNULUS_C |  | 3 |
+| WELL_ANNULUS_D |  | 4 |
+| WELL_HEAD |  | 15 |
+| WELL_TUBING_HEAD |  | 5 |
+| WELL_TUBING |  | 6 |
+| WELL_FLOW_LINE |  | 7 |
+| WELL_CASING |  | 8 |
+| WELL_PRODUCTION_CASING_PRESSURE |  | 9 |
+| WELL_INTERMITTENT_CASING_PRESSURE |  | 10 |
+| PIPELINE |  | 11 |
+| PRODUCTION_LINE |  | 12 |
+| GAS_MANIFOLD |  | 13 |
+| PRODUCTION_MANIFOLD |  | 14 |
 
 
 

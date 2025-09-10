@@ -241,6 +241,7 @@ They have a unique device number in our system, used to identify them.
 | numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | The numeric value types that this device produces. The device may produce other values (like battery level), but these are the primary value types. |
 | files | [repeated hiber.file.File](#hiberfilefile) | Files for this tag. Typically an image of the device installation. See the File.media_type for more information. |
 |  **optional** required_device_firmware_identifier | [optional string](#string) | When set, indicates that this device should be updated to the firmware specified by the identifier. |
+| process_points | [repeated hiber.processpoint.ProcessPoint](#hiberprocesspointprocesspoint) | List of process points that this device is connected to (if you have permission to access them). Some fields might be omitted in this inline view for compactness (like connected devices). |
 
 ### hiber.device.Device.Links
 

@@ -13,6 +13,7 @@ import "base.proto";
 import "file.proto";
 import "health.proto";
 import "organization.proto";
+import "process_point.proto";
 import "tag.proto";
 import "value.proto";
 import "valve.proto";
@@ -29,6 +30,7 @@ service ModemService {
     /* Get a single modem. */
     rpc Get (GetModemRequest) returns (Modem) {
         option (permission_usage) = MODEMS;
+        option (permission_usage) = PROCESS_POINTS;
 
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     }
@@ -46,6 +48,7 @@ service ModemService {
     /* List the modems in your organization, and, optionally, its child organizations. */
     rpc List (ListModemsRequest) returns (ListModemsRequest.Response) {
         option (permission_usage) = MODEMS;
+        option (permission_usage) = PROCESS_POINTS;
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     }
 
@@ -54,6 +57,7 @@ service ModemService {
      */
     rpc Grouped (ListModemsGrouped.Request) returns (ListModemsGrouped.Response) {
         option (permission_usage) = MODEMS;
+        option (permission_usage) = PROCESS_POINTS;
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     }
 
@@ -168,6 +172,7 @@ message Modem {
 
     /* The transmission interval for this modem, if configured. */
     Duration transmission_interval = 33;
+
     /* The expected transmission rate for this modem. */
     optional hiber.value.Value.Numeric.Rate expected_transmission_rate = 34;
 
@@ -182,6 +187,11 @@ message Modem {
     repeated file.File files = 36;
 
     optional string required_device_firmware_identifier = 39;
+
+    /* List of process points that this device is connected to (if you have permission to access them).
+     * Some fields might be omitted in this inline view for compactness (like connected devices).
+     */
+    repeated hiber.processpoint.ProcessPoint process_points = 40;
 
     /* Additional information when this modem is a gateway. */
     message GatewayInfo {
