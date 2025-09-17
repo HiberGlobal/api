@@ -513,6 +513,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.modem.Modem.ConnectedDeviceInfo.SettingsEntry"><span class="badge">M</span>Modem.ConnectedDeviceInfo.SettingsEntry</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.modem.Modem.GatewayInfo"><span class="badge">M</span>Modem.GatewayInfo</a>
                 </li>
               
@@ -4224,6 +4228,13 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                   <td><p>The last time the battery was replaced for this device. </p></td>
                 </tr>
               
+                <tr>
+                  <td>settings</td>
+                  <td><a href="#hiber.modem.Modem.ConnectedDeviceInfo.SettingsEntry">Modem.ConnectedDeviceInfo.SettingsEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Map of numeric value to bytes that can be applied to the device. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -4253,6 +4264,37 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
               </tbody>
             </table>
             
+          
+
+        
+      
+        <h3 id="hiber.modem.Modem.ConnectedDeviceInfo.SettingsEntry">Modem.ConnectedDeviceInfo.SettingsEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#hiber.BytesOrHex">hiber.BytesOrHex</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
           
 
         

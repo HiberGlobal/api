@@ -29,6 +29,7 @@ used to identify them.
   - [ListModemsRequest.Response](#listmodemsrequestresponse)
   - [Modem](#modem)
   - [Modem.ConnectedDeviceInfo](#modemconnecteddeviceinfo)
+  - [Modem.ConnectedDeviceInfo.SettingsEntry](#modemconnecteddeviceinfosettingsentry)
   - [Modem.GatewayInfo](#modemgatewayinfo)
   - [Modem.Peripherals](#modemperipherals)
   - [Modem.Peripherals.PeripheralsEntry](#modemperipheralsperipheralsentry)
@@ -477,6 +478,16 @@ Additional information when this modem is a connected device.
 | sensor_brand | [ string](#string) | Brand for this modem's sensor. |
 |  **optional** frequency | [optional Modem.ConnectedDeviceInfo.Frequency](#modemconnecteddeviceinfofrequency) | Frequency configured for this device. |
 |  **optional** last_battery_replacement | [optional hiber.Timestamp](#hibertimestamp) | The last time the battery was replaced for this device. |
+| settings | [map Modem.ConnectedDeviceInfo.SettingsEntry](#modemconnecteddeviceinfosettingsentry) | Map of numeric value to bytes that can be applied to the device. |
+
+### Modem.ConnectedDeviceInfo.SettingsEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) |  |
+| value | [ hiber.BytesOrHex](#hiberbytesorhex) |  |
 
 ### Modem.GatewayInfo
 

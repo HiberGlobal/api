@@ -241,7 +241,7 @@ List device settings.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| key | [ uint32](#uint32) |  |
+| key | [ string](#string) |  |
 | value | [ hiber.BytesOrHex](#hiberbytesorhex) |  |
 
 ### ListDevice

@@ -1,5 +1,15 @@
 # Changelog Hiber API
 
+### 0.255 (2025-09-17)
+
+##### DeviceSettings
+
+- Corrected `DeviceSettings.settings` to have a string key.
+
+##### ModemService
+
+- Added `settings` to `Modem.ConnectedDeviceInfo` to get the device settings immediately.
+
 ### 0.254 (2025-09-10)
 
 ##### DeviceService

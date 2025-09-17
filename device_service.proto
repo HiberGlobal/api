@@ -232,7 +232,7 @@ message DeviceSettings {
     string number = 1;
 
     /* Map of numeric value to bytes that can be applied to the device. */
-    map<uint32, BytesOrHex> settings = 2;
+    map<string, BytesOrHex> settings = 2;
 
     message Request {
         /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
