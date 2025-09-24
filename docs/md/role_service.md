@@ -48,6 +48,7 @@
   - [hiber.user.UpdateMissionControlSettingsRequest](#hiberuserupdatemissioncontrolsettingsrequest)
   - [hiber.user.UpdateMissionControlSettingsRequest.Response](#hiberuserupdatemissioncontrolsettingsrequestresponse)
 
+    - [hiber.user.CurrentUser.Feature](#hiberusercurrentuserfeature)
 
 - Referenced messages from [role.proto](#referenced-messages-from-roleproto)
   - [hiber.role.Role](#hiberrolerole)
@@ -254,6 +255,7 @@ Your personal data.
 |  **optional** current_organization_permissions | [optional hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions for the current organization. |
 |  **optional** user_permissions | [optional hiber.Filter.UserPermissions](#hiberfilteruserpermissions) | Permissions for the user. If this is a token, the user permissions may be limited or omitted. |
 |  **optional** support_permissions | [optional hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions) | Permissions for customer support. Used for features typically reserved for customer support, or that behave differently when used by a customer support operator. |
+| features | [repeated hiber.user.CurrentUser.Feature](#hiberusercurrentuserfeature) | The features that are enabled for this user. |
 | roles | [repeated string](#string) | Roles for the current organization. |
 | mission_control_settings | [ string](#string) |  |
 | accepted_tac | [ bool](#bool) | Whether the user accepted the terms and conditions. |
@@ -412,6 +414,14 @@ Update mission control settings, which are in a json format.
 
 
 ### Enums
+#### hiber.user.CurrentUser.Feature
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| UNKNOWN |  | 0 |
+| EXPERIMENTAL | Get access to experimental features (if available). | 1 |
+
 
 
 ## Referenced messages from role.proto

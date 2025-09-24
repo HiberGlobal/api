@@ -1,0 +1,8 @@
+[{
+  "name": "Feature",
+  "description": "",
+  "values": {
+    "UNKNOWN": ""
+    , "EXPERIMENTAL": "Get access to experimental features (if available)."
+    }
+}]

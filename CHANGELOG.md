@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.256 (2025-09-24)
+
+##### CurrentUserService
+
+- Added `features` to `CurrentUser`, similar to `Organization.features` to grant selected users access to experimental features.
+
 ### 0.255 (2025-09-17)
 
 ##### DeviceSettings
