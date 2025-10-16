@@ -1,5 +1,17 @@
 # Changelog Hiber API
 
+### 0.258 (2025-10-15)
+
+##### ModemService
+
+- Added sort options to sort by process point name.
+
+##### ValueService
+
+- Added `DownsampledValues.Request.determine_lowest` and `.determine_highest` to determine the lowest / highest value for each selected device or process point.
+- Added `formatted` to `Value`, which is just the formatted number without unit (`textual` minus `unit_symbol`).
+- Added `rpc Latest` to list the latest values only, per owner (device or process point) and field or value type.
+
 ### 0.256 (2025-09-24)
 
 ##### CurrentUserService

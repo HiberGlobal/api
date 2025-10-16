@@ -157,6 +157,11 @@ enum Sort {
     /* Sort alphabetically on the name of the organization that owns the device, in descending order. */
     ORGANIZATION_DESC = 11;
 
+    /* Sort alphabetically on the name of the organization that owns the device, in ascending order. */
+    PROCESS_POINT_ASC = 26;
+    /* Sort alphabetically on the name of the organization that owns the device, in descending order. */
+    PROCESS_POINT_DESC = 27;
+
     /* Health sorted from least to most severe (e.g. OK, WARNING, ERROR). */
     HEALTH_ASC = 12;
     /* Health sorted from most to least severe (e.g. ERROR, WARNING, OK). */

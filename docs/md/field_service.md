@@ -155,7 +155,6 @@
     - [hiber.value.Value.Numeric.Voltage.VoltageUnit](#hibervaluevaluenumericvoltagevoltageunit)
     - [hiber.value.Value.Numeric.Volume.VolumeUnit](#hibervaluevaluenumericvolumevolumeunit)
     - [hiber.value.Value.Type](#hibervaluevaluetype)
-    - [hiber.value.ValueAggregation](#hibervaluevalueaggregation)
     - [hiber.value.ValueTransformation](#hibervaluevaluetransformation)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
@@ -855,6 +854,8 @@ Sorting options for the results.
 | MODEM_NAME_DESC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in descending order. | 7 |
 | ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the modem, in ascending order. | 8 |
 | ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the modem, in descending order. | 9 |
+| PROCESS_POINT_ASC | Sort alphabetically on the name of the process point(s) assigned to the modem, in ascending order. | 26 |
+| PROCESS_POINT_DESC | Sort alphabetically on the name of the process point(s) assigned to the modem, in descending order. | 27 |
 | HEALTH | Health sorted from least to most severe (e.g. OK, WARNING, ERROR). | 10 |
 | HEALTH_DESC | Health sorted from most to least severe (e.g. ERROR, WARNING, OK). | 11 |
 | HEALTH_ASC_ALPHABETICAL | Health sorted alphabetically by health level name. | 12 |
@@ -1555,7 +1556,8 @@ If the value is numeric, this specifies the unit, value, etc.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **typed_value**.other | [ hiber.value.Value.Numeric.Other](#hibervaluevaluenumericother) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **typed_value**.unknown | [ double](#double) |  |
 | value | [ double](#double) |  |
-| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| formatted | [ string](#string) | Textual representation, excluding unit symbol, rounded based on the user preferences and field config. |
+| textual | [ string](#string) | Textual representation, including unit symbol, rounded based on the user preferences and field config. |
 | unit | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | Unit of the value, based on the user preferences. |
 | unit_symbol | [ string](#string) | Display string of the unit symbol, based on the unit of the value (which is based on user preferences). |
 |  **optional** converted_from | [optional hiber.UnitOfMeasurement](#hiberunitofmeasurement) | The original unit, iff this value was converted from another unit because of user preferences. |
@@ -1855,23 +1857,6 @@ The type of value that is represented.
 | NUMERIC | This field contains numeric values, with an optional unit of measurement defined below. | 1 |
 | TEXT | This field contains text to be displayed. | 2 |
 | ENUM | This field switches between several predefined values. Typically used for status fields. | 3 |
-
-#### hiber.value.ValueAggregation
-Get an aggregated value for the selected data (e.g. average).
-Text fields can only use the LAST aggregation.
-Enum fields support a subset of aggregations:
-  - DEFAULT and LAST return the last value;
-  - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order;
-  - AVERAGE and SUM are not supported.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| DEFAULT |  | 0 |
-| AVERAGE | Return the average value. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 1 |
-| SUM | Return the sum all values. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 2 |
-| LAST | Just take the last value. | 3 |
-| MINIMUM | Return the lowest value. For enum fields, the order of values is used to determine the MINIMUM. Not supported for textual fields. When used with these fields, LAST is used instead. | 4 |
-| MAXIMUM | Return the highest value. For enum fields, the order of values is used to determine the MAXIMUM. Not supported for textual fields. When used with these fields, LAST is used instead. | 5 |
 
 #### hiber.value.ValueTransformation
 Transform the values into a derived value.

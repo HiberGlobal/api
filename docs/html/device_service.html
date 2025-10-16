@@ -871,10 +871,6 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.value.ValueAggregation"><span class="badge">E</span>ValueAggregation</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.value.ValueTransformation"><span class="badge">E</span>ValueTransformation</a>
                 </li>
               
@@ -4327,6 +4323,18 @@ De default name of the device is its HEX number, in descending order.</p></td>
               </tr>
             
               <tr>
+                <td>PROCESS_POINT_ASC</td>
+                <td>26</td>
+                <td><p>Sort alphabetically on the name of the organization that owns the device, in ascending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROCESS_POINT_DESC</td>
+                <td>27</td>
+                <td><p>Sort alphabetically on the name of the organization that owns the device, in descending order.</p></td>
+              </tr>
+            
+              <tr>
                 <td>HEALTH_ASC</td>
                 <td>12</td>
                 <td><p>Health sorted from least to most severe (e.g. OK, WARNING, ERROR).</p></td>
@@ -6859,6 +6867,18 @@ add the name of the peripheral as a map-key and add a repeated list of versions 
               </tr>
             
               <tr>
+                <td>PROCESS_POINT_ASC</td>
+                <td>26</td>
+                <td><p>Sort alphabetically on the name of the process point(s) assigned to the modem, in ascending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROCESS_POINT_DESC</td>
+                <td>27</td>
+                <td><p>Sort alphabetically on the name of the process point(s) assigned to the modem, in descending order.</p></td>
+              </tr>
+            
+              <tr>
                 <td>HEALTH</td>
                 <td>10</td>
                 <td><p>Health sorted from least to most severe (e.g. OK, WARNING, ERROR).</p></td>
@@ -7495,10 +7515,17 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                 </tr>
               
                 <tr>
+                  <td>formatted</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Textual representation, excluding unit symbol, rounded based on the user preferences and field config. </p></td>
+                </tr>
+              
+                <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                  <td><p>Textual representation, including unit symbol, rounded based on the user preferences and field config. </p></td>
                 </tr>
               
                 <tr>
@@ -8505,59 +8532,6 @@ or something like energy in joules that is not available.</p></td>
                 <td>ENUM</td>
                 <td>3</td>
                 <td><p>This field switches between several predefined values. Typically used for status fields.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-        <h3 id="hiber.value.ValueAggregation">ValueAggregation</h3>
-        <p>Get an aggregated value for the selected data (e.g. average).</p><p>Text fields can only use the LAST aggregation.</p><p>Enum fields support a subset of aggregations:</p><p>- DEFAULT and LAST return the last value;</p><p>- MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order;</p><p>- AVERAGE and SUM are not supported.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>DEFAULT</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>AVERAGE</td>
-                <td>1</td>
-                <td><p>Return the average value.
-Not supported for textual and enum fields. When used with these fields, LAST is used instead.</p></td>
-              </tr>
-            
-              <tr>
-                <td>SUM</td>
-                <td>2</td>
-                <td><p>Return the sum all values.
-Not supported for textual and enum fields. When used with these fields, LAST is used instead.</p></td>
-              </tr>
-            
-              <tr>
-                <td>LAST</td>
-                <td>3</td>
-                <td><p>Just take the last value.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MINIMUM</td>
-                <td>4</td>
-                <td><p>Return the lowest value.
-For enum fields, the order of values is used to determine the MINIMUM.
-Not supported for textual fields. When used with these fields, LAST is used instead.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MAXIMUM</td>
-                <td>5</td>
-                <td><p>Return the highest value.
-For enum fields, the order of values is used to determine the MAXIMUM.
-Not supported for textual fields. When used with these fields, LAST is used instead.</p></td>
               </tr>
             
           </tbody>

@@ -37,7 +37,7 @@ message Valve {
 
     enum HighPressureLineStatus {
         /* High pressure line = 0 bar. */
-        ZERO = 0;
+        NOT_PRESSURIZED = 0;
         /* High pressure line pressurized. */
         PRESSURIZED = 1;
         /* High pressure line ready to be pressurized.

@@ -2,7 +2,7 @@
   "name": "HighPressureLineStatus",
   "description": "",
   "values": {
-    "ZERO": "High pressure line = 0 bar."
+    "NOT_PRESSURIZED": "High pressure line = 0 bar."
     , "PRESSURIZED": "High pressure line pressurized."
     , "READY_TO_BE_PRESSURIZED": "High pressure line ready to be pressurized. High pressure line requires manual operation to change status to PRESSURIZED."
     }

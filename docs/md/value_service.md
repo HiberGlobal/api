@@ -16,6 +16,9 @@ Messages are parsed to a number of values (depending on the parser), which can b
   - [DownsampledValues](#downsampledvalues)
   - [DownsampledValues.Request](#downsampledvaluesrequest)
   - [DownsampledValues.Response](#downsampledvaluesresponse)
+  - [LatestValues](#latestvalues)
+  - [LatestValues.Request](#latestvaluesrequest)
+  - [LatestValues.Response](#latestvaluesresponse)
   - [ListValues](#listvalues)
   - [ListValues.Request](#listvaluesrequest)
   - [ListValues.Request.TransformFieldsEntry](#listvaluesrequesttransformfieldsentry)
@@ -94,7 +97,6 @@ Messages are parsed to a number of values (depending on the parser), which can b
     - [hiber.value.Value.Numeric.Voltage.VoltageUnit](#hibervaluevaluenumericvoltagevoltageunit)
     - [hiber.value.Value.Numeric.Volume.VolumeUnit](#hibervaluevaluenumericvolumevolumeunit)
     - [hiber.value.Value.Type](#hibervaluevaluetype)
-    - [hiber.value.ValueAggregation](#hibervaluevalueaggregation)
     - [hiber.value.ValueTransformation](#hibervaluevaluetransformation)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
@@ -166,6 +168,12 @@ Messages are parsed to a number of values (depending on the parser), which can b
 
 
 
+### Latest
+> **rpc** Latest([LatestValues.Request](#latestvaluesrequest))
+    [LatestValues.Response](#latestvaluesresponse)
+
+
+
 
 ## Messages
 
@@ -185,6 +193,7 @@ Request downsampled values, reducing the selected time range to a single value p
 |  **optional** points | [optional uint32](#uint32) | Downsample the values to the given amount of data points. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Paginate the downsampled values, if needed. |
 | sort | [ ListValues.Sort](#listvaluessort) | How to sort the downsampled values. |
+|  **optional** determine_minimum_and_maximum_values | [optional bool](#bool) | Determine the lowest and highest values for each owner (device / process point). |
 
 ### DownsampledValues.Response
 
@@ -192,9 +201,36 @@ Request downsampled values, reducing the selected time range to a single value p
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| downsampled_values | [repeated ValueContext](#valuecontext) |  |
+| downsampled_values | [repeated ValueContext](#valuecontext) | The downsampled values, mixed together and sorted by time (see sort in request). |
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 | request | [ DownsampledValues.Request](#downsampledvaluesrequest) |  |
+| lowest | [repeated ValueContext](#valuecontext) | The lowest value for each owner (device / process point). |
+| highest | [repeated ValueContext](#valuecontext) | The highest value for each owner (device / process point). |
+
+### LatestValues
+
+Latest values for a (set of) modem(s), filtering by field and time.
+
+
+### LatestValues.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| selection | [ ValueSelection](#valueselection) |  |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+
+### LatestValues.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| values | [repeated ValueContext](#valuecontext) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
+| request | [ LatestValues.Request](#latestvaluesrequest) |  |
 
 ### ListValues
 
@@ -541,6 +577,8 @@ Sorting options for the results.
 | MODEM_NAME_DESC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in descending order. | 7 |
 | ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the modem, in ascending order. | 8 |
 | ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the modem, in descending order. | 9 |
+| PROCESS_POINT_ASC | Sort alphabetically on the name of the process point(s) assigned to the modem, in ascending order. | 26 |
+| PROCESS_POINT_DESC | Sort alphabetically on the name of the process point(s) assigned to the modem, in descending order. | 27 |
 | HEALTH | Health sorted from least to most severe (e.g. OK, WARNING, ERROR). | 10 |
 | HEALTH_DESC | Health sorted from most to least severe (e.g. ERROR, WARNING, OK). | 11 |
 | HEALTH_ASC_ALPHABETICAL | Health sorted alphabetically by health level name. | 12 |
@@ -753,7 +791,8 @@ If the value is numeric, this specifies the unit, value, etc.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **typed_value**.other | [ hiber.value.Value.Numeric.Other](#hibervaluevaluenumericother) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **typed_value**.unknown | [ double](#double) |  |
 | value | [ double](#double) |  |
-| textual | [ string](#string) | Textual representation including unit symbol, rounded based on the user preferences and field config. |
+| formatted | [ string](#string) | Textual representation, excluding unit symbol, rounded based on the user preferences and field config. |
+| textual | [ string](#string) | Textual representation, including unit symbol, rounded based on the user preferences and field config. |
 | unit | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | Unit of the value, based on the user preferences. |
 | unit_symbol | [ string](#string) | Display string of the unit symbol, based on the unit of the value (which is based on user preferences). |
 |  **optional** converted_from | [optional hiber.UnitOfMeasurement](#hiberunitofmeasurement) | The original unit, iff this value was converted from another unit because of user preferences. |
@@ -1053,23 +1092,6 @@ The type of value that is represented.
 | NUMERIC | This field contains numeric values, with an optional unit of measurement defined below. | 1 |
 | TEXT | This field contains text to be displayed. | 2 |
 | ENUM | This field switches between several predefined values. Typically used for status fields. | 3 |
-
-#### hiber.value.ValueAggregation
-Get an aggregated value for the selected data (e.g. average).
-Text fields can only use the LAST aggregation.
-Enum fields support a subset of aggregations:
-  - DEFAULT and LAST return the last value;
-  - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order;
-  - AVERAGE and SUM are not supported.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| DEFAULT |  | 0 |
-| AVERAGE | Return the average value. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 1 |
-| SUM | Return the sum all values. Not supported for textual and enum fields. When used with these fields, LAST is used instead. | 2 |
-| LAST | Just take the last value. | 3 |
-| MINIMUM | Return the lowest value. For enum fields, the order of values is used to determine the MINIMUM. Not supported for textual fields. When used with these fields, LAST is used instead. | 4 |
-| MAXIMUM | Return the highest value. For enum fields, the order of values is used to determine the MAXIMUM. Not supported for textual fields. When used with these fields, LAST is used instead. | 5 |
 
 #### hiber.value.ValueTransformation
 Transform the values into a derived value.

@@ -153,17 +153,6 @@
     , "ENUM": "This field switches between several predefined values. Typically used for status fields."
     }
 },{
-  "name": "ValueAggregation",
-  "description": "Get an aggregated value for the selected data (e.g. average). Text fields can only use the LAST aggregation. Enum fields support a subset of aggregations: - DEFAULT and LAST return the last value; - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order; - AVERAGE and SUM are not supported.",
-  "values": {
-    "DEFAULT": ""
-    , "AVERAGE": "Return the average value. Not supported for textual and enum fields. When used with these fields, LAST is used instead."
-    , "SUM": "Return the sum all values. Not supported for textual and enum fields. When used with these fields, LAST is used instead."
-    , "LAST": "Just take the last value."
-    , "MINIMUM": "Return the lowest value. For enum fields, the order of values is used to determine the MINIMUM. Not supported for textual fields. When used with these fields, LAST is used instead."
-    , "MAXIMUM": "Return the highest value. For enum fields, the order of values is used to determine the MAXIMUM. Not supported for textual fields. When used with these fields, LAST is used instead."
-    }
-},{
   "name": "ValueTransformation",
   "description": "Transform the values into a derived value.",
   "values": {

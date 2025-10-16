@@ -446,7 +446,7 @@ Selection object for valve.
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| ZERO | High pressure line = 0 bar. | 0 |
+| NOT_PRESSURIZED | High pressure line = 0 bar. | 0 |
 | PRESSURIZED | High pressure line pressurized. | 1 |
 | READY_TO_BE_PRESSURIZED | High pressure line ready to be pressurized. High pressure line requires manual operation to change status to PRESSURIZED. | 2 |
 

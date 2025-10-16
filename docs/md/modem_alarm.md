@@ -1127,6 +1127,8 @@ Sorting options for the results.
 | MODEM_NAME_DESC | Sort alphabetically on the name of the modem. De default name of the modem is its HEX number, in descending order. | 7 |
 | ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the modem, in ascending order. | 8 |
 | ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the modem, in descending order. | 9 |
+| PROCESS_POINT_ASC | Sort alphabetically on the name of the process point(s) assigned to the modem, in ascending order. | 26 |
+| PROCESS_POINT_DESC | Sort alphabetically on the name of the process point(s) assigned to the modem, in descending order. | 27 |
 | HEALTH | Health sorted from least to most severe (e.g. OK, WARNING, ERROR). | 10 |
 | HEALTH_DESC | Health sorted from most to least severe (e.g. ERROR, WARNING, OK). | 11 |
 | HEALTH_ASC_ALPHABETICAL | Health sorted alphabetically by health level name. | 12 |

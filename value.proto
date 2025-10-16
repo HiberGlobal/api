@@ -306,7 +306,10 @@ message Value {
 
         double value = 2;
 
-        /* Textual representation including unit symbol, rounded based on the user preferences and field config. */
+        /* Textual representation, excluding unit symbol, rounded based on the user preferences and field config. */
+        string formatted = 23;
+
+        /* Textual representation, including unit symbol, rounded based on the user preferences and field config. */
         string textual = 18;
 
         /* Unit of the value, based on the user preferences. */
@@ -336,42 +339,6 @@ message Value {
         /* Priority of the value, typically used for ordering. */
         int32 priority = 5;
     }
-}
-
-/* Get an aggregated value for the selected data (e.g. average).
- * Text fields can only use the LAST aggregation.
- * Enum fields support a subset of aggregations:
- *   - DEFAULT and LAST return the last value;
- *   - MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order;
- *   - AVERAGE and SUM are not supported.
- */
-enum ValueAggregation {
-    DEFAULT = 0;
-
-    /* Return the average value.
-     * Not supported for textual and enum fields. When used with these fields, LAST is used instead.
-     */
-    AVERAGE = 1;
-
-    /* Return the sum all values.
-     * Not supported for textual and enum fields. When used with these fields, LAST is used instead.
-     */
-    SUM = 2;
-
-    /* Just take the last value. */
-    LAST = 3;
-
-    /* Return the lowest value.
-     * For enum fields, the order of values is used to determine the MINIMUM.
-     * Not supported for textual fields. When used with these fields, LAST is used instead.
-     */
-    MINIMUM = 4;
-
-    /* Return the highest value.
-     * For enum fields, the order of values is used to determine the MAXIMUM.
-     * Not supported for textual fields. When used with these fields, LAST is used instead.
-     */
-    MAXIMUM = 5;
 }
 
 /* Transform the values into a derived value. */

@@ -686,6 +686,11 @@ message ListModemsRequest {
         /* Sort alphabetically on the name of the organization that owns the modem, in descending order. */
         ORGANIZATION_DESC = 9;
 
+        /* Sort alphabetically on the name of the process point(s) assigned to the modem, in ascending order. */
+        PROCESS_POINT_ASC = 26;
+        /* Sort alphabetically on the name of the process point(s) assigned to the modem, in descending order. */
+        PROCESS_POINT_DESC = 27;
+
         /* Health sorted from least to most severe (e.g. OK, WARNING, ERROR). */
         HEALTH = 10;
         /* Health sorted from most to least severe (e.g. ERROR, WARNING, OK). */

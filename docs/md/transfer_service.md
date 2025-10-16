@@ -314,6 +314,8 @@ Sorting options for the results.
 | LIFECYCLE_ALPHABETICAL_DESC | Sort device on lifecycle name, alphabetically in reverse order. | 9 |
 | ORGANIZATION_ASC | Sort alphabetically on the name of the organization that owns the device, in ascending order. | 10 |
 | ORGANIZATION_DESC | Sort alphabetically on the name of the organization that owns the device, in descending order. | 11 |
+| PROCESS_POINT_ASC | Sort alphabetically on the name of the organization that owns the device, in ascending order. | 26 |
+| PROCESS_POINT_DESC | Sort alphabetically on the name of the organization that owns the device, in descending order. | 27 |
 | HEALTH_ASC | Health sorted from least to most severe (e.g. OK, WARNING, ERROR). | 12 |
 | HEALTH_DESC | Health sorted from most to least severe (e.g. ERROR, WARNING, OK). | 13 |
 | HEALTH_ALPHABETICAL_ASC | Health sorted alphabetically by health level name. | 14 |

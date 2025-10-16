@@ -191,6 +191,18 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.value.LatestValues"><span class="badge">M</span>LatestValues</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.value.LatestValues.Request"><span class="badge">M</span>LatestValues.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.value.LatestValues.Response"><span class="badge">M</span>LatestValues.Response</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.value.ListValues"><span class="badge">M</span>ListValues</a>
                 </li>
               
@@ -867,10 +879,6 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.value.ValueAggregation"><span class="badge">E</span>ValueAggregation</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.value.ValueTransformation"><span class="badge">E</span>ValueTransformation</a>
                 </li>
               
@@ -945,6 +953,13 @@ sorted by time. </p></td>
                   <td><p>How to sort the downsampled values. </p></td>
                 </tr>
               
+                <tr>
+                  <td>determine_minimum_and_maximum_values</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Determine the lowest and highest values for each owner (device / process point). </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -966,7 +981,7 @@ sorted by time. </p></td>
                   <td>downsampled_values</td>
                   <td><a href="#hiber.value.ValueContext">ValueContext</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>The downsampled values, mixed together and sorted by time (see sort in request). </p></td>
                 </tr>
               
                 <tr>
@@ -979,6 +994,103 @@ sorted by time. </p></td>
                 <tr>
                   <td>request</td>
                   <td><a href="#hiber.value.DownsampledValues.Request">DownsampledValues.Request</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lowest</td>
+                  <td><a href="#hiber.value.ValueContext">ValueContext</a></td>
+                  <td>repeated</td>
+                  <td><p>The lowest value for each owner (device / process point). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>highest</td>
+                  <td><a href="#hiber.value.ValueContext">ValueContext</a></td>
+                  <td>repeated</td>
+                  <td><p>The highest value for each owner (device / process point). </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.value.LatestValues">LatestValues</h3>
+        <p>Latest values for a (set of) modem(s), filtering by field and time.</p>
+
+        
+
+        
+      
+        <h3 id="hiber.value.LatestValues.Request">LatestValues.Request</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>selection</td>
+                  <td><a href="#hiber.value.ValueSelection">ValueSelection</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.value.LatestValues.Response">LatestValues.Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>values</td>
+                  <td><a href="#hiber.value.ValueContext">ValueContext</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#hiber.value.LatestValues.Request">LatestValues.Request</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1654,6 +1766,13 @@ Operational data is typically only available when selecting values for a device.
                 <td>Downsampled</td>
                 <td><a href="#hiber.value.DownsampledValues.Request">DownsampledValues.Request</a></td>
                 <td><a href="#hiber.value.DownsampledValues.Response">DownsampledValues.Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Latest</td>
+                <td><a href="#hiber.value.LatestValues.Request">LatestValues.Request</a></td>
+                <td><a href="#hiber.value.LatestValues.Response">LatestValues.Response</a></td>
                 <td><p></p></td>
               </tr>
             
@@ -6546,6 +6665,18 @@ add the name of the peripheral as a map-key and add a repeated list of versions 
               </tr>
             
               <tr>
+                <td>PROCESS_POINT_ASC</td>
+                <td>26</td>
+                <td><p>Sort alphabetically on the name of the process point(s) assigned to the modem, in ascending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PROCESS_POINT_DESC</td>
+                <td>27</td>
+                <td><p>Sort alphabetically on the name of the process point(s) assigned to the modem, in descending order.</p></td>
+              </tr>
+            
+              <tr>
                 <td>HEALTH</td>
                 <td>10</td>
                 <td><p>Health sorted from least to most severe (e.g. OK, WARNING, ERROR).</p></td>
@@ -7547,10 +7678,17 @@ Typically an image of a place. See the File.media_type for more information. </p
                 </tr>
               
                 <tr>
+                  <td>formatted</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Textual representation, excluding unit symbol, rounded based on the user preferences and field config. </p></td>
+                </tr>
+              
+                <tr>
                   <td>textual</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Textual representation including unit symbol, rounded based on the user preferences and field config. </p></td>
+                  <td><p>Textual representation, including unit symbol, rounded based on the user preferences and field config. </p></td>
                 </tr>
               
                 <tr>
@@ -8557,59 +8695,6 @@ or something like energy in joules that is not available.</p></td>
                 <td>ENUM</td>
                 <td>3</td>
                 <td><p>This field switches between several predefined values. Typically used for status fields.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-        <h3 id="hiber.value.ValueAggregation">ValueAggregation</h3>
-        <p>Get an aggregated value for the selected data (e.g. average).</p><p>Text fields can only use the LAST aggregation.</p><p>Enum fields support a subset of aggregations:</p><p>- DEFAULT and LAST return the last value;</p><p>- MINIMUM and MAXIMUM return the lowest or highest value (respectively) based on the enum value order;</p><p>- AVERAGE and SUM are not supported.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>DEFAULT</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>AVERAGE</td>
-                <td>1</td>
-                <td><p>Return the average value.
-Not supported for textual and enum fields. When used with these fields, LAST is used instead.</p></td>
-              </tr>
-            
-              <tr>
-                <td>SUM</td>
-                <td>2</td>
-                <td><p>Return the sum all values.
-Not supported for textual and enum fields. When used with these fields, LAST is used instead.</p></td>
-              </tr>
-            
-              <tr>
-                <td>LAST</td>
-                <td>3</td>
-                <td><p>Just take the last value.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MINIMUM</td>
-                <td>4</td>
-                <td><p>Return the lowest value.
-For enum fields, the order of values is used to determine the MINIMUM.
-Not supported for textual fields. When used with these fields, LAST is used instead.</p></td>
-              </tr>
-            
-              <tr>
-                <td>MAXIMUM</td>
-                <td>5</td>
-                <td><p>Return the highest value.
-For enum fields, the order of values is used to determine the MAXIMUM.
-Not supported for textual fields. When used with these fields, LAST is used instead.</p></td>
               </tr>
             
           </tbody>

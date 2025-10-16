@@ -14,6 +14,8 @@
     , "LIFECYCLE_ALPHABETICAL_DESC": "Sort device on lifecycle name, alphabetically in reverse order."
     , "ORGANIZATION_ASC": "Sort alphabetically on the name of the organization that owns the device, in ascending order."
     , "ORGANIZATION_DESC": "Sort alphabetically on the name of the organization that owns the device, in descending order."
+    , "PROCESS_POINT_ASC": "Sort alphabetically on the name of the organization that owns the device, in ascending order."
+    , "PROCESS_POINT_DESC": "Sort alphabetically on the name of the organization that owns the device, in descending order."
     , "HEALTH_ASC": "Health sorted from least to most severe (e.g. OK, WARNING, ERROR)."
     , "HEALTH_DESC": "Health sorted from most to least severe (e.g. ERROR, WARNING, OK)."
     , "HEALTH_ALPHABETICAL_ASC": "Health sorted alphabetically by health level name."

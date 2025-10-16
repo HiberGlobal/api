@@ -29,7 +29,19 @@ service ValueService {
         /* When value owner is a device. */
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     }
+
     rpc Downsampled (DownsampledValues.Request) returns (DownsampledValues.Response) {
+        /* When value owner is an asset. */
+        option (permission_usage) = ASSETS_VALUES;
+        /* When value owner is an process point. */
+        option (permission_usage) = PROCESS_POINTS_VALUES;
+        /* When value owner is a device. */
+        option (permission_usage) = MODEM_VALUES;
+        /* When value owner is a device. */
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+
+    rpc Latest (LatestValues.Request) returns (LatestValues.Response) {
         /* When value owner is an asset. */
         option (permission_usage) = ASSETS_VALUES;
         /* When value owner is an process point. */
@@ -236,10 +248,37 @@ message DownsampledValues {
 
         /* How to sort the downsampled values. */
         ListValues.Sort sort = 5;
+
+        /* Determine the lowest and highest values for each owner (device / process point). */
+        optional bool determine_minimum_and_maximum_values = 6;
     }
 
     message Response {
+        /* The downsampled values, mixed together and sorted by time (see sort in request). */
         repeated ValueContext downsampled_values = 1;
+
+        Pagination.Result pagination = 2;
+        Request request = 3;
+
+        /* The lowest value for each owner (device / process point). */
+        repeated ValueContext lowest = 4;
+
+        /* The highest value for each owner (device / process point). */
+        repeated ValueContext highest = 5;
+    }
+}
+
+/* Latest values for a (set of) modem(s), filtering by field and time. */
+message LatestValues {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+        ValueSelection selection = 2;
+        optional Pagination pagination = 3;
+    }
+
+    message Response {
+        repeated ValueContext values = 1;
         Pagination.Result pagination = 2;
         Request request = 3;
     }
