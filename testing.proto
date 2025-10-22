@@ -175,6 +175,9 @@ message Simulation {
          */
         Timestamp next_simulation_run_after = 6;
 
+        /* Metadata for the messages. For example: LoRaWAN values like fPort. */
+        optional google.protobuf.Struct metadata = 10;
+
         /* Rotate through a list of message bodies. */
         message MessageBodyRotation {
             /* The rotating list of message bodies to use when simulating messages. */
@@ -279,6 +282,9 @@ message Simulation {
 
                 /* Disable the message simulation until the given date (UTC). */
                 Timestamp set_inactive_until = 8;
+
+                /* Metadata for the messages. For example: LoRaWAN values like fPort. */
+                optional google.protobuf.Struct metadata = 14;
 
                 optional Pagination pagination = 10;
             }

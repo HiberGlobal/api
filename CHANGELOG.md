@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.259 (2025-10-22)
+
+##### ExportService
+
+- Added `requested_by` to `Export` to see who requested the export.
+
 ### 0.258 (2025-10-15)
 
 ##### ModemService

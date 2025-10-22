@@ -5,6 +5,7 @@
       "identifier": "example-identifier",
       "name": "example",
       "status": "EXPIRED",
+      "requestedBy": "user-identifier",
       "urls": [
         {
           "name": "export",

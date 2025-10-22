@@ -254,6 +254,7 @@ This does not affect messages that are not simulated (like test messages or real
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.random_location_in_area | [ hiber.Area](#hiberarea) | Randomize modem location within the given area. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.location_rotation | [ Simulation.ModemMessageSimulation.LocationRotation](#simulationmodemmessagesimulationlocationrotation) | Rotate through a list of locations. |
 | next_simulation_run_after | [ hiber.Timestamp](#hibertimestamp) | Timestamp after which the next simulation run will be triggered (not guaranteed to be exactly at this time). If further in the future, message simulation for this modem is inactive until this time. This may be set to a time in the future manually, or by the ModemInactivitySimulation. |
+|  **optional** metadata | [optional google.protobuf.Struct](#googleprotobufstruct) | Metadata for the messages. For example: LoRaWAN values like fPort. |
 
 ### Simulation.ModemMessageSimulation.Defaults
 
@@ -363,6 +364,7 @@ Create or update the modem message simulation for a selection of modems.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.random_location_in_area | [ hiber.Area](#hiberarea) | Randomize modem location within the given area. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.replace_location_rotation | [ Simulation.ModemMessageSimulation.LocationRotation](#simulationmodemmessagesimulationlocationrotation) | Replace the list of locations to rotate through. This does not have to match the length of the message body rotation, if any. Note that this **replaces** the entire list of values, to ensure the order is maintained. |
 | set_inactive_until | [ hiber.Timestamp](#hibertimestamp) | Disable the message simulation until the given date (UTC). |
+|  **optional** metadata | [optional google.protobuf.Struct](#googleprotobufstruct) | Metadata for the messages. For example: LoRaWAN values like fPort. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
 ### Simulation.ModemMessageSimulation.Update.Response

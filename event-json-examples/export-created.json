@@ -5,6 +5,7 @@
       "identifier": "example-identifier",
       "name": "example",
       "status": "PROCESSING",
+      "requestedBy": "user-identifier",
       "format": {
         "type": "JSON",
         "json": {

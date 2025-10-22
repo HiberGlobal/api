@@ -64,6 +64,9 @@ message Export {
     /* Status of this export. Whether it's available, expired or still processing. */
     Status status = 3;
 
+    /* Identifier of the user that requested this export. */
+    string requested_by = 9;
+
     /* When the status is READY, the downloadable file(s) in the export.
      * The file may be a single url, or may be split into multiple parts, each with a unique url.
      */

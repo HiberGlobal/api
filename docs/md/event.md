@@ -2623,6 +2623,7 @@ An export created by this organization.
 | identifier | [ string](#string) | Identifier for this export. |
 | name | [ string](#string) | The name given for this export. |
 | status | [ hiber.export.Export.Status](#hiberexportexportstatus) | Status of this export. Whether it's available, expired or still processing. |
+| requested_by | [ string](#string) | Identifier of the user that requested this export. |
 | urls | [repeated hiber.export.Export.File](#hiberexportexportfile) | When the status is READY, the downloadable file(s) in the export. The file may be a single url, or may be split into multiple parts, each with a unique url. |
 | expires_at | [ hiber.Timestamp](#hibertimestamp) | When the export expires. Only set when the status is READY or EXPIRED. |
 | format | [ hiber.export.Export.Format](#hiberexportexportformat) | The format for the export. |
