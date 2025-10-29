@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.260 (2025-10-29)
+
+##### FileService
+
+- Added `expires_at` to `File` to expire a file automatically.
+
 ### 0.259 (2025-10-22)
 
 ##### ExportService

@@ -72,6 +72,9 @@ message File {
 
     /* The time for this file, typically when it was created. */
     Timestamp time = 12;
+
+    /* The time this file expires, optionally. */
+    optional Timestamp expires_at = 13;
 }
 
 /* Selection to use when listing files in your organization. */

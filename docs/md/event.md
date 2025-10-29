@@ -2855,6 +2855,7 @@ Other type clients should be able to sort-of-directly set the data bytes as the 
 | name | [ string](#string) | A semantic name for this file. |
 | link | [ string](#string) | A link to file in the Hiber Rest API. Note: the Hiber Rest API requires a token, for authenticated access to your files. If the content oneof of this file is a url, this link will return a HTTP 301 code to redirect to that url. |
 | time | [ hiber.Timestamp](#hibertimestamp) | The time for this file, typically when it was created. |
+|  **optional** expires_at | [optional hiber.Timestamp](#hibertimestamp) | The time this file expires, optionally. |
 
 ### hiber.file.FileSelection
 
