@@ -299,6 +299,7 @@ When updating a device, all optional fields will be handled as follows:
 | delete_files | [repeated string](#string) | Remove files from the device and delete them from the system (if no other references exist). |
 |  **optional** set_external_device_identifier | [optional string](#string) | Set the external identifier for a device or gateway that has no external identifier. Only allowed when a single device or gateway is selected that does not already have an external identifier. |
 |  **optional** battery_replacement | [optional hiber.Timestamp](#hibertimestamp) | Mark that the battery was replaced. |
+|  **optional** modem_selection | [optional hiber.modem.ModemSelection](#hibermodemmodemselection) | If needed, use the modem selection. |
 
 ### UpdateDevice.Request
 

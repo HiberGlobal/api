@@ -132,6 +132,9 @@ message UpdateDevice {
     /* Mark that the battery was replaced. */
     optional Timestamp battery_replacement = 18;
 
+    /* If needed, use the modem selection. */
+    optional hiber.modem.ModemSelection modem_selection = 19;
+
     /* When updating peripherals, you can choose to add and delete peripherals,
      * or to do a wholesome replace of all peripherals.
      */

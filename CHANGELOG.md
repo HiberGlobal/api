@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.261 (2025-11-05)
+
+##### DeviceService
+
+- Added `modem_selection` to `UpdateDevice` for convenience.
+
 ### 0.260 (2025-10-29)
 
 ##### FileService
