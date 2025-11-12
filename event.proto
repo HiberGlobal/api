@@ -21,6 +21,7 @@ import "tag.proto";
 import "token.proto";
 import "transfer.proto";
 import "webhook.proto";
+import "value.proto";
 
 option java_multiple_files = false;
 option java_package = "global.hiber.api.grpc.event";
@@ -65,6 +66,10 @@ service EventService {
         option (permission_usage) = TOKENS;
         /* For export-related events. */
         option (permission_usage) = EXPORT;
+        /* For value-related events. */
+        option (permission_usage) = ASSETS_VALUES;
+        option (permission_usage) = PROCESS_POINTS_VALUES;
+        option (permission_usage) = MODEM_VALUES;
 
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     }
@@ -99,6 +104,10 @@ service EventService {
         option (permission_usage) = TOKENS;
         /* For export-related events. */
         option (permission_usage) = EXPORT;
+        /* For value-related events. */
+        option (permission_usage) = ASSETS_VALUES;
+        option (permission_usage) = PROCESS_POINTS_VALUES;
+        option (permission_usage) = MODEM_VALUES;
 
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     }
@@ -133,6 +142,10 @@ service EventService {
         option (permission_usage) = TOKENS;
         /* For export-related events. */
         option (permission_usage) = EXPORT;
+        /* For value-related events. */
+        option (permission_usage) = ASSETS_VALUES;
+        option (permission_usage) = PROCESS_POINTS_VALUES;
+        option (permission_usage) = MODEM_VALUES;
 
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     }
@@ -286,6 +299,8 @@ message Event {
         ExportEvent.ExportCreatedEvent export_created = 65;
         ExportEvent.ExportReadyEvent export_ready = 66;
         ExportEvent.ExportFailedEvent export_failed = 67;
+
+        ValueEvent value = 80;
     }
     reserved 3, 6, 11 to 16, 18 to 22, 26 to 29, 49 to 53, 60 to 64;
 
@@ -1034,6 +1049,48 @@ message Event {
             string description = 4;
             Timestamp time = 5;
         }
+    }
+
+    message ValueEvent {
+        string organization = 1;
+
+        /* Number for the device that produced this value. */
+        string device_number = 2;
+
+        /* External device identifier (e.g. a MAC address) for the device that produced this value. */
+        string device_external_identifier = 3;
+
+        /* Name of the device that produced this value. */
+        string device_name = 4;
+
+        /* Id of the message that was parsed. */
+        uint64 message_id = 5;
+
+        /* The identifier of the parser that parsed the value. */
+        string parser_identifier = 6;
+
+        /* The parser field the value was produced for. */
+        string field = 7;
+
+        /* Process point that this value belongs to. */
+        string process_point_identifier = 8;
+
+        /* Name of the process point that this value belongs to. */
+        string process_point_name = 9;
+
+        /* Name of the process point that this value belongs to. */
+        processpoint.ProcessPoint.Type process_point_type = 10;
+
+        /* When the value was measured, sent or received (first available option). */
+        Timestamp time = 11;
+
+        /* Actual value, with type and unit. */
+        value.Value value = 12;
+
+        repeated tag.Tag tags = 13;
+
+        string title = 14;
+        string description = 15;
     }
 }
 

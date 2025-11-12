@@ -49,6 +49,7 @@
     , "EXPORT_CREATED": "A new export was started for your organization, exporting data (e.g. messages) to a file."
     , "EXPORT_READY": "An export in your organization has completed and the resulting file with data (e.g. messages as CSV) is ready to be downloaded."
     , "EXPORT_FAILED": "An export in your organization has failed (typically because of incorrect data selection)."
+    , "VALUE": "A new value."
     }
 },{
   "name": "Health",

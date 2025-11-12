@@ -1679,6 +1679,7 @@ api event stream and publishers.
 | EXPORT_CREATED | A new export was started for your organization, exporting data (e.g. messages) to a file. | 65 |
 | EXPORT_READY | An export in your organization has completed and the resulting file with data (e.g. messages as CSV) is ready to be downloaded. | 66 |
 | EXPORT_FAILED | An export in your organization has failed (typically because of incorrect data selection). | 67 |
+| VALUE | A new value. | 80 |
 
 #### hiber.Health
 Health is an indicator for issues. It is used for publishers to give a quick indication of issues.

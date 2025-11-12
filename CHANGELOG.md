@@ -1,5 +1,14 @@
 # Changelog Hiber API
 
+### 0.262 (2025-11-12)
+
+##### EventService
+
+- Added new event `ValueEvent` for any values produced from a message.
+  - This event is transient and cannot be fetched, use the `ValueService` instead.
+    - It can be streamed or used in publishers.
+  - Added event type: `VALUE`.
+
 ### 0.261 (2025-11-05)
 
 ##### DeviceService

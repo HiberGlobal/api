@@ -1,0 +1,76 @@
+{
+  "isError": false,
+  "value": {
+    "organization": "your-organization",
+    "deviceNumber": "AAAA AAAA",
+    "deviceExternalIdentifier": "00 11 22 33 AA BB CC DD",
+    "deviceName": "AAAA AAAA",
+    "messageId": "10001",
+    "parserIdentifier": "example-identifier-2",
+    "field": "$.pressure",
+    "processPointIdentifier": "example-identifier",
+    "processPointName": "example",
+    "processPointType": "WELL_ANNULUS_A",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC",
+      "textual": "2020-06-01T05:15:25.355Z"
+    },
+    "value": {
+      "type": "NUMERIC",
+      "numeric": {
+        "type": "PRESSURE",
+        "value": 1.0,
+        "pressure": {
+          "unit": "BAR"
+        },
+        "textual": "1.00 bar",
+        "unit": "PRESSURE_BAR",
+        "unitSymbol": "bar",
+        "formatted": "1.00"
+      }
+    },
+    "tags": [{
+      "id": "1",
+      "label": {
+        "name": "example-tag",
+        "type": "well"
+      }
+    }, {
+      "id": "2",
+      "label": {
+        "name": "example-tag-2",
+        "type": "well"
+      }
+    }],
+    "title": "New value for process point example (example-identifier via device AAAA AAAA (AAAA AAAA)): pressure \u003d 1.00 bar",
+    "description": "New value for process point example (example-identifier via device AAAA AAAA (AAAA AAAA)): pressure \u003d 1.00 bar"
+  },
+  "type": "VALUE",
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC",
+    "textual": "2020-06-01T05:15:25.355Z"
+  },
+  "isWarning": false,
+  "title": "New value for process point example (example-identifier via device AAAA AAAA (AAAA AAAA)): pressure \u003d 1.00 bar",
+  "description": "New value for process point example (example-identifier via device AAAA AAAA (AAAA AAAA)): pressure \u003d 1.00 bar",
+  "device": {
+    "number": "AAAA AAAA",
+    "name": "AAAA AAAA",
+    "identifier": "00 11 22 33 AA BB CC DD"
+  },
+  "tags": [{
+    "id": "1",
+    "label": {
+      "name": "example-tag",
+      "type": "well"
+    }
+  }, {
+    "id": "2",
+    "label": {
+      "name": "example-tag-2",
+      "type": "well"
+    }
+  }]
+}

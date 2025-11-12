@@ -462,6 +462,9 @@ enum EventType {
     /* An export in your organization has failed (typically because of incorrect data selection). */
     EXPORT_FAILED = 67;
 
+    /* A new value. */
+    VALUE = 80;
+
     reserved 6, 7, 13, 14, 16, 17, 19 to  24, 27, 28, 29, 30;
 }
 
