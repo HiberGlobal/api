@@ -1,19 +1,0 @@
-
-´
-device_type.protohiber.device.type"Ö
-
-DeviceType
-
-identifier (	R
-identifier
-brand (	Rbrand 
-application (	Rapplication
-category (	Rcategory
-version (	Rversion 
-description (	Rdescription
-gateway (Rgateway"}
-DeviceTypeSelection
-search (	Rsearch#
-only_gateways (RonlyGateways)
-exclude_gateways (RexcludeGatewaysB,
-!global.hiber.api.grpc.device.typePZhiberbproto3
