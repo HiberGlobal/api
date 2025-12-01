@@ -90,3 +90,15 @@ message ValueSimulation {
         Timestamp next_simulation_run_after = 3;
     }
 }
+
+message LorawanSimulation {
+    /* The modem this simulation applies to. */
+    string modem_number = 1;
+    /* The simulated response delay for this device */
+    hiber.Duration delay = 2;
+    /* The LoRaWAN Network Identifier to use for these simulated devices.
+     * Use the support API to list available LoRaWAN Networks and their identifiers.
+     * This should match a LoRaWAN Network that supports simulation.
+     */
+    string lorawan_network_identifier = 3;
+}

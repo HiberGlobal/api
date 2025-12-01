@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.264 (2025-12-01)
+
+#### SimulationService
+
+- Added `LorawanSimulationService` service to CRUD Lorawan simulation data.
+
 ### 0.262 (2025-11-12)
 
 ##### EventService

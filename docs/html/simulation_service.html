@@ -179,39 +179,83 @@
             <ul>
               
                 <li>
-                  <a href="#hiber.simulation.Delete"><span class="badge">M</span>Delete</a>
+                  <a href="#hiber.simulation.Lorawan"><span class="badge">M</span>Lorawan</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.simulation.Delete.Request"><span class="badge">M</span>Delete.Request</a>
+                  <a href="#hiber.simulation.Lorawan.Delete"><span class="badge">M</span>Lorawan.Delete</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.simulation.Delete.Response"><span class="badge">M</span>Delete.Response</a>
+                  <a href="#hiber.simulation.Lorawan.Delete.Request"><span class="badge">M</span>Lorawan.Delete.Request</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.simulation.List"><span class="badge">M</span>List</a>
+                  <a href="#hiber.simulation.Lorawan.Delete.Response"><span class="badge">M</span>Lorawan.Delete.Response</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.simulation.List.Request"><span class="badge">M</span>List.Request</a>
+                  <a href="#hiber.simulation.Lorawan.List"><span class="badge">M</span>Lorawan.List</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.simulation.List.Response"><span class="badge">M</span>List.Response</a>
+                  <a href="#hiber.simulation.Lorawan.List.Request"><span class="badge">M</span>Lorawan.List.Request</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.simulation.Update"><span class="badge">M</span>Update</a>
+                  <a href="#hiber.simulation.Lorawan.List.Response"><span class="badge">M</span>Lorawan.List.Response</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.simulation.Update.Request"><span class="badge">M</span>Update.Request</a>
+                  <a href="#hiber.simulation.Lorawan.Update"><span class="badge">M</span>Lorawan.Update</a>
                 </li>
               
                 <li>
-                  <a href="#hiber.simulation.Update.Response"><span class="badge">M</span>Update.Response</a>
+                  <a href="#hiber.simulation.Lorawan.Update.Request"><span class="badge">M</span>Lorawan.Update.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.simulation.Lorawan.Update.Response"><span class="badge">M</span>Lorawan.Update.Response</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.simulation.Value"><span class="badge">M</span>Value</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.simulation.Value.Delete"><span class="badge">M</span>Value.Delete</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.simulation.Value.Delete.Request"><span class="badge">M</span>Value.Delete.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.simulation.Value.Delete.Response"><span class="badge">M</span>Value.Delete.Response</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.simulation.Value.List"><span class="badge">M</span>Value.List</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.simulation.Value.List.Request"><span class="badge">M</span>Value.List.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.simulation.Value.List.Response"><span class="badge">M</span>Value.List.Response</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.simulation.Value.Update"><span class="badge">M</span>Value.Update</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.simulation.Value.Update.Request"><span class="badge">M</span>Value.Update.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.simulation.Value.Update.Response"><span class="badge">M</span>Value.Update.Response</a>
                 </li>
               
                 <li>
@@ -220,6 +264,10 @@
               
               
               
+              
+                <li>
+                  <a href="#hiber.simulation.LorawanSimulationService"><span class="badge">S</span>LorawanSimulationService</a>
+                </li>
               
                 <li>
                   <a href="#hiber.simulation.ValueSimulationService"><span class="badge">S</span>ValueSimulationService</a>
@@ -644,6 +692,10 @@
             <ul>
               
                 <li>
+                  <a href="#hiber.simulation.LorawanSimulation"><span class="badge">M</span>LorawanSimulation</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.simulation.ValueSimulation"><span class="badge">M</span>ValueSimulation</a>
                 </li>
               
@@ -685,14 +737,265 @@
       <p></p>
 
       
-        <h3 id="hiber.simulation.Delete">Delete</h3>
+        <h3 id="hiber.simulation.Lorawan">Lorawan</h3>
         <p></p>
 
         
 
         
       
-        <h3 id="hiber.simulation.Delete.Request">Delete.Request</h3>
+        <h3 id="hiber.simulation.Lorawan.Delete">Lorawan.Delete</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.simulation.Lorawan.Delete.Request">Lorawan.Delete.Request</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>modems</td>
+                  <td><a href="#hiber.modem.ModemSelection">hiber.modem.ModemSelection</a></td>
+                  <td></td>
+                  <td><p>Apply deletion on simulations for devices/modems referenced by this ModemSelection. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.simulation.Lorawan.Delete.Response">Lorawan.Delete.Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>deleted</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#hiber.simulation.Lorawan.Delete.Request">Lorawan.Delete.Request</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.simulation.Lorawan.List">Lorawan.List</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.simulation.Lorawan.List.Request">Lorawan.List.Request</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>modems</td>
+                  <td><a href="#hiber.modem.ModemSelection">hiber.modem.ModemSelection</a></td>
+                  <td>optional</td>
+                  <td><p>Select the modems to list. Optional, when omitted or empty everything is included. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.simulation.Lorawan.List.Response">Lorawan.List.Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>simulations</td>
+                  <td><a href="#hiber.simulation.LorawanSimulation">LorawanSimulation</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#hiber.simulation.Lorawan.List.Request">Lorawan.List.Request</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.simulation.Lorawan.Update">Lorawan.Update</h3>
+        <p>Create or update the modem value simulation for a selection of modems.</p>
+
+        
+
+        
+      
+        <h3 id="hiber.simulation.Lorawan.Update.Request">Lorawan.Update.Request</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>modems</td>
+                  <td><a href="#hiber.modem.ModemSelection">hiber.modem.ModemSelection</a></td>
+                  <td></td>
+                  <td><p>Modems to create or update the value simulation for. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lorawan_network_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The LoRaWAN Network Identifier to use for these simulated devices.
+Use the support API to list available LoRaWAN Networks and their identifiers.
+This should match a LoRaWAN Network that supports simulation. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>delay</td>
+                  <td><a href="#hiber.Duration">hiber.Duration</a></td>
+                  <td>optional</td>
+                  <td><p>Set the delay in response for these devices </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.simulation.Lorawan.Update.Response">Lorawan.Update.Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>simulations</td>
+                  <td><a href="#hiber.simulation.LorawanSimulation">LorawanSimulation</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request</td>
+                  <td><a href="#hiber.simulation.Lorawan.Update.Request">Lorawan.Update.Request</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.simulation.Value">Value</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.simulation.Value.Delete">Value.Delete</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.simulation.Value.Delete.Request">Value.Delete.Request</h3>
         <p></p>
 
         
@@ -737,7 +1040,7 @@
 
         
       
-        <h3 id="hiber.simulation.Delete.Response">Delete.Response</h3>
+        <h3 id="hiber.simulation.Value.Delete.Response">Value.Delete.Response</h3>
         <p></p>
 
         
@@ -756,7 +1059,7 @@
               
                 <tr>
                   <td>request</td>
-                  <td><a href="#hiber.simulation.Delete.Request">Delete.Request</a></td>
+                  <td><a href="#hiber.simulation.Value.Delete.Request">Value.Delete.Request</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -768,14 +1071,14 @@
 
         
       
-        <h3 id="hiber.simulation.List">List</h3>
+        <h3 id="hiber.simulation.Value.List">Value.List</h3>
         <p></p>
 
         
 
         
       
-        <h3 id="hiber.simulation.List.Request">List.Request</h3>
+        <h3 id="hiber.simulation.Value.List.Request">Value.List.Request</h3>
         <p></p>
 
         
@@ -813,7 +1116,7 @@
 
         
       
-        <h3 id="hiber.simulation.List.Response">List.Response</h3>
+        <h3 id="hiber.simulation.Value.List.Response">Value.List.Response</h3>
         <p></p>
 
         
@@ -832,7 +1135,7 @@
               
                 <tr>
                   <td>request</td>
-                  <td><a href="#hiber.simulation.List.Request">List.Request</a></td>
+                  <td><a href="#hiber.simulation.Value.List.Request">Value.List.Request</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -851,14 +1154,14 @@
 
         
       
-        <h3 id="hiber.simulation.Update">Update</h3>
+        <h3 id="hiber.simulation.Value.Update">Value.Update</h3>
         <p>Create or update the modem value simulation for a selection of modems.</p>
 
         
 
         
       
-        <h3 id="hiber.simulation.Update.Request">Update.Request</h3>
+        <h3 id="hiber.simulation.Value.Update.Request">Value.Update.Request</h3>
         <p></p>
 
         
@@ -919,7 +1222,7 @@ Note that this **replaces** the entire list of values, to ensure the order is ma
 
         
       
-        <h3 id="hiber.simulation.Update.Response">Update.Response</h3>
+        <h3 id="hiber.simulation.Value.Update.Response">Value.Update.Response</h3>
         <p></p>
 
         
@@ -931,7 +1234,7 @@ Note that this **replaces** the entire list of values, to ensure the order is ma
               
                 <tr>
                   <td>request</td>
-                  <td><a href="#hiber.simulation.Update.Request">Update.Request</a></td>
+                  <td><a href="#hiber.simulation.Value.Update.Request">Value.Update.Request</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -980,6 +1283,39 @@ Note that this **replaces** the entire list of values, to ensure the order is ma
       
 
       
+        <h3 id="hiber.simulation.LorawanSimulationService">LorawanSimulationService</h3>
+        <p>Service to simulate LoRaWAN downlinks.</p><p>Only works for specific device types that:</p><p>1) Support LoRaWAN downlinks</p><p>2) Have a pre-build simulated response to downlinks.</p><p>Configuring custom responses to downlinks is not supported at this time.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ListLorawanSimulations</td>
+                <td><a href="#hiber.simulation.Lorawan.List.Request">Lorawan.List.Request</a></td>
+                <td><a href="#hiber.simulation.Lorawan.List.Response">Lorawan.List.Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateLorawanSimulations</td>
+                <td><a href="#hiber.simulation.Lorawan.Update.Request">Lorawan.Update.Request</a></td>
+                <td><a href="#hiber.simulation.Lorawan.Update.Response">Lorawan.Update.Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DeleteLorawanSimulations</td>
+                <td><a href="#hiber.simulation.Lorawan.Delete.Request">Lorawan.Delete.Request</a></td>
+                <td><a href="#hiber.simulation.Lorawan.Delete.Response">Lorawan.Delete.Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
         <h3 id="hiber.simulation.ValueSimulationService">ValueSimulationService</h3>
         <p>Service to directly simulate device values.</p><p>These simulations skip the entire message pipeline and directly insert values for devices.</p><p>This can help with API integration and with demonstrations.</p>
         <table class="enum-table">
@@ -990,22 +1326,22 @@ Note that this **replaces** the entire list of values, to ensure the order is ma
             
               <tr>
                 <td>ListValueSimulations</td>
-                <td><a href="#hiber.simulation.List.Request">List.Request</a></td>
-                <td><a href="#hiber.simulation.List.Response">List.Response</a></td>
+                <td><a href="#hiber.simulation.Value.List.Request">Value.List.Request</a></td>
+                <td><a href="#hiber.simulation.Value.List.Response">Value.List.Response</a></td>
                 <td><p></p></td>
               </tr>
             
               <tr>
                 <td>UpdateValueSimulations</td>
-                <td><a href="#hiber.simulation.Update.Request">Update.Request</a></td>
-                <td><a href="#hiber.simulation.Update.Response">Update.Response</a></td>
+                <td><a href="#hiber.simulation.Value.Update.Request">Value.Update.Request</a></td>
+                <td><a href="#hiber.simulation.Value.Update.Response">Value.Update.Response</a></td>
                 <td><p></p></td>
               </tr>
             
               <tr>
                 <td>DisableValueSimulations</td>
-                <td><a href="#hiber.simulation.Delete.Request">Delete.Request</a></td>
-                <td><a href="#hiber.simulation.Delete.Response">Delete.Response</a></td>
+                <td><a href="#hiber.simulation.Value.Delete.Request">Value.Delete.Request</a></td>
+                <td><a href="#hiber.simulation.Value.Delete.Response">Value.Delete.Response</a></td>
                 <td><p></p></td>
               </tr>
             
@@ -5952,6 +6288,46 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
       </div>
       <p></p>
 
+      
+        <h3 id="hiber.simulation.LorawanSimulation">LorawanSimulation</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>modem_number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The modem this simulation applies to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>delay</td>
+                  <td><a href="#hiber.Duration">hiber.Duration</a></td>
+                  <td></td>
+                  <td><p>The simulated response delay for this device </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lorawan_network_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The LoRaWAN Network Identifier to use for these simulated devices.
+Use the support API to list available LoRaWAN Networks and their identifiers.
+This should match a LoRaWAN Network that supports simulation. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
         <h3 id="hiber.simulation.ValueSimulation">ValueSimulation</h3>
         <p>ValueSimulation represents a set of simulated data for a specific device (aka modem).</p><p>Values can be simulated for any value that a message-parser would otherwise produce.</p><p>In other words: all configured fields for a parser (be it "normal" or refined fields),</p><p>can be simulated directly without the need for a binary payload.</p><p>(There is also a simulation option to fully simulate messages from the binary payload)</p><p>This message represents all simulated fields, including a possible location simulation, for one specific modem.</p>

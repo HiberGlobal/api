@@ -9,6 +9,7 @@
 
 
 - Messages
+  - [LorawanSimulation](#lorawansimulation)
   - [ValueSimulation](#valuesimulation)
   - [ValueSimulation.LocationRotation](#valuesimulationlocationrotation)
   - [ValueSimulation.ValueRotation](#valuesimulationvaluerotation)
@@ -110,6 +111,16 @@
 - [Scalar Value Types](#scalar-value-types)
 
 ## Messages
+
+### LorawanSimulation
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| modem_number | [ string](#string) | The modem this simulation applies to. |
+| delay | [ hiber.Duration](#hiberduration) | The simulated response delay for this device |
+| lorawan_network_identifier | [ string](#string) | The LoRaWAN Network Identifier to use for these simulated devices. Use the support API to list available LoRaWAN Networks and their identifiers. This should match a LoRaWAN Network that supports simulation. |
 
 ### ValueSimulation
 

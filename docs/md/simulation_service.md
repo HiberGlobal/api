@@ -7,18 +7,30 @@
 ## Table of Contents
 
 - Services
+  - [LorawanSimulationService](#lorawansimulationservice)
   - [ValueSimulationService](#valuesimulationservice)
 
 - Messages
-  - [Delete](#delete)
-  - [Delete.Request](#deleterequest)
-  - [Delete.Response](#deleteresponse)
-  - [List](#list)
-  - [List.Request](#listrequest)
-  - [List.Response](#listresponse)
-  - [Update](#update)
-  - [Update.Request](#updaterequest)
-  - [Update.Response](#updateresponse)
+  - [Lorawan](#lorawan)
+  - [Lorawan.Delete](#lorawandelete)
+  - [Lorawan.Delete.Request](#lorawandeleterequest)
+  - [Lorawan.Delete.Response](#lorawandeleteresponse)
+  - [Lorawan.List](#lorawanlist)
+  - [Lorawan.List.Request](#lorawanlistrequest)
+  - [Lorawan.List.Response](#lorawanlistresponse)
+  - [Lorawan.Update](#lorawanupdate)
+  - [Lorawan.Update.Request](#lorawanupdaterequest)
+  - [Lorawan.Update.Response](#lorawanupdateresponse)
+  - [Value](#value)
+  - [Value.Delete](#valuedelete)
+  - [Value.Delete.Request](#valuedeleterequest)
+  - [Value.Delete.Response](#valuedeleteresponse)
+  - [Value.List](#valuelist)
+  - [Value.List.Request](#valuelistrequest)
+  - [Value.List.Response](#valuelistresponse)
+  - [Value.Update](#valueupdate)
+  - [Value.Update.Request](#valueupdaterequest)
+  - [Value.Update.Response](#valueupdateresponse)
   - [ValueSimulationSelection](#valuesimulationselection)
 
 - Enums
@@ -34,6 +46,7 @@
     - [hiber.modem.ModemMessage.Source](#hibermodemmodemmessagesource)
 
 - Referenced messages from [simulation.proto](#referenced-messages-from-simulationproto)
+  - [hiber.simulation.LorawanSimulation](#hibersimulationlorawansimulation)
   - [hiber.simulation.ValueSimulation](#hibersimulationvaluesimulation)
   - [hiber.simulation.ValueSimulation.LocationRotation](#hibersimulationvaluesimulationlocationrotation)
   - [hiber.simulation.ValueSimulation.ValueRotation](#hibersimulationvaluesimulationvaluerotation)
@@ -96,38 +109,149 @@
 - [Scalar Value Types](#scalar-value-types)
 
 
+## LorawanSimulationService
+Service to simulate LoRaWAN downlinks.
+Only works for specific device types that:
+1) Support LoRaWAN downlinks
+2) Have a pre-build simulated response to downlinks.
+
+Configuring custom responses to downlinks is not supported at this time.
+
+### ListLorawanSimulations
+> **rpc** ListLorawanSimulations([Lorawan.List.Request](#lorawanlistrequest))
+    [Lorawan.List.Response](#lorawanlistresponse)
+
+
+
+### UpdateLorawanSimulations
+> **rpc** UpdateLorawanSimulations([Lorawan.Update.Request](#lorawanupdaterequest))
+    [Lorawan.Update.Response](#lorawanupdateresponse)
+
+
+
+### DeleteLorawanSimulations
+> **rpc** DeleteLorawanSimulations([Lorawan.Delete.Request](#lorawandeleterequest))
+    [Lorawan.Delete.Response](#lorawandeleteresponse)
+
+
+
+
+
 ## ValueSimulationService
 Service to directly simulate device values.
 These simulations skip the entire message pipeline and directly insert values for devices.
 This can help with API integration and with demonstrations.
 
 ### ListValueSimulations
-> **rpc** ListValueSimulations([List.Request](#listrequest))
-    [List.Response](#listresponse)
+> **rpc** ListValueSimulations([Value.List.Request](#valuelistrequest))
+    [Value.List.Response](#valuelistresponse)
 
 
 
 ### UpdateValueSimulations
-> **rpc** UpdateValueSimulations([Update.Request](#updaterequest))
-    [Update.Response](#updateresponse)
+> **rpc** UpdateValueSimulations([Value.Update.Request](#valueupdaterequest))
+    [Value.Update.Response](#valueupdateresponse)
 
 
 
 ### DisableValueSimulations
-> **rpc** DisableValueSimulations([Delete.Request](#deleterequest))
-    [Delete.Response](#deleteresponse)
+> **rpc** DisableValueSimulations([Value.Delete.Request](#valuedeleterequest))
+    [Value.Delete.Response](#valuedeleteresponse)
 
 
 
 
 ## Messages
 
-### Delete
+### Lorawan
 
 
 
 
-### Delete.Request
+### Lorawan.Delete
+
+
+
+
+### Lorawan.Delete.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Apply deletion on simulations for devices/modems referenced by this ModemSelection. |
+
+### Lorawan.Delete.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| deleted | [ uint32](#uint32) |  |
+| request | [ Lorawan.Delete.Request](#lorawandeleterequest) |  |
+
+### Lorawan.List
+
+
+
+
+### Lorawan.List.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+|  **optional** modems | [optional hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the modems to list. Optional, when omitted or empty everything is included. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+
+### Lorawan.List.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| simulations | [repeated LorawanSimulation](#lorawansimulation) |  |
+| request | [ Lorawan.List.Request](#lorawanlistrequest) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
+
+### Lorawan.Update
+
+Create or update the modem value simulation for a selection of modems.
+
+
+### Lorawan.Update.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Modems to create or update the value simulation for. |
+| lorawan_network_identifier | [ string](#string) | The LoRaWAN Network Identifier to use for these simulated devices. Use the support API to list available LoRaWAN Networks and their identifiers. This should match a LoRaWAN Network that supports simulation. |
+|  **optional** delay | [optional hiber.Duration](#hiberduration) | Set the delay in response for these devices |
+
+### Lorawan.Update.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| simulations | [repeated LorawanSimulation](#lorawansimulation) |  |
+| request | [ Lorawan.Update.Request](#lorawanupdaterequest) |  |
+
+### Value
+
+
+
+
+### Value.Delete
+
+
+
+
+### Value.Delete.Request
 
 
 
@@ -138,21 +262,21 @@ This can help with API integration and with demonstrations.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.remove_all | [ bool](#bool) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **field**.fields | [ ValueSimulationSelection](#valuesimulationselection) | Remove only the listed specific fields |
 
-### Delete.Response
+### Value.Delete.Response
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | deleted | [ uint32](#uint32) |  |
-| request | [ Delete.Request](#deleterequest) |  |
+| request | [ Value.Delete.Request](#valuedeleterequest) |  |
 
-### List
-
-
+### Value.List
 
 
-### List.Request
+
+
+### Value.List.Request
 
 
 
@@ -162,22 +286,22 @@ This can help with API integration and with demonstrations.
 |  **optional** modems | [optional hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the modems to list. Optional, when omitted or empty everything is included. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
-### List.Response
+### Value.List.Response
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | simulations | [repeated ValueSimulation](#valuesimulation) |  |
-| request | [ List.Request](#listrequest) |  |
+| request | [ Value.List.Request](#valuelistrequest) |  |
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
-### Update
+### Value.Update
 
 Create or update the modem value simulation for a selection of modems.
 
 
-### Update.Request
+### Value.Update.Request
 
 
 
@@ -190,13 +314,13 @@ Create or update the modem value simulation for a selection of modems.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.random_location_in_area | [ hiber.Area](#hiberarea) | Randomize modem location within the given area. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **location**.replace_location_rotation | [ ValueSimulation.LocationRotation](#valuesimulationlocationrotation) | Replace the list of locations to rotate through. This does not have to match the length of the message value rotation, if any. Note that this **replaces** the entire list of values, to ensure the order is maintained. |
 
-### Update.Response
+### Value.Update.Response
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| request | [ Update.Request](#updaterequest) |  |
+| request | [ Value.Update.Request](#valueupdaterequest) |  |
 
 ### ValueSimulationSelection
 
@@ -385,6 +509,16 @@ so not all messages listed here are referenced.)
 
 #### This section was generated from [simulation.proto](https://github.com/HiberGlobal/api/blob/master/simulation.proto).
 
+
+### hiber.simulation.LorawanSimulation
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| modem_number | [ string](#string) | The modem this simulation applies to. |
+| delay | [ hiber.Duration](#hiberduration) | The simulated response delay for this device |
+| lorawan_network_identifier | [ string](#string) | The LoRaWAN Network Identifier to use for these simulated devices. Use the support API to list available LoRaWAN Networks and their identifiers. This should match a LoRaWAN Network that supports simulation. |
 
 ### hiber.simulation.ValueSimulation
 

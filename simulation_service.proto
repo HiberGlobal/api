@@ -16,85 +16,110 @@ option go_package = ".;hiber";
  * This can help with API integration and with demonstrations.
  */
 service ValueSimulationService {
-    rpc ListValueSimulations (List.Request) returns (List.Response) {
+    rpc ListValueSimulations (Value.List.Request) returns (Value.List.Response) {
         option (permission_usage) = SIMULATION_MANAGE;
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     }
-    rpc UpdateValueSimulations (Update.Request) returns (Update.Response) {
+    rpc UpdateValueSimulations (Value.Update.Request) returns (Value.Update.Response) {
         option (permission_usage) = SIMULATION_MANAGE;
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     }
-    rpc DisableValueSimulations (Delete.Request) returns (Delete.Response) {
+    rpc DisableValueSimulations (Value.Delete.Request) returns (Value.Delete.Response) {
         option (permission_usage) = SIMULATION_MANAGE;
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     }
 }
 
-message List {
-    message Request {
-        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        optional string organization = 1;
-
-        /* Select the modems to list. Optional, when omitted or empty everything is included. */
-        optional modem.ModemSelection modems = 2;
-        optional Pagination pagination = 3;
+/** Service to simulate LoRaWAN downlinks.
+  * Only works for specific device types that:
+  * 1) Support LoRaWAN downlinks
+  * 2) Have a pre-build simulated response to downlinks.
+  *
+  * Configuring custom responses to downlinks is not supported at this time.
+  */
+service LorawanSimulationService {
+    rpc ListLorawanSimulations (Lorawan.List.Request) returns (Lorawan.List.Response) {
+        option (permission_usage) = SIMULATION_MANAGE;
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     }
-    message Response {
-        repeated ValueSimulation simulations = 1;
-        Request request = 2;
-        Pagination.Result pagination = 3;
+    rpc UpdateLorawanSimulations (Lorawan.Update.Request) returns (Lorawan.Update.Response) {
+        option (permission_usage) = SIMULATION_MANAGE;
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+    rpc DeleteLorawanSimulations (Lorawan.Delete.Request) returns (Lorawan.Delete.Response) {
+        option (permission_usage) = SIMULATION_MANAGE;
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     }
 }
 
-/* Create or update the modem value simulation for a selection of modems. */
-message Update {
-    message Request {
-        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        optional string organization = 1;
 
-        /* Modems to create or update the value simulation for. */
-        modem.ModemSelection modems = 2;
+message Value {
+    message List {
+        message Request {
+            /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+            optional string organization = 1;
 
-        /* Simulation is done using the configured output fields of a parser. */
-        string parser_identifier = 3;
-
-        /* List of fields to set simulation for. Number of values do not have to be the same for all fields. */
-        repeated ValueSimulation.ValueRotation values = 4;
-
-        oneof location {
-            /* Randomize modem location within the given area. */
-            Area random_location_in_area = 5;
-
-            /* Replace the list of locations to rotate through.
-             * This does not have to match the length of the message value rotation, if any.
-             * Note that this **replaces** the entire list of values, to ensure the order is maintained.
-             */
-            ValueSimulation.LocationRotation replace_location_rotation = 6;
+            /* Select the modems to list. Optional, when omitted or empty everything is included. */
+            optional modem.ModemSelection modems = 2;
+            optional Pagination pagination = 3;
+        }
+        message Response {
+            repeated ValueSimulation simulations = 1;
+            Request request = 2;
+            Pagination.Result pagination = 3;
         }
     }
-    message Response {
-        reserved 1;
-        Request request = 2;
-    }
-}
 
-message Delete {
-    message Request {
-        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
-        optional string organization = 1;
+    /* Create or update the modem value simulation for a selection of modems. */
+    message Update {
+        message Request {
+            /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+            optional string organization = 1;
 
-        /* Apply deletion on simulations for devices/modems referenced by this ModemSelection. */
-        modem.ModemSelection modems = 2;
+            /* Modems to create or update the value simulation for. */
+            modem.ModemSelection modems = 2;
 
-        oneof field {
-            bool remove_all = 3;
-            /* Remove only the listed specific fields */
-            ValueSimulationSelection fields = 4;
+            /* Simulation is done using the configured output fields of a parser. */
+            string parser_identifier = 3;
+
+            /* List of fields to set simulation for. Number of values do not have to be the same for all fields. */
+            repeated ValueSimulation.ValueRotation values = 4;
+
+            oneof location {
+                /* Randomize modem location within the given area. */
+                Area random_location_in_area = 5;
+
+                /* Replace the list of locations to rotate through.
+                 * This does not have to match the length of the message value rotation, if any.
+                 * Note that this **replaces** the entire list of values, to ensure the order is maintained.
+                 */
+                ValueSimulation.LocationRotation replace_location_rotation = 6;
+            }
+        }
+        message Response {
+            reserved 1;
+            Request request = 2;
         }
     }
-    message Response {
-        uint32 deleted = 1;
-        Request request = 2;
+
+    message Delete {
+        message Request {
+            /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+            optional string organization = 1;
+
+            /* Apply deletion on simulations for devices/modems referenced by this ModemSelection. */
+            modem.ModemSelection modems = 2;
+
+            oneof field {
+                bool remove_all = 3;
+                /* Remove only the listed specific fields */
+                ValueSimulationSelection fields = 4;
+            }
+        }
+        message Response {
+            uint32 deleted = 1;
+            Request request = 2;
+        }
     }
 }
 
@@ -105,4 +130,61 @@ message ValueSimulationSelection {
 
     /* When set to true, includes location simulation */
     optional bool location = 2;
+}
+
+message Lorawan {
+    message List {
+        message Request {
+            /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+            optional string organization = 1;
+
+            /* Select the modems to list. Optional, when omitted or empty everything is included. */
+            optional modem.ModemSelection modems = 2;
+
+            optional Pagination pagination = 3;
+        }
+        message Response {
+            repeated LorawanSimulation simulations = 1;
+            Request request = 2;
+            Pagination.Result pagination = 3;
+        }
+    }
+
+    /* Create or update the modem value simulation for a selection of modems. */
+    message Update {
+        message Request {
+            /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+            optional string organization = 1;
+
+            /* Modems to create or update the value simulation for. */
+            modem.ModemSelection modems = 2;
+
+            /* The LoRaWAN Network Identifier to use for these simulated devices.
+             * Use the support API to list available LoRaWAN Networks and their identifiers.
+             * This should match a LoRaWAN Network that supports simulation.
+             */
+            string lorawan_network_identifier = 4;
+
+            /* Set the delay in response for these devices */
+            optional hiber.Duration delay = 3;
+        }
+        message Response {
+            repeated LorawanSimulation simulations = 1;
+            Request request = 2;
+        }
+    }
+
+    message Delete {
+        message Request {
+            /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+            optional string organization = 1;
+
+            /* Apply deletion on simulations for devices/modems referenced by this ModemSelection. */
+            modem.ModemSelection modems = 2;
+        }
+        message Response {
+            uint32 deleted = 1;
+            Request request = 2;
+        }
+    }
 }

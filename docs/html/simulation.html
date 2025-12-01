@@ -179,6 +179,10 @@
             <ul>
               
                 <li>
+                  <a href="#hiber.simulation.LorawanSimulation"><span class="badge">M</span>LorawanSimulation</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.simulation.ValueSimulation"><span class="badge">M</span>ValueSimulation</a>
                 </li>
               
@@ -585,6 +589,46 @@
       </div>
       <p></p>
 
+      
+        <h3 id="hiber.simulation.LorawanSimulation">LorawanSimulation</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>modem_number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The modem this simulation applies to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>delay</td>
+                  <td><a href="#hiber.Duration">hiber.Duration</a></td>
+                  <td></td>
+                  <td><p>The simulated response delay for this device </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lorawan_network_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The LoRaWAN Network Identifier to use for these simulated devices.
+Use the support API to list available LoRaWAN Networks and their identifiers.
+This should match a LoRaWAN Network that supports simulation. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
         <h3 id="hiber.simulation.ValueSimulation">ValueSimulation</h3>
         <p>ValueSimulation represents a set of simulated data for a specific device (aka modem).</p><p>Values can be simulated for any value that a message-parser would otherwise produce.</p><p>In other words: all configured fields for a parser (be it "normal" or refined fields),</p><p>can be simulated directly without the need for a binary payload.</p><p>(There is also a simulation option to fully simulate messages from the binary payload)</p><p>This message represents all simulated fields, including a possible location simulation, for one specific modem.</p>
