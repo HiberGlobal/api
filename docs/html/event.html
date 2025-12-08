@@ -11769,6 +11769,18 @@ Typically an image of a place. See the File.media_type for more information. </p
                 <td><p></p></td>
               </tr>
             
+              <tr>
+                <td>TEMPERATURE</td>
+                <td>16</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>METERING_FLOWLINE</td>
+                <td>17</td>
+                <td><p></p></td>
+              </tr>
+            
           </tbody>
         </table>
       
@@ -18033,6 +18045,13 @@ Use `connected_device_info.connected_to_gateway` instead. </p></td>
                 </tr>
               
                 <tr>
+                  <td>lora_dev_eui</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>LoRa DevEUI for this sensor, gateway or valve. </p></td>
+                </tr>
+              
+                <tr>
                   <td>device_type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -18192,6 +18211,20 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
                 </tr>
               
                 <tr>
+                  <td>lora_dev_eui</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> LoRa DevEUI for this sensor. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>hiber_sensor_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Shortened LoRa DevEUI for this hiber sensor. </p></td>
+                </tr>
+              
+                <tr>
                   <td>device_type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -18244,6 +18277,11 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
               
                 <tr>
                   <td>external_device_ids</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>lora_dev_eui</td>
                   <td><p>true</p></td>
                 </tr>
               
@@ -25042,6 +25080,18 @@ Typically an image of a place. See the File.media_type for more information. </p
               <tr>
                 <td>PRODUCTION_MANIFOLD</td>
                 <td>14</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TEMPERATURE</td>
+                <td>16</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>METERING_FLOWLINE</td>
+                <td>17</td>
                 <td><p></p></td>
               </tr>
             

@@ -451,6 +451,7 @@ when the modem is registered into the system or when a subscription is authorize
 | is_device_connected_to_gateway | [ bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Whether the modem is connected to a modem configured as a gateway. Use `type` instead. |
 | connected_to_gateway | [ string](#string) | <span class="deprecated deprecated-field">Deprecated</span> The modem number that this modem is connected to, if any. Use `connected_device_info.connected_to_gateway` instead. |
 | external_device_ids | [repeated string](#string) | External device ids for this sensor, gateway or valve. |
+|  **optional** lora_dev_eui | [optional string](#string) | LoRa DevEUI for this sensor, gateway or valve. |
 | device_type | [ string](#string) | Device type for this modem. |
 | type | [ Modem.Type](#modemtype) | The type of modem. Used mainly to differentiate in the UI or to sort on. |
 |  **optional** gateway_info | [optional Modem.GatewayInfo](#modemgatewayinfo) | Additional information when this modem is a gateway. |
@@ -473,6 +474,8 @@ Additional information when this modem is a connected device.
 | ----- | ---- | ----------- |
 | connected_to_gateway | [ string](#string) | The gateways that this modem is connected to. This field reflects the gateway that processed the last message for this modem. If the modem is connected to multiple gateways, the last used gateway is tracked here. |
 | external_device_ids | [repeated string](#string) | <span class="deprecated deprecated-field">Deprecated</span> External device ids for this modem. |
+|  **optional** lora_dev_eui | [optional string](#string) | <span class="deprecated deprecated-field">Deprecated</span> LoRa DevEUI for this sensor. |
+|  **optional** hiber_sensor_id | [optional string](#string) | Shortened LoRa DevEUI for this hiber sensor. |
 | device_type | [ string](#string) | <span class="deprecated deprecated-field">Deprecated</span> Device type for this modem. |
 | sensor_brand | [ string](#string) | Brand for this modem's sensor. |
 |  **optional** frequency | [optional Modem.ConnectedDeviceInfo.Frequency](#modemconnecteddeviceinfofrequency) | Frequency configured for this device. |
@@ -1357,6 +1360,8 @@ Currently a limited list, but more may be added in the future.
 | PRODUCTION_LINE |  | 12 |
 | GAS_MANIFOLD |  | 13 |
 | PRODUCTION_MANIFOLD |  | 14 |
+| TEMPERATURE |  | 16 |
+| METERING_FLOWLINE |  | 17 |
 
 
 

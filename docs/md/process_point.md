@@ -205,6 +205,8 @@ Currently a limited list, but more may be added in the future.
 | PRODUCTION_LINE |  | 12 |
 | GAS_MANIFOLD |  | 13 |
 | PRODUCTION_MANIFOLD |  | 14 |
+| TEMPERATURE |  | 16 |
+| METERING_FLOWLINE |  | 17 |
 
 
 

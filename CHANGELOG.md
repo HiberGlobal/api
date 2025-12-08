@@ -1,5 +1,16 @@
 # Changelog Hiber API
 
+### 0.265 (2025-12-08)
+
+##### ProcessPoint
+
+- Added `TEMERATURE` and `METERING_FLOWLINE` types.
+
+##### ModemService
+
+- Added `lora_dev_eui` and `connected_device_info.lora_dev_eui` with the DevEUI for a device.
+- Added `connected_device_info.hiber_sensor_id` with the tail of the DevEUI of the Hiber pressure sensors, often used as a simple id.
+
 ### 0.264 (2025-12-01)
 
 #### SimulationService

@@ -48,6 +48,8 @@ message Asset {
         PRODUCTION_LINE = 12;
         GAS_MANIFOLD = 13;
         PRODUCTION_MANIFOLD = 14;
+        TEMPERATURE = 16;
+        METERING_FLOWLINE = 17;
     }
 
     /* A device assigned to this asset.

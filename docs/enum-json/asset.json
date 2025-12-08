@@ -18,5 +18,7 @@
     , "PRODUCTION_LINE": ""
     , "GAS_MANIFOLD": ""
     , "PRODUCTION_MANIFOLD": ""
+    , "TEMPERATURE": ""
+    , "METERING_FLOWLINE": ""
     }
 }]

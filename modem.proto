@@ -147,6 +147,9 @@ message Modem {
     /* External device ids for this sensor, gateway or valve. */
     repeated string external_device_ids = 23;
 
+    /* LoRa DevEUI for this sensor, gateway or valve. */
+    optional string lora_dev_eui = 41;
+
     /* Device type for this modem. */
     string device_type = 38;
 
@@ -217,6 +220,12 @@ message Modem {
 
         /* External device ids for this modem. */
         repeated string external_device_ids = 2 [deprecated = true];
+
+        /* LoRa DevEUI for this sensor. */
+        optional string lora_dev_eui = 41 [deprecated = true];
+
+        /* Shortened LoRa DevEUI for this hiber sensor. */
+        optional string hiber_sensor_id = 8;
 
         /* Device type for this modem. */
         string device_type = 3 [deprecated = true];

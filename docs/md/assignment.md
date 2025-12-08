@@ -986,6 +986,8 @@ Currently a limited list, but more may be added in the future.
 | PRODUCTION_LINE |  | 12 |
 | GAS_MANIFOLD |  | 13 |
 | PRODUCTION_MANIFOLD |  | 14 |
+| TEMPERATURE |  | 16 |
+| METERING_FLOWLINE |  | 17 |
 
 
 
@@ -1024,6 +1026,7 @@ when the modem is registered into the system or when a subscription is authorize
 | is_device_connected_to_gateway | [ bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Whether the modem is connected to a modem configured as a gateway. Use `type` instead. |
 | connected_to_gateway | [ string](#string) | <span class="deprecated deprecated-field">Deprecated</span> The modem number that this modem is connected to, if any. Use `connected_device_info.connected_to_gateway` instead. |
 | external_device_ids | [repeated string](#string) | External device ids for this sensor, gateway or valve. |
+|  **optional** lora_dev_eui | [optional string](#string) | LoRa DevEUI for this sensor, gateway or valve. |
 | device_type | [ string](#string) | Device type for this modem. |
 | type | [ hiber.modem.Modem.Type](#hibermodemmodemtype) | The type of modem. Used mainly to differentiate in the UI or to sort on. |
 |  **optional** gateway_info | [optional hiber.modem.Modem.GatewayInfo](#hibermodemmodemgatewayinfo) | Additional information when this modem is a gateway. |
@@ -2355,6 +2358,8 @@ Currently a limited list, but more may be added in the future.
 | PRODUCTION_LINE |  | 12 |
 | GAS_MANIFOLD |  | 13 |
 | PRODUCTION_MANIFOLD |  | 14 |
+| TEMPERATURE |  | 16 |
+| METERING_FLOWLINE |  | 17 |
 
 
 
