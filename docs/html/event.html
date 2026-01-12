@@ -1083,6 +1083,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.export.AvailableFieldsForExport.Response.JsonFieldsEntry"><span class="badge">M</span>AvailableFieldsForExport.Response.JsonFieldsEntry</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.export.CreateExport"><span class="badge">M</span>CreateExport</a>
                 </li>
               
@@ -14077,6 +14081,13 @@ Time range is ignored for this request. </p></td>
 Time range is ignored for this request. </p></td>
                 </tr>
               
+                <tr>
+                  <td>all</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>By default, a cleaned up recommended selection of fields is returned. Set this to get everything. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -14098,7 +14109,7 @@ Time range is ignored for this request. </p></td>
                   <td>json_paths</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>All json paths that are available for json field mapping. </p></td>
+                  <td><p>The json paths that are available for json field mapping. </p></td>
                 </tr>
               
                 <tr>
@@ -14106,6 +14117,44 @@ Time range is ignored for this request. </p></td>
                   <td><a href="#hiber.export.Export.Format.Csv.Column">Export.Format.Csv.Column</a></td>
                   <td>repeated</td>
                   <td><p>Available CSV columns, pre-named with suggested names. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>json_fields</td>
+                  <td><a href="#hiber.export.AvailableFieldsForExport.Response.JsonFieldsEntry">AvailableFieldsForExport.Response.JsonFieldsEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Available Json fields, pre-named with suggested names. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.export.AvailableFieldsForExport.Response.JsonFieldsEntry">AvailableFieldsForExport.Response.JsonFieldsEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>

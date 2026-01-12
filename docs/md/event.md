@@ -182,6 +182,7 @@
   - [hiber.export.AvailableFieldsForExport](#hiberexportavailablefieldsforexport)
   - [hiber.export.AvailableFieldsForExport.Request](#hiberexportavailablefieldsforexportrequest)
   - [hiber.export.AvailableFieldsForExport.Response](#hiberexportavailablefieldsforexportresponse)
+  - [hiber.export.AvailableFieldsForExport.Response.JsonFieldsEntry](#hiberexportavailablefieldsforexportresponsejsonfieldsentry)
   - [hiber.export.CreateExport](#hiberexportcreateexport)
   - [hiber.export.CreateExport.Request](#hiberexportcreateexportrequest)
   - [hiber.export.CreateExport.Response](#hiberexportcreateexportresponse)
@@ -2623,6 +2624,7 @@ so not all messages listed here are referenced.)
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **configuration**.modem_message | [ hiber.export.Export.Configuration.ModemMessages](#hiberexportexportconfigurationmodemmessages) | Get the fields for modem messages, with optional specific fields for the selected modems, based on assigned parsers. Time range is ignored for this request. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **configuration**.asset_values | [ hiber.export.Export.Configuration.AssetValues](#hiberexportexportconfigurationassetvalues) | Get the fields for asset values. Time range is ignored for this request. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **configuration**.process_point_values | [ hiber.export.Export.Configuration.ProcessPointValues](#hiberexportexportconfigurationprocesspointvalues) | Get the fields for process point values. Time range is ignored for this request. |
+| all | [ bool](#bool) | By default, a cleaned up recommended selection of fields is returned. Set this to get everything. |
 
 ### hiber.export.AvailableFieldsForExport.Response
 
@@ -2630,8 +2632,18 @@ so not all messages listed here are referenced.)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| json_paths | [repeated string](#string) | All json paths that are available for json field mapping. |
+| json_paths | [repeated string](#string) | The json paths that are available for json field mapping. |
 | csv_columns | [repeated hiber.export.Export.Format.Csv.Column](#hiberexportexportformatcsvcolumn) | Available CSV columns, pre-named with suggested names. |
+| json_fields | [map hiber.export.AvailableFieldsForExport.Response.JsonFieldsEntry](#hiberexportavailablefieldsforexportresponsejsonfieldsentry) | Available Json fields, pre-named with suggested names. |
+
+### hiber.export.AvailableFieldsForExport.Response.JsonFieldsEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) |  |
+| value | [ string](#string) |  |
 
 ### hiber.export.CreateExport
 

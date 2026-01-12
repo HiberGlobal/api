@@ -254,14 +254,20 @@ message AvailableFieldsForExport {
              */
             Export.Configuration.ProcessPointValues process_point_values = 5;
         }
+
+        /* By default, a cleaned up recommended selection of fields is returned. Set this to get everything. */
+        bool all = 6;
     }
 
     message Response {
-        /* All json paths that are available for json field mapping. */
+        /* The json paths that are available for json field mapping. */
         repeated string json_paths = 1;
 
         /* Available CSV columns, pre-named with suggested names. */
         repeated Export.Format.Csv.Column csv_columns = 2;
+
+        /* Available Json fields, pre-named with suggested names. */
+        map<string, string> json_fields = 3;
     }
 }
 

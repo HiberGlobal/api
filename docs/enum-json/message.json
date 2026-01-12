@@ -1,0 +1,8 @@
+[{
+  "name": "MessageSort",
+  "description": "",
+  "values": {
+    "DEFAULT": "Sort the messages by sent time, descending, and by id if the sent time is identical."
+    , "BY_RECEIVED_TIME": "Sort the messages by received time, descending. If received time is identical, sort as DEFAULT."
+    }
+}]

@@ -1,5 +1,19 @@
 # Changelog Hiber API
 
+### 0.267 (2026-01-12)
+
+##### ExportService
+
+- `AvailableFieldsForExport` now returns a curated list, hiding some of the options that were never used and setting better display names.
+  - Added `AvailableFieldsForExport.Request.all` flag to disable the curated list and just get all possible options.
+
+##### MessageService
+
+- Added options to use the received time for messages:
+  - Added `received_time_range` to `MessageSelection`
+  - Added `sort` to `ListMessages.Request`
+    - Added `enum MessageSort` where `DEFAULT` is the original behavior and `BY_RECEIVED_TIME` sorts by received time, descending (and time descending and id, if received time is identical)
+
 ### 0.265 (2025-12-08)
 
 ##### ProcessPoint

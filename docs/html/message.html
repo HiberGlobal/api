@@ -219,6 +219,10 @@
                 </li>
               
               
+                <li>
+                  <a href="#hiber.message.MessageSort"><span class="badge">E</span>MessageSort</a>
+                </li>
+              
               
               
                 <li>
@@ -889,6 +893,13 @@
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>sort</td>
+                  <td><a href="#hiber.message.MessageSort">MessageSort</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -1167,7 +1178,14 @@ This may change in the future. </p></td>
                   <td>time_range</td>
                   <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
                   <td>optional</td>
-                  <td><p>Filter message by time range. </p></td>
+                  <td><p>Filter message by time range, by the time they were sent. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>received_time_range</td>
+                  <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
+                  <td>optional</td>
+                  <td><p>Filter message by time range, by the time they were received. </p></td>
                 </tr>
               
                 <tr>
@@ -1197,6 +1215,29 @@ even be different per modem. </p></td>
         
       
 
+      
+        <h3 id="hiber.message.MessageSort">MessageSort</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>DEFAULT</td>
+                <td>0</td>
+                <td><p>Sort the messages by sent time, descending, and by id if the sent time is identical.</p></td>
+              </tr>
+            
+              <tr>
+                <td>BY_RECEIVED_TIME</td>
+                <td>1</td>
+                <td><p>Sort the messages by received time, descending. If received time is identical, sort as DEFAULT.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
 
       

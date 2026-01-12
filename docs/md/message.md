@@ -22,6 +22,7 @@ Message management.
   - [MessageSelection](#messageselection)
 
 - Enums
+  - [MessageSort](#messagesort)
 
 - Referenced messages from [modem.proto](#referenced-messages-from-modemproto)
   - [hiber.modem.Modem](#hibermodemmodem)
@@ -159,6 +160,7 @@ Count messages for the selected modems.
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 |  **optional** selection | [optional MessageSelection](#messageselection) | Select the messages to list. Optional, when omitted or empty everything is included. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+|  **optional** sort | [optional MessageSort](#messagesort) |  |
 
 ### ListMessages.Response
 
@@ -218,12 +220,21 @@ Filter messages by modem and time sent (note that this is not the time the messa
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** modem_selection | [optional hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the modems to return messages for. Optional, when omitted or empty everything is included. |
-|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) | Filter message by time range. |
+|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) | Filter message by time range, by the time they were sent. |
+|  **optional** received_time_range | [optional hiber.TimeRange](#hibertimerange) | Filter message by time range, by the time they were received. |
 | modem_message_ids | [repeated int64](#int64) | Include messages by id |
 |  **optional** override_time_range_with_modem_time_zone | [optional bool](#bool) | Replace whatever time zone was specified in the start and end time with the modem time zone. This means you may get values outside of the original time range, but can be useful when requesting data for a date, for example. For example: start.textual = 2022-01-01, end.textual = 2022-02-01 would return a month of data in UTC time. When combined with this flag, it would return that month of data in the time zone of the modem, which may even be different per modem. |
 
 
 ## Enums
+### MessageSort
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| DEFAULT | Sort the messages by sent time, descending, and by id if the sent time is identical. | 0 |
+| BY_RECEIVED_TIME | Sort the messages by received time, descending. If received time is identical, sort as DEFAULT. | 1 |
+
 
 
 ## Referenced messages from modem.proto
