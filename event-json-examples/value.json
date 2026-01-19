@@ -11,10 +11,15 @@
     "processPointIdentifier": "example-identifier",
     "processPointName": "example",
     "processPointType": "WELL_ANNULUS_A",
-    "time": {
+    "valueTime": {
       "timestamp": "2020-06-01T05:15:25.355Z",
       "timeZone": "UTC",
       "textual": "2020-06-01T05:15:25.355Z"
+    },
+    "eventTime": {
+      "timestamp": "2020-06-01T06:15:25.355Z",
+      "timeZone": "UTC",
+      "textual": "2020-06-01T06:15:25.355Z"
     },
     "value": {
       "type": "NUMERIC",
@@ -48,9 +53,9 @@
   },
   "type": "VALUE",
   "time": {
-    "timestamp": "2020-06-01T05:15:25.355Z",
+    "timestamp": "2020-06-01T06:15:25.355Z",
     "timeZone": "UTC",
-    "textual": "2020-06-01T05:15:25.355Z"
+    "textual": "2020-06-01T06:15:25.355Z"
   },
   "isWarning": false,
   "title": "New value for process point example (example-identifier via device AAAA AAAA (AAAA AAAA)): pressure \u003d 1.00 bar",

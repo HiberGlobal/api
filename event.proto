@@ -1082,7 +1082,10 @@ message Event {
         processpoint.ProcessPoint.Type process_point_type = 10;
 
         /* When the value was measured, sent or received (first available option). */
-        Timestamp time = 11;
+        Timestamp value_time = 11;
+
+        /* When the value event was created. This is typically different from the value time because of delays. */
+        Timestamp event_time = 16;
 
         /* Actual value, with type and unit. */
         value.Value value = 12;

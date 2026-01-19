@@ -1623,7 +1623,8 @@ This event is disabled by default.
 | process_point_identifier | [ string](#string) | Process point that this value belongs to. |
 | process_point_name | [ string](#string) | Name of the process point that this value belongs to. |
 | process_point_type | [ hiber.processpoint.ProcessPoint.Type](#hiberprocesspointprocesspointtype) | Name of the process point that this value belongs to. |
-| time | [ hiber.Timestamp](#hibertimestamp) | When the value was measured, sent or received (first available option). |
+| value_time | [ hiber.Timestamp](#hibertimestamp) | When the value was measured, sent or received (first available option). |
+| event_time | [ hiber.Timestamp](#hibertimestamp) | When the value event was created. This is typically different from the value time because of delays. |
 | value | [ hiber.value.Value](#hibervaluevalue) | Actual value, with type and unit. |
 | tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
 | title | [ string](#string) |  |

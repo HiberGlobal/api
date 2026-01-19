@@ -1,5 +1,13 @@
 # Changelog Hiber API
 
+### 0.268 (2026-01-19)
+
+##### EventService
+
+- Split `ValueEvent.time` into two different, more specific fields
+  - `value_time`: the time the value was produced (like message sent time)
+  - `event_time`: the time the event was created
+
 ### 0.267 (2026-01-12)
 
 ##### ExportService
