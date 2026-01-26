@@ -1,5 +1,15 @@
 # Changelog Hiber API
 
+### 0.269 (2026-01-26)
+
+##### ProcessPointService
+
+- Allow multi-line `description` again for process points.
+
+##### ExportService
+
+- Added `ListExports.Sort` to sort the exports.
+
 ### 0.268 (2026-01-19)
 
 ##### EventService

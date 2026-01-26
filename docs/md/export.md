@@ -42,6 +42,7 @@
 - Enums
   - [Export.Format.Type](#exportformattype)
   - [Export.Status](#exportstatus)
+  - [ListExports.Sort](#listexportssort)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -374,6 +375,7 @@ Json format for export.
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 |  **optional** selection | [optional ExportSelection](#exportselection) | Select the exports to list. Optional, when omitted or empty everything is included. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+| sort | [repeated ListExports.Sort](#listexportssort) |  |
 |  **optional** use_process_point_in_configuration | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Return export configuration for process point instead of asset. Defaults to using asset for backwards compatibility. |
 
 ### ListExports.Response
@@ -406,6 +408,17 @@ Json format for export.
 | EXPIRED | Export has expired and is no longer available. | 1 |
 | PROCESSING | Data is still being processed to create the export. | 2 |
 | FAILED | The export failed. See the error message for more details. | 3 |
+
+### ListExports.Sort
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| NAME |  | 0 |
+| TYPE |  | 1 |
+| STATUS |  | 2 |
+| NEWEST_FIRST |  | 3 |
+| OLDEST_FIRST |  | 4 |
 
 
 

@@ -299,6 +299,10 @@
                   <a href="#hiber.export.Export.Status"><span class="badge">E</span>Export.Status</a>
                 </li>
               
+                <li>
+                  <a href="#hiber.export.ListExports.Sort"><span class="badge">E</span>ListExports.Sort</a>
+                </li>
+              
               
               
                 <li>
@@ -1390,6 +1394,13 @@ to flatten it to simple columns. </p></td>
                 </tr>
               
                 <tr>
+                  <td>sort</td>
+                  <td><a href="#hiber.export.ListExports.Sort">ListExports.Sort</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>use_process_point_in_configuration</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
@@ -1524,6 +1535,47 @@ Defaults to using asset for backwards compatibility. </p></td>
                 <td>FAILED</td>
                 <td>3</td>
                 <td><p>The export failed. See the error message for more details.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="hiber.export.ListExports.Sort">ListExports.Sort</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>NAME</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>NEWEST_FIRST</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>OLDEST_FIRST</td>
+                <td>4</td>
+                <td><p></p></td>
               </tr>
             
           </tbody>

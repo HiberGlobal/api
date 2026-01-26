@@ -196,10 +196,20 @@ message ListExports {
         optional ExportSelection selection = 2;
         optional Pagination pagination = 3;
 
+        repeated Sort sort = 5;
+
         /* Return export configuration for process point instead of asset.
          * Defaults to using asset for backwards compatibility.
          */
         optional bool use_process_point_in_configuration = 4 [deprecated = true];
+    }
+
+    enum Sort {
+        NAME = 0;
+        TYPE = 1;
+        STATUS = 2;
+        NEWEST_FIRST = 3;
+        OLDEST_FIRST = 4;
     }
 
     message Response {

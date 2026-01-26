@@ -210,6 +210,7 @@
 
     - [hiber.export.Export.Format.Type](#hiberexportexportformattype)
     - [hiber.export.Export.Status](#hiberexportexportstatus)
+    - [hiber.export.ListExports.Sort](#hiberexportlistexportssort)
 
 - Referenced messages from [file.proto](#referenced-messages-from-fileproto)
   - [hiber.file.File](#hiberfilefile)
@@ -2851,6 +2852,7 @@ Json format for export.
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 |  **optional** selection | [optional hiber.export.ExportSelection](#hiberexportexportselection) | Select the exports to list. Optional, when omitted or empty everything is included. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+| sort | [repeated hiber.export.ListExports.Sort](#hiberexportlistexportssort) |  |
 |  **optional** use_process_point_in_configuration | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Return export configuration for process point instead of asset. Defaults to using asset for backwards compatibility. |
 
 ### hiber.export.ListExports.Response
@@ -2883,6 +2885,17 @@ Json format for export.
 | EXPIRED | Export has expired and is no longer available. | 1 |
 | PROCESSING | Data is still being processed to create the export. | 2 |
 | FAILED | The export failed. See the error message for more details. | 3 |
+
+#### hiber.export.ListExports.Sort
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| NAME |  | 0 |
+| TYPE |  | 1 |
+| STATUS |  | 2 |
+| NEWEST_FIRST |  | 3 |
+| OLDEST_FIRST |  | 4 |
 
 
 
