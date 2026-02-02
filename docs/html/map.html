@@ -350,6 +350,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.IntRange"><span class="badge">M</span>IntRange</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.Location"><span class="badge">M</span>Location</a>
                 </li>
               
@@ -2131,6 +2135,37 @@ Exclude takes precedence over include. </p></td>
 
         
       
+        <h3 id="hiber.IntRange">IntRange</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>start</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>end</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="hiber.Location">Location</h3>
         <p>Geographic latitude and longitude coordinates specified in decimal degrees.</p><p>For more information, see the WGS-84 coordinate system, which is used for most GPS systems.</p>
 
@@ -2407,6 +2442,14 @@ Exclude takes precedence over include. </p></td>
                   <td><p>Indicates that the total is an approximation, and not an exact value.
 This can be set for data that changes often, or is generally only fetched in an infinite scrolling manner.
 For example, unbundled events are likely to return an approximated total, but not guaranteed to do so. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>items_on_page</td>
+                  <td><a href="#hiber.IntRange">IntRange</a></td>
+                  <td>optional</td>
+                  <td><p>The indices of the first and last items on the page, if any.
+For example, on the second page of size 10, this is 11 - 20. </p></td>
                 </tr>
               
             </tbody>

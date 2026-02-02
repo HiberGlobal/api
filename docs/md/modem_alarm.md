@@ -133,6 +133,7 @@ advanced use cases, like assigning to a tag.
   - [hiber.Filter.UserPermissions](#hiberfilteruserpermissions)
   - [hiber.Filter.Users](#hiberfilterusers)
   - [hiber.Filter.Webhooks](#hiberfilterwebhooks)
+  - [hiber.IntRange](#hiberintrange)
   - [hiber.Location](#hiberlocation)
   - [hiber.LocationSelection](#hiberlocationselection)
   - [hiber.MapFilter](#hibermapfilter)
@@ -1591,6 +1592,15 @@ Filter result on specific properties encoded in map-value pairs.
 | exclude | [repeated int64](#int64) |  |
 | only_active | [ bool](#bool) |  |
 
+### hiber.IntRange
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| start | [ uint32](#uint32) |  |
+| end | [ uint32](#uint32) |  |
+
 ### hiber.Location
 
 Geographic latitude and longitude coordinates specified in decimal degrees.
@@ -1699,6 +1709,7 @@ start at the first page and continue to the next, they can use the provided Pagi
 | previous | [ hiber.Pagination](#hiberpagination) |  |
 | next | [ hiber.Pagination](#hiberpagination) |  |
 | approximated_total | [ bool](#bool) | Indicates that the total is an approximation, and not an exact value. This can be set for data that changes often, or is generally only fetched in an infinite scrolling manner. For example, unbundled events are likely to return an approximated total, but not guaranteed to do so. |
+|  **optional** items_on_page | [optional hiber.IntRange](#hiberintrange) | The indices of the first and last items on the page, if any. For example, on the second page of size 10, this is 11 - 20. |
 
 ### hiber.Shape
 

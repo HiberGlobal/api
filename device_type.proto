@@ -8,7 +8,20 @@ option go_package = ".;hiber";
 
 /* Preconfigured device type. */
 message DeviceType {
+    /* Identifier of this device type. */
     string identifier = 1;
+
+    /* Identifier of this device type, as enum. */
+    Identifier identifier_enum = 11;
+
+    /* Infrastructure purpose of this device type. */
+    Infrastructure infrastructure = 8;
+
+    /* Class of this device type. */
+    Class class = 9;
+
+    /* Implementation of the class of this device type. */
+    Implementation implementation = 10;
 
     /* Brand that produces this device type. */
     string brand = 2;
@@ -25,8 +38,87 @@ message DeviceType {
     /* Textual description of the device type, for display purposes. */
     string description = 6;
 
-    /* Whether this device type represents a gateway or a device. */
-    bool gateway = 7;
+    /* Whether this device type represents a gateway or a device.
+     * Deprecated in favor of infrastructure and class enums.
+     */
+    bool gateway = 7 [deprecated = true];
+
+    enum Identifier {
+        GATEWAY = 0;
+        PRESSURE_SENSOR_1 = 1;
+        PRESSURE_SENSOR_1_AS = 16;
+        PRESSURE_SENSOR_1_AU = 2;
+        PRESSURE_SENSOR_1_EU = 3;
+        PRESSURE_SENSOR_1_US = 4;
+        TEMPERATURE_SENSOR_1 = 17;
+        TEMPERATURE_SENSOR_1_AS = 5;
+        TEMPERATURE_SENSOR_1_AU = 6;
+        TEMPERATURE_SENSOR_1_EU = 7;
+        TEMPERATURE_SENSOR_1_US = 8;
+        PRESSURE_AND_TEMPERATURE_SENSOR_1 = 18;
+        PRESSURE_AND_TEMPERATURE_SENSOR_1_AS = 9;
+        PRESSURE_AND_TEMPERATURE_SENSOR_1_AU = 10;
+        PRESSURE_AND_TEMPERATURE_SENSOR_1_EU = 11;
+        PRESSURE_AND_TEMPERATURE_SENSOR_1_US = 12;
+        DEMO_ALL_VALUES = 13;
+        GATEWAY_V2 = 14;
+        VALVE_ACTUATOR = 15;
+        GATEWAY_V2_CELLULAR = 19;
+    }
+
+    enum Infrastructure {
+        /* This device is an end device, like a sensor or actuator. */
+        END_DEVICE = 0;
+
+        /* This device is a network node, facilitating connection and data transfer, like a gateway. */
+        NETWORK = 1;
+    }
+
+    enum Class {
+        /* This device is a gateway using BGAN for its data connection. */
+        GATEWAY_BGAN = 0;
+
+        /* This device is a gateway using a cellular data connection (e.g. 4G). */
+        GATEWAY_CELLULAR = 1;
+
+        /* This device is a sensor that measures data and sends it to the system. */
+        SENSOR = 2;
+
+        /* This device is a retrofitter that is connected to a sensor and used to transmit its data. */
+        RETROFITTER = 3;
+
+        /* This device is an actuator capable of operations that affect surrounding devices. */
+        ACTUATOR = 4;
+    }
+
+    enum Implementation {
+        /* Original Hiber gateway, over BGAN. */
+        GATEWAY_VERSION_1 = 0;
+
+        /* Improved Hiber gateway, capable of BGAN and cellular connections. */
+        GATEWAY_VERSION_2 = 3;
+
+        /* Hiber Pressure Sensor. */
+        PRESSURE_SENSOR_VERSION_1 = 1;
+
+        /* Hiber Temperature Sensor. */
+        TEMPERATURE_SENSOR_VERSION_1 = 2;
+
+        /* Actuator capable of closing high pressure lines that affect surrounding devices. */
+        VALVE_VERSION_1 = 4;
+
+        /* Retrofitter that reads 4 to 20 milliamps. */
+        RETROFITTER_4_20_MA = 5;
+
+        /* Retrofitter that connects to modbus. */
+        RETROFITTER_MODBUS = 6;
+
+        /* Different type of retrofitter that connects to modbus. */
+        RETROFITTER_MODBUS_2 = 7;
+
+        /* Demo mode. */
+        DEMO = 8;
+    }
 }
 
 /* Selection object for device types. */

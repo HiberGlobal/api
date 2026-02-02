@@ -1,0 +1,57 @@
+[{
+  "name": "Class",
+  "description": "",
+  "values": {
+    "GATEWAY_BGAN": "This device is a gateway using BGAN for its data connection."
+    , "GATEWAY_CELLULAR": "This device is a gateway using a cellular data connection (e.g. 4G)."
+    , "SENSOR": "This device is a sensor that measures data and sends it to the system."
+    , "RETROFITTER": "This device is a retrofitter that is connected to a sensor and used to transmit its data."
+    , "ACTUATOR": "This device is an actuator capable of operations that affect surrounding devices."
+    }
+},{
+  "name": "Identifier",
+  "description": "",
+  "values": {
+    "GATEWAY": ""
+    , "PRESSURE_SENSOR_1": ""
+    , "PRESSURE_SENSOR_1_AS": ""
+    , "PRESSURE_SENSOR_1_AU": ""
+    , "PRESSURE_SENSOR_1_EU": ""
+    , "PRESSURE_SENSOR_1_US": ""
+    , "TEMPERATURE_SENSOR_1": ""
+    , "TEMPERATURE_SENSOR_1_AS": ""
+    , "TEMPERATURE_SENSOR_1_AU": ""
+    , "TEMPERATURE_SENSOR_1_EU": ""
+    , "TEMPERATURE_SENSOR_1_US": ""
+    , "PRESSURE_AND_TEMPERATURE_SENSOR_1": ""
+    , "PRESSURE_AND_TEMPERATURE_SENSOR_1_AS": ""
+    , "PRESSURE_AND_TEMPERATURE_SENSOR_1_AU": ""
+    , "PRESSURE_AND_TEMPERATURE_SENSOR_1_EU": ""
+    , "PRESSURE_AND_TEMPERATURE_SENSOR_1_US": ""
+    , "DEMO_ALL_VALUES": ""
+    , "GATEWAY_V2": ""
+    , "VALVE_ACTUATOR": ""
+    , "GATEWAY_V2_CELLULAR": ""
+    }
+},{
+  "name": "Implementation",
+  "description": "",
+  "values": {
+    "GATEWAY_VERSION_1": "Original Hiber gateway, over BGAN."
+    , "GATEWAY_VERSION_2": "Improved Hiber gateway, capable of BGAN and cellular connections."
+    , "PRESSURE_SENSOR_VERSION_1": "Hiber Pressure Sensor."
+    , "TEMPERATURE_SENSOR_VERSION_1": "Hiber Temperature Sensor."
+    , "VALVE_VERSION_1": "Actuator capable of closing high pressure lines that affect surrounding devices."
+    , "RETROFITTER_4_20_MA": "Retrofitter that reads 4 to 20 milliamps."
+    , "RETROFITTER_MODBUS": "Retrofitter that connects to modbus."
+    , "RETROFITTER_MODBUS_2": "Different type of retrofitter that connects to modbus."
+    , "DEMO": "Demo mode."
+    }
+},{
+  "name": "Infrastructure",
+  "description": "",
+  "values": {
+    "END_DEVICE": "This device is an end device, like a sensor or actuator."
+    , "NETWORK": "This device is a network node, facilitating connection and data transfer, like a gateway."
+    }
+}]

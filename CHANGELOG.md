@@ -1,5 +1,13 @@
 # Changelog Hiber API
 
+### 0.270 (2026-02-02)
+
+##### Base
+
+- Added `IntRange` for a range between two integers (including both).
+- Added `items_on_page` to `Pagination.Result` to indicate the first and last item on the page using `IntRange`.
+  - If the page is empty, the `items_on_page` is not set.
+
 ### 0.269 (2026-01-26)
 
 ##### ProcessPointService

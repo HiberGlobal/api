@@ -13,6 +13,10 @@
   - [DeviceTypeSelection](#devicetypeselection)
 
 - Enums
+  - [DeviceType.Class](#devicetypeclass)
+  - [DeviceType.Identifier](#devicetypeidentifier)
+  - [DeviceType.Implementation](#devicetypeimplementation)
+  - [DeviceType.Infrastructure](#devicetypeinfrastructure)
 
 - [Scalar Value Types](#scalar-value-types)
 
@@ -24,13 +28,17 @@ Preconfigured device type.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| identifier | [ string](#string) |  |
+| identifier | [ string](#string) | Identifier of this device type. |
+| identifier_enum | [ DeviceType.Identifier](#devicetypeidentifier) | Identifier of this device type, as enum. |
+| infrastructure | [ DeviceType.Infrastructure](#devicetypeinfrastructure) | Infrastructure purpose of this device type. |
+| class | [ DeviceType.Class](#devicetypeclass) | Class of this device type. |
+| implementation | [ DeviceType.Implementation](#devicetypeimplementation) | Implementation of the class of this device type. |
 | brand | [ string](#string) | Brand that produces this device type. |
 | application | [ string](#string) | What this devices is meant for, e.g. measuring pressure. |
 | category | [ string](#string) | A category specific to this device type (for example, based on device configuration). |
 | version | [ string](#string) | A version specific to this device type (typically based on firmware version). |
 | description | [ string](#string) | Textual description of the device type, for display purposes. |
-| gateway | [ bool](#bool) | Whether this device type represents a gateway or a device. |
+| gateway | [ bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Whether this device type represents a gateway or a device. Deprecated in favor of infrastructure and class enums. |
 
 ### DeviceTypeSelection
 
@@ -44,6 +52,66 @@ Selection object for device types.
 
 
 ## Enums
+### DeviceType.Class
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| GATEWAY_BGAN | This device is a gateway using BGAN for its data connection. | 0 |
+| GATEWAY_CELLULAR | This device is a gateway using a cellular data connection (e.g. 4G). | 1 |
+| SENSOR | This device is a sensor that measures data and sends it to the system. | 2 |
+| RETROFITTER | This device is a retrofitter that is connected to a sensor and used to transmit its data. | 3 |
+| ACTUATOR | This device is an actuator capable of operations that affect surrounding devices. | 4 |
+
+### DeviceType.Identifier
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| GATEWAY |  | 0 |
+| PRESSURE_SENSOR_1 |  | 1 |
+| PRESSURE_SENSOR_1_AS |  | 16 |
+| PRESSURE_SENSOR_1_AU |  | 2 |
+| PRESSURE_SENSOR_1_EU |  | 3 |
+| PRESSURE_SENSOR_1_US |  | 4 |
+| TEMPERATURE_SENSOR_1 |  | 17 |
+| TEMPERATURE_SENSOR_1_AS |  | 5 |
+| TEMPERATURE_SENSOR_1_AU |  | 6 |
+| TEMPERATURE_SENSOR_1_EU |  | 7 |
+| TEMPERATURE_SENSOR_1_US |  | 8 |
+| PRESSURE_AND_TEMPERATURE_SENSOR_1 |  | 18 |
+| PRESSURE_AND_TEMPERATURE_SENSOR_1_AS |  | 9 |
+| PRESSURE_AND_TEMPERATURE_SENSOR_1_AU |  | 10 |
+| PRESSURE_AND_TEMPERATURE_SENSOR_1_EU |  | 11 |
+| PRESSURE_AND_TEMPERATURE_SENSOR_1_US |  | 12 |
+| DEMO_ALL_VALUES |  | 13 |
+| GATEWAY_V2 |  | 14 |
+| VALVE_ACTUATOR |  | 15 |
+| GATEWAY_V2_CELLULAR |  | 19 |
+
+### DeviceType.Implementation
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| GATEWAY_VERSION_1 | Original Hiber gateway, over BGAN. | 0 |
+| GATEWAY_VERSION_2 | Improved Hiber gateway, capable of BGAN and cellular connections. | 3 |
+| PRESSURE_SENSOR_VERSION_1 | Hiber Pressure Sensor. | 1 |
+| TEMPERATURE_SENSOR_VERSION_1 | Hiber Temperature Sensor. | 2 |
+| VALVE_VERSION_1 | Actuator capable of closing high pressure lines that affect surrounding devices. | 4 |
+| RETROFITTER_4_20_MA | Retrofitter that reads 4 to 20 milliamps. | 5 |
+| RETROFITTER_MODBUS | Retrofitter that connects to modbus. | 6 |
+| RETROFITTER_MODBUS_2 | Different type of retrofitter that connects to modbus. | 7 |
+| DEMO | Demo mode. | 8 |
+
+### DeviceType.Infrastructure
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| END_DEVICE | This device is an end device, like a sensor or actuator. | 0 |
+| NETWORK | This device is a network node, facilitating connection and data transfer, like a gateway. | 1 |
+
 ## Scalar Value Types
 
 | .proto Type | Notes | C++ Type | Java Type | Python Type |

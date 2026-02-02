@@ -187,6 +187,22 @@
                 </li>
               
               
+                <li>
+                  <a href="#hiber.device.type.DeviceType.Class"><span class="badge">E</span>DeviceType.Class</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.device.type.DeviceType.Identifier"><span class="badge">E</span>DeviceType.Identifier</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.device.type.DeviceType.Implementation"><span class="badge">E</span>DeviceType.Implementation</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.device.type.DeviceType.Infrastructure"><span class="badge">E</span>DeviceType.Infrastructure</a>
+                </li>
+              
               
               
             </ul>
@@ -218,7 +234,35 @@
                   <td>identifier</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Identifier of this device type. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>identifier_enum</td>
+                  <td><a href="#hiber.device.type.DeviceType.Identifier">DeviceType.Identifier</a></td>
+                  <td></td>
+                  <td><p>Identifier of this device type, as enum. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>infrastructure</td>
+                  <td><a href="#hiber.device.type.DeviceType.Infrastructure">DeviceType.Infrastructure</a></td>
+                  <td></td>
+                  <td><p>Infrastructure purpose of this device type. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>class</td>
+                  <td><a href="#hiber.device.type.DeviceType.Class">DeviceType.Class</a></td>
+                  <td></td>
+                  <td><p>Class of this device type. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>implementation</td>
+                  <td><a href="#hiber.device.type.DeviceType.Implementation">DeviceType.Implementation</a></td>
+                  <td></td>
+                  <td><p>Implementation of the class of this device type. </p></td>
                 </tr>
               
                 <tr>
@@ -260,12 +304,34 @@
                   <td>gateway</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Whether this device type represents a gateway or a device. </p></td>
+                  <td><p><strong>Deprecated.</strong> Whether this device type represents a gateway or a device.
+Deprecated in favor of infrastructure and class enums. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>gateway</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -309,6 +375,266 @@
         
       
 
+      
+        <h3 id="hiber.device.type.DeviceType.Class">DeviceType.Class</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>GATEWAY_BGAN</td>
+                <td>0</td>
+                <td><p>This device is a gateway using BGAN for its data connection.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GATEWAY_CELLULAR</td>
+                <td>1</td>
+                <td><p>This device is a gateway using a cellular data connection (e.g. 4G).</p></td>
+              </tr>
+            
+              <tr>
+                <td>SENSOR</td>
+                <td>2</td>
+                <td><p>This device is a sensor that measures data and sends it to the system.</p></td>
+              </tr>
+            
+              <tr>
+                <td>RETROFITTER</td>
+                <td>3</td>
+                <td><p>This device is a retrofitter that is connected to a sensor and used to transmit its data.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ACTUATOR</td>
+                <td>4</td>
+                <td><p>This device is an actuator capable of operations that affect surrounding devices.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="hiber.device.type.DeviceType.Identifier">DeviceType.Identifier</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>GATEWAY</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PRESSURE_SENSOR_1</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PRESSURE_SENSOR_1_AS</td>
+                <td>16</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PRESSURE_SENSOR_1_AU</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PRESSURE_SENSOR_1_EU</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PRESSURE_SENSOR_1_US</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TEMPERATURE_SENSOR_1</td>
+                <td>17</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TEMPERATURE_SENSOR_1_AS</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TEMPERATURE_SENSOR_1_AU</td>
+                <td>6</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TEMPERATURE_SENSOR_1_EU</td>
+                <td>7</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TEMPERATURE_SENSOR_1_US</td>
+                <td>8</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PRESSURE_AND_TEMPERATURE_SENSOR_1</td>
+                <td>18</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PRESSURE_AND_TEMPERATURE_SENSOR_1_AS</td>
+                <td>9</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PRESSURE_AND_TEMPERATURE_SENSOR_1_AU</td>
+                <td>10</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PRESSURE_AND_TEMPERATURE_SENSOR_1_EU</td>
+                <td>11</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>PRESSURE_AND_TEMPERATURE_SENSOR_1_US</td>
+                <td>12</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DEMO_ALL_VALUES</td>
+                <td>13</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GATEWAY_V2</td>
+                <td>14</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>VALVE_ACTUATOR</td>
+                <td>15</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GATEWAY_V2_CELLULAR</td>
+                <td>19</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="hiber.device.type.DeviceType.Implementation">DeviceType.Implementation</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>GATEWAY_VERSION_1</td>
+                <td>0</td>
+                <td><p>Original Hiber gateway, over BGAN.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GATEWAY_VERSION_2</td>
+                <td>3</td>
+                <td><p>Improved Hiber gateway, capable of BGAN and cellular connections.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PRESSURE_SENSOR_VERSION_1</td>
+                <td>1</td>
+                <td><p>Hiber Pressure Sensor.</p></td>
+              </tr>
+            
+              <tr>
+                <td>TEMPERATURE_SENSOR_VERSION_1</td>
+                <td>2</td>
+                <td><p>Hiber Temperature Sensor.</p></td>
+              </tr>
+            
+              <tr>
+                <td>VALVE_VERSION_1</td>
+                <td>4</td>
+                <td><p>Actuator capable of closing high pressure lines that affect surrounding devices.</p></td>
+              </tr>
+            
+              <tr>
+                <td>RETROFITTER_4_20_MA</td>
+                <td>5</td>
+                <td><p>Retrofitter that reads 4 to 20 milliamps.</p></td>
+              </tr>
+            
+              <tr>
+                <td>RETROFITTER_MODBUS</td>
+                <td>6</td>
+                <td><p>Retrofitter that connects to modbus.</p></td>
+              </tr>
+            
+              <tr>
+                <td>RETROFITTER_MODBUS_2</td>
+                <td>7</td>
+                <td><p>Different type of retrofitter that connects to modbus.</p></td>
+              </tr>
+            
+              <tr>
+                <td>DEMO</td>
+                <td>8</td>
+                <td><p>Demo mode.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="hiber.device.type.DeviceType.Infrastructure">DeviceType.Infrastructure</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>END_DEVICE</td>
+                <td>0</td>
+                <td><p>This device is an end device, like a sensor or actuator.</p></td>
+              </tr>
+            
+              <tr>
+                <td>NETWORK</td>
+                <td>1</td>
+                <td><p>This device is a network node, facilitating connection and data transfer, like a gateway.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
 
       

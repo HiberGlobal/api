@@ -127,6 +127,11 @@ message DoubleRange {
     double end = 2;
 }
 
+message IntRange {
+    uint32 start = 1;
+    uint32 end = 2;
+}
+
 /* Timestamp type for convenience.
  *
  * Some clients are better at parsing Google's seconds/nanos based timestamp, while others prefer a text-based format.
@@ -264,6 +269,11 @@ message Pagination {
          * For example, unbundled events are likely to return an approximated total, but not guaranteed to do so.
          */
         bool approximated_total = 8;
+
+        /* The indices of the first and last items on the page, if any.
+         * For example, on the second page of size 10, this is 11 - 20.
+         */
+        optional IntRange items_on_page = 9;
     }
     optional int32 size = 1;
     optional int32 page = 2;
