@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.271 (2026-02-09)
+
+##### DeviceTypeService
+
+- Added new device types for retrofitters.
+
 ### 0.270 (2026-02-02)
 
 ##### Base

@@ -206,6 +206,12 @@ Selection object for device types.
 | GATEWAY_V2 |  | 14 |
 | VALVE_ACTUATOR |  | 15 |
 | GATEWAY_V2_CELLULAR |  | 19 |
+| VOBO_NUFLOW_MC_III_CHANNEL_1 |  | 20 |
+| VOBO_SERTECPET_RPM_CHANNEL_1 |  | 21 |
+| VOBO_HL_1 |  | 25 |
+| ADEUNIS_MODBUS_EXPRO_FLOW_TOTALIZER_1_METER |  | 22 |
+| ADEUNIS_MODBUS_EXPRO_FLOW_TOTALIZER_2_METERS |  | 23 |
+| ADEUNIS_MODBUS_EXPRO_FLOW_TOTALIZER_3_METERS |  | 24 |
 
 #### hiber.device.type.DeviceType.Implementation
 
