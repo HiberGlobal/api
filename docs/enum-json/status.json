@@ -1,0 +1,10 @@
+[{
+  "name": "MaintenanceMode",
+  "description": "The maintenance modes",
+  "values": {
+    "NONE": "System operating normally."
+    , "RELEASE": "Release is in progress, some customer operations may be blocked."
+    , "READ_ONLY_PREPARATION": "Preparing for full read-only mode. This blocks new requests but lets the ongoing ones be handled."
+    , "READ_ONLY": "Read-only mode. No changes can be made."
+    }
+}]

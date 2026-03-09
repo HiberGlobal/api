@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package hiber.status;
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.status";
+option java_outer_classname = "StatusApi";
+option go_package = ".;hiber";
+
+import "base.proto";
+
+/* Service to get system status. */
+service StatusService {
+
+    /* Get the current maintenance mode. */
+    rpc Maintenance (MaintenanceStatus.Request) returns (MaintenanceStatus.Response);
+}
+
+/* The maintenance modes */
+enum MaintenanceMode {
+    /* System operating normally. */
+    NONE = 0;
+
+    /* Release is in progress, some customer operations may be blocked. */
+    RELEASE = 1;
+
+    /* Preparing for full read-only mode. This blocks new requests but lets the ongoing ones be handled. */
+    READ_ONLY_PREPARATION = 2;
+
+    /* Read-only mode. No changes can be made. */
+    READ_ONLY = 3;
+}
+
+message MaintenanceStatus {
+    message Request {}
+    message Response {
+        MaintenanceMode maintenance_mode = 1;
+    }
+}

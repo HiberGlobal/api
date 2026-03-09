@@ -1,5 +1,12 @@
 # Changelog Hiber API
 
+### 0.274 (2026-03-09)
+
+##### StatusService
+
+- Added `StatusService` with
+  - `Maintenance` that returns the current `MaintenanceMode` of the system.
+
 ### 0.271 (2026-02-09)
 
 ##### DeviceTypeService
