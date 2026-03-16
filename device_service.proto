@@ -244,6 +244,10 @@ message DeviceSettings {
         /* Select which devices to return. Optional, when omitted or empty every device with settings is included. */
         optional hiber.device.DeviceSelection selection = 2;
 
+        /* Exclude devices that have the requested settings applied before,
+         * or have not changed them since the last time they were applied. */
+        optional bool exclude_unmodified_settings = 4;
+
         /* Paginate through results. */
         optional Pagination pagination = 3;
     }

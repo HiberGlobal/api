@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.275 (2026-03-16)
+
+##### DeviceService
+
+- Added `exclude_unmodified_settings` flag to `DeviceSettings.Request` to show the settings even if they have already been applied.
+
 ### 0.274 (2026-03-09)
 
 ##### StatusService
