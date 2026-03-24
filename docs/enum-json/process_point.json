@@ -20,5 +20,6 @@
     , "PRODUCTION_MANIFOLD": ""
     , "TEMPERATURE": ""
     , "METERING_FLOWLINE": ""
+    , "VALVE": ""
     }
 }]

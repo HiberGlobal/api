@@ -656,6 +656,7 @@ Currently a limited list, but more may be added in the future.
 | PRODUCTION_MANIFOLD |  | 14 |
 | TEMPERATURE |  | 16 |
 | METERING_FLOWLINE |  | 17 |
+| VALVE |  | 18 |
 
 
 
@@ -1505,6 +1506,7 @@ Currently a limited list, but more may be added in the future.
 | PRODUCTION_MANIFOLD |  | 14 |
 | TEMPERATURE |  | 16 |
 | METERING_FLOWLINE |  | 17 |
+| VALVE |  | 18 |
 
 
 

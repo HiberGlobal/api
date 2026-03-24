@@ -50,6 +50,7 @@ message Asset {
         PRODUCTION_MANIFOLD = 14;
         TEMPERATURE = 16;
         METERING_FLOWLINE = 17;
+        VALVE = 18;
     }
 
     /* A device assigned to this asset.

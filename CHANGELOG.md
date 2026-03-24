@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.276 (2026-03-24)
+
+##### ProcessPointService
+
+- Added new type `VALVE`.
+
 ### 0.275 (2026-03-16)
 
 ##### DeviceService
