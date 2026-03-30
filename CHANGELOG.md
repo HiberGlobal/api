@@ -1,5 +1,21 @@
 # Changelog Hiber API
 
+### 0.277 (2026-03-30)
+
+##### DeviceService
+
+- Added new Gateway device types:
+  - `Gateway v2 AC BGAN`
+  - `Gateway v2 DC BGAN`
+  - `Gateway v2 AC Cellular`
+  - `Gateway v2 DC Cellular`
+- Updated `Gateway v2 BGAN` to `Gateway v2 AC BGAN` and `Gateway v2 Cellular` to `Gateway v2 AC Cellular`
+
+
+##### UserService
+
+- Added `PROCESS_POINTS` permission to the `Installer` role.
+
 ### 0.276 (2026-03-24)
 
 ##### ProcessPointService
