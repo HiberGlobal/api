@@ -517,6 +517,14 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.valve.Valve.PressureLine"><span class="badge">M</span>Valve.PressureLine</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.valve.Valve.Status"><span class="badge">M</span>Valve.Status</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.valve.Valve.ValveProcess"><span class="badge">M</span>Valve.ValveProcess</a>
                 </li>
               
@@ -531,6 +539,14 @@
               
                 <li>
                   <a href="#hiber.valve.Valve.Operation"><span class="badge">E</span>Valve.Operation</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.valve.Valve.PressureLine.Status"><span class="badge">E</span>Valve.PressureLine.Status</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.valve.Valve.Status.Combined"><span class="badge">E</span>Valve.Status.Combined</a>
                 </li>
               
               
@@ -551,7 +567,7 @@
 
       
         <h3 id="hiber.valve.BleedHighPressureLine">BleedHighPressureLine</h3>
-        <p>Open valve to bleed high pressure line.</p><p>Send a downlink command to LoRaWAN LNS to open the valve actuator.</p><p>High pressure line status should be changed: PRESSURIZED -> ZERO</p>
+        <p>Open valve to bleed pressure line.</p><p>Send a downlink command to LoRaWAN LNS to open the valve actuator.</p><p>Pressure line status should be changed: PRESSURIZED -> ZERO</p>
 
         
 
@@ -620,7 +636,7 @@
         
       
         <h3 id="hiber.valve.ConfirmHighPressureLineIsZero">ConfirmHighPressureLineIsZero</h3>
-        <p>Confirm high pressure line pressure is 0 bar.</p><p>High pressure line status can only be updated after operator's confirmation:</p><p>High pressure line status is confirmed: ZERO</p>
+        <p>Confirm pressure line pressure is 0 bar.</p><p>Pressure line status can only be updated after operator's confirmation:</p><p>Pressure line status is confirmed: ZERO</p>
 
         
 
@@ -689,7 +705,7 @@
         
       
         <h3 id="hiber.valve.ConfirmHighPressureLineUnderPressure">ConfirmHighPressureLineUnderPressure</h3>
-        <p>Confirm high pressure line under pressure.</p><p>The operator is required to manually operate the high pressure line to make it PRESSURIZED</p><p>High pressure line status can only be updated after operator confirmation:</p><p>High pressure line status is confirmed: PRESSURIZED</p>
+        <p>Confirm pressure line under pressure.</p><p>The operator is required to manually operate the pressure line to make it PRESSURIZED</p><p>Pressure line status can only be updated after operator confirmation:</p><p>Pressure line status is confirmed: PRESSURIZED</p>
 
         
 
@@ -758,7 +774,7 @@
         
       
         <h3 id="hiber.valve.ConfirmValveIsReset">ConfirmValveIsReset</h3>
-        <p>Confirm valve is reset.</p><p>High pressure line status can only be updated after operator's confirmation:</p><p>High pressure line status is confirmed: READY_TO_BE_PRESSURIZED</p>
+        <p>Confirm valve is reset.</p><p>Pressure line status can only be updated after operator's confirmation:</p><p>Pressure line status is confirmed: READY_TO_BE_PRESSURIZED</p>
 
         
 
@@ -840,12 +856,40 @@
                   <td>init_high_pressure_line_status</td>
                   <td><a href="#hiber.valve.Valve.HighPressureLineStatus">Valve.HighPressureLineStatus</a></td>
                   <td></td>
-                  <td><p>Initialize high pressure line status. </p></td>
+                  <td><p><strong>Deprecated.</strong> Initialize pressure line status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>init_pressure_line_status</td>
+                  <td><a href="#hiber.valve.Valve.PressureLine.Status">Valve.PressureLine.Status</a></td>
+                  <td></td>
+                  <td><p>Initialize pressure line status. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>init_high_pressure_line_status</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -1103,7 +1147,7 @@
         
       
         <h3 id="hiber.valve.ResetValve">ResetValve</h3>
-        <p>Reset valve.</p><p>Send a downlink command to LoRaWAN LNS to close the valve actuator.</p><p>High pressure line status should be changed: ZERO -> READY_TO_BE_PRESSURIZED</p>
+        <p>Reset valve.</p><p>Send a downlink command to LoRaWAN LNS to close the valve actuator.</p><p>Pressure line status should be changed: ZERO -> READY_TO_BE_PRESSURIZED</p>
 
         
 
@@ -1201,7 +1245,7 @@
 
       
         <h3 id="hiber.valve.ValveService">ValveService</h3>
-        <p>List valve actuators and process valve to control high pressure line.</p><p>Switch valve actuator to control the high pressure line by sending downlink command message to LoRaWAN network server,</p><p>- Operation.BLEED_HIGH_PRESSURE_LINE</p><p>- Operation.RESET_VALVE</p><p>The operator should verify and make sure the high pressure line status is changed before updating it.</p><p>- Operation.CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO</p><p>- Operation.CONFIRM_VALVE_IS_RESET</p><p>- Operation.CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE</p>
+        <p>List valve actuators and process valve to control pressure line.</p><p>Switch valve actuator to control the pressure line by sending downlink command message to LoRaWAN network server,</p><p>- Operation.BLEED_HIGH_PRESSURE_LINE</p><p>- Operation.RESET_VALVE</p><p>The operator should verify and make sure the pressure line status is changed before updating it.</p><p>- Operation.CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO</p><p>- Operation.CONFIRM_VALVE_IS_RESET</p><p>- Operation.CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -1219,32 +1263,32 @@
                 <td>Initialize</td>
                 <td><a href="#hiber.valve.InitializeValve.Request">InitializeValve.Request</a></td>
                 <td><a href="#hiber.valve.InitializeValve.Response">InitializeValve.Response</a></td>
-                <td><p>Initialize high pressure line status.</p></td>
+                <td><p>Initialize pressure line status.</p></td>
               </tr>
             
               <tr>
                 <td>Operate</td>
                 <td><a href="#hiber.valve.OperateValve.Request">OperateValve.Request</a></td>
                 <td><a href="#hiber.valve.OperateValve.Response">OperateValve.Response</a></td>
-                <td><p>Operate valve to control high pressure line.</p></td>
+                <td><p>Operate valve to control pressure line.</p></td>
               </tr>
             
               <tr>
                 <td>BleedHighPressureLine</td>
                 <td><a href="#hiber.valve.BleedHighPressureLine.Request">BleedHighPressureLine.Request</a></td>
                 <td><a href="#hiber.valve.BleedHighPressureLine.Response">BleedHighPressureLine.Response</a></td>
-                <td><p>Open valve to bleed high pressure line.
+                <td><p>Open valve to bleed pressure line.
 Send a downlink command to LoRaWAN LNS to open the valve actuator.
-High pressure line status should be changed: PRESSURIZED -&gt; ZERO</p></td>
+Pressure line status should be changed: PRESSURIZED -&gt; ZERO</p></td>
               </tr>
             
               <tr>
                 <td>ConfirmHighPressureLineIsZero</td>
                 <td><a href="#hiber.valve.ConfirmHighPressureLineIsZero.Request">ConfirmHighPressureLineIsZero.Request</a></td>
                 <td><a href="#hiber.valve.ConfirmHighPressureLineIsZero.Response">ConfirmHighPressureLineIsZero.Response</a></td>
-                <td><p>Confirm high pressure line pressure is 0 bar.
-High pressure line status can only be updated after operator&#39;s confirmation:
-High pressure line status is confirmed: ZERO</p></td>
+                <td><p>Confirm pressure line pressure is 0 bar.
+Pressure line status can only be updated after operator&#39;s confirmation:
+Pressure line status is confirmed: ZERO</p></td>
               </tr>
             
               <tr>
@@ -1253,7 +1297,7 @@ High pressure line status is confirmed: ZERO</p></td>
                 <td><a href="#hiber.valve.ResetValve.Response">ResetValve.Response</a></td>
                 <td><p>Reset valve.
 Send a downlink command to LoRaWAN LNS to close the valve actuator.
-High pressure line status should be changed: ZERO -&gt; READY_TO_BE_PRESSURIZED</p></td>
+Pressure line status should be changed: ZERO -&gt; READY_TO_BE_PRESSURIZED</p></td>
               </tr>
             
               <tr>
@@ -1261,18 +1305,18 @@ High pressure line status should be changed: ZERO -&gt; READY_TO_BE_PRESSURIZED<
                 <td><a href="#hiber.valve.ConfirmValveIsReset.Request">ConfirmValveIsReset.Request</a></td>
                 <td><a href="#hiber.valve.ConfirmValveIsReset.Response">ConfirmValveIsReset.Response</a></td>
                 <td><p>Confirm valve is reset.
-High pressure line status can only be updated after operator&#39;s confirmation:
-High pressure line status is confirmed: READY_TO_BE_PRESSURIZED</p></td>
+Pressure line status can only be updated after operator&#39;s confirmation:
+Pressure line status is confirmed: READY_TO_BE_PRESSURIZED</p></td>
               </tr>
             
               <tr>
                 <td>ConfirmHighPressureLineUnderPressure</td>
                 <td><a href="#hiber.valve.ConfirmHighPressureLineUnderPressure.Request">ConfirmHighPressureLineUnderPressure.Request</a></td>
                 <td><a href="#hiber.valve.ConfirmHighPressureLineUnderPressure.Response">ConfirmHighPressureLineUnderPressure.Response</a></td>
-                <td><p>Confirm high pressure line under pressure.
-The operator is required to manually operate the high pressure line to make it PRESSURIZED
-High pressure line status can only be updated after operator confirmation:
-High pressure line status is confirmed: PRESSURIZED</p></td>
+                <td><p>Confirm pressure line under pressure.
+The operator is required to manually operate the pressure line to make it PRESSURIZED
+Pressure line status can only be updated after operator confirmation:
+Pressure line status is confirmed: PRESSURIZED</p></td>
               </tr>
             
           </tbody>
@@ -3607,7 +3651,7 @@ is ready to be downloaded.</p></td>
                   <td>open</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Valve actuator status: open or closed. </p></td>
+                  <td><p><strong>Deprecated.</strong> Valve actuator status: open or closed. Deprecated in favour of status.open </p></td>
                 </tr>
               
                 <tr>
@@ -3642,7 +3686,99 @@ is ready to be downloaded.</p></td>
                   <td>high_pressure_line_status</td>
                   <td><a href="#hiber.valve.Valve.HighPressureLineStatus">Valve.HighPressureLineStatus</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> The HP line status. Deprecated in favour of status.high_pressure_line. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#hiber.valve.Valve.Status">Valve.Status</a></td>
+                  <td></td>
+                  <td><p>The status of this Valve. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>open</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+                <tr>
+                  <td>high_pressure_line_status</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
+
+        
+      
+        <h3 id="hiber.valve.Valve.PressureLine">Valve.PressureLine</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.valve.Valve.Status">Valve.Status</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#hiber.valve.Valve.Status.Combined">Valve.Status.Combined</a></td>
+                  <td></td>
+                  <td><p>Status of ths valve simplified to a single enum. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pressure_line</td>
+                  <td><a href="#hiber.valve.Valve.PressureLine.Status">Valve.PressureLine.Status</a></td>
+                  <td>optional</td>
+                  <td><p>The pressure line status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>open</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Valve actuator status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_operation</td>
+                  <td><a href="#hiber.valve.Valve.Operation">Valve.Operation</a></td>
+                  <td>optional</td>
+                  <td><p>The last operations performed on this Valve. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>possible_operations</td>
+                  <td><a href="#hiber.valve.Valve.Operation">Valve.Operation</a></td>
+                  <td>repeated</td>
+                  <td><p>The supported operations at this time. </p></td>
                 </tr>
               
             </tbody>
@@ -3687,12 +3823,40 @@ is ready to be downloaded.</p></td>
                   <td>high_pressure_line_status</td>
                   <td><a href="#hiber.valve.Valve.HighPressureLineStatus">Valve.HighPressureLineStatus</a></td>
                   <td></td>
-                  <td><p>High pressure line status after the operation. </p></td>
+                  <td><p><strong>Deprecated.</strong> High pressure line status after the operation. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pressure_line_status</td>
+                  <td><a href="#hiber.valve.Valve.PressureLine.Status">Valve.PressureLine.Status</a></td>
+                  <td></td>
+                  <td><p>Pressure line status after the operation. </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>high_pressure_line_status</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -3729,10 +3893,24 @@ is ready to be downloaded.</p></td>
                 </tr>
               
                 <tr>
+                  <td>status</td>
+                  <td><a href="#hiber.valve.Valve.Status.Combined">Valve.Status.Combined</a></td>
+                  <td>repeated</td>
+                  <td><p>Select by high pressure line status. </p></td>
+                </tr>
+              
+                <tr>
                   <td>high_pressure_line_status</td>
                   <td><a href="#hiber.valve.Valve.HighPressureLineStatus">Valve.HighPressureLineStatus</a></td>
                   <td>repeated</td>
-                  <td><p>Select by high pressure line status. </p></td>
+                  <td><p><strong>Deprecated.</strong> Select by high pressure line status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pressure_line_status</td>
+                  <td><a href="#hiber.valve.Valve.PressureLine.Status">Valve.PressureLine.Status</a></td>
+                  <td>repeated</td>
+                  <td><p>Select by pressure line status. </p></td>
                 </tr>
               
                 <tr>
@@ -3752,6 +3930,27 @@ is ready to be downloaded.</p></td>
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>high_pressure_line_status</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -3805,9 +4004,7 @@ High pressure line requires manual operation to change status to PRESSURIZED.</p
               <tr>
                 <td>BLEED_HIGH_PRESSURE_LINE</td>
                 <td>1</td>
-                <td><p>Open valve to bleed high pressure line.
-Send a downlink command to LoRaWAN LNS to open the valve actuator.
-High pressure line status should be changed: PRESSURIZED -&gt; ZERO</p></td>
+                <td><p></p></td>
               </tr>
             
               <tr>
@@ -3841,6 +4038,117 @@ High pressure line status is confirmed: READY_TO_BE_PRESSURIZED</p></td>
 The operator is required to manually operate the high pressure line to make it PRESSURIZED
 High pressure line status can only be updated after operator confirmation:
 High pressure line status is confirmed: PRESSURIZED</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="hiber.valve.Valve.PressureLine.Status">Valve.PressureLine.Status</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>NOT_PRESSURIZED</td>
+                <td>0</td>
+                <td><p>Pressure line = 0 bar.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PRESSURIZED</td>
+                <td>1</td>
+                <td><p>Pressure line pressurized.</p></td>
+              </tr>
+            
+              <tr>
+                <td>READY_TO_BE_PRESSURIZED</td>
+                <td>2</td>
+                <td><p>Pressure line ready to be pressurized.
+Pressure line requires manual operation to change status to PRESSURIZED.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="hiber.valve.Valve.Status.Combined">Valve.Status.Combined</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>NOT_INITIALIZED</td>
+                <td>0</td>
+                <td><p>The Valve has not been initialized, status is not known.
+Actions: Initialize the Valve.</p></td>
+              </tr>
+            
+              <tr>
+                <td>NOT_CONNECTED</td>
+                <td>1</td>
+                <td><p>The Valve has been initialized, but has not sent a messages.
+Actions: Wait for the Valve to send a message, contact support if this status persists.</p></td>
+              </tr>
+            
+              <tr>
+                <td>NOT_VALID</td>
+                <td>2</td>
+                <td><p>The Valve is not in a valid state.
+Actions: Please contact support.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PRESSURIZED</td>
+                <td>3</td>
+                <td><p>The Valve is closed and the high pressure line is PRESSURIZED.
+Actions: You can BLEED_HIGH_PRESSURE_LINE to transition to BLEED_REQUESTED.</p></td>
+              </tr>
+            
+              <tr>
+                <td>BLEED_REQUESTED</td>
+                <td>4</td>
+                <td><p>The Valve is still closed and the high pressure line is PRESSURIZED.
+Actions: You can BLEED_HIGH_PRESSURE_LINE again or wait.</p></td>
+              </tr>
+            
+              <tr>
+                <td>BLEEDING_PRESSURE</td>
+                <td>5</td>
+                <td><p>The Valve is open and the high pressure line is bleeding.
+Actions: You can CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO to transition to DEPRESSURIZED.</p></td>
+              </tr>
+            
+              <tr>
+                <td>NOT_PRESSURIZED</td>
+                <td>6</td>
+                <td><p>The Valve is open and the high pressure line is NOT_PRESSURIZED.
+Actions: You can RESET_VALVE to transition to RESET_REQUESTED.</p></td>
+              </tr>
+            
+              <tr>
+                <td>RESET_REQUESTED</td>
+                <td>7</td>
+                <td><p>The Valve is still open and the high pressure line is NOT_PRESSURIZED.
+Actions: You can RESET_VALVE again or wait.</p></td>
+              </tr>
+            
+              <tr>
+                <td>RESETTING</td>
+                <td>8</td>
+                <td><p>The Valve is closed and the high pressure line is NOT_PRESSURIZED.
+Actions: You can CONFIRM_VALVE_IS_RESET to transition to RESET.</p></td>
+              </tr>
+            
+              <tr>
+                <td>READY_TO_BE_PRESSURIZED</td>
+                <td>9</td>
+                <td><p>The Valve is closed and the high pressure line is READY_TO_BE_PRESSURIZED.
+Actions: You can CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE to transition back to PRESSURIZED.</p></td>
               </tr>
             
           </tbody>

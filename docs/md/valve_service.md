@@ -40,11 +40,15 @@
 
 - Referenced messages from [valve.proto](#referenced-messages-from-valveproto)
   - [hiber.valve.Valve](#hibervalvevalve)
+  - [hiber.valve.Valve.PressureLine](#hibervalvevalvepressureline)
+  - [hiber.valve.Valve.Status](#hibervalvevalvestatus)
   - [hiber.valve.Valve.ValveProcess](#hibervalvevalvevalveprocess)
   - [hiber.valve.ValveSelection](#hibervalvevalveselection)
 
     - [hiber.valve.Valve.HighPressureLineStatus](#hibervalvevalvehighpressurelinestatus)
     - [hiber.valve.Valve.Operation](#hibervalvevalveoperation)
+    - [hiber.valve.Valve.PressureLine.Status](#hibervalvevalvepressurelinestatus)
+    - [hiber.valve.Valve.Status.Combined](#hibervalvevalvestatuscombined)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -102,11 +106,11 @@
 
 
 ## ValveService
-List valve actuators and process valve to control high pressure line.
-Switch valve actuator to control the high pressure line by sending downlink command message to LoRaWAN network server,
+List valve actuators and process valve to control pressure line.
+Switch valve actuator to control the pressure line by sending downlink command message to LoRaWAN network server,
 - Operation.BLEED_HIGH_PRESSURE_LINE
 - Operation.RESET_VALVE
-The operator should verify and make sure the high pressure line status is changed before updating it.
+The operator should verify and make sure the pressure line status is changed before updating it.
 - Operation.CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO
 - Operation.CONFIRM_VALVE_IS_RESET
 - Operation.CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE
@@ -121,29 +125,29 @@ List Valves in your organization.
 > **rpc** Initialize([InitializeValve.Request](#initializevalverequest))
     [InitializeValve.Response](#initializevalveresponse)
 
-Initialize high pressure line status.
+Initialize pressure line status.
 
 ### Operate
 > **rpc** Operate([OperateValve.Request](#operatevalverequest))
     [OperateValve.Response](#operatevalveresponse)
 
-Operate valve to control high pressure line.
+Operate valve to control pressure line.
 
 ### BleedHighPressureLine
 > **rpc** BleedHighPressureLine([BleedHighPressureLine.Request](#bleedhighpressurelinerequest))
     [BleedHighPressureLine.Response](#bleedhighpressurelineresponse)
 
-Open valve to bleed high pressure line.
+Open valve to bleed pressure line.
 Send a downlink command to LoRaWAN LNS to open the valve actuator.
-High pressure line status should be changed: PRESSURIZED -> ZERO
+Pressure line status should be changed: PRESSURIZED -> ZERO
 
 ### ConfirmHighPressureLineIsZero
 > **rpc** ConfirmHighPressureLineIsZero([ConfirmHighPressureLineIsZero.Request](#confirmhighpressurelineiszerorequest))
     [ConfirmHighPressureLineIsZero.Response](#confirmhighpressurelineiszeroresponse)
 
-Confirm high pressure line pressure is 0 bar.
-High pressure line status can only be updated after operator's confirmation:
-High pressure line status is confirmed: ZERO
+Confirm pressure line pressure is 0 bar.
+Pressure line status can only be updated after operator's confirmation:
+Pressure line status is confirmed: ZERO
 
 ### ResetValve
 > **rpc** ResetValve([ResetValve.Request](#resetvalverequest))
@@ -151,33 +155,33 @@ High pressure line status is confirmed: ZERO
 
 Reset valve.
 Send a downlink command to LoRaWAN LNS to close the valve actuator.
-High pressure line status should be changed: ZERO -> READY_TO_BE_PRESSURIZED
+Pressure line status should be changed: ZERO -> READY_TO_BE_PRESSURIZED
 
 ### ConfirmValveIsReset
 > **rpc** ConfirmValveIsReset([ConfirmValveIsReset.Request](#confirmvalveisresetrequest))
     [ConfirmValveIsReset.Response](#confirmvalveisresetresponse)
 
 Confirm valve is reset.
-High pressure line status can only be updated after operator's confirmation:
-High pressure line status is confirmed: READY_TO_BE_PRESSURIZED
+Pressure line status can only be updated after operator's confirmation:
+Pressure line status is confirmed: READY_TO_BE_PRESSURIZED
 
 ### ConfirmHighPressureLineUnderPressure
 > **rpc** ConfirmHighPressureLineUnderPressure([ConfirmHighPressureLineUnderPressure.Request](#confirmhighpressurelineunderpressurerequest))
     [ConfirmHighPressureLineUnderPressure.Response](#confirmhighpressurelineunderpressureresponse)
 
-Confirm high pressure line under pressure.
-The operator is required to manually operate the high pressure line to make it PRESSURIZED
-High pressure line status can only be updated after operator confirmation:
-High pressure line status is confirmed: PRESSURIZED
+Confirm pressure line under pressure.
+The operator is required to manually operate the pressure line to make it PRESSURIZED
+Pressure line status can only be updated after operator confirmation:
+Pressure line status is confirmed: PRESSURIZED
 
 
 ## Messages
 
 ### BleedHighPressureLine
 
-Open valve to bleed high pressure line.
+Open valve to bleed pressure line.
 Send a downlink command to LoRaWAN LNS to open the valve actuator.
-High pressure line status should be changed: PRESSURIZED -> ZERO
+Pressure line status should be changed: PRESSURIZED -> ZERO
 
 
 ### BleedHighPressureLine.Request
@@ -200,9 +204,9 @@ High pressure line status should be changed: PRESSURIZED -> ZERO
 
 ### ConfirmHighPressureLineIsZero
 
-Confirm high pressure line pressure is 0 bar.
-High pressure line status can only be updated after operator's confirmation:
-High pressure line status is confirmed: ZERO
+Confirm pressure line pressure is 0 bar.
+Pressure line status can only be updated after operator's confirmation:
+Pressure line status is confirmed: ZERO
 
 
 ### ConfirmHighPressureLineIsZero.Request
@@ -225,10 +229,10 @@ High pressure line status is confirmed: ZERO
 
 ### ConfirmHighPressureLineUnderPressure
 
-Confirm high pressure line under pressure.
-The operator is required to manually operate the high pressure line to make it PRESSURIZED
-High pressure line status can only be updated after operator confirmation:
-High pressure line status is confirmed: PRESSURIZED
+Confirm pressure line under pressure.
+The operator is required to manually operate the pressure line to make it PRESSURIZED
+Pressure line status can only be updated after operator confirmation:
+Pressure line status is confirmed: PRESSURIZED
 
 
 ### ConfirmHighPressureLineUnderPressure.Request
@@ -252,8 +256,8 @@ High pressure line status is confirmed: PRESSURIZED
 ### ConfirmValveIsReset
 
 Confirm valve is reset.
-High pressure line status can only be updated after operator's confirmation:
-High pressure line status is confirmed: READY_TO_BE_PRESSURIZED
+Pressure line status can only be updated after operator's confirmation:
+Pressure line status is confirmed: READY_TO_BE_PRESSURIZED
 
 
 ### ConfirmValveIsReset.Request
@@ -280,7 +284,8 @@ High pressure line status is confirmed: READY_TO_BE_PRESSURIZED
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| init_high_pressure_line_status | [ Valve.HighPressureLineStatus](#valvehighpressurelinestatus) | Initialize high pressure line status. |
+| init_high_pressure_line_status | [ Valve.HighPressureLineStatus](#valvehighpressurelinestatus) | <span class="deprecated deprecated-field">Deprecated</span> Initialize pressure line status. |
+| init_pressure_line_status | [ Valve.PressureLine.Status](#valvepressurelinestatus) | Initialize pressure line status. |
 
 ### InitializeValve.Request
 
@@ -358,7 +363,7 @@ High pressure line status is confirmed: READY_TO_BE_PRESSURIZED
 
 Reset valve.
 Send a downlink command to LoRaWAN LNS to close the valve actuator.
-High pressure line status should be changed: ZERO -> READY_TO_BE_PRESSURIZED
+Pressure line status should be changed: ZERO -> READY_TO_BE_PRESSURIZED
 
 
 ### ResetValve.Request
@@ -409,12 +414,30 @@ so not all messages listed here are referenced.)
 | external_device_id | [ string](#string) |  |
 | name | [ string](#string) |  |
 | device_type | [ string](#string) |  |
-| open | [ bool](#bool) | Valve actuator status: open or closed. |
+| open | [ bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Valve actuator status: open or closed. Deprecated in favour of status.open |
 |  **optional** leak | [optional bool](#bool) |  |
 |  **optional** fraud | [optional bool](#bool) |  |
 |  **optional** remaining_battery_voltage | [optional int64](#int64) |  |
 |  **optional** last_process | [optional hiber.valve.Valve.ValveProcess](#hibervalvevalvevalveprocess) |  |
-| high_pressure_line_status | [ hiber.valve.Valve.HighPressureLineStatus](#hibervalvevalvehighpressurelinestatus) |  |
+| high_pressure_line_status | [ hiber.valve.Valve.HighPressureLineStatus](#hibervalvevalvehighpressurelinestatus) | <span class="deprecated deprecated-field">Deprecated</span> The HP line status. Deprecated in favour of status.high_pressure_line. |
+| status | [ hiber.valve.Valve.Status](#hibervalvevalvestatus) | The status of this Valve. |
+
+### hiber.valve.Valve.PressureLine
+
+
+
+
+### hiber.valve.Valve.Status
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| status | [ hiber.valve.Valve.Status.Combined](#hibervalvevalvestatuscombined) | Status of ths valve simplified to a single enum. |
+|  **optional** pressure_line | [optional hiber.valve.Valve.PressureLine.Status](#hibervalvevalvepressurelinestatus) | The pressure line status. |
+|  **optional** open | [optional bool](#bool) | Valve actuator status. |
+|  **optional** last_operation | [optional hiber.valve.Valve.Operation](#hibervalvevalveoperation) | The last operations performed on this Valve. |
+| possible_operations | [repeated hiber.valve.Valve.Operation](#hibervalvevalveoperation) | The supported operations at this time. |
 
 ### hiber.valve.Valve.ValveProcess
 
@@ -425,7 +448,8 @@ so not all messages listed here are referenced.)
 | modem_number | [ string](#string) | Modem valve actuator number. |
 | operation | [ hiber.valve.Valve.Operation](#hibervalvevalveoperation) | Operation from technician. |
 | operation_at | [ hiber.Timestamp](#hibertimestamp) | Time that the operation was executed. |
-| high_pressure_line_status | [ hiber.valve.Valve.HighPressureLineStatus](#hibervalvevalvehighpressurelinestatus) | High pressure line status after the operation. |
+| high_pressure_line_status | [ hiber.valve.Valve.HighPressureLineStatus](#hibervalvevalvehighpressurelinestatus) | <span class="deprecated deprecated-field">Deprecated</span> High pressure line status after the operation. |
+| pressure_line_status | [ hiber.valve.Valve.PressureLine.Status](#hibervalvevalvepressurelinestatus) | Pressure line status after the operation. |
 
 ### hiber.valve.ValveSelection
 
@@ -436,14 +460,16 @@ Selection object for valve.
 |  **optional** numbers | [optional hiber.Filter.Modems](#hiberfiltermodems) | Select by valve numbers. |
 |  **optional** identifiers | [optional hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) | Select by external device identifiers. |
 |  **optional** search | [optional string](#string) |  |
-| high_pressure_line_status | [repeated hiber.valve.Valve.HighPressureLineStatus](#hibervalvevalvehighpressurelinestatus) | Select by high pressure line status. |
+| status | [repeated hiber.valve.Valve.Status.Combined](#hibervalvevalvestatuscombined) | Select by high pressure line status. |
+| high_pressure_line_status | [repeated hiber.valve.Valve.HighPressureLineStatus](#hibervalvevalvehighpressurelinestatus) | <span class="deprecated deprecated-field">Deprecated</span> Select by high pressure line status. |
+| pressure_line_status | [repeated hiber.valve.Valve.PressureLine.Status](#hibervalvevalvepressurelinestatus) | Select by pressure line status. |
 |  **optional** only_opened_valve | [optional bool](#bool) | Select opened valves. |
 |  **optional** only_closed_valve | [optional bool](#bool) | Select closed valves. |
 
 
 ### Enums
 #### hiber.valve.Valve.HighPressureLineStatus
-
+<p class="deprecated deprecated-enum">Deprecated</p>
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
@@ -457,11 +483,36 @@ Selection object for valve.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | NO_OPERATION | If no choice is made, fall back to no-operation | 0 |
-| BLEED_HIGH_PRESSURE_LINE | Open valve to bleed high pressure line. Send a downlink command to LoRaWAN LNS to open the valve actuator. High pressure line status should be changed: PRESSURIZED -> ZERO | 1 |
+| BLEED_HIGH_PRESSURE_LINE |  | 1 |
 | CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO | Confirm high pressure line pressure is 0 bar. High pressure line status can only be updated after operator's confirmation: High pressure line status is confirmed: ZERO | 2 |
 | RESET_VALVE | Reset valve. Send a downlink command to LoRaWAN LNS to close the valve actuator. High pressure line status should be changed: ZERO -> READY_TO_BE_PRESSURIZED | 3 |
 | CONFIRM_VALVE_IS_RESET | Confirm valve is reset. High pressure line status can only be updated after operator's confirmation: High pressure line status is confirmed: READY_TO_BE_PRESSURIZED | 4 |
 | CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE | Confirm high pressure line under pressure. The operator is required to manually operate the high pressure line to make it PRESSURIZED High pressure line status can only be updated after operator confirmation: High pressure line status is confirmed: PRESSURIZED | 5 |
+
+#### hiber.valve.Valve.PressureLine.Status
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| NOT_PRESSURIZED | Pressure line = 0 bar. | 0 |
+| PRESSURIZED | Pressure line pressurized. | 1 |
+| READY_TO_BE_PRESSURIZED | Pressure line ready to be pressurized. Pressure line requires manual operation to change status to PRESSURIZED. | 2 |
+
+#### hiber.valve.Valve.Status.Combined
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| NOT_INITIALIZED | The Valve has not been initialized, status is not known. Actions: Initialize the Valve. | 0 |
+| NOT_CONNECTED | The Valve has been initialized, but has not sent a messages. Actions: Wait for the Valve to send a message, contact support if this status persists. | 1 |
+| NOT_VALID | The Valve is not in a valid state. Actions: Please contact support. | 2 |
+| PRESSURIZED | The Valve is closed and the high pressure line is PRESSURIZED. Actions: You can BLEED_HIGH_PRESSURE_LINE to transition to BLEED_REQUESTED. | 3 |
+| BLEED_REQUESTED | The Valve is still closed and the high pressure line is PRESSURIZED. Actions: You can BLEED_HIGH_PRESSURE_LINE again or wait. | 4 |
+| BLEEDING_PRESSURE | The Valve is open and the high pressure line is bleeding. Actions: You can CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO to transition to DEPRESSURIZED. | 5 |
+| NOT_PRESSURIZED | The Valve is open and the high pressure line is NOT_PRESSURIZED. Actions: You can RESET_VALVE to transition to RESET_REQUESTED. | 6 |
+| RESET_REQUESTED | The Valve is still open and the high pressure line is NOT_PRESSURIZED. Actions: You can RESET_VALVE again or wait. | 7 |
+| RESETTING | The Valve is closed and the high pressure line is NOT_PRESSURIZED. Actions: You can CONFIRM_VALVE_IS_RESET to transition to RESET. | 8 |
+| READY_TO_BE_PRESSURIZED | The Valve is closed and the high pressure line is READY_TO_BE_PRESSURIZED. Actions: You can CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE to transition back to PRESSURIZED. | 9 |
 
 
 

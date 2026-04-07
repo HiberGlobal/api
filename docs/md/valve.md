@@ -10,12 +10,16 @@
 
 - Messages
   - [Valve](#valve)
+  - [Valve.PressureLine](#valvepressureline)
+  - [Valve.Status](#valvestatus)
   - [Valve.ValveProcess](#valvevalveprocess)
   - [ValveSelection](#valveselection)
 
 - Enums
   - [Valve.HighPressureLineStatus](#valvehighpressurelinestatus)
   - [Valve.Operation](#valveoperation)
+  - [Valve.PressureLine.Status](#valvepressurelinestatus)
+  - [Valve.Status.Combined](#valvestatuscombined)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -84,12 +88,30 @@
 | external_device_id | [ string](#string) |  |
 | name | [ string](#string) |  |
 | device_type | [ string](#string) |  |
-| open | [ bool](#bool) | Valve actuator status: open or closed. |
+| open | [ bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Valve actuator status: open or closed. Deprecated in favour of status.open |
 |  **optional** leak | [optional bool](#bool) |  |
 |  **optional** fraud | [optional bool](#bool) |  |
 |  **optional** remaining_battery_voltage | [optional int64](#int64) |  |
 |  **optional** last_process | [optional Valve.ValveProcess](#valvevalveprocess) |  |
-| high_pressure_line_status | [ Valve.HighPressureLineStatus](#valvehighpressurelinestatus) |  |
+| high_pressure_line_status | [ Valve.HighPressureLineStatus](#valvehighpressurelinestatus) | <span class="deprecated deprecated-field">Deprecated</span> The HP line status. Deprecated in favour of status.high_pressure_line. |
+| status | [ Valve.Status](#valvestatus) | The status of this Valve. |
+
+### Valve.PressureLine
+
+
+
+
+### Valve.Status
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| status | [ Valve.Status.Combined](#valvestatuscombined) | Status of ths valve simplified to a single enum. |
+|  **optional** pressure_line | [optional Valve.PressureLine.Status](#valvepressurelinestatus) | The pressure line status. |
+|  **optional** open | [optional bool](#bool) | Valve actuator status. |
+|  **optional** last_operation | [optional Valve.Operation](#valveoperation) | The last operations performed on this Valve. |
+| possible_operations | [repeated Valve.Operation](#valveoperation) | The supported operations at this time. |
 
 ### Valve.ValveProcess
 
@@ -100,7 +122,8 @@
 | modem_number | [ string](#string) | Modem valve actuator number. |
 | operation | [ Valve.Operation](#valveoperation) | Operation from technician. |
 | operation_at | [ hiber.Timestamp](#hibertimestamp) | Time that the operation was executed. |
-| high_pressure_line_status | [ Valve.HighPressureLineStatus](#valvehighpressurelinestatus) | High pressure line status after the operation. |
+| high_pressure_line_status | [ Valve.HighPressureLineStatus](#valvehighpressurelinestatus) | <span class="deprecated deprecated-field">Deprecated</span> High pressure line status after the operation. |
+| pressure_line_status | [ Valve.PressureLine.Status](#valvepressurelinestatus) | Pressure line status after the operation. |
 
 ### ValveSelection
 
@@ -111,14 +134,16 @@ Selection object for valve.
 |  **optional** numbers | [optional hiber.Filter.Modems](#hiberfiltermodems) | Select by valve numbers. |
 |  **optional** identifiers | [optional hiber.Filter.ModemIdentifiers](#hiberfiltermodemidentifiers) | Select by external device identifiers. |
 |  **optional** search | [optional string](#string) |  |
-| high_pressure_line_status | [repeated Valve.HighPressureLineStatus](#valvehighpressurelinestatus) | Select by high pressure line status. |
+| status | [repeated Valve.Status.Combined](#valvestatuscombined) | Select by high pressure line status. |
+| high_pressure_line_status | [repeated Valve.HighPressureLineStatus](#valvehighpressurelinestatus) | <span class="deprecated deprecated-field">Deprecated</span> Select by high pressure line status. |
+| pressure_line_status | [repeated Valve.PressureLine.Status](#valvepressurelinestatus) | Select by pressure line status. |
 |  **optional** only_opened_valve | [optional bool](#bool) | Select opened valves. |
 |  **optional** only_closed_valve | [optional bool](#bool) | Select closed valves. |
 
 
 ## Enums
 ### Valve.HighPressureLineStatus
-
+<p class="deprecated deprecated-enum">Deprecated</p>
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
@@ -132,11 +157,36 @@ Selection object for valve.
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | NO_OPERATION | If no choice is made, fall back to no-operation | 0 |
-| BLEED_HIGH_PRESSURE_LINE | Open valve to bleed high pressure line. Send a downlink command to LoRaWAN LNS to open the valve actuator. High pressure line status should be changed: PRESSURIZED -> ZERO | 1 |
+| BLEED_HIGH_PRESSURE_LINE |  | 1 |
 | CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO | Confirm high pressure line pressure is 0 bar. High pressure line status can only be updated after operator's confirmation: High pressure line status is confirmed: ZERO | 2 |
 | RESET_VALVE | Reset valve. Send a downlink command to LoRaWAN LNS to close the valve actuator. High pressure line status should be changed: ZERO -> READY_TO_BE_PRESSURIZED | 3 |
 | CONFIRM_VALVE_IS_RESET | Confirm valve is reset. High pressure line status can only be updated after operator's confirmation: High pressure line status is confirmed: READY_TO_BE_PRESSURIZED | 4 |
 | CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE | Confirm high pressure line under pressure. The operator is required to manually operate the high pressure line to make it PRESSURIZED High pressure line status can only be updated after operator confirmation: High pressure line status is confirmed: PRESSURIZED | 5 |
+
+### Valve.PressureLine.Status
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| NOT_PRESSURIZED | Pressure line = 0 bar. | 0 |
+| PRESSURIZED | Pressure line pressurized. | 1 |
+| READY_TO_BE_PRESSURIZED | Pressure line ready to be pressurized. Pressure line requires manual operation to change status to PRESSURIZED. | 2 |
+
+### Valve.Status.Combined
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| NOT_INITIALIZED | The Valve has not been initialized, status is not known. Actions: Initialize the Valve. | 0 |
+| NOT_CONNECTED | The Valve has been initialized, but has not sent a messages. Actions: Wait for the Valve to send a message, contact support if this status persists. | 1 |
+| NOT_VALID | The Valve is not in a valid state. Actions: Please contact support. | 2 |
+| PRESSURIZED | The Valve is closed and the high pressure line is PRESSURIZED. Actions: You can BLEED_HIGH_PRESSURE_LINE to transition to BLEED_REQUESTED. | 3 |
+| BLEED_REQUESTED | The Valve is still closed and the high pressure line is PRESSURIZED. Actions: You can BLEED_HIGH_PRESSURE_LINE again or wait. | 4 |
+| BLEEDING_PRESSURE | The Valve is open and the high pressure line is bleeding. Actions: You can CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO to transition to DEPRESSURIZED. | 5 |
+| NOT_PRESSURIZED | The Valve is open and the high pressure line is NOT_PRESSURIZED. Actions: You can RESET_VALVE to transition to RESET_REQUESTED. | 6 |
+| RESET_REQUESTED | The Valve is still open and the high pressure line is NOT_PRESSURIZED. Actions: You can RESET_VALVE again or wait. | 7 |
+| RESETTING | The Valve is closed and the high pressure line is NOT_PRESSURIZED. Actions: You can CONFIRM_VALVE_IS_RESET to transition to RESET. | 8 |
+| READY_TO_BE_PRESSURIZED | The Valve is closed and the high pressure line is READY_TO_BE_PRESSURIZED. Actions: You can CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE to transition back to PRESSURIZED. | 9 |
 
 
 

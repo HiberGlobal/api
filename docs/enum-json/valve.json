@@ -11,10 +11,33 @@
   "description": "",
   "values": {
     "NO_OPERATION": "If no choice is made, fall back to no-operation"
-    , "BLEED_HIGH_PRESSURE_LINE": "Open valve to bleed high pressure line. Send a downlink command to LoRaWAN LNS to open the valve actuator. High pressure line status should be changed: PRESSURIZED -> ZERO"
+    , "BLEED_HIGH_PRESSURE_LINE": ""
     , "CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO": "Confirm high pressure line pressure is 0 bar. High pressure line status can only be updated after operator's confirmation: High pressure line status is confirmed: ZERO"
     , "RESET_VALVE": "Reset valve. Send a downlink command to LoRaWAN LNS to close the valve actuator. High pressure line status should be changed: ZERO -> READY_TO_BE_PRESSURIZED"
     , "CONFIRM_VALVE_IS_RESET": "Confirm valve is reset. High pressure line status can only be updated after operator's confirmation: High pressure line status is confirmed: READY_TO_BE_PRESSURIZED"
     , "CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE": "Confirm high pressure line under pressure. The operator is required to manually operate the high pressure line to make it PRESSURIZED High pressure line status can only be updated after operator confirmation: High pressure line status is confirmed: PRESSURIZED"
+    }
+},{
+  "name": "Status",
+  "description": "",
+  "values": {
+    "NOT_PRESSURIZED": "Pressure line = 0 bar."
+    , "PRESSURIZED": "Pressure line pressurized."
+    , "READY_TO_BE_PRESSURIZED": "Pressure line ready to be pressurized. Pressure line requires manual operation to change status to PRESSURIZED."
+    }
+},{
+  "name": "Combined",
+  "description": "",
+  "values": {
+    "NOT_INITIALIZED": "The Valve has not been initialized, status is not known. Actions: Initialize the Valve."
+    , "NOT_CONNECTED": "The Valve has been initialized, but has not sent a messages. Actions: Wait for the Valve to send a message, contact support if this status persists."
+    , "NOT_VALID": "The Valve is not in a valid state. Actions: Please contact support."
+    , "PRESSURIZED": "The Valve is closed and the high pressure line is PRESSURIZED. Actions: You can BLEED_HIGH_PRESSURE_LINE to transition to BLEED_REQUESTED."
+    , "BLEED_REQUESTED": "The Valve is still closed and the high pressure line is PRESSURIZED. Actions: You can BLEED_HIGH_PRESSURE_LINE again or wait."
+    , "BLEEDING_PRESSURE": "The Valve is open and the high pressure line is bleeding. Actions: You can CONFIRM_HIGH_PRESSURE_LINE_IS_ZERO to transition to DEPRESSURIZED."
+    , "NOT_PRESSURIZED": "The Valve is open and the high pressure line is NOT_PRESSURIZED. Actions: You can RESET_VALVE to transition to RESET_REQUESTED."
+    , "RESET_REQUESTED": "The Valve is still open and the high pressure line is NOT_PRESSURIZED. Actions: You can RESET_VALVE again or wait."
+    , "RESETTING": "The Valve is closed and the high pressure line is NOT_PRESSURIZED. Actions: You can CONFIRM_VALVE_IS_RESET to transition to RESET."
+    , "READY_TO_BE_PRESSURIZED": "The Valve is closed and the high pressure line is READY_TO_BE_PRESSURIZED. Actions: You can CONFIRM_HIGH_PRESSURE_LINE_UNDER_PRESSURE to transition back to PRESSURIZED."
     }
 }]

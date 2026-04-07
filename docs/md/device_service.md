@@ -223,7 +223,7 @@ List device settings.
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 |  **optional** selection | [optional DeviceSelection](#deviceselection) | Select which devices to return. Optional, when omitted or empty every device with settings is included. |
-|  **optional** exclude_unmodified_settings | [optional bool](#bool) | Exclude devices that have the requested settings applied before, or have not changed them since the last time they were applied. |
+|  **optional** include_unmodified_settings | [optional bool](#bool) | Exclude devices that have the requested settings applied before, or have not changed them since the last time they were applied. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Paginate through results. |
 
 ### DeviceSettings.Response

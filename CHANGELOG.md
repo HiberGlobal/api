@@ -1,5 +1,20 @@
 # Changelog Hiber API
 
+### 0.278 (2026-04-07)
+
+#### ModemService
+
+- Changes to reflect the changes in the ValveService:
+  - Added `status` to `ValveInfo`.
+  - Replaced `high_pressure_line_status` with `pressure_line_status`.
+
+##### ValveService
+
+- Added `status` to `Valve` with a detailed status and an enum that combines it all to a single status.
+  - Added `Valve.Status.Combined` enum that sumamrizes the status into a single easy to use enum.
+  - Deprecated `Valve.open` and `Valve.high_pressure_line_status` in favor of using the field in `Status`.
+- Replaced `HighPressureLineStatus` with `PressureLine.Status`.
+
 ### 0.277 (2026-03-30)
 
 ##### DeviceService

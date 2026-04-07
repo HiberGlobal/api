@@ -39,12 +39,12 @@ service DeviceService {
     }
 
     /* List possible lifecycles with additional information. */
-    rpc Lifecycles (DeviceLifecycleInfo.Request) returns (DeviceLifecycleInfo.Response){
+    rpc Lifecycles (DeviceLifecycleInfo.Request) returns (DeviceLifecycleInfo.Response) {
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     };
 
     /* List device settings. */
-    rpc Settings (DeviceSettings.Request) returns (DeviceSettings.Response){
+    rpc Settings (DeviceSettings.Request) returns (DeviceSettings.Response) {
         option (permission_usage) = MODEMS;
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
     };
@@ -246,7 +246,7 @@ message DeviceSettings {
 
         /* Exclude devices that have the requested settings applied before,
          * or have not changed them since the last time they were applied. */
-        optional bool exclude_unmodified_settings = 4;
+        optional bool include_unmodified_settings = 4;
 
         /* Paginate through results. */
         optional Pagination pagination = 3;

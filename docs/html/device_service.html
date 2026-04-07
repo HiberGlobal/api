@@ -1022,7 +1022,7 @@ Typically means that some interaction is required. </p></td>
                 </tr>
               
                 <tr>
-                  <td>exclude_unmodified_settings</td>
+                  <td>include_unmodified_settings</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
                   <td><p>Exclude devices that have the requested settings applied before,
@@ -5902,7 +5902,7 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
         
       
         <h3 id="hiber.modem.Modem.ValveInfo">Modem.ValveInfo</h3>
-        <p></p>
+        <p>Information about the valve, if this is a valve.</p>
 
         
           <table class="field-table">
@@ -5912,22 +5912,57 @@ If the modem is connected to multiple gateways, the last used gateway is tracked
             <tbody>
               
                 <tr>
+                  <td>status</td>
+                  <td><a href="#hiber.valve.Valve.Status.Combined">hiber.valve.Valve.Status.Combined</a></td>
+                  <td></td>
+                  <td><p>Status of ths valve simplified to a single enum. </p></td>
+                </tr>
+              
+                <tr>
                   <td>open</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p> </p></td>
+                  <td><p>Valve actuator status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pressure_line_status</td>
+                  <td><a href="#hiber.valve.Valve.PressureLine.Status">hiber.valve.Valve.PressureLine.Status</a></td>
+                  <td>optional</td>
+                  <td><p>The pressure line status. </p></td>
                 </tr>
               
                 <tr>
                   <td>high_pressure_line_status</td>
                   <td><a href="#hiber.valve.Valve.HighPressureLineStatus">hiber.valve.Valve.HighPressureLineStatus</a></td>
                   <td>optional</td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong>  </p></td>
                 </tr>
               
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>high_pressure_line_status</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         

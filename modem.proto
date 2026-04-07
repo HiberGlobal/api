@@ -263,9 +263,18 @@ message Modem {
         }
     }
 
+    /* Information about the valve, if this is a valve. */
     message ValveInfo {
+        /* Status of ths valve simplified to a single enum. */
+        valve.Valve.Status.Combined status = 3;
+
+        /* Valve actuator status. */
         optional bool open = 1;
-        optional valve.Valve.HighPressureLineStatus high_pressure_line_status = 2;
+
+        /* The pressure line status. */
+        optional valve.Valve.PressureLine.Status pressure_line_status = 4;
+
+        optional valve.Valve.HighPressureLineStatus high_pressure_line_status = 2 [deprecated = true];
     }
 
     message TechnicalData {
