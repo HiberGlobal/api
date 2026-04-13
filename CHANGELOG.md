@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.279 (2026-04-13)
+
+##### ModemService
+
+- Added `allow_editing_external_device_ids` to `Modem.TechnicalData` to indicate that the external device identifier for this device can be set manually.
+
 ### 0.278 (2026-04-07)
 
 #### ModemService

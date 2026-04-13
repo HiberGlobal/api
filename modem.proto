@@ -280,6 +280,10 @@ message Modem {
     message TechnicalData {
         string hardware_production_batch = 6;
         string manufacturer = 7;
+
+        /* The external device ids can be set manually using the DeviceService. */
+        bool allow_editing_external_device_ids = 8;
+
         reserved 1, 2, 3, 4, 5;
     }
 

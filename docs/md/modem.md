@@ -535,6 +535,7 @@ open field for peripherals like battery, sensors, etc.
 | ----- | ---- | ----------- |
 | hardware_production_batch | [ string](#string) |  |
 | manufacturer | [ string](#string) |  |
+| allow_editing_external_device_ids | [ bool](#bool) | The external device ids can be set manually using the DeviceService. |
 
 ### Modem.ValveInfo
 
