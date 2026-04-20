@@ -8174,6 +8174,13 @@ Typically an image of a place. See the File.media_type for more information. </p
                 </tr>
               
                 <tr>
+                  <td>names</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Select process points by name. </p></td>
+                </tr>
+              
+                <tr>
                   <td>search</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
@@ -10753,6 +10760,20 @@ Aggregation (if applicable) is applied before the delta is calculated.</p></td>
                   <td><a href="#hiber.valve.Valve.Operation">Valve.Operation</a></td>
                   <td>repeated</td>
                   <td><p>The supported operations at this time. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_message_at</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td></td>
+                  <td><p>The time of the last message from the valve giving us the open state. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_operation_at</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td></td>
+                  <td><p>The time of the last operation. </p></td>
                 </tr>
               
             </tbody>

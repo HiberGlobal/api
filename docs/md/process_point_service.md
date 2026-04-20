@@ -736,6 +736,7 @@ Selection object for process points.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifiers | [repeated string](#string) | Select process points by identifier. |
+| names | [repeated string](#string) | Select process points by name. |
 | search | [repeated string](#string) | Search process points by (partial, case insensitive) identifier, name, description, notes and time zone. |
 | types | [repeated hiber.processpoint.ProcessPoint.Type](#hiberprocesspointprocesspointtype) | Select process points by type. |
 |  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) | Select process points by tags |

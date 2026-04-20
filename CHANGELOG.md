@@ -1,5 +1,15 @@
 # Changelog Hiber API
 
+### 0.280 (2026-04-20)
+
+##### ProcessPointService
+
+- Added `names` to `ProcessPointSelection` to select process points with an exact name.
+
+##### TokenService
+
+- Added `important` flag on `Token`
+
 ### 0.279 (2026-04-13)
 
 ##### ModemService

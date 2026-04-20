@@ -77,6 +77,12 @@ message Valve {
 
         /* The supported operations at this time. */
         repeated Operation possible_operations = 5;
+
+        /* The time of the last message from the valve giving us the open state. */
+        Timestamp last_message_at = 6;
+
+        /* The time of the last operation. */
+        Timestamp last_operation_at = 7;
     }
 
     /* An 8-character hexadecimal string */

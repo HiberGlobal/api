@@ -4,6 +4,7 @@
     "token": {
       "id": "1",
       "type": "SPECIFIC",
+      "important": false,
       "name": "your-token",
       "userId": "user-identifier",
       "organization": "your-organization",

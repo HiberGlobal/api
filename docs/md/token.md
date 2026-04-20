@@ -16,6 +16,9 @@
   - [DeleteTokenRequest.Response](#deletetokenrequestresponse)
   - [ListTokensRequest](#listtokensrequest)
   - [ListTokensRequest.Response](#listtokensrequestresponse)
+  - [MarkTokenImportant](#marktokenimportant)
+  - [MarkTokenImportant.Request](#marktokenimportantrequest)
+  - [MarkTokenImportant.Response](#marktokenimportantresponse)
   - [Token](#token)
   - [Token.UserDetails](#tokenuserdetails)
   - [TokenSelection](#tokenselection)
@@ -132,6 +135,12 @@
 
 
 
+### MarkTokenImportant
+> **rpc** MarkTokenImportant([MarkTokenImportant.Request](#marktokenimportantrequest))
+    [MarkTokenImportant.Response](#marktokenimportantresponse)
+
+
+
 
 ## Messages
 
@@ -151,6 +160,7 @@
 |  **optional** for_user_id | [optional string](#string) | Optionally, if you have the USERS_MANAGE permission, you can make a token for another user. If you do, you cannot grant it permissions they do not have, not can you grant it any user permissions. |
 |  **optional** minimize | [optional bool](#bool) | Optionally, attempt to minimize the token size as much as possible. |
 |  **optional** limit_impersonation | [optional hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Optionally, limit the organizations that the token is allowed to impersonate. |
+|  **optional** important | [optional bool](#bool) | Flag this token as important. It will be monitored by our support team. |
 
 ### CreateTokenRequest.Response
 
@@ -195,6 +205,26 @@
 | request | [ ListTokensRequest](#listtokensrequest) |  |
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
+### MarkTokenImportant
+
+
+
+
+### MarkTokenImportant.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| token_ids | [repeated int64](#int64) |  |
+| clear_flag | [ bool](#bool) | Clear the important flag instead. |
+
+### MarkTokenImportant.Response
+
+
+
+
 ### Token
 
 
@@ -214,6 +244,7 @@
 |  **optional** last_used | [optional hiber.Date](#hiberdate) | Date that the token was last used. |
 | used_for_this_call | [ bool](#bool) | Set if the current request is made with this token. |
 |  **optional** limit_impersonation | [optional hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Optionally, limit the organizations that the token is allowed to impersonate. |
+| important | [ bool](#bool) | This token was flagged as important and will be monitored by our support team. |
 
 ### Token.UserDetails
 

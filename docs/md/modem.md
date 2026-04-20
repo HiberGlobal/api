@@ -1340,6 +1340,7 @@ Selection object for process points.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifiers | [repeated string](#string) | Select process points by identifier. |
+| names | [repeated string](#string) | Select process points by name. |
 | search | [repeated string](#string) | Search process points by (partial, case insensitive) identifier, name, description, notes and time zone. |
 | types | [repeated hiber.processpoint.ProcessPoint.Type](#hiberprocesspointprocesspointtype) | Select process points by type. |
 |  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) | Select process points by tags |
@@ -1830,6 +1831,8 @@ so not all messages listed here are referenced.)
 |  **optional** open | [optional bool](#bool) | Valve actuator status. |
 |  **optional** last_operation | [optional hiber.valve.Valve.Operation](#hibervalvevalveoperation) | The last operations performed on this Valve. |
 | possible_operations | [repeated hiber.valve.Valve.Operation](#hibervalvevalveoperation) | The supported operations at this time. |
+| last_message_at | [ hiber.Timestamp](#hibertimestamp) | The time of the last message from the valve giving us the open state. |
+| last_operation_at | [ hiber.Timestamp](#hibertimestamp) | The time of the last operation. |
 
 ### hiber.valve.Valve.ValveProcess
 

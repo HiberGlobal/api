@@ -418,6 +418,9 @@
   - [hiber.token.DeleteTokenRequest.Response](#hibertokendeletetokenrequestresponse)
   - [hiber.token.ListTokensRequest](#hibertokenlisttokensrequest)
   - [hiber.token.ListTokensRequest.Response](#hibertokenlisttokensrequestresponse)
+  - [hiber.token.MarkTokenImportant](#hibertokenmarktokenimportant)
+  - [hiber.token.MarkTokenImportant.Request](#hibertokenmarktokenimportantrequest)
+  - [hiber.token.MarkTokenImportant.Response](#hibertokenmarktokenimportantresponse)
   - [hiber.token.Token](#hibertokentoken)
   - [hiber.token.Token.UserDetails](#hibertokentokenuserdetails)
   - [hiber.token.TokenSelection](#hibertokentokenselection)
@@ -4950,6 +4953,7 @@ Selection object for process points.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | identifiers | [repeated string](#string) | Select process points by identifier. |
+| names | [repeated string](#string) | Select process points by name. |
 | search | [repeated string](#string) | Search process points by (partial, case insensitive) identifier, name, description, notes and time zone. |
 | types | [repeated hiber.processpoint.ProcessPoint.Type](#hiberprocesspointprocesspointtype) | Select process points by type. |
 |  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) | Select process points by tags |
@@ -5200,6 +5204,7 @@ so not all messages listed here are referenced.)
 |  **optional** for_user_id | [optional string](#string) | Optionally, if you have the USERS_MANAGE permission, you can make a token for another user. If you do, you cannot grant it permissions they do not have, not can you grant it any user permissions. |
 |  **optional** minimize | [optional bool](#bool) | Optionally, attempt to minimize the token size as much as possible. |
 |  **optional** limit_impersonation | [optional hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Optionally, limit the organizations that the token is allowed to impersonate. |
+|  **optional** important | [optional bool](#bool) | Flag this token as important. It will be monitored by our support team. |
 
 ### hiber.token.CreateTokenRequest.Response
 
@@ -5244,6 +5249,26 @@ so not all messages listed here are referenced.)
 | request | [ hiber.token.ListTokensRequest](#hibertokenlisttokensrequest) |  |
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 
+### hiber.token.MarkTokenImportant
+
+
+
+
+### hiber.token.MarkTokenImportant.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| token_ids | [repeated int64](#int64) |  |
+| clear_flag | [ bool](#bool) | Clear the important flag instead. |
+
+### hiber.token.MarkTokenImportant.Response
+
+
+
+
 ### hiber.token.Token
 
 
@@ -5263,6 +5288,7 @@ so not all messages listed here are referenced.)
 |  **optional** last_used | [optional hiber.Date](#hiberdate) | Date that the token was last used. |
 | used_for_this_call | [ bool](#bool) | Set if the current request is made with this token. |
 |  **optional** limit_impersonation | [optional hiber.Filter.ChildOrganizations](#hiberfilterchildorganizations) | Optionally, limit the organizations that the token is allowed to impersonate. |
+| important | [ bool](#bool) | This token was flagged as important and will be monitored by our support team. |
 
 ### hiber.token.Token.UserDetails
 

@@ -203,6 +203,18 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.token.MarkTokenImportant"><span class="badge">M</span>MarkTokenImportant</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.token.MarkTokenImportant.Request"><span class="badge">M</span>MarkTokenImportant.Request</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.token.MarkTokenImportant.Response"><span class="badge">M</span>MarkTokenImportant.Response</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.token.Token"><span class="badge">M</span>Token</a>
                 </li>
               
@@ -599,6 +611,13 @@ If you do, you cannot grant it permissions they do not have, not can you grant i
                   <td><p>Optionally, limit the organizations that the token is allowed to impersonate. </p></td>
                 </tr>
               
+                <tr>
+                  <td>important</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Flag this token as important. It will be monitored by our support team. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -751,6 +770,58 @@ If you do, you cannot grant it permissions they do not have, not can you grant i
 
         
       
+        <h3 id="hiber.token.MarkTokenImportant">MarkTokenImportant</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="hiber.token.MarkTokenImportant.Request">MarkTokenImportant.Request</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>token_ids</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>clear_flag</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Clear the important flag instead. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.token.MarkTokenImportant.Response">MarkTokenImportant.Response</h3>
+        <p></p>
+
+        
+
+        
+      
         <h3 id="hiber.token.Token">Token</h3>
         <p></p>
 
@@ -850,6 +921,13 @@ If you do, you cannot grant it permissions they do not have, not can you grant i
                   <td><a href="#hiber.Filter.ChildOrganizations">hiber.Filter.ChildOrganizations</a></td>
                   <td>optional</td>
                   <td><p>Optionally, limit the organizations that the token is allowed to impersonate. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>important</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>This token was flagged as important and will be monitored by our support team. </p></td>
                 </tr>
               
             </tbody>
@@ -1259,6 +1337,13 @@ When the creator gains or loses permissions, this applies to the token as well.<
                 <td>UpdateTokenRoles</td>
                 <td><a href="#hiber.token.UpdateTokenRoles.Request">UpdateTokenRoles.Request</a></td>
                 <td><a href="#hiber.token.UpdateTokenRoles.Response">UpdateTokenRoles.Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>MarkTokenImportant</td>
+                <td><a href="#hiber.token.MarkTokenImportant.Request">MarkTokenImportant.Request</a></td>
+                <td><a href="#hiber.token.MarkTokenImportant.Response">MarkTokenImportant.Response</a></td>
                 <td><p></p></td>
               </tr>
             

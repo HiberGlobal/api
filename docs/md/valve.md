@@ -112,6 +112,8 @@
 |  **optional** open | [optional bool](#bool) | Valve actuator status. |
 |  **optional** last_operation | [optional Valve.Operation](#valveoperation) | The last operations performed on this Valve. |
 | possible_operations | [repeated Valve.Operation](#valveoperation) | The supported operations at this time. |
+| last_message_at | [ hiber.Timestamp](#hibertimestamp) | The time of the last message from the valve giving us the open state. |
+| last_operation_at | [ hiber.Timestamp](#hibertimestamp) | The time of the last operation. |
 
 ### Valve.ValveProcess
 

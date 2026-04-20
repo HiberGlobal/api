@@ -119,6 +119,9 @@ message ProcessPointSelection {
     /* Select process points by identifier. */
     repeated string identifiers = 1;
 
+    /* Select process points by name. */
+    repeated string names = 5;
+
     /* Search process points by (partial, case insensitive) identifier, name, description, notes and time zone. */
     repeated string search = 2;
 

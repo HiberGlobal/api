@@ -35,6 +35,9 @@ service TokenService {
     rpc UpdateTokenRoles(UpdateTokenRoles.Request) returns (UpdateTokenRoles.Response) {
         option (permission_usage) = TOKENS;
     }
+    rpc MarkTokenImportant (MarkTokenImportant.Request) returns (MarkTokenImportant.Response) {
+        option (permission_usage) = TOKENS;
+    }
 }
 
 message Token {
@@ -68,6 +71,9 @@ message Token {
 
     /* Optionally, limit the organizations that the token is allowed to impersonate. */
     optional Filter.ChildOrganizations limit_impersonation = 14;
+
+    /* This token was flagged as important and will be monitored by our support team. */
+    bool important = 15;
 
     message UserDetails {
         string id = 1;
@@ -128,6 +134,9 @@ message CreateTokenRequest {
 
     /* Optionally, limit the organizations that the token is allowed to impersonate. */
     optional Filter.ChildOrganizations limit_impersonation = 12;
+
+    /* Flag this token as important. It will be monitored by our support team. */
+    optional bool important = 13;
 
     reserved 3, 7;
 }
@@ -205,6 +214,19 @@ message UpdateTokenRoles {
             ModifyRoles modify = 3;
             ReplaceRoles replace = 4;
         }
+    }
+    message Response {
+    }
+}
+
+message MarkTokenImportant {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+        repeated int64 token_ids = 2;
+
+        /* Clear the important flag instead. */
+        bool clear_flag = 3;
     }
     message Response {
     }
