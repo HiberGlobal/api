@@ -203,10 +203,6 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.assign.Assignment.AdditionalConfiguration.AssetDeviceAssignment"><span class="badge">M</span>Assignment.AdditionalConfiguration.AssetDeviceAssignment</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.assign.Assignment.AdditionalConfiguration.FieldsByJsonPath"><span class="badge">M</span>Assignment.AdditionalConfiguration.FieldsByJsonPath</a>
                 </li>
               
@@ -216,10 +212,6 @@
               
                 <li>
                   <a href="#hiber.assign.Assignment.AlarmAssignment"><span class="badge">M</span>Assignment.AlarmAssignment</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.assign.Assignment.AssetAssignment"><span class="badge">M</span>Assignment.AssetAssignment</a>
                 </li>
               
                 <li>
@@ -267,10 +259,6 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToAsset"><span class="badge">M</span>ListAlarmAssignments.Response.AlarmAssignment.ToAsset</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToModem"><span class="badge">M</span>ListAlarmAssignments.Response.AlarmAssignment.ToModem</a>
                 </li>
               
@@ -280,22 +268,6 @@
               
                 <li>
                   <a href="#hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToTag"><span class="badge">M</span>ListAlarmAssignments.Response.AlarmAssignment.ToTag</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.assign.ListAssetAssignments"><span class="badge">M</span>ListAssetAssignments</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.assign.ListAssetAssignments.Request"><span class="badge">M</span>ListAssetAssignments.Request</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.assign.ListAssetAssignments.Response"><span class="badge">M</span>ListAssetAssignments.Response</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.assign.ListAssetAssignments.Response.AssetAssignment"><span class="badge">M</span>ListAssetAssignments.Response.AssetAssignment</a>
                 </li>
               
                 <li>
@@ -614,33 +586,6 @@
                 <li>
                   <a href="#base.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
                 </li>
-              
-              
-            </ul>
-          </li>
-        
-          
-          <li>
-            <a href="#asset.proto">asset.proto</a>
-            <ul>
-              
-                <li>
-                  <a href="#hiber.asset.Asset"><span class="badge">M</span>Asset</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.asset.Asset.AssignedDevice"><span class="badge">M</span>Asset.AssignedDevice</a>
-                </li>
-              
-                <li>
-                  <a href="#hiber.asset.AssetSelection"><span class="badge">M</span>AssetSelection</a>
-                </li>
-              
-              
-                <li>
-                  <a href="#hiber.asset.Asset.Type"><span class="badge">E</span>Asset.Type</a>
-                </li>
-              
               
               
             </ul>
@@ -1300,10 +1245,6 @@
                 </li>
               
                 <li>
-                  <a href="#hiber.tag.ListTagsRequest.Response.TagAssetCountEntry"><span class="badge">M</span>ListTagsRequest.Response.TagAssetCountEntry</a>
-                </li>
-              
-                <li>
                   <a href="#hiber.tag.ListTagsRequest.Response.TagModemCountEntry"><span class="badge">M</span>ListTagsRequest.Response.TagModemCountEntry</a>
                 </li>
               
@@ -1419,13 +1360,6 @@
                 </tr>
               
                 <tr>
-                  <td>assign_assets</td>
-                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
                   <td>assign_process_points</td>
                   <td><a href="#hiber.processpoint.ProcessPointSelection">hiber.processpoint.ProcessPointSelection</a></td>
                   <td></td>
@@ -1447,13 +1381,6 @@
                 </tr>
               
                 <tr>
-                  <td>to_assets</td>
-                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
                   <td>to_process_points</td>
                   <td><a href="#hiber.processpoint.ProcessPointSelection">hiber.processpoint.ProcessPointSelection</a></td>
                   <td></td>
@@ -1465,13 +1392,6 @@
                   <td><a href="#hiber.assign.Assign.Request.AlarmParametersEntry">Assign.Request.AlarmParametersEntry</a></td>
                   <td>repeated</td>
                   <td><p><strong>Deprecated.</strong> The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). </p></td>
-                </tr>
-              
-                <tr>
-                  <td>asset_device</td>
-                  <td><a href="#hiber.assign.Assignment.AdditionalConfiguration.AssetDeviceAssignment">Assignment.AdditionalConfiguration.AssetDeviceAssignment</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong> Additional configuration for assignment between Asset and Device/Modem. </p></td>
                 </tr>
               
                 <tr>
@@ -1488,7 +1408,7 @@
                   <td><p>Time that the assignment should be active.
 This sets the assignment to start in the past, but would not have effect in the past for assignments like
 parsers and alarms (they will only be triggered for new messages / values).
-It would however work for assets / process points having access to device data.
+It would however work for process points having access to device data.
 This is not allowed to be a value in the future at the moment. </p></td>
                 </tr>
               
@@ -1499,7 +1419,7 @@ This is not allowed to be a value in the future at the moment. </p></td>
                   <td><p>Time that the assignment ended.
 This marks the assignment as ended at the given moment in the past, but would not have effect in the past
 for assignments like parsers and alarms (e.g. no alarm events are removed).
-It would however work for assets / process points having access to device data.
+It would however work for process points having access to device data.
 This is not allowed to be a value in the future at the moment. </p></td>
                 </tr>
               
@@ -1537,22 +1457,7 @@ Since this is questionable, doing so required an additional opt-in with this fla
               <tbody>
               
                 <tr>
-                  <td>assign_assets</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-                <tr>
-                  <td>to_assets</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-                <tr>
                   <td>alarm_parameters</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-                <tr>
-                  <td>asset_device</td>
                   <td><p>true</p></td>
                 </tr>
               
@@ -1626,7 +1531,7 @@ Since this is questionable, doing so required an additional opt-in with this fla
         
       
         <h3 id="hiber.assign.Assignment">Assignment</h3>
-        <p>An assignment assigning one thing to another.</p><p>Assignment is transitive: when an alarm or parser is assigned to a tag, and the tag is assigned to a modem,</p><p>the alarm or parser is considered assigned to that modem.</p><p>This only works in one direction, though. Assigning the alarm or parser to the modem directly does not also assign</p><p>the tag.</p><p>Assignment can have a custom start and end time.</p><p>This can extend into the past, but would not have effect in the past for assignments like parsers.</p><p>It would however work for process points having access to device data.</p><p>This can also extend into the future, but while the unassigned event will be produced, the assignment will</p><p>still be visible until the given time.</p><p>Assignments that are no longer active (end time is in the past) and that no longer have an effect</p><p>(currently only asset / process point device assignment has an ongoing effect) may be cleaned up automatically.</p>
+        <p>An assignment assigning one thing to another.</p><p>Assignment is transitive: when an alarm or parser is assigned to a tag, and the tag is assigned to a modem,</p><p>the alarm or parser is considered assigned to that modem.</p><p>This only works in one direction, though. Assigning the alarm or parser to the modem directly does not also assign</p><p>the tag.</p><p>Assignment can have a custom start and end time.</p><p>This can extend into the past, but would not have effect in the past for assignments like parsers.</p><p>It would however work for process points having access to device data.</p><p>This can also extend into the future, but while the unassigned event will be produced, the assignment will</p><p>still be visible until the given time.</p><p>Assignments that are no longer active (end time is in the past) and that no longer have an effect</p><p>(currently only process point device assignment has an ongoing effect) may be cleaned up automatically.</p>
 
         
           <table class="field-table">
@@ -1679,13 +1584,6 @@ Inactive assignments that no longer have an effect may be cleaned up automatical
                 </tr>
               
                 <tr>
-                  <td>assign_asset</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
                   <td>assign_process_point</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -1714,24 +1612,10 @@ Inactive assignments that no longer have an effect may be cleaned up automatical
                 </tr>
               
                 <tr>
-                  <td>to_asset</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
                   <td>to_process_point</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>asset_device</td>
-                  <td><a href="#hiber.assign.Assignment.AdditionalConfiguration.AssetDeviceAssignment">Assignment.AdditionalConfiguration.AssetDeviceAssignment</a></td>
-                  <td></td>
-                  <td><p>Additional configuration for assignment between Asset and Device/Modem. </p></td>
                 </tr>
               
                 <tr>
@@ -1745,32 +1629,6 @@ Inactive assignments that no longer have an effect may be cleaned up automatical
           </table>
 
           
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>assign_asset</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-                <tr>
-                  <td>to_asset</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
-          
 
         
       
@@ -1778,31 +1636,6 @@ Inactive assignments that no longer have an effect may be cleaned up automatical
         <p></p>
 
         
-
-        
-      
-        <h3 id="hiber.assign.Assignment.AdditionalConfiguration.AssetDeviceAssignment">Assignment.AdditionalConfiguration.AssetDeviceAssignment</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>shared_fields</td>
-                  <td><a href="#hiber.assign.Assignment.AdditionalConfiguration.FieldsByJsonPath">Assignment.AdditionalConfiguration.FieldsByJsonPath</a></td>
-                  <td></td>
-                  <td><p>Specify the fields that are shared with the Asset.
-If nothing is specified, all fields are shared with the asset by default. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
 
         
       
@@ -1921,37 +1754,6 @@ If nothing is specified, all fields are shared with the process point by default
 
         
       
-        <h3 id="hiber.assign.Assignment.AssetAssignment">Assignment.AssetAssignment</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>identifier</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="hiber.assign.Assignment.ModemMessageBodyParserAssignment">Assignment.ModemMessageBodyParserAssignment</h3>
         <p></p>
 
@@ -2032,13 +1834,6 @@ If nothing is specified, all fields are shared with the process point by default
             <tbody>
               
                 <tr>
-                  <td>assets</td>
-                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
-                  <td>optional</td>
-                  <td><p><strong>Deprecated.</strong> Select the assets to return the assignments for. Optional, when omitted or empty everything is included. </p></td>
-                </tr>
-              
-                <tr>
                   <td>process_points</td>
                   <td><a href="#hiber.processpoint.ProcessPointSelection">hiber.processpoint.ProcessPointSelection</a></td>
                   <td>optional</td>
@@ -2085,27 +1880,6 @@ Optional, when omitted or empty everything is included. </p></td>
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>assets</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -2187,13 +1961,6 @@ Optional, when omitted or empty everything is included. </p></td>
                 </tr>
               
                 <tr>
-                  <td>unassign_assets</td>
-                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
                   <td>unassign_process_points</td>
                   <td><a href="#hiber.processpoint.ProcessPointSelection">hiber.processpoint.ProcessPointSelection</a></td>
                   <td></td>
@@ -2215,13 +1982,6 @@ Optional, when omitted or empty everything is included. </p></td>
                 </tr>
               
                 <tr>
-                  <td>from_assets</td>
-                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
                   <td>from_process_points</td>
                   <td><a href="#hiber.processpoint.ProcessPointSelection">hiber.processpoint.ProcessPointSelection</a></td>
                   <td></td>
@@ -2231,32 +1991,6 @@ Optional, when omitted or empty everything is included. </p></td>
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>unassign_assets</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-                <tr>
-                  <td>from_assets</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -2437,13 +2171,6 @@ temperature, the check value will be converted to celsius instead. </p></td>
                 </tr>
               
                 <tr>
-                  <td>assets</td>
-                  <td><a href="#hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToAsset">ListAlarmAssignments.Response.AlarmAssignment.ToAsset</a></td>
-                  <td>repeated</td>
-                  <td><p><strong>Deprecated.</strong> The assets this alarm is assigned to, with the alarm parameters. </p></td>
-                </tr>
-              
-                <tr>
                   <td>process_points</td>
                   <td><a href="#hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToProcessPoint">ListAlarmAssignments.Response.AlarmAssignment.ToProcessPoint</a></td>
                   <td>repeated</td>
@@ -2453,86 +2180,6 @@ temperature, the check value will be converted to celsius instead. </p></td>
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>assets</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
-          
-
-        
-      
-        <h3 id="hiber.assign.ListAlarmAssignments.Response.AlarmAssignment.ToAsset">ListAlarmAssignments.Response.AlarmAssignment.ToAsset</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>asset_identifier</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>asset</td>
-                  <td><a href="#hiber.assign.Assignment.AssetAssignment">Assignment.AssetAssignment</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>parameters</td>
-                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>parameters</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -2700,171 +2347,6 @@ temperature, the check value will be converted to celsius instead. </p></td>
 
         
       
-        <h3 id="hiber.assign.ListAssetAssignments">ListAssetAssignments</h3>
-        <p></p>
-
-        
-
-        
-      
-        <h3 id="hiber.assign.ListAssetAssignments.Request">ListAssetAssignments.Request</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Pick the organization to use (/impersonate). If unset, your default organization is used. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>selection</td>
-                  <td><a href="#hiber.assign.AssignmentSelection">AssignmentSelection</a></td>
-                  <td>optional</td>
-                  <td><p>Select the assignments to list. Optional, when omitted or empty everything is included. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pagination</td>
-                  <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
-                  <td>optional</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>include_assets_without_assignments</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td>optional</td>
-                  <td><p>Whether to include assets that are in the selection and have no assignments. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>include_alarm_details</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td>optional</td>
-                  <td><p>Whether to include the full alarms that are assigned, instead of just assignment. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>apply_unit_preferences</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td>optional</td>
-                  <td><p>Apply your UnitPreferences to the alarm checks.
-For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for
-temperature, the check value will be converted to celsius instead. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.assign.ListAssetAssignments.Response">ListAssetAssignments.Response</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>assets</td>
-                  <td><a href="#hiber.assign.ListAssetAssignments.Response.AssetAssignment">ListAssetAssignments.Response.AssetAssignment</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>request</td>
-                  <td><a href="#hiber.assign.ListAssetAssignments.Request">ListAssetAssignments.Request</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>pagination</td>
-                  <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.assign.ListAssetAssignments.Response.AssetAssignment">ListAssetAssignments.Response.AssetAssignment</h3>
-        <p>Things that an alarm is assigned to.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>asset_identifier</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>devices</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>The devices assigned to this asset. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tags</td>
-                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
-                  <td>repeated</td>
-                  <td><p>The tags for this asset. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>alarms</td>
-                  <td><a href="#hiber.assign.Assignment.AlarmAssignment">Assignment.AlarmAssignment</a></td>
-                  <td>repeated</td>
-                  <td><p>The identifiers and parameters of the alarms that are assigned to this asset. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>alarm_details</td>
-                  <td><a href="#hiber.modem.alarm.ModemAlarm">hiber.modem.alarm.ModemAlarm</a></td>
-                  <td>repeated</td>
-                  <td><p>The alarms that are assigned to this asset, if you have permission to view them. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="hiber.assign.ListAssignments">ListAssignments</h3>
         <p></p>
 
@@ -2910,38 +2392,9 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td><p>Include assignments that are no longer active. </p></td>
                 </tr>
               
-                <tr>
-                  <td>use_process_point</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td>optional</td>
-                  <td><p><strong>Deprecated.</strong> Return assignments for process point instead of asset.
-Defaults to using asset for backwards compatibility. </p></td>
-                </tr>
-              
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>use_process_point</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -3165,24 +2618,10 @@ temperature, the check value will be converted to celsius instead. </p></td>
                 </tr>
               
                 <tr>
-                  <td>asset_identifiers</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p><strong>Deprecated.</strong> The identifiers of the assets assigned to this device. </p></td>
-                </tr>
-              
-                <tr>
                   <td>process_point_identifiers</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>The identifiers of the process points assigned to this device. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>assets</td>
-                  <td><a href="#hiber.assign.Assignment.AssetAssignment">Assignment.AssetAssignment</a></td>
-                  <td>repeated</td>
-                  <td><p><strong>Deprecated.</strong> The assets assigned to this device. </p></td>
                 </tr>
               
                 <tr>
@@ -3195,32 +2634,6 @@ temperature, the check value will be converted to celsius instead. </p></td>
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>asset_identifiers</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-                <tr>
-                  <td>assets</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -3713,24 +3126,10 @@ temperature, the check value will be converted to celsius instead. </p></td>
                 </tr>
               
                 <tr>
-                  <td>asset_identifiers</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p><strong>Deprecated.</strong> The assets assigned to this tag. </p></td>
-                </tr>
-              
-                <tr>
                   <td>process_point_identifiers</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>The process points assigned to this tag. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>assets</td>
-                  <td><a href="#hiber.assign.Assignment.AssetAssignment">Assignment.AssetAssignment</a></td>
-                  <td>repeated</td>
-                  <td><p><strong>Deprecated.</strong> The assets assigned to this device. </p></td>
                 </tr>
               
                 <tr>
@@ -3743,32 +3142,6 @@ temperature, the check value will be converted to celsius instead. </p></td>
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>asset_identifiers</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-                <tr>
-                  <td>assets</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -3819,13 +3192,6 @@ temperature, the check value will be converted to celsius instead. </p></td>
                 </tr>
               
                 <tr>
-                  <td>unassign_assets</td>
-                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
                   <td>unassign_process_points</td>
                   <td><a href="#hiber.processpoint.ProcessPointSelection">hiber.processpoint.ProcessPointSelection</a></td>
                   <td></td>
@@ -3847,13 +3213,6 @@ temperature, the check value will be converted to celsius instead. </p></td>
                 </tr>
               
                 <tr>
-                  <td>from_assets</td>
-                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
                   <td>from_process_points</td>
                   <td><a href="#hiber.processpoint.ProcessPointSelection">hiber.processpoint.ProcessPointSelection</a></td>
                   <td></td>
@@ -3867,7 +3226,7 @@ temperature, the check value will be converted to celsius instead. </p></td>
                   <td><p>Time that the assignment ended.
 This marks the assignment as ended at the given moment in the past, but would not have effect in the past
 for assignments like parsers and alarms (e.g. no alarm events are removed).
-It would however work for assets / process points having access to device data.
+It would however work for process points having access to device data.
 This is not allowed to be a value in the future at the moment. </p></td>
                 </tr>
               
@@ -3883,32 +3242,6 @@ Setting this to true makes this identical to using the Delete rpc. </p></td>
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>unassign_assets</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-                <tr>
-                  <td>from_assets</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -3973,12 +3306,6 @@ Setting this to true makes this identical to using the Delete rpc. </p></td>
               </tr>
             
               <tr>
-                <td>ASSIGNS_ALARM_TO_ASSET</td>
-                <td>9</td>
-                <td><p>Assignment that assigns an alarm to an asset.</p></td>
-              </tr>
-            
-              <tr>
                 <td>ASSIGNS_ALARM_TO_PROCESS_POINT</td>
                 <td>10</td>
                 <td><p>Assignment that assigns an alarm to an process point.</p></td>
@@ -4003,21 +3330,9 @@ Setting this to true makes this identical to using the Delete rpc. </p></td>
               </tr>
             
               <tr>
-                <td>ASSIGNS_ASSET_TO_TAG</td>
-                <td>7</td>
-                <td><p>Assignment that assigns an asset to a tag.</p></td>
-              </tr>
-            
-              <tr>
                 <td>ASSIGNS_PROCESS_POINT_TO_TAG</td>
                 <td>11</td>
                 <td><p>Assignment that assigns an process point to a tag.</p></td>
-              </tr>
-            
-              <tr>
-                <td>ASSIGNS_ASSET_TO_DEVICE</td>
-                <td>8</td>
-                <td><p>Assignment that assigns an asset to a device.</p></td>
               </tr>
             
               <tr>
@@ -4067,13 +3382,6 @@ Setting this to true makes this identical to using the Delete rpc. </p></td>
                 <td><a href="#hiber.assign.DeleteAssignment.Request">DeleteAssignment.Request</a></td>
                 <td><a href="#hiber.assign.DeleteAssignment.Response">DeleteAssignment.Response</a></td>
                 <td><p>Delete an assignment, even if it has a time range.</p></td>
-              </tr>
-            
-              <tr>
-                <td>AssetAssignments</td>
-                <td><a href="#hiber.assign.ListAssetAssignments.Request">ListAssetAssignments.Request</a></td>
-                <td><a href="#hiber.assign.ListAssetAssignments.Response">ListAssetAssignments.Response</a></td>
-                <td><p>List assets with the devices and tags they are assigned to.</p></td>
               </tr>
             
               <tr>
@@ -5691,33 +4999,15 @@ This refers to things like message summary configuration.</p></td>
               </tr>
             
               <tr>
-                <td>ASSET_CREATED</td>
-                <td>70</td>
-                <td><p>A new asset was created in your organization.</p></td>
-              </tr>
-            
-              <tr>
                 <td>PROCESS_POINT_CREATED</td>
                 <td>73</td>
                 <td><p>A new process point was created in your organization.</p></td>
               </tr>
             
               <tr>
-                <td>ASSET_UPDATED</td>
-                <td>71</td>
-                <td><p>An asset in your organization was updated (e.g. renamed, tagged).</p></td>
-              </tr>
-            
-              <tr>
                 <td>PROCESS_POINT_UPDATED</td>
                 <td>74</td>
                 <td><p>An process point in your organization was updated (e.g. renamed, tagged).</p></td>
-              </tr>
-            
-              <tr>
-                <td>ASSET_DELETED</td>
-                <td>72</td>
-                <td><p>An asset in your organization was deleted.</p></td>
               </tr>
             
               <tr>
@@ -6383,389 +5673,6 @@ is ready to be downloaded.</p></td>
             
           </tbody>
         </table>
-      
-
-      
-    
-      
-      <div class="file-heading">
-        <h2 id="asset.proto">asset.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-      
-        <h3 id="hiber.asset.Asset">Asset</h3>
-        <p>Assets are things that collect the data produced by devices.</p><p>Devices are assigned to assets to handle data ownership.</p><p>When a device is replaced, the data flow for the asset continues with the data from the new device.</p><p>Multiple devices can be assigned to an asset, though it is advisable to only do so when they send</p><p>different type of data (e.g. one sensor for pressure and one for flow).</p><p>For example, if you have a Well, you might have assets for Annulus A and the tubing head.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>identifier</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Name of the asset </p></td>
-                </tr>
-              
-                <tr>
-                  <td>type</td>
-                  <td><a href="#hiber.asset.Asset.Type">Asset.Type</a></td>
-                  <td>optional</td>
-                  <td><p>Type of the asset, if any of the predefined types applies. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Longer detailed description of the asset. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>notes</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Multiline notes field that can be used to add additional information to an asset. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>time_zone</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p>Optional time zone for the asset.
-This can, for example, be used to calculate SLAs on a daily basis, adjusted by time zone. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>expected_transmission_rate</td>
-                  <td><a href="#hiber.value.Value.Numeric.Rate">hiber.value.Value.Numeric.Rate</a></td>
-                  <td>optional</td>
-                  <td><p>The expected transmission rate for this asset. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>metadata</td>
-                  <td><a href="#google.protobuf.Struct">google.protobuf.Struct</a></td>
-                  <td></td>
-                  <td><p>Metadata for the asset.
-This can be automatically populated from linked devices or manually added. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tags</td>
-                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
-                  <td>repeated</td>
-                  <td><p>Tags assigned to this asset </p></td>
-                </tr>
-              
-                <tr>
-                  <td>devices</td>
-                  <td><a href="#hiber.asset.Asset.AssignedDevice">Asset.AssignedDevice</a></td>
-                  <td>repeated</td>
-                  <td><p>Devices assigned to this asset </p></td>
-                </tr>
-              
-                <tr>
-                  <td>inactive_devices</td>
-                  <td><a href="#hiber.asset.Asset.AssignedDevice">Asset.AssignedDevice</a></td>
-                  <td>repeated</td>
-                  <td><p>Devices that were assigned to this asset in the past </p></td>
-                </tr>
-              
-                <tr>
-                  <td>organization</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>The organization that owns this asset.
-Typically only relevant if child organizations are included. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>location</td>
-                  <td><a href="#hiber.Location">hiber.Location</a></td>
-                  <td></td>
-                  <td><p>Location for the asset. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>files</td>
-                  <td><a href="#hiber.file.File">hiber.file.File</a></td>
-                  <td>repeated</td>
-                  <td><p>Files for this asset.
-Typically an image of a place. See the File.media_type for more information. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.asset.Asset.AssignedDevice">Asset.AssignedDevice</h3>
-        <p>A device assigned to this asset.</p><p>Non-operational values that the device produces will be linked to this asset</p><p>(e.g. pressure, but not battery level).</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>number</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>identifiers</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>type</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>last_message_sent_at</td>
-                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td>optional</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>last_message_received_at</td>
-                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
-                  <td>optional</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>assignment_time_range</td>
-                  <td><a href="#hiber.TimeRange">hiber.TimeRange</a></td>
-                  <td>optional</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>health</td>
-                  <td><a href="#hiber.health.HealthLevel">hiber.health.HealthLevel</a></td>
-                  <td>optional</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>numeric_value_types</td>
-                  <td><a href="#hiber.value.Value.Numeric.Type">hiber.value.Value.Numeric.Type</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="hiber.asset.AssetSelection">AssetSelection</h3>
-        <p>Selection object for assets.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>identifiers</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>Select assets by identifier. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>search</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>Search assets by (partial, case insensitive) identifier, name, description, notes and time zone. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>types</td>
-                  <td><a href="#hiber.asset.Asset.Type">Asset.Type</a></td>
-                  <td>repeated</td>
-                  <td><p>Select assets by type. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>filter_by_tags</td>
-                  <td><a href="#hiber.tag.TagSelection">hiber.tag.TagSelection</a></td>
-                  <td>optional</td>
-                  <td><p>Select assets by tags </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-
-      
-        <h3 id="hiber.asset.Asset.Type">Asset.Type</h3>
-        <p>Predefined assets types that can be used to say something about the data.</p><p>Currently a limited list, but more may be added in the future.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>UNKNOWN</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>WELL_ANNULUS_A</td>
-                <td>1</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>WELL_ANNULUS_B</td>
-                <td>2</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>WELL_ANNULUS_C</td>
-                <td>3</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>WELL_ANNULUS_D</td>
-                <td>4</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>WELL_HEAD</td>
-                <td>15</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>WELL_TUBING_HEAD</td>
-                <td>5</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>WELL_TUBING</td>
-                <td>6</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>WELL_FLOW_LINE</td>
-                <td>7</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>WELL_CASING</td>
-                <td>8</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>WELL_PRODUCTION_CASING_PRESSURE</td>
-                <td>9</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>WELL_INTERMITTENT_CASING_PRESSURE</td>
-                <td>10</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>PIPELINE</td>
-                <td>11</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>PRODUCTION_LINE</td>
-                <td>12</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>GAS_MANIFOLD</td>
-                <td>13</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>PRODUCTION_MANIFOLD</td>
-                <td>14</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>TEMPERATURE</td>
-                <td>16</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>METERING_FLOWLINE</td>
-                <td>17</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>VALVE</td>
-                <td>18</td>
-                <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-
       
 
       
@@ -9584,13 +8491,6 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
                 </tr>
               
                 <tr>
-                  <td>assets</td>
-                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
                   <td>process_points</td>
                   <td><a href="#hiber.processpoint.ProcessPointSelection">hiber.processpoint.ProcessPointSelection</a></td>
                   <td></td>
@@ -9607,27 +8507,6 @@ For example, a modem that sends it messages through a gateway (like Hilo) would 
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>assets</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -10699,13 +9578,6 @@ be available to unencrypted values due to performance issues. </p></td>
                 </tr>
               
                 <tr>
-                  <td>assets</td>
-                  <td><a href="#hiber.asset.AssetSelection">hiber.asset.AssetSelection</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
                   <td>process_points</td>
                   <td><a href="#hiber.processpoint.ProcessPointSelection">hiber.processpoint.ProcessPointSelection</a></td>
                   <td></td>
@@ -10715,27 +9587,6 @@ be available to unencrypted values due to performance issues. </p></td>
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>assets</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -13819,13 +12670,6 @@ Keep in mind the grpc request size limitation. </p></td>
                 </tr>
               
                 <tr>
-                  <td>asset_count</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td>optional</td>
-                  <td><p><strong>Deprecated.</strong> Count the assets for each tag in the response. </p></td>
-                </tr>
-              
-                <tr>
                   <td>process_point_count</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
@@ -13849,27 +12693,6 @@ Keep in mind the grpc request size limitation. </p></td>
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>asset_count</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -13899,13 +12722,6 @@ Keep in mind the grpc request size limitation. </p></td>
                 </tr>
               
                 <tr>
-                  <td>tag_asset_count</td>
-                  <td><a href="#hiber.tag.ListTagsRequest.Response.TagAssetCountEntry">ListTagsRequest.Response.TagAssetCountEntry</a></td>
-                  <td>repeated</td>
-                  <td><p><strong>Deprecated.</strong> map&lt;tag-id, count&gt; </p></td>
-                </tr>
-              
-                <tr>
                   <td>tag_process_point_count</td>
                   <td><a href="#hiber.tag.ListTagsRequest.Response.TagProcessPointCountEntry">ListTagsRequest.Response.TagProcessPointCountEntry</a></td>
                   <td>repeated</td>
@@ -13924,58 +12740,6 @@ Keep in mind the grpc request size limitation. </p></td>
                   <td><a href="#hiber.tag.ListTagsRequest.Response.TagWebhookCountEntry">ListTagsRequest.Response.TagWebhookCountEntry</a></td>
                   <td>repeated</td>
                   <td><p>map&lt;webhook-id, count&gt; </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>tag_asset_count</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
-          
-
-        
-      
-        <h3 id="hiber.tag.ListTagsRequest.Response.TagAssetCountEntry">ListTagsRequest.Response.TagAssetCountEntry</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>key</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -14234,13 +12998,6 @@ Typically an image of a place. See the File.media_type for more information. </p
                 </tr>
               
                 <tr>
-                  <td>asset_count</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong>  </p></td>
-                </tr>
-              
-                <tr>
                   <td>process_point_count</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
@@ -14257,27 +13014,6 @@ Typically an image of a place. See the File.media_type for more information. </p
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>asset_count</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         
@@ -14307,13 +13043,6 @@ Typically an image of a place. See the File.media_type for more information. </p
                 </tr>
               
                 <tr>
-                  <td>asset_count</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td>optional</td>
-                  <td><p><strong>Deprecated.</strong> Count the assets for each tag in the response. </p></td>
-                </tr>
-              
-                <tr>
                   <td>process_point_count</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
@@ -14330,27 +13059,6 @@ Typically an image of a place. See the File.media_type for more information. </p
             </tbody>
           </table>
 
-          
-            
-            
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-              
-                <tr>
-                  <td>asset_count</td>
-                  <td><p>true</p></td>
-                </tr>
-              
-              </tbody>
-            </table>
-            
           
 
         

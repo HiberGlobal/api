@@ -1,5 +1,9 @@
 # Changelog Hiber API
 
+### 0.282 (2026-05-11)
+
+- Removed deprecated asset functionality from the entire API.
+
 ### 0.280 (2026-04-20)
 
 ##### ProcessPointService

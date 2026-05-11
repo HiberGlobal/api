@@ -16,11 +16,9 @@
   - [Assign.Response](#assignresponse)
   - [Assignment](#assignment)
   - [Assignment.AdditionalConfiguration](#assignmentadditionalconfiguration)
-  - [Assignment.AdditionalConfiguration.AssetDeviceAssignment](#assignmentadditionalconfigurationassetdeviceassignment)
   - [Assignment.AdditionalConfiguration.FieldsByJsonPath](#assignmentadditionalconfigurationfieldsbyjsonpath)
   - [Assignment.AdditionalConfiguration.ProcessPointDeviceAssignment](#assignmentadditionalconfigurationprocesspointdeviceassignment)
   - [Assignment.AlarmAssignment](#assignmentalarmassignment)
-  - [Assignment.AssetAssignment](#assignmentassetassignment)
   - [Assignment.ModemMessageBodyParserAssignment](#assignmentmodemmessagebodyparserassignment)
   - [Assignment.ProcessPointAssignment](#assignmentprocesspointassignment)
   - [AssignmentSelection](#assignmentselection)
@@ -32,14 +30,9 @@
   - [ListAlarmAssignments.Request](#listalarmassignmentsrequest)
   - [ListAlarmAssignments.Response](#listalarmassignmentsresponse)
   - [ListAlarmAssignments.Response.AlarmAssignment](#listalarmassignmentsresponsealarmassignment)
-  - [ListAlarmAssignments.Response.AlarmAssignment.ToAsset](#listalarmassignmentsresponsealarmassignmenttoasset)
   - [ListAlarmAssignments.Response.AlarmAssignment.ToModem](#listalarmassignmentsresponsealarmassignmenttomodem)
   - [ListAlarmAssignments.Response.AlarmAssignment.ToProcessPoint](#listalarmassignmentsresponsealarmassignmenttoprocesspoint)
   - [ListAlarmAssignments.Response.AlarmAssignment.ToTag](#listalarmassignmentsresponsealarmassignmenttotag)
-  - [ListAssetAssignments](#listassetassignments)
-  - [ListAssetAssignments.Request](#listassetassignmentsrequest)
-  - [ListAssetAssignments.Response](#listassetassignmentsresponse)
-  - [ListAssetAssignments.Response.AssetAssignment](#listassetassignmentsresponseassetassignment)
   - [ListAssignments](#listassignments)
   - [ListAssignments.Request](#listassignmentsrequest)
   - [ListAssignments.Response](#listassignmentsresponse)
@@ -65,13 +58,6 @@
 
 - Enums
   - [AssignmentType](#assignmenttype)
-
-- Referenced messages from [asset.proto](#referenced-messages-from-assetproto)
-  - [hiber.asset.Asset](#hiberassetasset)
-  - [hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice)
-  - [hiber.asset.AssetSelection](#hiberassetassetselection)
-
-    - [hiber.asset.Asset.Type](#hiberassetassettype)
 
 - Referenced messages from [modem.proto](#referenced-messages-from-modemproto)
   - [hiber.modem.Modem](#hibermodemmodem)
@@ -278,12 +264,6 @@ End an assignment, like an alarm to a modem.
 
 Delete an assignment, even if it has a time range.
 
-### AssetAssignments
-> **rpc** AssetAssignments([ListAssetAssignments.Request](#listassetassignmentsrequest))
-    [ListAssetAssignments.Response](#listassetassignmentsresponse)
-
-List assets with the devices and tags they are assigned to.
-
 ### ProcessPointAssignments
 > **rpc** ProcessPointAssignments([ListProcessPointAssignments.Request](#listprocesspointassignmentsrequest))
     [ListProcessPointAssignments.Response](#listprocesspointassignmentsresponse)
@@ -332,17 +312,14 @@ Add assignments.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_process_points | [ hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_process_points | [ hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) |  |
 | alarm_parameters | [map Assign.Request.AlarmParametersEntry](#assignrequestalarmparametersentry) | <span class="deprecated deprecated-field">Deprecated</span> The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **additional_configuration**.asset_device | [ Assignment.AdditionalConfiguration.AssetDeviceAssignment](#assignmentadditionalconfigurationassetdeviceassignment) | <span class="deprecated deprecated-field">Deprecated</span> Additional configuration for assignment between Asset and Device/Modem. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **additional_configuration**.process_point_device | [ Assignment.AdditionalConfiguration.ProcessPointDeviceAssignment](#assignmentadditionalconfigurationprocesspointdeviceassignment) | Additional configuration for assignment between ProcessPoint and Device/Modem. |
-|  **optional** override_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment should be active. This sets the assignment to start in the past, but would not have effect in the past for assignments like parsers and alarms (they will only be triggered for new messages / values). It would however work for assets / process points having access to device data. This is not allowed to be a value in the future at the moment. |
-|  **optional** end_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (e.g. no alarm events are removed). It would however work for assets / process points having access to device data. This is not allowed to be a value in the future at the moment. |
+|  **optional** override_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment should be active. This sets the assignment to start in the past, but would not have effect in the past for assignments like parsers and alarms (they will only be triggered for new messages / values). It would however work for process points having access to device data. This is not allowed to be a value in the future at the moment. |
+|  **optional** end_time | [optional hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (e.g. no alarm events are removed). It would however work for process points having access to device data. This is not allowed to be a value in the future at the moment. |
 |  **optional** override_conflicting_assignments | [optional bool](#bool) | Instead of throwing an error when there are conflicting assignments, unassign the conflicting assignments with the given time (override_time or now) and then making the assignment. |
 |  **optional** override_conflicting_assignments_allow_delete | [optional bool](#bool) | When overriding assignments, we may run into a case where a previous assignment would be completely replaced. Since this is questionable, doing so required an additional opt-in with this flag. |
 
@@ -380,7 +357,7 @@ This can also extend into the future, but while the unassigned event will be pro
 still be visible until the given time.
 
 Assignments that are no longer active (end time is in the past) and that no longer have an effect
-(currently only asset / process point device assignment has an ongoing effect) may be cleaned up automatically.
+(currently only process point device assignment has an ongoing effect) may be cleaned up automatically.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -390,28 +367,17 @@ Assignments that are no longer active (end time is in the past) and that no long
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_parser | [ Assignment.ModemMessageBodyParserAssignment](#assignmentmodemmessagebodyparserassignment) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_alarm | [ Assignment.AlarmAssignment](#assignmentalarmassignment) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_modem | [ string](#string) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_asset | [ string](#string) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign**.assign_process_point | [ string](#string) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_modem | [ string](#string) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_parser | [ Assignment.ModemMessageBodyParserAssignment](#assignmentmodemmessagebodyparserassignment) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_tag | [ hiber.tag.Tag](#hibertagtag) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_asset | [ string](#string) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **to**.to_process_point | [ string](#string) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **additional_configuration**.asset_device | [ Assignment.AdditionalConfiguration.AssetDeviceAssignment](#assignmentadditionalconfigurationassetdeviceassignment) | Additional configuration for assignment between Asset and Device/Modem. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **additional_configuration**.process_point_device | [ Assignment.AdditionalConfiguration.ProcessPointDeviceAssignment](#assignmentadditionalconfigurationprocesspointdeviceassignment) | Additional configuration for assignment between Process Point and Device/Modem. |
 
 ### Assignment.AdditionalConfiguration
 
 
 
-
-### Assignment.AdditionalConfiguration.AssetDeviceAssignment
-
-<p class="deprecated deprecated-message">Deprecated</p> 
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| shared_fields | [ Assignment.AdditionalConfiguration.FieldsByJsonPath](#assignmentadditionalconfigurationfieldsbyjsonpath) | Specify the fields that are shared with the Asset. If nothing is specified, all fields are shared with the asset by default. |
 
 ### Assignment.AdditionalConfiguration.FieldsByJsonPath
 
@@ -441,15 +407,6 @@ Fields are produced by the device's assigned parsers. See field.proto for more i
 | description | [ string](#string) |  |
 | parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <span class="deprecated deprecated-field">Deprecated</span>  |
 
-### Assignment.AssetAssignment
-
-<p class="deprecated deprecated-message">Deprecated</p> 
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifier | [ string](#string) |  |
-| name | [ string](#string) |  |
-
 ### Assignment.ModemMessageBodyParserAssignment
 
 
@@ -475,7 +432,6 @@ Fields are produced by the device's assigned parsers. See field.proto for more i
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-|  **optional** assets | [optional hiber.asset.AssetSelection](#hiberassetassetselection) | <span class="deprecated deprecated-field">Deprecated</span> Select the assets to return the assignments for. Optional, when omitted or empty everything is included. |
 |  **optional** process_points | [optional hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) | Select the process points to return the assignments for. Optional, when omitted or empty everything is included. |
 |  **optional** modems | [optional hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the modems to return the assignments for. Optional, when omitted or empty everything is included. |
 |  **optional** modem_alarms | [optional hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) | Select the alarms to return the assignments for. Optional, when omitted or empty everything is included. |
@@ -507,11 +463,9 @@ Fields are produced by the device's assigned parsers. See field.proto for more i
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_process_points | [ hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_process_points | [ hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) |  |
 
 ### DeleteAssignment.Response
@@ -561,18 +515,7 @@ Things that an alarm is assigned to.
 | alarm | [ hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) |  |
 | modems | [repeated ListAlarmAssignments.Response.AlarmAssignment.ToModem](#listalarmassignmentsresponsealarmassignmenttomodem) | The modem numbers this alarm is assigned to, with the alarm parameters. |
 | tags | [repeated ListAlarmAssignments.Response.AlarmAssignment.ToTag](#listalarmassignmentsresponsealarmassignmenttotag) | The tags this alarm is assigned to, with the alarm parameters. |
-| assets | [repeated ListAlarmAssignments.Response.AlarmAssignment.ToAsset](#listalarmassignmentsresponsealarmassignmenttoasset) | <span class="deprecated deprecated-field">Deprecated</span> The assets this alarm is assigned to, with the alarm parameters. |
 | process_points | [repeated ListAlarmAssignments.Response.AlarmAssignment.ToProcessPoint](#listalarmassignmentsresponsealarmassignmenttoprocesspoint) | The process points this alarm is assigned to, with the alarm parameters. |
-
-### ListAlarmAssignments.Response.AlarmAssignment.ToAsset
-
-<p class="deprecated deprecated-message">Deprecated</p> 
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| asset_identifier | [ string](#string) |  |
-| asset | [ Assignment.AssetAssignment](#assignmentassetassignment) |  |
-| parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <span class="deprecated deprecated-field">Deprecated</span>  |
 
 ### ListAlarmAssignments.Response.AlarmAssignment.ToModem
 
@@ -602,47 +545,6 @@ Things that an alarm is assigned to.
 | tag | [ hiber.tag.Tag](#hibertagtag) |  |
 | parameters | [ google.protobuf.Struct](#googleprotobufstruct) | <span class="deprecated deprecated-field">Deprecated</span>  |
 
-### ListAssetAssignments
-
-
-
-
-### ListAssetAssignments.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** selection | [optional AssignmentSelection](#assignmentselection) | Select the assignments to list. Optional, when omitted or empty everything is included. |
-|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
-|  **optional** include_assets_without_assignments | [optional bool](#bool) | Whether to include assets that are in the selection and have no assignments. |
-|  **optional** include_alarm_details | [optional bool](#bool) | Whether to include the full alarms that are assigned, instead of just assignment. |
-|  **optional** apply_unit_preferences | [optional bool](#bool) | Apply your UnitPreferences to the alarm checks. For example, if a temperature check is configured in kelvin, but your unit preferences specify celsius for temperature, the check value will be converted to celsius instead. |
-
-### ListAssetAssignments.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| assets | [repeated ListAssetAssignments.Response.AssetAssignment](#listassetassignmentsresponseassetassignment) |  |
-| request | [ ListAssetAssignments.Request](#listassetassignmentsrequest) |  |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
-
-### ListAssetAssignments.Response.AssetAssignment
-
-Things that an alarm is assigned to.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) |  |
-| asset_identifier | [ string](#string) |  |
-| devices | [repeated string](#string) | The devices assigned to this asset. |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | The tags for this asset. |
-| alarms | [repeated Assignment.AlarmAssignment](#assignmentalarmassignment) | The identifiers and parameters of the alarms that are assigned to this asset. |
-| alarm_details | [repeated hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | The alarms that are assigned to this asset, if you have permission to view them. |
-
 ### ListAssignments
 
 
@@ -658,7 +560,6 @@ Things that an alarm is assigned to.
 |  **optional** selection | [optional AssignmentSelection](#assignmentselection) | Select the assignments to list. Optional, when omitted or empty everything is included. |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 |  **optional** include_inactive_assignments | [optional bool](#bool) | Include assignments that are no longer active. |
-|  **optional** use_process_point | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Return assignments for process point instead of asset. Defaults to using asset for backwards compatibility. |
 
 ### ListAssignments.Response
 
@@ -713,9 +614,7 @@ Things that are assigned to a modem.
 | tags | [repeated hiber.tag.Tag](#hibertagtag) | The tags for this modem. |
 | message_body_parser_details | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) | The details of the parsers assigned to this modem. |
 | alarm_details | [repeated hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | The alarms that are assigned to this modem, if you have permission to view them. |
-| asset_identifiers | [repeated string](#string) | <span class="deprecated deprecated-field">Deprecated</span> The identifiers of the assets assigned to this device. |
 | process_point_identifiers | [repeated string](#string) | The identifiers of the process points assigned to this device. |
-| assets | [repeated Assignment.AssetAssignment](#assignmentassetassignment) | <span class="deprecated deprecated-field">Deprecated</span> The assets assigned to this device. |
 | process_points | [repeated Assignment.ProcessPointAssignment](#assignmentprocesspointassignment) | The process points assigned to this device. |
 
 ### ListModemMessageBodyParserAssignments
@@ -840,9 +739,7 @@ Things that an alarm is assigned to.
 | alarms | [repeated Assignment.AlarmAssignment](#assignmentalarmassignment) | The identifiers and parameters of the alarms that are assigned to this tag. |
 | message_body_parser_details | [repeated hiber.modem.message.bodyparser.ModemMessageBodyParser](#hibermodemmessagebodyparsermodemmessagebodyparser) | The details of the parsers assigned to this tag. |
 | alarm_details | [repeated hiber.modem.alarm.ModemAlarm](#hibermodemalarmmodemalarm) | The alarms that are assigned to this tag, if you have permission to view them. |
-| asset_identifiers | [repeated string](#string) | <span class="deprecated deprecated-field">Deprecated</span> The assets assigned to this tag. |
 | process_point_identifiers | [repeated string](#string) | The process points assigned to this tag. |
-| assets | [repeated Assignment.AssetAssignment](#assignmentassetassignment) | <span class="deprecated deprecated-field">Deprecated</span> The assets assigned to this device. |
 | process_points | [repeated Assignment.ProcessPointAssignment](#assignmentprocesspointassignment) | The process points assigned to this device. |
 
 ### Unassign
@@ -860,13 +757,11 @@ Remove a assignment.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_parsers | [ hiber.modem.message.bodyparser.ModemMessageBodyParserSelection](#hibermodemmessagebodyparsermodemmessagebodyparserselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign**.unassign_process_points | [ hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_tags | [ hiber.tag.TagSelection](#hibertagtagselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **from**.from_process_points | [ hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.override_time | [ hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (e.g. no alarm events are removed). It would however work for assets / process points having access to device data. This is not allowed to be a value in the future at the moment. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.override_time | [ hiber.Timestamp](#hibertimestamp) | Time that the assignment ended. This marks the assignment as ended at the given moment in the past, but would not have effect in the past for assignments like parsers and alarms (e.g. no alarm events are removed). It would however work for process points having access to device data. This is not allowed to be a value in the future at the moment. |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **time**.remove_time | [ bool](#bool) | Remove time from the assignment, if any. Effectively deletes the assignment if it was set with a time. Setting this to true makes this identical to using the Delete rpc. |
 
 ### Unassign.Response
@@ -888,108 +783,12 @@ The types of assignment available, like assigning a message body parser to a mod
 | DEFAULT |  | 0 |
 | ASSIGNS_MESSAGE_BODY_PARSER_TO_MODEM | Assignment that assigns a message body parser to a modem. | 1 |
 | ASSIGNS_ALARM_TO_MODEM | Assignment that assigns a modem alarm to a modem. | 2 |
-| ASSIGNS_ALARM_TO_ASSET | Assignment that assigns an alarm to an asset. | 9 |
 | ASSIGNS_ALARM_TO_PROCESS_POINT | Assignment that assigns an alarm to an process point. | 10 |
 | ASSIGNS_MODEM_TO_TAG | Assignment that assigns a modem to a tag. | 4 |
 | ASSIGNS_MESSAGE_BODY_PARSER_TO_TAG | Assignment that assigns a message body parser to a tag, effectively assigning it to all modems with that tag. | 5 |
 | ASSIGNS_ALARM_TO_TAG | Assignment that assigns a modem alarm to a tag, effectively assigning it to all modems with that tag. | 6 |
-| ASSIGNS_ASSET_TO_TAG | Assignment that assigns an asset to a tag. | 7 |
 | ASSIGNS_PROCESS_POINT_TO_TAG | Assignment that assigns an process point to a tag. | 11 |
-| ASSIGNS_ASSET_TO_DEVICE | Assignment that assigns an asset to a device. | 8 |
 | ASSIGNS_PROCESS_POINT_TO_DEVICE | Assignment that assigns an process point to a device. | 12 |
-
-
-
-## Referenced messages from asset.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
-
-#### This section was generated from [asset.proto](https://github.com/HiberGlobal/api/blob/master/asset.proto).
-
-
-### hiber.asset.Asset
-
-<p class="deprecated deprecated-message">Deprecated</p> Assets are things that collect the data produced by devices.
-Devices are assigned to assets to handle data ownership.
-When a device is replaced, the data flow for the asset continues with the data from the new device.
-Multiple devices can be assigned to an asset, though it is advisable to only do so when they send
-different type of data (e.g. one sensor for pressure and one for flow).
-
-For example, if you have a Well, you might have assets for Annulus A and the tubing head.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifier | [ string](#string) |  |
-| name | [ string](#string) | Name of the asset |
-|  **optional** type | [optional hiber.asset.Asset.Type](#hiberassetassettype) | Type of the asset, if any of the predefined types applies. |
-|  **optional** description | [optional string](#string) | Longer detailed description of the asset. |
-|  **optional** notes | [optional string](#string) | Multiline notes field that can be used to add additional information to an asset. |
-|  **optional** time_zone | [optional string](#string) | Optional time zone for the asset. This can, for example, be used to calculate SLAs on a daily basis, adjusted by time zone. |
-|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this asset. |
-| metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Metadata for the asset. This can be automatically populated from linked devices or manually added. |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | Tags assigned to this asset |
-| devices | [repeated hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice) | Devices assigned to this asset |
-| inactive_devices | [repeated hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice) | Devices that were assigned to this asset in the past |
-| organization | [ string](#string) | The organization that owns this asset. Typically only relevant if child organizations are included. |
-| location | [ hiber.Location](#hiberlocation) | Location for the asset. |
-| files | [repeated hiber.file.File](#hiberfilefile) | Files for this asset. Typically an image of a place. See the File.media_type for more information. |
-
-### hiber.asset.Asset.AssignedDevice
-
-<p class="deprecated deprecated-message">Deprecated</p> A device assigned to this asset.
-Non-operational values that the device produces will be linked to this asset
-(e.g. pressure, but not battery level).
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| number | [ string](#string) |  |
-| identifiers | [repeated string](#string) |  |
-|  **optional** name | [optional string](#string) |  |
-|  **optional** type | [optional string](#string) |  |
-|  **optional** last_message_sent_at | [optional hiber.Timestamp](#hibertimestamp) |  |
-|  **optional** last_message_received_at | [optional hiber.Timestamp](#hibertimestamp) |  |
-|  **optional** assignment_time_range | [optional hiber.TimeRange](#hibertimerange) |  |
-|  **optional** health | [optional hiber.health.HealthLevel](#hiberhealthhealthlevel) |  |
-| numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) |  |
-
-### hiber.asset.AssetSelection
-
-<p class="deprecated deprecated-message">Deprecated</p> Selection object for assets.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifiers | [repeated string](#string) | Select assets by identifier. |
-| search | [repeated string](#string) | Search assets by (partial, case insensitive) identifier, name, description, notes and time zone. |
-| types | [repeated hiber.asset.Asset.Type](#hiberassetassettype) | Select assets by type. |
-|  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) | Select assets by tags |
-
-
-### Enums
-#### hiber.asset.Asset.Type
-<p class="deprecated deprecated-enum">Deprecated</p>Predefined assets types that can be used to say something about the data.
-Currently a limited list, but more may be added in the future.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| UNKNOWN |  | 0 |
-| WELL_ANNULUS_A |  | 1 |
-| WELL_ANNULUS_B |  | 2 |
-| WELL_ANNULUS_C |  | 3 |
-| WELL_ANNULUS_D |  | 4 |
-| WELL_HEAD |  | 15 |
-| WELL_TUBING_HEAD |  | 5 |
-| WELL_TUBING |  | 6 |
-| WELL_FLOW_LINE |  | 7 |
-| WELL_CASING |  | 8 |
-| WELL_PRODUCTION_CASING_PRESSURE |  | 9 |
-| WELL_INTERMITTENT_CASING_PRESSURE |  | 10 |
-| PIPELINE |  | 11 |
-| PRODUCTION_LINE |  | 12 |
-| GAS_MANIFOLD |  | 13 |
-| PRODUCTION_MANIFOLD |  | 14 |
-| TEMPERATURE |  | 16 |
-| METERING_FLOWLINE |  | 17 |
-| VALVE |  | 18 |
 
 
 
@@ -1186,7 +985,6 @@ Simplified version of assign.AssignDirectly.
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign_to**.modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign_to**.assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **assign_to**.process_points | [ hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) |  |
 | parameters | [map hiber.modem.alarm.AssignModemAlarms.Request.ParametersEntry](#hibermodemalarmassignmodemalarmsrequestparametersentry) | The alarm parameters, by alarm identifier, if any, overriding any default values in the alarm(s). |
 
@@ -1637,7 +1435,6 @@ Simplified version of assign.UnassignDirectly.
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 | alarms | [ hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign_from**.modems | [ hiber.modem.ModemSelection](#hibermodemmodemselection) |  |
-| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign_from**.assets | [ hiber.asset.AssetSelection](#hiberassetassetselection) | <span class="deprecated deprecated-field">Deprecated</span>  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unassign_from**.process_points | [ hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) |  |
 
 ### hiber.modem.alarm.UnassignModemAlarms.Response
@@ -2973,11 +2770,8 @@ api event stream and publishers.
 | ORGANIZATION_UPDATED | Your organization information was updated. This deals with things like display name and contact information, not users and devices. | 12 |
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
-| ASSET_CREATED | A new asset was created in your organization. | 70 |
 | PROCESS_POINT_CREATED | A new process point was created in your organization. | 73 |
-| ASSET_UPDATED | An asset in your organization was updated (e.g. renamed, tagged). | 71 |
 | PROCESS_POINT_UPDATED | An process point in your organization was updated (e.g. renamed, tagged). | 74 |
-| ASSET_DELETED | An asset in your organization was deleted. | 72 |
 | PROCESS_POINT_DELETED | An process point in your organization was deleted. | 75 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
 | DEVICE_UPDATED | A device in your organization was manually updated (e.g. renamed, tagged). | 36 |

@@ -5,7 +5,6 @@ package hiber.event;
 import "google/protobuf/struct.proto";
 
 import "assignment.proto";
-import "asset.proto";
 import "base.proto";
 import "export.proto";
 import "file.proto";
@@ -42,8 +41,6 @@ service EventService {
         option (permission_usage) = ORGANIZATION_UPDATE;
         /* For organization deleted events. */
         option (permission_usage) = ORGANIZATION_DELETE;
-        /* For asset events. */
-        option (permission_usage) = ASSETS;
         /* For process point events. */
         option (permission_usage) = PROCESS_POINTS;
         /* For modem/device-related events. */
@@ -67,7 +64,6 @@ service EventService {
         /* For export-related events. */
         option (permission_usage) = EXPORT;
         /* For value-related events. */
-        option (permission_usage) = ASSETS_VALUES;
         option (permission_usage) = PROCESS_POINTS_VALUES;
         option (permission_usage) = MODEM_VALUES;
 
@@ -80,8 +76,6 @@ service EventService {
         option (permission_usage) = ORGANIZATION_UPDATE;
         /* For organization deleted events. */
         option (permission_usage) = ORGANIZATION_DELETE;
-        /* For asset events. */
-        option (permission_usage) = ASSETS;
         /* For process point events. */
         option (permission_usage) = PROCESS_POINTS;
         /* For modem/device-related events. */
@@ -105,7 +99,6 @@ service EventService {
         /* For export-related events. */
         option (permission_usage) = EXPORT;
         /* For value-related events. */
-        option (permission_usage) = ASSETS_VALUES;
         option (permission_usage) = PROCESS_POINTS_VALUES;
         option (permission_usage) = MODEM_VALUES;
 
@@ -118,8 +111,6 @@ service EventService {
         option (permission_usage) = ORGANIZATION_UPDATE;
         /* For organization deleted events. */
         option (permission_usage) = ORGANIZATION_DELETE;
-        /* For asset events. */
-        option (permission_usage) = ASSETS;
         /* For process point events. */
         option (permission_usage) = PROCESS_POINTS;
         /* For modem/device-related events. */
@@ -143,7 +134,6 @@ service EventService {
         /* For export-related events. */
         option (permission_usage) = EXPORT;
         /* For value-related events. */
-        option (permission_usage) = ASSETS_VALUES;
         option (permission_usage) = PROCESS_POINTS_VALUES;
         option (permission_usage) = MODEM_VALUES;
 
@@ -241,10 +231,6 @@ message Event {
     repeated tag.Tag tags = 105;
 
     oneof event {
-        AssetEvent.AssetCreatedEvent asset_created = 70;
-        AssetEvent.AssetUpdatedEvent asset_updated = 71;
-        AssetEvent.AssetDeletedEvent asset_deleted = 72;
-
         ProcessPointEvent.ProcessPointCreatedEvent process_point_created = 73;
         ProcessPointEvent.ProcessPointUpdatedEvent process_point_updated = 74;
         ProcessPointEvent.ProcessPointDeletedEvent process_point_deleted = 75;
@@ -303,49 +289,6 @@ message Event {
         ValueEvent value = 80;
     }
     reserved 3, 6, 11 to 16, 18 to 22, 26 to 29, 49 to 53, 60 to 64;
-
-    message AssetEvent {
-        message AssetCreatedEvent {
-            string organization = 1;
-            string asset_identifier = 2;
-            asset.Asset asset = 3;
-            Timestamp time = 4;
-            repeated tag.Tag tags = 5;
-            string title = 6;
-            string description = 7;
-        }
-
-        message AssetUpdatedEvent {
-            message Update {
-                optional string name = 1;
-                optional string description = 2;
-                optional string notes = 3;
-                optional string time_zone = 4;
-                optional uint32 expected_transmission_rate = 5;
-                optional asset.Asset.Type type = 6;
-                optional google.protobuf.Struct metadata = 7;
-                optional Location location = 8;
-                repeated file.File files = 9;
-            }
-
-            string organization = 1;
-            Update updated = 2;
-            string asset_identifier = 3;
-            Timestamp time = 4;
-            repeated tag.Tag tags = 5;
-            string title = 6;
-            string description = 7;
-        }
-
-        message AssetDeletedEvent {
-            string organization = 1;
-            string deleted = 2;
-            Timestamp time = 3;
-            repeated tag.Tag tags = 4;
-            string title = 5;
-            string description = 6;
-        }
-    }
 
     message ProcessPointEvent {
         message ProcessPointCreatedEvent {
@@ -1220,11 +1163,6 @@ message ListEventsRequest {
      * Overrides unbundled_events in EventSelection message.
      */
     optional bool unbundled_events = 5;
-
-    /* Return events for process point instead of asset.
-     * Defaults to using asset for backwards compatibility.
-     */
-    optional bool use_process_point = 6 [deprecated = true];
 }
 
 /* Get the history of events that match the given filter, chronologically (by default, from now backwards in time).
@@ -1244,11 +1182,6 @@ message EventHistory {
         /* Select the events to list. Optional, when omitted or empty everything is included. */
         optional EventSelection selection = 2;
         optional Pagination pagination = 3;
-
-        /* Return events for process point instead of asset.
-         * Defaults to using asset for backwards compatibility.
-         */
-        optional bool use_process_point = 4 [deprecated = true];
     }
 
     message Response {
@@ -1275,11 +1208,6 @@ message EventStreamRequest {
      * Filtering on tags or publishers, for example, can only apply to the parent organization.
      */
     optional Filter.ChildOrganizations child_organizations = 3;
-
-    /* Return events for process point instead of asset.
-     * Defaults to using asset for backwards compatibility.
-     */
-    optional bool use_process_point = 4 [deprecated = true];
 }
 
 /* Get the list of events that affect device health, chronologically (by default, from now backwards in time).
@@ -1295,11 +1223,6 @@ message ModemHealthEvents {
         /* Select the events to list. Optional, when omitted or empty everything is included. */
         optional EventSelection selection = 2;
         optional Pagination pagination = 3;
-
-        /* Return events for process point instead of asset.
-         * Defaults to using asset for backwards compatibility.
-         */
-        optional bool use_process_point = 4 [deprecated = true];
     }
     message Response {
         Request request = 1;

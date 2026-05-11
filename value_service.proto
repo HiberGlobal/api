@@ -8,7 +8,6 @@ syntax = "proto3";
 package hiber.value;
 
 import "base.proto";
-import "asset.proto";
 import "modem.proto";
 import "process_point.proto";
 import "value.proto";
@@ -20,8 +19,6 @@ option go_package = ".;hiber";
 
 service ValueService {
     rpc List (ListValues.Request) returns (ListValues.Response) {
-        /* When value owner is an asset. */
-        option (permission_usage) = ASSETS_VALUES;
         /* When value owner is an process point. */
         option (permission_usage) = PROCESS_POINTS_VALUES;
         /* When value owner is a device. */
@@ -31,8 +28,6 @@ service ValueService {
     }
 
     rpc Downsampled (DownsampledValues.Request) returns (DownsampledValues.Response) {
-        /* When value owner is an asset. */
-        option (permission_usage) = ASSETS_VALUES;
         /* When value owner is an process point. */
         option (permission_usage) = PROCESS_POINTS_VALUES;
         /* When value owner is a device. */
@@ -42,8 +37,6 @@ service ValueService {
     }
 
     rpc Latest (LatestValues.Request) returns (LatestValues.Response) {
-        /* When value owner is an asset. */
-        option (permission_usage) = ASSETS_VALUES;
         /* When value owner is an process point. */
         option (permission_usage) = PROCESS_POINTS_VALUES;
         /* When value owner is a device. */
@@ -74,9 +67,6 @@ message ValueSelection {
     oneof owner_selection {
         /* Select the devices(s) to get the values for. */
         modem.ModemSelection devices = 1;
-
-        /* Select the asset(s) to get the values for. */
-        asset.AssetSelection assets = 7 [deprecated = true];
 
         /* Select the process   point(s) to get the values for. */
         processpoint.ProcessPointSelection process_points = 11;
@@ -119,12 +109,6 @@ message ValueContext {
     /* The device that produced this value. */
     string device_number = 1 [deprecated = true];
 
-    /* The asset that owns this value, if any.
-     * Assets own this value if they were assigned to the device that produced this value at the time it was produced.
-     * If multiple assets were assigned at the same time, this value exists for each asset.
-     */
-    ValueAssetContext asset = 7 [deprecated = true];
-
     /* The process point that owns this value, if any.
      * Process points own this value if they were assigned to the device that produced this value at the time
      * it was produced.
@@ -147,15 +131,6 @@ message ValueContext {
 
         /* The output of the DELTA ValueTransformation, if it was specified for this field. */
         ValueDelta delta = 6;
-    }
-
-    /* Information about the asset that owns the value. */
-    message ValueAssetContext {
-        option deprecated = true;
-
-        string identifier = 1;
-        string name = 2;
-        asset.Asset.Type type = 3;
     }
 
     /* Information about the process point that owns the value. */

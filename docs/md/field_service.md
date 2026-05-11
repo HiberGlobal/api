@@ -16,10 +16,6 @@
   - [ListFields](#listfields)
   - [ListFields.Request](#listfieldsrequest)
   - [ListFields.Response](#listfieldsresponse)
-  - [ListFieldsForAsset](#listfieldsforasset)
-  - [ListFieldsForAsset.Request](#listfieldsforassetrequest)
-  - [ListFieldsForAsset.Response](#listfieldsforassetresponse)
-  - [ListFieldsForAsset.Response.AssetWithFields](#listfieldsforassetresponseassetwithfields)
   - [ListFieldsForModem](#listfieldsformodem)
   - [ListFieldsForModem.Request](#listfieldsformodemrequest)
   - [ListFieldsForModem.Response](#listfieldsformodemresponse)
@@ -38,13 +34,6 @@
 
 - Enums
   - [ListFields.Sort](#listfieldssort)
-
-- Referenced messages from [asset.proto](#referenced-messages-from-assetproto)
-  - [hiber.asset.Asset](#hiberassetasset)
-  - [hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice)
-  - [hiber.asset.AssetSelection](#hiberassetassetselection)
-
-    - [hiber.asset.Asset.Type](#hiberassetassettype)
 
 - Referenced messages from [field.proto](#referenced-messages-from-fieldproto)
   - [hiber.field.Field](#hiberfieldfield)
@@ -221,12 +210,6 @@
 
 
 
-### ForAsset
-> **rpc** ForAsset([ListFieldsForAsset.Request](#listfieldsforassetrequest))
-    [ListFieldsForAsset.Response](#listfieldsforassetresponse)
-
-
-
 ### ForProcessPoint
 > **rpc** ForProcessPoint([ListFieldsForProcessPoint.Request](#listfieldsforprocesspointrequest))
     [ListFieldsForProcessPoint.Response](#listfieldsforprocesspointresponse)
@@ -337,47 +320,6 @@ Delete the given fields from a parser.
 | fields | [repeated Field](#field) |  |
 | request | [ ListFields.Request](#listfieldsrequest) |  |
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
-
-### ListFieldsForAsset
-
-
-
-
-### ListFieldsForAsset.Request
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** asset_selection | [optional hiber.asset.AssetSelection](#hiberassetassetselection) | Select the assets to fetch the fields for. Optional, when omitted or empty everything is included. |
-|  **optional** field_selection | [optional FieldSelection](#fieldselection) | Select which fields to return. Optional, when omitted or empty everything is included. |
-|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
-| sort | [ ListFields.Sort](#listfieldssort) |  |
-|  **optional** apply_unit_preferences | [optional bool](#bool) | Whether to apply the unit preferences to the fields. This will convert any fields into you preferred unit, for convenience. |
-|  **optional** include_total | [optional bool](#bool) | Whether to also calculate the total fields for all selected assets, and return them as a single list in the response. This can be useful to display table columns, for example. |
-|  **optional** include_historic_fields | [optional bool](#bool) | Whether to include fields that were only present from previously assigned devices. |
-
-### ListFieldsForAsset.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| asset_fields | [repeated ListFieldsForAsset.Response.AssetWithFields](#listfieldsforassetresponseassetwithfields) |  |
-| request | [ ListFieldsForAsset.Request](#listfieldsforassetrequest) |  |
-| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
-| total | [repeated Field](#field) | A merged result of all fields, for all assets. This can be useful to display table columns, for example. |
-
-### ListFieldsForAsset.Response.AssetWithFields
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| asset_name | [ string](#string) |  |
-| asset_identifier | [ string](#string) |  |
-| fields | [repeated Field](#field) |  |
 
 ### ListFieldsForModem
 
@@ -564,99 +506,6 @@ Replace all fields for a parser with the fields given.
 | TYPE_DESC | Sort by type and numeric value type (if numeric). | 7 |
 | UNIT | Sort by numeric value unit. | 4 |
 | UNIT_DESC | Sort by numeric value unit. | 8 |
-
-
-
-## Referenced messages from asset.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
-
-#### This section was generated from [asset.proto](https://github.com/HiberGlobal/api/blob/master/asset.proto).
-
-
-### hiber.asset.Asset
-
-<p class="deprecated deprecated-message">Deprecated</p> Assets are things that collect the data produced by devices.
-Devices are assigned to assets to handle data ownership.
-When a device is replaced, the data flow for the asset continues with the data from the new device.
-Multiple devices can be assigned to an asset, though it is advisable to only do so when they send
-different type of data (e.g. one sensor for pressure and one for flow).
-
-For example, if you have a Well, you might have assets for Annulus A and the tubing head.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifier | [ string](#string) |  |
-| name | [ string](#string) | Name of the asset |
-|  **optional** type | [optional hiber.asset.Asset.Type](#hiberassetassettype) | Type of the asset, if any of the predefined types applies. |
-|  **optional** description | [optional string](#string) | Longer detailed description of the asset. |
-|  **optional** notes | [optional string](#string) | Multiline notes field that can be used to add additional information to an asset. |
-|  **optional** time_zone | [optional string](#string) | Optional time zone for the asset. This can, for example, be used to calculate SLAs on a daily basis, adjusted by time zone. |
-|  **optional** expected_transmission_rate | [optional hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) | The expected transmission rate for this asset. |
-| metadata | [ google.protobuf.Struct](#googleprotobufstruct) | Metadata for the asset. This can be automatically populated from linked devices or manually added. |
-| tags | [repeated hiber.tag.Tag](#hibertagtag) | Tags assigned to this asset |
-| devices | [repeated hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice) | Devices assigned to this asset |
-| inactive_devices | [repeated hiber.asset.Asset.AssignedDevice](#hiberassetassetassigneddevice) | Devices that were assigned to this asset in the past |
-| organization | [ string](#string) | The organization that owns this asset. Typically only relevant if child organizations are included. |
-| location | [ hiber.Location](#hiberlocation) | Location for the asset. |
-| files | [repeated hiber.file.File](#hiberfilefile) | Files for this asset. Typically an image of a place. See the File.media_type for more information. |
-
-### hiber.asset.Asset.AssignedDevice
-
-<p class="deprecated deprecated-message">Deprecated</p> A device assigned to this asset.
-Non-operational values that the device produces will be linked to this asset
-(e.g. pressure, but not battery level).
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| number | [ string](#string) |  |
-| identifiers | [repeated string](#string) |  |
-|  **optional** name | [optional string](#string) |  |
-|  **optional** type | [optional string](#string) |  |
-|  **optional** last_message_sent_at | [optional hiber.Timestamp](#hibertimestamp) |  |
-|  **optional** last_message_received_at | [optional hiber.Timestamp](#hibertimestamp) |  |
-|  **optional** assignment_time_range | [optional hiber.TimeRange](#hibertimerange) |  |
-|  **optional** health | [optional hiber.health.HealthLevel](#hiberhealthhealthlevel) |  |
-| numeric_value_types | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) |  |
-
-### hiber.asset.AssetSelection
-
-<p class="deprecated deprecated-message">Deprecated</p> Selection object for assets.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifiers | [repeated string](#string) | Select assets by identifier. |
-| search | [repeated string](#string) | Search assets by (partial, case insensitive) identifier, name, description, notes and time zone. |
-| types | [repeated hiber.asset.Asset.Type](#hiberassetassettype) | Select assets by type. |
-|  **optional** filter_by_tags | [optional hiber.tag.TagSelection](#hibertagtagselection) | Select assets by tags |
-
-
-### Enums
-#### hiber.asset.Asset.Type
-<p class="deprecated deprecated-enum">Deprecated</p>Predefined assets types that can be used to say something about the data.
-Currently a limited list, but more may be added in the future.
-
-| Name | Description | Number |
-| ---- | ----------- | ------ |
-| UNKNOWN |  | 0 |
-| WELL_ANNULUS_A |  | 1 |
-| WELL_ANNULUS_B |  | 2 |
-| WELL_ANNULUS_C |  | 3 |
-| WELL_ANNULUS_D |  | 4 |
-| WELL_HEAD |  | 15 |
-| WELL_TUBING_HEAD |  | 5 |
-| WELL_TUBING |  | 6 |
-| WELL_FLOW_LINE |  | 7 |
-| WELL_CASING |  | 8 |
-| WELL_PRODUCTION_CASING_PRESSURE |  | 9 |
-| WELL_INTERMITTENT_CASING_PRESSURE |  | 10 |
-| PIPELINE |  | 11 |
-| PRODUCTION_LINE |  | 12 |
-| GAS_MANIFOLD |  | 13 |
-| PRODUCTION_MANIFOLD |  | 14 |
-| TEMPERATURE |  | 16 |
-| METERING_FLOWLINE |  | 17 |
-| VALVE |  | 18 |
 
 
 
@@ -2435,11 +2284,8 @@ api event stream and publishers.
 | ORGANIZATION_UPDATED | Your organization information was updated. This deals with things like display name and contact information, not users and devices. | 12 |
 | ORGANIZATION_DELETED | An organization under your organization was deleted. | 35 |
 | ORGANIZATION_EVENT_CONFIGURATION_UPDATED | Your organization's event configuration was updated. This refers to things like message summary configuration. | 43 |
-| ASSET_CREATED | A new asset was created in your organization. | 70 |
 | PROCESS_POINT_CREATED | A new process point was created in your organization. | 73 |
-| ASSET_UPDATED | An asset in your organization was updated (e.g. renamed, tagged). | 71 |
 | PROCESS_POINT_UPDATED | An process point in your organization was updated (e.g. renamed, tagged). | 74 |
-| ASSET_DELETED | An asset in your organization was deleted. | 72 |
 | PROCESS_POINT_DELETED | An process point in your organization was deleted. | 75 |
 | DEVICE_CREATED | A new device was created in your organization, either manually or by a gateway. | 55 |
 | DEVICE_UPDATED | A device in your organization was manually updated (e.g. renamed, tagged). | 36 |

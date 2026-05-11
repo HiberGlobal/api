@@ -26,9 +26,8 @@ service WebhookService {
         option (permission_usage) = ORGANIZATION_UPDATE;
         /* For organization deleted events. */
         option (permission_usage) = ORGANIZATION_DELETE;
-        /* For asset events. */
+        /* For process points events. */
         option (permission_usage) = PROCESS_POINTS;
-        option (permission_usage) = ASSETS;
         /* For modem/device-related events. */
         option (permission_usage) = MODEMS;
         /* For message events. */
@@ -65,9 +64,8 @@ service WebhookService {
         option (permission_usage) = ORGANIZATION_UPDATE;
         /* For organization deleted events. */
         option (permission_usage) = ORGANIZATION_DELETE;
-        /* For asset events. */
+        /* For process points events. */
         option (permission_usage) = PROCESS_POINTS;
-        option (permission_usage) = ASSETS;
         /* For modem/device-related events. */
         option (permission_usage) = MODEMS;
         /* For message events. */
@@ -98,9 +96,8 @@ service WebhookService {
         option (permission_usage) = ORGANIZATION_UPDATE;
         /* For organization deleted events. */
         option (permission_usage) = ORGANIZATION_DELETE;
-        /* For asset events. */
+        /* For process points events. */
         option (permission_usage) = PROCESS_POINTS;
-        option (permission_usage) = ASSETS;
         /* For modem/device-related events. */
         option (permission_usage) = MODEMS;
         /* For message events. */
@@ -131,9 +128,8 @@ service WebhookService {
         option (permission_usage) = ORGANIZATION_UPDATE;
         /* For organization deleted events. */
         option (permission_usage) = ORGANIZATION_DELETE;
-        /* For asset events. */
+        /* For process points events. */
         option (permission_usage) = PROCESS_POINTS;
-        option (permission_usage) = ASSETS;
         /* For modem/device-related events. */
         option (permission_usage) = MODEMS;
         /* For message events. */

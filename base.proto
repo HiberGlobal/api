@@ -302,20 +302,11 @@ enum EventType {
      */
     ORGANIZATION_EVENT_CONFIGURATION_UPDATED = 43;
 
-    /* A new asset was created in your organization. */
-    ASSET_CREATED = 70;
-
     /* A new process point was created in your organization. */
     PROCESS_POINT_CREATED = 73;
 
-    /* An asset in your organization was updated (e.g. renamed, tagged). */
-    ASSET_UPDATED = 71;
-
     /* An process point in your organization was updated (e.g. renamed, tagged). */
     PROCESS_POINT_UPDATED = 74;
-
-    /* An asset in your organization was deleted. */
-    ASSET_DELETED = 72;
 
     /* An process point in your organization was deleted. */
     PROCESS_POINT_DELETED = 75;
