@@ -1,5 +1,11 @@
 # Changelog Hiber API
 
+### 0.284 (2026-05-26)
+
+##### SimulationService
+
+- Fixed a bug where you could not list the message simulation settings for all modems in an organization, but had to specify them.
+
 ### 0.282 (2026-05-11)
 
 - Removed deprecated asset functionality from the entire API.
