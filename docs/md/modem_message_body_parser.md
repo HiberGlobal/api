@@ -791,6 +791,7 @@ Formatting options for the field.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.mass | [ hiber.value.Value.Numeric.Mass.MassUnit](#hibervaluevaluenumericmassmassunit) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed.RotationSpeedUnit](#hibervaluevaluenumericrotationspeedrotationspeedunit) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.rate | [ hiber.value.Value.Numeric.Rate.RateUnit](#hibervaluevaluenumericraterateunit) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **unit**.angle | [ hiber.value.Value.Numeric.Angle.AngleUnit](#hibervaluevaluenumericangleangleunit) |  |
 | symbol | [ string](#string) |  |
 
 
@@ -1650,6 +1651,7 @@ Unit of measurement for a numeric value.
 | REVOLUTIONS_PER_MINUTE |  | 44 |
 | ITEMS_PER_24_HOURS |  | 45 |
 | OTHER |  | 54 |
+| ANGLE_DEGREES_ARC |  | 56 |
 
 ## Scalar Value Types
 

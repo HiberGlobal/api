@@ -739,5 +739,7 @@ enum UnitOfMeasurement {
 
     OTHER = 54;
 
+    ANGLE_DEGREES_ARC = 56;
+
     reserved 13;
 }

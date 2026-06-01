@@ -1,5 +1,19 @@
 # Changelog Hiber API
 
+### 0.285 (2026-06-01)
+
+##### base.proto
+
+- Added a new `UnitOfMeasurement`: `ANGLE_DEGREES_ARC`.
+
+##### FieldService
+
+- Added `Field.Numeric.Unit.angle` with a new angle unit.
+
+##### ValueService
+
+- Added `Value.Numeric.Type.ANGLE`, `Value.Numeric.Angle` and `Value.Numeric.angle`.
+
 ### 0.284 (2026-05-26)
 
 ##### SimulationService

@@ -115,5 +115,6 @@
     , "REVOLUTIONS_PER_MINUTE": ""
     , "ITEMS_PER_24_HOURS": ""
     , "OTHER": ""
+    , "ANGLE_DEGREES_ARC": ""
     }
 }]

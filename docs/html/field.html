@@ -445,6 +445,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.value.Value.Numeric.Angle"><span class="badge">M</span>Value.Numeric.Angle</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.value.Value.Numeric.BatteryLevel"><span class="badge">M</span>Value.Numeric.BatteryLevel</a>
                 </li>
               
@@ -504,6 +508,10 @@
                   <a href="#hiber.value.Value.Numeric.Volume"><span class="badge">M</span>Value.Numeric.Volume</a>
                 </li>
               
+              
+                <li>
+                  <a href="#hiber.value.Value.Numeric.Angle.AngleUnit"><span class="badge">E</span>Value.Numeric.Angle.AngleUnit</a>
+                </li>
               
                 <li>
                   <a href="#hiber.value.Value.Numeric.BatteryLevel.BatteryLevelUnit"><span class="badge">E</span>Value.Numeric.BatteryLevel.BatteryLevelUnit</a>
@@ -975,6 +983,13 @@ unit, from the original unit specified in this field. </p></td>
                 <tr>
                   <td>rate</td>
                   <td><a href="#hiber.value.Value.Numeric.Rate.RateUnit">hiber.value.Value.Numeric.Rate.RateUnit</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>angle</td>
+                  <td><a href="#hiber.value.Value.Numeric.Angle.AngleUnit">hiber.value.Value.Numeric.Angle.AngleUnit</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -3268,6 +3283,12 @@ is ready to be downloaded.</p></td>
                 <td><p></p></td>
               </tr>
             
+              <tr>
+                <td>ANGLE_DEGREES_ARC</td>
+                <td>56</td>
+                <td><p></p></td>
+              </tr>
+            
           </tbody>
         </table>
       
@@ -3537,6 +3558,13 @@ is ready to be downloaded.</p></td>
                 </tr>
               
                 <tr>
+                  <td>angle</td>
+                  <td><a href="#hiber.value.Value.Numeric.Angle">Value.Numeric.Angle</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>unknown</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
@@ -3583,6 +3611,30 @@ is ready to be downloaded.</p></td>
                   <td><a href="#hiber.UnitOfMeasurement">hiber.UnitOfMeasurement</a></td>
                   <td>optional</td>
                   <td><p>The original unit, iff this value was converted from another unit because of user preferences. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.value.Value.Numeric.Angle">Value.Numeric.Angle</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>unit</td>
+                  <td><a href="#hiber.value.Value.Numeric.Angle.AngleUnit">Value.Numeric.Angle.AngleUnit</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -3950,6 +4002,23 @@ is ready to be downloaded.</p></td>
         
       
 
+      
+        <h3 id="hiber.value.Value.Numeric.Angle.AngleUnit">Value.Numeric.Angle.AngleUnit</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>DEGREES</td>
+                <td>0</td>
+                <td><p>The angle in degrees (arc).</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
         <h3 id="hiber.value.Value.Numeric.BatteryLevel.BatteryLevelUnit">Value.Numeric.BatteryLevel.BatteryLevelUnit</h3>
         <p>Convenience type for battery level. Other units may be added here later, like voltage.</p>
@@ -4377,6 +4446,12 @@ is ready to be downloaded.</p></td>
                 <td>TYPE_UNKNOWN</td>
                 <td>0</td>
                 <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ANGLE</td>
+                <td>16</td>
+                <td><p>Angle.</p></td>
               </tr>
             
               <tr>

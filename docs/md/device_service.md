@@ -63,6 +63,7 @@ They have a unique device (previously modem) number, used to identify them.
   - [hiber.value.Value](#hibervaluevalue)
   - [hiber.value.Value.Enum](#hibervaluevalueenum)
   - [hiber.value.Value.Numeric](#hibervaluevaluenumeric)
+  - [hiber.value.Value.Numeric.Angle](#hibervaluevaluenumericangle)
   - [hiber.value.Value.Numeric.BatteryLevel](#hibervaluevaluenumericbatterylevel)
   - [hiber.value.Value.Numeric.Distance](#hibervaluevaluenumericdistance)
   - [hiber.value.Value.Numeric.Duration](#hibervaluevaluenumericduration)
@@ -79,6 +80,7 @@ They have a unique device (previously modem) number, used to identify them.
   - [hiber.value.Value.Numeric.Voltage](#hibervaluevaluenumericvoltage)
   - [hiber.value.Value.Numeric.Volume](#hibervaluevaluenumericvolume)
   - Enums
+    - [hiber.value.Value.Numeric.Angle.AngleUnit](#hibervaluevaluenumericangleangleunit)
     - [hiber.value.Value.Numeric.BatteryLevel.BatteryLevelUnit](#hibervaluevaluenumericbatterylevelbatterylevelunit)
     - [hiber.value.Value.Numeric.Distance.DistanceUnit](#hibervaluevaluenumericdistancedistanceunit)
     - [hiber.value.Value.Numeric.Duration.DurationUnit](#hibervaluevaluenumericdurationdurationunit)
@@ -780,6 +782,7 @@ If the value is numeric, this specifies the unit, value, etc.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **typed_value**.rotation_speed | [ hiber.value.Value.Numeric.RotationSpeed](#hibervaluevaluenumericrotationspeed) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **typed_value**.rate | [ hiber.value.Value.Numeric.Rate](#hibervaluevaluenumericrate) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **typed_value**.other | [ hiber.value.Value.Numeric.Other](#hibervaluevaluenumericother) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **typed_value**.angle | [ hiber.value.Value.Numeric.Angle](#hibervaluevaluenumericangle) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **typed_value**.unknown | [ double](#double) |  |
 | value | [ double](#double) |  |
 | formatted | [ string](#string) | Textual representation, excluding unit symbol, rounded based on the user preferences and field config. |
@@ -787,6 +790,14 @@ If the value is numeric, this specifies the unit, value, etc.
 | unit | [ hiber.UnitOfMeasurement](#hiberunitofmeasurement) | Unit of the value, based on the user preferences. |
 | unit_symbol | [ string](#string) | Display string of the unit symbol, based on the unit of the value (which is based on user preferences). |
 |  **optional** converted_from | [optional hiber.UnitOfMeasurement](#hiberunitofmeasurement) | The original unit, iff this value was converted from another unit because of user preferences. |
+
+### hiber.value.Value.Numeric.Angle
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| unit | [ hiber.value.Value.Numeric.Angle.AngleUnit](#hibervaluevaluenumericangleangleunit) |  |
 
 ### hiber.value.Value.Numeric.BatteryLevel
 
@@ -913,6 +924,13 @@ The value is a volume value, converted to your preferred volume unit.
 
 
 ### Enums
+#### hiber.value.Value.Numeric.Angle.AngleUnit
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| DEGREES | The angle in degrees (arc). | 0 |
+
 #### hiber.value.Value.Numeric.BatteryLevel.BatteryLevelUnit
 Convenience type for battery level. Other units may be added here later, like voltage.
 
@@ -1039,6 +1057,7 @@ Supported types will automatically convert to the preferred unit (based on the u
 | Name | Description | Number |
 | ---- | ----------- | ------ |
 | TYPE_UNKNOWN |  | 0 |
+| ANGLE | Angle. | 16 |
 | BATTERY_LEVEL | Battery level, as a percentage. | 11 |
 | DISTANCE | Distance in metric or imperial units. | 3 |
 | DURATION | Time period. | 8 |
@@ -1762,6 +1781,7 @@ Unit of measurement for a numeric value.
 | REVOLUTIONS_PER_MINUTE |  | 44 |
 | ITEMS_PER_24_HOURS |  | 45 |
 | OTHER |  | 54 |
+| ANGLE_DEGREES_ARC |  | 56 |
 
 ## Scalar Value Types
 

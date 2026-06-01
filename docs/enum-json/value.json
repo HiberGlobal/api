@@ -1,4 +1,10 @@
 [{
+  "name": "AngleUnit",
+  "description": "",
+  "values": {
+    "DEGREES": "The angle in degrees (arc)."
+    }
+},{
   "name": "BatteryLevelUnit",
   "description": "Convenience type for battery level. Other units may be added here later, like voltage.",
   "values": {
@@ -110,6 +116,7 @@
   "description": "The type of numeric value that is represented. Supported types will automatically convert to the preferred unit (based on the user settings).",
   "values": {
     "TYPE_UNKNOWN": ""
+    , "ANGLE": "Angle."
     , "BATTERY_LEVEL": "Battery level, as a percentage."
     , "DISTANCE": "Distance in metric or imperial units."
     , "DURATION": "Time period."

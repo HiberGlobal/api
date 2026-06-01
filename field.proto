@@ -28,6 +28,7 @@ message Field {
                 value.Value.Numeric.Mass.MassUnit mass = 11;
                 value.Value.Numeric.RotationSpeed.RotationSpeedUnit rotation_speed = 13;
                 value.Value.Numeric.Rate.RateUnit rate = 14;
+                value.Value.Numeric.Angle.AngleUnit angle = 16;
             }
             string symbol = 15;
         }

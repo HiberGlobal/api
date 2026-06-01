@@ -39,6 +39,9 @@ message Value {
         enum Type {
             TYPE_UNKNOWN = 0;
 
+            /* Angle. */
+            ANGLE = 16;
+
             /* Battery level, as a percentage. */
             BATTERY_LEVEL = 11;
 
@@ -86,6 +89,14 @@ message Value {
 
             /* Volume, e.g. m³. */
             VOLUME = 7;
+        }
+
+        message Angle {
+            enum AngleUnit {
+                /* The angle in degrees (arc). */
+                DEGREES = 0;
+            }
+            AngleUnit unit = 1;
         }
 
         /* Special case for battery level, since it can be provided in many units.
@@ -300,6 +311,7 @@ message Value {
             RotationSpeed rotation_speed = 16;
             Rate rate = 17;
             Other other = 22;
+            Angle angle = 24;
 
             double unknown = 15;
         }

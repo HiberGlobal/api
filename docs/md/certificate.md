@@ -895,6 +895,7 @@ Unit of measurement for a numeric value.
 | REVOLUTIONS_PER_MINUTE |  | 44 |
 | ITEMS_PER_24_HOURS |  | 45 |
 | OTHER |  | 54 |
+| ANGLE_DEGREES_ARC |  | 56 |
 
 ## Scalar Value Types
 
