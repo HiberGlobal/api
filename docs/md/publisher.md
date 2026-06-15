@@ -90,6 +90,7 @@
   - [hiber.tag.Tag.Label](#hibertagtaglabel)
   - [hiber.tag.TagSelection](#hibertagtagselection)
 
+    - [hiber.tag.ListTagsRequest.Sort](#hibertaglisttagsrequestsort)
 
 - Referenced messages from [webhook.proto](#referenced-messages-from-webhookproto)
   - [hiber.webhook.CreateWebhookRequest](#hiberwebhookcreatewebhookrequest)
@@ -1021,6 +1022,17 @@ Label for a tag, containing all the information needed to display it.
 
 
 ### Enums
+#### hiber.tag.ListTagsRequest.Sort
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| PRIORITY | Sort by priority. Default. | 0 |
+| NAME_ASC | Sort alphabetically on the name of the tag, in ascending order. | 1 |
+| NAME_DESC | Sort alphabetically on the name of the tag, in descending order. | 2 |
+| TYPE_ASC | Sort alphabetically on the tag type, in ascending order. | 3 |
+| TYPE_DESC | Sort alphabetically on the tag type, in descending order. | 4 |
+
 
 
 ## Referenced messages from webhook.proto

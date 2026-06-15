@@ -1,0 +1,11 @@
+[{
+  "name": "Sort",
+  "description": "",
+  "values": {
+    "PRIORITY": "Sort by priority. Default."
+    , "NAME_ASC": "Sort alphabetically on the name of the tag, in ascending order."
+    , "NAME_DESC": "Sort alphabetically on the name of the tag, in descending order."
+    , "TYPE_ASC": "Sort alphabetically on the tag type, in ascending order."
+    , "TYPE_DESC": "Sort alphabetically on the tag type, in descending order."
+    }
+}]

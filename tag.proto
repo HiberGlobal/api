@@ -104,8 +104,24 @@ message UpdateTagsForItem {
 }
 
 message ListTagsRequest {
+    enum Sort {
+        /* Sort by priority. Default. */
+        PRIORITY = 0;
+
+        /* Sort alphabetically on the name of the tag, in ascending order. */
+        NAME_ASC = 1;
+        /* Sort alphabetically on the name of the tag, in descending order. */
+        NAME_DESC = 2;
+
+        /* Sort alphabetically on the tag type, in ascending order. */
+        TYPE_ASC = 3;
+        /* Sort alphabetically on the tag type, in descending order. */
+        TYPE_DESC = 4;
+    }
+
     message Response {
         repeated Tag tags = 1;
+        Pagination.Result pagination = 7;
         ListTagsRequest request = 2;
         /* map<tag-id, count> */
         map<int64, int32> tag_process_point_count = 6;
@@ -121,7 +137,13 @@ message ListTagsRequest {
     /* Select the tags to list. Optional, when omitted or empty everything is included. */
     optional TagSelection selection = 2;
 
-    /* Count the process points for each tag in the response. */
+    /* Paginate through results. */
+    optional Pagination pagination = 7;
+
+    /* Sort the tags with the given sort options. */
+    repeated Sort sort_by = 8;
+
+    /* Count the tags for each tag in the response. */
     optional bool process_point_count = 6;
 
     /* Count the modems for each tag in the response. */
@@ -129,6 +151,11 @@ message ListTagsRequest {
 
     /* Count the webhooks for each tag in the response. */
     optional bool webhook_count = 4;
+
+    /* Opt in to using pagination for this API (since that was not available initially).
+     * Deprecated: this will be removed once known clients have adapted.
+     */
+    optional bool pagination_opt_in = 9 [deprecated = true];
 }
 
 message CreateTagRequest {

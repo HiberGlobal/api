@@ -24,6 +24,9 @@
         "USERS",
         "USERS_MANAGE"
       ],
+      "supportPermissions": [
+        "CUSTOMER_SUPPORT"
+      ],
       "roles": [],
       "userDetails": {
         "id": "user-identifier",

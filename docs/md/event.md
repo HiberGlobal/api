@@ -390,6 +390,7 @@
   - [hiber.tag.Tag.Label](#hibertagtaglabel)
   - [hiber.tag.TagSelection](#hibertagtagselection)
 
+    - [hiber.tag.ListTagsRequest.Sort](#hibertaglisttagsrequestsort)
 
 - Referenced messages from [token.proto](#referenced-messages-from-tokenproto)
   - [hiber.token.CreateTokenRequest](#hibertokencreatetokenrequest)
@@ -4895,6 +4896,17 @@ Label for a tag, containing all the information needed to display it.
 
 
 ### Enums
+#### hiber.tag.ListTagsRequest.Sort
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| PRIORITY | Sort by priority. Default. | 0 |
+| NAME_ASC | Sort alphabetically on the name of the tag, in ascending order. | 1 |
+| NAME_DESC | Sort alphabetically on the name of the tag, in descending order. | 2 |
+| TYPE_ASC | Sort alphabetically on the tag type, in ascending order. | 3 |
+| TYPE_DESC | Sort alphabetically on the tag type, in descending order. | 4 |
+
 
 
 ## Referenced messages from token.proto
@@ -4999,6 +5011,7 @@ so not all messages listed here are referenced.)
 | expires_at | [ hiber.Timestamp](#hibertimestamp) |  |
 | user_permissions | [repeated hiber.UserPermission](#hiberuserpermission) |  |
 | organization_permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) |  |
+| support_permissions | [repeated hiber.SupportPermission](#hibersupportpermission) |  |
 | roles | [repeated string](#string) |  |
 | type | [ hiber.token.Token.Type](#hibertokentokentype) |  |
 |  **optional** last_used | [optional hiber.Date](#hiberdate) | Date that the token was last used. |

@@ -60,6 +60,7 @@ message Token {
     Timestamp expires_at = 6;
     repeated UserPermission user_permissions = 7;
     repeated OrganizationPermission organization_permissions = 8;
+    repeated SupportPermission support_permissions = 16;
     repeated string roles = 9;
     Type type = 10;
 

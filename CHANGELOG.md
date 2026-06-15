@@ -1,5 +1,19 @@
 # Changelog Hiber API
 
+### 0.286 (2026-06-08)
+
+##### TokenService
+
+- Added `support_permissions` to `Token`
+
+##### TagService
+
+- Added sorting options for tags
+  - Added `ListTagsRequest.Sort` and `ListTagsRequest.sort_by`
+- Added pagination to tag listing
+  - Added `ListTagsRequest.pagination` 
+    - Added `ListTagsRequest.pagination_opt_in` to use it, for backwards compatibility until all clients have updated
+
 ### 0.285 (2026-06-01)
 
 ##### base.proto

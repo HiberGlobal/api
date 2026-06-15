@@ -674,6 +674,10 @@
                 </li>
               
               
+                <li>
+                  <a href="#hiber.tag.ListTagsRequest.Sort"><span class="badge">E</span>ListTagsRequest.Sort</a>
+                </li>
+              
               
               
                 <li>
@@ -5484,10 +5488,24 @@ Keep in mind the grpc request size limitation. </p></td>
                 </tr>
               
                 <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination">hiber.Pagination</a></td>
+                  <td>optional</td>
+                  <td><p>Paginate through results. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sort_by</td>
+                  <td><a href="#hiber.tag.ListTagsRequest.Sort">ListTagsRequest.Sort</a></td>
+                  <td>repeated</td>
+                  <td><p>Sort the tags with the given sort options. </p></td>
+                </tr>
+              
+                <tr>
                   <td>process_point_count</td>
                   <td><a href="#bool">bool</a></td>
                   <td>optional</td>
-                  <td><p>Count the process points for each tag in the response. </p></td>
+                  <td><p>Count the tags for each tag in the response. </p></td>
                 </tr>
               
                 <tr>
@@ -5504,9 +5522,38 @@ Keep in mind the grpc request size limitation. </p></td>
                   <td><p>Count the webhooks for each tag in the response. </p></td>
                 </tr>
               
+                <tr>
+                  <td>pagination_opt_in</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> Opt in to using pagination for this API (since that was not available initially).
+Deprecated: this will be removed once known clients have adapted. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
+          
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>pagination_opt_in</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
@@ -5525,6 +5572,13 @@ Keep in mind the grpc request size limitation. </p></td>
                   <td>tags</td>
                   <td><a href="#hiber.tag.Tag">Tag</a></td>
                   <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#hiber.Pagination.Result">hiber.Pagination.Result</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -6094,6 +6148,47 @@ Keep in mind the grpc request size limitation. </p></td>
         
       
 
+      
+        <h3 id="hiber.tag.ListTagsRequest.Sort">ListTagsRequest.Sort</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>PRIORITY</td>
+                <td>0</td>
+                <td><p>Sort by priority. Default.</p></td>
+              </tr>
+            
+              <tr>
+                <td>NAME_ASC</td>
+                <td>1</td>
+                <td><p>Sort alphabetically on the name of the tag, in ascending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>NAME_DESC</td>
+                <td>2</td>
+                <td><p>Sort alphabetically on the name of the tag, in descending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_ASC</td>
+                <td>3</td>
+                <td><p>Sort alphabetically on the tag type, in ascending order.</p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_DESC</td>
+                <td>4</td>
+                <td><p>Sort alphabetically on the tag type, in descending order.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
 
       

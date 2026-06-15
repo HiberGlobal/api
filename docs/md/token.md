@@ -239,6 +239,7 @@
 | expires_at | [ hiber.Timestamp](#hibertimestamp) |  |
 | user_permissions | [repeated hiber.UserPermission](#hiberuserpermission) |  |
 | organization_permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) |  |
+| support_permissions | [repeated hiber.SupportPermission](#hibersupportpermission) |  |
 | roles | [repeated string](#string) |  |
 | type | [ Token.Type](#tokentype) |  |
 |  **optional** last_used | [optional hiber.Date](#hiberdate) | Date that the token was last used. |

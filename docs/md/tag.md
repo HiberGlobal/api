@@ -29,6 +29,7 @@
   - [UpdateTagsForItem](#updatetagsforitem)
 
 - Enums
+  - [ListTagsRequest.Sort](#listtagsrequestsort)
 
 - Referenced messages from [file.proto](#referenced-messages-from-fileproto)
   - [hiber.file.File](#hiberfilefile)
@@ -168,9 +169,12 @@ Count the tags in your organization by health.
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
 |  **optional** selection | [optional TagSelection](#tagselection) | Select the tags to list. Optional, when omitted or empty everything is included. |
-|  **optional** process_point_count | [optional bool](#bool) | Count the process points for each tag in the response. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Paginate through results. |
+| sort_by | [repeated ListTagsRequest.Sort](#listtagsrequestsort) | Sort the tags with the given sort options. |
+|  **optional** process_point_count | [optional bool](#bool) | Count the tags for each tag in the response. |
 |  **optional** modem_count | [optional bool](#bool) | Count the modems for each tag in the response. |
 |  **optional** webhook_count | [optional bool](#bool) | Count the webhooks for each tag in the response. |
+|  **optional** pagination_opt_in | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> Opt in to using pagination for this API (since that was not available initially). Deprecated: this will be removed once known clients have adapted. |
 
 ### ListTagsRequest.Response
 
@@ -179,6 +183,7 @@ Count the tags in your organization by health.
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | tags | [repeated Tag](#tag) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
 | request | [ ListTagsRequest](#listtagsrequest) |  |
 | tag_process_point_count | [map ListTagsRequest.Response.TagProcessPointCountEntry](#listtagsrequestresponsetagprocesspointcountentry) | map<tag-id, count> |
 | tag_modem_count | [map ListTagsRequest.Response.TagModemCountEntry](#listtagsrequestresponsetagmodemcountentry) | map<tag-id, count> |
@@ -323,6 +328,17 @@ Use the TagService.List call to get the tags with Metadata.
 
 
 ## Enums
+### ListTagsRequest.Sort
+
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| PRIORITY | Sort by priority. Default. | 0 |
+| NAME_ASC | Sort alphabetically on the name of the tag, in ascending order. | 1 |
+| NAME_DESC | Sort alphabetically on the name of the tag, in descending order. | 2 |
+| TYPE_ASC | Sort alphabetically on the tag type, in ascending order. | 3 |
+| TYPE_DESC | Sort alphabetically on the tag type, in descending order. | 4 |
+
 
 
 ## Referenced messages from file.proto
