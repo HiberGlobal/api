@@ -259,9 +259,11 @@ message Event {
 
         UserEvent.UserAddedEvent user_added = 8;
         UserEvent.UserRemovedEvent user_removed = 9;
+        UserEvent.UserUpdatedEvent user_updated = 76;
         UserEvent.UserInvitedEvent user_invited = 41;
         UserEvent.UserAccessRequestEvent user_access_request = 10;
         UserEvent.UserValidationUpdatedEvent user_validation_updated = 54;
+        UserEvent.UserPermissionsUpdatedEvent user_permissions_updated = 77;
 
         TransferEvent transfer = 17;
 
@@ -716,6 +718,14 @@ message Event {
             Timestamp time = 5;
         }
 
+        message UserUpdatedEvent {
+            string organization = 1;
+            string user = 2;
+            string title = 3;
+            string description = 4;
+            Timestamp time = 5;
+        }
+
         message UserInvitedEvent {
             string organization = 1;
             string email = 2;
@@ -738,6 +748,19 @@ message Event {
             string title = 3;
             string description = 4;
             Timestamp time = 5;
+        }
+
+        message UserPermissionsUpdatedEvent {
+            string organization = 1;
+            string user = 2;
+            string title = 3;
+            string description = 4;
+            string actor = 5;
+            repeated string permissions_added = 6;
+            repeated string permissions_removed = 7;
+            repeated string roles_added = 8;
+            repeated string roles_removed = 9;
+            Timestamp time = 10;
         }
     }
 

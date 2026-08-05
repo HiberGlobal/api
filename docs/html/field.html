@@ -374,6 +374,18 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.TimeWindow"><span class="badge">M</span>TimeWindow</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.TimeWindow.CalendarWindow"><span class="badge">M</span>TimeWindow.CalendarWindow</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.TimeWindow.IntervalWindow"><span class="badge">M</span>TimeWindow.IntervalWindow</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.Timestamp"><span class="badge">M</span>Timestamp</a>
                 </li>
               
@@ -397,6 +409,10 @@
                   <a href="#hiber.UpdateZeroableInt"><span class="badge">M</span>UpdateZeroableInt</a>
                 </li>
               
+              
+                <li>
+                  <a href="#hiber.CalendarPeriod"><span class="badge">E</span>CalendarPeriod</a>
+                </li>
               
                 <li>
                   <a href="#hiber.EventType"><span class="badge">E</span>EventType</a>
@@ -2411,6 +2427,100 @@ For example, on the second page of size 10, this is 11 - 20. </p></td>
 
         
       
+        <h3 id="hiber.TimeWindow">TimeWindow</h3>
+        <p>Time window to split a time range, e.g. per hour, per day, per week, etc.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>interval</td>
+                  <td><a href="#hiber.TimeWindow.IntervalWindow">TimeWindow.IntervalWindow</a></td>
+                  <td></td>
+                  <td><p>Simple interval to use for windowing, e.g. every 2 hours or 24 hours or 5 minutes. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>calendar</td>
+                  <td><a href="#hiber.TimeWindow.CalendarWindow">TimeWindow.CalendarWindow</a></td>
+                  <td></td>
+                  <td><p>Calendar-based time window to use for windowing, e.g. per day, week, month, etc, for a given time zone. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.TimeWindow.CalendarWindow">TimeWindow.CalendarWindow</h3>
+        <p>Calendar-based time window to use for windowing, e.g. per day, week, month, etc, for a given time zone.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>window</td>
+                  <td><a href="#hiber.CalendarPeriod">CalendarPeriod</a></td>
+                  <td></td>
+                  <td><p>The calendar-based window to use, e.g. daily or monthly. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time_zone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The time zone to use for the calendar window. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.TimeWindow.IntervalWindow">TimeWindow.IntervalWindow</h3>
+        <p>Interval-based time window to use for windowing, e.g. every 2 hours or 24 hours or 5 minutes.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>interval</td>
+                  <td><a href="#hiber.Duration">Duration</a></td>
+                  <td></td>
+                  <td><p>Simple interval to use for windowing, e.g. every 2 hours or 24 hours or 5 minutes. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>align_to</td>
+                  <td><a href="#hiber.Timestamp">Timestamp</a></td>
+                  <td>optional</td>
+                  <td><p>Alignment for the interval repetition, e.g. every 5 minutes from 12:03 (resulting in 12:08, 12:13, etc).
+Defaults to any given time in the request where this is used, or else midnight today in UTC. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="hiber.Timestamp">Timestamp</h3>
         <p>Timestamp type for convenience.</p><p>Some clients are better at parsing Google's seconds/nanos based timestamp, while others prefer a text-based format.</p><p>To accommodate this, this Timestamp type supports both.</p><p>When used as API output, both the timestamp and textual fields will be set. The textual field has the commonly</p><p>used ISO 8601 format (e.g. "2018-01-01T13:00:00Z").</p><p>When used an API input, only one of the fields is needed, there is no need to set both. When both are set, the</p><p>timestamp field will be used, the textual field will be discarded.</p><p>In addition, the textual field, when used as input, allows for a number of shortcuts that get converted into</p><p>timestamps:</p><p>- "now": converted to the current timestamp at the time of the request</p>
 
@@ -2605,6 +2715,67 @@ For example, on the second page of size 10, this is 11 - 20. </p></td>
         
       
 
+      
+        <h3 id="hiber.CalendarPeriod">CalendarPeriod</h3>
+        <p>A period of time represented on a calendar, in a time zone.</p><p>Includes DST transitions, meaning that DAY can be 23 or 25 hours, etc.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CALENDAR_PERIOD_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>Undefined period, raises an error.</p></td>
+              </tr>
+            
+              <tr>
+                <td>DAY</td>
+                <td>1</td>
+                <td><p>A day on the calendar, in a given time zone. Not guaranteed to be 24 hours (e.g. around DST transitions).</p></td>
+              </tr>
+            
+              <tr>
+                <td>WEEK</td>
+                <td>2</td>
+                <td><p>A week. Weeks begin on Monday, following [ISO 8601](https://en.wikipedia.org/wiki/ISO_week_date).
+For a week starting on Sunday, use WEEK_STARTING_SUNDAY.</p></td>
+              </tr>
+            
+              <tr>
+                <td>WEEK_STARTING_SUNDAY</td>
+                <td>3</td>
+                <td><p>A week, starting on Sunday.
+For a week starting on Monday, use WEEK.</p></td>
+              </tr>
+            
+              <tr>
+                <td>MONTH</td>
+                <td>4</td>
+                <td><p>A month.</p></td>
+              </tr>
+            
+              <tr>
+                <td>QUARTER</td>
+                <td>5</td>
+                <td><p>A quarter. Quarters start on dates 1-Jan, 1-Apr, 1-Jul, and 1-Oct of each year.</p></td>
+              </tr>
+            
+              <tr>
+                <td>HALF</td>
+                <td>6</td>
+                <td><p>A half-year. Half-years start on dates 1-Jan and 1-Jul.</p></td>
+              </tr>
+            
+              <tr>
+                <td>YEAR</td>
+                <td>7</td>
+                <td><p>A year.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
         <h3 id="hiber.EventType">EventType</h3>
         <p>Enum of api-accessible events.</p><p>The event types in this enum have a protobuf implementation, and can be used, for example, in the</p><p>api event stream and publishers.</p>
@@ -2862,6 +3033,18 @@ even email preferences.</p></td>
                 <td>USER_VALIDATION_UPDATED</td>
                 <td>54</td>
                 <td><p>The user validation (i.e. email domain) for your organization was updated.</p></td>
+              </tr>
+            
+              <tr>
+                <td>USER_UPDATED</td>
+                <td>60</td>
+                <td><p>A user was updated</p></td>
+              </tr>
+            
+              <tr>
+                <td>USER_PERMISSIONS_UPDATED</td>
+                <td>61</td>
+                <td><p>A user&#39;s permissions and/or roles were updated</p></td>
               </tr>
             
               <tr>

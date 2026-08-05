@@ -19,7 +19,7 @@ option go_package = ".;hiber";
 
 service ValueService {
     rpc List (ListValues.Request) returns (ListValues.Response) {
-        /* When value owner is an process point. */
+        /* When value owner is a process point. */
         option (permission_usage) = PROCESS_POINTS_VALUES;
         /* When value owner is a device. */
         option (permission_usage) = MODEM_VALUES;
@@ -28,7 +28,16 @@ service ValueService {
     }
 
     rpc Downsampled (DownsampledValues.Request) returns (DownsampledValues.Response) {
-        /* When value owner is an process point. */
+        /* When value owner is a process point. */
+        option (permission_usage) = PROCESS_POINTS_VALUES;
+        /* When value owner is a device. */
+        option (permission_usage) = MODEM_VALUES;
+        /* When value owner is a device. */
+        option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
+    }
+
+    rpc Aggregated (AggregatedValues.Request) returns (AggregatedValues.Response) {
+        /* When value owner is a process point. */
         option (permission_usage) = PROCESS_POINTS_VALUES;
         /* When value owner is a device. */
         option (permission_usage) = MODEM_VALUES;
@@ -37,7 +46,7 @@ service ValueService {
     }
 
     rpc Latest (LatestValues.Request) returns (LatestValues.Response) {
-        /* When value owner is an process point. */
+        /* When value owner is a process point. */
         option (permission_usage) = PROCESS_POINTS_VALUES;
         /* When value owner is a device. */
         option (permission_usage) = MODEM_VALUES;
@@ -240,6 +249,161 @@ message DownsampledValues {
 
         /* The highest value for each owner (device / process point). */
         repeated ValueContext highest = 5;
+    }
+}
+
+message AggregatedValues {
+    /* The result of the aggregation. */
+    oneof result {
+        /* The value resulting from the aggregation. */
+        Value value = 1;
+
+        /* The count resulting from a COUNT or COUNT_DISTINCT aggregation. */
+        Aggregation.CountResult count = 7;
+    }
+
+    /* The aggregation applied to get this value. */
+    Aggregation aggregation = 2;
+
+    /* The windowing configuration used for this value. */
+    optional TimeWindow window = 3;
+
+    /* The actual time range used for this aggregated value (e.g. window when windowing). */
+    optional TimeRange time_range = 4;
+
+    /* If the selected values all belonged to a single device, or group_by_owner was set, the device. */
+    optional ValueContext.ValueDeviceContext device = 5;
+
+    /* If the selected values all belonged to a single process point, or group_by_owner was set, the process point. */
+    optional ValueContext.ValueProcessPointContext process_point = 6;
+
+    /* Aggregation operation, e.g. min, max, count, sum or percentiles. */
+    message Aggregation {
+        /* Basic aggregation options, e.g. average, min, max, etc.
+         * Options to be added in the future: MEDIAN, STANDARD_DEVIATION, etc
+         */
+        enum BasicAggregation {
+            /* Counts the total number of selected values. */
+            COUNT = 0;
+
+            /* Counts the total number of UNIQUE values in the selected values. */
+            COUNT_DISTINCT = 1;
+
+            /* Calculates the total sum of all values in the selection. */
+            SUM = 2;
+
+            /* Calculates the mathematical average of the selected values. Alias for MEAN. */
+            AVERAGE = 3;
+
+            /* Calculates the mathematical mean of the selected values. Alias for AVERAGE. */
+            MEAN = 4;
+
+            /* Finds the lowest value of the selected values. */
+            MINIMUM = 5;
+
+            /* Finds the highest value of the selected values. */
+            MAXIMUM = 6;
+
+            /* Finds the most frequently occurring value of the selected values. */
+            MODE = 7;
+
+            /* Calculates the standard mathematical median (50th percentile). Uses continuous interpolation.
+             * If there is an even number of rows, it will return the average of the two middle values.
+             */
+            MEDIAN = 8;
+
+            /* Calculates the discrete median (50th percentile). Unlike the standard median this will never interpolate.
+             * It guarantees returning an actual, existing value from the dataset
+             * (picking the lower of the middle values if even).
+             */
+            MEDIAN_DISCRETE = 9;
+
+            /* Calculates the Sample Standard Deviation.
+             * Standard Deviation measures how spread out your data is from the Mean (average).
+             * A *low* standard deviation means the data is tightly clustered around the average (highly predictable).
+             * A *high* standard deviation means the data is widely spread out (highly volatile).
+             * Use this for sensor readings, like pressure, which are a sample of real pressures.
+             */
+            STANDARD_DEVIATION = 10;
+
+            /* Calculates the Population Standard Deviation. See STANDARD_DEVIATION.
+             * Use this ONLY when your data represents the entire population (all possible values).
+             */
+            STANDARD_DEVIATION_POPULATION = 11;
+        }
+
+        /* Configurable percentile aggregation option. */
+        message PercentileAggregation {
+            /* The percentile to aggregate to, e.g. 75th, 90th, 99th, 99.999th.
+             * (really any number, e.g. 88.12345 since it is a double)
+             * Values between 0 and 1 are interpreted as using a range of 0 to 1, e.g. 0.995 -> 99.5th percentile.
+             * Values higher than 100.0 or below 0 are not supported.
+             */
+            double percentile = 1;
+
+            /* The method of calculation used for the percentile value: continuous or discrete. */
+            PercentileAggregationMethod method = 2;
+
+            /* The method of calculation used for the percentile value: continuous or discrete. */
+            enum PercentileAggregationMethod {
+                /* Always return an existing value from the selected values. Do not interpolate. */
+                DISCRETE = 0;
+                /* Interpolate between adjacent values if the target percentile falls between them. */
+                CONTINUOUS = 1;
+            }
+        }
+
+        /* Aggregation operation, e.g. min, max, count, sum or percentiles. */
+        oneof aggregation {
+            /* Basic aggregation options, e.g. average, min, max, etc. */
+            BasicAggregation basic = 1;
+
+            /* Configurable percentile aggregation option. */
+            PercentileAggregation percentile = 2;
+        }
+
+        /* Counting does not return a value, just an integer, but we do want to know what we counted. */
+        message CountResult {
+            /* Counted amount. */
+            uint32 amount = 1;
+
+            /* Type of values counted. */
+            Value.Type type = 2;
+
+            /* Numeric type of values counted, if type is numeric. */
+            optional Value.Numeric.Type numeric_value_type = 3;
+        }
+    }
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Select the values to aggregate. */
+        ValueSelection selection = 2;
+
+        /* Aggregation operation, e.g. min, max, count, sum or percentiles. */
+        repeated Aggregation aggregation = 3;
+
+        /* Time window to aggregate values, e.g. minimum per hour, maximum per day, average per week, etc. */
+        optional TimeWindow window = 4;
+
+        /* If true, groups the selected values by their owner (device or process point)
+         * before applying the aggregation.
+         * For example, if the selection includes data from both process point A and process point B,
+         * requesting MAXIMUM will return two separate results:
+         * the maximum for process point A and the maximum for process point B.
+         * If false, all data is aggregated into a single value (per aggregation).
+         */
+        optional bool group_by_owner = 5;
+    }
+
+    message Response {
+        /* The aggregated values, for each operation and window result. */
+        repeated AggregatedValues results = 1;
+
+        /* The original request, corrected and filled in with any defaults. */
+        Request request = 2;
     }
 }
 

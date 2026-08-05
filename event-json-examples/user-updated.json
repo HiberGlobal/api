@@ -1,0 +1,24 @@
+{
+  "isError": false,
+  "userUpdated": {
+    "organization": "your-organization",
+    "user": "user-identifier",
+    "title": "User user-identifier updated their settings.",
+    "description": "Settings for user user-identifier have changed:\n - Accepted terms \u0026 conditions at 2026-06-01T11:13:00Z\n - Updated Mission Control Settings",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC",
+      "textual": "2020-06-01T05:15:25.355Z"
+    }
+  },
+  "type": "USER_UPDATED",
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC",
+    "textual": "2020-06-01T05:15:25.355Z"
+  },
+  "isWarning": false,
+  "title": "User user-identifier updated their settings.",
+  "description": "Settings for user user-identifier have changed:\n - Accepted terms \u0026 conditions at 2026-06-01T11:13:00Z\n - Updated Mission Control Settings",
+  "tags": []
+}

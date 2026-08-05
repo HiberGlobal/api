@@ -1,0 +1,39 @@
+{
+  "isError": false,
+  "userPermissionsUpdated": {
+    "organization": "your-organization",
+    "user": "user-identifier",
+    "title": "Permissions for user user-identifier have changed.",
+    "description": "Permissions for user user-identifier have changed by user actor-identifier.\n\nRoles added:\n - admin\n - admin2\n\nRoles removed:\n - viewer\n - viewer1\n\nPermissions added:\n - example:other-permission\n\nPermissions removed:\n - example:permission",
+    "actor": "actor-identifier",
+    "permissionsAdded": [
+      "example:other-permission"
+    ],
+    "permissionsRemoved": [
+      "example:permission"
+    ],
+    "rolesAdded": [
+      "admin",
+      "admin2"
+    ],
+    "rolesRemoved": [
+      "viewer",
+      "viewer1"
+    ],
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC",
+      "textual": "2020-06-01T05:15:25.355Z"
+    }
+  },
+  "type": "USER_PERMISSIONS_UPDATED",
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC",
+    "textual": "2020-06-01T05:15:25.355Z"
+  },
+  "isWarning": false,
+  "title": "Permissions for user user-identifier have changed.",
+  "description": "Permissions for user user-identifier have changed by user actor-identifier.\n\nRoles added:\n - admin\n - admin2\n\nRoles removed:\n - viewer\n - viewer1\n\nPermissions added:\n - example:other-permission\n\nPermissions removed:\n - example:permission",
+  "tags": []
+}

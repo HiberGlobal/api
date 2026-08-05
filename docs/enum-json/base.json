@@ -1,4 +1,17 @@
 [{
+  "name": "CalendarPeriod",
+  "description": "A period of time represented on a calendar, in a time zone. Includes DST transitions, meaning that DAY can be 23 or 25 hours, etc.",
+  "values": {
+    "CALENDAR_PERIOD_UNSPECIFIED": "Undefined period, raises an error."
+    , "DAY": "A day on the calendar, in a given time zone. Not guaranteed to be 24 hours (e.g. around DST transitions)."
+    , "WEEK": "A week. Weeks begin on Monday, following [ISO 8601](https://en.wikipedia.org/wiki/ISO_week_date). For a week starting on Sunday, use WEEK_STARTING_SUNDAY."
+    , "WEEK_STARTING_SUNDAY": "A week, starting on Sunday. For a week starting on Monday, use WEEK."
+    , "MONTH": "A month."
+    , "QUARTER": "A quarter. Quarters start on dates 1-Jan, 1-Apr, 1-Jul, and 1-Oct of each year."
+    , "HALF": "A half-year. Half-years start on dates 1-Jan and 1-Jul."
+    , "YEAR": "A year."
+    }
+},{
   "name": "EventType",
   "description": "Enum of api-accessible events. The event types in this enum have a protobuf implementation, and can be used, for example, in the api event stream and publishers.",
   "values": {
@@ -39,6 +52,8 @@
     , "USER_ADDED": "A user was granted access to your organization, by request, invite, or created by an organization admin."
     , "USER_REMOVED": "A user was removed from your organization by an organization admin."
     , "USER_VALIDATION_UPDATED": "The user validation (i.e. email domain) for your organization was updated."
+    , "USER_UPDATED": "A user was updated"
+    , "USER_PERMISSIONS_UPDATED": "A user's permissions and/or roles were updated"
     , "TOKEN_CREATED": "A new token was created for your organization."
     , "TOKEN_EXPIRY_WARNING": "A token in your organization will expire within 2 weeks."
     , "TOKEN_EXPIRED": "A token in your organization has expired."

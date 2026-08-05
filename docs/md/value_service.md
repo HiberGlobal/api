@@ -13,6 +13,12 @@ Messages are parsed to a number of values (depending on the parser), which can b
   - [ValueService](#valueservice)
 
 - Messages
+  - [AggregatedValues](#aggregatedvalues)
+  - [AggregatedValues.Aggregation](#aggregatedvaluesaggregation)
+  - [AggregatedValues.Aggregation.CountResult](#aggregatedvaluesaggregationcountresult)
+  - [AggregatedValues.Aggregation.PercentileAggregation](#aggregatedvaluesaggregationpercentileaggregation)
+  - [AggregatedValues.Request](#aggregatedvaluesrequest)
+  - [AggregatedValues.Response](#aggregatedvaluesresponse)
   - [DownsampledValues](#downsampledvalues)
   - [DownsampledValues.Request](#downsampledvaluesrequest)
   - [DownsampledValues.Response](#downsampledvaluesresponse)
@@ -34,6 +40,8 @@ Messages are parsed to a number of values (depending on the parser), which can b
   - [ValueSelection.ByValueType](#valueselectionbyvaluetype)
 
 - Enums
+  - [AggregatedValues.Aggregation.BasicAggregation](#aggregatedvaluesaggregationbasicaggregation)
+  - [AggregatedValues.Aggregation.PercentileAggregation.PercentileAggregationMethod](#aggregatedvaluesaggregationpercentileaggregationpercentileaggregationmethod)
   - [ListValues.Sort](#listvaluessort)
 
 - Referenced messages from [modem.proto](#referenced-messages-from-modemproto)
@@ -134,6 +142,9 @@ Messages are parsed to a number of values (depending on the parser), which can b
   - [hiber.Pagination.Result](#hiberpaginationresult)
   - [hiber.Shape](#hibershape)
   - [hiber.TimeRange](#hibertimerange)
+  - [hiber.TimeWindow](#hibertimewindow)
+  - [hiber.TimeWindow.CalendarWindow](#hibertimewindowcalendarwindow)
+  - [hiber.TimeWindow.IntervalWindow](#hibertimewindowintervalwindow)
   - [hiber.Timestamp](#hibertimestamp)
   - [hiber.UpdateBoolean](#hiberupdateboolean)
   - [hiber.UpdateClearableString](#hiberupdateclearablestring)
@@ -141,6 +152,7 @@ Messages are parsed to a number of values (depending on the parser), which can b
   - [hiber.UpdateOptionalId](#hiberupdateoptionalid)
   - [hiber.UpdateZeroableInt](#hiberupdatezeroableint)
   - Enums
+    - [hiber.CalendarPeriod](#hibercalendarperiod)
     - [hiber.EventType](#hibereventtype)
     - [hiber.Health](#hiberhealth)
     - [hiber.UnitOfMeasurement](#hiberunitofmeasurement)
@@ -163,6 +175,12 @@ Messages are parsed to a number of values (depending on the parser), which can b
 
 
 
+### Aggregated
+> **rpc** Aggregated([AggregatedValues.Request](#aggregatedvaluesrequest))
+    [AggregatedValues.Response](#aggregatedvaluesresponse)
+
+
+
 ### Latest
 > **rpc** Latest([LatestValues.Request](#latestvaluesrequest))
     [LatestValues.Response](#latestvaluesresponse)
@@ -171,6 +189,69 @@ Messages are parsed to a number of values (depending on the parser), which can b
 
 
 ## Messages
+
+### AggregatedValues
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **result**.value | [ Value](#value) | The value resulting from the aggregation. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **result**.count | [ AggregatedValues.Aggregation.CountResult](#aggregatedvaluesaggregationcountresult) | The count resulting from a COUNT or COUNT_DISTINCT aggregation. |
+| aggregation | [ AggregatedValues.Aggregation](#aggregatedvaluesaggregation) | The aggregation applied to get this value. |
+|  **optional** window | [optional hiber.TimeWindow](#hibertimewindow) | The windowing configuration used for this value. |
+|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) | The actual time range used for this aggregated value (e.g. window when windowing). |
+|  **optional** device | [optional ValueContext.ValueDeviceContext](#valuecontextvaluedevicecontext) | If the selected values all belonged to a single device, or group_by_owner was set, the device. |
+|  **optional** process_point | [optional ValueContext.ValueProcessPointContext](#valuecontextvalueprocesspointcontext) | If the selected values all belonged to a single process point, or group_by_owner was set, the process point. |
+
+### AggregatedValues.Aggregation
+
+Aggregation operation, e.g. min, max, count, sum or percentiles.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **aggregation**.basic | [ AggregatedValues.Aggregation.BasicAggregation](#aggregatedvaluesaggregationbasicaggregation) | Basic aggregation options, e.g. average, min, max, etc. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **aggregation**.percentile | [ AggregatedValues.Aggregation.PercentileAggregation](#aggregatedvaluesaggregationpercentileaggregation) | Configurable percentile aggregation option. |
+
+### AggregatedValues.Aggregation.CountResult
+
+Counting does not return a value, just an integer, but we do want to know what we counted.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| amount | [ uint32](#uint32) | Counted amount. |
+| type | [ Value.Type](#valuetype) | Type of values counted. |
+|  **optional** numeric_value_type | [optional Value.Numeric.Type](#valuenumerictype) | Numeric type of values counted, if type is numeric. |
+
+### AggregatedValues.Aggregation.PercentileAggregation
+
+Configurable percentile aggregation option.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| percentile | [ double](#double) | The percentile to aggregate to, e.g. 75th, 90th, 99th, 99.999th. (really any number, e.g. 88.12345 since it is a double) Values between 0 and 1 are interpreted as using a range of 0 to 1, e.g. 0.995 -> 99.5th percentile. Values higher than 100.0 or below 0 are not supported. |
+| method | [ AggregatedValues.Aggregation.PercentileAggregation.PercentileAggregationMethod](#aggregatedvaluesaggregationpercentileaggregationpercentileaggregationmethod) | The method of calculation used for the percentile value: continuous or discrete. |
+
+### AggregatedValues.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| selection | [ ValueSelection](#valueselection) | Select the values to aggregate. |
+| aggregation | [repeated AggregatedValues.Aggregation](#aggregatedvaluesaggregation) | Aggregation operation, e.g. min, max, count, sum or percentiles. |
+|  **optional** window | [optional hiber.TimeWindow](#hibertimewindow) | Time window to aggregate values, e.g. minimum per hour, maximum per day, average per week, etc. |
+|  **optional** group_by_owner | [optional bool](#bool) | If true, groups the selected values by their owner (device or process point) before applying the aggregation. For example, if the selection includes data from both process point A and process point B, requesting MAXIMUM will return two separate results: the maximum for process point A and the maximum for process point B. If false, all data is aggregated into a single value (per aggregation). |
+
+### AggregatedValues.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| results | [repeated AggregatedValues](#aggregatedvalues) | The aggregated values, for each operation and window result. |
+| request | [ AggregatedValues.Request](#aggregatedvaluesrequest) | The original request, corrected and filled in with any defaults. |
 
 ### DownsampledValues
 
@@ -362,6 +443,33 @@ If the selection is empty, all values with all types are returned.
 
 
 ## Enums
+### AggregatedValues.Aggregation.BasicAggregation
+Basic aggregation options, e.g. average, min, max, etc.
+Options to be added in the future: MEDIAN, STANDARD_DEVIATION, etc
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| COUNT | Counts the total number of selected values. | 0 |
+| COUNT_DISTINCT | Counts the total number of UNIQUE values in the selected values. | 1 |
+| SUM | Calculates the total sum of all values in the selection. | 2 |
+| AVERAGE | Calculates the mathematical average of the selected values. Alias for MEAN. | 3 |
+| MEAN | Calculates the mathematical mean of the selected values. Alias for AVERAGE. | 4 |
+| MINIMUM | Finds the lowest value of the selected values. | 5 |
+| MAXIMUM | Finds the highest value of the selected values. | 6 |
+| MODE | Finds the most frequently occurring value of the selected values. | 7 |
+| MEDIAN | Calculates the standard mathematical median (50th percentile). Uses continuous interpolation. If there is an even number of rows, it will return the average of the two middle values. | 8 |
+| MEDIAN_DISCRETE | Calculates the discrete median (50th percentile). Unlike the standard median this will never interpolate. It guarantees returning an actual, existing value from the dataset (picking the lower of the middle values if even). | 9 |
+| STANDARD_DEVIATION | Calculates the Sample Standard Deviation. Standard Deviation measures how spread out your data is from the Mean (average). A *low* standard deviation means the data is tightly clustered around the average (highly predictable). A *high* standard deviation means the data is widely spread out (highly volatile). Use this for sensor readings, like pressure, which are a sample of real pressures. | 10 |
+| STANDARD_DEVIATION_POPULATION | Calculates the Population Standard Deviation. See STANDARD_DEVIATION. Use this ONLY when your data represents the entire population (all possible values). | 11 |
+
+### AggregatedValues.Aggregation.PercentileAggregation.PercentileAggregationMethod
+The method of calculation used for the percentile value: continuous or discrete.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| DISCRETE | Always return an existing value from the selected values. Do not interpolate. | 0 |
+| CONTINUOUS | Interpolate between adjacent values if the target percentile falls between them. | 1 |
+
 ### ListValues.Sort
 How to sort the values.
 
@@ -1465,6 +1573,33 @@ Examples:
 | start | [ hiber.Timestamp](#hibertimestamp) |  |
 | end | [ hiber.Timestamp](#hibertimestamp) |  |
 
+### hiber.TimeWindow
+
+Time window to split a time range, e.g. per hour, per day, per week, etc.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **window**.interval | [ hiber.TimeWindow.IntervalWindow](#hibertimewindowintervalwindow) | Simple interval to use for windowing, e.g. every 2 hours or 24 hours or 5 minutes. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **window**.calendar | [ hiber.TimeWindow.CalendarWindow](#hibertimewindowcalendarwindow) | Calendar-based time window to use for windowing, e.g. per day, week, month, etc, for a given time zone. |
+
+### hiber.TimeWindow.CalendarWindow
+
+Calendar-based time window to use for windowing, e.g. per day, week, month, etc, for a given time zone.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| window | [ hiber.CalendarPeriod](#hibercalendarperiod) | The calendar-based window to use, e.g. daily or monthly. |
+| time_zone | [ string](#string) | The time zone to use for the calendar window. |
+
+### hiber.TimeWindow.IntervalWindow
+
+Interval-based time window to use for windowing, e.g. every 2 hours or 24 hours or 5 minutes.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| interval | [ hiber.Duration](#hiberduration) | Simple interval to use for windowing, e.g. every 2 hours or 24 hours or 5 minutes. |
+|  **optional** align_to | [optional hiber.Timestamp](#hibertimestamp) | Alignment for the interval repetition, e.g. every 5 minutes from 12:03 (resulting in 12:08, 12:13, etc). Defaults to any given time in the request where this is used, or else midnight today in UTC. |
+
 ### hiber.Timestamp
 
 Timestamp type for convenience.
@@ -1564,6 +1699,21 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 
 ### Enums
+#### hiber.CalendarPeriod
+A period of time represented on a calendar, in a time zone.
+Includes DST transitions, meaning that DAY can be 23 or 25 hours, etc.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| CALENDAR_PERIOD_UNSPECIFIED | Undefined period, raises an error. | 0 |
+| DAY | A day on the calendar, in a given time zone. Not guaranteed to be 24 hours (e.g. around DST transitions). | 1 |
+| WEEK | A week. Weeks begin on Monday, following [ISO 8601](https://en.wikipedia.org/wiki/ISO_week_date). For a week starting on Sunday, use WEEK_STARTING_SUNDAY. | 2 |
+| WEEK_STARTING_SUNDAY | A week, starting on Sunday. For a week starting on Monday, use WEEK. | 3 |
+| MONTH | A month. | 4 |
+| QUARTER | A quarter. Quarters start on dates 1-Jan, 1-Apr, 1-Jul, and 1-Oct of each year. | 5 |
+| HALF | A half-year. Half-years start on dates 1-Jan and 1-Jul. | 6 |
+| YEAR | A year. | 7 |
+
 #### hiber.EventType
 Enum of api-accessible events.
 The event types in this enum have a protobuf implementation, and can be used, for example, in the
@@ -1608,6 +1758,8 @@ api event stream and publishers.
 | USER_ADDED | A user was granted access to your organization, by request, invite, or created by an organization admin. | 9 |
 | USER_REMOVED | A user was removed from your organization by an organization admin. | 10 |
 | USER_VALIDATION_UPDATED | The user validation (i.e. email domain) for your organization was updated. | 54 |
+| USER_UPDATED | A user was updated | 60 |
+| USER_PERMISSIONS_UPDATED | A user's permissions and/or roles were updated | 61 |
 | TOKEN_CREATED | A new token was created for your organization. | 31 |
 | TOKEN_EXPIRY_WARNING | A token in your organization will expire within 2 weeks. | 25 |
 | TOKEN_EXPIRED | A token in your organization has expired. | 26 |

@@ -175,6 +175,71 @@ message Duration {
     optional string textual = 2;
 }
 
+/* A period of time represented on a calendar, in a time zone.
+ * Includes DST transitions, meaning that DAY can be 23 or 25 hours, etc.
+ */
+enum CalendarPeriod {
+    /* Undefined period, raises an error. */
+    CALENDAR_PERIOD_UNSPECIFIED = 0;
+
+    /* A day on the calendar, in a given time zone. Not guaranteed to be 24 hours (e.g. around DST transitions). */
+    DAY = 1;
+
+    /* A week. Weeks begin on Monday, following [ISO 8601](https://en.wikipedia.org/wiki/ISO_week_date).
+     * For a week starting on Sunday, use WEEK_STARTING_SUNDAY.
+     */
+    WEEK = 2;
+
+    /* A week, starting on Sunday.
+     * For a week starting on Monday, use WEEK.
+     */
+    WEEK_STARTING_SUNDAY = 3;
+
+    /* A month. */
+    MONTH = 4;
+
+    /* A quarter. Quarters start on dates 1-Jan, 1-Apr, 1-Jul, and 1-Oct of each year. */
+    QUARTER = 5;
+
+    /* A half-year. Half-years start on dates 1-Jan and 1-Jul. */
+    HALF = 6;
+
+    /* A year. */
+    YEAR = 7;
+}
+
+/* Time window to split a time range, e.g. per hour, per day, per week, etc. */
+message TimeWindow {
+    /* Calendar-based time window to use for windowing, e.g. per day, week, month, etc, for a given time zone. */
+    message CalendarWindow {
+        /* The calendar-based window to use, e.g. daily or monthly. */
+        CalendarPeriod window = 1;
+
+        /* The time zone to use for the calendar window. */
+        string time_zone = 2;
+    }
+
+    /* Interval-based time window to use for windowing, e.g. every 2 hours or 24 hours or 5 minutes. */
+    message IntervalWindow {
+        /* Simple interval to use for windowing, e.g. every 2 hours or 24 hours or 5 minutes. */
+        Duration interval = 1;
+
+        /* Alignment for the interval repetition, e.g. every 5 minutes from 12:03 (resulting in 12:08, 12:13, etc).
+         * Defaults to any given time in the request where this is used, or else midnight today in UTC.
+         */
+        optional Timestamp align_to = 2;
+    }
+
+    /* Time window to split a time range, e.g. per hour, per 15 minutes, etc. */
+    oneof window {
+        /* Simple interval to use for windowing, e.g. every 2 hours or 24 hours or 5 minutes. */
+        IntervalWindow interval = 1;
+
+        /* Calendar-based time window to use for windowing, e.g. per day, week, month, etc, for a given time zone. */
+        CalendarWindow calendar = 2;
+    }
+}
+
 /* Geographic latitude and longitude coordinates specified in decimal degrees.
  * For more information, see the WGS-84 coordinate system, which is used for most GPS systems.
  */
@@ -439,6 +504,12 @@ enum EventType {
 
     /* The user validation (i.e. email domain) for your organization was updated. */
     USER_VALIDATION_UPDATED = 54;
+
+    /* A user was updated */
+    USER_UPDATED = 60;
+
+    /* A user's permissions and/or roles were updated */
+    USER_PERMISSIONS_UPDATED = 61;
 
     /* A new token was created for your organization. */
     TOKEN_CREATED = 31;

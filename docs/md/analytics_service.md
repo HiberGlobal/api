@@ -1,59 +1,52 @@
-# role_service.proto
+# analytics_service.proto
 
 
 
-#### This file was generated from [role_service.proto](https://github.com/HiberGlobal/api/blob/master/role_service.proto).
+#### This file was generated from [analytics_service.proto](https://github.com/HiberGlobal/api/blob/master/analytics_service.proto).
 
 ## Table of Contents
 
 - Services
-  - [RoleService](#roleservice)
+  - [AnalyticsService](#analyticsservice)
 
 - Messages
-  - [ListRoles](#listroles)
-  - [ListRoles.Request](#listrolesrequest)
-  - [ListRoles.Response](#listrolesresponse)
+  - [Analytics](#analytics)
+  - [Analytics.Request](#analyticsrequest)
+  - [Analytics.Response](#analyticsresponse)
+  - [Analytics.Result](#analyticsresult)
 
 - Enums
 
-- Referenced messages from [currentuser.proto](#referenced-messages-from-currentuserproto)
-  - [hiber.user.AcceptOrganizationInviteRequest](#hiberuseracceptorganizationinviterequest)
-  - [hiber.user.AcceptOrganizationInviteRequest.Response](#hiberuseracceptorganizationinviterequestresponse)
-  - [hiber.user.AcceptTermsAndConditionsRequest](#hiberuseraccepttermsandconditionsrequest)
-  - [hiber.user.AcceptTermsAndConditionsRequest.Response](#hiberuseraccepttermsandconditionsrequestresponse)
-  - [hiber.user.AccessibleOrganizationsRequest](#hiberuseraccessibleorganizationsrequest)
-  - [hiber.user.AccessibleOrganizationsRequest.AccessibleOrganization](#hiberuseraccessibleorganizationsrequestaccessibleorganization)
-  - [hiber.user.AccessibleOrganizationsRequest.Response](#hiberuseraccessibleorganizationsrequestresponse)
-  - [hiber.user.CancelAccessRequestRequest](#hiberusercancelaccessrequestrequest)
-  - [hiber.user.CancelAccessRequestRequest.Response](#hiberusercancelaccessrequestrequestresponse)
-  - [hiber.user.CurrentUser](#hiberusercurrentuser)
-  - [hiber.user.CurrentUserRequest](#hiberusercurrentuserrequest)
-  - [hiber.user.DeleteCurrentUserRequest](#hiberuserdeletecurrentuserrequest)
-  - [hiber.user.DeleteCurrentUserRequest.Response](#hiberuserdeletecurrentuserrequestresponse)
-  - [hiber.user.ListOrganizationInvitesRequest](#hiberuserlistorganizationinvitesrequest)
-  - [hiber.user.ListOrganizationInvitesRequest.Invite](#hiberuserlistorganizationinvitesrequestinvite)
-  - [hiber.user.ListOrganizationInvitesRequest.Response](#hiberuserlistorganizationinvitesrequestresponse)
-  - [hiber.user.LogPasswordUpdatedRequest](#hiberuserlogpasswordupdatedrequest)
-  - [hiber.user.LogPasswordUpdatedRequest.Response](#hiberuserlogpasswordupdatedrequestresponse)
-  - [hiber.user.OverrideRoles](#hiberuseroverrideroles)
-  - [hiber.user.OverrideRoles.Request](#hiberuseroverriderolesrequest)
-  - [hiber.user.OverrideRoles.Response](#hiberuseroverriderolesresponse)
-  - [hiber.user.OverrideRoles.Restore](#hiberuseroverriderolesrestore)
-  - [hiber.user.OverrideRoles.Restore.Request](#hiberuseroverriderolesrestorerequest)
-  - [hiber.user.OverrideRoles.Restore.Response](#hiberuseroverriderolesrestoreresponse)
-  - [hiber.user.RequestAccessRequest](#hiberuserrequestaccessrequest)
-  - [hiber.user.RequestAccessRequest.Response](#hiberuserrequestaccessrequestresponse)
-  - [hiber.user.UpdateDefaultOrganizationRequest](#hiberuserupdatedefaultorganizationrequest)
-  - [hiber.user.UpdateDefaultOrganizationRequest.Response](#hiberuserupdatedefaultorganizationrequestresponse)
-  - [hiber.user.UpdateMissionControlSettingsRequest](#hiberuserupdatemissioncontrolsettingsrequest)
-  - [hiber.user.UpdateMissionControlSettingsRequest.Response](#hiberuserupdatemissioncontrolsettingsrequestresponse)
+- Referenced messages from [value_service.proto](#referenced-messages-from-value_serviceproto)
+  - [hiber.value.AggregatedValues](#hibervalueaggregatedvalues)
+  - [hiber.value.AggregatedValues.Aggregation](#hibervalueaggregatedvaluesaggregation)
+  - [hiber.value.AggregatedValues.Aggregation.CountResult](#hibervalueaggregatedvaluesaggregationcountresult)
+  - [hiber.value.AggregatedValues.Aggregation.PercentileAggregation](#hibervalueaggregatedvaluesaggregationpercentileaggregation)
+  - [hiber.value.AggregatedValues.Request](#hibervalueaggregatedvaluesrequest)
+  - [hiber.value.AggregatedValues.Response](#hibervalueaggregatedvaluesresponse)
+  - [hiber.value.DownsampledValues](#hibervaluedownsampledvalues)
+  - [hiber.value.DownsampledValues.Request](#hibervaluedownsampledvaluesrequest)
+  - [hiber.value.DownsampledValues.Response](#hibervaluedownsampledvaluesresponse)
+  - [hiber.value.LatestValues](#hibervaluelatestvalues)
+  - [hiber.value.LatestValues.Request](#hibervaluelatestvaluesrequest)
+  - [hiber.value.LatestValues.Response](#hibervaluelatestvaluesresponse)
+  - [hiber.value.ListValues](#hibervaluelistvalues)
+  - [hiber.value.ListValues.Request](#hibervaluelistvaluesrequest)
+  - [hiber.value.ListValues.Request.TransformFieldsEntry](#hibervaluelistvaluesrequesttransformfieldsentry)
+  - [hiber.value.ListValues.Response](#hibervaluelistvaluesresponse)
+  - [hiber.value.ValueContext](#hibervaluevaluecontext)
+  - [hiber.value.ValueContext.ValueDelta](#hibervaluevaluecontextvaluedelta)
+  - [hiber.value.ValueContext.ValueDeviceContext](#hibervaluevaluecontextvaluedevicecontext)
+  - [hiber.value.ValueContext.ValueDuration](#hibervaluevaluecontextvalueduration)
+  - [hiber.value.ValueContext.ValueDurations](#hibervaluevaluecontextvaluedurations)
+  - [hiber.value.ValueContext.ValueProcessPointContext](#hibervaluevaluecontextvalueprocesspointcontext)
+  - [hiber.value.ValueSelection](#hibervaluevalueselection)
+  - [hiber.value.ValueSelection.ByField](#hibervaluevalueselectionbyfield)
+  - [hiber.value.ValueSelection.ByValueType](#hibervaluevalueselectionbyvaluetype)
 
-    - [hiber.user.CurrentUser.Feature](#hiberusercurrentuserfeature)
-
-- Referenced messages from [role.proto](#referenced-messages-from-roleproto)
-  - [hiber.role.Role](#hiberrolerole)
-  - [hiber.role.RoleSelection](#hiberroleroleselection)
-
+    - [hiber.value.AggregatedValues.Aggregation.BasicAggregation](#hibervalueaggregatedvaluesaggregationbasicaggregation)
+    - [hiber.value.AggregatedValues.Aggregation.PercentileAggregation.PercentileAggregationMethod](#hibervalueaggregatedvaluesaggregationpercentileaggregationpercentileaggregationmethod)
+    - [hiber.value.ListValues.Sort](#hibervaluelistvaluessort)
 
 - Referenced messages from [base.proto](#referenced-messages-from-baseproto)
   - [hiber.Area](#hiberarea)
@@ -114,353 +107,351 @@
 - [Scalar Value Types](#scalar-value-types)
 
 
-## RoleService
+## AnalyticsService
 
 
-### List
-> **rpc** List([ListRoles.Request](#listrolesrequest))
-    [ListRoles.Response](#listrolesresponse)
-
-
-
-### Override
-> **rpc** Override([.hiber.user.OverrideRoles.Request](#hiberuseroverriderolesrequest))
-    [.hiber.user.OverrideRoles.Response](#hiberuseroverriderolesresponse)
-
-
-
-### Restore
-> **rpc** Restore([.hiber.user.OverrideRoles.Restore.Request](#hiberuseroverriderolesrestorerequest))
-    [.hiber.user.OverrideRoles.Restore.Response](#hiberuseroverriderolesrestoreresponse)
+### Analytics
+> **rpc** Analytics([Analytics.Request](#analyticsrequest))
+    [Analytics.Response](#analyticsresponse)
 
 
 
 
 ## Messages
 
-### ListRoles
+### Analytics
 
 
 
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.value_aggregation | [ hiber.value.AggregatedValues.Request](#hibervalueaggregatedvaluesrequest) |  |
 
-### ListRoles.Request
+### Analytics.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** selection | [optional RoleSelection](#roleselection) | Select the roles to list. Optional, when omitted or empty everything is included. |
+| analytics | [repeated Analytics](#analytics) |  |
 
-### ListRoles.Response
+### Analytics.Response
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| roles | [repeated Role](#role) |  |
-| request | [ ListRoles.Request](#listrolesrequest) |  |
+| results | [repeated Analytics.Result](#analyticsresult) |  |
+| request | [ Analytics.Request](#analyticsrequest) |  |
+
+### Analytics.Result
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **type**.value_aggregation | [ hiber.value.AggregatedValues.Response](#hibervalueaggregatedvaluesresponse) |  |
 
 
 ## Enums
 
 
-## Referenced messages from currentuser.proto
+## Referenced messages from value_service.proto
 (Note that these are included because there is a proto dependency on the file,
 so not all messages listed here are referenced.)
 
-#### This section was generated from [currentuser.proto](https://github.com/HiberGlobal/api/blob/master/currentuser.proto).
+#### This section was generated from [value_service.proto](https://github.com/HiberGlobal/api/blob/master/value_service.proto).
 
 
-### hiber.user.AcceptOrganizationInviteRequest
+### hiber.value.AggregatedValues
 
-Accept an invitation to an organization.
+
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) |  |
-|  **optional** default_organization | [optional bool](#bool) | Set to true to mark the organization as your default organization. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **result**.value | [ hiber.value.Value](#hibervaluevalue) | The value resulting from the aggregation. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **result**.count | [ hiber.value.AggregatedValues.Aggregation.CountResult](#hibervalueaggregatedvaluesaggregationcountresult) | The count resulting from a COUNT or COUNT_DISTINCT aggregation. |
+| aggregation | [ hiber.value.AggregatedValues.Aggregation](#hibervalueaggregatedvaluesaggregation) | The aggregation applied to get this value. |
+|  **optional** window | [optional hiber.TimeWindow](#hibertimewindow) | The windowing configuration used for this value. |
+|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) | The actual time range used for this aggregated value (e.g. window when windowing). |
+|  **optional** device | [optional hiber.value.ValueContext.ValueDeviceContext](#hibervaluevaluecontextvaluedevicecontext) | If the selected values all belonged to a single device, or group_by_owner was set, the device. |
+|  **optional** process_point | [optional hiber.value.ValueContext.ValueProcessPointContext](#hibervaluevaluecontextvalueprocesspointcontext) | If the selected values all belonged to a single process point, or group_by_owner was set, the process point. |
 
-### hiber.user.AcceptOrganizationInviteRequest.Response
+### hiber.value.AggregatedValues.Aggregation
 
-
-
-
-### hiber.user.AcceptTermsAndConditionsRequest
-
-Accept the Hiber terms and conditions.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| accept_tac | [ bool](#bool) |  |
-
-### hiber.user.AcceptTermsAndConditionsRequest.Response
-
-
-
-
-### hiber.user.AccessibleOrganizationsRequest
-
-List all organizations that can be impersonated.
+Aggregation operation, e.g. min, max, count, sum or percentiles.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-|  **optional** search | [optional string](#string) | Search accessible organizations by name. |
-|  **optional** member_only | [optional bool](#bool) | Only list organizations of which you are a member (exclude organizations that you can only impersonate). |
-|  **optional** default_only | [optional bool](#bool) | Only list your default organization. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **aggregation**.basic | [ hiber.value.AggregatedValues.Aggregation.BasicAggregation](#hibervalueaggregatedvaluesaggregationbasicaggregation) | Basic aggregation options, e.g. average, min, max, etc. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **aggregation**.percentile | [ hiber.value.AggregatedValues.Aggregation.PercentileAggregation](#hibervalueaggregatedvaluesaggregationpercentileaggregation) | Configurable percentile aggregation option. |
+
+### hiber.value.AggregatedValues.Aggregation.CountResult
+
+Counting does not return a value, just an integer, but we do want to know what we counted.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| amount | [ uint32](#uint32) | Counted amount. |
+| type | [ hiber.value.Value.Type](#hibervaluevaluetype) | Type of values counted. |
+|  **optional** numeric_value_type | [optional hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) | Numeric type of values counted, if type is numeric. |
+
+### hiber.value.AggregatedValues.Aggregation.PercentileAggregation
+
+Configurable percentile aggregation option.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| percentile | [ double](#double) | The percentile to aggregate to, e.g. 75th, 90th, 99th, 99.999th. (really any number, e.g. 88.12345 since it is a double) Values between 0 and 1 are interpreted as using a range of 0 to 1, e.g. 0.995 -> 99.5th percentile. Values higher than 100.0 or below 0 are not supported. |
+| method | [ hiber.value.AggregatedValues.Aggregation.PercentileAggregation.PercentileAggregationMethod](#hibervalueaggregatedvaluesaggregationpercentileaggregationpercentileaggregationmethod) | The method of calculation used for the percentile value: continuous or discrete. |
+
+### hiber.value.AggregatedValues.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| selection | [ hiber.value.ValueSelection](#hibervaluevalueselection) | Select the values to aggregate. |
+| aggregation | [repeated hiber.value.AggregatedValues.Aggregation](#hibervalueaggregatedvaluesaggregation) | Aggregation operation, e.g. min, max, count, sum or percentiles. |
+|  **optional** window | [optional hiber.TimeWindow](#hibertimewindow) | Time window to aggregate values, e.g. minimum per hour, maximum per day, average per week, etc. |
+|  **optional** group_by_owner | [optional bool](#bool) | If true, groups the selected values by their owner (device or process point) before applying the aggregation. For example, if the selection includes data from both process point A and process point B, requesting MAXIMUM will return two separate results: the maximum for process point A and the maximum for process point B. If false, all data is aggregated into a single value (per aggregation). |
+
+### hiber.value.AggregatedValues.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| results | [repeated hiber.value.AggregatedValues](#hibervalueaggregatedvalues) | The aggregated values, for each operation and window result. |
+| request | [ hiber.value.AggregatedValues.Request](#hibervalueaggregatedvaluesrequest) | The original request, corrected and filled in with any defaults. |
+
+### hiber.value.DownsampledValues
+
+Downsampled values for a (set of) modem(s), filtering by field and time.
+
+
+### hiber.value.DownsampledValues.Request
+
+Request downsampled values, reducing the selected time range to a single value per field.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| selection | [ hiber.value.ValueSelection](#hibervaluevalueselection) | The values to downsample. When multiple modems are given, the data is downsampled separately and merged together in the response, sorted by time. |
+|  **optional** points | [optional uint32](#uint32) | Downsample the values to the given amount of data points. |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) | Paginate the downsampled values, if needed. |
+| sort | [ hiber.value.ListValues.Sort](#hibervaluelistvaluessort) | How to sort the downsampled values. |
+|  **optional** determine_minimum_and_maximum_values | [optional bool](#bool) | Determine the lowest and highest values for each owner (device / process point). |
+
+### hiber.value.DownsampledValues.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| downsampled_values | [repeated hiber.value.ValueContext](#hibervaluevaluecontext) | The downsampled values, mixed together and sorted by time (see sort in request). |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
+| request | [ hiber.value.DownsampledValues.Request](#hibervaluedownsampledvaluesrequest) |  |
+| lowest | [repeated hiber.value.ValueContext](#hibervaluevaluecontext) | The lowest value for each owner (device / process point). |
+| highest | [repeated hiber.value.ValueContext](#hibervaluevaluecontext) | The highest value for each owner (device / process point). |
+
+### hiber.value.LatestValues
+
+Latest values for a (set of) modem(s), filtering by field and time.
+
+
+### hiber.value.LatestValues.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| selection | [ hiber.value.ValueSelection](#hibervaluevalueselection) |  |
 |  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
 
-### hiber.user.AccessibleOrganizationsRequest.AccessibleOrganization
+### hiber.value.LatestValues.Response
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [ string](#string) | Organization identifier, e.g. "my-organization" |
-| display_name | [ string](#string) | Organization name, e.g. "My Organization" |
-| contact | [ hiber.organization.Organization.Contact](#hiberorganizationorganizationcontact) | The contact person for this organization |
-| member | [ bool](#bool) | If true, you are a member of this organization (= you are directly linked to this organization) |
-| default_organization | [ bool](#bool) | If true, this is the organization that you use by default. |
-
-### hiber.user.AccessibleOrganizationsRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organizations | [repeated hiber.user.AccessibleOrganizationsRequest.AccessibleOrganization](#hiberuseraccessibleorganizationsrequestaccessibleorganization) | Details for the organizations that you can access. |
+| values | [repeated hiber.value.ValueContext](#hibervaluevaluecontext) |  |
 | pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
+| request | [ hiber.value.LatestValues.Request](#hibervaluelatestvaluesrequest) |  |
 
-### hiber.user.CancelAccessRequestRequest
+### hiber.value.ListValues
 
-Cancel a previously made access request.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) |  |
-
-### hiber.user.CancelAccessRequestRequest.Response
+List values for a (set of) modem(s), filtering by field and time.
 
 
-
-
-### hiber.user.CurrentUser
-
-Your personal data.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| id | [ string](#string) |  |
-|  **optional** email | [optional string](#string) | Email address of the current user. Only set when you have permission to read the user data (i.e. a token without that permission would not see this) |
-|  **optional** name | [optional string](#string) | Name of the current user. Only set when you have permission to read the user data (i.e. a token without that permission would not see this) |
-| organizations | [repeated string](#string) | The organizations that this user has access to. |
-|  **optional** default_organization | [optional string](#string) | The default organization for this user, if any. |
-| requested_organizations | [repeated string](#string) | Open access requests. |
-|  **optional** current_organization | [optional string](#string) | The current organization for this user. If this is a user, this equals the default_organization, if any. If this is a token, it's the token's organization. |
-|  **optional** current_organization_permissions | [optional hiber.Filter.OrganizationPermissions](#hiberfilterorganizationpermissions) | Permissions for the current organization. |
-|  **optional** user_permissions | [optional hiber.Filter.UserPermissions](#hiberfilteruserpermissions) | Permissions for the user. If this is a token, the user permissions may be limited or omitted. |
-|  **optional** support_permissions | [optional hiber.Filter.SupportPermissions](#hiberfiltersupportpermissions) | Permissions for customer support. Used for features typically reserved for customer support, or that behave differently when used by a customer support operator. |
-| features | [repeated hiber.user.CurrentUser.Feature](#hiberusercurrentuserfeature) | The features that are enabled for this user. |
-| roles | [repeated string](#string) | Roles for the current organization. |
-| mission_control_settings | [ string](#string) |  |
-| accepted_tac | [ bool](#bool) | Whether the user accepted the terms and conditions. |
-| user_hash | [ string](#string) |  |
-| password_reset_recommended | [ bool](#bool) | Whether a password reset is recommended for this user. |
-|  **optional** password_reset_recommended_reason | [optional string](#string) | Why a password reset is recommended for this user. |
-| active_role_override | [ bool](#bool) | Indicates that there is an active role override for this user. |
-
-### hiber.user.CurrentUserRequest
-
-Get your personal data.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-
-### hiber.user.DeleteCurrentUserRequest
-
-Delete yourself.
-Removes all login information and personal data, except for you email address for auditing purposes.
-
-
-### hiber.user.DeleteCurrentUserRequest.Response
-
-
-
-
-### hiber.user.ListOrganizationInvitesRequest
-
-List all invitations from organizations.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** search | [optional string](#string) |  |
-
-### hiber.user.ListOrganizationInvitesRequest.Invite
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) |  |
-| display_name | [ string](#string) |  |
-| invited_at | [ hiber.Timestamp](#hibertimestamp) |  |
-
-### hiber.user.ListOrganizationInvitesRequest.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organizations | [repeated hiber.user.ListOrganizationInvitesRequest.Invite](#hiberuserlistorganizationinvitesrequestinvite) |  |
-
-### hiber.user.LogPasswordUpdatedRequest
-
-Log that the user has reset their password.
-
-
-### hiber.user.LogPasswordUpdatedRequest.Response
-
-
-
-
-### hiber.user.OverrideRoles
-
-
-
-
-### hiber.user.OverrideRoles.Request
+### hiber.value.ListValues.Request
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 |  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
-|  **optional** selection | [optional hiber.role.RoleSelection](#hiberroleroleselection) | Select the roles to list. Optional, when omitted or empty everything is included. |
+| selection | [ hiber.value.ValueSelection](#hibervaluevalueselection) |  |
+|  **optional** pagination | [optional hiber.Pagination](#hiberpagination) |  |
+| sort | [ hiber.value.ListValues.Sort](#hibervaluelistvaluessort) |  |
+| transform_fields | [map hiber.value.ListValues.Request.TransformFieldsEntry](#hibervaluelistvaluesrequesttransformfieldsentry) | Transform the values for a field into a derived value. Fields specified here must have been specified in the selection. |
 
-### hiber.user.OverrideRoles.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| current_user | [ hiber.user.CurrentUser](#hiberusercurrentuser) |  |
-| request | [ hiber.user.OverrideRoles.Request](#hiberuseroverriderolesrequest) |  |
-
-### hiber.user.OverrideRoles.Restore
-
-
-
-
-### hiber.user.OverrideRoles.Restore.Request
+### hiber.value.ListValues.Request.TransformFieldsEntry
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| organization | [repeated string](#string) | Optionally, specify organization(s) with an active override that you wish to remove. If no organizations are provided, all overrides will be removed. |
+| key | [ string](#string) |  |
+| value | [ hiber.value.ValueTransformation](#hibervaluevaluetransformation) |  |
 
-### hiber.user.OverrideRoles.Restore.Response
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| current_user | [ hiber.user.CurrentUser](#hiberusercurrentuser) |  |
-| request | [ hiber.user.OverrideRoles.Restore.Request](#hiberuseroverriderolesrestorerequest) |  |
-
-### hiber.user.RequestAccessRequest
-
-Request access to an organization by name, if it exists.
-You request will be saved and the organization owner notified.
-Organization admins can approve or reject your request.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) |  |
-
-### hiber.user.RequestAccessRequest.Response
-
-
-
-
-### hiber.user.UpdateDefaultOrganizationRequest
-
-Set the default organization to use when it is not specified in the call.
-Note: this can be a child organization of one of the owned organizations.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| organization | [ string](#string) |  |
-
-### hiber.user.UpdateDefaultOrganizationRequest.Response
+### hiber.value.ListValues.Response
 
 
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| default_organization | [ string](#string) |  |
+| values | [repeated hiber.value.ValueContext](#hibervaluevaluecontext) |  |
+| pagination | [ hiber.Pagination.Result](#hiberpaginationresult) |  |
+| request | [ hiber.value.ListValues.Request](#hibervaluelistvaluesrequest) |  |
 
-### hiber.user.UpdateMissionControlSettingsRequest
+### hiber.value.ValueContext
 
-Update mission control settings, which are in a json format.
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| update | [ string](#string) |  |
-
-### hiber.user.UpdateMissionControlSettingsRequest.Response
-
-
+A Value at a time, for a given modem and field.
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
-| mission_control_settings | [ string](#string) |  |
+| device | [ hiber.value.ValueContext.ValueDeviceContext](#hibervaluevaluecontextvaluedevicecontext) | The device that produced this value. |
+| device_number | [ string](#string) | <span class="deprecated deprecated-field">Deprecated</span> The device that produced this value. |
+| process_point | [ hiber.value.ValueContext.ValueProcessPointContext](#hibervaluevaluecontextvalueprocesspointcontext) | The process point that owns this value, if any. Process points own this value if they were assigned to the device that produced this value at the time it was produced. If multiple process points were assigned at the same time, this value exists for each process point. |
+| field | [ string](#string) | The field that this value was produced for. |
+| time | [ hiber.Timestamp](#hibertimestamp) | The time for this value. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value_type**.value | [ hiber.value.Value](#hibervaluevalue) | The value at this time, if no ValueTransformation was specified for this field. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value_type**.value_durations | [ hiber.value.ValueContext.ValueDurations](#hibervaluevaluecontextvaluedurations) | The output of the DURATION ValueTransformation, if it was specified for this field. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **value_type**.delta | [ hiber.value.ValueContext.ValueDelta](#hibervaluevaluecontextvaluedelta) | The output of the DELTA ValueTransformation, if it was specified for this field. |
+
+### hiber.value.ValueContext.ValueDelta
+
+The delta of a value: the difference between a value and the previous value.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| delta | [ hiber.value.Value](#hibervaluevalue) | The delta of the two values. |
+| current | [ hiber.value.Value](#hibervaluevalue) | The value at this time. |
+| previous | [ hiber.value.Value](#hibervaluevalue) | The previous value to compare it with. |
+
+### hiber.value.ValueContext.ValueDeviceContext
+
+The device data for this value.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| number | [ string](#string) |  |
+| identifier | [ string](#string) |  |
+| name | [ string](#string) |  |
+
+### hiber.value.ValueContext.ValueDuration
+
+The amount of time a field for a modem was in this value.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value | [ hiber.value.Value](#hibervaluevalue) | The value the duration is for. |
+| duration | [ hiber.Duration](#hiberduration) | The aggregated duration the field was this value. |
+
+### hiber.value.ValueContext.ValueDurations
+
+The amount of time a field for a modem was at different values.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| durations | [repeated hiber.value.ValueContext.ValueDuration](#hibervaluevaluecontextvalueduration) |  |
+
+### hiber.value.ValueContext.ValueProcessPointContext
+
+Information about the process point that owns the value.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifier | [ string](#string) |  |
+| name | [ string](#string) |  |
+| type | [ hiber.processpoint.ProcessPoint.Type](#hiberprocesspointprocesspointtype) |  |
+
+### hiber.value.ValueSelection
+
+Select the values to return.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **owner_selection**.devices | [ hiber.modem.ModemSelection](#hibermodemmodemselection) | Select the devices(s) to get the values for. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **owner_selection**.process_points | [ hiber.processpoint.ProcessPointSelection](#hiberprocesspointprocesspointselection) | Select the process point(s) to get the values for. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data_selection**.value_type | [ hiber.value.ValueSelection.ByValueType](#hibervaluevalueselectionbyvaluetype) | Get the values that are of the given numeric value types. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **data_selection**.field | [ hiber.value.ValueSelection.ByField](#hibervaluevalueselectionbyfield) | Get the values for the selected fields. |
+| fields | [repeated string](#string) | <span class="deprecated deprecated-field">Deprecated</span> Get the values for the selected fields. |
+|  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) | The time to view the values for. |
+|  **optional** include_location | [optional bool](#bool) | Include the location (which is not a field). |
+| filter_enum_values | [repeated hiber.Filter.FieldEnumValues](#hiberfilterfieldenumvalues) | Filter the values for enum fields. |
+|  **optional** include_operational_data | [optional bool](#bool) | Whether to include values that have been marked as operational (e.g. device status). Operational data is typically only available when selecting values for a device. |
+
+### hiber.value.ValueSelection.ByField
+
+Select the data by numeric value type.
+If the list is empty, all fields are returned.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| fields | [repeated string](#string) |  |
+
+### hiber.value.ValueSelection.ByValueType
+
+Select the data by (numeric) value type.
+If the selection is empty, all values with all types are returned.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| value_type | [repeated hiber.value.Value.Type](#hibervaluevaluetype) |  |
+| numeric_value_type | [repeated hiber.value.Value.Numeric.Type](#hibervaluevaluenumerictype) |  |
 
 
 ### Enums
-#### hiber.user.CurrentUser.Feature
-
+#### hiber.value.AggregatedValues.Aggregation.BasicAggregation
+Basic aggregation options, e.g. average, min, max, etc.
+Options to be added in the future: MEDIAN, STANDARD_DEVIATION, etc
 
 | Name | Description | Number |
 | ---- | ----------- | ------ |
-| UNKNOWN |  | 0 |
-| EXPERIMENTAL | Get access to experimental features (if available). | 1 |
+| COUNT | Counts the total number of selected values. | 0 |
+| COUNT_DISTINCT | Counts the total number of UNIQUE values in the selected values. | 1 |
+| SUM | Calculates the total sum of all values in the selection. | 2 |
+| AVERAGE | Calculates the mathematical average of the selected values. Alias for MEAN. | 3 |
+| MEAN | Calculates the mathematical mean of the selected values. Alias for AVERAGE. | 4 |
+| MINIMUM | Finds the lowest value of the selected values. | 5 |
+| MAXIMUM | Finds the highest value of the selected values. | 6 |
+| MODE | Finds the most frequently occurring value of the selected values. | 7 |
+| MEDIAN | Calculates the standard mathematical median (50th percentile). Uses continuous interpolation. If there is an even number of rows, it will return the average of the two middle values. | 8 |
+| MEDIAN_DISCRETE | Calculates the discrete median (50th percentile). Unlike the standard median this will never interpolate. It guarantees returning an actual, existing value from the dataset (picking the lower of the middle values if even). | 9 |
+| STANDARD_DEVIATION | Calculates the Sample Standard Deviation. Standard Deviation measures how spread out your data is from the Mean (average). A *low* standard deviation means the data is tightly clustered around the average (highly predictable). A *high* standard deviation means the data is widely spread out (highly volatile). Use this for sensor readings, like pressure, which are a sample of real pressures. | 10 |
+| STANDARD_DEVIATION_POPULATION | Calculates the Population Standard Deviation. See STANDARD_DEVIATION. Use this ONLY when your data represents the entire population (all possible values). | 11 |
 
+#### hiber.value.AggregatedValues.Aggregation.PercentileAggregation.PercentileAggregationMethod
+The method of calculation used for the percentile value: continuous or discrete.
 
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| DISCRETE | Always return an existing value from the selected values. Do not interpolate. | 0 |
+| CONTINUOUS | Interpolate between adjacent values if the target percentile falls between them. | 1 |
 
-## Referenced messages from role.proto
-(Note that these are included because there is a proto dependency on the file,
-so not all messages listed here are referenced.)
+#### hiber.value.ListValues.Sort
+How to sort the values.
 
-#### This section was generated from [role.proto](https://github.com/HiberGlobal/api/blob/master/role.proto).
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| TIME_ASCENDING |  | 0 |
+| TIME_DESCENDING |  | 1 |
 
-
-### hiber.role.Role
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| identifier | [ string](#string) | Unique identifier for the role. |
-| display_name | [ string](#string) | Display name for the role. |
-| description | [ string](#string) | Description for the role. |
-| permissions | [repeated hiber.OrganizationPermission](#hiberorganizationpermission) | The organization permissions the role grants. |
-| support_permissions | [repeated hiber.SupportPermission](#hibersupportpermission) | The support permissions the role grants. This is not typically available in any organizations other than the Hiber organization. |
-| grantable | [ bool](#bool) | This role does not include permissions you do not have; you are allowed to grant and impersonate it. |
-
-### hiber.role.RoleSelection
-
-
-
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-|  **optional** search | [optional string](#string) |  |
-|  **optional** roles | [optional hiber.Filter.Roles](#hiberfilterroles) |  |
-|  **optional** only_grantable | [optional bool](#bool) | Only return roles that you are allowed to grant (that do not include permissions you do not have). |
-
-
-### Enums
 
 
 ## Referenced messages from base.proto

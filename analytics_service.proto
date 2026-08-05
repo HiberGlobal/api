@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package hiber.analytics;
+
+import "base.proto";
+import "value_service.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.analytics";
+option java_outer_classname = "AnalyticsApi";
+option go_package = ".;hiber";
+
+service AnalyticsService {
+    rpc Analytics (Analytics.Request) returns (Analytics.Response) {
+        option (permission_usage) = PROCESS_POINTS_VALUES;
+        option (permission_usage) = MODEM_VALUES;
+    }
+}
+
+message Analytics {
+    oneof type {
+        value.AggregatedValues.Request value_aggregation = 1;
+
+        /* Future:
+         * MessageAnalyticsScope message_analytics = 2;
+         */
+    }
+
+    message Result {
+        oneof type {
+            value.AggregatedValues.Response value_aggregation = 1;
+
+            /* Future:
+             * MessageAnalyticsResponse message_analytics_response = 2;
+             */
+        }
+    }
+
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        repeated Analytics analytics = 2;
+    }
+
+    message Response {
+        repeated Result results = 1;
+        Request request = 2;
+    }
+}

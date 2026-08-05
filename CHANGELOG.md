@@ -1,5 +1,26 @@
 # Changelog Hiber API
 
+### 0.291 (2026-08-05)
+
+##### base.proto
+
+- Added `CalendarPeriod` to describe a period of time based on the calender, e.g. a month or year.
+- Added `TimeWindow` to describe a windowing function, either by `IntervalWindow` describing a set interval 
+  or `CalendarWindow` using a `CalendarPeriod` and time zone.
+
+##### AnalyticsService
+
+- Added the AnalyticsService, which currently only supports value aggregation, but is planned to grow in the future.
+
+##### ValueService
+
+- Added `Aggregated` rpc to get aggregated values, e.g. the maximum pressure per week, 
+  or the 90th, 95th, 99th and 99.9th percentile of pressure per month.
+
+### 0.288 (2026-07-01)
+
+- Added `USER_UPDATED` and `USER_PERMISSIONS_UPDATED` events
+
 ### 0.286 (2026-06-08)
 
 ##### TokenService
@@ -11,7 +32,7 @@
 - Added sorting options for tags
   - Added `ListTagsRequest.Sort` and `ListTagsRequest.sort_by`
 - Added pagination to tag listing
-  - Added `ListTagsRequest.pagination` 
+  - Added `ListTagsRequest.pagination`
     - Added `ListTagsRequest.pagination_opt_in` to use it, for backwards compatibility until all clients have updated
 
 ### 0.285 (2026-06-01)

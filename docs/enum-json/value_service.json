@@ -1,4 +1,28 @@
 [{
+  "name": "BasicAggregation",
+  "description": "Basic aggregation options, e.g. average, min, max, etc. Options to be added in the future: MEDIAN, STANDARD_DEVIATION, etc",
+  "values": {
+    "COUNT": "Counts the total number of selected values."
+    , "COUNT_DISTINCT": "Counts the total number of UNIQUE values in the selected values."
+    , "SUM": "Calculates the total sum of all values in the selection."
+    , "AVERAGE": "Calculates the mathematical average of the selected values. Alias for MEAN."
+    , "MEAN": "Calculates the mathematical mean of the selected values. Alias for AVERAGE."
+    , "MINIMUM": "Finds the lowest value of the selected values."
+    , "MAXIMUM": "Finds the highest value of the selected values."
+    , "MODE": "Finds the most frequently occurring value of the selected values."
+    , "MEDIAN": "Calculates the standard mathematical median (50th percentile). Uses continuous interpolation. If there is an even number of rows, it will return the average of the two middle values."
+    , "MEDIAN_DISCRETE": "Calculates the discrete median (50th percentile). Unlike the standard median this will never interpolate. It guarantees returning an actual, existing value from the dataset (picking the lower of the middle values if even)."
+    , "STANDARD_DEVIATION": "Calculates the Sample Standard Deviation. Standard Deviation measures how spread out your data is from the Mean (average). A *low* standard deviation means the data is tightly clustered around the average (highly predictable). A *high* standard deviation means the data is widely spread out (highly volatile). Use this for sensor readings, like pressure, which are a sample of real pressures."
+    , "STANDARD_DEVIATION_POPULATION": "Calculates the Population Standard Deviation. See STANDARD_DEVIATION. Use this ONLY when your data represents the entire population (all possible values)."
+    }
+},{
+  "name": "PercentileAggregationMethod",
+  "description": "The method of calculation used for the percentile value: continuous or discrete.",
+  "values": {
+    "DISCRETE": "Always return an existing value from the selected values. Do not interpolate."
+    , "CONTINUOUS": "Interpolate between adjacent values if the target percentile falls between them."
+    }
+},{
   "name": "Sort",
   "description": "How to sort the values.",
   "values": {

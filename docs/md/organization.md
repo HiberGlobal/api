@@ -122,6 +122,9 @@
   - [hiber.Pagination.Result](#hiberpaginationresult)
   - [hiber.Shape](#hibershape)
   - [hiber.TimeRange](#hibertimerange)
+  - [hiber.TimeWindow](#hibertimewindow)
+  - [hiber.TimeWindow.CalendarWindow](#hibertimewindowcalendarwindow)
+  - [hiber.TimeWindow.IntervalWindow](#hibertimewindowintervalwindow)
   - [hiber.Timestamp](#hibertimestamp)
   - [hiber.UpdateBoolean](#hiberupdateboolean)
   - [hiber.UpdateClearableString](#hiberupdateclearablestring)
@@ -129,6 +132,7 @@
   - [hiber.UpdateOptionalId](#hiberupdateoptionalid)
   - [hiber.UpdateZeroableInt](#hiberupdatezeroableint)
   - Enums
+    - [hiber.CalendarPeriod](#hibercalendarperiod)
     - [hiber.EventType](#hibereventtype)
     - [hiber.Health](#hiberhealth)
     - [hiber.UnitOfMeasurement](#hiberunitofmeasurement)
@@ -1333,6 +1337,33 @@ Examples:
 | start | [ hiber.Timestamp](#hibertimestamp) |  |
 | end | [ hiber.Timestamp](#hibertimestamp) |  |
 
+### hiber.TimeWindow
+
+Time window to split a time range, e.g. per hour, per day, per week, etc.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **window**.interval | [ hiber.TimeWindow.IntervalWindow](#hibertimewindowintervalwindow) | Simple interval to use for windowing, e.g. every 2 hours or 24 hours or 5 minutes. |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **window**.calendar | [ hiber.TimeWindow.CalendarWindow](#hibertimewindowcalendarwindow) | Calendar-based time window to use for windowing, e.g. per day, week, month, etc, for a given time zone. |
+
+### hiber.TimeWindow.CalendarWindow
+
+Calendar-based time window to use for windowing, e.g. per day, week, month, etc, for a given time zone.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| window | [ hiber.CalendarPeriod](#hibercalendarperiod) | The calendar-based window to use, e.g. daily or monthly. |
+| time_zone | [ string](#string) | The time zone to use for the calendar window. |
+
+### hiber.TimeWindow.IntervalWindow
+
+Interval-based time window to use for windowing, e.g. every 2 hours or 24 hours or 5 minutes.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| interval | [ hiber.Duration](#hiberduration) | Simple interval to use for windowing, e.g. every 2 hours or 24 hours or 5 minutes. |
+|  **optional** align_to | [optional hiber.Timestamp](#hibertimestamp) | Alignment for the interval repetition, e.g. every 5 minutes from 12:03 (resulting in 12:08, 12:13, etc). Defaults to any given time in the request where this is used, or else midnight today in UTC. |
+
 ### hiber.Timestamp
 
 Timestamp type for convenience.
@@ -1432,6 +1463,21 @@ DEPRECATED: use alternative optional fields in the relevant places instead.
 
 
 ### Enums
+#### hiber.CalendarPeriod
+A period of time represented on a calendar, in a time zone.
+Includes DST transitions, meaning that DAY can be 23 or 25 hours, etc.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| CALENDAR_PERIOD_UNSPECIFIED | Undefined period, raises an error. | 0 |
+| DAY | A day on the calendar, in a given time zone. Not guaranteed to be 24 hours (e.g. around DST transitions). | 1 |
+| WEEK | A week. Weeks begin on Monday, following [ISO 8601](https://en.wikipedia.org/wiki/ISO_week_date). For a week starting on Sunday, use WEEK_STARTING_SUNDAY. | 2 |
+| WEEK_STARTING_SUNDAY | A week, starting on Sunday. For a week starting on Monday, use WEEK. | 3 |
+| MONTH | A month. | 4 |
+| QUARTER | A quarter. Quarters start on dates 1-Jan, 1-Apr, 1-Jul, and 1-Oct of each year. | 5 |
+| HALF | A half-year. Half-years start on dates 1-Jan and 1-Jul. | 6 |
+| YEAR | A year. | 7 |
+
 #### hiber.EventType
 Enum of api-accessible events.
 The event types in this enum have a protobuf implementation, and can be used, for example, in the
@@ -1476,6 +1522,8 @@ api event stream and publishers.
 | USER_ADDED | A user was granted access to your organization, by request, invite, or created by an organization admin. | 9 |
 | USER_REMOVED | A user was removed from your organization by an organization admin. | 10 |
 | USER_VALIDATION_UPDATED | The user validation (i.e. email domain) for your organization was updated. | 54 |
+| USER_UPDATED | A user was updated | 60 |
+| USER_PERMISSIONS_UPDATED | A user's permissions and/or roles were updated | 61 |
 | TOKEN_CREATED | A new token was created for your organization. | 31 |
 | TOKEN_EXPIRY_WARNING | A token in your organization will expire within 2 weeks. | 25 |
 | TOKEN_EXPIRED | A token in your organization has expired. | 26 |
