@@ -4,6 +4,7 @@ package hiber.event;
 
 import "google/protobuf/struct.proto";
 
+import "alarm_incident.proto";
 import "assignment.proto";
 import "base.proto";
 import "export.proto";
@@ -250,6 +251,7 @@ message Event {
         MessageBodyParserEvent.DeletedEvent message_body_parser_deleted = 48;
 
         AlarmEvent.AlarmTriggeredEvent alarm_triggered = 56;
+        AlarmEvent.AlarmIncidentEvent alarm_incident = 81;
         AlarmEvent.CreatedEvent alarm_created = 57;
         AlarmEvent.UpdatedEvent alarm_updated = 58;
         AlarmEvent.DeletedEvent alarm_deleted = 59;
@@ -629,6 +631,28 @@ message Event {
 
             /* How long the optional health that this alarm event causes after it has been resolved lasts. */
             Timestamp health_level_after_resolved_until = 15;
+        }
+
+        message AlarmIncidentEvent {
+            string organization = 1;
+            string incident_identifier = 2;
+
+            /* The alarm that produced the incident. */
+            alarm.AlarmIncident.Alarm alarm = 3;
+
+            /* The device that caused the incident. */
+            alarm.AlarmIncident.Device device = 4;
+
+            /* The status of the incident. */
+            alarm.AlarmIncident.Update details = 5;
+
+            /* The id of the message that triggered this incident event, if any. */
+            optional uint64 message_id = 6;
+
+            repeated hiber.tag.Tag tags = 7;
+            string title = 8;
+            string description = 9;
+            Timestamp time = 10;
         }
 
         message CreatedEvent {
@@ -1115,6 +1139,12 @@ message EventSelection {
     optional Filter.Publishers publishers = 3;
     optional Filter.Tags tags = 4;
     optional TimeRange time_range = 6;
+
+    /* Filter events by alarm identifier(s). */
+    repeated string alarm_identifiers = 12;
+
+    /* Filter events by alarm incident identifier(s). */
+    repeated string alarm_incident_identifiers = 13;
 
     /* Filter events by actual configured health level. */
     repeated string health_levels = 11;

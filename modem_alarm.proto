@@ -470,6 +470,9 @@ message ModemAlarmSelection {
     /* Search for the given string in identifier, description, fields and values. */
     optional string search = 2;
 
+    /* Select alarm from the incident identifier(s). */
+    repeated string alarm_incident_identifiers = 5;
+
     reserved 3, 4;
 }
 

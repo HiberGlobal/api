@@ -1,0 +1,103 @@
+{
+  "isError": false,
+  "alarmIncident": {
+    "organization": "your-organization",
+    "incidentIdentifier": "00000000-0000-0000-0000-000000000000",
+    "alarm": {
+      "identifier": "example-identifier",
+      "name": "example",
+      "description": "example"
+    },
+    "device": {
+      "number": "AAAA AAAA",
+      "identifier": "00 11 22 33 AA BB CC DD",
+      "name": "AAAA AAAA",
+      "deviceType": "Demo all values",
+      "lifecycle": "INSTALLED"
+    },
+    "details": {
+      "time": {
+        "timestamp": "2020-06-01T05:15:25.355Z",
+        "timeZone": "UTC",
+        "textual": "2020-06-01T05:15:25.355Z"
+      },
+      "previousStatus": "STARTED",
+      "status": "ESCALATED",
+      "previousHealthLevel": {
+        "level": "Build up",
+        "color": "orange",
+        "catchAll": false,
+        "colorData": {
+          "fill": "orange",
+          "text": "orange"
+        },
+        "severity": "2"
+      },
+      "healthLevel": {
+        "level": "Alarm",
+        "color": "red",
+        "catchAll": true,
+        "colorData": {
+          "fill": "red",
+          "text": "red"
+        },
+        "severity": "3"
+      },
+      "previousErrorMessages": {
+        "example-check-id": "Expected battery to be within 20..100%, but it is now at 19%!"
+      },
+      "errorMessages": {
+        "example-check-id": "Expected battery to be within 20..100%, but it is now at 9%!",
+        "example-escalating-check-id": "Expected battery to be within 10..100%, but it is now at 9%!"
+      }
+    },
+    "messageId": "10002",
+    "tags": [{
+      "id": "1",
+      "label": {
+        "name": "example-tag",
+        "type": "well"
+      }
+    }, {
+      "id": "2",
+      "label": {
+        "name": "example-tag-2",
+        "type": "well"
+      }
+    }],
+    "title": "Incident escalated in organization Your Organization (your-organization) for alarm example-identifier assigned to device AAAA AAAA.",
+    "description": "Incident escalated in organization Your Organization (your-organization) for alarm example-identifier assigned to device AAAA AAAA.\n\nStatus is updated from ‘started’ to ‘escalated’.\nHealth is updated from Build up to Alarm.\n\nError messages changed to:\n- example-check-id: Expected battery to be within 20..100%, but it is now at 9%!\n- example-escalating-check-id: Expected battery to be within 10..100%, but it is now at 9%!\n\nThe error messages were produced by alarm example (example-identifier): example\n\nwell: example-tag, example-tag-2",
+    "time": {
+      "timestamp": "2020-06-01T05:15:25.355Z",
+      "timeZone": "UTC",
+      "textual": "2020-06-01T05:15:25.355Z"
+    }
+  },
+  "type": "ALARM_INCIDENT",
+  "time": {
+    "timestamp": "2020-06-01T05:15:25.355Z",
+    "timeZone": "UTC",
+    "textual": "2020-06-01T05:15:25.355Z"
+  },
+  "isWarning": false,
+  "title": "Incident escalated in organization Your Organization (your-organization) for alarm example-identifier assigned to device AAAA AAAA.",
+  "description": "Incident escalated in organization Your Organization (your-organization) for alarm example-identifier assigned to device AAAA AAAA.\n\nStatus is updated from ‘started’ to ‘escalated’.\nHealth is updated from Build up to Alarm.\n\nError messages changed to:\n- example-check-id: Expected battery to be within 20..100%, but it is now at 9%!\n- example-escalating-check-id: Expected battery to be within 10..100%, but it is now at 9%!\n\nThe error messages were produced by alarm example (example-identifier): example\n\nwell: example-tag, example-tag-2",
+  "device": {
+    "number": "AAAA AAAA",
+    "name": "AAAA AAAA",
+    "identifier": "00 11 22 33 AA BB CC DD"
+  },
+  "tags": [{
+    "id": "1",
+    "label": {
+      "name": "example-tag",
+      "type": "well"
+    }
+  }, {
+    "id": "2",
+    "label": {
+      "name": "example-tag-2",
+      "type": "well"
+    }
+  }]
+}

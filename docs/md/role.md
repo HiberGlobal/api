@@ -138,6 +138,7 @@ By default, everyone who has access to an organization, can access basic organiz
 | MODEMS_MESSAGE_BODY_PARSERS | Manage and assign message body parsers. Includes MODEMS permission. | 43 |
 | MODEMS_SECURE_NOTES | Show and update secure notes. Includes MODEMS permission. | 42 |
 | MODEMS_FIRMWARE | Reset modem firmware requirement | 65 |
+| MODEMS_HARDWARE | Hardware maintenance, like battery replacement | 66 |
 | MODEMS_ALARMS | View and assign (with the ASSIGNMENTS permission) alarms. Includes MODEMS permission. | 44 |
 | MODEMS_ALARMS_UPDATE | Manage alarms. Includes MODEMS permission. | 56 |
 | MODEM_VALUES | Read modem values. | 17 |
@@ -811,6 +812,7 @@ api event stream and publishers.
 | MESSAGE_BODY_PARSER_UPDATED | A message body parser in your organization was updated. This typically only happens for custom solutions. | 47 |
 | MESSAGE_BODY_PARSER_DELETED | A message body parser in your organization was deleted. This typically only happens for custom solutions. | 48 |
 | ALARM_TRIGGERED | An alarm was triggered in your organizations. Depending on the alarm, this may mean that a device sent a message with a value (e.g. pressure) outside of the expected range, or moved out of the expected area. | 56 |
+| ALARM_INCIDENT | An alarm incident in your organizations. Represents the moment the incident started and ended (chain of ALARM_TRIGGERED). Depending on the alarm, this may mean that a device sent a (series of) message(s) with a value (e.g. pressure) outside of the expected range, or moved out of the expected area. | 81 |
 | ALARM_CREATED | A new alarm was created in your organization. | 57 |
 | ALARM_UPDATED | An alarm in your organization was updated. | 58 |
 | ALARM_DELETED | An alarm in your organization was deleted. | 59 |

@@ -199,6 +199,10 @@
                 </li>
               
                 <li>
+                  <a href="#hiber.event.Event.AlarmEvent.AlarmIncidentEvent"><span class="badge">M</span>Event.AlarmEvent.AlarmIncidentEvent</a>
+                </li>
+              
+                <li>
                   <a href="#hiber.event.Event.AlarmEvent.AlarmTriggeredEvent"><span class="badge">M</span>Event.AlarmEvent.AlarmTriggeredEvent</a>
                 </li>
               
@@ -580,6 +584,53 @@
                 <li>
                   <a href="#hiber.event.EventService"><span class="badge">S</span>EventService</a>
                 </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#alarm_incident.proto">alarm_incident.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#hiber.alarm.AlarmIncident"><span class="badge">M</span>AlarmIncident</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.alarm.AlarmIncident.Alarm"><span class="badge">M</span>AlarmIncident.Alarm</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.alarm.AlarmIncident.Device"><span class="badge">M</span>AlarmIncident.Device</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.alarm.AlarmIncident.ErrorMessagesEntry"><span class="badge">M</span>AlarmIncident.ErrorMessagesEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.alarm.AlarmIncident.Update"><span class="badge">M</span>AlarmIncident.Update</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.alarm.AlarmIncident.Update.ErrorMessagesEntry"><span class="badge">M</span>AlarmIncident.Update.ErrorMessagesEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.alarm.AlarmIncident.Update.PreviousErrorMessagesEntry"><span class="badge">M</span>AlarmIncident.Update.PreviousErrorMessagesEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#hiber.alarm.AlarmIncidentSelection"><span class="badge">M</span>AlarmIncidentSelection</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#hiber.alarm.AlarmIncident.Status"><span class="badge">E</span>AlarmIncident.Status</a>
+                </li>
+              
+              
               
             </ul>
           </li>
@@ -3059,6 +3110,13 @@ Only present when not resolved, and only available for some event types. </p></t
                 </tr>
               
                 <tr>
+                  <td>alarm_incident</td>
+                  <td><a href="#hiber.event.Event.AlarmEvent.AlarmIncidentEvent">Event.AlarmEvent.AlarmIncidentEvent</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>alarm_created</td>
                   <td><a href="#hiber.event.Event.AlarmEvent.CreatedEvent">Event.AlarmEvent.CreatedEvent</a></td>
                   <td></td>
@@ -3312,6 +3370,93 @@ Only present when not resolved, and only available for some event types. </p></t
         <p></p>
 
         
+
+        
+      
+        <h3 id="hiber.event.Event.AlarmEvent.AlarmIncidentEvent">Event.AlarmEvent.AlarmIncidentEvent</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>incident_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>alarm</td>
+                  <td><a href="#hiber.alarm.AlarmIncident.Alarm">hiber.alarm.AlarmIncident.Alarm</a></td>
+                  <td></td>
+                  <td><p>The alarm that produced the incident. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>device</td>
+                  <td><a href="#hiber.alarm.AlarmIncident.Device">hiber.alarm.AlarmIncident.Device</a></td>
+                  <td></td>
+                  <td><p>The device that caused the incident. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>details</td>
+                  <td><a href="#hiber.alarm.AlarmIncident.Update">hiber.alarm.AlarmIncident.Update</a></td>
+                  <td></td>
+                  <td><p>The status of the incident. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>message_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td>optional</td>
+                  <td><p>The id of the message that triggered this incident event, if any. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#hiber.tag.Tag">hiber.tag.Tag</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
 
         
       
@@ -7665,6 +7810,20 @@ like daylight saving time automatically. </p></td>
                 </tr>
               
                 <tr>
+                  <td>alarm_identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Filter events by alarm identifier(s). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>alarm_incident_identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Filter events by alarm incident identifier(s). </p></td>
+                </tr>
+              
+                <tr>
                   <td>health_levels</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
@@ -8383,6 +8542,438 @@ Overrides unbundled_events in EventSelection message. </p></td>
         </table>
 
         
+    
+      
+      <div class="file-heading">
+        <h2 id="alarm_incident.proto">alarm_incident.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Incident for an alarm assigned to a device.</p><p>An incident is a series of messages that trigger the alarm, e.g. a period of time that pressure is above a threshold.</p>
+
+      
+        <h3 id="hiber.alarm.AlarmIncident">AlarmIncident</h3>
+        <p>Incident for an alarm assigned to a device.</p><p>An incident is a series of messages that trigger the alarm, e.g. a period of time that pressure is above a threshold.</p><p>The incident goes through a set of statuses, from started to resolved,</p><p>and tracks the health and error messages during that period.</p><p>When the status changes, an alarm incident event is produced.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Unique identifier for this incident. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>alarm</td>
+                  <td><a href="#hiber.alarm.AlarmIncident.Alarm">AlarmIncident.Alarm</a></td>
+                  <td></td>
+                  <td><p>The alarm that produced the incident. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>device</td>
+                  <td><a href="#hiber.alarm.AlarmIncident.Device">AlarmIncident.Device</a></td>
+                  <td></td>
+                  <td><p>The device that caused the incident. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#hiber.alarm.AlarmIncident.Status">AlarmIncident.Status</a></td>
+                  <td></td>
+                  <td><p>The status of the incident. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>health_level</td>
+                  <td><a href="#hiber.health.HealthLevel">hiber.health.HealthLevel</a></td>
+                  <td></td>
+                  <td><p>The health caused by this incident.
+If this is RESOLVED, the last health caused by this incident before it was resolved. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_messages</td>
+                  <td><a href="#hiber.alarm.AlarmIncident.ErrorMessagesEntry">AlarmIncident.ErrorMessagesEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>The error messages for this incident.
+If this is RESOLVED, the error messages for this incident before it was resolved. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>timeline</td>
+                  <td><a href="#hiber.alarm.AlarmIncident.Update">AlarmIncident.Update</a></td>
+                  <td>repeated</td>
+                  <td><p>History of events for this incident, tracking, for example, when it started and when it was resolved. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.alarm.AlarmIncident.Alarm">AlarmIncident.Alarm</h3>
+        <p>The alarm that produced the incident.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.alarm.AlarmIncident.Device">AlarmIncident.Device</h3>
+        <p>The device that caused the incident.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>number</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>device_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lifecycle</td>
+                  <td><a href="#hiber.modem.Modem.Lifecycle">hiber.modem.Modem.Lifecycle</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.alarm.AlarmIncident.ErrorMessagesEntry">AlarmIncident.ErrorMessagesEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.alarm.AlarmIncident.Update">AlarmIncident.Update</h3>
+        <p>The history for this incident.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>time</td>
+                  <td><a href="#hiber.Timestamp">hiber.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>previous_status</td>
+                  <td><a href="#hiber.alarm.AlarmIncident.Status">AlarmIncident.Status</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#hiber.alarm.AlarmIncident.Status">AlarmIncident.Status</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>previous_health_level</td>
+                  <td><a href="#hiber.health.HealthLevel">hiber.health.HealthLevel</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>health_level</td>
+                  <td><a href="#hiber.health.HealthLevel">hiber.health.HealthLevel</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>previous_error_messages</td>
+                  <td><a href="#hiber.alarm.AlarmIncident.Update.PreviousErrorMessagesEntry">AlarmIncident.Update.PreviousErrorMessagesEntry</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_messages</td>
+                  <td><a href="#hiber.alarm.AlarmIncident.Update.ErrorMessagesEntry">AlarmIncident.Update.ErrorMessagesEntry</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.alarm.AlarmIncident.Update.ErrorMessagesEntry">AlarmIncident.Update.ErrorMessagesEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.alarm.AlarmIncident.Update.PreviousErrorMessagesEntry">AlarmIncident.Update.PreviousErrorMessagesEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="hiber.alarm.AlarmIncidentSelection">AlarmIncidentSelection</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>search</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Search incident text, including identifier, alarm, device, error messages and status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>incident_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Select incidents by identifier. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>alarms</td>
+                  <td><a href="#hiber.modem.alarm.ModemAlarmSelection">hiber.modem.alarm.ModemAlarmSelection</a></td>
+                  <td>optional</td>
+                  <td><p>Select incidents by alarm. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>devices</td>
+                  <td><a href="#hiber.modem.ModemSelection">hiber.modem.ModemSelection</a></td>
+                  <td>optional</td>
+                  <td><p>Select incidents by device. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>current_status</td>
+                  <td><a href="#hiber.alarm.AlarmIncident.Status">AlarmIncident.Status</a></td>
+                  <td>repeated</td>
+                  <td><p>Select incidents that currently have one of the given statuses. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>health_levels</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Select incidents with a given health level. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>include_resolved</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>By default, incidents that have been resolved are not listed. Set this to include them. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="hiber.alarm.AlarmIncident.Status">AlarmIncident.Status</h3>
+        <p>The status of the incident.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>STARTED</td>
+                <td>0</td>
+                <td><p>The incident has started, no changes since that moment.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UPDATED</td>
+                <td>1</td>
+                <td><p>Since the incident started, some of the error messages changed significantly.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ESCALATED</td>
+                <td>2</td>
+                <td><p>Since the incident started, the health changed.</p></td>
+              </tr>
+            
+              <tr>
+                <td>RESOLVED</td>
+                <td>3</td>
+                <td><p>The incident has resolved.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
     
       
       <div class="file-heading">
@@ -12333,6 +12924,15 @@ This typically only happens for custom solutions.</p></td>
                 <td>56</td>
                 <td><p>An alarm was triggered in your organizations.
 Depending on the alarm, this may mean that a device sent a message with a value (e.g. pressure)
+outside of the expected range, or moved out of the expected area.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ALARM_INCIDENT</td>
+                <td>81</td>
+                <td><p>An alarm incident in your organizations.
+Represents the moment the incident started and ended (chain of ALARM_TRIGGERED).
+Depending on the alarm, this may mean that a device sent a (series of) message(s) with a value (e.g. pressure)
 outside of the expected range, or moved out of the expected area.</p></td>
               </tr>
             
@@ -19951,6 +20551,13 @@ be available to unencrypted values due to performance issues. </p></td>
                   <td><a href="#string">string</a></td>
                   <td>optional</td>
                   <td><p>Search for the given string in identifier, description, fields and values. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>alarm_incident_identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Select alarm from the incident identifier(s). </p></td>
                 </tr>
               
             </tbody>

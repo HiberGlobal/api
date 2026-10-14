@@ -15,6 +15,7 @@
   - [BundledEvent.ExactAmount](#bundledeventexactamount)
   - [Event](#event)
   - [Event.AlarmEvent](#eventalarmevent)
+  - [Event.AlarmEvent.AlarmIncidentEvent](#eventalarmeventalarmincidentevent)
   - [Event.AlarmEvent.AlarmTriggeredEvent](#eventalarmeventalarmtriggeredevent)
   - [Event.AlarmEvent.AlarmTriggeredEvent.ErrorMessagesEntry](#eventalarmeventalarmtriggeredeventerrormessagesentry)
   - [Event.AlarmEvent.CreatedEvent](#eventalarmeventcreatedevent)
@@ -111,6 +112,18 @@
 
 - Enums
   - [ListEventsRequest.Sort](#listeventsrequestsort)
+
+- Referenced messages from [alarm_incident.proto](#referenced-messages-from-alarm_incidentproto)
+  - [hiber.alarm.AlarmIncident](#hiberalarmalarmincident)
+  - [hiber.alarm.AlarmIncident.Alarm](#hiberalarmalarmincidentalarm)
+  - [hiber.alarm.AlarmIncident.Device](#hiberalarmalarmincidentdevice)
+  - [hiber.alarm.AlarmIncident.ErrorMessagesEntry](#hiberalarmalarmincidenterrormessagesentry)
+  - [hiber.alarm.AlarmIncident.Update](#hiberalarmalarmincidentupdate)
+  - [hiber.alarm.AlarmIncident.Update.ErrorMessagesEntry](#hiberalarmalarmincidentupdateerrormessagesentry)
+  - [hiber.alarm.AlarmIncident.Update.PreviousErrorMessagesEntry](#hiberalarmalarmincidentupdatepreviouserrormessagesentry)
+  - [hiber.alarm.AlarmIncidentSelection](#hiberalarmalarmincidentselection)
+
+    - [hiber.alarm.AlarmIncident.Status](#hiberalarmalarmincidentstatus)
 
 - Referenced messages from [assignment.proto](#referenced-messages-from-assignmentproto)
   - [hiber.assign.Assign](#hiberassignassign)
@@ -692,6 +705,7 @@ the contained object.
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.message_body_parser_updated | [ Event.MessageBodyParserEvent.UpdatedEvent](#eventmessagebodyparsereventupdatedevent) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.message_body_parser_deleted | [ Event.MessageBodyParserEvent.DeletedEvent](#eventmessagebodyparsereventdeletedevent) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.alarm_triggered | [ Event.AlarmEvent.AlarmTriggeredEvent](#eventalarmeventalarmtriggeredevent) |  |
+| [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.alarm_incident | [ Event.AlarmEvent.AlarmIncidentEvent](#eventalarmeventalarmincidentevent) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.alarm_created | [ Event.AlarmEvent.CreatedEvent](#eventalarmeventcreatedevent) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.alarm_updated | [ Event.AlarmEvent.UpdatedEvent](#eventalarmeventupdatedevent) |  |
 | [**oneof**](https://developers.google.com/protocol-buffers/docs/proto3#oneof) **event**.alarm_deleted | [ Event.AlarmEvent.DeletedEvent](#eventalarmeventdeletedevent) |  |
@@ -728,6 +742,23 @@ the contained object.
 
 
 
+
+### Event.AlarmEvent.AlarmIncidentEvent
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| organization | [ string](#string) |  |
+| incident_identifier | [ string](#string) |  |
+| alarm | [ hiber.alarm.AlarmIncident.Alarm](#hiberalarmalarmincidentalarm) | The alarm that produced the incident. |
+| device | [ hiber.alarm.AlarmIncident.Device](#hiberalarmalarmincidentdevice) | The device that caused the incident. |
+| details | [ hiber.alarm.AlarmIncident.Update](#hiberalarmalarmincidentupdate) | The status of the incident. |
+|  **optional** message_id | [optional uint64](#uint64) | The id of the message that triggered this incident event, if any. |
+| tags | [repeated hiber.tag.Tag](#hibertagtag) |  |
+| title | [ string](#string) |  |
+| description | [ string](#string) |  |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
 
 ### Event.AlarmEvent.AlarmTriggeredEvent
 
@@ -1697,6 +1728,8 @@ one per event type, with the count.
 |  **optional** publishers | [optional hiber.Filter.Publishers](#hiberfilterpublishers) |  |
 |  **optional** tags | [optional hiber.Filter.Tags](#hiberfiltertags) |  |
 |  **optional** time_range | [optional hiber.TimeRange](#hibertimerange) |  |
+| alarm_identifiers | [repeated string](#string) | Filter events by alarm identifier(s). |
+| alarm_incident_identifiers | [repeated string](#string) | Filter events by alarm incident identifier(s). |
 | health_levels | [repeated string](#string) | Filter events by actual configured health level. |
 |  **optional** include_resolved_events | [optional bool](#bool) | By default, events that have been resolved are not listed. |
 |  **optional** unbundled_events | [optional bool](#bool) | <span class="deprecated deprecated-field">Deprecated</span> When not set, no unbundled events are returned. When set, returns unbundled events per type, paginated per type. Deprecated: use unbundled_events on ListEventsRequest |
@@ -1874,6 +1907,125 @@ To clear an existing expiry, set `updated` true and leave `duration` to be the d
 | DEVICE_NUMBER_ASC |  | 2 |
 | DEVICE_NUMBER_DESC |  | 3 |
 | DEVICE_NUMBER_SPECIFIED |  | 4 |
+
+
+
+## Referenced messages from alarm_incident.proto
+(Note that these are included because there is a proto dependency on the file,
+so not all messages listed here are referenced.)
+
+#### This section was generated from [alarm_incident.proto](https://github.com/HiberGlobal/api/blob/master/alarm_incident.proto).
+
+
+### hiber.alarm.AlarmIncident
+
+Incident for an alarm assigned to a device.
+
+An incident is a series of messages that trigger the alarm, e.g. a period of time that pressure is above a threshold.
+
+The incident goes through a set of statuses, from started to resolved,
+and tracks the health and error messages during that period.
+
+When the status changes, an alarm incident event is produced.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifier | [ string](#string) | Unique identifier for this incident. |
+| alarm | [ hiber.alarm.AlarmIncident.Alarm](#hiberalarmalarmincidentalarm) | The alarm that produced the incident. |
+| device | [ hiber.alarm.AlarmIncident.Device](#hiberalarmalarmincidentdevice) | The device that caused the incident. |
+| status | [ hiber.alarm.AlarmIncident.Status](#hiberalarmalarmincidentstatus) | The status of the incident. |
+| health_level | [ hiber.health.HealthLevel](#hiberhealthhealthlevel) | The health caused by this incident. If this is RESOLVED, the last health caused by this incident before it was resolved. |
+| error_messages | [map hiber.alarm.AlarmIncident.ErrorMessagesEntry](#hiberalarmalarmincidenterrormessagesentry) | The error messages for this incident. If this is RESOLVED, the error messages for this incident before it was resolved. |
+| timeline | [repeated hiber.alarm.AlarmIncident.Update](#hiberalarmalarmincidentupdate) | History of events for this incident, tracking, for example, when it started and when it was resolved. |
+
+### hiber.alarm.AlarmIncident.Alarm
+
+The alarm that produced the incident.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| identifier | [ string](#string) |  |
+| name | [ string](#string) |  |
+| description | [ string](#string) |  |
+
+### hiber.alarm.AlarmIncident.Device
+
+The device that caused the incident.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| number | [ string](#string) |  |
+| identifier | [ string](#string) |  |
+| name | [ string](#string) |  |
+| device_type | [ string](#string) |  |
+| lifecycle | [ hiber.modem.Modem.Lifecycle](#hibermodemmodemlifecycle) |  |
+
+### hiber.alarm.AlarmIncident.ErrorMessagesEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) |  |
+| value | [ string](#string) |  |
+
+### hiber.alarm.AlarmIncident.Update
+
+The history for this incident.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| time | [ hiber.Timestamp](#hibertimestamp) |  |
+|  **optional** previous_status | [optional hiber.alarm.AlarmIncident.Status](#hiberalarmalarmincidentstatus) |  |
+| status | [ hiber.alarm.AlarmIncident.Status](#hiberalarmalarmincidentstatus) |  |
+|  **optional** previous_health_level | [optional hiber.health.HealthLevel](#hiberhealthhealthlevel) |  |
+|  **optional** health_level | [optional hiber.health.HealthLevel](#hiberhealthhealthlevel) |  |
+| previous_error_messages | [map hiber.alarm.AlarmIncident.Update.PreviousErrorMessagesEntry](#hiberalarmalarmincidentupdatepreviouserrormessagesentry) |  |
+| error_messages | [map hiber.alarm.AlarmIncident.Update.ErrorMessagesEntry](#hiberalarmalarmincidentupdateerrormessagesentry) |  |
+
+### hiber.alarm.AlarmIncident.Update.ErrorMessagesEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) |  |
+| value | [ string](#string) |  |
+
+### hiber.alarm.AlarmIncident.Update.PreviousErrorMessagesEntry
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| key | [ string](#string) |  |
+| value | [ string](#string) |  |
+
+### hiber.alarm.AlarmIncidentSelection
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** search | [optional string](#string) | Search incident text, including identifier, alarm, device, error messages and status. |
+| incident_identifier | [repeated string](#string) | Select incidents by identifier. |
+|  **optional** alarms | [optional hiber.modem.alarm.ModemAlarmSelection](#hibermodemalarmmodemalarmselection) | Select incidents by alarm. |
+|  **optional** devices | [optional hiber.modem.ModemSelection](#hibermodemmodemselection) | Select incidents by device. |
+| current_status | [repeated hiber.alarm.AlarmIncident.Status](#hiberalarmalarmincidentstatus) | Select incidents that currently have one of the given statuses. |
+| health_levels | [repeated string](#string) | Select incidents with a given health level. |
+|  **optional** include_resolved | [optional bool](#bool) | By default, incidents that have been resolved are not listed. Set this to include them. |
+
+
+### Enums
+#### hiber.alarm.AlarmIncident.Status
+The status of the incident.
+
+| Name | Description | Number |
+| ---- | ----------- | ------ |
+| STARTED | The incident has started, no changes since that moment. | 0 |
+| UPDATED | Since the incident started, some of the error messages changed significantly. | 1 |
+| ESCALATED | Since the incident started, the health changed. | 2 |
+| RESOLVED | The incident has resolved. | 3 |
 
 
 
@@ -3714,6 +3866,7 @@ If values are provided both for identifiers and search, then only alarms are sel
 | ----- | ---- | ----------- |
 | identifiers | [repeated string](#string) | Selects alarms by the given list of alarm identifiers. |
 |  **optional** search | [optional string](#string) | Search for the given string in identifier, description, fields and values. |
+| alarm_incident_identifiers | [repeated string](#string) | Select alarm from the incident identifier(s). |
 
 ### hiber.modem.alarm.TestModemAlarmTestParameters
 
@@ -6597,6 +6750,7 @@ api event stream and publishers.
 | MESSAGE_BODY_PARSER_UPDATED | A message body parser in your organization was updated. This typically only happens for custom solutions. | 47 |
 | MESSAGE_BODY_PARSER_DELETED | A message body parser in your organization was deleted. This typically only happens for custom solutions. | 48 |
 | ALARM_TRIGGERED | An alarm was triggered in your organizations. Depending on the alarm, this may mean that a device sent a message with a value (e.g. pressure) outside of the expected range, or moved out of the expected area. | 56 |
+| ALARM_INCIDENT | An alarm incident in your organizations. Represents the moment the incident started and ended (chain of ALARM_TRIGGERED). Depending on the alarm, this may mean that a device sent a (series of) message(s) with a value (e.g. pressure) outside of the expected range, or moved out of the expected area. | 81 |
 | ALARM_CREATED | A new alarm was created in your organization. | 57 |
 | ALARM_UPDATED | An alarm in your organization was updated. | 58 |
 | ALARM_DELETED | An alarm in your organization was deleted. | 59 |

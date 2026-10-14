@@ -1,11 +1,31 @@
 # Changelog Hiber API
 
+### 0.296 (2026-10-14)
+
+##### Permissions
+
+- Added `MODEM_HARDWARE` to `OrganizationPermission` to do hardware-related operations.
+  - For example, battery replacement.
+
+##### AlarmIncidentService
+
+- Added the `AlarmIncidentService` to list alarm incidents.
+
+##### EventService
+
+- Added `AlarmIncidentEvent` for the new incidents.
+- Added `alarm_incident_identifiers` and `alarm_identifiers` to `EventSelection` to get the events for an incident or alarm.
+
+##### ModemAlarmService
+
+- Added `alarm_incident_identifiers` to `ModemAlarmSelection` to get the alarm for an incident.
+
 ### 0.291 (2026-08-05)
 
 ##### base.proto
 
 - Added `CalendarPeriod` to describe a period of time based on the calender, e.g. a month or year.
-- Added `TimeWindow` to describe a windowing function, either by `IntervalWindow` describing a set interval 
+- Added `TimeWindow` to describe a windowing function, either by `IntervalWindow` describing a set interval
   or `CalendarWindow` using a `CalendarPeriod` and time zone.
 
 ##### AnalyticsService
@@ -14,7 +34,7 @@
 
 ##### ValueService
 
-- Added `Aggregated` rpc to get aggregated values, e.g. the maximum pressure per week, 
+- Added `Aggregated` rpc to get aggregated values, e.g. the maximum pressure per week,
   or the 90th, 95th, 99th and 99.9th percentile of pressure per month.
 
 ### 0.288 (2026-07-01)

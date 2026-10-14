@@ -1,0 +1,10 @@
+[{
+  "name": "Status",
+  "description": "The status of the incident.",
+  "values": {
+    "STARTED": "The incident has started, no changes since that moment."
+    , "UPDATED": "Since the incident started, some of the error messages changed significantly."
+    , "ESCALATED": "Since the incident started, the health changed."
+    , "RESOLVED": "The incident has resolved."
+    }
+}]

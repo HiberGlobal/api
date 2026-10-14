@@ -1,0 +1,70 @@
+/* Service to list incidents for an alarm assigned to a device.
+ *
+ * An incident is a series of messages that trigger the alarm, e.g. a period of time that pressure is above a threshold.
+ */
+syntax = "proto3";
+
+package hiber.alarm;
+
+import "alarm_incident.proto";
+import "base.proto";
+import "event.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.alarm";
+option java_outer_classname = "AlarmIncidentServiceApi";
+option go_package = ".;hiber";
+
+service AlarmIncidentService {
+    /* List alarm incidents. */
+    rpc List (ListAlarmIncidents.Request) returns (ListAlarmIncidents.Response) {
+        option (permission_usage) = MODEMS_ALARMS;
+        option (permission_usage) = MODEMS;
+    }
+}
+
+/*
+ * List alarm incidents in an organization.
+ * Does not include resolved incidents by default.
+ */
+message ListAlarmIncidents {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Selection of alarm incidents. Optional, when omitted or empty everything is included. */
+        optional AlarmIncidentSelection selection = 2;
+
+        /* Pagination for the returned alarm incidents. */
+        optional Pagination pagination = 3;
+
+        /* How to sort the returned alarm incidents. */
+        optional Sort sort_incidents = 4;
+
+        /* How to sort the history for the returned alarm incidents. */
+        optional event.ListEventsRequest.Sort sort_history = 5;
+
+        enum Sort {
+            /* Most recent incidents first. */
+            CREATED_DESC = 0;
+            /* Oldest incidents first. */
+            CREATED_ASC = 1;
+            /* Most recently resolved incidents first. */
+            RESOLVED_DESC = 2;
+            /* Most recently resolved incidents last. */
+            RESOLVED_ASC = 3;
+            /* Longest duration incidents first. */
+            DURATION = 4;
+        }
+    }
+    message Response {
+        /* A list of alarm incidents. */
+        repeated AlarmIncident incidents = 1;
+
+        /* A pagination object, which can be used to go through the incidents. */
+        Pagination.Result pagination = 2;
+
+        /* The request made to list the given incidents. */
+        Request request = 3;
+    }
+}

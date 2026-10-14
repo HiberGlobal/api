@@ -1,0 +1,118 @@
+/* Incident for an alarm assigned to a device.
+ *
+ * An incident is a series of messages that trigger the alarm, e.g. a period of time that pressure is above a threshold.
+ */
+syntax = "proto3";
+
+package hiber.alarm;
+
+import "base.proto";
+import "health.proto";
+import "modem.proto";
+import "modem_alarm.proto";
+
+option java_multiple_files = false;
+option java_package = "global.hiber.api.grpc.alarm";
+option java_outer_classname = "AlarmIncidentApi";
+option go_package = ".;hiber";
+
+/* Incident for an alarm assigned to a device.
+ *
+ * An incident is a series of messages that trigger the alarm, e.g. a period of time that pressure is above a threshold.
+ *
+ * The incident goes through a set of statuses, from started to resolved,
+ * and tracks the health and error messages during that period.
+ *
+ * When the status changes, an alarm incident event is produced.
+ */
+message AlarmIncident {
+    /* The status of the incident. */
+    enum Status {
+        /* The incident has started, no changes since that moment. */
+        STARTED = 0;
+
+        /* Since the incident started, some of the error messages changed significantly. */
+        UPDATED = 1;
+
+        /* Since the incident started, the health changed. */
+        ESCALATED = 2;
+
+        /* The incident has resolved. */
+        RESOLVED = 3;
+    }
+
+    /* The alarm that produced the incident. */
+    message Alarm {
+        string identifier = 1;
+        string name = 2;
+        string description = 3;
+    }
+
+    /* The device that caused the incident. */
+    message Device {
+        string number = 1;
+        string identifier = 2;
+        string name = 3;
+        string device_type = 4;
+        modem.Modem.Lifecycle lifecycle = 5;
+    }
+
+    /* The history for this incident. */
+    message Update {
+        Timestamp time = 1;
+        optional Status previous_status = 2;
+        Status status = 3;
+        optional health.HealthLevel previous_health_level = 4;
+        optional health.HealthLevel health_level = 5;
+        map<string, string> previous_error_messages = 6;
+        map<string, string> error_messages = 7;
+    }
+
+    /* Unique identifier for this incident. */
+    string identifier = 1;
+
+    /* The alarm that produced the incident. */
+    Alarm alarm = 2;
+
+    /* The device that caused the incident. */
+    Device device = 3;
+
+    /* The status of the incident. */
+    Status status = 4;
+
+    /* The health caused by this incident.
+     * If this is RESOLVED, the last health caused by this incident before it was resolved.
+     */
+    health.HealthLevel health_level = 5;
+
+    /* The error messages for this incident.
+     * If this is RESOLVED, the error messages for this incident before it was resolved.
+     */
+    map<string, string> error_messages = 6;
+
+    /* History of events for this incident, tracking, for example, when it started and when it was resolved. */
+    repeated Update timeline = 7;
+}
+
+message AlarmIncidentSelection {
+    /* Search incident text, including identifier, alarm, device, error messages and status. */
+    optional string search = 1;
+
+    /* Select incidents by identifier. */
+    repeated string incident_identifier = 2;
+
+    /* Select incidents by alarm. */
+    optional modem.alarm.ModemAlarmSelection alarms = 3;
+
+    /* Select incidents by device. */
+    optional modem.ModemSelection devices = 4;
+
+    /* Select incidents that currently have one of the given statuses. */
+    repeated AlarmIncident.Status current_status = 5;
+
+    /* Select incidents with a given health level. */
+    repeated string health_levels = 6;
+
+    /* By default, incidents that have been resolved are not listed. Set this to include them. */
+    optional bool include_resolved = 7;
+}

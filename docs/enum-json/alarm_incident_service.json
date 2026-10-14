@@ -1,0 +1,11 @@
+[{
+  "name": "Sort",
+  "description": "",
+  "values": {
+    "CREATED_DESC": "Most recent incidents first."
+    , "CREATED_ASC": "Oldest incidents first."
+    , "RESOLVED_DESC": "Most recently resolved incidents first."
+    , "RESOLVED_ASC": "Most recently resolved incidents last."
+    , "DURATION": "Longest duration incidents first."
+    }
+}]

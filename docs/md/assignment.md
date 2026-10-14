@@ -1399,6 +1399,7 @@ If values are provided both for identifiers and search, then only alarms are sel
 | ----- | ---- | ----------- |
 | identifiers | [repeated string](#string) | Selects alarms by the given list of alarm identifiers. |
 |  **optional** search | [optional string](#string) | Search for the given string in identifier, description, fields and values. |
+| alarm_incident_identifiers | [repeated string](#string) | Select alarm from the incident identifier(s). |
 
 ### hiber.modem.alarm.TestModemAlarmTestParameters
 
@@ -2844,6 +2845,7 @@ api event stream and publishers.
 | MESSAGE_BODY_PARSER_UPDATED | A message body parser in your organization was updated. This typically only happens for custom solutions. | 47 |
 | MESSAGE_BODY_PARSER_DELETED | A message body parser in your organization was deleted. This typically only happens for custom solutions. | 48 |
 | ALARM_TRIGGERED | An alarm was triggered in your organizations. Depending on the alarm, this may mean that a device sent a message with a value (e.g. pressure) outside of the expected range, or moved out of the expected area. | 56 |
+| ALARM_INCIDENT | An alarm incident in your organizations. Represents the moment the incident started and ended (chain of ALARM_TRIGGERED). Depending on the alarm, this may mean that a device sent a (series of) message(s) with a value (e.g. pressure) outside of the expected range, or moved out of the expected area. | 81 |
 | ALARM_CREATED | A new alarm was created in your organization. | 57 |
 | ALARM_UPDATED | An alarm in your organization was updated. | 58 |
 | ALARM_DELETED | An alarm in your organization was deleted. | 59 |

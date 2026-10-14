@@ -32,6 +32,7 @@ service DeviceService {
     rpc Update(UpdateDevice.Request) returns (UpdateDevice.Response) {
         option (permission_usage) = MODEMS_UPDATE;
         option (permission_usage) = MODEMS_UPDATE_FILES;
+        option (permission_usage) = MODEMS_HARDWARE;
         option (support_permission_usage) = DEVICE_VIEW_ALL_LIFECYCLES;
         option (support_permission_usage) = MANAGE_DEVICE_SLA;
         option (support_permission_usage) = MANAGE_DEVICE_TIME_ZONE;

@@ -51,6 +51,8 @@ enum OrganizationPermission {
     MODEMS_SECURE_NOTES = 42;
     /* Reset modem firmware requirement */
     MODEMS_FIRMWARE = 65;
+    /* Hardware maintenance, like battery replacement */
+    MODEMS_HARDWARE = 66;
 
     /* View and assign (with the ASSIGNMENTS permission) alarms. Includes MODEMS permission. */
     MODEMS_ALARMS = 44;

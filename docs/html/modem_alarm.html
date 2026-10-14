@@ -1903,6 +1903,13 @@ be available to unencrypted values due to performance issues. </p></td>
                   <td><p>Search for the given string in identifier, description, fields and values. </p></td>
                 </tr>
               
+                <tr>
+                  <td>alarm_incident_identifiers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Select alarm from the incident identifier(s). </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -4447,6 +4454,15 @@ This typically only happens for custom solutions.</p></td>
                 <td>56</td>
                 <td><p>An alarm was triggered in your organizations.
 Depending on the alarm, this may mean that a device sent a message with a value (e.g. pressure)
+outside of the expected range, or moved out of the expected area.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ALARM_INCIDENT</td>
+                <td>81</td>
+                <td><p>An alarm incident in your organizations.
+Represents the moment the incident started and ended (chain of ALARM_TRIGGERED).
+Depending on the alarm, this may mean that a device sent a (series of) message(s) with a value (e.g. pressure)
 outside of the expected range, or moved out of the expected area.</p></td>
               </tr>
             
