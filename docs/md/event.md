@@ -171,6 +171,9 @@
   - [hiber.assign.Unassign](#hiberassignunassign)
   - [hiber.assign.Unassign.Request](#hiberassignunassignrequest)
   - [hiber.assign.Unassign.Response](#hiberassignunassignresponse)
+  - [hiber.assign.UpdateAssignments](#hiberassignupdateassignments)
+  - [hiber.assign.UpdateAssignments.Request](#hiberassignupdateassignmentsrequest)
+  - [hiber.assign.UpdateAssignments.Response](#hiberassignupdateassignmentsresponse)
   - Enums
     - [hiber.assign.AssignmentType](#hiberassignassignmenttype)
 
@@ -2511,6 +2514,32 @@ Remove a assignment.
 | ----- | ---- | ----------- |
 | unassigned | [repeated hiber.assign.Assignment](#hiberassignassignment) |  |
 | request | [ hiber.assign.Unassign.Request](#hiberassignunassignrequest) |  |
+
+### hiber.assign.UpdateAssignments
+
+
+
+
+### hiber.assign.UpdateAssignments.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| assign | [repeated hiber.assign.Assign.Request](#hiberassignassignrequest) | Perform any number of assignments. See Assign for more information. |
+| unassign | [repeated hiber.assign.Unassign.Request](#hiberassignunassignrequest) | Perform any number of unassignments. See Unassign for more information. |
+| delete | [repeated hiber.assign.DeleteAssignment.Request](#hiberassigndeleteassignmentrequest) | Perform any number of assignment deletions. See Delete for more information. |
+
+### hiber.assign.UpdateAssignments.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| assigned | [repeated hiber.assign.Assign.Response](#hiberassignassignresponse) | Performed assignments. See Assign for more information. |
+| unassigned | [repeated hiber.assign.Unassign.Response](#hiberassignunassignresponse) | Performed unassignments. See Unassign for more information. |
+| deleted | [repeated hiber.assign.DeleteAssignment.Response](#hiberassigndeleteassignmentresponse) | Performed assignment deletions. See Delete for more information. |
 
 
 ### Enums

@@ -1,5 +1,12 @@
 # Changelog Hiber API
 
+### 0.297 (2026-11-02)
+
+##### AssignmentService
+
+- Added `Update` to apply multiple assignment changes in a single request, reverting them if any of them fail.
+  - This can be useful to, for example, unassign and assign in one request.
+
 ### 0.296 (2026-10-14)
 
 ##### Permissions

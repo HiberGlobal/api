@@ -55,6 +55,9 @@
   - [Unassign](#unassign)
   - [Unassign.Request](#unassignrequest)
   - [Unassign.Response](#unassignresponse)
+  - [UpdateAssignments](#updateassignments)
+  - [UpdateAssignments.Request](#updateassignmentsrequest)
+  - [UpdateAssignments.Response](#updateassignmentsresponse)
 
 - Enums
   - [AssignmentType](#assignmenttype)
@@ -262,6 +265,12 @@ Assign something, like an alarm to a modem.
     [Unassign.Response](#unassignresponse)
 
 End an assignment, like an alarm to a modem.
+
+### Update
+> **rpc** Update([UpdateAssignments.Request](#updateassignmentsrequest))
+    [UpdateAssignments.Response](#updateassignmentsresponse)
+
+Assign and unassign multiple different things, like an alarm to a modem.
 
 ### Delete
 > **rpc** Delete([DeleteAssignment.Request](#deleteassignmentrequest))
@@ -777,6 +786,32 @@ Remove a assignment.
 | ----- | ---- | ----------- |
 | unassigned | [repeated Assignment](#assignment) |  |
 | request | [ Unassign.Request](#unassignrequest) |  |
+
+### UpdateAssignments
+
+
+
+
+### UpdateAssignments.Request
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+|  **optional** organization | [optional string](#string) | Pick the organization to use (/impersonate). If unset, your default organization is used. |
+| assign | [repeated Assign.Request](#assignrequest) | Perform any number of assignments. See Assign for more information. |
+| unassign | [repeated Unassign.Request](#unassignrequest) | Perform any number of unassignments. See Unassign for more information. |
+| delete | [repeated DeleteAssignment.Request](#deleteassignmentrequest) | Perform any number of assignment deletions. See Delete for more information. |
+
+### UpdateAssignments.Response
+
+
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| assigned | [repeated Assign.Response](#assignresponse) | Performed assignments. See Assign for more information. |
+| unassigned | [repeated Unassign.Response](#unassignresponse) | Performed unassignments. See Unassign for more information. |
+| deleted | [repeated DeleteAssignment.Response](#deleteassignmentresponse) | Performed assignment deletions. See Delete for more information. |
 
 
 ## Enums

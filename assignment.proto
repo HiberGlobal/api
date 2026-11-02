@@ -37,6 +37,15 @@ service AssignmentService {
         option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
     }
 
+    /* Assign and unassign multiple different things, like an alarm to a modem. */
+    rpc Update (UpdateAssignments.Request) returns (UpdateAssignments.Response) {
+        option (permission_usage) = ASSIGNMENTS;
+        option (permission_usage) = MODEMS;
+        option (permission_usage) = MODEMS_MESSAGE_BODY_PARSERS;
+        option (permission_usage) = MODEMS_ALARMS;
+        option (permission_usage) = PROCESS_POINTS;
+    }
+
     /* Delete an assignment, even if it has a time range. */
     rpc Delete (DeleteAssignment.Request) returns (DeleteAssignment.Response) {
         option (permission_usage) = ASSIGNMENTS;
@@ -351,6 +360,32 @@ message Unassign {
     message Response {
         repeated Assignment unassigned = 1;
         Request request = 2;
+    }
+}
+
+message UpdateAssignments {
+    message Request {
+        /* Pick the organization to use (/impersonate). If unset, your default organization is used. */
+        optional string organization = 1;
+
+        /* Perform any number of assignments. See Assign for more information. */
+        repeated Assign.Request assign = 2;
+
+        /* Perform any number of unassignments. See Unassign for more information. */
+        repeated Unassign.Request unassign = 3;
+
+        /* Perform any number of assignment deletions. See Delete for more information. */
+        repeated DeleteAssignment.Request delete = 4;
+    }
+    message Response {
+        /* Performed assignments. See Assign for more information. */
+        repeated Assign.Response assigned = 1;
+
+        /* Performed unassignments. See Unassign for more information. */
+        repeated Unassign.Response unassigned = 2;
+
+        /* Performed assignment deletions. See Delete for more information. */
+        repeated DeleteAssignment.Response deleted = 3;
     }
 }
 
